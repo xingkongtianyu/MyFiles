@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.offsetParent()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/offset/" title="View all posts in Offset">Offset</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="offsetParent1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.offsetParent()</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>返回最近的被定过位的祖先元素。（祖先元素指该元素的上级元素，即包着它的外层元素）</p>
+<ul class="signatures"><li class="signature" id="offsetParent"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.26/">1.26</a></span>.offsetParent()</h4></li></ul>
+<div class="longdesc">
+<p>提供一个代表一系列DOM元素的jQuery对象，
+ <code>.offsetParent()</code>方法允许我们搜索DOM树里面该元素的祖先元素，然后构造一个jQuery对象，该jQuery对象包着最近的被定过位的祖先元素。
+一个元素被定位的意思是该元素包含一个位置属性<code>relative</code>, <code>absolute</code>, 或者 <code>fixed</code>.
+这对于计算元素的位置很方便，计算位置可以帮助实现动画或者将元素放在页面上的特定位置。</p>
+<p>例如如果一个页面包含一个嵌套的列表，里面有一个被定过位的元素：</p>
+<pre>
+&lt;ul class="level-1"&gt;
+  &lt;li class="item-i"&gt;I&lt;/li&gt;
+  &lt;li class="item-ii" style="position: relative;"&gt;II
+    &lt;ul class="level-2"&gt;
+      &lt;li class="item-a"&gt;A&lt;/li&gt;
+      &lt;li class="item-b"&gt;B
+        &lt;ul class="level-3"&gt;
+          &lt;li class="item-1"&gt;1&lt;/li&gt;
+          &lt;li class="item-2"&gt;2&lt;/li&gt;
+          &lt;li class="item-3"&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-c"&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item-iii"&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们从item A开始，我们可以通过下面的方法找到它的最近的被定过位的祖先元素：</p>
+<pre>$('li.item-a').offsetParent().css('background-color', 'red');</pre>
+<p>这将改变list item II的颜色，因为它被定位了。</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">寻找item "A."的offsetParent</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+    &lt;ul class="level-1"&gt;
+      &lt;li class="item-i"&gt;I&lt;/li&gt;
+      &lt;li class="item-ii" style="position: relative;"&gt;II
+        &lt;ul class="level-2"&gt;
+          &lt;li class="item-a"&gt;A&lt;/li&gt;
+          &lt;li class="item-b"&gt;B
+            &lt;ul class="level-3"&gt;
+              &lt;li class="item-1"&gt;1&lt;/li&gt;
+              &lt;li class="item-2"&gt;2&lt;/li&gt;
+              &lt;li class="item-3"&gt;3&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li class="item-c"&gt;C&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-iii"&gt;III&lt;/li&gt;
+    &lt;/ul&gt;
+  
+&lt;script&gt;$('li.item-a').offsetParent().css('background-color', 'red');&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="250"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

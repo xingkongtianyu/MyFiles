@@ -1,0 +1,278 @@
+Linux批量重命名 rename & mv [转]
+
+刚学习linux的时候，对文件重命名首先想到的就是rename命令，但是按照 在windows下对文件重命名的方式试了N多次都没有反应，在网上一搜索，发现很多人都对rename命令知之甚少，甚至有一部分人说linux下没有 rename命令，建议大家用mv命令。鉴于此，于是man rename一下，好好的研究了一下它的用法 ，在此对rename命令和mv命令在重命名文件方面做一个比较，有不足之处，希望各位博友指正！
+
+首先来说一下mv命令，在man mv中我们可以看到对于mv命令的介绍是这样的：
+
+mv -move(rename) files
+
+可以看到mv命令确实有重命名的功能，但是实际应用中，它只能对单个文件重命名，命令如下：
+
+mv [path/]oldfilename [path/]newfilename
+
+“mv命令只能对单个文件重命名”，这实就是mv命令和rename命令的在重命名方面的根本区别。
+
+再来说rename命令，在man rename的说明如下：
+
+NAME
+
+rename -Rename files
+
+SYNOPSIS
+
+rename from to file....
+
+DESCRIPTION
+
+rename will rename the specified files by replacing the first occurrence of from in their name by to.
+
+For example, given the files foo1, ..., foo9, foo10, ..., foo278, the commands
+
+rename foo foo0 foo?
+
+rename foo foo0 foo??
+
+will turn them into foo001, ..., foo009, foo010, ..., foo278.
+
+And
+
+rename .htm .html *.htm
+
+will fix the extension of your html files.
+
+可以看出rename命令是专用于文件重命名的，而且根据其后的例子可以看出，rename除了给单个文件重命名，还可以批量文件重命名。同时，值得注意一点的是，rename命令是带3个参数而不是很多人认为的2个参数。
+
+上面的例子中给出了两种文件批量重命名的用法，而实际上，rename结合通配符使用，它的功能比上面的例子所显示的更强大。基本的通配符有以下几个：
+
+? 可替代单个字符
+
+* 可替代多个字符
+
+[charset] 可替代charset集中的任意单个字符
+
+下面以例子加以说明：
+
+如文件夹中有这些文件foo1, ..., foo9, foo10, ..., foo278，如果使用
+
+rename foo foo0 foo?
+
+则它只会把foo1到foo9的文件重命名为foo01到foo09，因为?通配符只能替代单个字符，所以被重命名的文件只是有4个字符长度名称的文件，文件名中的foo被替换为foo0。
+
+再继续使用
+
+rename foo foo0 foo??
+
+则文件夹中的foo01到foo99的所有文件都被重命名为foo001到foo099，而foo100及其以后的文件名都不变，因为通配符?的使用，所以只重命名5个字符长度名称的文件，文件名中的foo被替换为foo0。
+
+如果再继续使用
+
+rename foo foo0 foo*
+
+则foo001到foo278的所有文件都被重命名为foo0001到foo0278，因为通配符*可替代多个字符，所以，所有以foo开头的文件都被重命名了，文件名中的foo被替换为foo0。
+
+我们再来看通配符[charset]的用法，还是继续在上面所说的文件夹中，执行如下命令
+
+rename foo0 foo foo0[2]*
+
+则从foo0200到foo0278的所有文件都被重命名为foo200到foo278，文件名中的foo0被替换为foo。
+
+在使用中，三种通配符可以一起结合使用，关于具体的其它用法就只有自己不断的摸索了
+
+ 
+
+或者用编程语言
+
+Linux批量重命名文件会涉及到改变一个字母、改变一些相连字母、改变某些位置的字母、在最前面加上某些字母、或者改变字母的大小写。完成这里五个方法基本上就会解决了Linux批量重命名的工作。
+
+1、我想把它们的名字的第一个1个字母变为"q"，其它的不变
+
+[root@pps mailqueue]# for i in `ls`; do mv -f $i `echo $i | sed 's/^./q/'`; done
+
+或者写个脚本，显得更加清晰：
+
+    for file in `ls`
+    do
+      newfile =`echo $i | sed 's/^./q/'`
+    　mv $file $newfile
+    done
+
+
+2、修改前面5个字母为zhaozh
+
+[root@pps mailqueue]# for i in `ls`; do mv -f $i `echo $i | sed 's/^...../zhaozh/'`; done
+
+3、修改后面5个字母为snail
+
+[root@pps mailqueue]# for i in `ls`; do mv -f $i `echo $i | sed 's/.....$/snail/'`; done
+
+4、在前面添加 _hoho_
+
+[root@pps mailqueue]# for i in `ls`; do mv -f $i `echo "_hoho_"$i`; done
+
+5、所有的小写字母变大写字母
+
+[root@pps mailqueue]# for i in `ls`; do mv -f $i `echo $i | tr a-z A-Z`; done
+
+　　
+
+ 
+
+=================================================
+Linux rename命令 批量重命名
+
+Linux的 rename 命令有两个版本，一个是C语言版本的，一个是Perl语言版本的，早期的Linux发行版基本上使用的是C语言版本的，现在已经很难见到C语言版本的了， 由于历史原因，在Perl语言大红大紫的时候，Linux的工具开发者们信仰Perl能取代C，所以大部分工具原来是C版本的都被Perl改写了，因为 Perl版本的支持正则处理，所以功能更加强大，已经不再需要C语言版本的了。
+
+ 
+
+
+如何区分系统里的rename命令是哪个版本的?
+
+输入 man rename 看到第一行是
+
+RENAME(1) Linux Programmer’s Manual RENAME(1)
+
+那么 这个就是C语言版本的。
+
+而如果出现的是：
+RENAME(1)              Perl Programmers Reference Guide              RENAME(1)
+
+这个就是Perl版本的了！
+
+
+两个版本的语法差异：
+
+C语言的，按照man上面的注解，
+rename的语法格式是：
+
+rename fromtofile
+
+这个命令有三个参数，分别是 from ： 修改什么名字， to：改成什么名字， file 需要修改的文件是哪些。
+
+用法示例：
+比如，有一批文件，都是以 log开头的， log001.txt,  log002.txt ....... 一直到 log100.txt
+现在想要把这批文件的log全部替换为 history
+rename  log history log*
+
+这句命令的意思很明白了，把 以 log开头的所有文件中的 log字符替换为 history
+这样替换后的文件是： history001.txt,  history002.txt ..... 一直到 history100.txt
+
+rename C语言版本的另一个man示例是把后缀名批量修改，
+比如我们要将所有 jpeg的后缀名图片文件修改为 jpg文件。
+
+rename .jpeg.jpg*.jpeg
+
+这样，所有以 .jpeg扩展的后缀名全部被修改为 .jpg
+
+现在总结一下rename C语言版本所能实现的功能： 批量修改文件名，结果是每个文件会被用相同的一个字符串替换掉！也就是说，无法实现诸如循环 然后按编号重命名！
+
+
+
+2, Perl 版本的批量重命名，带有Perl的好处是，你可以使用正则表达式来完成很奇特的功能。
+
+perl 版本的参数格式：
+
+rename  perlexprfiles
+
+注意，perl版本的rename只有两个参数，第一个参数为perl正则表达式，第二个参数为所要处理的文件
+
+man rename的帮助示例：
+
+1) 有一批文件，以 .bak结尾，现在想把这些 .bak 统统去掉。
+
+rename     's/\.bak$//'       *.bak
+
+这个命令很简单，因为我还没有系统学习过perl，我不知道perl里替换字符串是不是这么干的，但sed是这么干的，所以如果你有sed或者tr基础，很容易明白，这个替换和sed里的正则语法是一模一样的。
+
+2) 把所有文件名内含有大小字母的，修改为小写字母。
+
+rename      'y/A-Z/a-z/'      *
+
+依然和sed的替换语法一样，不用多解释，如果看不懂的话，可以系统学习一下sed先。
+
+还有几个比较实用的例子：
+
+1） 批量去掉文件名里的空格
+Linux文件名本来是不支持空格的，不知道什么时候允许了，当然，在命令行调用文件的时候，空格是很有问题滴，比如你 原来可以直接  mv  oldfile  newfile  但有空格就不行了 ， 得加双引号： mv "oldfile"  "newfile" 或者用反斜杠转移  \[] ，这样还好，但如果你直接把含有空格的图片名引入 Latex文档，Latex生成pdf的时候会直接打印出文件名，之前这个问题苦恼了我很久，我生成的pdf怎么老是出现文件名呢？后来才发现原来是文件名内含有空格的问题！windows系统下生成的文件名是天生含有空格的，虽然很讨厌，但有些惠普扫描仪生成的图片默认就加入了空格，没有办法，只好去掉他，在系统研究rename命令前，我是用 mv 去除空格的。
+
+网上流程的两个去空格的版本：
+
+1) tr 版：
+
+find . -type f -name "* *" -print |
+while read name; do
+na=$(echo $name | tr ' ' '_')
+if [[ $name != $na ]]; then
+mv "$name" $na
+fi
+done
+
+这个版本以前我一直用的，不知道哪个网上搜刮来的，当时还没有系统的学习过 tr/sed/awk命令。
+注解一下，很好理解， find . type f -name "* *" -print 这一句是查找当前目录下所有类型为普通文件的 并且名字之中含有空格的文件，并打印出来，其实 find默认就是打印的 这个 -print 多余了，然后 通过管道传输给 while 循环读取，文件名放到 name 变量里，用 tr 命令 替换空格为 下划线。 下面判断如果执行后的名称不相同，使用 mv 命令重命名。但这个if判断可有可无，因为find已经查询了所有文件名中含有空格的，那么经过 tr 命令后， $na变量肯定不等于 $name 变量的。
+
+所以这段代码可以简化：
+
+find . -type f -name "* *" |
+while read name; do
+na=$(echo $name | tr ' ' '_')
+mv "$name" "$na"
+done
+
+tr 可以看着是 sed 的一个精简版本，tr 用下划线来替换空格。
+
+还有一个 是 sed 版本实现：
+
+for f in *;do mv "$f" `echo "$f" | sed 's/[ ]\+/_/g' `; done
+
+这里的 sed表达式还可以这样写：
+
+sed 's/[[:space:]]\+/_/g'
+
+不过记住，sed里的出现一次或多次的加号是需要添加反斜杠的。即：\+
+
+这样就可以了。
+
+好了，这两种办法都太他妈罗嗦了，看看rename实现吧：
+
+rename      's/[ ]+/_/g'       *
+
+OK就这么简单。
+方括号内的空格可以用 [:space:]代替，
+即可以写成 's/[[:space:]]+/_/g'
+
+这里注意，rename 采用的是标准perl正则语法，所以无须将 加号转变为反斜杠加号
+即 + 不能修改为 \+，否则替换失败。
+
+
+还有几个好玩的例子：
+比如统一在文件头部添加上 hello 
+rename         's/^/hello/'       *
+
+统一把.html扩展名修改为 .htm
+rename          's/.html$/.htm/'      *
+
+统一在尾部追加 .zip后缀：
+rename          's/$/.zip/'      *
+
+统一去掉.zip后缀：
+
+rename          's/.zip$//'      *
+
+ 
+
+规则化数字编号名，比如 1.jpg, 2.jpg ..... 100.jpg , 现在要使文件名全部三位即 1.jpg .... 001.jpg
+
+运行两次命令：
+
+rename           's/^/00/'          [0-9].jpg     # 这一步把 1.jpg ..... 9.jpg 变幻为 001.jpg .... 009.jpg
+
+rename            's/^/0/'           [0-9][0-9].jpg   # 这一步把 10.jpg ..... 99.jpg 变幻为 010.jpg ..... 090.jpg
+
+ 
+
+Ok ，rename就研究了这么多，暂时不知道如何在rename中引入动态变量，比如 $i++
+
+
+我测试过 i=0;  rename -n "s/^.*$/$((++i))/"   *  执行后i被自增了1,并非想我想像中那样，可以在每操作一个文件自增一，猜想可能是因为rename批量实现的，导致++i只计算一次！
+
+
+-n 用来测试rename过程，并不直接运行，可以查看测试效果后，然后再运行。

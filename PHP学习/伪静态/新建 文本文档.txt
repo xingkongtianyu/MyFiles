@@ -1,0 +1,15 @@
+RewriteCond ^\/index.php.*$ [NC]
+RewriteRule ^\/index.php?a=([0-9]+)&b=([0-9]{1})&c=([0-9]+)$ http://zufang.sslook.com/$1/$2/$3 [R=301,L]
+
+以上正则想做的是，访问网站网址为 http://zufang.sslook.com/index.php?a=1&b=2&c=3 自动跳转到页面 http://zufang.sslook.com/1/2/3
+
+
+请教各位大侠，这个要怎么写？ 写来写去都没有成功。
+
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([0-9]+)\/([0-9]{1})\/([0-9]+)$ /test.php?a=$1&b=$2&c=$3 [L,NC]
+
+
+给你测过了，管用，如假保换
+
+你把后面改为[R=301,L] URL会跟着变，用我的，URL不变

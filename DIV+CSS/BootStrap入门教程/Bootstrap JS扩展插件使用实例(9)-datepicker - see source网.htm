@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.see-source.com/blog/300000033/373 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Bootstrap JS扩展插件使用实例(9)-datepicker	 - see source网</title>
+
+<meta  name="keywords"  content="Bootstrap JS扩展插件使用实例(9)-datepicker	">
+<meta  name="description"  content="
+	本文将介绍一款&amp;nbsp;基于Bootstrap&amp;nbsp;的简洁的日期插件bootstrap-datepicker.js。 
+
+
+	该插件需要单独下载。包括如下文件： 
+
+
+	datepicker.css 
+
+
+	bootstrap-datepicker.js 
+
+
+	datepicker.less 
+
+
+	less文件可根据需要使用。下面我们就将这...">
+<meta  name="author"  content="see source网">
+<link  rel="stylesheet"  href="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/style.css"  type="text/css"  media="screen">
+<link  rel="stylesheet"  href="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/notice.css"  type="text/css">
+
+<script  type="text/javascript">
+function getBaseHref(){
+  var baseHref = 'http://www.see-source.com';
+  return baseHref;
+}
+function getArticleId(){
+  return '373';
+}
+</script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/jquery-1.6.2.min.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/util.js"></script> 
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/common.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/notice.js"></script>
+    
+ 
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shCore.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushBash.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushCpp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushCSharp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushCss.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushDelphi.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushDiff.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushGroovy.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushJava.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushJScript.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushPhp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushPlain.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushPython.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushRuby.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushScala.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushSql.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushVb.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shBrushXml.js"></script>
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shCore.css">
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/shThemeDefault.css">
+<script  type="text/javascript">
+  SyntaxHighlighter.defaults['auto-links'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+</head>
+<body>
+
+<div  class="notice"  style="height: 20px;">
+  <div  class="topborder">
+    <p></p>
+  </div>
+  <div  class="msg">
+        系统通知
+  </div>
+  <div  class="msg_border"  style="display: none;"></div>
+  <div  class="content"  style="text-align: left; display: none;">
+     <p>看源社区成立一年以来感谢大家对网站的支持，希望我们的工作对大家有所帮助，也希望您继续给予关注。同时，祝大家圣诞、新年快乐。</p>
+     <a  target="_blank"  href="http://www.see-source.com/">"首页"</a>、<a  target="_blank"  href="http://www.see-source.com/java/java!index">"java开源"</a> 版块已经改版 - 希望大家给予关注<br>
+               
+  </div>
+  <div  class="time"  style="display: none;">11月29日 14:10</div>
+  <div  class="close"  style="display: none;">&nbsp;</div>
+  <span  class="open"  style="display: inline;">open</span>
+</div>
+ 
+
+<div  id="top">
+   <div  class="wp998">
+        <div  class="OSC_Channels">
+        	<ul>
+        	<li  class="item"><a  href="http://www.see-source.com/"  class="home">首页</a></li>      
+			<li  class="item"><a  href="http://www.see-source.com/course/index.jsp">推荐教程</a></li>
+        	
+        	<li  class="item"><a  href="http://www.see-source.com/">博客</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/question/question!latest">问答</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/front/front!index">前端框架专区</a></li>
+        	</ul>
+        </div>
+		<div  class="OSC_Userbar">
+            <ul>
+             
+	         <li  class="item"><a  href="javascript:void(0)" >登录</a></li>
+	         <li  class="item"><a  href="javascript:void(0)" >注册</a></li>
+	         
+        	</ul>
+        </div>
+		<div  class="clear"></div>
+	</div>
+</div>
+
+
+<div  id="header">
+   <div  class="wp998">
+      <div  class="logo">see source</div>
+	  <div  class="clear"></div>
+    </div>
+</div>
+
+
+
+<div  id="main">
+   <div  class="current_position"><a  href="http://www.see-source.com/">首页</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a  href="http://www.see-source.com/front/front!index">前端框架专区</a>&nbsp;&nbsp;»&nbsp;&nbsp;博客</div>   
+   
+   <div  class="left">
+       <div  class="userInfo">
+		   <ul>
+	       <li  class="nickname">我的昵称：liyi</li>	     
+           <li>技术专长：<label> </label></li>
+           
+           <li  class="guanzhu"><a  href="javascript:void(0)" >加关注</a></li>
+           
+           
+           </ul>	
+	   </div>
+	   <div  class="blogStatistics">
+	       <span>共22个博文 ，已有47431次阅读</span>
+	   </div>
+	   <div  class="blogList">
+	       <div  class="RightTitle">
+				   ⇓最新博文
+		   </div>
+		   <ul>
+		   
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/364"> 1.Bootstrap JS插件使用实例(6)-折叠(手风琴效果)</a>
+				    <p>
+	本篇文章讨论Bootstrap的js插件的折叠效果...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 2.使用 Bootstrap Typeahead 组件(自动补全)</a>
+				    <p>
+	Bootstrap 的 Typeahead 插件是...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> 3.ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+				    <p>
+	Ext.form.Label:可以与表单中的一个字...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> 4.Bootstrap示例演示：bootstrap-popover.js</a>
+				    <p>
+	bootstrap-popover.js继承自bo...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> 5.Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+				    <p>
+	bootstrap-affix.js组件，直译过来...</p>
+			        </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="hotBlogs">
+	       <strong  class="title">
+				阅读排行
+		   </strong>
+		   <ul>
+		   
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/364"> Bootstrap JS插件使用实例(6)-折叠(手风琴效果)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 使用 Bootstrap Typeahead 组件(自动补全)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> Bootstrap示例演示：bootstrap-popover.js</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> Bootstrap文件上传插件(jQuery-File-Upload)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/393"> Bootstrap分页插件--Bootstrap Paginator</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/373"> Bootstrap JS扩展插件使用实例(9)-datepicker	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/371"> 扩展Twitter Bootstrap的JavaScript插件</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/369"> Bootstrap JS插件使用实例(8)-按钮	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/367"> Bootstrap JS插件使用实例(7)-通知消息</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/338"> 为 Bootstrap 添加更多自定义图标</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/337"> 红色大气的Bootstrap网页模板</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/287"> Bootstrap JS插件使用实例(4)-滚动侦测</a>
+			 </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="blogType">
+	       <strong  class="title">
+				博客分类
+		   </strong>
+	       <ul>
+	       
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=23">JavaScript插件 </a><span>(15)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=59">ExtJS </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=28">代码分享 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=26">HTML模板 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=19">布局 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=18">栅格系统 </a><span>(3)</span></li>
+		      
+	       </ul>
+	   </div>
+	   <div  class="relationBlogs">
+	       <div  class="title">
+				相关博文
+		   </div>
+		   <ul>
+		       
+		       
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/393"> Bootstrap分页插件--Bootstrap Paginator</a>(阅读5867)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> Bootstrap文件上传插件(jQuery-File-Upload)</a>(阅读3651)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> Bootstrap JS插件使用实例(10)-附加导航(affix)</a>(阅读1770)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000048/416"> bootstrap-progressbar：基于Twitter Bootstrap构建的进度条</a>(阅读644)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/371"> 扩展Twitter Bootstrap的JavaScript插件</a>(阅读432)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/369"> Bootstrap JS插件使用实例(8)-按钮	</a>(阅读2508)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/367"> Bootstrap JS插件使用实例(7)-通知消息</a>(阅读2178)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>(阅读2306)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/287"> Bootstrap JS插件使用实例(4)-滚动侦测</a>(阅读2244)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/286"> Bootstrap JS插件使用实例(3)-下拉菜单</a>(阅读3326)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/282"> Bootstrap JS插件使用实例(2)-模态对话框</a>(阅读4073)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/281"> Bootstrap JS插件使用实例(1)-轮播</a>(阅读5024)
+			      </li>	
+			   	
+		       
+		       	       
+		   </ul>
+	   </div>
+   </div>
+   
+   
+   <div  class="right">
+      <div  class="project">
+	     <h1  class="title"><a  href="http://www.see-source.com/blog/300000033/373#"  class="name">Bootstrap JS扩展插件使用实例(9)-datepicker	</a> </h1>
+		 <div  class="blogStat">
+		     <span>发表于 2013-05-21 19:40    ,已有<strong>2515</strong>次阅读 ，共<strong>0</strong>个评论</span>
+	     </div>		 	
+	     <div  class="blog_content">
+		     <div  class="internal_content">
+                   <p>
+	<span  style="font-size:14px;">本文将介绍一款</span><span  style="font-family:Verdana, sans-serif, 宋体;font-size:14px;line-height:21px;background-color:#FFFFFF;">&nbsp;基于</span><span  style="color:#3E62A6;font-family:&#39;Verdana, sans-serif, 宋体&#39;;font-size:14px;"><span  style="line-height:21px;background-color:#FFFFFF;color:#000000;font-size:14px;">Bootstrap</span></span><span  style="font-family:Verdana, sans-serif, 宋体;font-size:13px;line-height:21px;background-color:#FFFFFF;"><span  style="color:#000000;font-size:14px;">&nbsp;</span><span  style="font-size:14px;">的简洁的日期插件</span></span><span  style="background-color:#F8F8F8;color:#0000FF;font-family:Consolas, Monaco, &#39;Bitstream Vera Sans Mono&#39;, &#39;Courier New&#39;, Courier, monospace;font-size:14px;line-height:normal;text-indent:-21px;">bootstrap-datepicker.js</span><span  style="background-color:#FFFFFF;font-family:Verdana, sans-serif, 宋体;font-size:14px;line-height:21px;">。</span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;font-family:Verdana, sans-serif, 宋体;font-size:13px;line-height:21px;"><span  style="font-size:14px;">该插件需要单独</span><a  href="http://www.eyecon.ro/bootstrap-datepicker/datepicker.zip"  target="_blank"><span  style="font-size:14px;">下载</span></a><span  style="font-size:14px;">。包括如下文件：</span></span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;line-height:21px;font-size:14px;"><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;font-size:14px;">datepicker.css</span></span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;line-height:21px;font-size:14px;"><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;font-size:14px;">bootstrap-datepicker.js</span></span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;line-height:21px;font-size:14px;"><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;font-size:14px;">datepicker.less</span></span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;line-height:21px;font-size:14px;"><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;font-size:14px;">less文件可根据需要使用。下面我们就将这个插件的使用详细介绍下。</span></span> 
+</p>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	引入文件
+</h2>
+<div  class="syntaxhighlighter "  id="highlighter_461546"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">link</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/css/bootstrap.css"</code> <code  class="color1">rel</code><code  class="plain">=</code><code  class="string">"stylesheet"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/jquery.js"</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">link</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/datepicker/css/datepicker.css"</code> <code  class="color1">rel</code><code  class="plain">=</code><code  class="string">"stylesheet"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/datepicker/js/bootstrap-datepicker.js"</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	<span  style="font-size:14px;">该插件是基于Bootstrap的扩展插件，所以依赖Bootstrap的样式，需要引入bootstrap.css</span> 
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	入门实例
+</h2>
+<p>
+	<span  style="font-size:14px;">Html代码</span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_700191"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"05/20/2013"</code>&nbsp; <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp1"</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">Js代码</span> 
+<div  class="syntaxhighlighter "  id="highlighter_406009"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker();</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/script&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">该插件并没有提供标记创建，必须通过js手工创建。可通过</span><span  style="font-size:14px;line-height:21px;">$().datepicker()语句为文本框绑定datepicker插件。文本框的value属性值为日期初始值，日期默认格式为</span><span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#F9F9F9;">'mm/dd/yyyy'，如果未指定value值，将采用当前日期。</span><br>
+<p>
+	<br>
+</p>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	参数
+</h2>
+<p>
+	</p><table  class="table table-bordered table-striped"  style="max-width:100%;background-color:#FFFFFF;border-collapse:separate;border-spacing:0px;width:699px;margin-bottom:20px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">
+		<thead>
+			<tr>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;width:100px;">
+					名称
+				</th>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:50px;">
+					类型
+				</th>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:100px;">
+					默认值
+				</th>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-right-radius:4px;">
+					描述
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					format
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					string
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					'mm/dd/yyyy'
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					设置日期格式
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					weekStart
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					integer
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					0
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					设置一个星期的第一天. 0 代表周日 - 6 代表周六
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					viewMode
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					string|integer
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					0 = 'days'
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					设置初始视图模式，可选项: 'days', 'months', 'years'。也可分别用 0 , 1, 2代表。
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-left-radius:4px;">
+					minViewMode
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					string|integer
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					0 = 'days'
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-right-radius:4px;">
+					<span  style="background-color:#F9F9F9;">设置最小视图模式，可选项: 'days', 'months', 'years'。也可分别用 0 , 1</span><span  style="background-color:#F9F9F9;">, 2代表。</span><br>
+<br>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<span  style="font-size:14px;">首先对视图模式(</span><span  style="background-color:#F9F9F9;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;font-size:14px;">viewMode</span><span  style="line-height:1.5;"><span  style="font-size:14px;">)进行下详细说明。有三种视图模式，从</span><strong><span  style="font-size:14px;">大到小</span></strong><span  style="font-size:14px;">分别为：年份视图(years</span><span  style="font-size:14px;">)、月份视图(months</span><span  style="font-size:14px;">)</span><span  style="font-size:14px;">、日视图(days</span><span  style="font-size:14px;">)。如下：</span></span> 
+<p></p>
+<p>
+	<span  style="line-height:1.5;"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/1369136325975_years.jpg"  alt=""><br>
+</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">年份视图</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/1369136341147_months.jpg"  alt=""><br>
+</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">月份视图</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><img  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/1369136355475_days.jpg"  alt=""><br>
+</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">日视图</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><br>
+</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><span  style="font-size:14px;">在年份视图中显示年份列表，</span><span  style="font-size:14px;">可以选择某一年份，</span><span  style="font-size:14px;">单击(选择</span><span  style="font-size:14px;">)某一年份后可跳转到月份视图，单击某一月份后又可跳转到日视图，由此来选择年月日。所以视图是有大小级别的，最大是年份视图，最小是日视图。</span></span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><span  style="font-size:14px;">通过参数</span></span><span  style="background-color:#F9F9F9;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">viewMode可以设置最大</span><span  style="background-color:#F9F9F9;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">视图</span><span  style="background-color:#F9F9F9;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">(也可叫初始视图)，</span><span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">minViewMode设置最小视图。默认情况下，最大视图和最小视图都是日视图。</span> 
+</p>
+<p>
+	<br>
+</p>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	如何使用参数
+</h2>
+<p>
+	<span  style="font-size:14px;">有俩种方法进行设置参数：标记 和 js对象</span><span  style="font-size:14px;">&nbsp;.</span> 
+</p>
+<p>
+	<span  style="font-size:14px;"><strong>1.使用标记设置</strong></span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">在参数名前加前缀"</span><span  style="background-color:#F7F7F9;color:#008080;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;white-space:pre-wrap;line-height:1.5;">data-date-</span><span  style="font-size:14px;line-height:21px;">"后作为dom元素属性。如：</span><span  class="atn"  style="color:teal;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;white-space:pre-wrap;background-color:#F7F7F9;">data-date-format</span><span  class="pun"  style="color:#93A1A1;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;white-space:pre-wrap;background-color:#F7F7F9;">=</span><span  class="atv"  style="color:#DD1144;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;white-space:pre-wrap;background-color:#F7F7F9;">"dd-mm-yyyy"</span><span  class="atv"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;white-space:pre-wrap;background-color:#F7F7F9;"><span  style="color:#1e347b;">。</span></span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">demo：</span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">Html代码</span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_123569"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp1"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"20-05-2013"</code>&nbsp;&nbsp; <code  class="color1">data-date-format</code><code  class="plain">=</code><code  class="string">"dd-mm-yyyy"</code>&nbsp; <code  class="color1">data-date-viewMode</code><code  class="plain">=</code><code  class="string">"1"</code> <code  class="color1">data-date-minViewMode</code><code  class="plain">=</code><code  class="string">"0"</code>&nbsp; <code  class="color1">data-date-weekStart</code><code  class="plain">=</code><code  class="string">"1"</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">Js代码</span> 
+<p>
+	<span  style="font-size:14px;line-height:21px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_122620"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker();</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/script&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">设置最大视图为月份视图，最小视图为日视图。同时设置了一个星期的第一天为星期一。</span> 
+<p>
+	<br>
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;"><strong>2.使用js设置</strong></span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">在$().datepicker()创建时，可以传进个对象参数，通过对象的属性设置。如下：</span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">Html代码</span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_826482"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp1"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"20-05-2013"</code> <code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">Js代码</span> 
+<p>
+	<span  style="font-size:14px;line-height:21px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_941735"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker({format:</code><code  class="string">"dd-mm-yyyy"</code><code  class="plain">,weekStart:1});</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/script&gt;</code></span></span></div></div></div>
+<br>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	命令(方法)
+</h2>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	<span  style="color:#000000;font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:14px;font-weight:normal;line-height:21px;">另外，插件还提供了如下的几个命令，利用这些命令我们可以通过js对插件进行控制：</span> 
+</h4>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.datepicker('show')
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	打开
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.datepicker('hide')
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	关闭
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.datepicker('setValue', value)
+</h4>
+<p>
+	<span  style="font-size:14px;">设置日期</span> 
+</p>
+<p>
+	<span  style="font-size:14px;"><br>
+</span> 
+</p>
+<p>
+	<span  style="font-size:14px;">Html代码</span> 
+</p>
+<p>
+	<span  style="font-size:14px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_536881"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp1"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"20-05-2013"</code> <code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"javascript:void(0)"</code>&nbsp; <code  class="color1">onClick</code><code  class="plain">=</code><code  class="string">"open_datepicker()"</code><code  class="plain">&gt;显示&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;/</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"javascript:void(0)"</code>&nbsp; <code  class="color1">onClick</code><code  class="plain">=</code><code  class="string">"hide_datepicker()"</code><code  class="plain">&gt;隐藏&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;/</code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"javascript:void(0)"</code>&nbsp; <code  class="color1">onClick</code><code  class="plain">=</code><code  class="string">"set_datepicker()"</code><code  class="plain">&gt;设值&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">Js代码</span> 
+<p>
+	<span  style="font-size:14px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_273690"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker({format:</code><code  class="string">"dd-mm-yyyy"</code><code  class="plain">});</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//打开插件</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="keyword">function</code> <code  class="plain">open_datepicker(){</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker(</code><code  class="string">"show"</code><code  class="plain">);</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">}</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//关闭插件</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="keyword">function</code> <code  class="plain">hide_datepicker(){</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker(</code><code  class="string">"hide"</code><code  class="plain">);</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">}</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//手工赋值</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="keyword">function</code> <code  class="plain">set_datepicker(){</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker(</code><code  class="string">"setValue"</code><code  class="plain">, </code><code  class="string">"24-05-2013"</code><code  class="plain">);</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">}</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/script&gt;</code></span></span></div></div></div>
+<br>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	事件
+</h2>
+<br>
+<p>
+	<span  style="font-size:14px;">和其他插件一样，对事件的监听是少不了的。一般情况下我们可能用不到事件，只需要获得日期值即可，如果要完成复杂的功能，这些事件就要派上用场。</span> 
+</p>
+<p>
+	</p><table  class="table table-bordered table-striped"  style="max-width:100%;background-color:#FFFFFF;border-collapse:separate;border-spacing:0px;width:699px;margin-bottom:20px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">
+		<thead>
+			<tr>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;width:150px;">
+					事件
+				</th>
+				<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-right-radius:4px;">
+					描述
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					show
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					当插件被打开时，该事件被立即触发
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					hide
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+					和show事件对应。当插件关闭时，该事件被立即触发
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					changeDate
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+					当日期被修改时，该事件被立即触发
+				</td>
+			</tr>
+			<tr>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-left-radius:4px;">
+					onRender
+				</td>
+				<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-right-radius:4px;">
+					用于插件每一次被渲染时触发。有俩个返回值："disabled"、""。默认返回"";
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<p></p>
+<p>
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">onRender事件用于控制日期的可选范围。当插件每次生成视图或渲染时，对于当前视图中的每个日期都会调用</span><span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">onRender事件，如果事件返回"",则该日期可选，如果返回"</span><span  style="color:#333333;font-family:&#39;Helvetica Neue, Helvetica, Arial, sans-serif&#39;;"><span  style="font-size:14px;line-height:20px;">disabled</span></span><span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">",该日期不可选，相应的按钮会呈现灰色(不可选状态)。</span> 
+</p>
+<p>
+	<span  style="font-size:14px;">另外注意，对于changeDate事件，并非是日期值被改变时才被触发，只要我们单击选择日期的按钮，不管日期是否改变，该事件都会触发。对于</span><span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">onRender事件，不能作为事件设置，需要作为参数设置，下面示例中将会看到如何使用。</span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">Html代码</span> 
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_908479"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp1"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"20-05-2013"</code> <code  class="color1">data-date-format</code><code  class="plain">=</code><code  class="string">"dd-mm-yyyy"</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">js代码</span> 
+<p>
+	<span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_825587"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp1'</code><code  class="plain">).datepicker({</code><code  class="string">"onRender"</code><code  class="plain">: </code><code  class="keyword">function</code><code  class="plain">(date){</code><code  class="comments">//添加onRender事件，控制用户只能选择大于当前日期的</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="keyword">var</code> <code  class="plain">current = </code><code  class="keyword">new</code> <code  class="plain">Date();</code><code  class="comments">//获得当前日期</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="keyword">if</code><code  class="plain">(date.valueOf() &lt;= current){</code><code  class="comments">//判断日期是否大于当前日期</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="keyword">return</code> <code  class="string">"disabled"</code><code  class="plain">;</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">}</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="keyword">return</code> <code  class="string">""</code><code  class="plain">;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 21px;"><code  class="plain">}}</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">);</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//添加show事件</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//$('#dp1').on("show", function(ev){</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("show事件被触发，当前日期："+ ev.date.toString());</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//&nbsp;&nbsp; }</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//);</code></span></span></div><div  class="line alt1"><code  class="number">17.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//添加changeDate事件</code></span></span></div><div  class="line alt2"><code  class="number">18.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//$('#dp1').on("changeDate", function(ev){</code></span></span></div><div  class="line alt1"><code  class="number">19.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("changeDate事件被触发，当前日期："+ ev.date.toString());</code></span></span></div><div  class="line alt2"><code  class="number">20.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//&nbsp;&nbsp; }</code></span></span></div><div  class="line alt1"><code  class="number">21.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="comments">//);</code></span></span></div><div  class="line alt2"><code  class="number">22.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/script&gt;</code></span></span></div></div></div>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	创建自定义日期组件
+</h2>
+<br>
+<p>
+	<span  style="font-size:14px;">datepicker插件除了可以对一个文本框进行</span><span  style="font-size:14px;">绑定外，还提供了可对我们自定义的任何组件进行绑定。</span> 
+</p>
+<p>
+	<span  style="font-size:14px;">Html代码</span> 
+</p>
+<p>
+	<span  style="font-size:14px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_222301"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"input-append date"</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"dp2"</code> <code  class="color1">data-date</code><code  class="plain">=</code><code  class="string">"12-02-2012"</code> <code  class="color1">data-date-format</code><code  class="plain">=</code><code  class="string">"dd-mm-yyyy"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">input</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"span2"</code> <code  class="color1">size</code><code  class="plain">=</code><code  class="string">"16"</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text"</code> <code  class="color1">value</code><code  class="plain">=</code><code  class="string">"12-02-2012"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">span</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"add-on"</code><code  class="plain">&gt;&lt;</code><code  class="keyword">i</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"icon-th"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">i</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">span</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;">Js代码</span> 
+<p>
+	<span  style="font-size:14px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_20792"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#dp2'</code><code  class="plain">).datepicker();</code></span></span></div></div></div>
+<span  style="font-size:14px;">如上代码，对我们自定义的一个div元素进行绑定。对于这样的绑定必须具备俩个条件：</span> 
+<p>
+	<br>
+</p>
+<p>
+	<span  style="font-size:14px;">&nbsp; &nbsp; &nbsp; 1.绑定的元素必须有.date 样式</span> 
+</p>
+<p>
+	<span  style="font-size:14px;">&nbsp; &nbsp; &nbsp; 2.打开或隐藏插件的元素必须有.</span><span  style="font-size:14px;line-height:21px;">add-on样式。</span> 
+</p>
+<p>
+	<span  style="font-size:14px;line-height:21px;">具备上面俩个条件后，对于组件内的每个文本框，都会被绑定为日期插件。<br>
+</span><span  style="font-size:14px;"></span><br>
+<span  style="font-size:14px;"></span> 
+</p>
+<p>
+	<br>
+</p>
+<h2  style="margin:0px;padding:6px 0px 6px 8px;font-size:15px;letter-spacing:-1px;background-image:none;line-height:20px;background-color:#589006;color:white;font-family:Georgia, &#39;Times New Roman&#39;, Times, sans-serif;background-position:0% 100%;background-repeat:repeat no-repeat;">
+	设置只读
+</h2>
+<p>
+	<span  style="font-size:14px;line-height:1.5;">对于上面的所有示例我们可以发现，如果在文本框中直接输入日期也是可以的，并且会自动与插件的日期保持同步。有时，这种情况是不允许的，如：避免用户输入非法格式的日期或不符合可选范围的日期等。我们可以给文本框设置只读属性readonly。</span> 
+</p>
+<p>
+	<span  style="font-size:14px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_471537"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/373#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/373#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/373#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">input type="text" readonly id="dp1"&nbsp; value="20-05-2013" data-date-format="dd-mm-yyyy" &gt;</code></span></span></div></div></div>
+<br>
+<br>
+<p>
+	<br>
+</p>
+<br>
+<p>
+	<br>
+</p>
+		     </div>						
+		 </div>
+		 
+		 <div  class="blog_comment">
+		     <div  class="tabs">
+                 <ul>
+    	         <li>共有 0 条网友评论</li>
+                 </ul>
+             </div>
+			 <div  class="list">
+			     <ul  id="comment_list"><span  id="comment_no">暂无评论!</span></ul>
+			 </div>
+		 </div>
+		 	
+		 
+	  <div  class="comment_edit">
+	    
+	    
+	    <div  class="_title">评论内容：</div>	    
+	    <div  class="edit_form">		 
+	    <form  action="http://www.see-source.com/blog/300000033/373#"  method="post">    
+		     <textarea  id="tbCommentBody"></textarea><br>
+		     
+	                         昵称：<input  type="text"  class="nickname"  id="tbCommentNickname"><br>
+	         
+		             
+		     <input  type="button"   value="发表评论"  id="newComment_submit"  class="SUBMIT"> 		             
+		     <span><a  href="javascript:void(0)" >刷新</a></span>	    
+		</form>
+		</div>
+	  </div>
+	  	 
+      </div>      
+   </div>
+   
+   
+</div>
+
+
+
+<div  id="friend_links">
+   <div  class="main">
+     <h3  class="caption">+友情链接</h3>
+     <a  target="_blank"  href="http://www.oschina.net/">开源中国</a><a  href="http://bbs.jquery.org.cn/"  target="_blank">jQuery中文社区</a><a  href="http://os.51cto.com/"  target="_blank">51CTO</a>
+     <a  href="http://www.cnblogs.com/"  target="_blank">博客园</a><a  href="http://www.osphp.com.cn/"  target="_blank">php源码网</a><a  href="http://www.lupaworld.com/"  target="_blank">LUPA开源社区</a>
+   </div>   
+</div>
+
+
+
+<div  id="footer">
+   <div  class="main">
+       <a  class="contact"  target="_blank"  href="http://www.see-source.com/contact.jsp">联系我们</a>&nbsp;|&nbsp;<a  class="beian"  target="_blank"  href="http://www.miitbeian.gov.cn/">京ICP备13014578号</a>
+       <script  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/stat.php"  language="JavaScript"></script><script  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=5342930"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./Bootstrap JS扩展插件使用实例(9)-datepicker - see source网_files/pic.gif"></a>
+   </div>
+</div>
+
+
+</body></html>

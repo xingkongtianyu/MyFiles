@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.scroll()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/browser-events/" title="View all posts in Browser Events">Browser Events</a></span>
+  
+  				</div>
+</div>
+<div id="scroll1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.scroll( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "scroll" 事件绑定一个处理函数，或者触发元素上的 "scroll" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="scroll-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.scroll( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="scroll-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.scroll( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="scroll"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.scroll()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('scroll', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('scroll')</code> 的快捷方式。</p>
+<p>当用户滚动元素中到一个不同的地方时，<code>scroll</code>事件将发送到这个元素。它适用于<code>window</code>对象，但也可滚动框架与CSS <code>overflow</code>属性设置为<code>scroll</code>的元素（或<code>auto</code>时，元素的显示高度小于其内容高度）。</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;div id="target" style="overflow: scroll; width: 200px; height: 100px;"&gt;
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+  sed do eiusmod tempor incididunt ut labore et dolore magna
+  aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  Duis aute irure dolor in reprehenderit in voluptate velit
+  esse cillum dolore eu fugiat nulla pariatur. Excepteur
+  sint occaecat cupidatat non proident, sunt in culpa qui
+  officia deserunt mollit anim id est laborum.
+&lt;/div&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;
+&lt;div id="log"&gt;&lt;/div&gt;</pre>
+<p>通过样式定义，使目标元素足够小以至它可以滚动：</p>
+<p class="image"><img src="/images/0042_05_11.png" alt=""></p>
+<p><code>scroll</code>事件处理函数可以绑定到这个元素：</p>
+<pre>$('#target').scroll(function() {
+  $('#log').append('&lt;div&gt;Handler for .scroll() called.&lt;/div&gt;');
+});</pre>
+<p>现在，当用户向上或向下滚动文本时，一个或多个消息追加到<code>&lt;div id="log"&gt;&lt;/div&gt;</code> ：</p>
+<p><span class="output">Handler for .scroll() called.</span></p>
+<p>当不同的元素被点击时我们也可以触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').scroll();
+});</pre>
+<p>这些代码执行后，点击 <span class="output">Trigger the handler</span> 同样警报显示。</p>
+<p>每当元素的滚动位置的变化时<code>scroll</code>事件就会被发送该元素，不管什么原因。鼠标点击或拖动滚动条，拖动里面的元素，按箭头键，或使用鼠标的滚轮都可能导致触发此事件。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">To do something when your page is scrolled:</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; }
+  p { color:green; }
+  span { color:red; display:none; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;Try scrolling the iframe.&lt;/div&gt;
+  &lt;p&gt;Paragraph - &lt;span&gt;Scroll happened!&lt;/span&gt;&lt;/p&gt;
+&lt;script&gt;
+    $("p").clone().appendTo(document.body);
+    $("p").clone().appendTo(document.body);
+    $("p").clone().appendTo(document.body);
+    $(window).scroll(function () { 
+      $("span").css("display", "inline").fadeOut("slow"); 
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

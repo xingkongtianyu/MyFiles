@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.offset()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/offset/" title="View all posts in Offset">Offset</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#offset1">offset() </a><ul><li>.offset()
+              </li></ul>
+</li>
+<li>
+<a href="#offset2">offset( coordinates ) </a><ul>
+<li>.offset( coordinates )
+              </li>
+<li>.offset( function(index, coords) )
+              </li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div id="offset1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.offset()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素集合中获取第一个元素的当前坐标，相对于文档（document）。</p>
+<ul class="signatures"><li class="signature" id="offset"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.offset()</h4></li></ul>
+<div class="longdesc">
+<p><code>.offset()</code>方法允许我们检索一个元素<em>相对于文档（document）</em>的当前位置。和<code><a href="#p=position">.position()</a></code>的差别在于：<code><a href="#p=position">.position()</a></code>是相对于<em>相对于父级元素</em>的位移。当定位在全局环境中（比如拖放的实现）最高的一个新元素时<code>.offset()</code>是非常有用的。</p>
+<p><code>.offset()</code>返回一个包含<code>top</code> 和 <code>left</code>属性的对象 。</p>
+<blockquote><p><strong>注意：</strong>jQuery不支持获取隐藏元素的偏移坐标。</p></blockquote>
+</div>
+<h3>举例：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">使用第二个段落的位置：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+p { margin-left:10px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;2nd Paragraph&lt;/p&gt;
+&lt;script&gt;var p = $("p:last");
+var offset = p.offset();
+p.html( "left: " + offset.left + ", top: " + offset.top );&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子 <span class="desc">点击查看位置。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+p { margin-left:10px; color:blue; width:200px; 
+    cursor:pointer; }
+span { color:red; cursor:pointer; }
+div.abs { width:50px; height:50px; position:absolute;
+          left:220px; top:35px; background-color:green; 
+          cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="result"&gt;Click an element.&lt;/div&gt;
+&lt;p&gt;
+  This is the best way to &lt;span&gt;find&lt;/span&gt; an offset.
+&lt;/p&gt;
+
+&lt;div class="abs"&gt;
+&lt;/div&gt;
+  
+&lt;script&gt;
+$("*", document.body).click(function (e) {
+  var offset = $(this).offset();
+  e.stopPropagation();
+  $("#result").text(this.tagName + " coords ( " + offset.left + ", " +
+                                  offset.top + " )");
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+<div id="offset2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.offset( coordinates )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>设置匹配的元素集合中每个元素的当前坐标，相对于文档（document）。</p>
+<ul class="signatures">
+<li class="signature" id="offset-coordinates">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.offset( coordinates )</h4>
+<p class="arguement"><strong>coordinates</strong>一个包含<code>top</code> 和 <code>left</code>属性的对象，用整数指明元素的新顶部和左边坐标。</p>
+</li>
+<li class="signature" id="offset-functionindex- coords">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.offset( function(index, coords) )</h4>
+<p class="arguement"><strong>function(index, coords)</strong>返回用于设置坐标的一个函数。接收元素在匹配的元素集合中的索引位置作为第一个参数，和当前坐标作为第二个参数。这个函数应该返回一个包含<code>top</code> 和 <code>left</code>属性的对象。</p>
+</li>
+</ul>
+<div class="longdesc"><p><code>.offset()</code>方法允许我们重新设置元素的位置，这个元素的位置是相对于document对象的。如果对象原先的position样式属性是static的话，会被改成relative来实现重定位。
+</p></div>
+<h3>举例：</h3>
+<div class="entry-examples" id="entry-examples-1"><div id="example-1-0">
+<h4><span class="desc">设置第二个段落的位置:</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { margin-left:10px; } &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;2nd Paragraph&lt;/p&gt;
+&lt;script&gt;$("p:last").offset({ top: 10, left: 30 });&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

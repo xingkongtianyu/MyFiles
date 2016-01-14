@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js" type="text/javascript" async=""></script><script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/ga.js" async="" type="text/javascript"></script><script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/encoder.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CKeditor自定义上传图片功能 - lts8989 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/style.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/lts8989/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/lts8989/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/lts8989/wlwmanifest.xml">
+<script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'lts8989';</script>
+<script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+<script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/pubads_impl_31.js" type="text/javascript" async=""></script><script src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/osd.js" type="text/javascript"></script></head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home" class="hui-d-custom"> 
+<div id="header" class="hui-d3">
+	<div id="blogTitle">
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/lts8989/">lts8989</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+
+	<div id="navigator">
+	<div class="hui-d2"> 
+		
+<!--done-->
+<ul id="navList">
+	<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/lts8989/">首页</a></li>
+	<li><a href="http://space.cnblogs.com/" cssclass="menu">社区</a></li>
+	<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/lts8989/admin/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/lts8989">联系</a></li>
+	<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/lts8989/admin/EditPosts.aspx">管理</a></li>
+	<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/lts8989/rss">订阅</a>
+	<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/lts8989/rss"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 18&nbsp;
+文章- 0&nbsp;
+评论- 186&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div>
+</div><!--end: navigator 博客导航栏 -->
+
+</div><!--end: header -->
+
+
+<div class="hui-d3 hui-t5" id="body">
+	<div class="hui-main"> 
+		<div class="hui-b"> 
+		
+
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="h1PostTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/lts8989/archive/2011/08/04/2127326.html">CKeditor自定义上传图片功能</a>
+		</h1>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>CKeditor可以配合CKfinder实现文件的上传及管理。但是往往我们上传的图片需要某些自定义的操作，比如将图片路径写入数据库，图片加水印等等操作。</p>
+<p>实现原理：配置CKeditor的自定义图标，单击弹出一个子窗口，在在子窗口中上传图片实现我们的自己的功能，然后自动关闭子窗口将图片插入到CKeditor的当前光标位置。</p>
+<p>实现步骤：</p>
+<p>1、配置CKeditor。网上很多资料，大家自己查。</p>
+<p>2、配置config.js文件。此文件为CKeditor的配置文件。配置需要显示的图标。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<div><span style="color: #008080">&nbsp;1</span>&nbsp;<span style="color: #000000">CKEDITOR.editorConfig&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">function</span><span style="color: #000000">(&nbsp;config&nbsp;)<br></span><span style="color: #008080">&nbsp;2</span>&nbsp;<span style="color: #000000">{<br></span><span style="color: #008080">&nbsp;3</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">//</span><span style="color: #008000">&nbsp;Define&nbsp;changes&nbsp;to&nbsp;default&nbsp;configuration&nbsp;here.&nbsp;For&nbsp;example:</span><span style="color: #008000"><br></span><span style="color: #008080">&nbsp;4</span>&nbsp;<span style="color: #008000"></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;config.language&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">zh-cn</span><span style="color: #000000">'</span><span style="color: #000000">;<br></span><span style="color: #008080">&nbsp;5</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;config.skin&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">v2</span><span style="color: #000000">'</span><span style="color: #000000">;<br></span><span style="color: #008080">&nbsp;6</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">//</span><span style="color: #008000">&nbsp;config.uiColor&nbsp;=&nbsp;'#AADC6E';</span><span style="color: #008000"><br></span><span style="color: #008080">&nbsp;7</span>&nbsp;<span style="color: #008000"></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;config.toolbar&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000"><br></span><span style="color: #008080">&nbsp;8</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;[<br></span><span style="color: #008080">&nbsp;9</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Source</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">-</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Preview</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">-</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">10</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Cut</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Copy</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Paste</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">PasteText</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">PasteFromWord</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">11</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Undo</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Redo</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">-</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Find</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Replace</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">-</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">SelectAll</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">RemoveFormat</span><span style="color: #000000">'</span><span style="color: #000000">],&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><span style="color: #008080">12</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">/</span><span style="color: #000000">'</span><span style="color: #000000">,<br></span><span style="color: #008080">13</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Bold</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Italic</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Underline</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">14</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">NumberedList</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">BulletedList</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">-</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Outdent</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Indent</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">15</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">JustifyLeft</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">JustifyCenter</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">JustifyRight</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">JustifyBlock</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">16</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Link</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Unlink</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Anchor</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">17</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">addpic</span><span style="color: #000000">'</span><span style="color: #000000">,</span><span style="color: #000000">'</span><span style="color: #000000">Flash</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Table</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">HorizontalRule</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Smiley</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">SpecialChar</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">PageBreak</span><span style="color: #000000">'</span><span style="color: #000000">],//此处的addpic为我们自定义的图标，非CKeditor提供。<br></span><span style="color: #008080">18</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">/</span><span style="color: #000000">'</span><span style="color: #000000">,<br></span><span style="color: #008080">19</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">Styles</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Format</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">Font</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">FontSize</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">20</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[</span><span style="color: #000000">'</span><span style="color: #000000">TextColor</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">BGColor</span><span style="color: #000000">'</span><span style="color: #000000">],<br></span><span style="color: #008080">21</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><span style="color: #008080">22</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;];<br></span><span style="color: #008080">23</span>&nbsp;<span style="color: #000000"><br></span><span style="color: #008080">24</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;config.extraPlugins&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">addpic</span><span style="color: #000000">'</span><span style="color: #000000">;<br></span><span style="color: #008080">25</span>&nbsp;<span style="color: #000000"><br></span><span style="color: #008080">26</span>&nbsp;<span style="color: #000000">};</span></div><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;3、在CKeditor\plugins文件夹下新建addpic文件夹，文件夹下添加addpic.JPG图标文件，建议尺寸
+14*13。addpic.JPG图标文件即为显示在CKeditor上的addpic的图标。在图标文件同目录下添加文件plugin.js，内容如
+下。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<div><span style="color: #008080">&nbsp;1</span>&nbsp;<span style="color: #000000">(</span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;()&nbsp;{<br></span><span style="color: #008080">&nbsp;2</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #008000">//</span><span style="color: #008000">Section&nbsp;1&nbsp;:&nbsp;按下自定义按钮时执行的代码</span><span style="color: #008000"><br></span><span style="color: #008080">&nbsp;3</span>&nbsp;<span style="color: #008000"></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">var</span><span style="color: #000000">&nbsp;a&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;{<br></span><span style="color: #008080">&nbsp;4</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exec:&nbsp;</span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;(editor)&nbsp;{<br></span><span style="color: #008080">&nbsp;5</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show();<br></span><span style="color: #008080">&nbsp;6</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="color: #008080">&nbsp;7</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;},<br></span><span style="color: #008080">&nbsp;8</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;b&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">addpic</span><span style="color: #000000">'</span><span style="color: #000000">;<br></span><span style="color: #008080">&nbsp;9</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;CKEDITOR.plugins.add(b,&nbsp;{<br></span><span style="color: #008080">10</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init:&nbsp;</span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;(editor)&nbsp;{<br></span><span style="color: #008080">11</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;editor.addCommand(b,&nbsp;a);<br></span><span style="color: #008080">12</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;editor.ui.addButton(</span><span style="color: #000000">'</span><span style="color: #000000">addpic</span><span style="color: #000000">'</span><span style="color: #000000">,&nbsp;{<br></span><span style="color: #008080">13</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;label:&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">添加图片</span><span style="color: #000000">'</span><span style="color: #000000">,<br></span><span style="color: #008080">14</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon:&nbsp;</span><span style="color: #0000ff">this</span><span style="color: #000000">.path&nbsp;</span><span style="color: #000000">+</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">'</span><span style="color: #000000">addpic.JPG</span><span style="color: #000000">'</span><span style="color: #000000">,<br></span><span style="color: #008080">15</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command:&nbsp;b<br></span><span style="color: #008080">16</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br></span><span style="color: #008080">17</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="color: #008080">18</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;});<br></span><span style="color: #008080">19</span>&nbsp;<span style="color: #000000">})();<br></span></div><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;文件中的show函数为显示子页面使用，我将它写在CKeditor所在的页面中。</p>
+<p>4、edit.aspx页面使用的js</p>
+<p>edit.aspx页面就是使用CKeditor的页面。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<div><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;show()&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;$(</span><span style="color: #000000">"</span><span style="color: #000000">#ele6</span><span style="color: #000000">"</span><span style="color: #000000">)[</span><span style="color: #000000">0</span><span style="color: #000000">].click();<br>}<br></span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;upimg(str)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">if</span><span style="color: #000000">&nbsp;(str&nbsp;</span><span style="color: #000000">==</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">undefined</span><span style="color: #000000">"</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">||</span><span style="color: #000000">&nbsp;str&nbsp;</span><span style="color: #000000">==</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">""</span><span style="color: #000000">)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">return</span><span style="color: #000000">;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">&lt;img&nbsp;src='/html/images/</span><span style="color: #000000">"</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">+</span><span style="color: #000000">&nbsp;str</span><span style="color: #000000">+</span><span style="color: #000000">"</span><span style="color: #000000">'&lt;/img&gt;</span><span style="color: #000000">"</span><span style="color: #000000">;<br>&nbsp;&nbsp;&nbsp;&nbsp;CKEDITOR.instances.TB_Content.insertHtml(str);<br>&nbsp;&nbsp;&nbsp;&nbsp;close();<br>}<br></span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;close()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;$(</span><span style="color: #000000">"</span><span style="color: #000000">#close6</span><span style="color: #000000">"</span><span style="color: #000000">)[</span><span style="color: #000000">0</span><span style="color: #000000">].click();<br>}<br>$(document).ready(</span><span style="color: #0000ff">function</span><span style="color: #000000">&nbsp;()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;PopupLayer({&nbsp;trigger:&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">#ele6</span><span style="color: #000000">"</span><span style="color: #000000">,&nbsp;popupBlk:&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">#blk6</span><span style="color: #000000">"</span><span style="color: #000000">,&nbsp;closeBtn:&nbsp;</span><span style="color: #000000">"</span><span style="color: #000000">#close6</span><span style="color: #000000">"</span><span style="color: #000000">,&nbsp;useOverlay:&nbsp;</span><span style="color: #0000ff">true</span><span style="color: #000000">,&nbsp;offsets:&nbsp;{&nbsp;x:&nbsp;</span><span style="color: #000000">50</span><span style="color: #000000">,&nbsp;y:&nbsp;</span><span style="color: #000000">0</span><span style="color: #000000">}&nbsp;});<br>});&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;以上就是js的代码，弹出窗口是使用jquery的弹出层，弹出层中嵌套iframe，iframe中使用upimg.aspx上传页面，大家如果有其他需要可以自己去设计弹出效果。为了大家调试方便，我将我实现弹出层的代码贴出来。</p>
+<p>弹出层效果使用的是popup_layer.js方案，需要进一步加工的朋友可以自己在百度中谷歌。ele6为弹出激发需要的层，blk6为弹出层主体，close6为层中承载关闭按钮的层。代码如下</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<div><span style="color: #0000ff">&lt;</span><span style="color: #800000">div&nbsp;</span><span style="color: #ff0000">id</span><span style="color: #0000ff">="ele6"</span><span style="color: #ff0000">&nbsp;style</span><span style="color: #0000ff">="cursor:hand;&nbsp;color:&nbsp;blue;&nbsp;display:none;"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">div&nbsp;</span><span style="color: #ff0000">id</span><span style="color: #0000ff">="blk6"</span><span style="color: #ff0000">&nbsp;class</span><span style="color: #0000ff">="blk"</span><span style="color: #ff0000">&nbsp;style</span><span style="color: #0000ff">="display:none;"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">div&nbsp;</span><span style="color: #ff0000">class</span><span style="color: #0000ff">="head"</span><span style="color: #0000ff">&gt;&lt;</span><span style="color: #800000">div&nbsp;</span><span style="color: #ff0000">class</span><span style="color: #0000ff">="head-right"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">div&nbsp;</span><span style="color: #ff0000">class</span><span style="color: #0000ff">="main"</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">a&nbsp;</span><span style="color: #ff0000">href</span><span style="color: #0000ff">="javascript:void(0)"</span><span style="color: #ff0000">&nbsp;&nbsp;id</span><span style="color: #0000ff">="close6"</span><span style="color: #ff0000">&nbsp;class</span><span style="color: #0000ff">="closeBtn"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">a</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">iframe&nbsp;</span><span style="color: #ff0000">src</span><span style="color: #0000ff">="upimg.aspx"</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #800000">iframe</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></div><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>别忘记引用jquery和popup_layer.js。</p>
+<p>&nbsp;</p>
+<p>5、upimg.aspx页面</p>
+<p>aspx代码</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<div><span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">asp:FileUpload&nbsp;</span><span style="color: #ff0000">ID</span><span style="color: #0000ff">="FU_indexIMG"</span><span style="color: #ff0000">&nbsp;runat</span><span style="color: #0000ff">="server"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">br&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">asp:Button&nbsp;</span><span style="color: #ff0000">ID</span><span style="color: #0000ff">="Button1"</span><span style="color: #ff0000">&nbsp;runat</span><span style="color: #0000ff">="server"</span><span style="color: #ff0000">&nbsp;Text</span><span style="color: #0000ff">="上传"</span><span style="color: #ff0000">&nbsp;onclick</span><span style="color: #0000ff">="Button1_Click"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;</span><span style="color: #800000">asp:Button&nbsp;</span><span style="color: #ff0000">ID</span><span style="color: #0000ff">="Button2"</span><span style="color: #ff0000">&nbsp;runat</span><span style="color: #0000ff">="server"</span><span style="color: #ff0000">&nbsp;onclick</span><span style="color: #0000ff">="Button2_Click"</span><span style="color: #ff0000">&nbsp;Text</span><span style="color: #0000ff">="取消"</span><span style="color: #ff0000">&nbsp;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span></div></div>
+<p>对应的cs代码</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<div><span style="color: #008080">&nbsp;1</span>&nbsp;<span style="color: #0000ff">protected</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">void</span><span style="color: #000000">&nbsp;Button1_Click(</span><span style="color: #0000ff">object</span><span style="color: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e)<br></span><span style="color: #008080">&nbsp;2</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="color: #008080">&nbsp;3</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;imgdir&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;UpImg();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></span><span style="color: #008080">&nbsp;4</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;script&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">window.parent.upimg('</span><span style="color: #800000">"</span><span style="color: #000000">&nbsp;</span><span style="color: #000000">+</span><span style="color: #000000">&nbsp;imgdir&nbsp;</span><span style="color: #000000">+</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">');</span><span style="color: #800000">"</span><span style="color: #000000">;<br></span><span style="color: #008080">&nbsp;5</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResponseScript(script);<br></span><span style="color: #008080">&nbsp;6</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="color: #008080">&nbsp;7</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">protected</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">void</span><span style="color: #000000">&nbsp;Button2_Click(</span><span style="color: #0000ff">object</span><span style="color: #000000">&nbsp;sender,&nbsp;EventArgs&nbsp;e)<br></span><span style="color: #008080">&nbsp;8</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="color: #008080">&nbsp;9</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;script&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #800000">"</span><span style="color: #800000">window.parent.close();</span><span style="color: #800000">"</span><span style="color: #000000">;<br></span><span style="color: #008080">10</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResponseScript(script);<br></span><span style="color: #008080">11</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="color: #008080">12</span>&nbsp;<span style="color: #000000"></span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br></span><span style="color: #008080">13</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;输出脚本<br></span><span style="color: #008080">14</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #808080"><br></span><span style="color: #008080">15</span>&nbsp;<span style="color: #808080"></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">void</span><span style="color: #000000">&nbsp;ResponseScript(</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;script)<br></span><span style="color: #008080">16</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="color: #008080">17</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.Text.StringBuilder&nbsp;sb&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;System.Text.StringBuilder(</span><span style="color: #800000">"</span><span style="color: #800000">&lt;script&nbsp;language='javascript'&nbsp;type='text/javascript'&gt;</span><span style="color: #800000">"</span><span style="color: #000000">);<br></span><span style="color: #008080">18</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sb.Append(script);<br></span><span style="color: #008080">19</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sb.Append(</span><span style="color: #800000">"</span><span style="color: #800000">&lt;/script&gt;</span><span style="color: #800000">"</span><span style="color: #000000">);<br></span><span style="color: #008080">20</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ClientScript.RegisterStartupScript(</span><span style="color: #0000ff">this</span><span style="color: #000000">.GetType(),&nbsp;RandomString(</span><span style="color: #800080">1</span><span style="color: #000000">),&nbsp;sb.ToString());<br></span><span style="color: #008080">21</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}<br></span><span style="color: #008080">22</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;summary&gt;</span><span style="color: #008000"><br></span><span style="color: #008080">23</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;获得随机数<br></span><span style="color: #008080">24</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;/summary&gt;</span><span style="color: #008000"><br></span><span style="color: #008080">25</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;param&nbsp;name="count"&gt;</span><span style="color: #008000">长度</span><span style="color: #808080">&lt;/param&gt;</span><span style="color: #008000"><br></span><span style="color: #008080">26</span>&nbsp;<span style="color: #008000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #808080">///</span><span style="color: #008000">&nbsp;</span><span style="color: #808080">&lt;returns&gt;&lt;/returns&gt;</span><span style="color: #808080"><br></span><span style="color: #008080">27</span>&nbsp;<span style="color: #808080"></span><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">public</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">static</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">string</span><span style="color: #000000">&nbsp;RandomString(</span><span style="color: #0000ff">int</span><span style="color: #000000">&nbsp;count)<br></span><span style="color: #008080">28</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;{<br></span><span style="color: #008080">29</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RNGCryptoServiceProvider&nbsp;rng&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;RNGCryptoServiceProvider();<br></span><span style="color: #008080">30</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">byte</span><span style="color: #000000">[]&nbsp;data&nbsp;</span><span style="color: #000000">=</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">new</span><span style="color: #000000">&nbsp;</span><span style="color: #0000ff">byte</span><span style="color: #000000">[count];<br></span><span style="color: #008080">31</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rng.GetBytes(data);<br></span><span style="color: #008080">32</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000ff">return</span><span style="color: #000000">&nbsp;BitConverter.ToString(data).Replace(</span><span style="color: #800000">"</span><span style="color: #800000">-</span><span style="color: #800000">"</span><span style="color: #000000">,&nbsp;</span><span style="color: #800000">""</span><span style="color: #000000">);<br></span><span style="color: #008080">33</span>&nbsp;<span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;}</span></div><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>Button1_Click为确定按钮的单击事件函数。其中使用UpImg函数实现上传图片文件，我还在其中实现了加水印，缩图，将图片文件的大小
+以及相对路径存入数据库等自定义操作，大家可以在此发挥。UpImg返回值为保存图片的相对路径，然后调用editer.aspx页面的js函数
+upimg。js函数upimg功能为将字符串插入到CKeditor的当前光标位置，插入的是html代码。至此为止带有新上传图片相对路径的img标
+签就插入CKeditor的编辑区了，能够显示图片了。</p>
+<p>Button1_Click为取消按钮的单击事件函数。调用editer.aspx页面的js函数close，将弹出层隐藏。</p> </div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info"><div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/lts8989/tag/CKeditor/">CKeditor</a>, <a href="http://www.cnblogs.com/lts8989/tag/%E5%9B%BE%E7%89%87/">图片</a></div>
+<div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(cb_entryId,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/lts8989" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/lts8989/" target="_blank"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u40803.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/lts8989/">lts8989</a><br>
+<a href="http://home.cnblogs.com/u/lts8989/followees">关注 - 6</a><br>
+<a href="http://home.cnblogs.com/u/lts8989/followers">粉丝 - 41</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+	<div class="diggit" onclick="votePost(cb_entryId,'Digg')"> 
+		<span class="diggnum" id="digg_count">5</span>
+	</div>
+	<div class="buryit" onclick="votePost(cb_entryId,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/lts8989/archive/2011/07/27/2117990.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/lts8989/archive/2011/07/27/2117990.html" title="发布于2011-07-27 16:05">我看代码生成</a><br><a href="http://www.cnblogs.com/lts8989/archive/2012/04/09/2438304.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/lts8989/archive/2012/04/09/2438304.html" title="发布于2012-04-09 00:03">IT北漂攻略--租房篇</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2011-08-04 15:54</span> <a href="http://www.cnblogs.com/lts8989/">lts8989</a> 阅读(<span id="post_view_count">27035</span>) 评论(<span id="post_comment_count">19</span>)  <a href="http://www.cnblogs.com/lts8989/admin/EditPosts.aspx?postid=2127326" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2127326);return false;">收藏</a> </div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=44382,cb_entryId=2127326,cb_blogApp=currentBlogApp,cb_blogUserGuid='35f4460b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2011/8/4 15:54:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">发表评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168796" class="layer">#1楼</a><a name="2168796" id="comment_anchor_2168796"></a> <span class="comment_date">2011-08-04 16:42</span> | <a id="a_comment_author_2168796" href="http://www.cnblogs.com/woshinidezhu/" target="_blank">我是你的猪</a> <a href="http://space.cnblogs.com/msg/send/%e6%88%91%e6%98%af%e4%bd%a0%e7%9a%84%e7%8c%aa" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168796" class="blog_comment_body">为何不用ckfinder?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168796,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168796,'Bury',this)">反对(0)</a></div><span id="comment_2168796_avatar" style="display:none;">http://pic.cnitblog.com/face/u66192.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168850" class="layer">#2楼</a><a name="2168850" id="comment_anchor_2168850"></a> <span class="comment_date">2011-08-04 17:13</span> | <a id="a_comment_author_2168850" href="http://www.cnblogs.com/astar/" target="_blank">Astar</a> <a href="http://space.cnblogs.com/msg/send/Astar" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168850" class="blog_comment_body">今天也在封装ckeditor，不用ckfinder它，因为系统有自己的图片系统，而不是需要去文件目录中选择。中午找了一篇文章“<a href="http://www.cnblogs.com/dg5461/articles/1746484.html" target="_blank">http://www.cnblogs.com/dg5461/articles/1746484.html</a>”，看到这篇，我以为是同一篇，因为博皮是一样的...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168850,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168850,'Bury',this)">反对(0)</a></div><span id="comment_2168850_avatar" style="display:none;">http://pic.cnitblog.com/face/u24634.jpg?id=28114544</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168864" class="layer">#3楼</a><a name="2168864" id="comment_anchor_2168864"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2011-08-04 17:21</span> | <a id="a_comment_author_2168864" href="http://www.cnblogs.com/lts8989/" target="_blank">李天时</a> <a href="http://space.cnblogs.com/msg/send/%e6%9d%8e%e5%a4%a9%e6%97%b6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168864" class="blog_comment_body"><a href="#2168850" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2168850);">@</a>Astar<br>我的博皮貌似太大众了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168864,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168864,'Bury',this)">反对(0)</a></div><span id="comment_2168864_avatar" style="display:none;">http://pic.cnitblog.com/face/u40803.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168865" class="layer">#4楼</a><a name="2168865" id="comment_anchor_2168865"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2011-08-04 17:22</span> | <a id="a_comment_author_2168865" href="http://www.cnblogs.com/lts8989/" target="_blank">李天时</a> <a href="http://space.cnblogs.com/msg/send/%e6%9d%8e%e5%a4%a9%e6%97%b6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168865" class="blog_comment_body"><a href="#2168796" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2168796);">@</a>我是你的猪<br>因为用ckfinder不能自定义我自己的功能，比如将上传的图片写入数据库</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168865,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168865,'Bury',this)">反对(0)</a></div><span id="comment_2168865_avatar" style="display:none;">http://pic.cnitblog.com/face/u40803.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168886" class="layer">#5楼</a><a name="2168886" id="comment_anchor_2168886"></a> <span class="comment_date">2011-08-04 17:33</span> | <a id="a_comment_author_2168886" href="http://www.cnblogs.com/woshinidezhu/" target="_blank">我是你的猪</a> <a href="http://space.cnblogs.com/msg/send/%e6%88%91%e6%98%af%e4%bd%a0%e7%9a%84%e7%8c%aa" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168886" class="blog_comment_body">可以的啊,finder是开源的. 直接把源代码改了就OK了.我就修改了他保存的文件名- -...</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168886,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168886,'Bury',this)">反对(0)</a></div><span id="comment_2168886_avatar" style="display:none;">http://pic.cnitblog.com/face/u66192.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168976" class="layer">#6楼</a><a name="2168976" id="comment_anchor_2168976"></a> <span class="comment_date">2011-08-04 20:18</span> | <a id="a_comment_author_2168976" href="http://www.cnblogs.com/beyoung/" target="_blank">beyoung</a> <a href="http://space.cnblogs.com/msg/send/beyoung" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168976" class="blog_comment_body">finder 不是收费的吗?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168976,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168976,'Bury',this)">反对(0)</a></div><span id="comment_2168976_avatar" style="display:none;">http://pic.cnitblog.com/face/u22572.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2168989" class="layer">#7楼</a><a name="2168989" id="comment_anchor_2168989"></a> <span class="comment_date">2011-08-04 20:44</span> | <a id="a_comment_author_2168989" href="http://www.cnblogs.com/johnwonder/" target="_blank">john23.net</a> <a href="http://space.cnblogs.com/msg/send/john23.net" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2168989" class="blog_comment_body">顶个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2168989,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2168989,'Bury',this)">反对(0)</a></div><span id="comment_2168989_avatar" style="display:none;">http://pic.cnitblog.com/face/u64521.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2280566" class="layer">#8楼</a><a name="2280566" id="comment_anchor_2280566"></a> <span class="comment_date">2011-12-27 14:53</span> | <a id="a_comment_author_2280566" href="http://www.cnblogs.com/leesw/" target="_blank">昇旺</a> <a href="http://space.cnblogs.com/msg/send/%e6%98%87%e6%97%ba" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2280566" class="blog_comment_body">我要使用自己上传的图片，然后插入ckeditor里面怎么弄啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2280566,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2280566,'Bury',this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2280743" class="layer">#9楼</a><a name="2280743" id="comment_anchor_2280743"></a> <span class="comment_date">2011-12-27 17:30</span> | <a id="a_comment_author_2280743" href="http://home.cnblogs.com/u/152300/" target="_blank">づ芣阣覀葒枾︷</a> <a href="http://space.cnblogs.com/msg/send/%e3%81%a5%e8%8a%a3%e9%98%a3%e8%a6%80%e8%91%92%e6%9e%be%ef%b8%b7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2280743" class="blog_comment_body">在图标文件同目录下添加文件plugin.js。<br>必须是这个名字吗？我用别的怎么不行？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2280743,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2280743,'Bury',this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2280838" class="layer">#10楼</a><a name="2280838" id="comment_anchor_2280838"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2011-12-27 20:22</span> | <a id="a_comment_author_2280838" href="http://www.cnblogs.com/lts8989/" target="_blank">lts8989</a> <a href="http://space.cnblogs.com/msg/send/lts8989" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2280838" class="blog_comment_body"><a href="#2280743" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2280743);">@</a>づ芣阣覀葒枾︷<br>貌似是的，我没尝试过其他文件名，我也是照其他人的教程做的，不过我保证这样做肯定成功</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2280838,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2280838,'Bury',this)">反对(0)</a></div><span id="comment_2280838_avatar" style="display:none;">http://pic.cnitblog.com/face/u40803.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2346069" class="layer">#11楼</a><a name="2346069" id="comment_anchor_2346069"></a> <span class="comment_date">2012-04-02 10:11</span> | <a id="a_comment_author_2346069" href="http://www.cnblogs.com/gaoshuai/" target="_blank">过往云烟</a> <a href="http://space.cnblogs.com/msg/send/%e8%bf%87%e5%be%80%e4%ba%91%e7%83%9f" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2346069" class="blog_comment_body">upImage()的函数在哪？？还是自带的？？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2346069,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2346069,'Bury',this)">反对(0)</a></div><span id="comment_2346069_avatar" style="display:none;">http://pic.cnitblog.com/face/u138373.gif</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2346070" class="layer">#12楼</a><a name="2346070" id="comment_anchor_2346070"></a> <span class="comment_date">2012-04-02 10:12</span> | <a id="a_comment_author_2346070" href="http://www.cnblogs.com/gaoshuai/" target="_blank">过往云烟</a> <a href="http://space.cnblogs.com/msg/send/%e8%bf%87%e5%be%80%e4%ba%91%e7%83%9f" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2346070" class="blog_comment_body"><a href="http://pic002.cnblogs.com/images/2012/138373/2012040210121530.jpg" target="_blank"><img src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012040210121530.jpg" alt="" onload="javascript:if(this.width>500) this.width=500;" border="0"></a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2346070,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2346070,'Bury',this)">反对(0)</a></div><span id="comment_2346070_avatar" style="display:none;">http://pic.cnitblog.com/face/u138373.gif</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2346300" class="layer">#13楼</a><a name="2346300" id="comment_anchor_2346300"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2012-04-02 20:07</span> | <a id="a_comment_author_2346300" href="http://www.cnblogs.com/lts8989/" target="_blank">lts8989</a> <a href="http://space.cnblogs.com/msg/send/lts8989" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2346300" class="blog_comment_body"><a href="#2346070" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2346070);">@</a>过往云烟<br>upImage()函数是我自己写的上传图片，保存图片信息到数据库的后台方法，请结合自己的实际业务自行开发。返回的是图片所在服务器的相对路径即可。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2346300,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2346300,'Bury',this)">反对(0)</a></div><span id="comment_2346300_avatar" style="display:none;">http://pic.cnitblog.com/face/u40803.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2443801" class="layer">#14楼</a><a name="2443801" id="comment_anchor_2443801"></a> <span class="comment_date">2012-08-07 20:06</span> | <a id="a_comment_author_2443801" href="http://home.cnblogs.com/u/328912/" target="_blank">Big_Fly</a> <a href="http://space.cnblogs.com/msg/send/Big_Fly" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2443801" class="blog_comment_body"><div><div id="highlighter_697681" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp plain">hdesldjdfjlsdjaldjfldjflsjdfljsdlfjdfjslfjewiojioewfndsflsdfajsl</code></div></div></td></tr></tbody></table></div></div></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2443801,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2443801,'Bury',this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2450645" class="layer">#15楼</a><a name="2450645" id="comment_anchor_2450645"></a> <span class="comment_date">2012-08-17 16:59</span> | <a id="a_comment_author_2450645" href="http://www.cnblogs.com/yzty/" target="_blank">雨中太阳</a> <a href="http://space.cnblogs.com/msg/send/%e9%9b%a8%e4%b8%ad%e5%a4%aa%e9%98%b3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2450645" class="blog_comment_body">能否提供个下载地址</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2450645,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2450645,'Bury',this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2450781" class="layer">#16楼</a><a name="2450781" id="comment_anchor_2450781"></a>[<span class="louzhu">楼主</span>] <span class="comment_date">2012-08-17 21:47</span> | <a id="a_comment_author_2450781" href="http://www.cnblogs.com/lts8989/" target="_blank">lts8989</a> <a href="http://space.cnblogs.com/msg/send/lts8989" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2450781" class="blog_comment_body"><a href="#2450645" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2450645);">@</a>雨中太阳<br>不好意思，我的上传代码和我的程序结合的很紧密，拆出来有点困难。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2450781,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2450781,'Bury',this)">反对(0)</a></div><span id="comment_2450781_avatar" style="display:none;">http://pic.cnitblog.com/face/u40803.jpg</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2518776" class="layer">#17楼</a><a name="2518776" id="comment_anchor_2518776"></a> <span class="comment_date">2012-10-29 14:04</span> | <a id="a_comment_author_2518776" href="http://www.cnblogs.com/AaronYang/" target="_blank">茗洋芳竹</a> <a href="http://space.cnblogs.com/msg/send/%e8%8c%97%e6%b4%8b%e8%8a%b3%e7%ab%b9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2518776" class="blog_comment_body">在ckeditor没有显示图片出来</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2518776,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2518776,'Bury',this)">反对(0)</a></div><span id="comment_2518776_avatar" style="display:none;">http://pic.cnitblog.com/face/377862/20130804124758.png</span><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2533849" class="layer">#18楼</a><a name="2533849" id="comment_anchor_2533849"></a> <span class="comment_date">2012-11-15 13:19</span> | <a id="a_comment_author_2533849" href="http://home.cnblogs.com/u/418395/" target="_blank">枼秋</a> <a href="http://space.cnblogs.com/msg/send/%e6%9e%bc%e7%a7%8b" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2533849" class="blog_comment_body">edit页面中的<br>$(document).ready(function () {<br>    new PopupLayer({ trigger: "#ele6", popupBlk: "#blk6", closeBtn: "#close6", useOverlay: true, offsets: { x: 50, y: 0} });<br>});   <br><br>脚本报错，貌似ready没有被定义？还是我哪里没引入？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2533849,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2533849,'Bury',this)">反对(0)</a></div><br>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#2698261" class="layer">#19楼</a><a name="2698261" id="comment_anchor_2698261"></a><span id="comment-maxId" style="display:none;">2698261</span><span id="comment-maxDate" style="display:none;">2013/6/5 11:45:14</span> <span class="comment_date">2013-06-05 11:45</span> | <a id="a_comment_author_2698261" href="http://www.cnblogs.com/duancy/" target="_blank">肥仔段</a> <a href="http://space.cnblogs.com/msg/send/%e8%82%a5%e4%bb%94%e6%ae%b5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2698261" class="blog_comment_body">不是太明白，“edit.aspx页面就是使用CKeditor的页面....别忘记引用jquery和popup_layer.js”<br><br>怎么引用？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2698261,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2698261,'Bury',this)">反对(0)</a></div><span id="comment_2698261_avatar" style="display:none;">http://pic.cnitblog.com/face/u197420.png?id=22221006</span><br>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder">
+
+<div id="google_ad_c1" class="c_ad_block">
+    <!-- cnblogs_blogpost_C1_sitehome -->
+    <div id="div-gpt-ad-1346480159711-0" style="width: 300px; height: 250px;">
+    
+    <div style="border: 0pt none;" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__"><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom;" marginheight="0" marginwidth="0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" frameborder="0" height="250" scrolling="no" width="300"></iframe></div><iframe src="javascript:&quot;<html><body style='background:transparent'></body></html>&quot;" style="border: 0px none; vertical-align: bottom; visibility: hidden; display: none;" marginheight="0" marginwidth="0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" frameborder="0" height="0" scrolling="no" width="0"></iframe></div>
+</div>
+<div id="blog_news_kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/194883/" target="_blank">“人体硬盘”5分钟记501个数字及其顺序</a><br> ·  <a href="http://news.cnblogs.com/n/194882/" target="_blank">组图：毁掉镜头才能拍出的美照</a><br> ·  <a href="http://news.cnblogs.com/n/194881/" target="_blank">11月我国操作系统格局：XP独占61%</a><br> ·  <a href="http://news.cnblogs.com/n/194880/" target="_blank">腾讯公开信：阳光一定会照进互联网</a><br> ·  <a href="http://news.cnblogs.com/n/194879/" target="_blank">绝世好老板 “求”员工休假</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/194742/" target="_blank">数字证书及CA的扫盲介绍</a><br> ·  <a href="http://kb.cnblogs.com/page/112298/" target="_blank">领域驱动设计和实践</a><br> ·  <a href="http://kb.cnblogs.com/page/181283/" target="_blank">编码风格不是编码规范</a><br> ·  <a href="http://kb.cnblogs.com/page/191938/" target="_blank">对于现代开发来说，Javascript就是一种垃圾语言</a><br> ·  <a href="http://kb.cnblogs.com/page/193913/" target="_blank">教你一眼认出英语单词的意思</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div></div>
+<script type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+		</div><!--end: hui-main hui-b -->
+	</div><!--end: hui-main -->
+	<div class="hui-b"> 
+	<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/lts8989/">lts8989</a><br>园龄：<a href="http://home.cnblogs.com/u/lts8989/" title="入园时间：2008-09-23">5年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/lts8989/followers/">41</a><br>关注：<a href="http://home.cnblogs.com/u/lts8989/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('35f4460b-63cf-dd11-9e4d-001cf0cd104b')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="displya:none"><table id="blogCalendar" class="Cal" title="日历" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2011/07/01');return false;">&lt;</a></td><td align="center">2011年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2011/09/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center"><a href="http://www.cnblogs.com/lts8989/archive/2011/08/04.html"><u>4</u></a></td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+
+
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_0" href="http://www.cnblogs.com/lts8989/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_1" href="http://www.cnblogs.com/lts8989/MyComments.html">我的评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_2" title="我发表过评论的随笔" href="http://www.cnblogs.com/lts8989/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_3" href="http://www.cnblogs.com/lts8989/RecentComments.html">最新评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_4" href="http://www.cnblogs.com/lts8989/tag/">我的标签</a></li>
+	
+<li><a id="itemListLink" onclick="this.blur();WarpClass('itemListLink', 'itemListLin_con');return false;" href="#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/lts8989/tag/.net/">.net</a>(4)</li><li><a href="http://www.cnblogs.com/lts8989/tag/C%23/">C#</a>(4)</li><li><a href="http://www.cnblogs.com/lts8989/tag/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/">代码生成器</a>(3)</li><li><a href="http://www.cnblogs.com/lts8989/tag/js/">js</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/Log2Console/">Log2Console</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/Log4Net/">Log4Net</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/%E6%97%A5%E5%BF%97/">日志</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/%E8%AE%BE%E8%AE%A1/">设计</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/%E5%8C%97%E6%BC%82/">北漂</a>(2)</li><li><a href="http://www.cnblogs.com/lts8989/tag/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a>(1)</li><li><a href="http://www.cnblogs.com/lts8989/tag/">更多</a></li>
+</ul>
+</div>
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/lts8989/archive/2013/05.html">2013年5月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/lts8989/archive/2012/08.html">2012年8月 (2)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/lts8989/archive/2012/07.html">2012年7月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/lts8989/archive/2012/05.html">2012年5月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/lts8989/archive/2012/04.html">2012年4月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/lts8989/archive/2011/08.html">2011年8月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/lts8989/archive/2011/07.html">2011年7月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/lts8989/archive/2011/05.html">2011年5月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/lts8989/archive/2011/04.html">2011年4月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/lts8989/archive/2010/12.html">2010年12月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/lts8989/archive/2010/09.html">2010年9月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/lts8989/archive/2010/06.html">2010年6月 (2)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/lts8989/archive/2010/04.html">2010年4月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/lts8989/archive/2010/01.html">2010年1月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/lts8989/archive/2009/11.html">2009年11月 (1)</a> </li>
+
+<li><a id="ctl03_CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/lts8989/archive/2009/02.html">2009年2月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+
+<div class="catListComment">
+<h3 class="catListTitle">最新评论<a id="_3a9735_RSSHyperlink1" title="RSS订阅最最新评论" href="http://www.cnblogs.com/lts8989/CommentsRSS.aspx"><img title="RSS订阅最最新评论" src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/xml.gif" alt=""></a></h3>
+
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lts8989/archive/2012/07/22/2570739.html#2781616">1. Re:工作流设计简介</a></li>
+    <li class="recent_comment_body"><a href="#2781459" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2781459);">@</a>万能的..<br>多谢支持</li>
+    <li class="recent_comment_author">--lts8989</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lts8989/archive/2012/07/22/2570739.html#2781459">2. Re:工作流设计简介</a></li>
+    <li class="recent_comment_body">顶！！！</li>
+    <li class="recent_comment_author">--万能的..</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lts8989/archive/2012/07/22/2570739.html#2729248">3. Re:工作流设计简介</a></li>
+    <li class="recent_comment_body">收益匪浅</li>
+    <li class="recent_comment_author">--watercity0</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lts8989/archive/2011/08/04/2127326.html#2698261">4. Re:CKeditor自定义上传图片功能</a></li>
+    <li class="recent_comment_body">不是太明白，“edit.aspx页面就是使用CKeditor的页面....别忘记引用jquery和popup_layer.js”<br><br>怎么引用？</li>
+    <li class="recent_comment_author">--肥仔段</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/lts8989/archive/2013/05/21/3091856.html#2687891">5. Re:程序员如何提高工作效率</a></li>
+    <li class="recent_comment_body">有很多的地方是没有办法用代码生成器的...</li>
+    <li class="recent_comment_author">--王洪刚</li>
+</ul>
+</div>
+</div>
+
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/lts8989/archive/2011/08/04/2127326.html">1. CKeditor自定义上传图片功能(27033)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2010/12/19/1909062.html">2. 一些好用的开源控件(14163)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2012/05/30/2527100.html">3. IT北漂攻略—择业篇（程序员--.net）(4610)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2010/04/08/1707045.html">4. 2010面试攻略(3482)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2012/07/22/2570739.html">5. 工作流设计简介(3285)</a></li></ul></div>
+</div>
+
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/lts8989/archive/2012/05/30/2527100.html">1. IT北漂攻略—择业篇（程序员--.net）(31)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2010/04/08/1707045.html">2. 2010面试攻略(27)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2010/12/19/1909062.html">3. 一些好用的开源控件(22)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2013/05/21/3091856.html">4. 程序员如何提高工作效率(20)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2011/08/04/2127326.html">5. CKeditor自定义上传图片功能(19)</a></li></ul></div>
+</div>
+
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/lts8989/archive/2010/12/19/1909062.html">1. 一些好用的开源控件(26)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2012/05/30/2527100.html">2. IT北漂攻略—择业篇（程序员--.net）(15)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2013/05/21/3091856.html">3. 程序员如何提高工作效率(9)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2012/04/09/2438304.html">4. IT北漂攻略--租房篇(8)</a></li><li><a href="http://www.cnblogs.com/lts8989/archive/2012/07/22/2570739.html">5. 工作流设计简介(7)</a></li></ul></div>
+</div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: hui-b -->
+	<div class="clear"></div>
+</div>
+
+<div id="footer" class="hui-d3">
+		
+<!--done-->
+Copyright ©2013 lts8989
+</div><!--end: footer -->
+
+</div><!--end: home 自定义的最大容器 -->
+<script type="text/javascript" src="CKeditor%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%8A%9F%E8%83%BD%20-%20lts8989%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/google-analytics.js"></script>
+
+
+<iframe style="display: none; width: 0px; height: 0px;" name="google_osd_static_frame" id="google_osd_static_frame_2923647486097"></iframe></body></html>

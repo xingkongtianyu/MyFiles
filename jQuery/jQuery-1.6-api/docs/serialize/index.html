@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.serialize()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/helper-functions/" title="View all posts in Helper Functions">Helper Functions</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="serialize1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.serialize()</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>将用作提交的表单元素的值编译成字符串。</p>
+<ul class="signatures"><li class="signature" id="serialize"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.serialize()</h4></li></ul>
+<div class="longdesc">
+<p><code>.serialize()</code> 方法使用标准的 URL-encoded 符号上建立一个文本字符串. 这是使用jQuery对象代表一组表单元素的构成。 这个表单元素可以的几种类型：</p>
+<pre>&lt;form&gt;
+  &lt;div&gt;&lt;input type="text" name="a" value="1" id="a" /&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;input type="text" name="b" value="2" id="b" /&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;input type="hidden" name="c" value="3" id="c" /&gt;&lt;/div&gt;
+  &lt;div&gt;
+    &lt;textarea name="d" rows="8" cols="40"&gt;4&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;div&gt;&lt;select name="e"&gt;
+    &lt;option value="5" selected="selected"&gt;5&lt;/option&gt;
+    &lt;option value="6"&gt;6&lt;/option&gt;
+    &lt;option value="7"&gt;7&lt;/option&gt;
+  &lt;/select&gt;&lt;/div&gt;
+  &lt;div&gt;
+    &lt;input type="checkbox" name="f" value="8" id="f" /&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input type="submit" name="g" value="Submit" id="g" /&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre>
+<p>The <code>.serialize()</code> 方法可以操作一个jQuery对象已选定的表单元素个体, 比如 <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, 和 <code>&lt;select&gt;</code>。无论如何他能非常简单系列化:选择的 <code>&lt;form&gt;</code> 标签：</p>
+<pre>$('form').submit(function() {
+  alert($(this).serialize());
+  return false;
+});</pre>
+<p>这个过程产生了一个非常标准的查询字符串:</p>
+<pre>a=1&amp;b=2&amp;c=3&amp;d=4&amp;e=5
+</pre>
+<p><strong>注意</strong>: 只有 <a   target="_blank" href="http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2">"successful controls"</a>是控制字符串的系列化。没有提交按钮的值是不会没有使用按钮提交这个表单（英文原文：No submit button value is serialized since the form was not submitted using a button.）。 使一个表单元素的值包含到系列化字符串，他必须有个<code>name</code>属性。从文件中选择期的数据是不会被序列化的。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">把一个表单序列化成一个查询字符串，使之能够在一个Ajax请求中发送。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body, select { font-size:12px; }
+  form { margin:5px; }
+  p { color:red; margin:5px; font-size:14px; }
+  b { color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+
+&lt;form&gt;
+    &lt;select name="single"&gt;
+      &lt;option&gt;Single&lt;/option&gt;
+      &lt;option&gt;Single2&lt;/option&gt;
+    &lt;/select&gt;
+
+&lt;br /&gt;
+    &lt;select name="multiple" multiple="multiple"&gt;
+      &lt;option selected="selected"&gt;Multiple&lt;/option&gt;
+      &lt;option&gt;Multiple2&lt;/option&gt;
+
+      &lt;option selected="selected"&gt;Multiple3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;br/&gt;
+    &lt;input type="checkbox" name="check" value="check1" id="ch1"/&gt;
+
+    &lt;label for="ch1"&gt;check1&lt;/label&gt;
+
+    &lt;input type="checkbox" name="check" value="check2" checked="checked" id="ch2"/&gt;
+
+    &lt;label for="ch2"&gt;check2&lt;/label&gt;
+&lt;br /&gt;
+    &lt;input type="radio" name="radio" value="radio1" checked="checked" id="r1"/&gt;
+
+    &lt;label for="r1"&gt;radio1&lt;/label&gt;
+    &lt;input type="radio" name="radio" value="radio2" id="r2"/&gt;
+
+    &lt;label for="r2"&gt;radio2&lt;/label&gt;
+  &lt;/form&gt;
+  &lt;p&gt;&lt;tt id="results"&gt;&lt;/tt&gt;&lt;/p&gt;
+&lt;script&gt;
+    function showValues() {
+      var str = $("form").serialize();
+      $("#results").text(str);
+    }
+    $(":checkbox, :radio").click(showValues);
+    $("select").change(showValues);
+    showValues();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="200"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

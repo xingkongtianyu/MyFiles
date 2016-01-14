@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.append()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-insertion-inside/" title="View all posts in DOM Insertion, Inside">DOM Insertion, Inside</a></span>
+  
+  				</div>
+</div>
+<div id="append1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.append( content )</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>根据参数设定在每个匹配元素里面的末尾处插入内容。</p>
+<ul class="signatures">
+<li class="signature" id="append-content">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.append( content )</h4>
+<p class="arguement"><strong>content</strong>一个元素，HTML字符串，或者jQuery对象，用来插在每个匹配元素里面的末尾。</p>
+</li>
+<li class="signature" id="append-functionindex- html">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.append( function(index, html) )</h4>
+<p class="arguement"><strong>function(index, html)</strong>一个返回HTML字符串的函数，该字符串用来插入到匹配元素的末尾。
+Receives the index position of the element in the set and the old HTML value of the element as arguments.</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.append()</code>函数将特定内容插入到每个匹配元素里面的最后面，作为它的最后一个子元素（last child）,
+(如果要作为第一个子元素 （first child）, 用<a   target="_blank" href="http://api.jquery.com/prepend/"><code>.prepend()</code></a>). </p>
+<p><code>.append()</code> 和<a href="#p=appendTo">.appendTo()</a>实现同样的功能。主要的不同是语法——内容和目标的位置不同。对于<code>.append()</code>,
+ 选择表达式在函数的前面，参数是将要插入的内容。对于<code>.appendTo()</code>刚好相反，内容在方法前面，它将被放在参数里元素的末尾。</p>
+<p>请看下面的HTML:</p>
+<pre>&lt;h2&gt;Greetings&lt;/h2&gt;
+&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;Hello&lt;/div&gt;
+  &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>我们可以创建内容然后同时插入到好几个元素里面：</p>
+<pre>$('.inner').append('&lt;p&gt;Test&lt;/p&gt;');
+</pre>
+<p>每个新的inner <code>&lt;div&gt;</code>元素会得到新的内容：</p>
+<pre>&lt;h2&gt;Greetings&lt;/h2&gt;
+&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;
+    Hello
+    &lt;p&gt;Test&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="inner"&gt;
+    Goodbye
+    &lt;p&gt;Test&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>我们也可以在页面上选择一个元素然后插在另一个元素里面：</p>
+<pre>$('.container').append($('h2'));
+</pre>
+<p>如果一个被选中的元素被插入到另外一个地方，这是移动而不是复制：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;Hello&lt;/div&gt;
+  &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+  &lt;h2&gt;Greetings&lt;/h2&gt;
+&lt;/div&gt;
+</pre>
+<p>如果有多个目标元素，内容将被复制然后按顺序插入到每个目标里面。</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">在所有的段落里插入一些HTML。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;I would like to say: &lt;/p&gt;
+&lt;script&gt;
+  $("p").append("&lt;strong&gt;Hello&lt;/strong&gt;");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">在所有段落里插入元素。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;I would like to say: &lt;/p&gt;
+
+&lt;script&gt;
+  $("p").append(document.createTextNode("Hello"));
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">在所有段落里插入jQuery对象 (jQuery对象类似于一组DOM元素) </span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;strong&gt;Hello world!!!&lt;/strong&gt;&lt;p&gt;I would like to say: &lt;/p&gt;
+&lt;script&gt;
+  $("p").append( $("strong") );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

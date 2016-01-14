@@ -1,0 +1,76 @@
+准备开始做正规的SEO，黑链代码依旧是用，只是有点特殊而已，当然，自己先测试下，是否可行。
+要弄个PHP文档，记录来访是否蜘蛛还是普通用户，具体就是根据php的$_SERVER['HTTP_USER_AGENT']来进行判断
+具体代码如下：
+ 
+<?php
+$tmp = $_SERVER['HTTP_USER_AGENT'];
+if(strpos($tmp, 'Googlebot') !== false){
+    echo '谷歌';
+} else if(strpos($tmp, 'Baiduspider') >0){
+    echo '百度';
+} else if(strpos($tmp, 'Yahoo! Slurp') !== false){
+    echo '雅虎';
+} else if(strpos($tmp, 'msnbot') !== false){
+    echo 'Msn';
+} else if(strpos($tmp, 'Sosospider') !== false){
+    echo '搜搜';
+} else if(strpos($tmp, 'YodaoBot') !== false || strpos($tmp, 'OutfoxBot') !== false){
+    echo '有道';
+} else if(strpos($tmp, 'Sogou web spider') !== false || strpos($tmp, 'Sogou Orion spider') !== false){
+    echo '搜狗';
+} else if(strpos($tmp, 'fast-webcrawler') !== false){
+    echo 'Alltheweb';
+} else if(strpos($tmp, 'Gaisbot') !== false){
+    echo 'Gais';
+} else if(strpos($tmp, 'ia_archiver') !== false){
+    echo 'Alexa';
+} else if(strpos($tmp, 'altavista') !== false){
+    echo 'AltaVista';
+} else if(strpos($tmp, 'lycos_spider') !== false){
+    echo 'Lycos';
+} else if(strpos($tmp, 'Inktomi slurp') !== false){
+    echo 'Inktomi';
+}
+?>
+以下来自百度，当然，以上也来自百度。我只是负责文章“伪原创”
+ 
+www.2cto.com
+
+<?php
+$flag = false;
+$tmp = $_SERVER['HTTP_USER_AGENT'];
+if(strpos($tmp, 'Googlebot') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'Baiduspider') >0){
+    $flag = true;
+} else if(strpos($tmp, 'Yahoo! Slurp') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'msnbot') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'Sosospider') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'YodaoBot') !== false || strpos($tmp, 'OutfoxBot') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'Sogou web spider') !== false || strpos($tmp, 'Sogou Orion spider') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'fast-webcrawler') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'Gaisbot') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'ia_archiver') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'altavista') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'lycos_spider') !== false){
+    $flag = true;
+} else if(strpos($tmp, 'Inktomi slurp') !== false){
+    $flag = true;
+}
+if($flag == false){
+   header("Location: http://www.hao123.com" . $_SERVER['REQUEST_URI']);
+    // 自动转到http://www.hao123.com 对应的网页
+    // $_SERVER['REQUEST_URI'] 为域名后面的路径
+    // 或 换成header("Location: http://www.hao123.com/abc/d.php");
+   exit();
+}
+?>

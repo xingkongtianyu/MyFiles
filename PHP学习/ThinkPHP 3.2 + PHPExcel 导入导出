@@ -1,0 +1,141 @@
+ThinkPHP 3.2 + PHPExcel 导入导出文件 第三方类库不能用问题解决
+
+ThinkPHP3.2 采用了namesapce，就是所谓的命名空间，会导致很多盆友放到/Vendor下边导入文件的时候出现各种问题，鄙人百度了好多，但是好多都是老版本，最新版的ThinkPHP跟PHPExcel一直没有解决，没有办法，只能看代码，终于，找到了这个问题的解决办法，在这里Mark下，有需要的盆友可以看看。
+
+
+把PHPExcel加压之后的文件里边的Classes的文件夹 PHPExcel 跟 php文件 PHPExcel.php 放到你\ThinkPHP\Library\Vendor 目录下，然后在Controller中这样写：
+
+导入代码实例：
+
+        
+
+public function importExcel(){
+
+        vendor('PHPExcel');
+
+        $PHPExcel = new \PHPExcel();
+
+        $saveFile = '/mnt/www/tp/Application/Home/Controller/test.xlsx';
+
+
+        $PHPReader = new \PHPExcel_Reader_Excel2007(); 
+
+        if(!$PHPReader->canRead($saveFile)){ 
+
+            $PHPReader = new \PHPExcel_Reader_Excel5(); 
+
+            if(!$PHPReader->canRead($saveFile)){ 
+
+                echo 'no Excel'; 
+
+                return ; 
+
+            } 
+
+        } 
+
+        
+
+        $PHPExcel = $PHPReader->load($saveFile); 
+
+        $currentSheet = $PHPExcel->getSheet(0); 
+
+        /**get max column*/ 
+
+        $allColumn = $currentSheet->getHighestColumn(); 
+
+        /**get max row*/ 
+
+        $allRow = $currentSheet->getHighestRow();
+
+        $return = array();
+
+        $i=0;
+
+        for($currentRow = 2;$currentRow <= $allRow;$currentRow++){
+
+            for($currentColumn= 'A';$currentColumn<= $allColumn; $currentColumn++){ 
+
+                $count = ord($currentColumn) - 65;
+
+                $val = $currentSheet->getCellByColumnAndRow($count,$currentRow)->getValue();
+
+            }
+
+            $i++;
+
+        } 
+
+       
+
+    }
+
+
+导出实例代码：
+
+public function exportExcel(){
+
+        vendor('PHPExcel');
+
+        $objExcel = new \PHPExcel();
+
+        //set document Property
+
+        $objWriter = \PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+
+    
+
+        $objActSheet = $objExcel->getActiveSheet();
+
+        $key = ord("A");
+
+        
+
+        $objActSheet->setCellValue("A1", 'test1');
+
+        $objActSheet->setCellValue("A2", 'test2');
+
+        $objActSheet->setCellValue("B1", 'test3');
+
+        $objActSheet->setCellValue("B2", 'test4');
+
+    
+
+        $outfile = "test.xls";
+
+        
+
+        //export to exploer
+
+        
+
+        header("Content-Type: application/force-download");
+
+        header("Content-Type: application/octet-stream");
+
+        header("Content-Type: application/download");
+
+        header('Content-Disposition:inline;filename="'.$outfile.'"');
+
+        header("Content-Transfer-Encoding: binary");
+
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+        header("Pragma: no-cache");
+
+        $objWriter->save('php://output');
+
+        exit;
+
+    }
+
+
+各位可以试下，反正我是测试过了，至于你们信不信，反正我是信啦。
+
+
+PS:其实没啥，就是导入文件之后，所有的new 都加个\，你就成功了，原来生活如此简单哦也！
+
+
+再PS：第三方类库（TP的命名方式是已.class.php结尾的，如果你的类库中不是已这种方式结尾），请放到Think/Library/Vender中，然后使用vender()方式调用，比如你的Vendor文件夹下有个PHPExcel.php的文件，你只需要vendor('PHPExcel');如果你的Vendor文件夹下有个PHPExcel的问价夹，里边test.php文件，你只需要vendor('PHPExcel.test');
+
+一次类推即可。

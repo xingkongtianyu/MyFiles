@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)http://www.nowamagic.net/php/php_HignPerformanceSkills.php -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script  charset="utf-8"  async=""  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/xuanting1389684067.js"></script><script  charset="utf-8"  async=""  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/inlayFixed.js"></script>
+
+<title>全面榨干PHP性能的使用技巧 -- 简明现代魔法</title> 
+<meta  name="copyright"  content="全面榨干PHP性能的使用技巧"> 
+<meta  name="keywords"  content="全面榨干PHP性能的使用技巧"> 
+<meta  name="description"  content="全面榨干PHP性能的使用技巧"> 
+<link  rel="shortcut icon"  href="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/icon.gif">
+<link  href="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/style4.css"  rel="stylesheet"  type="text/css">
+</head>
+
+<body><script  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/jiathis.php"  charset="utf-8"></script><link  href="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/jiathis_share.css"  rel="stylesheet"  type="text/css"><iframe  frameborder="0"  style="position: absolute; display: none; opacity: 0;"></iframe><div  class="jiathis_style"  style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div  class="jiathis_style"  style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe  frameborder="0"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/jiathis_utility.htm"  style="display: none;"></iframe>
+
+<div  class="background"  id="background">
+
+  	<div  class="top"  id="top">  </div>
+  	<div  class="header"  id="header"> <table  width="958"  border="0"  align="center">
+  <tbody><tr>
+    <td  width="220"><img  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/logo.gif"  width="210"  height="230"></td>
+    <td  width="520"  rowspan="2">
+    <object  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  id="scriptmain"  name="scriptmain"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"  width="515"  height="270">
+    <param  name="movie"  value="banner_english.swf?bcastr_xml_url=../xml/bcastr2.xml">
+    <param  name="quality"  value="high">
+    <param  name="scale"  value="noscale">
+    <param  name="LOOP"  value="false">
+    <param  name="menu"  value="false">
+    <param  name="wmode"  value="transparent">
+    <embed  src="http://www.nowamagic.net/php/banner_english.swf?bcastr_xml_url=../xml/bcastr2.xml"  width="515"  height="270"  loop="false"  quality="high"  pluginspage="http://www.macromedia.com/go/getflashplayer"  type="application/x-shockwave-flash"  salign="T"  name="scriptmain"  menu="false"  wmode="transparent">
+  </object>    </td>
+    <td  width="220"  rowspan="2"  style=" background-image:url(../images/headerbg.jpg)"  valign="top">
+<div  class="headerword"><a  href="http://www.nowamagic.net/index.php"><img  border="none"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/headerword.jpg"  width="135"  height="150"></a></div></td>
+  </tr>
+  <tr>
+    <td  align="center">专注于互联网主流的各种技术</td>
+  </tr>
+  <tr>
+    <td  height="5"  colspan="3"  bgcolor="#66CC00"></td>
+  </tr>
+</tbody></table>
+
+<style  type="text/css">
+.tbtns{width:143px; height:39px; background:url(../images/tbtn.gif) no-repeat; display:block; margin:0 auto; font:700 14px/34px Verdana, Geneva, sans-serif!important;color:#FFF!important; margin-top:6px}
+.t-b{background-position:0 -78px}
+.t-r{background-position:0 0}
+.t-g{background-position:0 -39px}
+</style>
+
+  <div  class="leftfower">
+<object  height="285"  width="95"  border="0"><param  value="../images/swf/flower.swf"  name="movie"><param  value="High"  name="quality"><param  value="ExactFit"  name="scale"> <param  value="transparent"  name="wmode">
+<embed  height="285"  width="95"  scale="ExactFit"  wmode="transparent"  quality="High"  name="FlashH"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  src="http://www.nowamagic.net/images/swf/flower.swf">
+
+</object></div>
+
+  <div  class="rightfower"><object  height="285"  width="80"  border="0"><param  value="../images/swf/right.swf"  name="movie"><param  value="High"  name="quality"><param  value="ExactFit"  name="scale"> <param  value="transparent"  name="wmode"><embed  height="285"  width="80"  scale="ExactFit"  wmode="transparent"  quality="High"  name="FlashH"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  src="http://www.nowamagic.net/images/swf/right.swf"></object></div> </div>
+  	<div  class="navigation"  id="navigation"> 
+<div  id="navigationMenu"> 
+	<ul  id="menus"> 
+		<li  class="current_page_item"><a  class="home"  title="首页"  href="http://www.nowamagic.net/">首页</a></li> 
+		<li><a  href="http://www.nowamagic.net/"  title="简明现代魔法"><span  id="licontent">简明现代魔法</span></a></li> 
+		<li><a  href="http://www.nowamagic.net/admin/article_ArticleQuery.php"  title="资料文献总汇"><span  id="licontent">资料文献总汇</span></a></li> 
+		<li><a  href="http://www.nowamagic.net/librarys/veda/"  title="Veda 原型"  target="_blank"><span  id="licontent">Veda 原型</span></a></li>
+        <li><a  href="http://www.nowamagic.net/librarys/news/"  title="互联网资讯"><span  id="licontent">互联网资讯</span></a></li> 
+		<li><a  href="http://www.nowamagic.net/librarys/"  title="图书馆"><span  id="licontent">魔法图书馆</span></a></li>
+		<li><a  href="http://www.nowamagic.net/librarys/eight/"  title="晚八点"><span  id="licontent">晚上八点</span></a></li>
+        
+		<li><a  class="lastmenu"  href="javascript:void(0);"></a></li> 
+	</ul> 
+</div> 
+
+<style>
+.topads { border:2px solid #e6e6fa; margin-top:3px; overflow:hidden; }
+.topads:hover { border:2px solid #b0e0e6; margin-top:3px; }
+</style>
+ 
+<div  class="topads">
+<script  type="text/javascript"><!--
+google_ad_client = "pub-3908995730077629";
+/* 728x90, 创建于 10-6-25 */
+google_ad_slot = "0450659969";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div> </div>
+  	<div  class="search"  id="search"> 	<div  id="searchbox"> 
+		<form  method="post"  action="http://www.nowamagic.net/admin/article_SearchResult.php"  name="search">
+		<div  class="content"> 
+			<input  type="text"  class="textfield"  name="search"  size="24"  value=""> 
+            <input  type="submit"  class="button"  value=""> 
+		</div> 
+		</form> 
+	</div> 
+
+
+
+
+ </div>
+
+  	<div  class="mainContent"  id="mainContent"> 
+  		<div  class="gen3_nav"><a  href="http://www.nowamagic.net/index.php">简明现代魔法</a> -&gt; <a  href="http://www.nowamagic.net/php/php.php">PHP服务器脚本</a> -&gt; 全面榨干PHP性能的使用技巧</div>
+  
+  	<h1  align="center">全面榨干PHP性能的使用技巧</h1>
+  	<p  align="center">2011-04-22</p>
+  
+  	<div  class="gen3">
+  
+  	<p>PHP可以从很多细节部分去提高执行效率，下面来个汇总。</p>
+  
+  	<h4>静态调用的成员一定要定义成 static   (PHP5 ONLY)</h4>
+    
+    <p>PHP 5 引入了静态成员的概念，作用和 PHP 4 的函数内部静态变量一致，但前者是作为类的成员来使用。静态变量和 Ruby 的类变量(class variable)差不多，所有类的实例共享同一个静态变量。</p>
+  
+<div  id="highlighter_563604"  class="syntaxhighlighter  "><div  class="bar  "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_563604_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_563604"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>01</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>02</code></td><td  class="content"><code  class="keyword">class</code> <code  class="plain">foo {</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>03</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="keyword">function</code> <code  class="plain">bar() {</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>04</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="functions">echo</code> <code  class="string">'foobar'</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>05</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>06</code></td><td  class="content"><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>07</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>08</code></td><td  class="content"><code  class="variable">$foo</code> <code  class="plain">= </code><code  class="keyword">new</code> <code  class="plain">foo;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>09</code></td><td  class="content"><code  class="comments">// instance way</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>10</code></td><td  class="content"><code  class="variable">$foo</code><code  class="plain">-&gt;bar();</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>11</code></td><td  class="content"><code  class="comments">// static way</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>12</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>13</code></td><td  class="content"><code  class="plain">foo::bar();</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>14</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+  
+  	<p>静态地调用非 static 成员，效率会比静态地调用 static 成员慢 50-60%。主要是因为前者会产生 E_STRICT 警告，内部也需要做转换。</p>
+    
+    <h4>使用类常量 (PHP5 ONLY)</h4>
+	
+	<p>PHP 5 新功能，类似于 C++ 的 const。</p>
+  
+  	<p>使用类常量的好处是：</p>
+	
+	<ul  class="article">
+		
+		<li>编译时解析，没有额外开销</li>
+		
+		<li>杂凑表更小，所以内部查找更快</li>
+		
+		<li>类常量仅存在于特定「命名空间」，所以杂凑名更短</li>
+		
+		<li>代码更干净，使除错更方便</li>
+		
+	</ul>
+    
+    <h4>(暂时)不要使用 require/include_once </h4>
+  
+  	<p>require/include_once 每次被调用的时候都会打开目标文件！</p>
+    
+    <p>如果用绝对路径的话，PHP 5.2/6.0 不存在这个问题，新版的 APC 缓存系统已经解决这个问题。</p>
+	
+	<p>文件 I/O 增加 =&gt; 效率降低，如果需要，可以自行检查文件是否已被 require/include。</p>
+  
+  	<h4>不要调用毫无意义的函数</h4>
+    
+    <p>有对应的常量的时候，不要使用函数。</p>
+	
+<div  id="highlighter_81405"  class="syntaxhighlighter  "><div  class="bar "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_81405_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_81405"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="plain">php_uname(</code><code  class="string">'s'</code><code  class="plain">) == PHP_OS;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="plain">php_version() == PHP_VERSION;</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>4</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="plain">php_sapi_name() == PHP_SAPI;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>5</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+  
+  	<p>虽然使用不多，但是效率提升大概在 3500% 左右。</p>
+    
+    <h4>最快的 Win32 检查</h4>
+	
+<div  id="highlighter_497397"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_497397_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_497397"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="variable">$is_win</code> <code  class="plain">= DIRECTORY_SEPARATOR == </code><code  class="string">'\\'</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+	
+	<ul  class="article">
+		
+		<li>不用函数</li>
+		
+		<li>Win98/NT/2000/XP/Vista/Longhorn/Shorthorn/Whistler...通用</li>
+		
+		<li>一直可用</li>
+		
+	</ul>
+	
+	<h4>时间问题 (PHP&gt;5.1.0 ONLY)</h4>
+  
+  	<p>你如何在你的软件中得知现在的时间？简单，「time() time() again, you ask me...」。</p>
+    
+    <p>不过总归会调用函数，慢。</p>
+  
+  	<p>现在好了，用 $_SERVER['REQUEST_TIME']，不用调用函数，又省了。</p>
+    
+    <h4>加速 PCRE</h4>
+	
+	<p>对于不用保存的结果，不用 ()，一律用 (?:)。这样 PHP 不用为符合的内容分配内存，省。效率提升 15% 左右。</p>
+  
+  	<p>能不用正则，就不用正则，在分析的时候仔细阅读手册「字符串函数」部分。有没有你漏掉的好用的函数？</p>
+	
+<div  id="highlighter_663547"  class="syntaxhighlighter  "><div  class="bar "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_663547_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_663547"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="functions">strpbrk</code><code  class="plain">()</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="functions">strncasecmp</code><code  class="plain">()</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="functions">strpos</code><code  class="plain">()/</code><code  class="functions">strrpos</code><code  class="plain">()/</code><code  class="functions">stripos</code><code  class="plain">()/</code><code  class="functions">strripos</code><code  class="plain">()</code></td></tr></tbody></table></div></div></div>
+    
+    <h4>加速 strtr</h4>
+  
+  	<p>如果需要转换的全是单个字符的时候，用字符串而不是数组来做 strtr：</p>
+	
+<div  id="highlighter_806002"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_806002_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_806002"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="variable">$addr</code> <code  class="plain">= </code><code  class="functions">strtr</code><code  class="plain">(</code><code  class="variable">$addr</code><code  class="plain">, </code><code  class="string">"abcd"</code><code  class="plain">, </code><code  class="string">"efgh"</code><code  class="plain">); </code><code  class="comments">// good</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="variable">$addr</code> <code  class="plain">= </code><code  class="functions">strtr</code><code  class="plain">(</code><code  class="variable">$addr</code><code  class="plain">, </code><code  class="keyword">array</code><code  class="plain">(</code><code  class="string">'a'</code> <code  class="plain">=&gt; </code><code  class="string">'e'</code><code  class="plain">,</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>4</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="comments">// ...</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>5</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="plain">)); </code><code  class="comments">// bad</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>6</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+    
+    <p>效率提升：10 倍。</p>
+	
+	<h4>不要做无谓的替换</h4>
+    
+    <p>即使没有替换，str_replace 也会为其参数分配内存。很慢！解决办法：用 strpos 先查找(非常快)，看是否需要替换，如果需要，再替换。</p>
+  
+  	<p>如果需要替换：效率几乎相等，差别在 0.1% 左右。如果不需要替换：用 strpos 快 200%。</p>
+    
+    <h4>邪恶的 @ 操作符</h4>
+	
+	<p>不要滥用 @ 操作符。虽然 @ 看上去很简单，但是实际上后台有很多操作。用 @ 比起不用 @，效率差距：3 倍。</p>
+    
+    <p>特别不要在循环中使用 @，在 5 次循环的测试中，即使是先用 error_reporting(0) 关掉错误，在循环完成后再打开，都比用 @ 快。</p>
+  
+  	<h4>善用 strncmp</h4>
+    
+    <p>当需要对比「前 n 个字符」是否一样的时候，用 strncmp/strncasecmp，而不是 substr/strtolower，更不是 PCRE，更千万别提 ereg。strncmp/strncasecmp 效率最高(虽然高得不多)。</p>
+	
+	<h4>慎用 substr_compare (PHP5 ONLY)</h4>
+    
+    <p>按照上面的道理，substr_compare 应该比先 substr 再比较快咯。答案是否定的，除非：无视大小写的比较，比较较大的字符串。</p>
+  
+  	<h4>不要用常量代替字符串</h4>
+    
+    <p>为什么呢？</p>
+	
+	<ul  class="article">
+		
+		<li>需要查询杂凑表两次</li>
+		
+		<li>需要把常量名转换为小写(进行第二次查询的时候)</li>
+		
+		<li>生成 E_NOTICE 警告</li>
+		
+		<li>会建立临时字符串</li>
+		
+	</ul>
+	
+	<p>效率差别：700%。</p>
+    
+    <h4>不要把 count/strlen/sizeof 放到 for 循环的条件语句中</h4>
+  
+  	<p>我的个人做法</p>
+	
+<div  id="highlighter_771521"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_771521_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_771521"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="keyword">for</code> <code  class="plain">(</code><code  class="variable">$i</code> <code  class="plain">= 0, </code><code  class="variable">$max</code> <code  class="plain">= </code><code  class="functions">count</code><code  class="plain">(</code><code  class="variable">$array</code><code  class="plain">);</code><code  class="variable">$i</code> <code  class="plain">&lt; </code><code  class="variable">$max</code><code  class="plain">; ++</code><code  class="variable">$i</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+    
+    <h4>短的代码不一定快</h4>
+	
+<div  id="highlighter_529935"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_529935_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_529935"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div></div></div>
+	
+	<p>你觉得哪个快？</p>
+	
+<div  id="highlighter_82507"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_82507_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_82507"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">- longest: 4.27</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="plain">- longer: 4.43</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="plain">- short: 4.76</code></td></tr></tbody></table></div></div></div>
+    
+    <p>不可思议？再来一个：</p>
+	
+<div  id="highlighter_608938"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_608938_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_608938"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>01</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>02</code></td><td  class="content"><code  class="comments">// original</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>03</code></td><td  class="content"><code  class="variable">$d</code> <code  class="plain">= dir(</code><code  class="string">'.'</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>04</code></td><td  class="content"><code  class="keyword">while</code> <code  class="plain">((</code><code  class="variable">$entry</code> <code  class="plain">= </code><code  class="variable">$d</code><code  class="plain">-&gt;read()) !== false) {</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>05</code></td><td  class="content"><code  class="keyword">if</code> <code  class="plain">(</code><code  class="variable">$entry</code> <code  class="plain">== </code><code  class="string">'.'</code> <code  class="plain">|| </code><code  class="variable">$entry</code> <code  class="plain">== </code><code  class="string">'..'</code><code  class="plain">) {</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>06</code></td><td  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code  class="keyword">continue</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>07</code></td><td  class="content"><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>08</code></td><td  class="content"><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>09</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>10</code></td><td  class="content"><code  class="comments">// versus</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>11</code></td><td  class="content"><code  class="functions">glob</code><code  class="plain">(</code><code  class="string">'./*'</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>12</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>13</code></td><td  class="content"><code  class="comments">// versus (include . and ..)</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>14</code></td><td  class="content"><code  class="plain">scandir(</code><code  class="string">'.'</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>15</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+  
+  	<p>效率比较：</p>
+	
+<div  id="highlighter_988839"  class="syntaxhighlighter  "><div  class="bar "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_988839_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_988839"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">- original: 3.37</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content"><code  class="plain">- </code><code  class="functions">glob</code><code  class="plain">: 6.28</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="plain">- scandir: 3.42</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>4</code></td><td  class="content"><code  class="plain">- original without OO: 3.14</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>5</code></td><td  class="content"><code  class="plain">- SPL (PHP5): 3.95</code></td></tr></tbody></table></div></div></div>
+    
+    <p>从此也可以看出来 PHP5 的面向对象效率提高了很多，效率已经和纯函数差得不太多了。</p>
+	
+	<h4>提高 PHP 文件访问效率</h4>
+    
+    <p>需要包含其他 PHP 文件的时候，使用完整路径，或者容易转换的相对路径。</p>
+	
+<div  id="highlighter_320756"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_320756_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_320756"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>1</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>2</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>3</code></td><td  class="content"><code  class="keyword">include</code> <code  class="string">'file.php'</code><code  class="plain">; </code><code  class="comments">// bad approach</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>4</code></td><td  class="content"><code  class="plain">incldue </code><code  class="string">'./file.php'</code><code  class="plain">; </code><code  class="comments">// good</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>5</code></td><td  class="content"><code  class="keyword">include</code> <code  class="string">'/path/to/file.php'</code><code  class="plain">; </code><code  class="comments">// ideal</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>6</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>7</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+	
+	<h4>物尽其用</h4>
+    
+    <p>PHP 有很多扩展和函数可用，在实现一个功能的之前，应该看看 PHP 是否有了这个功能？是否有更简单的实现？</p>
+	
+<div  id="highlighter_206089"  class="syntaxhighlighter  "><div  class="bar"><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_206089_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_206089"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>01</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>02</code></td><td  class="content"><code  class="variable">$filename</code> <code  class="plain">= </code><code  class="string">"./somepic.gif"</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>03</code></td><td  class="content"><code  class="variable">$handle</code> <code  class="plain">= </code><code  class="functions">fopen</code><code  class="plain">(</code><code  class="variable">$filename</code><code  class="plain">, </code><code  class="string">"rb"</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>04</code></td><td  class="content"><code  class="variable">$contents</code> <code  class="plain">= </code><code  class="functions">fread</code><code  class="plain">(</code><code  class="variable">$handle</code><code  class="plain">, </code><code  class="functions">filesize</code><code  class="plain">(</code><code  class="variable">$filename</code><code  class="plain">));</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>05</code></td><td  class="content"><code  class="plain">fclose(</code><code  class="variable">$handle</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>06</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>07</code></td><td  class="content"><code  class="comments">// vs. much simpler</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>08</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>09</code></td><td  class="content"><code  class="functions">file_get_contents</code><code  class="plain">(</code><code  class="string">'./somepic.gif'</code><code  class="plain">);</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>10</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+  
+  	<h4>关于引用的技巧</h4>
+    
+    <p>引用可以简化对复杂结构数据的访问，优化内存使用。</p>
+	
+<div  id="highlighter_838819"  class="syntaxhighlighter  "><div  class="bar   "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_838819_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_838819"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>01</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>02</code></td><td  class="content"><code  class="variable">$a</code><code  class="plain">[</code><code  class="string">'b'</code><code  class="plain">][</code><code  class="string">'c'</code><code  class="plain">] = </code><code  class="keyword">array</code><code  class="plain">();</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>03</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>04</code></td><td  class="content"><code  class="comments">// slow 2 extra hash lookups per access</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>05</code></td><td  class="content"><code  class="keyword">for</code> <code  class="plain">(</code><code  class="variable">$i</code> <code  class="plain">= 0; </code><code  class="variable">$i</code> <code  class="plain">&lt; 5; ++</code><code  class="variable">$i</code><code  class="plain">)</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>06</code></td><td  class="content"><code  class="variable">$a</code><code  class="plain">[</code><code  class="string">'b'</code><code  class="plain">][</code><code  class="string">'c'</code><code  class="plain">][</code><code  class="variable">$i</code><code  class="plain">] = </code><code  class="variable">$i</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>07</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>08</code></td><td  class="content"><code  class="comments">// much faster reference based approach</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>09</code></td><td  class="content"><code  class="variable">$ref</code> <code  class="plain">=&amp; </code><code  class="variable">$a</code><code  class="plain">[</code><code  class="string">'b'</code><code  class="plain">][</code><code  class="string">'c'</code><code  class="plain">];</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>10</code></td><td  class="content"><code  class="keyword">for</code> <code  class="plain">(</code><code  class="variable">$i</code> <code  class="plain">= 0; </code><code  class="variable">$i</code> <code  class="plain">&lt; 5; ++</code><code  class="variable">$i</code><code  class="plain">)</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>11</code></td><td  class="content"><code  class="variable">$ref</code><code  class="plain">[</code><code  class="variable">$i</code><code  class="plain">] = </code><code  class="variable">$i</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>12</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+	
+<div  id="highlighter_394050"  class="syntaxhighlighter  "><div  class="bar              "><div  class="toolbar"><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><div  class="item copyToClipboard"><embed  width="16"  height="16"  id="highlighter_394050_clipboard"  type="application/x-shockwave-flash"  title="copy to clipboard"  allowscriptaccess="always"  wmode="transparent"  flashvars="highlighterId=highlighter_394050"  menu="false"  src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf"></div><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.nowamagic.net/php/php_HignPerformanceSkills.php#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><table><tbody><tr><td  class="number"><code>01</code></td><td  class="content"><code  class="plain">&lt;?php</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>02</code></td><td  class="content"><code  class="variable">$a</code> <code  class="plain">= </code><code  class="string">'large string'</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>03</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>04</code></td><td  class="content"><code  class="comments">// memory intensive approach</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>05</code></td><td  class="content"><code  class="keyword">function</code> <code  class="plain">a(</code><code  class="variable">$str</code><code  class="plain">)</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>06</code></td><td  class="content"><code  class="plain">{</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>07</code></td><td  class="content"><code  class="keyword">return</code> <code  class="variable">$str</code><code  class="plain">.</code><code  class="string">'something'</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>08</code></td><td  class="content"><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>09</code></td><td  class="content">&nbsp;</td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>10</code></td><td  class="content"><code  class="comments">// more efficient solution</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>11</code></td><td  class="content"><code  class="keyword">function</code> <code  class="plain">a(&amp;</code><code  class="variable">$str</code><code  class="plain">)</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>12</code></td><td  class="content"><code  class="plain">{</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>13</code></td><td  class="content"><code  class="variable">$str</code> <code  class="plain">.= </code><code  class="string">'something'</code><code  class="plain">;</code></td></tr></tbody></table></div><div  class="line alt2"><table><tbody><tr><td  class="number"><code>14</code></td><td  class="content"><code  class="plain">}</code></td></tr></tbody></table></div><div  class="line alt1"><table><tbody><tr><td  class="number"><code>15</code></td><td  class="content"><code  class="plain">?&gt;</code></td></tr></tbody></table></div></div></div>
+
+	</div>
+
+  	</div>
+  
+  	<div  class="additionalContent"  id="additionalContent"> <style  type="text/css">
+#apDiv1 {
+	position:absolute;
+	left:-20px;
+	top:-15px;
+	width:55px;
+	height:70px;
+	z-index:1;
+	background-image: url(../images/ul_leaf_overhang.png);
+}
+</style>
+
+
+
+
+<div  id="apDiv1"></div>
+<table  width="215"  border="0">
+  <tbody><tr>
+    <td  colspan="2"  height="50"  align="center"  background="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/sidebarHeader.gif"><span  class="white">随机文章推荐</span></td>
+    
+  </tr>
+</tbody></table>
+
+
+<ul  class="adition">
+  <li><a  href="http://www.nowamagic.net/php/php_SourceOfExplode.php">PHP explode()函数源码的理解</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_ArrayIsImplementedWithHash.php">PHP的数组是用hash实现的</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_MySQLPagerDesign.php">PHP MySQL 分页设计</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_24PointsGame.php">一个强悍的算24点游戏的PHP程序</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_MysqlToExcel.php">PHP导出MySQL数据到Excel</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_StrReplace.php">PHP 字符串替换 str_replace() 函数</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_isset.php">判断变量是否设置isset()</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_TemperlatePatterm.php">PHP面向对象：模板模式</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_MultiFormatImagesUpload.php">PHP支持多种格式图片上传</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_TraversalAssociativeArray.php">PHP遍历关联数组的方法介绍</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_Birth.php">PHP的诞生与发展历程</a></li>
+
+  <li><a  href="http://www.nowamagic.net/php/php_GetFilePath.php">获取当前文件路径</a></li>
+
+</ul>
+  
+    
+    
+     
+
+
+<table  width="215"  border="0">
+
+  <tbody><tr>
+    <td  height="5px;">
+    </td>
+  </tr>
+  <tr>
+    <td  align="center">
+<script  type="text/javascript"><!--
+google_ad_client = "pub-3908995730077629";
+/* 200x200, 创建于 10-6-23 */
+google_ad_slot = "6112530698";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:200px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><ins  id="aswift_1_anchor"  style="display:block;border:none;height:200px;margin:0;padding:0;position:relative;visibility:visible;width:200px;background-color:transparent"><iframe  width="200"  height="200"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_1"  name="aswift_1"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>    </td>
+  </tr>
+</tbody></table>
+
+<table  width="215"  border="0">
+  <tbody><tr>
+    <td  colspan="2"  height="50"  align="center"  background="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/sidebarHeader.gif"><span  class="white">网站分类</span></td>
+  </tr>
+</tbody></table>
+
+
+
+<table  width="210"  border="0">
+  <tbody><tr>
+    <td>
+<ul  class="adition">
+
+<li><a  href="http://www.nowamagic.net/html/html.php"  target="_blank">HTML</a> (44)</li><li><a  href="http://www.nowamagic.net/csszone/css.php"  target="_blank">CSS</a> (105)</li><li><a  href="http://www.nowamagic.net/javascript/javascript.php"  target="_blank">JavaScript</a> (232)</li><li><a  href="http://www.nowamagic.net/jquery/jquery.php"  target="_blank">JQuery</a> (53)</li><li><a  href="http://www.nowamagic.net/ajax/ajax.php"  target="_blank">Ajax</a> (34)</li><li><a  href="http://www.nowamagic.net/php/php.php"  target="_blank">PHP</a> (314)</li><li><a  href="http://www.nowamagic.net/java/java.php"  target="_blank">Java</a> (39)</li><li><a  href="http://www.nowamagic.net/cpp/cpp.php"  target="_blank">C/C++</a> (35)</li><li><a  href="http://www.nowamagic.net/flex/flex.php"  target="_blank">ActionScript</a> (21)</li><li><a  href="http://www.nowamagic.net/photoshop/photoshop.php"  target="_blank">PhotoShop</a> (4)</li><li><a  href="http://www.nowamagic.net/xmlzone/xml.php"  target="_blank">XML</a> (1)</li><li><a  href="http://www.nowamagic.net/wordpress/wordpress.php"  target="_blank">WordPress</a> (9)</li><li><a  href="http://www.nowamagic.net/datastructures/datastructures.php"  target="_blank">数据结构</a> (14)</li><li><a  href="http://www.nowamagic.net/algorithm/algorithm.php"  target="_blank">计算机算法</a> (56)</li><li><a  href="http://www.nowamagic.net/database/database.php"  target="_blank">数据库技术</a> (66)</li><li><a  href="http://www.nowamagic.net/operatingsystem/operatingsystem.php"  target="_blank">操作系统</a> (1)</li><li><a  href="http://www.nowamagic.net/internet/internet.php"  target="_blank">互联网时代</a> (160)</li><li><a  href="http://www.nowamagic.net/projects/projects.php"  target="_blank">软件项目</a> (27)</li><li><a  href="http://www.nowamagic.net/program/program.php"  target="_blank">编程思想</a> (57)</li><li><a  href="http://www.nowamagic.net/seo/seo.php"  target="_blank">搜索引擎优化</a> (31)</li><li><a  href="http://www.nowamagic.net/webdesign/webdesign.php"  target="_blank">Web设计理念</a> (77)</li><li><a  href="http://www.nowamagic.net/architecture/architecture.php"  target="_blank">软件架构技术</a> (31)</li><li><a  href="http://www.nowamagic.net/tool/tool.php"  target="_blank">信息化工具</a> (12)</li><li><a  href="http://www.nowamagic.net/advertisement/ads.php"  target="_blank">广告设计</a> (7)</li><li><a  href="http://www.nowamagic.net/programlife/programlife.php"  target="_blank">程序人生</a> (18)</li><li><a  href="http://www.nowamagic.net/word/word.php"  target="_blank">喃喃细语</a> (61)</li>
+</ul>
+    </td>
+  </tr>
+</tbody></table>
+
+ </div>
+  	<div  class="bottom"  id="bottom"> ﻿<style>
+input { margin:5px 0px 5px 0px;}
+textarea { margin:5px 0px 5px 0px; }
+.bottomAds {
+	border:1px solid white;
+	margin:10px 3px 0 3px;
+}
+.bottomAds_quote{
+	width:700px;
+	margin:0px 5px 0px 5px;
+	line-height:150%;
+	font-family:Verdana,宋体;  
+    font-size: 12px;  
+	padding: 5px 5px 5px 5px;
+	border: 1px solid #CCC;	
+}
+.bottomAds_quote legend{
+	color:green;
+	font-family:微软雅黑;
+	font-size:16px;
+}
+.bottomAds_quote p{
+	margin:0;
+	padding:0;
+	text-indent:24px;
+	line-height:150%;
+}
+.ads {
+	margin:5px 5px 5px 5px;
+	width:350px;
+	float:left;
+}
+
+.ads_content {
+	margin:8px 5px 8px 10px;
+	width:305px;
+	float:right;
+}
+
+</style>
+
+
+<p  style=" text-indent:2em; ">注：如需转载本文，请注明出处（原文链接），谢谢。更多精彩内容，请进入<a  href="http://www.nowamagic.net/index.php"  target="_blank">简明现代魔法</a>首页。</p>
+
+<table  width="700"  border="0">
+  <tbody><tr>
+    <td  align="center"><a  href="http://www.nowamagic.net/librarys/veda/"  target="_blank"  title="进入新博客"  class="tbtns t-b">进入新博客</a></td>
+  </tr>
+</tbody></table>
+
+<div  class="bottomAds">
+<fieldset  class="bottomAds_quote"><legend>你也许还会对以下文章感兴趣</legend>
+<table  width="700"  border="0">
+  <tbody><tr>
+    <td>
+
+
+<ul  class="adition">
+
+  <li><a  href="http://www.nowamagic.net/php/php_FunctionSerialize.php">PHP串行化函数serialize()介绍</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_AbstractClassExtend.php">PHP 面向对象：抽象类继承抽象类</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_Pizza.php">吃披萨的一个误区</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_PageShow.php">PHP分页显示设计</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_CustomizeControllerAction.php">ZF实现Controllers的自定义Action</a></li>
+
+</ul>
+    </td>
+    <td>
+    <ul  class="adition">
+
+  <li><a  href="http://www.nowamagic.net/php/php_FinalClassMethod.php">PHP 面向对象：final类与final方法</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_UsageOfAt.php">PHP @ at 记号的作用</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_MethodsOfSqlInjection.php">浅谈SQL注入与应对方法</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_PhpCacheClass.php">一个不错的PHP缓存类介绍</a></li>
+
+
+  <li><a  href="http://www.nowamagic.net/php/php_BeHappyProgrammer.php">做快乐的程序员</a></li>
+
+    </ul>
+    </td>
+  </tr>
+</tbody></table>
+
+
+</fieldset>
+</div>
+
+<script  type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/ga.js"  type="text/javascript"></script>
+<script  type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15029466-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script  language="javascript">
+function chkinput(form)
+{
+	if(form.name.value=="")
+	{
+		alert("请输入名称");
+	   	form.name.select();
+	   	return(false);
+	}
+	if(form.email.value=="")
+	{
+		alert("请输入电子邮件");
+	   	form.email.select();
+	   	return(false);
+	}
+	if(form.content.value=="")
+	{
+	   	alert("请输入留言");
+	   	form.content.select();
+	   	return(false);
+	}
+	if(form.check.value=="")
+	{
+	   	alert("请输入验证码");
+	   	form.check.select();
+	   	return(false);
+	}
+    return(true);
+}
+</script>
+
+<style  type="text/css">
+.inputstyle { font-family: Verdana,Arial,Helvetica,sans-serif !important; font-size:14px !important; height:22px !important; padding-top:4px !important;}
+.reptext {
+	width:340px;
+	border:1px solid #6CAEDF;
+	height:120px;
+	word-wrap:break-word;
+	line-height: 150%;
+	overflow:auto;
+	overflow-x: hidden;
+	outline:none;
+	font-family: Verdana,Arial,Helvetica,sans-serif !important;
+    font-size: 14px !important;
+    padding-top: 4px !important;
+}
+</style>
+
+<div  style="margin:10px 0 0 10px; height:65px; overflow:hidden;"><script  type="text/javascript"> /*640*60，创建于2010-8-31*/ var cpro_id = 'u176816';</script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/c.js"></script><div  id="BAIDU_DUP_wrapper_u176816_0"><iframe  width="640"  height="60"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/ecom.htm"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/ecom"></script></div>
+
+<div  class="bottomAds">
+<fieldset  class="bottomAds_quote"  style="padding:12px 12px 12px 15px">
+	<legend>喜欢本文，就分享它吧</legend>
+
+<div  id="jiathis_style_32x32">
+	<a  class="jiathis_button_tsina"  title="分享到新浪微博"><span  class="jiathis_txt jtico jtico_tsina"></span></a>
+	<a  class="jiathis_button_tqq"  title="分享到腾讯微博"><span  class="jiathis_txt jtico jtico_tqq"></span></a>
+	<a  class="jiathis_button_qzone"  title="分享到QQ空间"><span  class="jiathis_txt jtico jtico_qzone"></span></a>
+	<a  class="jiathis_button_t163"  title="分享到网易微博"><span  class="jiathis_txt jtico jtico_t163"></span></a>
+	<a  class="jiathis_button_renren"  title="分享到人人网"><span  class="jiathis_txt jtico jtico_renren"></span></a>
+	<a  class="jiathis_button_kaixin001"  title="分享到开心网"><span  class="jiathis_txt jtico jtico_kaixin001"></span></a>
+	<a  class="jiathis_button_douban"  title="分享到豆瓣"><span  class="jiathis_txt jtico jtico_douban"></span></a>
+	<a  class="jiathis_button_xiaoyou"  title="分享到朋友网"><span  class="jiathis_txt jtico jtico_xiaoyou"></span></a>
+	<a  class="jiathis_button_googlereader"></a>
+	<a  class="jiathis_button_buzz"  title="分享到谷歌Buzz"><span  class="jiathis_txt jtico jtico_buzz"></span></a>
+	<a  class="jiathis_button_fb"  title="分享到Facebook"><span  class="jiathis_txt jtico jtico_fb"></span></a>
+	<a  class="jiathis_button_twitter"  title="分享到Twitter"><span  class="jiathis_txt jtico jtico_twitter"></span></a>
+	<a  class="jiathis_button_gmail"  title="分享到Gmail邮箱"><span  class="jiathis_txt jtico jtico_gmail"></span></a>
+	<a  class="jiathis_button_youdao"  title="分享到有道书签"><span  class="jiathis_txt jtico jtico_youdao"></span></a>
+	<a  class="jiathis_button_taobao"  title="分享到淘江湖"><span  class="jiathis_txt jtico jtico_taobao"></span></a>
+	<a  class="jiathis_button_fav"  title="添加到收藏夹"><span  class="jiathis_txt jtico jtico_fav"></span></a>
+	<a  href="http://www.jiathis.com/share/?uid=1511560"  class="jiathis jiathis_txt jtico jtico_jiathis"  target="_blank"></a>
+</div>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/jia.js"  charset="utf-8"></script>
+
+</fieldset>
+</div>
+
+<div  class="bottomAds">
+<fieldset  class="bottomAds_quote"><legend>给我留言</legend>
+<div  class="ads">
+<form  action="http://www.nowamagic.net/utity/post.php"  method="post" >
+<table  width="300"  border="0">
+	<tbody><tr>
+		<td  width="22%">您的名字：</td>
+		<td  width="78%"><input  name="name"  type="text"  class="inputstyle"> </td>
+	</tr>
+	<tr>
+		<td>您的邮件：</td>
+		<td><input  name="email"  type="text"  class="inputstyle"> </td>
+	</tr>
+	<tr>
+		<td>您的网站：</td>
+		<td><input  name="website"  type="text"  class="inputstyle"> </td>
+	</tr>
+	<tr>
+		<td  colspan="2"><textarea  name="content"  class="reptext"></textarea></td>
+	</tr>
+	<tr>
+		<td><img  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/checkcode.php"></td>
+		<td><input  type="text"  name="check"  class="inputstyle"> </td>
+	</tr>
+</tbody></table>
+
+	<input  type="submit"  value="提交">
+</form>
+</div>
+<div  class="ads_content">
+	<br>
+<script  type="text/javascript"> /*300*250，创建于2010-5-31*/ var cpro_id = 'u34558';</script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/c.js"></script><div  id="BAIDU_DUP_wrapper_u34558_0"><iframe  width="300"  height="250"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/ecom(2).htm"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/ecom(1)"></script></div>
+<br  clear="both"> 
+
+</fieldset>
+</div> </div>
+
+  	<div  class="siteInfo"  id="siteInfo"> <div  class="ball_footer"> 
+
+</div>
+<table  width="960"  height="204"  border="0"  background="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/footer_2.jpg"  align="center">
+  <tbody><tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+    <p  align="center"><font  color="gray">copyright © 2009 简明现代魔法 &nbsp;&nbsp; 学习、分享、进步</font></p>
+    <p  align="center"><font  color="gray">power by Gonn 感谢所有关心和支持本站的朋友们</font></p></td>
+  </tr>
+</tbody></table> </div>
+    
+</div>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shCore.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushCpp.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushCSharp.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushCss.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushJava.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushJScript.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushPhp.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushPython.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushSql.js"></script>
+<script  type="text/javascript"  src="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shBrushXml.js"></script>
+<link  type="text/css"  rel="stylesheet"  href="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shCore.css">
+<link  type="text/css"  rel="stylesheet"  href="./全面榨干PHP性能的使用技巧 -- 简明现代魔法_files/shThemeDefault.css">
+<script  type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = '../includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script>
+</body></html>

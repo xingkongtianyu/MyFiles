@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.size()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/miscellaneous/" title="View all posts in Miscellaneous">Miscellaneous</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/miscellaneous/dom-element-methods/" title="View all posts in DOM Element Methods">DOM Element Methods</a></span>
+  
+  				</div>
+</div>
+<div id="size1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.size()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Number">Number</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>返回的jQuery对象匹配的DOM元素的数量。</p>
+<ul class="signatures"><li class="signature" id="size"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.size()</h4></li></ul>
+<div class="longdesc">
+<p>假设页面上有下面一个简单的无序列表：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;foo&lt;/li&gt;
+  &lt;li&gt;bar&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们通过调用 <code>.size()</code> 来获取列表项的数目：</p>
+<pre>alert('Size: ' + $('li').size());</pre>
+<p>于是就显示了列表项的个数：</p>
+<p><span class="output">Size: 2</span></p>
+<p><strong>你也可以使用 <a href="#p=length/">.length</a> 属性来代替，他会略微快那么一点点。</strong></p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">统计divs。 点击添加更多。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;body { cursor:pointer; }
+ div { width:50px; height:30px; margin:5px; float:left; background:blue; }
+ span { color:red; }
+ &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span&gt;&lt;/span&gt;
+
+ &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;$(document.body).click(function () { $(document.body).append($("&lt;div&gt;"));
+var n = $("div").size();
+$("span").text("There are " + n + " divs." + "Click to add more.");}).click(); // trigger the click to start&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

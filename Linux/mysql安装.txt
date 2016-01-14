@@ -1,0 +1,10 @@
+一般情况都是权限问题
+
+解决办法：将/usr/local/var/mysql下所有的文件的宿主改mysql:mysql
+<BR>在安装的时候使用mysql_install_db的时候不是使用的
+<BR>mysql_install_db --user=mysql
+<BR>而是用的mysql_install_db，这样默认的数据库文件的所有者就是root了
+<BR>另一个办法就是删除/usr/local/var/mysql这个目录，重新运行mysql_install_db 
+      --user=mysql
+<BR><BR>本来已经想到了事权限的问题，但是我chmod和chown用的不熟，改了几次都可能都没有改变文件的宿主 
+      ，<BR>随手一个ls -l就发现问题了。

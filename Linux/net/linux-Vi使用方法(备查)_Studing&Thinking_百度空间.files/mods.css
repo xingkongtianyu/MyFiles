@@ -1,0 +1,315 @@
+#m_comment P {
+	MARGIN: 0px
+}
+#m_comment .cnt IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+#m_comment .date {
+	COLOR: #666
+}
+#m_event .nav {
+	TEXT-ALIGN: right
+}
+#m_event .nav SPAN {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+#m_event .nav SPAN.lk {
+	FONT-WEIGHT: normal; CURSOR: pointer; COLOR: #39c; TEXT-DECORATION: underline
+}
+#m_event TD {
+	PADDING-LEFT: 5px; VERTICAL-ALIGN: middle; HEIGHT: 30px
+}
+#m_event .alter TD {
+	BACKGROUND-COLOR: #f0f0f0
+}
+#m_event .time {
+	WIDTH: 100px; COLOR: #666
+}
+#m_event .line {
+	BORDER-TOP: #ececec 1px solid; MARGIN-TOP: 3px; LINE-HEIGHT: 3px; HEIGHT: 3px
+}
+#m_friends {
+	OVERFLOW: hidden
+}
+#m_friends .frd {
+	FLOAT: left; MARGIN: 0px 3px; OVERFLOW: hidden; WIDTH: 75px; HEIGHT: 90px
+}
+#m_friends .portrait {
+	BACKGROUND-POSITION: center bottom; DISPLAY: block; BACKGROUND-REPEAT: no-repeat; HEIGHT: 55px
+}
+#m_friends .info {
+	TEXT-ALIGN: center
+}
+#m_friends .info A {
+	BACKGROUND-POSITION: left top; PADDING-LEFT: 16px; BACKGROUND-REPEAT: no-repeat
+}
+#m_friends .online A {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/passport/icn_online.gif)
+}
+#m_friends .offline A {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/passport/icn_offline.gif)
+}
+#m_friends .hosttip {
+	LINE-HEIGHT: 90px; HEIGHT: 90px
+}
+#m_pro .wrapper {
+	CLEAR: both; OVERFLOW: hidden
+}
+#m_pro .portrait {
+	FLOAT: left; WIDTH: 110px; MARGIN-RIGHT: 6px; TEXT-ALIGN: center
+}
+#m_pro .userinfo {
+	PADDING-LEFT: 6px; FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #333
+}
+#m_pro A.btfan {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 10px; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/hi/img/mf/btfanbg.gif) no-repeat; PADDING-BOTTOM: 0px; WIDTH: 88px; LINE-HEIGHT: 22px; MARGIN-RIGHT: 10px; PADDING-TOP: 2px; HEIGHT: 22px; TEXT-ALIGN: center
+}
+#m_pro DIV.line {
+	MARGIN-TOP: 10px; LINE-HEIGHT: 5px
+}
+#m_pro .act {
+	CLEAR: both
+}
+#m_pro .act-links {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#m_pro .act-links A {
+	DISPLAY: block; FLOAT: left
+}
+#m_pro .act-links A.send-message-link {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 0px
+}
+#m_useronline .frd {
+	FLOAT: left; MARGIN: 0px 3px; OVERFLOW: hidden; WIDTH: 75px; HEIGHT: 90px
+}
+#m_useronline .portrait {
+	BACKGROUND-POSITION: center bottom; DISPLAY: block; BACKGROUND-REPEAT: no-repeat; HEIGHT: 55px
+}
+#m_useronline .info {
+	TEXT-ALIGN: center
+}
+#warpper {
+	MARGIN: 0px 0px 0px 200px; POSITION: relative
+}
+#warpper .content {
+	LEFT: -200px; POSITION: absolute; TOP: 5px
+}
+#warpper .photo {
+	LEFT: -200px; WIDTH: 190px; POSITION: absolute; TOP: 5px; TEXT-ALIGN: center
+}
+#warpper .line {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#warpper .act {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px
+}
+.clear {
+	CLEAR: both; FONT-SIZE: 0px; LINE-HEIGHT: 1px; HEIGHT: 1px
+}
+#m_friendStat TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 5px
+}
+#m_friendStat TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; VERTICAL-ALIGN: top; PADDING-TOP: 5px
+}
+#m_friendStat TD {
+	FONT: 400 14px/22px arial; BORDER-BOTTOM: #d2e9f4 1px solid
+}
+#m_friendStat TD.info A:link {
+	FONT-WEIGHT: bold
+}
+#m_friendStat TD.info A:visited {
+	FONT-WEIGHT: 400
+}
+#m_friendStat TD SPAN {
+	FONT-SIZE: 12px; MARGIN-LEFT: 10px; COLOR: #8c8c8c; ZOOM: 1
+}
+#m_friendStat TD IMG {
+	BORDER-RIGHT: #a1ccdd 1px solid; BORDER-TOP: #a1ccdd 1px solid; VERTICAL-ALIGN: middle; BORDER-LEFT: #a1ccdd 1px solid; MARGIN-RIGHT: 10px; BORDER-BOTTOM: #a1ccdd 1px solid
+}
+#m_friendStat TD A IMG {
+	BORDER-RIGHT: #a1ccdd 1px solid; BORDER-TOP: #a1ccdd 1px solid; VERTICAL-ALIGN: bottom; BORDER-LEFT: #a1ccdd 1px solid; MARGIN-RIGHT: 10px; BORDER-BOTTOM: #a1ccdd 1px solid
+}
+#m_friendStat .pg {
+	FONT: 400 14px/30px arial; PADDING-TOP: 10px; HEIGHT: 30px; TEXT-ALIGN: center
+}
+#m_searchFriend TD {
+	HEIGHT: 28px
+}
+#mod_inbaidu UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 5px 0px 0px; PADDING-TOP: 0px; BORDER-BOTTOM: #b2b2b2 1px dotted
+}
+#mod_inbaidu .title {
+	FONT-SIZE: 14px; PADDING-BOTTOM: 5px; LIST-STYLE-TYPE: none
+}
+#mod_inbaidu .list {
+	MARGIN-TOP: 5px; MARGIN-LEFT: 15px; BORDER-BOTTOM: #f0f0f0 1px solid
+}
+#mod_inbaidu .list A {
+	TEXT-DECORATION: none
+}
+#mod_inbaidu .noContent {
+	PADDING-BOTTOM: 5px; LIST-STYLE-TYPE: none
+}
+#mod_inbaidu .qzContent {
+	PADDING-BOTTOM: 5px; LIST-STYLE-TYPE: none
+}
+#m_comment #picCmt .img {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; OVERFLOW: hidden; BORDER-LEFT: #ccc 1px solid; WIDTH: 65px; BORDER-BOTTOM: #ccc 1px solid; HEIGHT: 65px
+}
+#m_comment #picCmt A IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+#m_comment #picCmt .name {
+	HEIGHT: 20px
+}
+.error {
+	COLOR: red
+}
+#m_albumlist .tit .cmt A:link {
+	FONT: 400 12px/18px arial; COLOR: #666; TEXT-DECORATION: none
+}
+#m_albumlist .tit .cmt A:visited {
+	FONT: 400 12px/18px arial; COLOR: #666; TEXT-DECORATION: none
+}
+#m_albumlist .tit .cmt A:hover {
+	TEXT-DECORATION: underline
+}
+#m_pet_setting .name {
+	WIDTH: 80px
+}
+#m_pet_setting .space {
+	WIDTH: 50px
+}
+#petset #layout {
+	TABLE-LAYOUT: fixed
+}
+#petset #layout TD.c2t1 {
+	PADDING-LEFT: 10px; WIDTH: 74%! important
+}
+#petset #layout TD.c2t2 {
+	WIDTH: 20px
+}
+#petset #layout TD.c2t3 {
+	PADDING-RIGHT: 10px; WIDTH: 24%! important
+}
+#m_pet_info .petheader {
+	PADDING-BOTTOM: 10px
+}
+#m_pet_setting DT {
+	FONT-WEIGHT: bold
+}
+#m_pet_setting DD {
+	MARGIN-TOP: 8px
+}
+#m_pet_setting .prompt {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; COLOR: #707070; PADDING-TOP: 0px
+}
+#m_pet_setting .limit {
+	COLOR: #707070
+}
+#m_petcard .feed {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; MARGIN: 0px; PADDING-TOP: 5px
+}
+#mod_pet_record .feed {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; MARGIN: 0px; PADDING-TOP: 5px
+}
+#m_petcard .feed LI {
+	LIST-STYLE-TYPE: none
+}
+#mod_pet_record .feed LI {
+	LIST-STYLE-TYPE: none
+}
+#m_petcard .more {
+	TEXT-ALIGN: right
+}
+#mod_pet_record .more {
+	TEXT-ALIGN: right
+}
+#m_petcard .time {
+	COLOR: #676767
+}
+#mod_pet_record .time {
+	COLOR: #676767
+}
+#m_petcard DIV.line {
+	BORDER-TOP: #d2e9f4 1px solid; MARGIN-TOP: 8px; LINE-HEIGHT: 8px; HEIGHT: 8px
+}
+#m_pet_record DIV.line {
+	BORDER-TOP: #d2e9f4 1px solid; MARGIN-TOP: 8px; LINE-HEIGHT: 8px; HEIGHT: 8px
+}
+#m_pet_setting DIV.line {
+	BORDER-TOP: #d2e9f4 1px solid; MARGIN-TOP: 8px; LINE-HEIGHT: 8px; HEIGHT: 8px
+}
+#m_info .tit {
+	TEXT-ALIGN: right
+}
+#m_info A {
+	COLOR: #3163b6; TEXT-DECORATION: none
+}
+#m_declare {
+	FONT-SIZE: 12px
+}
+#m_declare .highlight {
+	COLOR: #3163b6
+}
+#m_pro .p-btn {
+	BACKGROUND: url(http://img.baidu.com/hi/img/ihome/icp-ui-squ-icon.gif) no-repeat -7px -10px; FLOAT: left; MARGIN: 10px 5px 2px; WIDTH: 81px; CURSOR: pointer; ZOOM: 1; HEIGHT: 22px
+}
+#m_pro .btn-dashan-normal {
+	BACKGROUND-POSITION: -86px -91px; WIDTH: 56px
+}
+#m_pro .btn-dashan-done {
+	BACKGROUND-POSITION: -86px -123px; WIDTH: 56px
+}
+#m_pro .btn-duiwei-normal {
+	BACKGROUND-POSITION: -147px -91px; WIDTH: 56px
+}
+#m_pro .btn-addfrd-normal {
+	BACKGROUND-POSITION: -208px -91px
+}
+#m_pro .btn-addfrd-disabled {
+	BACKGROUND-POSITION: -208px -155px
+}
+#m_pro .btn-suliao-normal {
+	BACKGROUND-POSITION: 0px -91px
+}
+#m_pro .btn-suliao-disabled {
+	BACKGROUND-POSITION: 0px -123px
+}
+#m_pro .btn-suliao-link-new {
+	BACKGROUND: url(http://img.baidu.com/hi/img/ihome/ihome-index-tabnew.gif) no-repeat 0px 0px; FLOAT: left; MARGIN: 1px 0px 9px -26px; WIDTH: 20px; ZOOM: 1; HEIGHT: 22px
+}
+#m_pro .btn-suliao-container {
+	FLOAT: left; ZOOM: 1
+}
+#layout DIV.uwaTitleEdit {
+	FONT-SIZE: 12px; COLOR: #000
+}
+#layout DIV.uwaTitleEdit SPAN A {
+	COLOR: #00f; LINE-HEIGHT: 26px
+}
+#layout DIV.uwaConfEdit DIV {
+	FONT-SIZE: 12px; MARGIN: 4px 0px
+}
+#layout DIV.uwaConfEdit DIV LABEL {
+	MARGIN-RIGHT: 3px
+}
+#layout DIV.uwaConfEdit DIV INPUT {
+	MARGIN-BOTTOM: 3px; VERTICAL-ALIGN: middle
+}
+SELECT {
+	MARGIN-BOTTOM: 3px; VERTICAL-ALIGN: middle
+}
+.clearfix:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.clearfix {
+	DISPLAY: inline-block
+}
+ HTML .clearfix {
+	HEIGHT: 1%
+}
+.clearfix {
+	DISPLAY: block
+}

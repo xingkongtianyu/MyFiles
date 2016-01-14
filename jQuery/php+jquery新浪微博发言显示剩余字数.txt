@@ -1,0 +1,55 @@
+html部分
+
+<div id="fayan">
+      <div class="fa1">140</div>
+    <div class="fa2">
+      <label for="textarea"></label>
+      <textarea name="inputMessage" id="inputMessage" cols="60" rows="5" onkeydown="return changeLine()" onkeyup="cState()"></textarea>
+    </div>
+    <div class="fa3">
+    <input type="button" value="发表留言" id="sub" />
+    </div>
+</div>
+css：
+
+#fayan{width:90%; height:auto; background-color:#f8f8f8; margin:10px auto; margin-left:20px; margin-bottom:50px;}
+#fayan .fa1{font-size:35px;}
+#fayan #inputMessage{border:1px #ccc solid;-moz-border-radius: 5px;-webkit-border-radius: 5px;overflow:auto;}
+#fayan .fa3 input{border:1px solid #ccc; float:right; margin-right:8px; margin-top:5px; margin-bottom:10px;}
+jquery部分：
+
+// JavaScript Document
+function cState()
+{
+    var len = $.trim($("#inputMessage").val()).length;
+    if( len < 1 || len > 140 )
+    {
+
+        //$('#sub').attr("disabled","disabled");
+        document.getElementById("sub").disabled=true;
+    }
+    else
+    {
+        //$('#sub').attr("disabled",false);
+        document.getElementById("sub").disabled=false;
+    }
+    len = 140 - len;
+    if( len <0 )
+    {
+        $(".fa1").css("color","red");
+    }
+    else
+    {
+        $(".fa1").css("color","#333333");
+    }
+    $(".fa1").html(len);
+}
+function changeLine(){
+    if(event.keyCode==13){return false;}    
+}
+
+function delcfm() {
+    if (!confirm("确认要删除？")) {
+    window.event.returnValue = false;
+    }
+}

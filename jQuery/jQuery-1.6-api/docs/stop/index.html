@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.stop()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/custom-effects/" title="View all posts in Custom">Custom</a></span>
+  
+  				</div>
+</div>
+<div id="stop1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.stop( [ clearQueue ], [ jumpToEnd ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>停止匹配元素当前正在运行的动画。</p>
+<ul class="signatures"><li class="signature" id="stop-clearQueue-jumpToEnd">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.stop( [ clearQueue ], [ jumpToEnd ] )</h4>
+<p class="arguement"><strong>clearQueue</strong>一个布尔值，指示是否取消以列队动画。默认 <code>false</code>。</p>
+<p class="arguement"><strong>jumpToEnd</strong> 一个布尔值指示是否当前动画立即完成。默认<code>false</code>.</p>
+</li></ul>
+<div class="longdesc">
+<p>当一个元素调用<code>.stop()</code>，当前正在运行的动画（如果有的话）立即停止。如果，例如，一个元素用<code>.slideUp()</code>隐藏的时候<code>.stop()</code>被调用，元素现在仍然被显示，但将是先前高度的一部分。不调用回调函数。</p>
+<p>如果同一元素调用多个动画方法，后来的动画被放置在元素的效果队列中。这些动画不会开始，直到第一个完成。当调用<code>.stop()</code>的时候，队列中的下一个动画立即开始。如果<code>clearQueue</code>参数提供<code>true</code>值,那么在队列中的动画其余被删除并永远不会运行。</p>
+<p>如果<code>jumpToEnd</code>参数提供<code>true</code>值，当前动画将停止，但该元素是立即给予每个CSS属性的目标值。用上面的<code>.slideUp()</code>为例子,该元素将立即隐藏。如果提供回调函数将立即被调用。</p>
+<p>当我们需要对元素做<code>mouseenter</code>和<code>mouseleave</code>动画时，<code>.stop()</code>方法明显是有效的：</p>
+<pre>&lt;div id="hoverme"&gt;
+  Hover me
+  &lt;img id="hoverme" src="book.png" alt="" width="100" height="123" /&gt;
+&lt;/div&gt;</pre>
+<p>我们可以创建一个不错的淡入效果，使用<code>.stop(true, true)</code>链式调用无须排队（We can create a nice fade effect without the common problem of multiple queued animations by adding <code>.stop(true, true)</code> to the chain）：</p>
+<pre>$('#hoverme-stop-2').hover(function() {
+  $(this).find('img').stop(true, true).fadeOut();
+}, function() {
+  $(this).find('img').stop(true, true).fadeIn();
+});</pre>
+<blockquote><p>可以通过设置属性<code>$.fx.off</code>为<code>true</code>停止全局的动画 。当这样做，所有动画方法将立即设置元素的最终状态，而不是所谓的显示效果。</p></blockquote>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Click the Go button once to start the animation, then click the STOP button to stop it where it's currently positioned.  Another option is to click several buttons to queue them up and see that stop just kills the currently playing one.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { 
+position: absolute; 
+background-color: #abc;
+left: 0px;
+top:30px;
+width: 60px; 
+height: 60px;
+margin: 5px; 
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="go"&gt;Go&lt;/button&gt; 
+&lt;button id="stop"&gt;STOP!&lt;/button&gt;
+&lt;button id="back"&gt;Back&lt;/button&gt;
+&lt;div class="block"&gt;&lt;/div&gt;
+&lt;script&gt;
+// Start animation
+$("#go").click(function(){
+$(".block").animate({left: '+=100px'}, 2000);
+});
+
+// Stop animation when button is clicked
+$("#stop").click(function(){
+$(".block").stop();
+});
+
+// Start animation in the opposite direction
+$("#back").click(function(){
+$(".block").animate({left: '-=100px'}, 2000);
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

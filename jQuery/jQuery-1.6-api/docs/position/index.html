@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.position()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/offset/" title="View all posts in Offset">Offset</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>
+  
+  				</div>
+</div>
+<div id="position1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.position()</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>Description: </strong>获取匹配元素中第一个元素的当前坐标，相对于offset parent的坐标。( offset parent指离该元素最近的而且被定位过的祖先元素 ) </p>
+<ul class="signatures"><li class="signature" id="position"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.position()</h4></li></ul>
+<div class="longdesc">
+<p><code>.position()</code>方法可以获得该元素相对于offset parent的当前坐标。与<code><a href="#p=offset">.offset()</a></code>不同, <code>.offset()</code>是获得该元素相对于documet的当前坐标
+当把一个新元素放在同一个容器里面另一个元素附近时，用<code>.position()</code>更好用。</p>
+<p><code>.position()</code>返回一个包含 <code>top</code> 和 <code>left</code>属性的对象.</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">获取第一个段落的坐标位置：</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div { padding: 15px;}
+  p { margin-left:10px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;div&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;script&gt;
+var p = $("p:first");
+var position = p.position();
+$("p:last").text( "left: " + position.left + ", top: " + position.top );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

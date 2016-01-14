@@ -1,0 +1,474 @@
+<http://www.csdn.net?ref=toolbar><http://blog.csdn.net?ref=toolbar_logo>
+
+  * 登录  <https://passport.csdn.net/account/login?ref=toolbar>| 注册
+    <https://passport.csdn.net/account/register?ref=toolbar>
+  *
+
+  *
+    收藏成功
+    确定
+    收藏失败，请重新收藏
+    确定
+    标题
+    **标题不能为空
+    网址
+    标签
+    摘要
+    公开
+    取消 收藏
+
+  *
+  *
+
+    //分享资讯 <http://geek.csdn.net/news/expert?ref=toolbar>
+    //传PPT/文档 <http://share.csdn.net/slides/new?ref=toolbar>
+    //提问题 <http://bbs.csdn.net/topics/new?ref=toolbar>
+    //写博客 <http://write.blog.csdn.net/postedit?ref=toolbar>
+    //传资源 <http://u.download.csdn.net/upload?ref=toolbar>
+    //创建项目 <https://code.csdn.net/projects/new?ref=toolbar>
+    //创建代码片 <https://code.csdn.net/snippets/new?ref=toolbar>
+
+  *
+
+    <http://my.csdn.net?ref=toolbar>
+        <http://my.csdn.net?ref=toolbar>设置昵称<https:
+        //passport.csdn.net/account/profile>编辑自我介绍，让更多人了解你
+        <//my.csdn.net>
+
+    帐号设置 <http://my.csdn.net/my/account/changepwd?ref=toolbar>退出
+    <https://passport.csdn.net/account/logout?ref=toolbar>
+  *
+
+
+              社区
+
+        博客 <http://blog.csdn.net?ref=toolbar>
+        论坛 <http://bbs.csdn.net?ref=toolbar>
+        下载 <http://download.csdn.net?ref=toolbar>
+        技术问答 <http://ask.csdn.net?ref=toolbar>
+        极客头条 <http://geek.csdn.net?ref=toolbar>
+        英雄会 <http://hero.csdn.net?ref=toolbar>
+
+
+              服务
+
+        招聘 <http://job.csdn.net?ref=toolbar>
+        学院 <http://edu.csdn.net?ref=toolbar>
+        CODE <https://code.csdn.net?ref=toolbar>
+        活动 <http://huiyi.csdn.net/?ref=toolbar>
+        CSTO <http://www.csto.com?ref=toolbar>
+        C币兑换 <http://mall.csdn.net?ref=toolbar>
+
+
+              俱乐部
+
+        CTO俱乐部 <http://cto.csdn.net?ref=toolbar>
+        高校俱乐部 <http://student.csdn.net?ref=toolbar>
+
+
+    lmmilove的专栏 <http://blog.csdn.net/lmmilove>
+
+
+  * 目录视图 <http://blog.csdn.net/lmmilove?viewmode=contents>
+  * 摘要视图 <http://blog.csdn.net/lmmilove?viewmode=list>
+  * 订阅 <http://blog.csdn.net/lmmilove/rss/list>
+
+博客Markdown编辑器上线啦
+<http://blog.csdn.net/csdnproduct/article/details/43561659>      那些年
+我们追过的Wrox精品红皮计算机图书
+<http://blog.csdn.net/blogdevteam/article/details/42918959>      PMBOK第
+五版精讲视频教程
+<http://edu.csdn.net/lecturer/lecturer_detail?lecturer_id=95>      火星
+人敏捷开发1001问 <http://edu.csdn.net/course/detail/443>
+
+
+  sublime text 2中Emmet8个常用的技巧 </lmmilove/article/details/9181323>
+
+2013-06-26 23:26 6077人阅读 评论 <#comments>(1) 收藏
+<javascript:void(0);> 举报 <#report>
+
+目录(?) <#>[+] <#>
+
+ 1. 1 生成html格式 <#t0>
+ 2. 2 简写Div <#t1>
+ 3. 含糊标签名称 <#t2>
+ 4. 3 带有DOM导航的链式缩写 <#t3>
+     1. 向上一层 <#t4>
+ 5. 4 使用分组来简化你的代码结构 <#t5>
+ 6. 5 插入文本和属性 <#t6>
+ 7. 6 添加多个class到一个元素  <#t7>
+ 8. 7  重复添加 <#t8>
+ 9. 8 自动列表记数  <#t9>
+
+因为开始做web项目，所以最近在用sublime编辑器，知道了一个传说中的emmet，
+原名是zen coding。html神插件可以说是。文章部分内容转自
+http://www.cnblogs.com/meetrice/archive/2013/01/27/2878548.html
+
+在sublime 中，促发emmet 可以先保存为.html文件。然后输入下面的简写，按tab
+键就可促发效果了。
+
+
+    1. 生成html格式
+
+
+输入 html:5
+
+
+    2. 简写Div
+
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+大家可以看到，不管你是否添加了div，Emmet都会自动生成需要div元素。
+
+
+    含糊标签名称
+
+这个技巧属于implicit tag names特性，你不需要指定div或者li，Emmet会自动帮
+助你生成，如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    3. 带有DOM导航的链式缩写
+
+如果你使用Emmet来扩展简单的class名称生成div的话。这个方式可以帮助你省去
+大量的时间。你只需要记住如下语法：
+
+      * > 子节点：在DOM树下一层添加创建一个元素
+      * + 同级别：在DOM树同一层添加创建一个元素
+      * ^ 向上层：向上一层添加创建创建一个元素。
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+      向上一层
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+如果需要的话你可以向上多层，如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    4. 使用分组来简化你的代码结构
+
+有的时候你可能会发现使用向上符号比较复杂，这时候可能使用分组更加的合理。
+如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+一个更复杂一些的例子，如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    5. 插入文本和属性
+
+如果你需要生成HTML，内容和属性也是你常常需要添加的。很多开发人员只是使用
+Emmet来生成框架，然后再添加内容。其实你可以在生成页面框架的过程中同时添
+加属性和内容。
+
+从下面代码可以看到，你输入的文字和属性都可以分别通过大括号和中括号来生成。
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    6. 添加多个class到一个元素 
+
+这个非常简单，你只需要使用逗号来添加多个class，如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    7.  重复添加
+
+这可能是最让人舒服的操作了，帮助你重复添加元素：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+如果你整合分组功能，那么你将能够处理更复杂的HTML生成：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+
+    8. 自动列表记数 
+
+如果你需要按顺序生成HTML元素，这个技巧你一定喜欢，使用$符号可以帮助你生
+成一系列数字，支持class，id，属性，内容等等。如下：
+
+分享7个超实用的Emmet（zen coding）HTML代码使用技巧
+
+注意如果你需要生成2位的数字，使用两个$符号即可。 
+
+<#> <#> <#> <#> <#> <#>
+
+  * 上一篇python学习笔记（一） </lmmilove/article/details/9156361>
+  * 下一篇pagination分页基本配置 </lmmilove/article/details/9770319>
+
+主题推荐
+    开发人员 <http://www.csdn.net/tag/开发人员> 编辑器
+    <http://www.csdn.net/tag/编辑器> 框架 <http://www.csdn.net/tag/框架>
+    扩展 <http://www.csdn.net/tag/扩展> 结构 <http://www.csdn.net/tag/结构> 
+
+猜你在找
+    sublime text2 配置tab为4个空格
+    <http://blog.csdn.net/intel80586/article/details/8306699>
+    240多个jQuey插件 <http://blog.csdn.net/GoodShot/article/details/8184014>
+    国内部分瀑布流网站
+    <http://blog.csdn.net/heirenheiren/article/details/8618837>
+    Android基于cordova33的插件开发
+    <http://blog.csdn.net/xq328220454/article/details/37690535>
+    opengl练习之绘制任意大小的矩形
+    <http://blog.csdn.net/crazy1235/article/details/8299151>
+    QT系列笔记总结 <http://blog.csdn.net/fmoonstar/article/details/7183662>
+    sublime text 3 浏览器预览html
+    <http://blog.csdn.net/u011896140/article/details/14449747>
+    chromium for android 硬件渲染流程总结
+    <http://blog.csdn.net/jaylinzhou/article/details/26388419>
+    关于windowlocationhref很多浏览器都不支持的修改办法
+    <http://blog.csdn.net/dhdhdh0920/article/details/7679284>
+    找工作知识储备1---从头说catalan数及笔试面试里那些相关的问题
+    <http://blog.csdn.net/yaoqiang2011/article/details/11938973>
+
+准备好了么？ 跳吧             ！更多职位尽在 CSDN JOB <http://job.csdn.net>
+    中高级Cocos2d-X工程师 <http://job.csdn.net/Job/Index?jobID=81966>
+    小叶子（北京）科技有限公司
+    <http://pr.csdn.net/enterprise/ent_home?orgid=434981>
+    |
+    10-30K/月 <http://job.csdn.net/Job/Index?jobID=81966>
+    我要跳槽 <http://job.csdn.net/Job/Index?jobID=81966>
+    游戏cocos2D-x开发工程师 <http://job.csdn.net/Job/Index?jobID=82039>
+    上海巨人网络有限公司
+    <http://pr.csdn.net/enterprise/ent_home?orgid=435196>
+    |
+    10-20K/月 <http://job.csdn.net/Job/Index?jobID=82039>
+    我要跳槽 <http://job.csdn.net/Job/Index?jobID=82039>
+    J2EE中级开发工程师 <http://job.csdn.net/Job/Index?jobID=80967>
+    广州万碧生物科技有限公司
+    <http://pr.csdn.net/enterprise/ent_home?orgid=435004>
+    |
+    10-20K/月 <http://job.csdn.net/Job/Index?jobID=80967>
+    我要跳槽 <http://job.csdn.net/Job/Index?jobID=80967>
+    资深UI设计师 2人 <http://job.csdn.net/Job/Index?jobID=82085>
+    福建省微鲜农业科技发展有限公司
+    <http://pr.csdn.net/enterprise/ent_home?orgid=435150>
+    |
+    9-15K/月 <http://job.csdn.net/Job/Index?jobID=82085>
+    我要跳槽 <http://job.csdn.net/Job/Index?jobID=82085>
+
+查看评论
+
+1楼 laocan_shi </shizy08> 2014-08-25 13:54发表 [回复] <#reply> [引用]
+<#quote> [举报] <#report>
+    </shizy08>
+    nice~~
+
+您还没有登录,请[登录] <javascript:void(0);>或[注册]
+<http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Flmmilove%2Farticle%2Fdetails%2F9181323>
+* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场
+快速回复 TOP
+
+
+          核心技术类目 <http://www.csdn.net/tag/>
+
+全部主题 <http://www.csdn.net/tag> Hadoop <http://g.csdn.net/5272865>
+AWS <http://g.csdn.net/5272866> 移动游戏 <http://g.csdn.net/5272870>
+Java <http://g.csdn.net/5272871> Android <http://g.csdn.net/5272872> iOS
+<http://g.csdn.net/5272873> Swift <http://g.csdn.net/5272868> 智能硬件
+<http://g.csdn.net/5272869> Docker <http://g.csdn.net/5272867> OpenStack
+<http://g.csdn.net/5272925> VPN <http://www.csdn.net/tag/vpn> Spark
+<http://g.csdn.net/5272924> ERP <http://www.csdn.net/tag/erp> IE10
+<http://www.csdn.net/tag/ie10> Eclipse <http://www.csdn.net/tag/eclipse>
+CRM <http://www.csdn.net/tag/crm> JavaScript
+<http://www.csdn.net/tag/javascript> 数据库 <http://www.csdn.net/tag/数
+据库> Ubuntu <http://www.csdn.net/tag/ubuntu> NFC
+<http://www.csdn.net/tag/nfc> WAP <http://www.csdn.net/tag/wap> jQuery
+<http://www.csdn.net/tag/jquery> BI <http://www.csdn.net/tag/bi> HTML5
+<http://www.csdn.net/tag/html5> Spring <http://www.csdn.net/tag/spring>
+Apache <http://www.csdn.net/tag/apache> .NET
+<http://www.csdn.net/tag/.net> API <http://www.csdn.net/tag/api> HTML
+<http://www.csdn.net/tag/html> SDK <http://www.csdn.net/tag/sdk> IIS
+<http://www.csdn.net/tag/iis> Fedora <http://www.csdn.net/tag/fedora>
+XML <http://www.csdn.net/tag/xml> LBS <http://www.csdn.net/tag/lbs>
+Unity <http://www.csdn.net/tag/unity> Splashtop
+<http://www.csdn.net/tag/splashtop> UML <http://www.csdn.net/tag/uml>
+components <http://www.csdn.net/tag/components> Windows Mobile
+<http://www.csdn.net/tag/windowsmobile> Rails
+<http://www.csdn.net/tag/rails> QEMU <http://www.csdn.net/tag/qemu> KDE
+<http://www.csdn.net/tag/kde> Cassandra
+<http://www.csdn.net/tag/cassandra> CloudStack
+<http://www.csdn.net/tag/cloudstack> FTC <http://www.csdn.net/tag/ftc>
+coremail <http://www.csdn.net/tag/coremail> OPhone
+<http://www.csdn.net/tag/ophone > CouchBase
+<http://www.csdn.net/tag/couchbase> 云计算 <http://www.csdn.net/tag/云计
+算> iOS6 <http://www.csdn.net/tag/iOS6> Rackspace
+<http://www.csdn.net/tag/rackspace > Web App
+<http://www.csdn.net/tag/webapp> SpringSide
+<http://www.csdn.net/tag/springside> Maemo
+<http://www.csdn.net/tag/maemo> Compuware
+<http://www.csdn.net/tag/compuware> 大数据 <http://www.csdn.net/tag/大数
+据> aptech <http://www.csdn.net/tag/aptech> Perl
+<http://www.csdn.net/tag/perl> Tornado <http://www.csdn.net/tag/tornado>
+Ruby <http://www.csdn.net/tag/ruby> Hibernate
+<http://www.csdn.net/hibernate> ThinkPHP
+<http://www.csdn.net/tag/thinkphp> HBase <http://www.csdn.net/tag/hbase>
+Pure <http://www.csdn.net/tag/pure> Solr <http://www.csdn.net/tag/solr>
+Angular <http://www.csdn.net/tag/angular> Cloud Foundry
+<http://www.csdn.net/tag/cloudfoundry> Redis
+<http://www.csdn.net/tag/redis> Scala <http://www.csdn.net/tag/scala>
+Django <http://www.csdn.net/tag/django> Bootstrap
+<http://www.csdn.net/tag/bootstrap>
+
+    个人资料
+
+    [访问我的空间] <http://my.csdn.net/lmmilove>
+    lmmilove <http://my.csdn.net/lmmilove>
+    <javascript:void(0);> <javascript:void(0);>
+    1
+      o 访问：49946次
+      o 积分：852
+      o 等级：
+        积分：852
+      o 排名：千里之外
+      o 原创：32篇
+      o 转载：36篇
+      o 译文：0篇
+      o 评论：3条
+
+    文章搜索
+
+    文章分类
+
+  * cocos2d-x <http://blog.csdn.net/lmmilove/article/category/1076602>(1)
+  * ios <http://blog.csdn.net/lmmilove/article/category/1132570>(19)
+  * linux <http://blog.csdn.net/lmmilove/article/category/1179846>(23)
+  * Android <http://blog.csdn.net/lmmilove/article/category/1187240>(1)
+  * 算法和语言 <http://blog.csdn.net/lmmilove/article/category/1195094>(1)
+  * 网络 <http://blog.csdn.net/lmmilove/article/category/1391110>(1)
+
+    文章存档
+
+  * 2015年02月 <http://blog.csdn.net/lmmilove/article/month/2015/02>(2)
+  * 2015年01月 <http://blog.csdn.net/lmmilove/article/month/2015/01>(1)
+  * 2014年11月 <http://blog.csdn.net/lmmilove/article/month/2014/11>(5)
+  * 2014年10月 <http://blog.csdn.net/lmmilove/article/month/2014/10>(6)
+  * 2014年08月 <http://blog.csdn.net/lmmilove/article/month/2014/08>(4)
+  * 2014年07月 <http://blog.csdn.net/lmmilove/article/month/2014/07>(4)
+  * 2014年06月 <http://blog.csdn.net/lmmilove/article/month/2014/06>(2)
+  * 2014年05月 <http://blog.csdn.net/lmmilove/article/month/2014/05>(1)
+  * 2013年08月 <http://blog.csdn.net/lmmilove/article/month/2013/08>(5)
+  * 2013年06月 <http://blog.csdn.net/lmmilove/article/month/2013/06>(4)
+  * 2013年05月 <http://blog.csdn.net/lmmilove/article/month/2013/05>(2)
+  * 2013年04月 <http://blog.csdn.net/lmmilove/article/month/2013/04>(4)
+  * 2013年03月 <http://blog.csdn.net/lmmilove/article/month/2013/03>(1)
+  * 2012年08月 <http://blog.csdn.net/lmmilove/article/month/2012/08>(2)
+  * 2012年07月 <http://blog.csdn.net/lmmilove/article/month/2012/07>(6)
+  * 2012年06月 <http://blog.csdn.net/lmmilove/article/month/2012/06>(2)
+  * 2012年05月 <http://blog.csdn.net/lmmilove/article/month/2012/05>(3)
+  * 2012年04月 <http://blog.csdn.net/lmmilove/article/month/2012/04>(4)
+  * 2012年03月 <http://blog.csdn.net/lmmilove/article/month/2012/03>(1)
+  * 2012年02月 <http://blog.csdn.net/lmmilove/article/month/2012/02>(2)
+  * 2012年01月 <http://blog.csdn.net/lmmilove/article/month/2012/01>(5)
+  * 2011年12月 <http://blog.csdn.net/lmmilove/article/month/2011/12>(2)
+    展开
+
+    阅读排行 
+
+  * ios 如何移除全部subview和判断子视图是否加上
+    </lmmilove/article/details/7497610>(8639)
+  * sublime text 2中Emmet8个常用的技巧
+    </lmmilove/article/details/9181323>(6076)
+  * 浅谈iPhone和iPad开发中的图标设置
+    </lmmilove/article/details/7443419>(3988)
+  * 苹果公司邮箱联系大全 </lmmilove/article/details/7571734>(3397)
+  * ios app crash报告分析 </lmmilove/article/details/7174664>(2787)
+  * sudo npm 提示 command not found 的解决办法
+    </lmmilove/article/details/30066489>(1530)
+  * Phone界面上文本框UITextField的软键盘隐藏和移动键盘下面的内容和限制字
+    数 </lmmilove/article/details/7493556>(1488)
+  * UIImage 图片加载的使用区别 </lmmilove/article/details/7778756>(1272)
+  * uitextfield去空格，不让输入框内容为空格
+    </lmmilove/article/details/8841387>(1251)
+  * ios uicolor设置 </lmmilove/article/details/7438341>(1223)
+
+    评论排行
+
+  * sublime text 2中Emmet8个常用的技巧
+    </lmmilove/article/details/9181323>(1)
+  * 在企业内部分发ios应用程序 </lmmilove/article/details/38656363>(1)
+  * ios开发者必不可少的75个工具 </lmmilove/article/details/10451619>(1)
+  * 阿里云ubuntu安装scrapy </lmmilove/article/details/43988661>(0)
+  * sql 常用语句 </lmmilove/article/details/37594513>(0)
+  * linux 常用命令 </lmmilove/article/details/37591269>(0)
+  * crontab 定时促发脚本 </lmmilove/article/details/37532841>(0)
+  * centos 按装好apache服务， 页面无法访问解决办法 80端口没开
+    </lmmilove/article/details/34103067>(0)
+  * sudo npm 提示 command not found 的解决办法
+    </lmmilove/article/details/30066489>(0)
+  * mysql 创建用户配置权限 </lmmilove/article/details/25899745>(0)
+
+    推荐文章
+
+    最新评论
+
+  * ios开发者必不可少的75个工具
+    </lmmilove/article/details/10451619#comments>
+
+    丁国华 </u010850027>: 谢谢分享 学习了
+
+  * sublime text 2中Emmet8个常用的技巧
+    </lmmilove/article/details/9181323#comments>
+
+    laocan_shi </shizy08>: nice~~
+
+    公司简介 <http://www.csdn.net/company/about.html>|招贤纳士
+    <http://www.csdn.net/company/recruit.html>|广告服务
+    <http://www.csdn.net/company/marketing.html>|银行汇款帐号
+    <http://www.csdn.net/company/account.html>|联系方式
+    <http://www.csdn.net/company/contact.html>|版权声明
+    <http://www.csdn.net/company/statement.html>|法律顾问
+    <http://www.csdn.net/company/layer.html>|问题报告
+    <mailto:webmaster@csdn.net>|合作伙伴
+    <http://www.csdn.net/friendlink.html>|论坛反馈
+    <http://bbs.csdn.net/forums/Service>
+    网站客服 <http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&
+    menu=yes>杂志客服
+    <http://wpa.qq.com/msgrd?v=3&uin=2251809102&site=qq&menu=yes>微博客
+    服 <http://e.weibo.com/csdnsupport/profile>webmaster@csdn.net
+    <mailto:webmaster@csdn.net>400-600-2320|北京创新乐知信息技术有限公司
+    版权所有|江苏乐知网络技术有限公司 提供商务支持
+    京 ICP 证 070598 号|Copyright © 1999-2014, CSDN.NET, All Rights
+    Reserved GongshangLogo
+    <http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010>
+
+您有*0*条新通知
+<javascript:void 0>
+
+
+      提问
+
+您的问题将会被发布在“技术问答 <//ask.csdn.net>”频道× <#>
+该问题已存在，请勿重复提问
+插入链接
+本地上传 <#tab_upload>网络图片 <#tab_weburl>
+插入图片
+/|//|//|//|//|/<http://ask.csdn.net/pages/markdown>/|/
+
+  
+
+ 
+ 
+000:0
+推荐标签：
+我要悬赏币
+取消 <#>发布 <#>
+可能存在类似的问题：
+我想提一个新问题
+
+
+            close
+
+<http://edu.csdn.net/lecturer/lecturer_detail?lecturer_id=73 >

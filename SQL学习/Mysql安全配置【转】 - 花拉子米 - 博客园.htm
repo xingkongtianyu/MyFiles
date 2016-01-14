@@ -1,0 +1,1775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.cnblogs.com/bluedy1229/p/3825545.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/analytics.js"></script>
+
+<title>Mysql安全配置【转】 - 花拉子米 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/bundle-nature.css">
+<link type="text/css" rel="stylesheet" href="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/27208.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/bluedy1229/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/bluedy1229/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/bluedy1229/wlwmanifest.xml">
+<script type="text/javascript" src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/encoder.js"></script><script async="" type="text/javascript" src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/gpt.js"></script><script src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'bluedy1229', cb_enable_mathjax=false;</script>
+<script src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<script async="" type="text/javascript" src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/pubads_impl_48.js"></script><script type="text/javascript" src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/osd.js"></script></head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<div align="left">
+<marquee direction="left" onmouseover="start()">
+欢迎光临!
+</marquee>
+</div>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="banner"><div id="bnr_pic">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/bluedy1229/"><font size="7"><font color="#ff0000">花</font><font color="#d52a00">拉</font><font color="#ab5400">子</font><font color="#817e00">米</font><font color="#57a800">的</font><font color="#2dd200">博客</font></font></a><br>
+	</div><br>
+	<div class="headerDis"><marquee behavior="alternate" direction="left" scrollamount="3" width="4%"><font face="Webdings">3</font></marquee><marquee scrollamount="1" direction="left" width="2%">| | |</marquee>Nothing is impossible~~~~~<marquee scrollamount="1" direction="right" width="2%">| | |</marquee><marquee behavior="alternate" direction="right" scrollamount="3" width="4%"><font face="Webdings">4</font></marquee>
+<div align="right">
+<marquee behavior="alternate" direction="up" scrollamount="2" scrolldelay="65" height="80" style="Text-align;filter:wave(add=0,phase=1, freq=1,strength=15,color=.FFFFFF)"><center>书山有路勤为径<br>学海无涯苦作舟</center></marquee>
+</div>
+</div>
+</div>
+</div></div>
+<div id="main">
+	<!-- left starts -->
+	<div id="left">
+		<div id="mystats">
+			<br>
+				
+<!--done-->
+<div class="blogStats">
+随笔 - 117&nbsp;
+文章 - 99&nbsp;
+评论 - 21&nbsp;
+
+</div>
+			
+		</div>
+		<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/bluedy1229/">首页</a>&nbsp;&nbsp;<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;<a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/%e8%8a%b1%e6%8b%89%e5%ad%90%e7%b1%b3">联系</a>&nbsp;&nbsp;<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a>&nbsp;&nbsp;<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/bluedy1229/rss">订阅</a>&nbsp;<a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/bluedy1229/rss"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/xml.gif" alt="订阅"></a></div>
+		<div id="topics">
+			
+
+<div class="post">
+	<div class="postTitle">
+		<h1><a id="cb_post_title_url" class="postTitle2" href="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/Mysql安全配置【转】 - 花拉子米 - 博客园.htm">Mysql安全配置【转】</a></h1>
+	</div>
+	<div id="cnblogs_post_body"><p>&nbsp;</p>
+<div id="home">
+<div id="main">
+<div id="mainContent">
+<div class="forFlow">
+<div id="topics">
+<div class="post">
+<div class="postBody">
+<div id="cnblogs_post_body">
+<p><strong>相关学习资料 </strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>http:<span style="color: #008000;">//<span style="color: #008000;">drops.wooyun.org/tips/2245<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">www.cnblogs.com/siqi/archive/2012/11/21/2780966.html<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">hi.baidu.com/liveinyc/item/08d5e71cfb2872416926bb84<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">blog.chinaunix.net/uid-16728139-id-3683449.html<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">linux.chinaunix.net/techdoc/database/2008/01/14/976546.shtml<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">www.cnblogs.com/yuwensong/archive/2013/03/26/2981965.html<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">hi.baidu.com/xmflycat/item/7567e3c37c43ba57bcef6951<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">www.jb51.net/article/30319.htm<span style="color: #000000;">
+http:<span style="color: #008000;">//<span style="color: #008000;">hi.baidu.com/schyman/item/cd0884f5cb85af49922af2b8</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>目录</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 前言
+<span style="color: #800080;">2<span style="color: #000000;">. Mysql账户权限安全
+<span style="color: #800080;">3<span style="color: #000000;">. Mysql数据的网络安全配置
+<span style="color: #800080;">4<span style="color: #000000;">. 密码策略安全
+<span style="color: #800080;">5<span style="color: #000000;">. Mysql日志
+<span style="color: #800080;">6<span style="color: #000000;">. Mysql数据库服务所在主机安全配置
+<span style="color: #800080;">7<span style="color: #000000;">. 部署SQL注入检测、防御模块
+<span style="color: #800080;">8<span style="color: #000000;">. mysqld安全相关启动选项
+<span style="color: #800080;">9. mysql备份策略</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong><strong>1. 前言</strong></strong></p>
+<p>Mysql数据库安全配置、或者叫加固属于风险模型中的一环，它需要安全人员在理论和实践的学习中不断发现新的问题，并针对这些问题对数据的各个方面的配置进行强化。本文试图围绕着数据库风险识别、数据库安全加固这个问题，探讨可以采取的措施来最大程度的保证我们的数据库的安全控制处在一个较好的水平。&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>2. Mysql账户权限安全</strong></p>
+<p>mysql中存在4个控制权限的表，分别为</p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">1<span style="color: #000000;">. mysql.USER表
+<span style="color: #800080;">2<span style="color: #000000;">. mysql.DB表
+<span style="color: #800080;">3<span style="color: #000000;">. mysql.TABLES_PRIV表
+<span style="color: #800080;">4. mysql.COLUMNS_PRIV表</span></span></span></span></span></span></span></pre>
+</div>
+<p>要注意的是，Mysql中有一个数据库"information_schema"，似乎里面保存的也是一些权限信息，但是要明白的是，这个数据库"information_schema"是为系统管理员提供元数据的一个简便方式，它实际上是一个视图，可以理解为对Mysql中的一个信息的封装，对于Mysql主程序来说，身份认证和授权的信息的来源只有一个，就是"mysql"。</p>
+<div class="cnblogs_code">
+<pre>http:<span style="color: #008000;">//<span style="color: #008000;">www.cnblogs.com/hzhida/archive/2012/08/08/2628826.html</span></span></pre>
+</div>
+<p><em><span style="color: #888888;"><strong>1. mysql.USER表</strong></span></em></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">select * <span style="color: #0000ff;">from<span style="color: #000000;"> USER;
+desc USER;
+mysql&gt;<span style="color: #000000;"> desc USER;
++------------------------+-----------------------------------+------+-----+---------+-------+
+| Field                  | Type                              | Null | Key | Default | Extra |
++------------------------+-----------------------------------+------+-----+---------+-------+
+| Host                   | <span style="color: #0000ff;">char(<span style="color: #800080;">60)                          | NO   | PRI |         |       |
+| User                   | <span style="color: #0000ff;">char(<span style="color: #800080;">16)                          | NO   | PRI |         |       |
+| Password               | <span style="color: #0000ff;">char(<span style="color: #800080;">41)                          | NO   |     |         |       |
+| Select_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Insert_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Update_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Delete_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Drop_priv              | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Reload_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Shutdown_priv          | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Process_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| File_priv              | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Grant_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| References_priv        | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Index_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Alter_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Show_db_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Super_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_tmp_table_priv  | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Lock_tables_priv       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Execute_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Repl_slave_priv        | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Repl_client_priv       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_view_priv       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Show_view_priv         | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_routine_priv    | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Alter_routine_priv     | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_user_priv       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Event_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Trigger_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| Create_tablespace_priv | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
+| ssl_type               | <span style="color: #0000ff;">enum(<span style="color: #800000;">'',<span style="color: #800000;">'<span style="color: #800000;">ANY<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">X509<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">SPECIFIED<span style="color: #800000;">') | NO   |     |         |       |
+| ssl_cipher             | blob                              | NO   |     | NULL    |       |
+| x509_issuer            | blob                              | NO   |     | NULL    |       |
+| x509_subject           | blob                              | NO   |     | NULL    |       |
+| max_questions          | <span style="color: #0000ff;">int(<span style="color: #800080;">11) unsigned                  | NO   |     | <span style="color: #800080;">0       |       |
+| max_updates            | <span style="color: #0000ff;">int(<span style="color: #800080;">11) unsigned                  | NO   |     | <span style="color: #800080;">0       |       |
+| max_connections        | <span style="color: #0000ff;">int(<span style="color: #800080;">11) unsigned                  | NO   |     | <span style="color: #800080;">0       |       |
+| max_user_connections   | <span style="color: #0000ff;">int(<span style="color: #800080;">11) unsigned                  | NO   |     | <span style="color: #800080;">0       |       |
+| plugin                 | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                          | YES  |     |         |       |
+| authentication_string  | text                              | YES  |     | NULL    |       |
+| password_expired       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">')                     | NO   |     | N       |       |
++------------------------+-----------------------------------+------+-----+---------+-------+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #888888;"><em><strong>2. mysql.DB表</strong></em></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">select * <span style="color: #0000ff;">from<span style="color: #000000;"> DB;
+desc DB;
+mysql&gt;<span style="color: #000000;"> desc DB; +-----------------------+---------------+------+-----+---------+-------+
+| Field                 | Type          | Null | Key | Default | Extra |
++-----------------------+---------------+------+-----+---------+-------+
+| Host                  | <span style="color: #0000ff;">char(<span style="color: #800080;">60)      | NO   | PRI |         |       |
+| Db                    | <span style="color: #0000ff;">char(<span style="color: #800080;">64)      | NO   | PRI |         |       |
+| User                  | <span style="color: #0000ff;">char(<span style="color: #800080;">16)      | NO   | PRI |         |       |
+| Select_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Insert_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Update_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Delete_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Create_priv           | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Drop_priv             | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Grant_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| References_priv       | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Index_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Alter_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Create_tmp_table_priv | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Lock_tables_priv      | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Create_view_priv      | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Show_view_priv        | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Create_routine_priv   | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Alter_routine_priv    | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Execute_priv          | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Event_priv            | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
+| Trigger_priv          | <span style="color: #0000ff;">enum(<span style="color: #800000;">'<span style="color: #800000;">N<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Y<span style="color: #800000;">') | NO   |     | N       |       |
++-----------------------+---------------+------+-----+---------+-------+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #888888;"><em><strong>3. mysql.TABLES_PRIV表</strong></em></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">select * <span style="color: #0000ff;">from<span style="color: #000000;"> TABLES_PRIV;
+desc TABLES_PRIV;
+mysql&gt;<span style="color: #000000;"> desc TABLES_PRIV;  
++-------------+-----------------------------------------------------------------------------------------------------------------------------------+------+-----+-------------------+-----------------------------+
+| Field       | Type                                                                                                                              | Null | Key | Default           | Extra                       |
++-------------+-----------------------------------------------------------------------------------------------------------------------------------+------+-----+-------------------+-----------------------------+
+| Host        | <span style="color: #0000ff;">char(<span style="color: #800080;">60)                                                                                                                          | NO   | PRI |                   |                             |
+| Db          | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                                                                                                                          | NO   | PRI |                   |                             |
+| User        | <span style="color: #0000ff;">char(<span style="color: #800080;">16)                                                                                                                          | NO   | PRI |                   |                             |
+| Table_name  | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                                                                                                                          | NO   | PRI |                   |                             |
+| Grantor     | <span style="color: #0000ff;">char(<span style="color: #800080;">77)                                                                                                                          | NO   | MUL |                   |                             |
+| Timestamp   | timestamp                                                                                                                         | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| Table_priv  | <span style="color: #0000ff;">set(<span style="color: #800000;">'<span style="color: #800000;">Select<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Insert<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Update<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Delete<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Create<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Drop<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Grant<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">References<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Index<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Alter<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Create View<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Show view<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Trigger<span style="color: #800000;">') | NO   |     |                   |                             |
+| Column_priv | <span style="color: #0000ff;">set(<span style="color: #800000;">'<span style="color: #800000;">Select<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Insert<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Update<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">References<span style="color: #800000;">')                                                                                      | NO   |     |                   |                             |
++-------------+-----------------------------------------------------------------------------------------------------------------------------------+------+-----+-------------------+-----------------------------+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #888888;"><em><strong>4. mysql.COLUMNS_PRIV表</strong></em></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">select * <span style="color: #0000ff;">from<span style="color: #000000;"> COLUMNS_PRIV;
+desc COLUMNS_PRIV;
+mysql&gt;<span style="color: #000000;"> desc COLUMNS_PRIV;  +-------------+----------------------------------------------+------+-----+-------------------+-----------------------------+
+| Field       | Type                                         | Null | Key | Default           | Extra                       |
++-------------+----------------------------------------------+------+-----+-------------------+-----------------------------+
+| Host        | <span style="color: #0000ff;">char(<span style="color: #800080;">60)                                     | NO   | PRI |                   |                             |
+| Db          | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                                     | NO   | PRI |                   |                             |
+| User        | <span style="color: #0000ff;">char(<span style="color: #800080;">16)                                     | NO   | PRI |                   |                             |
+| Table_name  | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                                     | NO   | PRI |                   |                             |
+| Column_name | <span style="color: #0000ff;">char(<span style="color: #800080;">64)                                     | NO   | PRI |                   |                             |
+| Timestamp   | timestamp                                    | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+| Column_priv | <span style="color: #0000ff;">set(<span style="color: #800000;">'<span style="color: #800000;">Select<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Insert<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">Update<span style="color: #800000;">',<span style="color: #800000;">'<span style="color: #800000;">References<span style="color: #800000;">') | NO   |     |                   |                             |
++-------------+----------------------------------------------+------+-----+-------------------+-----------------------------+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>以上是这4个表的基本结构，在我们进行数据库连接、登录的时候，mysql权限表的验证过程为：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 先从user表中的:
+    <span style="color: #800080;">1<span style="color: #000000;">) Host
+    <span style="color: #800080;">2<span style="color: #000000;">) User
+    <span style="color: #800080;">3<span style="color: #000000;">) Password
+这3个字段中判断连接的ip、用户名、密码是否存在，存在则通过验证。
+<span style="color: #800080;">2<span style="color: #000000;">. 通过身份认证后，进行权限分配，按照:
+    <span style="color: #800080;">1<span style="color: #000000;">) user
+    <span style="color: #800080;">2<span style="color: #000000;">) db
+    <span style="color: #800080;">3<span style="color: #000000;">) tables_priv
+    <span style="color: #800080;">4<span style="color: #000000;">) columns_priv
+的顺序进行验证。
+即先检查全局权限表user，如果user中对应的权限为Y，则此用户对所有数据库的权限都为Y，将不再检查db，tables_priv,columns_priv
+如果全局权限表user对应的权限为N，则到db表中检查此用户对应的具体数据库，并得到db中为Y的权限
+如果db中为N，则检查tables_priv中此数据库对应的具体表，取得表中的权限Y，以此类推。逐级下降</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>用流程图表示如下：</p>
+<p><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/171322214574601.jpg" alt=""></p>
+<p>了解了Mysql的账户权限原理和判断流程，我们接下来需要了解就是应该以怎样的方式去进行权限配置，才能达到所谓的"最小权限原则"呢？Mysql的账户权限优先级顺序是:</p>
+<div class="cnblogs_code">
+<pre>user-&gt;db-&gt;tables_priv-&gt;columns_pri</pre>
+</div>
+<p>稍作思考，我们可以发现，这些表的作用本质上是一样的，区别就在于它们的作用域范围不同，从user到columns_pri逐级作用域范围降低，因此控制粒度也增大，它们的配置遵循"就近原则"，即以优先级最低的那个为准，所以，我们在进行Mysql的账户权限安全配置的时候会发现"我们似乎在做很多重复性的工作"。但我们要明白的，Mysql的这种逐层次的权限配置体系为我们提供了一个细粒度的控制方法。所以我们的权限配置也应该按照这个顺序来有规划地进行。</p>
+<p><span style="color: #888888;"><em><strong>1. USER表</strong></em></span></p>
+<table style="width: 999px; height: 1138px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr align="middle" valign="center">
+<td><strong>不建议给与</strong>
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">PROCESS</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　　服务器管理</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">查看进程权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><strong>　　　　　　　<span style="color: #ff0000;">不建议给与</span></strong></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">RELOAD</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　　服务器管理</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center">
+<p align="left">执行flush-hosts, flush-logs, flush-privileges, flush-status, flush-tables, flush-threads, refresh, reload等命令的权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center">
+<p align="left">　　　　　　　&nbsp;<span style="color: #ff0000;"><strong>不建议给与</strong></span></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">REPLICATION CLIENT</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　　服务器管理</p>
+</td>
+<td align="middle" valign="center" nowrap="nowrap">
+<p align="left">复制权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>　　　　　　　不建议给与</strong></span></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">REPLICATION SLAVE</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　 &nbsp;&nbsp;服务器管理</p>
+</td>
+<td align="middle" valign="center" nowrap="nowrap">
+<p align="left">复制权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>　　　　　　　不建议给与</strong></span></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">SHOW DATABASES</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　 &nbsp;&nbsp;服务器管理</p>
+</td>
+<td align="middle" valign="center" nowrap="nowrap">
+<p align="left">查看数据库列表权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>　　　　　　　不建议给与</strong></span></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">SHUTDOWN</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　　服务器管理</p>
+</td>
+<td align="middle" valign="center" nowrap="nowrap">
+<p align="left">关闭数据库权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>　　　　　　　不建议给与</strong></span></p>
+</td>
+</tr>
+<tr align="middle" valign="center">
+<td align="middle" valign="center" nowrap="nowrap">
+<p style="text-align: center;" align="left">SUPER</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left">　　　服务器管理</p>
+</td>
+<td align="middle" valign="center" nowrap="nowrap">
+<p align="left">执行kill线程权限</p>
+</td>
+<td style="text-align: center;" align="middle" valign="center" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>　　　　　　　不建议给与</strong></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>从表格中可以看到，USER表主要针对数据库的账户进行粗粒度的权限控制，定义了"某人允许做什么事"。</p>
+<p><span style="color: #808080;"><em><strong>2. DB表</strong></em></span></p>
+<table style="width: 1008px; height: 821px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr style="background-color: #696969;" align="left" valign="center">
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ffffff;"><strong>权限</strong></span></p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ffffff;"><strong>说明</strong></span></p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ffffff;"><strong>网站使用账户是否给予</strong></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Select&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下所有表进行查询</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Insert&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下所有表进行插入</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Update&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下所有表进行更新</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Delete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下所有表进行删除</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Create&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据库下创建表或者索引</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Drop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可删除此数据库，及此数据库下的表</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>不建议给予</strong></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Grant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">赋予权限选项</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>不建议给予</strong></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">References&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">未来MySQL特性的占位符</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><span style="color: #ff0000;"><strong>不建议给予</strong></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下的所有表进行索引</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Alter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下的所有表进行更改</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Create_tmp_table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">创建临时表</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Lock_tables&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可对其下所有表进行锁定</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Create_view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下创建视图</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Show_view&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下查看视图</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">建议给予</p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Create_routine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下创建存储过程</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Alter_routine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下更改存储过程</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Execute&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下执行存储过程</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Event&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下创建事件调度器</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">Trigger</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left">可在此数据下创建触发器</p>
+</td>
+<td style="text-align: left;" valign="bottom" nowrap="nowrap">
+<p align="left"><strong><span style="color: #ff0000;">不建议给予</span></strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;"><span style="color: #000000;">DB表可以看成是USER表对权限控制的一个补充，一个更细粒度地、针对数据库库级别的权限控制。</span></p>
+<p style="text-align: left;"><span style="color: #000000;">同时，DB表也隐式包含了将账户限定在某个数据库的范围内这个配置，即限制某个用户只能用对它自己的数据库的控制权，对不属于它的数据库禁止操作，这能有效防止横向越权的发生。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>mysql&gt; <span style="color: #0000ff;">select host,db,user <span style="color: #0000ff;">from<span style="color: #000000;"> db;
++------+---------+------+
+| host | db      | user |
++------+---------+------+
+| %    | test    |      |
+| %    | test\_% |      |
++------+---------+------+</span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>可以看到，user字段为空，表示当前不对用户做任何数据库属权限制，在网站的部署过程中，应该单独针对网站建立一个账户一个独立的数据库，并为这个账户分配唯一的专属数据库，防止网络被入侵后的横向、纵向提权。</p>
+<p style="text-align: left;">对于Mysql中的账户权限相关的安全配置，总结如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 针对每个网站建立一个单独的账户
+<span style="color: #800080;">2. 为每个网站单独建立一个专属数据库(虽然DEDE、DZ普通采用表前缀的方法来实现<span style="color: #800000;">"<span style="color: #800000;">一库多站<span style="color: #800000;">"，但好的做法还是<span style="color: #800000;">"<span style="color: #800000;">一库一站<span style="color: #800000;">"<span style="color: #000000;">) 
+<span style="color: #800080;">3. 按照user-&gt;db-&gt;tables_priv-&gt;<span style="color: #000000;">columns_pri的顺序进行细粒度的权限控制
+<span style="color: #800080;">4. 为每个用户单独配置一个专属数据库，保证当前用户的所有操作只能发生在它自己的数据库中，防止SQL注入发生后，黑客通过注入点访问到系统表</span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p style="text-align: left;"><span style="color: #808080;"><strong><em>账户权限安全配置需要的常用命令&nbsp;</em></strong></span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 新建一个用户并给予相应数据库的权限
+grant <span style="color: #0000ff;">select,insert,update,delete,create,drop privileges on database.* to user@localhost identified by <span style="color: #800000;">'<span style="color: #800000;">passwd<span style="color: #800000;">'<span style="color: #000000;">;
+grant all privileges on database.* to user@localhost identified by <span style="color: #800000;">'<span style="color: #800000;">passwd<span style="color: #800000;">'<span style="color: #000000;">;
+
+<span style="color: #800080;">2<span style="color: #000000;">. 刷新权限
+flush privileges;
+
+<span style="color: #800080;">3<span style="color: #000000;">. 显示授权
+show grants;
+
+<span style="color: #800080;">4<span style="color: #000000;">. 移除授权
+revoke delete on *.* <span style="color: #0000ff;">from <span style="color: #800000;">'<span style="color: #800000;">user<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">localhost<span style="color: #800000;">'<span style="color: #000000;">;
+
+<span style="color: #800080;">5<span style="color: #000000;">. 删除用户
+drop user <span style="color: #800000;">'<span style="color: #800000;">user<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">localhost<span style="color: #800000;">'<span style="color: #000000;">;
+
+<span style="color: #800080;">6<span style="color: #000000;">. 给用户改名
+rename user <span style="color: #800000;">'<span style="color: #800000;">jack<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">%<span style="color: #800000;">' to <span style="color: #800000;">'<span style="color: #800000;">jim<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">%<span style="color: #800000;">'<span style="color: #000000;">;
+
+<span style="color: #800080;">7<span style="color: #000000;">. 给用户改密码
+SET PASSWORD FOR <span style="color: #800000;">'<span style="color: #800000;">root<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">localhost<span style="color: #800000;">' = PASSWORD(<span style="color: #800000;">'<span style="color: #800000;">123456<span style="color: #800000;">');</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p style="text-align: left;"><strong>3. Mysql数据的网络安全配置</strong></p>
+<p style="text-align: left;">对数据库所在的DMZ的网络拓朴的安全配置也是我们在进行安全评估的时候需要考虑的一个方面，这对防御内网扫描、网络攻击有一定帮助。</p>
+<p><span style="color: #808080;"><em><strong>0x1: 限制访问Mysql端口的IP</strong></em><br>对Mysql的访问IP的限制，可以从应用层和主机层来分别达到目的</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 主机层:
+    <span style="color: #800080;">1<span style="color: #000000;">) windows可以通过windows防火墙
+    <span style="color: #800080;">2<span style="color: #000000;">) Linux下可以通过iptables
+来限制允许访问mysql端口的IP地址
+<span style="color: #008000;">//<span style="color: #008000;">只允许指定的IP进行访问
+iptables -A INPUT -p tcp -s xxxx.xxxx.xxxx.xxxx/<span style="color: #800080;">24 --dport <span style="color: #800080;">3306 -<span style="color: #000000;">j ACCEPT
+iptables -A INPUT -p tcp -s xxxx.xxxx.xxxx.xxxx/<span style="color: #800080;">24 --dport <span style="color: #800080;">3306 -<span style="color: #000000;">j ACCEPT
+..
+iptables -P INPUT DROP</span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>可以看到，这种方法的缺点是硬编码导致灵活性低，如果mysql的默认端口3306被修改了(例如8890)，则这条iptables规则也需要相应的修改</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">2<span style="color: #000000;">. 应用层
+所谓应用层的IP限制访问，是Mysql自身提供的访问控制机制，能够针对访问者的IP地址进行访问控制。在user、db、tables_priv、columns_priv中的HOST字段里记录的IP地址，例如:
+mysql&gt; <span style="color: #0000ff;">select host,user,password <span style="color: #0000ff;">from<span style="color: #000000;"> user;
++-----------+------+-------------------------------------------+
+| host      | user | password                                  |
++-----------+------+-------------------------------------------+
+| localhost | root | *832EB84CB764129D05D498ED9CA7E5CE9B8F83EB |
+| <span style="color: #800080;">127.0.<span style="color: #800080;">0.1 | root | *832EB84CB764129D05D498ED9CA7E5CE9B8F83EB |
+| ::<span style="color: #800080;">1       | root | *832EB84CB764129D05D498ED9CA7E5CE9B8F83EB |
+| localhost |      |                                           |
++-----------+------+-------------------------------------------+<span style="color: #000000;"><br></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这几行记录表明了root这个账户只能是本机登录，在部署的过程中，我们可以为指定账户添加某个安全的跳板机，并保证这个跳板机IP是不变的。</p>
+<p><span style="color: #808080;"><strong><em>0x2: 修改mysql的端口</em></strong><br>windows下可以修改配置文件my.ini来实现，linux可以修改配置文件my.cnf来实现。</span></p>
+<div class="cnblogs_code">
+<pre>port     = <span style="color: #800080;">3306</span></pre>
+</div>
+<p>对mysql端口的修改可以从一定程度上防止端口扫描工具的扫描。</p>
+<p><span style="color: #808080;"><em><strong>0x3: 限制连接用户的数量</strong></em><br>数据库的某用户多次远程连接，会导致性能的下降和影响其他用户的操作，有必要对其进行限制。可以通过限制单个账户允许的连接数量来实现，设置my.cnf 文件的mysqld中的max_user_connections变量来完成。GRANT语句也可以支持资源控制选项来限制服务器对一个账户允许的使用范围。</span></p>
+<div class="cnblogs_code">
+<pre>#vi /etc/<span style="color: #000000;">my.cnf
+[mysqld]
+max_user_connections <span style="color: #800080;">2</span></span></pre>
+</div>
+<p>&nbsp;</p>
+<p><strong><strong>4. 密码策略安全</strong></strong></p>
+<p>这里所谓的密文策略安全包括Mysql自身的账户密码的安全、也包括网站用户的密码安全。</p>
+<p><span style="color: #808080;"><em><strong>0x1: mysql账户密码</strong></em></span></p>
+<p>因为mysql本身没有抗穷举的帐号锁定机制，所以对于mysql自身的登录帐号，尤其是root帐号，需要遵循"密码强度策略"设置高强度的密码，保证攻击者从穷举帐号攻击这条路无法获得合适的投资收益比。</p>
+<p><span style="color: #808080;"><em><strong>0x2: 网站用户的密码</strong></em></span></p>
+<p><span style="color: #000000;">数据库管理员无法规定用户的网站使用什么样的密码策略，这完全取决于用户自己的编码习惯、或者说是站长所使用的CMS的编码习惯。这方面，mysql无法做的更多，但也许可以做的是建立一个针对网站密码穷举、脱库攻击的日志追溯系统，当发生脱库攻击时能第一时间给用户提供"事发现场"的更多信息。或者数据库管理员主动进行可控的撞库测试，提前帮助用户发生潜在的撞库、脱库风险。</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #000000;"><strong><strong>5. Mysql日志</strong></strong></span></p>
+<p>启动Mysql的日志不仅可以为我们提供性能热点的分析，还可以帮助我们加固Mysql数据库的安全，例如:</p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 从日志中获得典型SQL注入语句
+<span style="color: #800080;">2<span style="color: #000000;">. 利用正则模型从日志中捕获注入攻击的发生
+<span style="color: #800080;">3. 在脱库、数据泄漏之后获得关于受攻击数据库的情况、泄漏范围等数据</span></span></span></span></span></pre>
+</div>
+<p>mysql有以下几种日志，它们都在my.ini中进行配置：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1. 错误日志：-log-<span style="color: #000000;">err
+log-error=E:/wamp/logs/<span style="color: #000000;">mysql_error.log
+
+<span style="color: #800080;">2. 查询日志(记录所有SQL语句)：-<span style="color: #000000;">log 
+log=E:/wamp/logs/<span style="color: #000000;">mysql.log
+
+<span style="color: #800080;">3. 慢查询日志：-log-slow-<span style="color: #000000;">queries 
+    <span style="color: #800080;">1<span style="color: #000000;">) 查看慢查询时间
+    show variables like <span style="color: #800000;">"<span style="color: #800000;">long_query_time<span style="color: #800000;">"<span style="color: #000000;">;默认10s
+    <span style="color: #800080;">2<span style="color: #000000;">) 查看慢查询配置情况
+    show status like <span style="color: #800000;">"<span style="color: #800000;">%slow_queries%<span style="color: #800000;">"<span style="color: #000000;">;
+    <span style="color: #800080;">3<span style="color: #000000;">) 查看慢查询日志路径
+    show variables like <span style="color: #800000;">"<span style="color: #800000;">%slow%<span style="color: #800000;">"<span style="color: #000000;">;
+<span style="color: #008000;">//<span style="color: #008000;">存储位置、长SQL的阈值
+E:\wamp\bin\mysql\mysql5.<span style="color: #800080;">6.12\data\LittleHann-PC-<span style="color: #000000;">slow.log
+long_query_time=<span style="color: #800080;">5
+
+<span style="color: #800080;">4. 更新日志：-log-<span style="color: #000000;">update 
+
+<span style="color: #800080;">5. 二进制日志：-log-<span style="color: #000000;">bin
+<span style="color: #008000;">//<span style="color: #008000;">记录除select语句之外的所有sql语句到日志中，可以用来恢复数据文件
+log-bin=E:/wamp/logs/bin</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>查看日志开启情况:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>show variables like <span style="color: #800000;">'<span style="color: #800000;">log_%<span style="color: #800000;">'<span style="color: #000000;">; 
++----------------------------------------+----------------------------------------------------+
+| Variable_name                          | Value                                              |
++----------------------------------------+----------------------------------------------------+
+| log_bin                                | ON                                                 |
+| log_bin_basename                       | E:\wamp\bin\mysql\mysql5.<span style="color: #800080;">6.12\data\mysql-bin       |
+| log_bin_index                          | E:\wamp\bin\mysql\mysql5.<span style="color: #800080;">6.12\data\mysql-bin.index |
+| log_bin_trust_function_creators        | OFF                                                |
+| log_bin_use_v1_row_events              | OFF                                                |
+| log_error                              | E:\wamp\logs\mysql.log                             |
+| log_output                             | FILE                                               |
+| log_queries_not_using_indexes          | OFF                                                |
+| log_slave_updates                      | OFF                                                |
+| log_slow_admin_statements              | OFF                                                |
+| log_slow_slave_statements              | OFF                                                |
+| log_throttle_queries_not_using_indexes | <span style="color: #800080;">0                                                  |
+| log_warnings                           | <span style="color: #800080;">1                                                  |
++----------------------------------------+----------------------------------------------------+</span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>6. Mysql数据库服务所在主机安全配置</strong></p>
+<p>安全问题是一个综合的纵深问题，Mysql的安全配置和所在系统(*iux、windows)的安全配置密切相关。</p>
+<p><span style="color: #808080;"><em><strong>0x1: mysql进程运行账号</strong></em><br>所谓"mysql进程运行账户"，即以什么样的身份权限来启动mysqld这个服务进程的。对于操作系统来说，每一个进程都有一个对应的"进程运行帐号"，这个进程运行帐号决定了这个应用程序可以获得哪些操作系统的权限。</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 在windows下禁止使用local system(nt authority\system)来运行mysql账户，可以考虑使用network service或者自己新建一个windows账号，但是必须给与mysql程序所在目录的读取权限和data目录的读取和写入权限
+<span style="color: #800080;">2. 在linux下，新建一个mysql账号，并在安装的时候就指定mysql以mysql账户来运行，给与程序所在目录的读取权限，data所在目录的读取和写入权限。</span></span></span></pre>
+</div>
+<p><span style="color: #808080;"><strong><em>0x2: mysql运行账号的磁盘权限</em></strong><br>对mysql运行帐号的磁盘权限的配置，就是在进行ACL的配置(文件夹右键-&gt;属性-&gt;安全)，对于ACL的配置，我们需要牢记的是"默认禁止原则"，即操作系统会默认对没有明确指示的权限设定为禁止，即假如你给一个用户授予了某个文件夹的读权限，那么它只有读权限，而不会拥有写权限(权限继承不考虑在内)。<br>对于mysql运行张厚啊的磁盘ACL配置，我们可以遵循以下原则</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. mysql运行账号需要给予程序所在目录的读取权限，以及data目录的读取和写入权限，保证mysql的正常运行
+<span style="color: #800080;">2<span style="color: #000000;">. 不容许给予其他目录的写入和执行权限，特别是有网站的，这可以有效防御针对mysql的提权、或者webshell提权
+    <span style="color: #800080;">1<span style="color: #000000;">) udf提权
+    <span style="color: #800080;">2<span style="color: #000000;">) 系统关键目录、注册表写入启动文件 
+<span style="color: #800080;">3<span style="color: #000000;">. 取消mysql运行账户对于cmd，sh等一些程序的执行权限，这可以防御当mysql核心帐号被黑客获取后进一步提权
+    <span style="color: #800080;">1<span style="color: #000000;">) root账户被泄露
+    由于对cmd、sh等关键程序进行了权限控制，黑客无法继续深入操作系统提权</span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #808080;"><strong><em>0x3: Chrooting</em></strong><br>Chroot是Unix/类Unix的一种手段，它的建立会将其与主系统几乎完全隔离，也就是说，一旦遭到什么问题，也不会危及到正在运行的主系统。这是一个非常有效的办法，特别是在配置网络服务程序的时候。</span></p>
+<p><span style="color: #808080;"><strong><em>0x4: 删除历史命令记录</em></strong><br>历史命令记录是一种测信道数据泄漏，从某种程序上来说，"历史命令记录"就像种植在系统上的一个键盘记录rootkit，如果黑客获取到了目标服务器的webshell，就可以通过阅读"历史命令记录"来获取到大量的管理员操作记录，包括帐号和密码。<br>这些历史文件包括:</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #800080;">1. ~/<span style="color: #000000;">.bash_history
+<span style="color: #800080;">2. ~/<span style="color: #000000;">.mysql_history 
+.. 
+cat /dev/<span style="color: #0000ff;">null &gt; ~/<span style="color: #000000;">.bash_history
+cat /dev/<span style="color: #0000ff;">null &gt; ~/.mysql_history</span></span></span></span></span></span></span></pre>
+</div>
+<p><span style="color: #808080;"><em><strong>0x5: mysql.sock安全配置</strong></em><br>默认情况下，PHP支持使用socket方式和msyql数据库进行通信，换句话来说，这也意味着，在服务器本机可以允许无密码直接登录mysql，请看下面的一段实例代码:</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;?<span style="color: #000000;">php
+        ini_set(<span style="color: #800000;">"<span style="color: #800000;">mysql.default_socket = /var/lib/mysql/mysql.sock<span style="color: #800000;">"<span style="color: #000000;">); 
+
+        $sql = <span style="color: #800000;">"<span style="color: #800000;">select user();<span style="color: #800000;">"<span style="color: #000000;">;
+        $res =<span style="color: #000000;"> mysql_query($sql);
+        $final =<span style="color: #000000;"> mysql_fetch_array($res);
+        die(var_dump($final)); 
+?&gt;</span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>执行成功，result:</p>
+<div class="cnblogs_code">
+<pre>array(<span style="color: #800080;">2) { [<span style="color: #800080;">0]=&gt; <span style="color: #0000ff;">string(<span style="color: #800080;">16) <span style="color: #800000;">"<span style="color: #800000;">apache@localhost<span style="color: #800000;">" [<span style="color: #800000;">"<span style="color: #800000;">user()<span style="color: #800000;">"]=&gt; <span style="color: #0000ff;">string(<span style="color: #800080;">16) <span style="color: #800000;">"<span style="color: #800000;">apache@localhost<span style="color: #800000;">" }</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+</div>
+<p>这意味着黑客在获取了目标服务器的webshell之后，可以在不知道mysql帐号密码的情况下直接从数据库中获取隐私数据。</p>
+<p>防御的方法还是一样，针对mysql程序帐号进行磁盘ACL控制，防止mysql越权读/写/执行非mysql目录下的文件。</p>
+<p>&nbsp;</p>
+<p><strong>7. 部署SQL注入检测、防御模块</strong></p>
+<p>根据OWASP2013的报告显示，针对数据库的攻击方式，SQL注入依然是主要的因素，因此针对SQL Injection的攻击，除了针对应用层的代码安全审计、SDLC之外，在数据库层部署数据库防火墙也应该作为纵深防御的一个手段。</p>
+<p>目前基于SQL注入检测、防御的的数据库防火墙大概有以下几个:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1. 安华金和数据库防火墙系统(Xsecure-<span style="color: #000000;">DBFirewall)
+http:<span style="color: #008000;">//<span style="color: #008000;">www.schina.cn/a/fangan/shujufangxielou/17.html
+<span style="color: #800080;">2<span style="color: #000000;">. Snort入侵检测系统
+能针对指定端口进行正则特征匹配方式的SQL注入检测
+http:<span style="color: #008000;">//<span style="color: #008000;">www.snort.org/
+<span style="color: #800080;">3. Java/<span style="color: #000000;">J2EE 过滤器
+对于J2ee的WEB应用来说，可以在HTTP请求上部署过滤器，并将SQL注入检测规律写在过滤器中
+<span style="color: #800080;">4. druid-sql-<span style="color: #000000;">wall开源SQL检测、阻断系统
+https:<span style="color: #008000;">//<span style="color: #008000;">github.com/alibaba/druid
+<span style="color: #800080;">5<span style="color: #000000;">. D盾
+<span style="color: #800080;">6. 安全狗 </span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>8.&nbsp;mysqld安全相关启动选项</strong></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1. –local-infile[={<span style="color: #800080;">0|<span style="color: #800080;">1<span style="color: #000000;">}]
+如果用–local-infile=0启动服务器，则客户端不能使用LOCAL <span style="color: #0000ff;">in<span style="color: #000000;"> LOAD DATA语句，防止基于注入的直接文件读取数据泄漏
+
+<span style="color: #800080;">2. –old-<span style="color: #000000;">passwords
+强制服务器为新密码生成短(pre-<span style="color: #800080;">4.1<span style="color: #000000;">)密码哈希。当服务器必须支持旧版本客户端程序时，为了保证兼容性这很有用。
+
+<span style="color: #800080;">3. (OBSOLETE) –safe-show-<span style="color: #000000;">database
+    <span style="color: #800080;">1) 在MySQL <span style="color: #800080;">5<span style="color: #000000;">.1以前版本的MySQL中，该选项使SHOW DATABASES语句只显示用户具有部分权限的数据库名
+    <span style="color: #800080;">2) 在MySQL <span style="color: #800080;">5<span style="color: #000000;">.1中，该选项不再作为现在的 默认行为使用，有一个SHOW DATABASES权限可以用来控制每个账户对数据库名的访问。
+
+<span style="color: #800080;">4. –safe-user-<span style="color: #000000;">create
+如果启用，用户不能用GRANT语句创建新用户，除非用户有mysql.user表的INSERT权限。如果你想让用户具有授权权限来创建新用户，你应给用户授予下面的权限：
+mysql&gt; GRANT INSERT(user) ON mysql.user TO <span style="color: #800000;">'<span style="color: #800000;">user_name<span style="color: #800000;">'@<span style="color: #800000;">'<span style="color: #800000;">host_name’;
+<span style="color: #000000;">这样确保用户不能直接更改权限列，必须使用GRANT语句给其它用户授予该权限。
+
+<span style="color: #800080;">5. –secure-<span style="color: #000000;">auth
+不允许鉴定有旧(pre-<span style="color: #800080;">4.1<span style="color: #000000;">)密码的账户。
+
+<span style="color: #800080;">6. --skip-grant-<span style="color: #000000;">tables
+这个选项导致服务器根本不使用权限系统。这给每个人以完全访问所有的数据库的权力，这个选项常常在发生了忘记了msyql密码的情况使用这个方式在本机<span style="color: #800000;">"<span style="color: #800000;">无密码登录mysql<span style="color: #800000;">"<span style="color: #000000;">
+通过执行mysqladmin flush-<span style="color: #000000;">privileges或mysqladmin eload命令，或执行FLUSH PRIVILEGES语句，你能告诉一个正在运行的服务器再次开始使用授权表。
+
+<span style="color: #800080;">7. --skip-name-<span style="color: #000000;">resolve
+主机名不被解析。所有在授权表的Host的列值必须是IP号或localhost
+
+<span style="color: #800080;">8. --skip-<span style="color: #000000;">networking
+在网络上不允许TCP/<span style="color: #000000;">IP连接。所有到mysqld的连接必须经由Unix套接字进行
+
+<span style="color: #800080;">9. -skip-show-<span style="color: #000000;">database
+使用该选项，只允许有SHOW DATABASES权限的用户执行SHOW DATABASES语句，该语句显示所有数据库名。不使用该选项，允许所有用户执行SHOW DATABASES，但只显示用户有SHOW DATABASES权限或部分数据库权限的数据库名。请注意全局权限指数据库的权限。</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>9. mysql备份策略</strong></p>
+<p>像mysql、sqlserver、access这种数据库都是将数据以单独文件的形式保存在磁盘上的，所以，对于数据库的备份也可以采用传统的文件备份策略。总的来说，有以下方式:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #800080;">1<span style="color: #000000;">. 本地备份
+使用mysqldump进行备份非常简单，在备份数据库的时候，我们还可以同时使用管道gzip命令对备份文件进行压缩，可以采用Rsync的异地备份方式方式，将备份服务器的目录挂载到数据库服务器，将数据库文件备份打包后，通过crontab定时备份数据：
+备份数据使用命令：
+#!/bin/<span style="color: #000000;">sh
+time=`date +<span style="color: #800000;">"<span style="color: #800000;">(<span style="color: #800000;">"%F<span style="color: #800000;">"<span style="color: #800000;">)<span style="color: #800000;">"%<span style="color: #000000;">R`
+$/usr/local/mysql/bin/mysqldump -u root -p111 database_backup | gzip &gt; /home/zhenghan/mysql/<span style="color: #000000;">mysql_backup.$time.gz
+# crontab -<span style="color: #000000;">l
+# m h  dom mon dow   command
+<span style="color: #800080;">00 <span style="color: #800080;">00 * * * /home/zhenghan/mysql/<span style="color: #000000;">backup.sh
+恢复数据使用命令：
+gzip -d mysql_backup.\(<span style="color: #800080;">2014-<span style="color: #800080;">06-<span style="color: #800080;">17\)<span style="color: #800080;">00\:<span style="color: #800080;">00<span style="color: #000000;">.gz
+mysql_backup.(<span style="color: #800080;">2014-<span style="color: #800080;">06-<span style="color: #800080;">17)<span style="color: #800080;">00:<span style="color: #800080;">00<span style="color: #000000;">
+#mysql –u root -p111 &lt; /home/zhenghan/mysql/mysql_backup.\(<span style="color: #800080;">2014-<span style="color: #800080;">06-<span style="color: #800080;">17\)<span style="color: #800080;">00\:<span style="color: #800080;">00
+
+<span style="color: #800080;">2<span style="color: #000000;">. 网络备份
+
+<span style="color: #800080;">3<span style="color: #000000;">. MySQL本身自带的mysqldump备份
+使用mysqldump可以把整个数据库装载到一个单独的文本文件中。这个文件包含有所有重建您的数据库所需要的SQL命令。这个命令取得所有的模式(schema)并且将其转换成DDL语法(CREATE语句，即数据库定义语句)，取得所有的数据，并且从这些数据中创建INSERT语句。这个工具将您的数据库中所有的设计倒转。因为所有的东西都被包含到了一个文本文件中。这个文本文件可以用一个简单的批处理和一个合适SQL语句导回到MySQL中。
+
+<span style="color: #800080;">4<span style="color: #000000;">. 直接复制数据库文件的备份形式
+直接拷贝数据文件最为直接、快速、方便，但缺点是基本上不能实现增量备份。为了保证数据的一致性，需要在备份文件前，执行以下SQL语句：FLUSH TABLES WITH READ LOCK；也就是把内存中的数据都刷新到磁盘中，同时锁定数据表，以保证拷贝过程中不会有新的数据写入。这种方法备份出来的数据恢复也很简单，直接拷贝回原来的数据库目录下即可。</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a title="复制代码" onclick="copyCnblogsCode(this)" href="javascript:void(0);"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="color: #808080;"><em><strong>Copyright (c) 2014 LittleHann All rights reserved</strong></em></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/bluedy1229/category/592740.html">Mysql</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3825545,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/%e8%8a%b1%e6%8b%89%e5%ad%90%e7%b1%b3" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/bluedy1229/" target="_blank"><img src="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/u23649.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/bluedy1229/">花拉子米</a><br>
+<a href="http://home.cnblogs.com/u/bluedy1229/followees">关注 - 30</a><br>
+<a href="http://home.cnblogs.com/u/bluedy1229/followers">粉丝 - 4</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(3825545,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(3825545,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/bluedy1229/p/3810952.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/bluedy1229/p/3810952.html" title="发布于2014-06-26 22:07">J2EE开发实战基础系列一 HelloWorld【转】</a><br><a href="http://www.cnblogs.com/bluedy1229/p/3843010.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/bluedy1229/p/3843010.html" title="发布于2014-07-14 16:39">java入门第三步之数据库连接【转】</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2014-07-05 11:14</span> <a href="http://www.cnblogs.com/bluedy1229/">花拉子米</a> 阅读(<span id="post_view_count">4</span>) 评论(<span id="post_comment_count">0</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=3825545" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/bluedy1229/p/3825545.html#" onclick="AddToWz(3825545);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=27208,cb_entryId=3825545,cb_blogApp=currentBlogApp,cb_blogUserGuid='64763d0b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2014/7/5 11:14:00';loadViewCount(cb_entryId);</script>
+
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/bluedy1229/p/3825545.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/bluedy1229/p/3825545.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.imooc.com/view/164?from=cnblogs" target="_blank"><b>【免费课程】案例：PDO—数据库抽象层</b></a><br><a href="http://zt.cnblogs.com/tingyun/" target="_blank">听云App——终结移动App性能黑洞</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); var googletag = googletag || {}; googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+    })();
+</script>
+<script type="text/javascript">
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1346480159711-0" style="width: 300px; height: 250px; ">
+    <script type="text/javascript">
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });            
+            } else {
+                $('#div-gpt-ad-1346480159711-0').hide();
+            }
+    } catch (e) { }
+    </script>
+    <div id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__" style="border: 0pt none; "><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; " src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none; " src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div>
+</div>
+</div>
+<div id="blog_news_kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/501529/" target="_blank">王垠：怎样成为一个天才</a><br> ·  <a href="http://news.cnblogs.com/n/503054/" target="_blank">王垠：征集女性粉丝</a><br> ·  <a href="http://news.cnblogs.com/n/503053/" target="_blank">关于pyimagesearch.com博主</a><br> ·  <a href="http://news.cnblogs.com/n/503052/" target="_blank">Ubuntu 14.10壁纸大赛精选作品</a><br> ·  <a href="http://news.cnblogs.com/n/503051/" target="_blank">百度大会：坚定不移地走向技术流</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/502873/" target="_blank">前台页面优化全攻略（一）</a><br> ·  <a href="http://kb.cnblogs.com/page/502983/" target="_blank">从MVC框架看MVC架构的设计</a><br> ·  <a href="http://kb.cnblogs.com/page/502097/" target="_blank">一些好的规则</a><br> ·  <a href="http://kb.cnblogs.com/page/502778/" target="_blank">千万别理程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/181221/" target="_blank">送给程序员：关于性格内向者的10个误解</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+		</div>
+	</div>
+	<!-- left ends -->
+	<!-- right starts -->
+	<div id="right">
+		<!-- 右侧工具部分 -->
+		<div id="right_content">
+	
+			
+<!--done-->
+<h2 class="listtitle">公告</h2>
+<div class="newsItem">
+	<div id="blog-news" style=""><div align="center">
+<marquee scrollamount="1" scrolldelay="60" direction="up" width="180" height="152">
+<font color="red"><b><center>本站公告</center></b></font><br><br>
+<font color="#003366">欢迎大家的光临!!!</font><br>
+<font color="#FF00FF">本站域名:<br>
+http://bluedy1229.cnblogs.com/
+
+
+</font>
+<font color="#ff0000"><b><center>免责声明</center></b></font><br>
+<font color="#003366">本站资料大部分来自于互联网,其版权归原作者或其他合法者所有.如内容涉及或侵犯了您的权益,请通知本人,我将尽快处理!</font><br><br>
+<font color="#ff0000"><b><center>欢迎您的光临</center></b></font><br>
+<font color="#003366">感谢您的大力支持!如果您对本站有好的意见和建议,请到留言板留言或用以下方式和我联系：</font><br>
+<font color="#ff0000"><a href="mailto:l"></a><br>
+QQ：153677231</font>
+</marquee></div>
+
+
+<p>
+</p><h3>博客地图</h3>
+
+<p></p>
+
+
+<p>
+<embed src="http://www.8box.cn/feed/200_000000_hot_30_0/radio.swf" type="application/x-shockwave-flash" wmode="transparent" width="200" height="330">
+</p>  <div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/bluedy1229/">花拉子米</a><br>园龄：<a href="http://home.cnblogs.com/u/bluedy1229/" title="入园时间：2007-06-12">7年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/bluedy1229/followers/">4</a><br>关注：<a href="http://home.cnblogs.com/u/bluedy1229/followees/">30</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;64763d0b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+	
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2014/08/01&#39;);return false;">&lt;</a></td><td align="center">2014年9月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2014/10/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalTodayDay" align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr><tr><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td><td class="CalOtherMonthDay" align="center">11</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+				<div id="leftcontentcontainer">
+					<div id="blog-sidecolumn">
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+
+
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/bluedy1229/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/bluedy1229/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/bluedy1229/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/bluedy1229/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/bluedy1229/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div>
+<h3 class="catListTitle">最新随笔</h3>
+<div class="RecentComment" id="RecentPosts">
+<ul style="word-break:break-all">
+<li><a href="http://www.cnblogs.com/bluedy1229/p/3843024.html">1. java入门第五步之数据库项目实战【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3843019.html">2. java入门第四步之应用服务器的安装（Tomcat）【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3843017.html">3. java入门第一步之完成jdk的安装（window）【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3843012.html">4. java入门第二步之helloworld【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3843010.html">5. java入门第三步之数据库连接【转】</a></li><li><a href="./Mysql安全配置【转】 - 花拉子米 - 博客园_files/Mysql安全配置【转】 - 花拉子米 - 博客园.htm">6. Mysql安全配置【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3810952.html">7. J2EE开发实战基础系列一 HelloWorld【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3793471.html">8. JAVA-数据库连接【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3780160.html">9. 快速将excel数据保存到Oracle数据库中【转】</a></li><li><a href="http://www.cnblogs.com/bluedy1229/p/3780124.html">10. Oracle导入excel数据方法汇总[转]</a></li>
+</ul>
+</div>
+
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(113)</span></h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154457.html">ajax</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154452.html">asp.net(11)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/578811.html">BizTalk(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154454.html">css(2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97637.html">ERP理论(3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97636.html">ERP应用与实施(15)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154455.html">html(3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/557864.html">java(13)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154456.html">javascript(4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391263.html">kindee</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/557024.html">Linux(5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391256.html">MVC</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/592740.html">Mysql(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154461.html">oracle(5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391262.html">sap-abap</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391261.html">sap-basis</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_16" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391260.html">sap-fico</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_17" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391258.html">sap-mm</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_18" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391259.html">sap-pp</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_19" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391257.html">sap-sd</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_20" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154462.html">silverlight</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_21" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/561183.html">spring框架(4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_22" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154460.html">sql server(7)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_23" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154451.html">UML(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_24" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/154453.html">xml(2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_25" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97640.html">程序设计(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_26" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97652.html">读书心得(3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_27" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/159162.html">数据结构</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_28" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97644.html">数据库理论(4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_29" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97646.html">数据库应用(12)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_30" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/105233.html">网络(6)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_31" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97650.html">网页设计(10)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_0_Link_32" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97651.html">心情故事</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(117)</span></h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/07.html">2014年7月 (6)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/06.html">2014年6月 (10)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/05.html">2014年5月 (11)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/04.html">2014年4月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/03.html">2014年3月 (8)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/02.html">2014年2月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2014/01.html">2014年1月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2013/12.html">2013年12月 (5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2013/11.html">2013年11月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2013/07.html">2013年7月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2013/06.html">2013年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2012/07.html">2012年7月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2012/06.html">2012年6月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2011/11.html">2011年11月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2011/07.html">2011年7月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_15" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2011/04.html">2011年4月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_16" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2011/03.html">2011年3月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_17" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2010/10.html">2010年10月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_18" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2010/07.html">2010年7月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_19" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2010/02.html">2010年2月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_20" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2009/08.html">2009年8月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_21" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2009/06.html">2009年6月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_22" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2009/05.html">2009年5月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_23" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2009/04.html">2009年4月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_24" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/12.html">2008年12月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_25" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/11.html">2008年11月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_26" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/10.html">2008年10月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_27" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/09.html">2008年9月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_28" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/08.html">2008年8月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_29" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/05.html">2008年5月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_30" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/03.html">2008年3月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_31" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/02.html">2008年2月 (5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_32" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2008/01.html">2008年1月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_1_Link_33" class="listitem" href="http://www.cnblogs.com/bluedy1229/archive/2007/06.html">2007年6月 (15)</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(96)</span></h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97621.html">asp.net(22)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97623.html">C#(13)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_2" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97625.html">CSS(2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_3" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97620.html">DataBase(16)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_4" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97635.html">ERP(26)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_5" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97622.html">javascript(5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_6" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391268.html">mvc</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_7" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/391266.html">sap</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_8" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97765.html">share point(2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_9" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/159164.html">UML(5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_10" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/97624.html">VB.NET</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_11" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/109794.html">xml(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_12" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/159163.html">数据结构</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_13" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/105234.html">网络(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_14" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/332539.html">英语(1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_2_Link_15" class="listitem" href="http://www.cnblogs.com/bluedy1229/category/109795.html">硬件(2)</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(98)</span></h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_0" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2014/06.html" rel="nofollow">2014年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_1" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2014/04.html" rel="nofollow">2014年4月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_2" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2012/05.html" rel="nofollow">2012年5月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_3" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2011/11.html" rel="nofollow">2011年11月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_4" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2011/10.html" rel="nofollow">2011年10月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_5" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2011/06.html" rel="nofollow">2011年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_6" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2011/04.html" rel="nofollow">2011年4月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_7" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2011/03.html" rel="nofollow">2011年3月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_8" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2010/09.html" rel="nofollow">2010年9月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_9" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2010/06.html" rel="nofollow">2010年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_10" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2010/02.html" rel="nofollow">2010年2月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_11" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2010/01.html" rel="nofollow">2010年1月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_12" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2009/12.html" rel="nofollow">2009年12月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_13" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2009/06.html" rel="nofollow">2009年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_14" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2009/05.html" rel="nofollow">2009年5月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_15" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2009/04.html" rel="nofollow">2009年4月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_16" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2009/02.html" rel="nofollow">2009年2月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_17" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/12.html" rel="nofollow">2008年12月 (3)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_18" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/10.html" rel="nofollow">2008年10月 (10)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_19" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/09.html" rel="nofollow">2008年9月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_20" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/08.html" rel="nofollow">2008年8月 (5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_21" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/06.html" rel="nofollow">2008年6月 (1)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_22" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/04.html" rel="nofollow">2008年4月 (5)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_23" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/03.html" rel="nofollow">2008年3月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_24" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2008/01.html" rel="nofollow">2008年1月 (13)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_25" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/12.html" rel="nofollow">2007年12月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_26" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/11.html" rel="nofollow">2007年11月 (6)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_27" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/10.html" rel="nofollow">2007年10月 (4)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_28" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/09.html" rel="nofollow">2007年9月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_29" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/08.html" rel="nofollow">2007年8月 (2)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_30" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/07.html" rel="nofollow">2007年7月 (7)</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_3_Link_31" class="listitem" href="http://www.cnblogs.com/bluedy1229/archives/2007/06.html" rel="nofollow">2007年6月 (4)</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">相册</h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_4_Link_0" class="listitem" href="http://www.cnblogs.com/bluedy1229/gallery/112951.html" rel="nofollow">NBA</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_4_Link_1" class="listitem" href="http://www.cnblogs.com/bluedy1229/gallery/97676.html" rel="nofollow">毕业后</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">博客空间</h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_0" class="listitem" href="http://www.cnblogs.com/BeginnerClassroom/category/171563.html">《叩响C#之门》</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_1" class="listitem" href="http://abatei.cnblogs.com/" rel="nofollow">abatei</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_2" class="listitem" href="http://www.cnblogs.com/Athrun/archive/2006/12/15/592849.html">Athrun</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_3" class="listitem" href="http://clingingboy.cnblogs.com/" rel="nofollow">Clingingboy</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_4" class="listitem" href="http://tuyile006.cnblogs.com/" rel="nofollow">DotNet笔记</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_5" class="listitem" href="http://www.cnblogs.com/JimmyZhang/" rel="nofollow">Jimmy Zhang</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_6" class="listitem" href="http://kms.lenovots.com/kb/article.php?id=13450" rel="nofollow">NOVOTS KMS</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_7" class="listitem" href="http://blog.sina.com.cn/sapinfo" rel="nofollow">SAP雨润无声 </a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_8" class="listitem" href="http://www.cnblogs.com/VerySky/" rel="nofollow">VerySky Sap</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_9" class="listitem" href="http://www.cnblogs.com/Jax/archive/2008/06/14/1221486.html">包建强的开源地带</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_10" class="listitem" href="http://yangbin1005.cnblogs.com/" rel="nofollow">滨_Notepad</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_11" class="listitem" href="http://xh831213.cnblogs.com/" rel="nofollow">点滴积累,融会贯通</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_12" class="listitem" href="http://blog.csdn.net/ChengKing/archive/2006/03/31/646363.aspx">金鹰的博客</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_13" class="listitem" href="http://blog.csdn.net/21aspnet/category/286029.aspx">清清月儿.NET万花筒</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_14" class="listitem" href="http://thcjp.cnblogs.com/" rel="nofollow">天轰穿</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_15" class="listitem" href="http://wmj.cnblogs.com/" rel="nofollow">王孟军</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_16" class="listitem" href="http://www.cnblogs.com/singlepine/" rel="nofollow">小山</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_17" class="listitem" href="http://scottckt.cnblogs.com/" rel="nofollow">勇者無畏</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_5_Link_18" class="listitem" href="http://junyistar.cnblogs.com/" rel="nofollow">早班的天空~</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">控件开发</h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_6_Link_0" class="listitem" href="http://www.cnblogs.com/guanjinke/archive/2006/12/04/582084.html">白话Programming</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_6_Link_1" class="listitem" href="http://www.cnblogs.com/luqingfei/archive/2007/03/14/674518.html">低头需要勇气，而抬头需要的是实力</a>
+				</li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">友情链接</h1>
+		
+				<ul>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_7_Link_0" class="listitem" href="http://www.sapclub.net/" rel="nofollow">SAP俱乐部</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_7_Link_1" class="listitem" href="http://www.zhsap.com/" rel="nofollow" target="_blank">SAP中文网</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_7_Link_2" class="listitem" href="http://symbol441.cnblogs.com/" rel="nofollow">分析问题.解决问题</a>
+				</li>
+			
+				<li class="catList">
+				 <a id="CatList_LinkList_7_Link_3" class="listitem" href="http://www.crazyenglish.com/" rel="nofollow">李阳疯狂英语 </a>
+				</li>
+			
+				</ul>
+			
+	
+
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		31253
+	</li><li>
+		排名 -
+		5358
+	</li>
+</ul>
+<div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/bluedy1229/archive/2009/04/21/1440181.html#2878939">1. Re:SQL Server的存储过程调用dll</a></li>
+    <li class="recent_comment_body">错误号	错误源	错误描述
+0x800401F3	ODSOLE Extended Procedure	 无效的类字符串</li>
+    <li class="recent_comment_author">--zhaocongshuo</li>
+</ul>
+</div>
+</div>
+</div><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/02/26/1082411.html">1. SQL server 2000异地备份 (1084)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/09/08/1286692.html">2. UML类图  (1051)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2009/06/26/1511362.html">3. K3 ERP系统业务处理流程(834)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/02/14/1068339.html">4. SQL函数——将一对多关系转换成一对一关系 (766)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2007/06/26/796551.html">5. ERP系统模块完全解析──主生产计划MPS (606)</a></li></ul></div>
+</div>
+</div><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/09/08/1286692.html">1. UML类图  (4)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2007/06/26/796542.html">2. ERP系统模块完全解析──生产排程综述(2)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2007/06/26/796577.html">3. ERP系统BOM详细解析（一）(2)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/01/23/1049454.html">4. Div+CSS布局入门教程 (1.页面布局与规划) (1)</a></li><li><a href="http://www.cnblogs.com/bluedy1229/archive/2008/03/14/1104868.html">5. DropDownTreeList(1)</a></li></ul></div>
+</div></div><div id="topdigg_posts_wrap" style="display: none; ">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+				</div>
+			
+		</div>
+		<!-- //右侧工具部分 -->
+		<div id="footer">
+			
+<!--done-->
+Copyright ©2014 花拉子米
+		</div>
+	</div>
+	<!-- right ends -->
+	<div class="clear"></div>
+	
+</div>
+
+<!--PageEndHtml Block Begin-->
+<div align="center">
+版权所有
+</div>
+<!--PageEndHtml Block End-->
+
+
+<iframe id="google_osd_static_frame_1560014248825" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px; "></iframe></body></html>

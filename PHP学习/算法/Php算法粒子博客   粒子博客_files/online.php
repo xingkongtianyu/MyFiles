@@ -1,0 +1,1 @@
+document.write('<a href=http://www.cnzz.com/stat/website.php?web_id=2482594 target=_blank>Õ¾³¤Í³¼Æ</a>')

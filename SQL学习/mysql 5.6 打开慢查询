@@ -1,0 +1,61 @@
+ mysql 5.6 打开慢查询 2013-12-23 20:09:23
+
+分类： MySQL
+
+mysql版本：
+
+
+[root@mysql_multi ~]# vi /etc/my.cnf
+【mysqld3307】
+long_query_time=1
+#slow_query_log
+slow_query_log=1
+#slow_query_log_file=/data/mysql/mysqldata3307/log/slow-query.log
+#以前版本的参数格式跟5.6的不一致
+slow_query_log_file=/data/mysql/mysqldata3307/log/slow-query.log
+#将所有没有使用带索引的查询语句全部写到慢查询日志中
+log_queries_not_using_indexes=1 
+
+对 3307 端口的mysql：
+
+[root@mysql_multi ~]# mysqld_multi start 3307
+[root@mysql_multi ~]# netstat -nlp|grep mysql
+tcp        0      0 :::3306                     :::*                        LISTEN      20211/mysqld        
+tcp        0      0 :::3307                     :::*                        LISTEN      18693/mysqld        
+unix  2      [ ACC ]     STREAM     LISTENING     42309  20211/mysqld        /data/mysql/mysqldata3306/sock/mysql.sock
+unix  2      [ ACC ]     STREAM     LISTENING     69806  18693/mysqld        /data/mysql/mysqldata3307/sock/mysql.sock
+
+root@localhost : mysql 01:00:16> show variables like '%slow%';
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    2
+Current database: mysql
+
++---------------------------+----------------------------------------------+
+| Variable_name             | Value                                        |
++---------------------------+----------------------------------------------+
+| log_slow_admin_statements | OFF                                          |
+| log_slow_slave_statements | OFF                                          |
+| slow_launch_time          | 2                                            |
+| slow_query_log            | ON                                           |
+| slow_query_log_file       | /data/mysql/mysqldata3307/log/slow-query.log |
++---------------------------+----------------------------------------------+
+5 rows in set (0.00 sec)
+
+
+root@localhost : mysql 01:03:44> show variables like '%index%';
++----------------------------------------+-------+
+| Variable_name                          | Value |
++----------------------------------------+-------+
+| eq_range_index_dive_limit              | 10    |
+| innodb_adaptive_hash_index             | ON    |
+| innodb_cmp_per_index_enabled           | OFF   |
+| log_bin_index                          |       |
+| log_queries_not_using_indexes          | ON    |
+| log_throttle_queries_not_using_indexes | 0     |
+| relay_log_index                        |       |
++----------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+然后运行一个需要长时间才能执行完毕的sql，使用mysqldumpslow 查看日志：
+/data/mysql/mysqldata3307/log/slow-query.log （直接使用cat 进行查看也可以）

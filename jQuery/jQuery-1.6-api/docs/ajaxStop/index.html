@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.ajaxStop()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/global-ajax-event-handlers/" title="View all posts in Global Ajax Event Handlers">Global Ajax Event Handlers</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="ajaxStop1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.ajaxStop( handler() )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>在Ajax请求停止后隐藏加载信息。</p>
+<ul class="signatures"><li class="signature" id="ajaxStop-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.ajaxStop( handler() )</h4>
+<p class="arguement"><strong>handler()</strong>The function to be invoked.</p>
+</li></ul>
+<div class="longdesc">
+<p>每当一个Ajax请求完成，jQuery检查是否有任何其他响应过程中的Ajax请求。如果都执行完成，jQuery就会触发<code>ajaxStop</code>事件，在这个时间点所有处理函数都会使用<code>.ajaxStop()</code>方法注册并执行。</p>
+<p>我们可以建立一个基本的Ajax请求,观察该方法的执行过程:</p>
+<pre>&lt;div class="trigger"&gt;Trigger&lt;/div&gt;
+&lt;div class="result"&gt;&lt;/div&gt;
+&lt;div class="log"&gt;&lt;/div&gt;</pre>
+<p>我们可以在一些节点上添加的事件处理函数：</p>
+<pre>$('.log').ajaxStop(function() {
+  $(this).text('Triggered ajaxStop handler.');
+});</pre>
+<p>现在我们可以构建一个Ajax请求使用任何的jQuery方法：</p>
+<pre>$('.trigger').click(function() {
+  $('.result').load('ajax/test.html');
+});</pre>
+<p>当我们点击这个按钮并且Ajax请求完成，这个信息就会显示。</p>
+<p><strong>注意:</strong> 因为<code>.ajaxStop()</code> 是作为一个jQuery对象实例方法去执行的，我们可以用<code>this</code>关键字作为回调函数中指定的元素。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">在Ajax请求停止后隐藏加载信息：</span></h4>
+<pre><code class="example">$("#loading").ajaxStop(function(){
+      $(this).hide();
+      });</code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

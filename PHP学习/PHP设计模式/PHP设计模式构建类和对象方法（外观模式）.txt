@@ -1,0 +1,47 @@
+
+PHP设计模式构建类和对象方法（外观模式）
+2010年11月4日  1,587 次浏览 陈华 抢沙发
+
+<?php
+/*
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式构建类和对象方法（外观模式）
+ *外观模式主要是用于集成第三方代码，外观模式可以为复杂系统创建一个简单、清晰的接口。
+ */
+
+/*看代码演示
+ * 我们且举一个非常简单的例子，只用来说明一下，其实外观模式的应用很广，主要用在一些系统的二次开发和应用上。
+ * 举一个获取商品数据的小例子
+ * */
+
+//子系统的代码如下：
+
+function getProductName ($productId){
+ //一些数据库查询……
+ return “《PHP设计模式》”;
+}
+
+function getProduct($productId,$productName){
+ //一些数据查询……
+ return new Product($productId,$productName);
+}
+
+class Product {
+ public $id;
+ public $name;
+ function __construct($id,$name){
+  $this->id=$id;
+  $this->name=$name;
+ }
+}
+/*=================================*/
+
+//接口代码
+
+class productFacade {
+ public function getProductXinXi($id,$name){
+  return getProduct($id,$name);
+ }
+}
+
+//以上例子非常的小，但也足够说明了外观模式的用途
+?> 

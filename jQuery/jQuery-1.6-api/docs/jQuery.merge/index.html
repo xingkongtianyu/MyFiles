@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.merge()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-merge1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.merge( first, second )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Array">Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>合并两个数组内容到第一个数组。</p>
+<ul class="signatures"><li class="signature" id="jQuery-merge-first-second">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.merge( first, second )</h4>
+<p class="arguement"><strong>first</strong>第一个用来合并的数组，元素是第二数组加进来的。</p>
+<p class="arguement"><strong>second</strong>第二个数组合并到第一，保持不变。</p>
+</li></ul>
+<div class="longdesc">
+<p><code>$.merge()</code>操作形成一个数组，其中包含两个数组的所有元素。从第二个追加的数组元素顺序将保存。<code>$.merge()</code>函数是破坏性的。它改变了从第二个添加项目到第一个参数。  </p>
+<p>如果您需要原始的第一个数组，请在调用<code>$.merge()</code>前拷贝一个出来。幸运的是， <code>$.merge()</code>本身也可以用于此副本：</p>
+<pre>var newArray = $.merge([], oldArray);</pre>
+<p>此快捷方式创建一个新的，空数组合并了oldArray的内容，有效地克隆了数组。</p>
+<p>在jQuery 1.4之前，该参数应该是原生的Javascript数组对象;如果情况并非如此（参数不是原生的Javascript数组对象）请使用<code>$.makeArray</code>。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Merges two arrays, altering the first argument.</span>
+</h4>
+<pre><code class="example">$.merge( [0,1,2], [2,3,4] )</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">[0,1,2,2,3,4] </code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Merges two arrays, altering the first argument.</span>
+</h4>
+<pre><code class="example">$.merge( [3,2,1], [4,3,2] )  </code></pre>
+<h4>Result:</h4>
+<pre><code class="results">[3,2,1,4,3,2] </code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Merges two arrays, but uses a copy, so the original isn't altered.</span>
+</h4>
+<pre><code class="example">var first = ['a','b','c'];
+var second = ['d','e','f'];
+$.merge( $.merge([],first), second);
+      </code></pre>
+<h4>Result:</h4>
+<pre><code class="results">["a","b","c","d","e","f"] </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.andSelf()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/miscellaneous-traversal/" title="View all posts in Miscellaneous Traversing">Miscellaneous Traversing</a></span>
+  
+  				</div>
+</div>
+<div id="andSelf1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.andSelf()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>添加先前的堆栈元素集合到当前组合。</p>
+<ul class="signatures"><li class="signature" id="andSelf"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.andSelf()</h4></li></ul>
+<div class="longdesc">
+<p>在讨论中所描述的<code>.end()</code>以上，jQuery对象维护一个内部栈，不断变化的跟踪对应匹配的元素。当DOM遍历的方法之一被调用，一组新的元素被推入堆栈。如果前一组元素是理想的好， <code>.andSelf()</code>可以提供帮助。</p>
+<p>考虑一个面页中简单的列表和它之后的段落：</p>
+<pre>
+&lt;ul&gt;
+   &lt;li&gt;list item 1&lt;/li&gt;
+   &lt;li&gt;list item 2&lt;/li&gt;
+   &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+   &lt;li&gt;list item 4&lt;/li&gt;
+   &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们在第三个项目开始，我们可以找到它之后的元素来：</p>
+<pre>$('li.third-item').nextAll().andSelf()
+  .css('background-color', 'red');
+</pre>
+<p>此调用的结果是一个项目3，4和5个红色背景。首先，最初的选择位于第3项，初始化堆栈，仅包含此项目集。在调用<code>.nextAll()</code>然后推栈设置项目4和5上。最后， <code>.andSelf()</code>调用这两套合并在一起，创建一个jQuery对象，在所有三个项目文件顺序点：<code>{[&lt;li.third-item&gt;,&lt;li&gt;,&lt;li&gt; ]}</code>.</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Find all divs, and all the paragraphs inside of them, and give them both classnames.  Notice the div doesn't have the yellow background color since it didn't use andSelf.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p, div { margin:5px; padding:5px; }
+  .border { border: 2px solid red; }
+  .background { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;p&gt;First Paragraph&lt;/p&gt;
+    &lt;p&gt;Second Paragraph&lt;/p&gt;
+  &lt;/div&gt;
+&lt;script&gt;
+    $("div").find("p").andSelf().addClass("border");
+    $("div").find("p").addClass("background");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

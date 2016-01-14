@@ -1,0 +1,113 @@
+
+phpcms v9 邮件群发实现方法
+  2014-06-24 22:29  来源：bcty365.com/  我来投稿  我要评论
+
+　 中介交易 SEO诊断淘宝客 站长团购 云主机 技术大厅 　
+
+　　自己的网站B5教程网，看到很多注册会员后没有邮箱验证，但是会员比较多，一个一个发送邮件很烦，于是就自己二次开发了一个邮件群发功能，现在分享给大家。记得收藏哦!
+
+　　phpcms v9邮件群发功能是在 用户=》会员管理 里面实现的，选中要发送的会员，然后邮件群发就行了，如图：
+
+　　
+phpcms v9 邮件群发实现方法
+
+ 
+
+　　下面是实现步骤：
+
+　　1.找到phpcms v9里面phpcms/modules/member/templates/member_list.tpl.php 在97行后面添加
+
+　　2.在member_list.tpl.php的页面里添加一段js代码
+
+　　function emails()
+
+　　{
+
+　　var ids='';
+
+　　$("input[name='userid[]']:checked").each(function(i, n){
+
+　　ids += $(n).val() + ',';
+
+　　});
+
+　　if(ids=='') {
+
+　　window.top.art.dialog({content:'',lock:true,width:'200',height:'50',time:1.5},function(){});
+
+　　return false;
+
+　　}
+
+　　window.top.art.dialog({id:'emails'}).close();
+
+　　window.top.art.dialog({title:'发送邮件',id:'emails',iframe:'?m=member&c=member&a=emails&ids='+ids,width:'700',height:'400'}, function(){var d = window.top.art.dialog({id:'emails'}).data.iframe;d.$('#dosubmit').click();return false;}, function(){window.top.art.dialog({id:'emails'}).close()});
+
+　　}
+
+　　3.找到phpcms/modules/member/member.php添加下面代码：
+
+　　/**
+
+　　* 群发邮件
+
+　　*/
+
+　　function emails()
+
+　　{
+
+　　if(isset($_POST['dosubmit'])) {
+
+　　pc_base::load_sys_func('mail');
+
+　　$ids = isset($_POST['emails']['ids']) ? explode(',', $_POST['emails']['ids']): showmessage(L('illegal_parameters'), HTTP_REFERER);
+
+　　array_pop($ids);
+
+　　if(!empty($ids)) {
+
+　　$where = to_sqls($ids, '', 'userid');
+
+　　$userarr = $this->db->listinfo($where);
+
+　　$emailetitle=$_POST['emails']['title']." - www.bcty365.com";
+
+　　$emailcontent=$_POST['emails']['content'];
+
+　　foreach($userarr as $k =>$v)
+
+　　{
+
+　　sendmail($v['email'],$emailetitle,$emailcontent);
+
+　　}
+
+　　showmessage("邮件发送成功", HTTP_REFERER, '2000', 'emails');
+
+　　} else {
+
+　　showmessage(L('illegal_parameters'), HTTP_REFERER, '', 'emails');
+
+　　}
+
+　　}else
+
+　　{
+
+　　$ids =$_GET['ids'];
+
+　　include $this->admin_tpl('member_email');
+
+　　}
+
+　　}
+
+　　效果图如下：
+
+　　
+phpcms v9 邮件群发实现方法
+
+ 
+
+　　本文地址：http://www.bcty365.com/content-101-993-1.html

@@ -1,0 +1,317 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0047)http://www.shocr.com/linux-kernel-version-view/ -->
+<HTML lang=zh-CN dir=ltr xmlns="http://www.w3.org/1999/xhtml"><HEAD 
+profile=http://gmpg.org/xfn/11><TITLE>linux 查看内核版本 - Blinux</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<META content=这里Redhat给大家介绍三种查看linux内核版本的方法，每种查看linux内核版本结果都不一样，便于大家提交资料分析. 
+name=description>
+<META content="linux 基本操作" name=keywords><LINK media=screen 
+href="linux 查看内核版本 - Blinux.files/style.css" type=text/css rel=stylesheet><LINK 
+href="http://www.shocr.com/xmlrpc.php" rel=pingback><LINK title="RSS 2.0" 
+href="http://www.shocr.com/feed/" type=application/rss+xml rel=alternate><!--[if IE 6]>
+<SCRIPT src="linux 查看内核版本 - Blinux.files/DD_belatedPNG.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT>DD_belatedPNG.fix('.nav li,.searchsm');</SCRIPT>
+<![endif]-->
+<SCRIPT src="linux 查看内核版本 - Blinux.files/jquery.min.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT src="linux 查看内核版本 - Blinux.files/comments-ajax.js" 
+type=text/javascript></SCRIPT>
+<LINK title="Blinux » linux 查看内核版本 评论 feed" 
+href="http://www.shocr.com/linux-kernel-version-view/feed/" 
+type=application/rss+xml rel=alternate>
+<SCRIPT src="linux 查看内核版本 - Blinux.files/l10n.js" type=text/javascript></SCRIPT>
+
+<SCRIPT 
+src="C:\Documents and Settings\Administrator\桌面\Myfiles\linux\net\linux 查看内核版本 - Blinux.files\jquery.min(1).js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT src="linux 查看内核版本 - Blinux.files/jquery.lazyload.mini.js" 
+type=text/javascript></SCRIPT>
+<LINK title=RSD href="http://www.shocr.com/xmlrpc.php?rsd" 
+type=application/rsd+xml rel=EditURI><LINK 
+href="http://www.shocr.com/wp-includes/wlwmanifest.xml" 
+type=application/wlwmanifest+xml rel=wlwmanifest><LINK title=Blinux 
+href="http://www.shocr.com/" rel=index><LINK title=RHCE简介 
+href="http://www.shocr.com/rhce-overview/" rel=start><LINK 
+title="error: can't create transaction lock on /var/lib/rpm/__db.000" 
+href="http://www.shocr.com/can-t-create-transaction-lock-on/" rel=prev><LINK 
+title="bash: ifconfig: command not found" 
+href="http://www.shocr.com/bash-ifconfig-command-not-found/" rel=next><LINK 
+href="http://www.shocr.com/linux-kernel-version-view/" rel=canonical><LINK 
+href="http://www.shocr.com/?p=82" rel=shortlink><LINK media=screen 
+href="linux 查看内核版本 - Blinux.files/wp-multicollinks.css" type=text/css 
+rel=stylesheet>
+<SCRIPT src="linux 查看内核版本 - Blinux.files/wp-multicollinks.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>jQuery(document).ready(function($){if(navigator.platform=="iPad")return;jQuery("img").lazyload({effect:"fadeIn",placeholder:"http://www.shocr.com/wp-content/plugins/jquery-image-lazy-loading/images/grey.gif"});});</SCRIPT>
+
+<META content="MSHTML 6.00.2900.6104" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=fullwrapper>
+<DIV class=wrap>
+<DIV class=header>
+<DIV class=logo>
+<P>
+<H3><A href="http://www.shocr.com/">Blinux</A></H3>
+<P></P></DIV>
+<UL class=nav>
+  <LI><A title=首页 href="http://www.shocr.com/">首页</A></LI>
+  <LI class="page_item page-item-512"><A title=手机访问 
+  href="http://www.shocr.com/wap/">手机访问</A></LI>
+  <LI class="page_item page-item-26"><A title=订阅RSS 
+  href="http://www.shocr.com/subscribe-rss/">订阅RSS</A></LI>
+  <LI class="page_item page-item-2"><A title=关于 
+  href="http://www.shocr.com/about/">关于</A></LI>
+  <LI><A href="http://linux.shocr.com/" target=_blank>English</A></LI>
+  <LI><A title=RHCE论坛 href="http://bbs.sinounix.com/" 
+  target=_blank>RHCE论坛</A></LI></UL></DIV></DIV>
+<DIV class=wrap>
+<DIV class=widecolumn id=content role="main">
+<DIV class="content_top conleft"></DIV>
+<DIV 
+class="post-82 post type-post status-publish format-standard hentry category-linux-basic-operation tag-linux-operation" 
+id=post-82>
+<H2><A title="linux 查看内核版本" 
+href="http://www.shocr.com/linux-kernel-version-view/" rel=bookmark>linux 
+查看内核版本</A></H2>
+<DIV class=post_intro><SPAN>Blinux Post in <A title="查看 linux 基础命令 的全部文章" 
+href="http://www.shocr.com/category/linux-basic-operation/" 
+rel="category tag">linux 基础命令</A>，Tags: <A 
+href="http://www.shocr.com/tag/linux-operation/" rel=tag>linux 
+基本操作</A></SPAN></DIV>
+<DIV class=content_date>
+<DIV class=datebg><SPAN class=day>08</SPAN> <SPAN>九月</SPAN> 
+<SPAN>2009</SPAN></DIV></DIV>
+<DIV class=comments><SPAN class=cmt_num><A title="linux 查看内核版本 上的评论" 
+href="http://www.shocr.com/linux-kernel-version-view/#respond">0</A></SPAN></DIV>
+<DIV class=entry>
+<P>这里Redhat给大家介绍三种查看linux内核版本的方法，每种查看linux内核版本结果都不一样，便于大家提交资料分析.</P><PRE>[root@localhost ~]# <FONT color=#008000>uname -a</FONT>
+Linux localhost.localdomain 2.6.18-128.el5 #1 SMP Wed Dec 17 11:42:39 EST 2008 i686 athlon i386 GNU/Linux
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# <FONT color=#008000>lsb_release -a</FONT>
+LSB Version:    :core-3.1-ia32:core-3.1-noarch:graphics-3.1-ia32:graphics-3.1-noarch
+Distributor ID: RedHatEnterpriseServer
+Description:    Red Hat Enterprise Linux Server release 5.3 (Tikanga)
+Release:        5.3
+Codename:       Tikanga
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# <FONT color=#008000>cat /etc/issue</FONT>
+Red Hat Enterprise Linux Server release 5.3 (Tikanga)
+Kernel \r on an \m</PRE>
+<P>以上三种查询linux内核版本的命令非常实用，建议大家收藏.</P>
+<DIV style="MARGIN-TOP: 15px; FONT-STYLE: italic">
+<P><STRONG>原创文章，转载请注明：</STRONG> 转载自<A 
+href="http://www.shocr.com/">Blinux</A></P>
+<P><STRONG>本文链接地址:</STRONG> <A 
+href="http://www.shocr.com/linux-kernel-version-view/">linux 
+查看内核版本</A></P></DIV>
+<UL class=related_post>
+  <LI><A title="Linux下创建和删除 -a \a 等特殊字符" 
+  href="http://www.shocr.com/linux-to-create-and-delete-aa-and-other-special-characters/">Linux下创建和删除 
+  -a \a 等特殊字符</A> (0)
+  <LI><A title=".bash_history 执行命令的历史记录" 
+  href="http://www.shocr.com/bash_history/">.bash_history 执行命令的历史记录</A> (0)
+  <LI><A title=修改文件用户和组的属性 href="http://www.shocr.com/chown/">修改文件用户和组的属性</A> 
+(4)
+  <LI><A title="grub.conf menu.lst 区别" 
+  href="http://www.shocr.com/grub-conf-menu-lst-difference/">grub.conf menu.lst 
+  区别</A> (0)
+  <LI><A title=修改Linux文本模式分辨率 
+  href="http://www.shocr.com/modify-the-linux-text-mode-resolution/">修改Linux文本模式分辨率</A> 
+  (0)
+  <LI><A title="linux 合并文件" href="http://www.shocr.com/linux-merge-file/">linux 
+  合并文件</A> (4)
+  <LI><A title="why getting help is –help" 
+  href="http://www.shocr.com/why-getting-help-is-help/">why getting help is 
+  –help</A> (3)
+  <LI><A title="Start Xorg Graphical Environment" 
+  href="http://www.shocr.com/start-xorg-graphical-environment/">Start Xorg 
+  Graphical Environment</A> (0)
+  <LI><A title="linux level" href="http://www.shocr.com/linux-level/">linux 
+  level</A> (1)
+  <LI><A title=putty复制的那点事 
+  href="http://www.shocr.com/putty-to-copy-something-that/">putty复制的那点事</A> 
+  (1)</LI></UL><SPAN class=align_left>« Prev：<A 
+href="http://www.shocr.com/can-t-create-transaction-lock-on/" rel=prev>error: 
+can't create transaction lock on /var/lib/rpm/__db.000</A></SPAN> <SPAN 
+class=align_right><A 
+href="http://www.shocr.com/bash-ifconfig-command-not-found/" rel=next>bash: 
+ifconfig: command not found</A>：Next »</SPAN></DIV></DIV>
+<DIV class=comments-navi></DIV>
+<DIV id=respond>
+<FORM id=commentform action=http://www.shocr.com/wp-comments-post.php 
+method=post>
+<H4 class=clear>Leave a Reply</H4>
+<DIV id=author_info>
+<P><INPUT id=author tabIndex=1 size=22 name=author aria-required="true"> <LABEL 
+for=author>Name </LABEL></P>
+<P><INPUT id=email tabIndex=2 size=22 name=email aria-required="true"> <LABEL 
+for=email>Mail (will not be published) </LABEL></P>
+<P><INPUT id=url tabIndex=3 size=22 name=url> <LABEL 
+for=url>Website</LABEL></P></DIV>
+<P><TEXTAREA id=comment onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};" tabIndex=4 name=comment rows=10 cols=5></TEXTAREA></P>
+<P><INPUT class=subin id=submit tabIndex=5 type=submit name=submit> <INPUT 
+id=comment_post_ID type=hidden value=82 name=comment_post_ID> <INPUT 
+id=comment_parent type=hidden value=0 name=comment_parent></P>
+<DIV id=cancel_reply><A id=cancel-comment-reply-link style="DISPLAY: none" 
+href="http://www.shocr.com/linux-kernel-version-view/#respond" 
+rel=nofollow>点击这里取消回复。</A></DIV>
+<P style="DISPLAY: none"><INPUT id=akismet_comment_nonce type=hidden 
+value=47ed8a814e name=akismet_comment_nonce></P></FORM></DIV>
+<DIV class="content_foot conleft"></DIV></DIV>
+<DIV id=sidebar role="complementary">
+<DIV id=search>
+<FORM id=searchform action=http://www.shocr.com/ method=get><SPAN 
+class=st><INPUT class=searchtxt id=s name=s></SPAN><SPAN class=ss><INPUT class=searchsm type=submit name=submit></SPAN></FORM></DIV>
+<DIV class=clear></DIV>
+<UL>
+  <LI class="widget widget_text" id=text-4>
+  <H2 class=widgettitle>Blinux在干嘛呢</H2>
+  <DIV class=textwidget>最近在学习Oracle.</DIV>
+  <LI class="widget widget_text" id=text-5>
+  <H2 class=widgettitle>博主推荐VPS</H2>
+  <DIV class=textwidget>
+  <TABLE cellSpacing=0 cellPadding=5 width=241 align=center bgColor=#ffffff 
+  border=0>
+    <TBODY>
+    <TR>
+      <TD bgColor=#0077a2 colSpan=3><STRONG>博主推荐VPS</STRONG></TD></TR>
+    <TR>
+      <TD bgColor=#e7e7e7 colSpan=3>VPS 软件:vePortalt™ / OpenVZ™</TD></TR>
+    <TR>
+      <TD bgColor=#d9dbde colSpan=3>CPU: 1000MHZ 保障</TD></TR>
+    <TR>
+      <TD bgColor=#e7e7e7 colSpan=3>内存: 512MB 保障</TD></TR>
+    <TR>
+      <TD bgColor=#d9dbde colSpan=3>硬盘空间: 20GB (基于RAID配置)</TD></TR>
+    <TR>
+      <TD bgColor=#e7e7e7 colSpan=3>流量: 1000GB/月</TD></TR>
+    <TR>
+      <TD bgColor=#d9dbde colSpan=3>IP 地址: 2个</TD></TR>
+    <TR>
+      <TD bgColor=#e7e7e7 colSpan=3>技术管理:<A target=new>基础管理</A></TD></TR>
+    <TR>
+      <TD bgColor=#d9dbde colSpan=3>DDOS 保护:CISCO™ GUARD</TD></TR>
+    <TR>
+      <TD width=49 bgColor=#e7e7e7>官方价格</TD>
+      <TD width=77 bgColor=#e7e7e7>$5.95/MONTH</TD>
+      <TD width=85 bgColor=#e7e7e7><A href="http://www.shocr.com/go/burst/" 
+        target=_blank><IMG alt="check out" 
+        src="linux 查看内核版本 - Blinux.files/buynow.gif" 
+  border=0></A></TD></TR></TBODY></TABLE></DIV>
+  <LI class="widget widget_text" id=text-6>
+  <H2 class=widgettitle>本博客推荐使用的VPS</H2>
+  <DIV 
+  class=textwidget>Linode，国内口碑最好国外VPS<BR><BR>优点：xen架构、多条线路可供选择<BR><BR>Linode官方地址：<A 
+  href="http://www.shocr.com/go/Linode/" target=_blank 
+  titile="Linode">http://www.shocr.com/go/Linode/</A></DIV>
+  <LI class="widget widget_recent_entries" id=recent-posts-3>
+  <H2 class=widgettitle>最近文章</H2>
+  <UL>
+    <LI><A title=删除32位的rpm包 
+    href="http://www.shocr.com/remove-32-bit-rpm-package/">删除32位的rpm包</A>
+    <LI><A title=VNC的使用技巧 href="http://www.shocr.com/vnc-tips/">VNC的使用技巧</A>
+    <LI><A title=TCMalloc给mysql提速 
+    href="http://www.shocr.com/tcmalloc-to-mysql-speed/">TCMalloc给mysql提速</A>
+    <LI><A title="Oracle 10g 巡检脚本" 
+    href="http://www.shocr.com/dba_snapshot_database_10g/">Oracle 10g 巡检脚本</A>
+    <LI><A title=ntpdate和ntpd的区别 
+    href="http://www.shocr.com/ntpdate-ntpd/">ntpdate和ntpd的区别</A>
+    <LI><A title="Checking to see if Oracle CRS stack is already configured" 
+    href="http://www.shocr.com/checking-to-see-if-oracle-crs-stack-is-already-configured/">Checking 
+    to see if Oracle CRS stack is already configured</A>
+    <LI><A title="no server suitable for synchronization found" 
+    href="http://www.shocr.com/no-server-suitable-for-synchronization-found/">no 
+    server suitable for synchronization found</A>
+    <LI><A title=让sqlplus支持历史记录 
+    href="http://www.shocr.com/rlwrap-sqlplus/">让sqlplus支持历史记录</A></LI></UL>
+  <LI class="widget widget_wkc_recent_comments" id=wkc_recent_comments>
+  <H2 class=widgettitle>最新评论</H2>
+  <UL>
+    <LI>zzxzdw : <A class=comment_content 
+    title="View the entire comment by zzxzdw" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-937">您好，您能发给我一份资料吗，谢谢！！我的邮箱是zxiang1...</A>
+    <LI>hi-vps : <A class=comment_content 
+    title="View the entire comment by hi-vps" 
+    href="http://www.shocr.com/unixbench-5-vps-score/#comment-936">这是我的一个客户用unixbench4做的评测: 
+    http:...</A>
+    <LI>yitaiduo : <A class=comment_content 
+    title="View the entire comment by yitaiduo" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-935">http://www.shocr.com/video-tutorial-python/#comment-935</A>
+    <LI>wendal : <A class=comment_content 
+    title="View the entire comment by wendal" 
+    href="http://www.shocr.com/vnc-tips/#comment-934">领教了!!</A>
+    <LI>liangjian : <A class=comment_content 
+    title="View the entire comment by liangjian" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-933">谢谢，帮忙发一份</A>
+    <LI>c00lcmd : <A class=comment_content 
+    title="View the entire comment by c00lcmd" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-932">Blinux您好，麻烦你给俺抄送一份, 
+    邮箱：coolcmd...</A>
+    <LI>sancia : <A class=comment_content 
+    title="View the entire comment by sancia" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-931">我也想要一份， 
+    prinsipe[at]yeah.net</A>
+    <LI>andylu : <A class=comment_content 
+    title="View the entire comment by andylu" 
+    href="http://www.shocr.com/video-tutorial-python/#comment-930">http://www.shocr.com/video-tutorial-python/#comment-930</A></LI></UL>
+  <LI class="widget widget_categories" id=categories-4>
+  <H2 class=widgettitle>分类目录</H2>
+  <UL>
+    <LI class="cat-item cat-item-10"><A title="查看 linux 基础命令 下的所有文章" 
+    href="http://www.shocr.com/category/linux-basic-operation/">linux 基础命令</A>
+    <LI class="cat-item cat-item-36"><A title="查看 Linux 文化背景 下的所有文章" 
+    href="http://www.shocr.com/category/linuxæåèæ¯/">Linux 文化背景</A>
+    <LI class="cat-item cat-item-13"><A title="查看 linux 服务 下的所有文章" 
+    href="http://www.shocr.com/category/linux-service/">linux 服务</A>
+    <LI class="cat-item cat-item-127"><A title="查看 Linux 监控 下的所有文章" 
+    href="http://www.shocr.com/category/linux-çæ§/">Linux 监控</A>
+    <LI class="cat-item cat-item-44"><A title="查看 Linux 网络基础 下的所有文章" 
+    href="http://www.shocr.com/category/linux-network/">Linux 网络基础</A>
+    <LI class="cat-item cat-item-83"><A title="查看 Linux 软件 下的所有文章" 
+    href="http://www.shocr.com/category/linux-è½¯ä»¶/">Linux 软件</A>
+    <LI class="cat-item cat-item-1"><A title="查看 Linux的大杂烩 下的所有文章" 
+    href="http://www.shocr.com/category/no/">Linux的大杂烩</A>
+    <LI class="cat-item cat-item-115"><A title="查看 Mysql 下的所有文章" 
+    href="http://www.shocr.com/category/mysql/">Mysql</A>
+    <LI class="cat-item cat-item-136"><A title="查看 nginx 下的所有文章" 
+    href="http://www.shocr.com/category/nginx/">nginx</A>
+    <LI class="cat-item cat-item-145"><A title="查看 Oracle 下的所有文章" 
+    href="http://www.shocr.com/category/oracle/">Oracle</A>
+    <LI class="cat-item cat-item-152"><A title="查看 Oracle案例分析 下的所有文章" 
+    href="http://www.shocr.com/category/oracleæ¡ä¾åæ/">Oracle案例分析</A>
+    <LI class="cat-item cat-item-125"><A title="查看 Python 下的所有文章" 
+    href="http://www.shocr.com/category/python/">Python</A>
+    <LI class="cat-item cat-item-40"><A title="查看 RHCE 下的所有文章" 
+    href="http://www.shocr.com/category/rhce/">RHCE</A>
+    <LI class="cat-item cat-item-53"><A title="查看 Shell 下的所有文章" 
+    href="http://www.shocr.com/category/shell/">Shell</A>
+    <LI class="cat-item cat-item-69"><A title="查看 Troubleshooting 下的所有文章" 
+    href="http://www.shocr.com/category/troubleshooting/">Troubleshooting</A>
+    <LI class="cat-item cat-item-73"><A title="查看 Ubuntu 下的所有文章" 
+    href="http://www.shocr.com/category/ubuntu/">Ubuntu</A>
+    <LI class="cat-item cat-item-151"><A title="查看 集群/分布式 下的所有文章" 
+    href="http://www.shocr.com/category/éç¾¤åå¸å¼/">集群/分布式</A></LI></UL></LI></UL></DIV></DIV>
+<DIV class=clear id=footer>
+<DIV class=wrap><SPAN><A title=Linux博客 href="http://www.shocr.com/" 
+target=_blank>Linux博客</A> Powered By <A href="http://wordpress.org/" 
+target=_blank>WordPress </A>, Theme Design By <A href="http://www.imchen.com/" 
+target=_blank>Arne</A> , <A href="http://www.shocr.com/oracle/document/10gR2/" 
+target=_blank>Oracle 10g(R2) Document</A> , <A 
+href="http://www.shocr.com/oracle/document/11gR2/" target=_blank>Oracle 11g(R2) 
+Document</A>.</SPAN></DIV></DIV></DIV>
+<DIV style="DISPLAY: none">
+<SCRIPT language=JavaScript src="linux 查看内核版本 - Blinux.files/stat.htm"></SCRIPT>
+</DIV><!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk
+Page Caching using disk
+Database Caching 37/43 queries in 0.025 seconds using disk
+
+Served from: www.shocr.com @ 2011-08-05 00:11:24 --></BODY></HTML>

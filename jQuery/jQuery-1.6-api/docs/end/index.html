@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.end()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/miscellaneous-traversal/" title="View all posts in Miscellaneous Traversing">Miscellaneous Traversing</a></span>
+  
+  				</div>
+</div>
+<div id="end1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.end()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>终止在当前链的最新过滤操作，并返回匹配的元素集合为它以前的状态。</p>
+<ul class="signatures"><li class="signature" id="end"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.end()</h4></li></ul>
+<div class="longdesc">
+<p>最具jQuery的<a   target="_blank" href="http://api.jquery.com/category/traversing">DOM遍历</a>方法操作一个jQuery对象的实例，产生一个新的，当发生这种情况，这好像是一套新的元素推到一个堆栈里面的对象维护。每个连续的过滤方法推到一个新的元素堆栈设置。如果我们需要一个较旧的元素集，我们可以使用<code>end()</code>弹出套后退的堆栈。</p>
+<p>假设我们有一个页面上的几个候选名单：
+</p>
+<pre>
+&lt;ul class="first"&gt;
+   &lt;li class="foo"&gt;list item 1&lt;/li&gt;
+   &lt;li&gt;list item 2&lt;/li&gt;
+   &lt;li class="bar"&gt;list item 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class="second"&gt;
+   &lt;li class="foo"&gt;list item 1&lt;/li&gt;
+   &lt;li&gt;list item 2&lt;/li&gt;
+   &lt;li class="bar"&gt;list item 3&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p><code>end()</code>方法非常有用，当主要利用jQuery的链接属性。当不使用链，我们通常可以只调用了一支由变量名前面的对象，所以我们并不需要操作堆栈。随着<code>end()</code>虽然，我们可以串在一起的所有方法调用：</p>
+<pre>
+$('ul.first').find('.foo').css('background-color', 'red')
+  <code>.end()</code>.find('.bar').css('background-color', 'green');
+</pre>
+<p>
+This chain searches for items with the class <code>foo</code> within the first list only and turns their backgrounds red. Then <code>end()</code> returns the object to its state before the call to <code>find()</code>, so the second <code>find()</code> looks for '.bar' inside <code>&lt;ul class="first"&gt;</code>, not just inside that list's <code>&lt;li class="foo"&gt;</code>, and turns the matching elements' backgrounds green. The net result is that items 1 and 3 of the first list have a colored background, and none of the items from the second list do.</p>
+<p>A long jQuery chain can be visualized as a structured code block, with filtering methods providing the openings of nested blocks and <code>end()</code> methods closing them:</p>
+<pre>
+$('ul.first').find('.foo')
+  .css('background-color', 'red')
+.end().find('.bar')
+  .css('background-color', 'green')
+.end();
+</pre>
+<p>The last <code>end()</code> is unnecessary, as we are discarding the jQuery object immediately thereafter. However, when the code is written in this form, the <code>end()</code> provides visual symmetry and closure—making the program, at least to the eyes of some developers, more readable.</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Selects all paragraphs, finds span elements inside these, and reverts the selection back to the paragraphs.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p, div { margin:1px; padding:1px; font-weight:bold; 
+           font-size:16px; }
+  div { color:blue; }
+  b { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+    Hi there &lt;span&gt;how&lt;/span&gt; are you &lt;span&gt;doing&lt;/span&gt;?
+  &lt;/p&gt;
+
+  &lt;p&gt;
+    This &lt;span&gt;span&lt;/span&gt; is one of 
+    several &lt;span&gt;spans&lt;/span&gt; in this
+    &lt;span&gt;sentence&lt;/span&gt;.
+  &lt;/p&gt;
+
+  &lt;div&gt;
+    Tags in jQuery object initially: &lt;b&gt;&lt;/b&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    Tags in jQuery object after find: &lt;b&gt;&lt;/b&gt;
+
+  &lt;/div&gt;
+  &lt;div&gt;
+    Tags in jQuery object after end: &lt;b&gt;&lt;/b&gt;
+  &lt;/div&gt;
+&lt;script&gt;
+
+    jQuery.fn.showTags = function (n) {
+      var tags = this.map(function () { 
+                              return this.tagName; 
+                            })
+                        .get().join(", ");
+      $("b:eq(" + n + ")").text(tags);
+      return this;
+    };
+
+    $("p").showTags(0)
+          .find("span")
+          .showTags(1)
+          .css("background", "yellow")
+          .end()
+          .showTags(2)
+          .css("font-style", "italic");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Selects all paragraphs, finds span elements inside these, and reverts the selection back to the paragraphs.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { margin:10px; padding:10px; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;&lt;span&gt;Hello&lt;/span&gt;, how are you?&lt;/p&gt;
+&lt;script&gt;$("p").find("span").end().css("border", "2px red solid");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

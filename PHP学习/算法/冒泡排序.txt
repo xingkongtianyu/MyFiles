@@ -1,0 +1,37 @@
+PHP
+¡¡¡¡´úÂë1£º ¡¡¡¡
+<?php ¡¡¡¡
+//Ã°ÅÝÅÅÐò£¨Ò»Î¬Êý×é£©
+ ¡¡¡¡function bubble_sort($array) ¡¡¡¡{
+ ¡¡¡¡$count = count($array);
+ ¡¡¡¡if ($count <= 0) return false;
+ ¡¡¡¡for($i=0; $i<$count; $i++) ¡¡¡¡{
+ ¡¡¡¡for($j=$count-1; $j>$i; $j--) ¡¡¡¡{
+ ¡¡¡¡if ($array[$j] < $array[$j-1]) ¡¡¡¡{
+ ¡¡¡¡$tmp = $array[$j];
+ ¡¡¡¡$array[$j] = $array[$j-1];
+ ¡¡¡¡$array[$j-1] = $tmp;
+ ¡¡¡¡} ¡¡¡¡} ¡¡¡¡}
+ ¡¡¡¡return $array; ¡¡¡¡}
+ ¡¡?> 
+
+¡¡¡¡´úÂë2£º ¡¡¡¡
+<?php ¡¡¡¡
+//Ã°ÅÝÅÅÐò ¡¡¡¡
+function maopaosort($arr){
+ ¡¡¡¡for ($i=0;$i<count($arr)-1;$i++ ) {
+ ¡¡¡¡for ($j=0;$j<count($arr)-1-$i;$j++ ) { ¡¡¡¡
+if($arr[$j]>$arr[$j+1]) ¡¡¡¡{
+ ¡¡¡¡//½»»»¸³Öµ£¬²»Ê¹ÓÃÖÐ¼ä±äÁ¿
+ ¡¡¡¡$arr[$j]=$arr[$j+1]+$arr[$j];
+ ¡¡¡¡$arr[$j+1]=$arr[$j]-$arr[$j+1];
+ ¡¡¡¡$arr[$j]=$arr[$j]-$arr[$j+1];
+ ¡¡¡¡} ¡¡¡¡} ¡¡¡¡}
+ ¡¡¡¡return $arr;
+ ¡¡¡¡}
+ // end func ¡¡¡¡
+//ÊµÀý ¡¡¡¡
+$arr=array(7,3,6,1,5,2,11,4,44,33,22,88,44);
+ ¡¡¡¡print_r(maopaosort($arr));
+ ¡¡¡¡
+?>

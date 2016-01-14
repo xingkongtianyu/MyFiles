@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.load()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/document-loading/" title="View all posts in Document Loading">Document Loading</a></span>
+  
+  				</div>
+</div>
+<div id="load1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.load( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "load" 事件绑定一个处理函数。</p>
+<ul class="signatures">
+<li class="signature" id="load-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.load( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="load-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.load( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个方法是 <code>.bind('load', handler)</code> 的快捷方式。</p>
+<p>当所有子元素已经被完全加载完成时，<code>load</code>事件被发送到这个元素。此事件可以被发送到跟一个URL关联的任何元素：images, scripts, frames, iframes,  <code>window</code> 对象。</p>
+<blockquote><p>如果图像是从浏览器缓存中加载，Load事件有可能不会触发。为了考虑这种可能性，如果图像已准备就绪，我们可以使用一个特殊的立即触发的loda触发事件。<code>event.special.load</code>目前可以<a href="http://github.com/peol/jquery.imgloaded/raw/master/ahpi.imgload.js">作为一个可用的插件
+</a> 。 </p></blockquote>
+<p>例子,考虑了一个简单的图片页面：</p>
+<pre>&lt;img src="book.png" alt="Book" id="book" /&gt;</pre>
+<p>事件处理器可以绑定到图像上：</p>
+<pre>$('#book').load(function() {
+  // Handler for .load() called.
+});</pre>
+<p>只要图像已被加载，该处理程序被调用。</p>
+<p>在一般情况下，没有必要等待所有图像完全装入。如果代码可以更早的执行，通常最好把它在发送到<code>.ready()</code>方法处理。</p>
+<blockquote><p>Ajax的模块也有一个方法命名<a href="#p=load"><code>.load()</code></a> 。哪一个是被执行取决于传递给它的参数设置。</p></blockquote>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">页面完全加载包括图形时，运行函数。</span>
+</h4>
+<pre><code class="example">$(window).load(function () {
+  // run code
+});</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">对每个图片加载完成时，高度大于100的所有图像添加类bigImg。</span>
+</h4>
+<pre><code class="example">$('img.userIcon').load(function(){
+  if($(this).height() &gt; 100) {
+    $(this).addClass('bigImg');
+  }
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,384 @@
+Linux 常用命令使用方法大搜刮
+
+1.# 表示权限用户(如:root),$ 表示普通用户
+  开机提示:Login:输入用户名
+  password:输入口令   用户是系统注册用户成功登陆后，可以进入相应的用户环境.
+  退出当前shell,输入:exit
+
+2.useradd netseek 添加一个netseek用户
+  passwd netseek  给netseek这个用户设置密码.
+  (/etc/passwd /etc/group)
+  userdel netseek 删除账号
+  userdel -r netseek 删除账号连同自家目录.
+  [更详细的操作请参阅man page,和账号管理篇]
+
+3.查看命令
+  ls -l                显示文件列表
+  ls -al        -a 显示所有档案及目录 (ls内定将档案名或目录名称开头为"."的视为隐藏档，不会列出)
+  ls -al |grep '^d'   显示目录
+  ls -al |grep '^[^d]' 在一个目录中查询不包含目录的所有文件
+  ls -sh        (man ls 查看man帮助.)
+  
+  linux几种文件类型:
+  d    表示此文件是一个目录
+  -    表示此文件是一个普通文件
+  b    表示此文件是一个特殊的块设备I/O文件
+  c    表示此文件是一个特殊的字符设备I/O文件
+  l    表示此文件是一个连接文件。在其文件名称后紧跟与它连接的文件路径及名称
+
+  file 命令通过探测文件内容判断文件类型
+
+4.建立文件和目录
+  touch 1.txt
+  cat > 2.txt (用定向符创建文件，填写内容后，按ctrl+d保存内容)
+  mkdir mywork 建立mywork这个目录
+
+5.拷贝文件或目录
+  cp filename1 filename2
+  cp -r dir1 dir2 复制目录
+  cp -rf 参数f是删除已经存在的目标文件而不提示
+  cp -i  参数i和f相反，在覆盖目标文件之前将给出提示要求用户确认，回答y时目标文件将被覆盖，是交互式拷贝.
+
+6.删除文件和目录(删除文件或目录都可以用rm搞定)
+  rm 1.c //将1.c这个文件删除
+  rm -rf (强制删除文件或目录,删除时不提示.)
+
+7.移走目录或者改文件名
+  mv [opitons] 源文件或目录   目标文件或目录
+  [options]主要参数
+  -i:交互方式操作，如果mv操作将导致对已存在的目标文件的覆盖，此时系统询问是否重写，要求用户回答“y”或“n”，
+     这样可以避免误覆盖文件.
+  -f:禁止交互操作。mv操作要覆盖某个已有的目标文件时不给任何指示，指定此参数后i参数将不再起作用。
+  mv hello ../ 将hello目录或者文件移动上一级.
+  
+8.alias 别名
+  alias dir='ls -l'   输入dir，其实就相当于执行了ls -l
+
+
+9.权限的控制(rwx 421)
+  chmod +x hello.sh 赋于可执行权限.
+  (详细介绍一下权限的控制)
+  chmod 命令 权限修改 用法：chmod 一位8进制数 filename (rwx 421)
+　eg: chmod u+x filenmame      只想给自己运行，别人只能读
+  chown netseek.netseek mydir  改变用户属组
+
+
+    u：表示文件所有者
+    g：表示同组用户
+    o：表示其它用户
+    a：表示所有用户
+    opt则是代表操作，可以为：
+    +：添加某个权限
+    -：取消某个权限
+    =：赋予给定的权限，并取消原有的权限
+    而mode则代表权限：
+    r：可读 4
+    w：可写 2
+    x：可执行 1
+
+
+10.pwd 显示当前目录完整路径和改变目录
+  cd netseek 进入netseek这个目录
+  cd 退出当前目录
+  cd ../ 进入上一级目录.
+  cd - 返回上一次目录
+  cd ~ 返回主目录
+
+11. cat,more,less 命令
+  将某个文件的内容显示出来，两个命令不同的是:cat 把文件内容一直打印出来，而more则分展显示.
+  less 可以上下翻滚查看内容.
+  cat > 1.txt 可以填写或者复制内容,按ctrl+d保存
+  cat 1.c
+  more 1.c
+  head -n filename 显示第N行的内容
+  tail -n filename 显示后N行的内容
+  tail -n 20 /var/log/message 显示最新的20行日志
+
+12.设置linux时间和日期
+  date 命令("date MMDDhhmmYYYY.ss")
+  2006年7月24日12:37 ,30秒
+  date 072412372006.30
+  date -s 20:30:30 #设置系统时间为20: 30:30
+  date -s 2006-7-24 #设置系统时期为2006-7-24
+  clock -r #对系统Bios中读取时间参数
+  clock -w #将系统时间(如由date设置的时间)写入Bios
+
+13.查看找文件(find,grep,awk更多的请参照man page或shell编程专题讲解)
+  几种介绍:
+  find 路径  -name 文件名
+  find /etc -name named.conf
+  locate 通过文件名搜索文件的工具(要先通过updatedb建立索引数据库)
+  localte named.conf
+  whereis 是寻找二进制文件，同时也会找到其帮助文件
+  which 和where 相似，只是我们所设置的环境变量中设置好的路径中寻找；比如；
+
+14.查杀进程
+  ps aux
+  ps -ef |grep
+  kill -9
+  看看哪个进程占用的内存最大
+  ps -aux|sort +5n
+
+  将程序放在前后台执行
+  cp file1 file2 &
+  &与ctrl+z 你可以使用&或ctrl+z来将命令放在后台执行.
+  fg 是将放在后台执行的程序再放回前台.
+  jobs
+
+15.dd命令备份
+  dd if="input_file" of="out_file" bs="block_size" count="number"
+  参数:
+  if:就是input file可以是设备
+  of:就是output file也可以是设备
+  bs:规划的一个block的大小，如果没有设定时，预设是512bytes
+  count:多少个bs的意思.
+
+  dd if=/etc/password of=/tmp/passwd.bak 备份
+
+16.mount 加载一个硬件设备
+　 用法:mount [参数] 要加载的设备 载入点
+　 eg: mount /dev/cdrom
+　 cd /mnt/cdrom //进入光盘目录
+   u盘:
+   mkdir /mnt/usb；（注：创建挂载目录）
+   mount /mnt/sda1 /mnt/usb；(注：挂载U盘)
+   现在就可以使用U盘了，在/mnt/usb目录下的内容就是U盘里的内容了；
+   使用完后，用以下命令卸载U盘即可。
+   umount /mnt/usb
+   mount     列出系统所有的分区
+   mount -t iso9660 /dev/cdrom /mnt/cdrom   挂载光盘
+   mount -t vfat /dev/fd0 /mnt/floppy       挂载软盘
+   mount -t vfat -o iocharset=utf8,umask=000 /dev/hda2 /mnt/hda2   挂载fat32分区
+   mount -t ntfs -o nls=utf8,umask=000 /dev/hda3 /mnt/hda3         挂载ntfs分区
+   Linux-NTFS Project: http://linux-ntfs.sourceforge.net/
+   umount /mnt/hda3 缷载
+   注:挂载设备前，请先fdisk -l 看一下.
+
+17.su在不退出登陆的情况下，切换到另一个身份
+    用法: su -l 用户名(如果用户名缺省,则切换到root状态)
+　　eg:su -l netseek (切换到netseek这个用户，将提示输入密码),加上-表示切换到用户的环境变量.
+   
+    sudo 利用他可以执行root执行的权限
+
+18.whoami,id,w,lastlog,users,groups
+   w       查看用户登陆信息
+   who     查看当前登陆用户
+   last    最近一个月用户登陆情况
+   lastlog 检查某特定用户上次登录的时间，并格式化输出上次登录日志/var/log/lastlog的内容
+   whoami  确认自己身份.
+   id      打印出自己的UID以及GID.(UID:用户身份唯一标识.GID:用户组身份唯一标识.每一个用户只能有一个唯一的UID和GID.)
+   users
+   groups  用户所归属的用户组查询；
+   finger -l netseek root
+   finger -s 或者直接finger
+   可以让使用者查询一些其他使用者的资料
+　 eg: finger //查看所用用户的使用资料
+　 finger root //查看root的资料
+
+
+19.用户用过的命令和执行历史执行的命令
+   history 显示用户过去命用的命令
+   !!执行最近一次的命令
+
+20.uname 查看linux系统信息
+   参数:-a 所有信息 -r 版本号 -n 主机名
+
+21.建立软连接
+   ln [-sf] source target
+   ln souce-file hard-link
+   ln -sf source-file soft-link
+   s表示软连接,f表示，若有同名文件在，则将它覆盖过去.
+   注：硬链接不能为目录创建，只有文件才能创建硬链接。
+
+22.查看目录
+   du -sh   目录或者文件
+   du -m    du系统默认输出是以KB,以参数-m表示以MB显示.
+   cat /etc/fstab   查看分区列表
+   fdisk -l  
+   df -h
+   df -ah
+
+23.查看linux系统占用的资源(top,free,uptime)
+   top   查看后台程序，监控系统性能
+   top -d 2 每两秒列新一次
+   top -d -2 -p3690 查看某个PID
+   top -b -n 2 >/tmp/top.txt 将top的信息进行2次，然后将结果输出到/tmp/top.txt
+   
+   free -m 查看系统内存使用情况
+
+   uptime  显示目前系统开机时间(查看开机多久，多少人登陆，过去1,5,15分钟系统的负载)
+
+
+24.文件比软件:
+   cmp  cmp（“compare”的缩写）命令用来简要指出两个文件是否存在差异，它的使用权限是所有用户
+   diff diff命令用于两个文件之间的比较，并指出两者的不同，它的使用权限是所有用户
+
+25.远程操作与文件传输
+   ssh user@remote.machine
+   scp user@remote.machine:/remote/path /local/path
+   scp /local/path user@remote.machine:/remote/path
+
+26.编译c/c++文件
+   gcc
+   gcc -v 查看GCC版本
+   gcc -o test test.c 2>errfile 编译test.c时若有错误信息，则将错误信息重定向到errfile
+
+27.chattr +i filename 禁止删除，chattr -i filename 取消禁止
+   lsattr 查看隐藏档属性
+
+
+28.自动化执行
+   at 执行一次
+   crontab 定时循环执行程序
+   crontab 介绍
+   1 以root登录
+   2 # crontab -e
+   3 加入一行
+   1 */12 * * * /usr/sbin/ntpdate pool.ntp.org
+   分钟　（0-59）
+   小時　（0-23）
+   日 期　（1-31）
+   月份　（1-12）
+   星期　（0-6）//0代表星期天
+
+
+29.关机和重启:
+   shutwond [-t 秒数] [-rkhncff] 时间 [警告信息]
+   -t 秒数:设置在切换至不同的runlevel之前，警告和删除两信号之彰间的延迟时间(秒)
+   -k 发出警告信息，但不是真的要shutdown
+   -r shutdown这后重新开机
+   -h shutdown这后开机
+   -n 不经过init,由shutdown命令本身来做开机工作(不建议你使用)
+   -f 重新开机时，跳过fsck指令，不检查文件系统.
+   -F 重新开机时，强迫做fsck检查.
+   -c 将已经正在shutdown的动作取消
+   shutdown -h now 立刻关机，其中now相当于时间为0,halt,poweroff也可以关机,或者直接init 0
+   shutdown -h 20:30  系统将在今晚的8:30关机
+   shutdown -h +10    系统再过十分钟后自动关机.
+   shutdown -t3 -r now  立刻重新开机，但在警告和删除processes这间，
+   shutdown -k now  'Hey! Go away! now...' 发出警告信息，但没有真的关机.
+   
+   
+   reboot:
+   shutdown -r now 几乎与reboot相同，不关建议用reboot执行如下:
+   shutdown -r +30 'The system wiil reboot'
+   shutdown -r +10 'Hey!Go away!'  10分钟后系统重启.
+   #sync; sync; sync; reboot   注：sync将数据同步写入硬盘
+   halt命令相当于shutdown -h now ，表示立刻关机。
+   reboot命令相当于shutown -r now ，表示立刻重起。
+
+30.如何改变启动模式运行级别
+   vi /etc/inittab
+   将5改成3，启动后就可以变成字符模式。
+   startx 或者 init 5 就可以进入图形化界面.
+   runlevel 显示当前运行级别
+
+  如何切换至单用户模式
+  利用telinit或init(其实telinit只是一个synbol link to init)
+  telinit 1 或者 init S 即可，当然telinit S也是可以的.
+
+  如何使ctrl+alt+del 三键失效的方法
+  #vi /etc/inittab
+  在ca::ctrlaltdel:/sbin/shutdonw -t3 -r now之前加上注释#
+  然后执行#telinit q ,参数q是要telinit重新检查一次/etc/inittab
+
+31.TAB  巧用tab键，当你不知道文件或命令的全名是请连续按两下tab键.
+
+32.clear 清屏
+
+33.dmesg |more 显示开机信息(查看系统启动时硬件信息)
+  
+34.改变程序执行的优秀级
+   nice    设置优先权 nice -n -5 vi & 用root给一个nice值为-5,用于执行vi
+   renice  调整已存在优先权
+
+35.模块相关的命令
+   lsmod 显示已经载入系统的模块
+   depmod 分析可载入系统的相依性
+   modinfo 显示kernel模块的信息
+   insmod  载入模块
+   modprobe 自动处理可载入模块
+   rmmod    删除模块
+  
+36.chkconfig --list 显示各种服务的状态，利用chkconfig可以轻松管理init脚本.
+
+37.linux的几种解压缩命令
+   compress aaa  将aaa文件压缩成为aaa.Z
+   compress -d aaa.z 将aaa.z文件压缩成aaa
+   
+   gzip aaa 压缩命令
+   gzip -d aaa.gz  解压命令
+   
+   bzip2 -z filename 压缩,同上加-d参数解压
+   bzcat filename.bz 查看压缩文件内容
+   
+   tar czvf aaa.tar.gz aaa 将目录aaa压缩成aaa.tar.gz
+   tar -N '2007/03/01' -zcvf home.tar.gz /home 在/home当中,比2007/03/01新的文件才备份.
+   tar --exclude /home/cao -zxvf myfile.tar.gz /home/* /etc 要备份/home,/etc，但不要/home/cao
+   cd /tmp; tar -cvf -/etc | tar -xvf - 将/etc/打包后直接解开/tmp底下，而不产生文件.
+   tar zxvf aaa.tar.gz 解压缩命令.
+   tar jxvf aaa.tar.bz2 解压命令
+   tar zxvf aaa.tar.gz -C /var/www 将aaa.tar.gz解压到/var/www目录下
+   cpio -covB > [file|device] 备份
+   cpio -icduv < [file|device] 还原
+
+38.网络命令
+   ifconfig 显示或设置网络设备,可以查看当前ip,类似于windows里的ipconfig
+   service network restart(/etc/rc.d/init.d/network restart) 重启网卡
+   ifdown eth0 关闭网卡
+   ifup eth0 开启网卡
+   route -n 查看路由表
+   route add -net 192.168.20.1 netmask 255.255.255.0 dev eth0
+   
+   netstat 查看网络连接情况
+   netstat -i 显示网卡运行情况
+   netstat -r 查看主机的路由列表
+   
+   traceroute
+   
+   hostname 显示主机名
+   hostname -i 显示当前主机名的IP.
+
+39.系统集成管理菜单.
+   setup   系统服务管理命令
+   ntsysv  设置系统服务
+
+
+40.fdisk /mbr 删除GRUB
+
+41.数据库启动
+启动mysql：
+service mysqld start(/etc/rc.d/init.d/mysqld start)
+mysql -uroot -p 输入密码即可操作mysql数据库.
+
+启动Oracle
+su - oracle
+$lsnrctl stop
+$lsnrctl start
+sqlplus /nolog
+conn /as sysdba(connected)
+startup
+
+
+
+42.安装软件包
+rpm包安装:
+rpm -ivh xxx.rpm         安装rpm包
+rpm -qa --last | less    根据安装日期显示已经安装的包
+rpm -qa |grep mysql -i   查询系统是否安装mysql包(-i,忽略大小写)
+rpm -e                   删除安装的软件包
+rpm -e mysql* --nodpes   强制删除相关的软件包
+rpm --test               测试安装
+rpm -qi                  查询mysql套件的说明资料
+rpm -qpl xxx.rpm         查看rpm包内含的内容.
+rpm -qc[d]               设定档与说明档
+rpm -Uvh                 升级安装
+rpmbuild --bb SPECS/xxx.spec 重新装将xxx.spec编译成rpm包.
+rpmbuild --rebuild packagename.src.rpm 重新把.src.rpm编译成rpm包.
+
+源码编译安装(经典)
+./configure              检查系统信息(./configure --help | more 帮助信息，可以看到相关的参数设定)
+make clean               清除之前留下的文件
+make                     编译
+make install             安装
+注:源码包安装，一般先将文件解压，安装过程大致上面几步，具体说明一般见解压后目录里的(INSTALL,READEME说明.)

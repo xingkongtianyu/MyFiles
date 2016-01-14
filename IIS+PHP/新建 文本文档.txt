@@ -1,0 +1,26 @@
+apache2.2.22+php5.4+sqlserver2008配置（相关经验总结）
+2012-08-10 12:53:40
+标签：php sqlserver apache
+原创作品，允许转载，转载时请务必以超链接形式标明文章 原始出处 、作者信息和本声明。否则将追究法律责任。http://313968.blog.51cto.com/303968/960196
+ 1、由于支持windows的最高apache版本只有apache2.2.22，因此选择他
+2、注意php5.4没有vc6的版本，只有vc9的版本，因此服务器上需要安装vcredist.exe支持
+3、由于5.3版本之后php没有自带的连接sqlserver的驱动，因此需要去微软网站下载phpdriverforsqlserver。需要注意的是2.0的版本不支持php5.4，因此必须使用3.0的版本。
+4、php5.4有线程安全和费线程安全版本，phpdriverforsqlserver也得使用对应的版本才行。
+5、最重要的一点，服务器上需要安装sqlserver nativeclient程序。并且phpdriverforsqlserver 3.0必须使用sqlserver nativeclient 2012，装2008都不可以，太坑人了，在这里搞了好久。最好才在phpdriverforsqlserver的帮助文档里发现。这个故事告诉我们，一定要看文档呀，先不要急着上网查，泪奔~~~~~
+
+
+
+报错
+Call to undefined function sqlsrv_connect() 
+
+用phpinfo()看看有没见到sqlsrv的信息,如果有就恭喜你,你的配置已经没问题了,只要下载个Microsoft SQL Server 2012 Native Client安装好重启Apache或IIS,再重启下SQl Server就OK!
+
+这个问题MS文档上有说明的,5.2的用2008的客户端,5.3以上要用2012的客户端,还要区分ts和nts版本
+
+关于VC6和VC9的区别
+
+VC6 版本是使用 Visual Studio 6 编译器编译的，如果你是在windows下使用Apache+PHP的，请选择VC6版本。
+
+VC9 版本是使用 Visual Studio 2008 编译器编译的，如果你是在windows下使用IIS+PHP的，请选择VC9版本。
+
+因为3.0的驱动是需要Microsoft SQL Server Native Client 2012，而2012版本的只能装win7内核系列的服务器上。

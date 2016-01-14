@@ -1,0 +1,97 @@
+
+PHP设计模式——适配器模式
+2010年12月4日  2,758 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——适配器模式
+
+适配器模式一般用来更改后的API改进类，要让它与其他的现有类相兼容。
+
+举例：
+如果有两个模板引擎，一个是smarty 一个是 phptal，现在的程序是用的smarty模板而不是phptal，
+如果想把smarty模板引擎改为phptal，又不想更改使用改模板的程序代码，怎么办？这时，就用到了PHP设计模式中的“适配器模式”。
+
+看演示：
+
+
+	
+
+<?php
+/*
+ *
+ * */
+//模仿一个Smarty类
+class smarty {
+	private $vars=array();
+ 
+	public function assgin($var,$value){//传值
+		$this->vars[$var]=$value;
+	}
+ 
+	public function display($tpl){//加载输出
+		echo $tpl." html arr:<pre>";
+		print_r($this->vars);
+	}
+}
+ 
+$smarty=new smarty();
+$smarty->assgin("Name","WEB开发笔记");
+$smarty->assgin("URL","http://www.chhua.com");
+$smarty->display("index.tpl");
+//调用正常。
+?>
+
+假设现在出现了一个问题， smarty类不稳定，我们需要换成phptal，又不想去更改程序源码，怎么办？
+以下，我们就写一个适配器.
+
+
+	
+
+<?php
+ 
+//模仿一个phptal类
+class phptal{
+	private $vars=array();
+ 
+	public function set($var,$value){//传值
+		$this->vars[$var]=$value;
+	}
+ 
+	public function fetch($tpl){//加载输出
+		echo $tpl." html arr:<pre>";
+		print_r($this->vars);
+	}
+ 
+	public function setAll($vars){//传入数组的时候
+		foreach ($vars as $key=>$value){
+			$this->vars[$key]=$value;
+		}
+	}
+}
+ 
+//写一个接口
+interface smartyInterface {
+	public function assgin($var,$value);
+	public function display($tpl);
+}
+ 
+//smarty 适配器 API 
+class smarty implements smartyInterface {//smarty 适配器 API 
+	private $vars=array();
+ 
+	public function assgin($var,$value){
+		$this->vars[$var]=$value;//在PHPTAL对象存在前存值
+	}
+ 
+	public function display($tpl){
+		$phptal=new phptal();
+		$phptal->setAll($this->vars);
+		$phptal->fetch($tpl);
+	}
+}
+ 
+$smarty=new smarty();
+$smarty->assgin("Name","WEB开发笔记");
+$smarty->assgin("URL","http://www.chhua.com");
+$smarty->display("index.tpl");
+/*通过智适配器运行正常*/
+?>

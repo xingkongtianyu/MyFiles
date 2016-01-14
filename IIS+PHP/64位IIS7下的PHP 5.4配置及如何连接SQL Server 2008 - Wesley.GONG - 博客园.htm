@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0062)http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" type="text/javascript" src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/gpt.js"></script><script type="text/javascript" async="" src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/ga.js"></script>
+
+<title>64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/style.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wesgong/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wesgong/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wesgong/wlwmanifest.xml">
+<script src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wesgong';</script>
+<script src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/blog-common.js" type="text/javascript"></script>
+<script async="" type="text/javascript" src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/pubads_impl_31.js"></script><script type="text/javascript" src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/osd.js"></script></head>
+<body>
+<a name="top"></a>
+
+
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tbody><tr>
+	<td width="299" background="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/banner1.jpg"></td>
+	<td background="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/banner.jpg">
+
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wesgong/">Wesley.GONG</a><br>
+		
+	</div>
+</div>
+</td>
+	<td width="296" background="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/banner2.jpg"></td>
+</tr>
+</tbody></table>
+<div id="mylinks"><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp; &nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/wesgong/">首页</a>&nbsp; &nbsp;
+<a href="http://q.cnblogs.com/" class="menu" target="_blank">博问</a>&nbsp; &nbsp;
+<a href="http://home.cnblogs.com/ing/" class="menu" target="_blank">闪存</a>&nbsp; &nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/wesgong/admin/EditPosts.aspx?opt=1">新随笔</a>&nbsp; &nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/wesgong/rss">订阅</a>
+<a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/wesgong/rss"><img src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/xml.gif" alt="订阅"></a>&nbsp; &nbsp;
+<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/wesgong/admin/EditPosts.aspx">管理</a>
+
+</div>
+<div id="mytopmenu">
+	
+		<div id="mystats">
+			
+
+<div class="blogStats">
+posts - 5,&nbsp;
+comments - 0,&nbsp;
+trackbacks - 0
+
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+
+
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html">64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008</a>
+	</div>
+	<div id="cnblogs_post_body"><p>操作系统：Windows Server 2008 R2 SP1（x64）</p>
+<p>数据库：SQL Server&nbsp;2008 R2 SP1（x64）</p>
+<p>PHP：5.4.x</p>
+<p>先用手动安装，fastcgi模式，这个网上教程很多，很快就装完了。再安装<span id="runningHeaderText">Microsoft Drivers for PHP for SQL Server</span>，但是用PDO连接SQL Server&nbsp;2008数据库时，提示“<span style="color: #ff0000;">could not find driver1</span>”，意即mssql驱动没有加载成功。在网页上执行phpinfo显示所有参数查看，果然没有加载mssql驱动！</p>
+<p>根据微软驱动自带的帮助文档仔细核对：</p>
+<p>To load the Microsoft Drivers for PHP for SQL Server when PHP is started, first move a driver file into your extension directory. Then, follow these steps:</p>
+<ol>
+<li>
+<p>To enable the SQLSRV driver, modify <span>php.ini</span> by adding the following line to the extension section, or modifying the line that is already there (this example uses the version 3.0 thread safe driver for PHP 5.3):</p>
+<div class="code">
+<table style="width: 100%;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td colspan="2">
+<pre>extension=php_sqlsrv_53_ts.dll</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To enable the PDO_SQLSRV driver, modify <span>php.ini</span> by adding the following line to the extension section, or modifying the line that is already there (this example uses the version 3.0 thread safe driver for PHP 5.3):</p>
+<div class="code">
+<table style="width: 100%;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td colspan="2">
+<pre>extension=php_pdo_sqlsrv_53_ts.dll</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li>
+<p>If you want to use the PDO_SQLSRV driver, the php_pdo.dll must be available, either as a built-in extension, or as a dynamically-loaded extension. If you need to load the PDO_SQLSRV driver dynamically, the php_pdo.dll must be present in the extension directory and the the following line needs to be in the php.ini:</p>
+<div class="code">
+<table style="width: 100%;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td colspan="2">
+<pre>extension=php_pdo.dll</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li>
+<p>Restart the Web server.</p>
+</li>
+</ol>
+<p>发现PHP的安装目录下根本没有php_pdo.dll文件，所以加载失败也不足为奇。</p>
+<p>捣鼓了几个小时，最后没有办法，卸载PHP，通过Web Flatform Installer来安装PHP，在弹出的可选组件中，赫然有“<strong><span style="color: #ff0000;">Microsoft SQL Server 2012 Native Client</span></strong>”一项，不太明白为什么，我自己的机器上已经有2008 R2版的Native Client了呢，会不会多此一举徒劳无功呢？然而安装结束后，连IIS都不用重启，就可以连上数据库了，震精，哥彻底无语！</p>
+<p>看来最新的php已经修改了SQL Server驱动加载的模式，不再需要php_pdo.dll了，却需要一个最新的Native Client，可惜微软的文档上没有说明，让我抓瞎了好久。</p>
+<p>另外，<span style="color: #ff0000;">Web Flatform Installer</span>是个不错的东西，推荐一下。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info"><div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/wesgong/tag/IIS7/">IIS7</a>, <a href="http://www.cnblogs.com/wesgong/tag/php/">php</a>, <a href="http://www.cnblogs.com/wesgong/tag/mssql/">mssql</a>, <a href="http://www.cnblogs.com/wesgong/tag/SQL%20Server/">SQL Server</a></div>
+<div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg">好文要顶</a>
+<a id="green_channel_follow" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/Wesley.GONG" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博"><img src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/wesgong/">Wesley.GONG</a><br>
+<a href="http://home.cnblogs.com/u/wesgong/followees">关注 - 0</a><br>
+<a href="http://home.cnblogs.com/u/wesgong/followers">粉丝 - 0</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+	<div class="diggit"> 
+		<span class="diggnum" id="digg_count">0</span>
+	</div>
+	<div class="buryit"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/wesgong/archive/2009/05/05/1450164.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wesgong/archive/2009/05/05/1450164.html" title="发布于2009-05-05 18:35">ASP读取Excel出错的解决方法</a><br><a href="http://www.cnblogs.com/wesgong/archive/2013/04/16/3024242.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wesgong/archive/2013/04/16/3024242.html" title="发布于2013-04-16 16:08">阿里云服务器95折优惠</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2013-03-14 14:36</span> <a href="http://www.cnblogs.com/wesgong/">Wesley.GONG</a> 阅读(<span id="post_view_count">658</span>) 评论(<span id="post_comment_count">0</span>)  <a href="http://www.cnblogs.com/wesgong/admin/EditPosts.aspx?postid=2959328" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html#">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=53418,cb_entryId=2959328,cb_blogApp=currentBlogApp,cb_blogUserGuid='f28fff05-f502-de11-9e4d-001cf0cd104b',cb_entryCreatedDate='2013/3/14 14:36:00';loadViewCount(cb_entryId);</script>
+
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments">刷新评论</a><a href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html#">刷新页面</a><a href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder">
+
+<div id="google_ad_c1" class="c_ad_block">
+    
+    <div id="div-gpt-ad-1346480159711-0" style="width: 300px; height: 250px;">
+    
+    <div id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;" src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div>
+</div>
+<div id="blog_news_kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/193863/" target="_blank">盘点：那些改变世界的日本发明</a><br> ·  <a href="http://news.cnblogs.com/n/193862/" target="_blank">诺基亚扩大在华业务 启用北京新总部</a><br> ·  <a href="http://news.cnblogs.com/n/193861/" target="_blank">百度金融布局移动端：将推百度理财App</a><br> ·  <a href="http://news.cnblogs.com/n/193860/" target="_blank">小米试水微信网购：11月28日开售15万台小米3手机</a><br> ·  <a href="http://news.cnblogs.com/n/193859/" target="_blank">畅游发布首款3D开源游戏引擎Genesis-3D</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/186836/" target="_blank">工程师的生活</a><br> ·  <a href="http://kb.cnblogs.com/page/193670/" target="_blank">淘宝应对"双11"的技术架构分析</a><br> ·  <a href="http://kb.cnblogs.com/page/181762/" target="_blank">一次优秀的代码提交应该包含什么?</a><br> ·  <a href="http://kb.cnblogs.com/page/152694/" target="_blank">到底怎么样才叫看书</a><br> ·  <a href="http://kb.cnblogs.com/page/193364/" target="_blank">最精彩的英语学习经验总结：俺的英语之路</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div></div>
+<script type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+
+<div class="newsItem">
+	<div id="blog-news" style=""><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wesgong/">Wesley.GONG</a><br>园龄：<a href="http://home.cnblogs.com/u/wesgong/" title="入园时间：2009-02-25">4年8个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/wesgong/followers/">0</a><br>关注：<a href="http://home.cnblogs.com/u/wesgong/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+<br>			
+			<div id="blog-calendar-block" style=""><div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);">&lt;</a></td><td align="center">2013年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td align="center">1</td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center"><a href="http://www.cnblogs.com/wesgong/archive/2013/03/14.html"><u>14</u></a></td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td></tr>
+</tbody></table></div>
+</div>
+			<div id="blog-sidecolumn">
+
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" class="input_my_zzk">&nbsp;<input type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+
+
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_0" href="http://www.cnblogs.com/wesgong/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_1" href="http://www.cnblogs.com/wesgong/MyComments.html">我的评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_2" title="我发表过评论的随笔" href="http://www.cnblogs.com/wesgong/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_3" href="http://www.cnblogs.com/wesgong/RecentComments.html">最新评论</a></li>
+	
+		<li><a id="ctl01_rptMainLinks_lnkLinkItem_4" href="http://www.cnblogs.com/wesgong/tag/">我的标签</a></li>
+	
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div>
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/wesgong/tag/asp/">asp</a>(1)</li><li><a href="http://www.cnblogs.com/wesgong/tag/excel/">excel</a>(1)</li><li><a href="http://www.cnblogs.com/wesgong/tag/IIS7/">IIS7</a>(1)</li><li><a href="http://www.cnblogs.com/wesgong/tag/mssql/">mssql</a>(1)</li><li><a href="http://www.cnblogs.com/wesgong/tag/php/">php</a>(1)</li><li><a href="http://www.cnblogs.com/wesgong/tag/SQL%20Server/">SQL Server</a>(1)</li>
+</ul>
+</div>
+
+
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/wesgong/archive/2013/04.html">2013年4月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/wesgong/archive/2013/03.html">2013年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/wesgong/archive/2009/05.html">2009年5月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/wesgong/archive/2009/04.html">2009年4月 (1)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章分类</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/wesgong/category/177820.html">ASP</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/wesgong/category/177816.html">ASP.NET(C#)</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/wesgong/category/177819.html">CSS/HTML</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/wesgong/category/177818.html">JavaScript</a></li>
+			
+				<li class="catListItem"> <a id="ctl03_CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/wesgong/category/177817.html">SQL Server</a></li>
+			
+				</ul>
+			
+	
+
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+</ul>
+</div>
+</div>
+
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html">1. 64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008(658)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2009/05/05/1450164.html">2. ASP读取Excel出错的解决方法(360)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2009/04/08/1431810.html">3. DateTime.ToString()显示以"/"分隔的日期格式(143)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2013/04/16/3024242.html">4. 阿里云服务器95折优惠(21)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2013/04/26/3045298.html">5. SQL Server 2008升级到2012后全文索引搜索不到结果的解决方法(16)</a></li></ul></div>
+</div>
+
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/wesgong/archive/2009/04/08/1431810.html">1. DateTime.ToString()显示以"/"分隔的日期格式(0)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2009/05/05/1450164.html">2. ASP读取Excel出错的解决方法(0)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2013/04/16/3024242.html">3. 阿里云服务器95折优惠(0)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2013/04/26/3045298.html">4. SQL Server 2008升级到2012后全文索引搜索不到结果的解决方法(0)</a></li><li><a href="http://www.cnblogs.com/wesgong/archive/2013/03/14/2959328.html">5. 64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008(0)</a></li></ul></div>
+</div>
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+
+
+<div class="footer">
+	
+	Copyright ©2013 Wesley.GONG Powered By<a href="http://www.cnblogs.com/">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+</div>
+<script type="text/javascript" src="./64位IIS7下的PHP 5.4配置及如何连接SQL Server 2008 - Wesley.GONG - 博客园_files/google-analytics.js"></script>
+
+
+<iframe id="google_osd_static_frame_442775960545" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>

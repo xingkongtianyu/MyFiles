@@ -1,0 +1,14 @@
+问题: apache不能加载外挂php模块. & apache加载外挂php模块后不能开机自启. 
+解决:这是由SELinux的安全策略配置不当引起的.在Fedora Core 的官方网站上有相关的Apache/SELinux的策略调整文档.如果嫌麻烦,可以直接修改/etc/selinux/config 将SELinux禁用. 
+
+
+如何禁止SELinux
+不明白selinux还有什么存在的必要, mysqld被拒绝存取, 郁闷了我一星期. 
+
+解决方法:
+
+vi /etc/sysconfig/selinux 
+SELINUX=enforcing --> SELINUX=disabled 
+
+存盘退出
+

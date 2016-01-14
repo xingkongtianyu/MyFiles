@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.one()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span>
+  
+  				</div>
+</div>
+<div id="one1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.one( eventType, [ eventData ], handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>附加一个处理事件到元素。处理函数在每个元素上最多执行一次。</p>
+<ul class="signatures"><li class="signature" id="one-eventType-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.1/">1.1</a></span>.one( eventType, [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventType</strong>一个包含一个或多个JavaScript事件类型的字符串，比如"click"或"submit,"或自定义事件的名称。</p>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每当事件触发时执行的函数。</p>
+</li></ul>
+<div class="longdesc">
+<p>这种方法是和<code>.bind()</code>相同的 ，但该处理函数第一次调用后就解除绑定。举个例子：</p>
+<pre>$('#foo').one('click', function() {
+  alert('This will be displayed only once.');
+});
+</pre>
+<p>在代码执行后，点击id为<code>foo</code>的元素将显示警报。随后的每次点击什么都不做。此代码是等效于：</p>
+<pre>$('#foo').bind('click', function(event) {
+  alert('This will be displayed only once.');
+  $(this).unbind(event);
+});
+</pre>
+<p>换句话说，从一个定期绑定处理函数显式调用<code>.unbind()</code>具有完全相同的效果。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Tie a one-time click to each div.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { width:60px; height:60px; margin:5px; float:left;
+background:green; border:10px outset; 
+cursor:pointer; }
+p { color:red; margin:0; clear:left; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+&lt;div&gt;&lt;/div&gt;
+&lt;p&gt;Click a green square...&lt;/p&gt;
+&lt;script&gt;
+var n = 0;
+$("div").one("click", function(){
+var index = $("div").index(this);
+$(this).css({ borderStyle:"inset",
+    cursor:"auto" });
+$("p").text("Div at index #" + index + " clicked." +
+  "  That's " + ++n + " total clicks.");
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To display the text of all paragraphs in an alert box the first time each of them is clicked:</span>
+</h4>
+<pre><code class="example">$("p").one("click", function(){
+alert( $(this).text() );
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

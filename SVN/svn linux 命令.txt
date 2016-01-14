@@ -1,0 +1,151 @@
+svn linux 命令
+
+HEAD 版本库中最新或最年轻的版本
+BASE
+1.从svn拉代码(应该是Apache + svn)：
+
+sudo svn checkout --username=jacky --password=111111  http://192.108.10.18:7001/gameserver/srcCode  /myPath
+
+2.一般，上传svn某个修改后的文件，命令如下：
+
+svn commit -m "注释" xxx.cpp
+而如果我们的工程很大，修改的文件比较多，这时候我们可以在全部源代码所在的目录执行如下命令
+svn commit -m "注释"
+，svn自动为我们识别修改过得代码。
+
+3.新建文件并添加到svn
+svn add file
+例如：svn add test.php(添加test.php)
+svn add *.php(添加当前目录下所有的php文件)
+svn add  --auto-props  test.php (保持文件的wrx属性,主要是解决在windows下上传linux可执行文件后，可执行属性消失的问题，先svn delete 再此操作)
+如果改变注意取消add操作，执行以下命令：
+svn revert test.php
+
+
+如果在linuxemacs23环境下，在svn添加代码文件(eg tst.cpp),更新至vc2005可能会出现乱码，感觉是utf8问题，vc汉字默认是gbk编码的。
+4.显示某个文件tst.cpp修改的log
+4.1svn log path (注意！是指svn路径)
+例如：svn log tst.cpp 显示这个文件的所有修改记录，及其版本号的变化.
+4.2 不全部显示
+svn log -r 5:19
+svn log -r 19:5   显示顺序相反
+svn log -r HEAD  显示最新版本库信息,加入选项 -v 可以显示更改的详细内容
+svn log -r {2009-10-30}:{2009-10-28}   日期在前的先显示！！
+svn log -r {2009-10-30}  显示一天有时候会不好使，不知为何。
+特别注意：如果只是指定了日期而没有时间，，例如2006-11-27,你也许会以为Subversion会给你11-27号最后的版本，相反，你会得到一个26号版本，甚至更早。日过你给一个日期，而没有时间，subversion会假定时间是00:00:00，所以在27号找不到任何版本。因此可以向后错一天。呵呵。
+
+5. 显示版本间的不同之处
+5.1 svn diff path(将修改的文件与基础版本比较)
+例如：svn diff test.php
+5.2 svn diff -r m:n path(对版本m和版本n比较差异)
+例如：svn diff -r 200:201 test.php
+简写：svn di
+5.3 svn diff -c  n tst.txt (显示n和n-1版本的差异)
+如果感觉自己误修改了某处，但是不知道在哪里修改的，
+可以执行源码目录下：  svn diff
+
+
+
+6.显示目录下的文件和子目录的状态，正常状态不显示
+1）svn status path
+【?：不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】
+2）svn status -v path(显示文件和子目录状态)
+第一列保持相同，第二列显示工作版本号?，第三和第四列显示最后一次修改的版本号和修改人。
+注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。
+简写：svn st
+svn st |egrep '(\.h$)|(\.cpp$)'
+
+7.显示文件夹或文件的svn路径, 查看文件详细信息--比较常用
+svn info path
+例如：svn info test.php 产生两个版本号(修订版(Revision),最后修改的修订版)输出信息
+修订版(Revision)：是所属版本库根的版本号,源代码中任何一个文件的变动都能引起它的变化，这是一个全局的,修订号是针对整个目录树的，而不是单个文件.
+最后修改的修订版：是test.php的版本号
+务必注意上面两个版本号的区别，另外，如果用svn update 这两个值都有可能刷新。
+
+8.代码更新或更新至某个版本
+svn update -r m path
+(svn checkout 亦有此功能)
+例如：
+svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。
+svn update -r200 test.php(将版本库中的文件test.php还原到版本200)
+以上将某个文件或目录恢复到以前的版本，有时候还是用得到的。
+svn update test.php(更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit)
+简写：svn up   DirPath
+
+9.解决冲突
+
+svn resolved: 移除工作副本的目录或文件的“冲突”状态。
+用法: resolved PATH…
+注意: 本子命令不会依语法来解决冲突或是移除冲突标记；它只是移除冲突的
+相关文件，然后让 PATH 可以再次提交
+10.显示某个版本
+svn cat -r 2  tst.txt (检查查看显示第2个版本，命令可以重定向)
+
+1l.svn list 可以在不下载工作拷贝到本地的情况下，查看目录文件。
+svn list /path/of/url
+12.导出版本库的代码，而不导出.svn文件
+svn  export file:///path/to/repository -r 1234
+13.分支与合并
+13.1关于版本号
+提交一次就是一个版本号，主线和分支的版本号是共享的，务必注意
+13.2 将版本10的修改更新至自己的yourlocalpath
+ svn merge -c 10  svnPath  yourlocalpath
+注：如果没有指定yourlocalpath，
+那么svn有两个假定：
+(1)你希望目录修改到工作拷贝的当前目录
+(2)你希望合并修改到你的当前工作目录的相同文件名的文件。
+13.3  首先两个版本的目录树比较，然后将区别应用到本地copy
+  svn merge -r12:8 svnPath yourlocalpath
+更新产生的冲突:OLDREV NEWREV  mine
+merge产生的冲突：.working .left .right
+
+14. svn revert操作
+执行revert后，会删除merge-right merge-left等备份文件
+15. 删除操作
+15.1 删除文件
+Using svn to delete a file from your working copy merely schedules it to be deleted. When you commit, the file is deleted in the repository.
+15.1.1    svn delete myfile
+15.1.2    svn ci -m "delete myfile"
+15.2 删除url
+16.重命名svn代码库中的文件
+目前是复制出copy,svn del删除原来的，再提交新命名的。
+16.显示url路径下的所有文件夹
+  svn list URL
+17.svn 使用问题：
+1.svn up  中文乱码，表现如下：
+svn: 有效 UTF-8 数据
+(16进制： c8 ab)
+后接无效 UTF-8 序列
+(16进制： be d6 cd a8)
+出现如上面之错误必定是目录中有乱码，子目录里有乱码也会造成这个问题，必须删除乱码文件。
+可以利用  find . -inum 32983551 -exec rm {} \;
+来删除，如果乱码的是个目录，需要用rm -rf .
+再svn up
+出现：
+svn: 不能复制“.svn/text-base/所有人配置文档.txt.svn-base”到“.svn/tmp/所有人配置文档.txt.tmp.tmp”: 没有那个文件或目录
+这是因为svn: 所有人配置文档.txt.svn-base已经乱码了，顺水推舟，
+touch .svn/text-base/所有人配置文档.txt.svn-base 即可。
+再svn up 就没有问题了。
+强烈建议所有文件名都是中文！！！
+
+18. 代码回滚(处理错误上传代码)：
+方法一:使用 svn merge
+svn update  保证最新
+svn log login.php 获得版本号
+svn merge -r n2:n1 login.php 撤销更改 #其中n2为错误上传的版本号,n1为欲恢复的版本号。一定要注意二者的顺序！！
+svn diff login.php 发现已经更改
+svn commit -m "更改回滚到版本n1" 现在的版本是n2 + 1。
+ 
+方法二： 使用 svn cat
+svn update
+svn log login.php 获取版本号
+svn cat -r n1 login.php>login.php
+这种方法可以提交更改.
+1.9 svn: 本客户端已过时，无法存取工作拷贝“.”；请取得更新版的 Subversion 客户端
+出现原因：cenos host的svn版本1.4,在virtualbox的windowsxp guest的tortoiseSVN版本1.6,利用tortoiseSVN更新代码。
+解决办法：
+http://svn.apache.org/repos/asf/subversion/trunk/tools/client-side/
+利用脚本：change-svn-wc-format.py
+执行命令：
+
+./change-svn-wc-format.py  your_work_path(非svn之url) 1.4

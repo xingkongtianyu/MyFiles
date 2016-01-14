@@ -1,0 +1,78 @@
+
+PHP设计模式——装饰器模式
+2010年12月5日  2,491 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——装饰器模式
+
+装饰器模式与适配器模式的作用几乎是一样的，要深刻的理解装饰模式，就一定要记住“装饰”二字，很明显，就是在之前类的基础上进行一下修饰。也就是说，装饰器模式必须有父类，然后子类对父类进行装饰。
+
+下面用一个实例来说明一下装饰器模式的用法。
+
+我有用策略模式和装饰模式结合的方式来演示
+
+	
+
+<?php
+/*
+ * 
+ * */
+ 
+class printStr{//创建一个普通类
+	public $msg;
+	public function __construct($msg=""){
+		$this->msg=$msg;
+	}
+	public function getMessage(){
+		return "This getMessage Str Function";
+	}
+ 
+	public function addNum($num1,$num2){
+		return $num1+$num2;
+	}
+} 
+ 
+class partentZhuanshi {//父类
+	private $printClass;
+	public function __construct($printClass){
+		$this->printClass=$printClass;
+	}
+ 
+	public function addNum($num1,$num2){
+		return $this->printClass->addNum($num1,$num2);//简单的一个委托
+	}
+}
+ 
+class zhuangshi extends partentZhuanshi{
+	private $printClass;
+	public function __construct($printClass){
+		$this->printClass=$printClass;
+		if ($this->printClass->msg==""){//装饰添加一个异常处理
+			throw new Exception($this->printClass->getMessage());
+		}
+	}
+	public function addNum($num1,$num2){
+		$total=$num1+$num2;
+		if ($total<10){//装饰添加一个异常处理
+			throw new Exception($num1." add ".$num2." < 10");
+		}
+		return $total;
+	}
+}
+ 
+try {
+	$zhuanshi=new zhuangshi(new printStr("此处如果为空，则抛出异常"));
+}
+catch (Exception $e){
+	echo "异常一：".$e->getMessage();
+}
+ 
+try {
+	echo $zhuanshi->addNum(10,2);//两个数据的和小于10抛出异常
+}
+catch (Exception $e){
+	echo "异常二：".$e->getMessage();
+}
+ 
+?>
+
+以上一个简单的实例说明了，策略模式用于更改和替换行为，装饰模式则是添加和装饰行为. 

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.filter()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/filtering/" title="View all posts in Filtering">Filtering</a></span>
+  
+  				</div>
+</div>
+<div id="filter1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.filter( selector )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>筛选出与指定表达式匹配的元素集合。</p>
+<ul class="signatures">
+<li class="signature" id="filter-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.filter( selector )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于确定到哪个前辈元素时停止匹配。</p>
+</li>
+<li class="signature" id="filter-functionindex">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.filter( function(index) )</h4>
+<p class="arguement"><strong>function(index)</strong>一个作为每个集合中的元素测试的函数。<code>this</code>是当前的DOM元素。</p>
+</li>
+<li class="signature" id="filter-element">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.filter( element )</h4>
+<p class="arguement"><strong>element</strong>一个匹配当前元素集合的元素。</p>
+</li>
+<li class="signature" id="filter-jQuery object">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.filter( jQuery object )</h4>
+<p class="arguement"><strong>jQuery object</strong>现有匹配当前元素集合的jQuery对象。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果一个jQuery对象表示一个DOM元素的集合，<code>.filter()</code>方法构造了一个新的jQuery对象的子集。所提供的选择器是对每个元素进行测试;选择匹配的所有元素将包含在结果中。</p>
+<p>考虑一个页面上一个简单的列表：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+	&lt;li&gt;list item 2&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+  &lt;li&gt;list item 6&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们可以在列表项目上设置此方法：</p>
+<pre>
+  $('li').filter(':even').css('background-color', 'red');
+</pre>
+<p>该调用的结果是项目的1，3，和5的背景给为红色，因为他们选择匹配（记得:even 和 :odd使用基于0的索引）。</p>
+<h4 id="using-filter-function">使用过滤函数</h4>
+<p>这种方法的第二种形式允许我们使用一个函数，而不是一个选择器来过滤元素，对于每个元素，如果函数返回<code>true</code> ，该元素将被包含在筛选集合中;否则，将被排除在外。假设我们有一个HTML片段：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;list&lt;/strong&gt; item 1 -
+    one strong tag&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;list&lt;/strong&gt; item &lt;strong&gt;2&lt;/strong&gt; -
+    two &lt;span&gt;strong tags&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+  &lt;li&gt;list item 6&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们可以选择列表项，然后过滤它们的内容：</p>
+<pre>
+$('li').filter(function(index) {
+  return $('strong', this).length == 1;
+}).css('background-color', 'red');
+</pre>
+<p>此代码只有第一个列表项将改变，因为它仅包含一个<code><strong></code>标记。用过滤函数，<code>this</code>是指依次的每个DOM元素。这个参数传递给函数告诉我们该DOM元素在匹配的jQuery对象集合内的索引。</p>
+<p>我们还可以拿<code>index</code>传递给贯穿函数，这表明基于0的元素的位置在匹配的元素中未滤过的:</p>
+<pre>
+$('li').filter(function(index) {
+  return index % 3 == 2;
+}).css('background-color', 'red');
+</pre>
+<p>这对代码将会导致第三和第六列表项背景变为红色，因为它使用模运算符（ <code>%</code> ）选择每一个项目和<code>index</code>值，除以3时，有一个剩余<code>2</code> 。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Change the color of all divs then put a border around only some of them.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:60px; height:60px; margin:5px; float:left; 
+        border:2px white solid;}
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+
+  &lt;div class="middle"&gt;&lt;/div&gt;
+  &lt;div class="middle"&gt;&lt;/div&gt;
+  &lt;div class="middle"&gt;&lt;/div&gt;
+  &lt;div class="middle"&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+
+    $("div").css("background", "#c8ebcc")
+            .filter(".middle")
+            .css("border-color", "red");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Selects all paragraphs and removes those without a class "selected".</span>
+</h4>
+<pre><code class="example">$("p").filter(".selected")</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Selects all paragraphs and removes those that aren't of class "selected" or the first one.</span>
+</h4>
+<pre><code class="example">$("p").filter(".selected, :first")</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Change the color of all divs then put a border to specific ones.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:60px; height:60px; margin:5px; float:left; 
+        border:3px white solid; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="first"&gt;&lt;/div&gt;
+  &lt;div id="second"&gt;&lt;/div&gt;
+  &lt;div id="third"&gt;&lt;/div&gt;
+
+  &lt;div id="fourth"&gt;&lt;/div&gt;
+  &lt;div id="fifth"&gt;&lt;/div&gt;
+  &lt;div id="sixth"&gt;&lt;/div&gt;
+&lt;script&gt;
+    $("div").css("background", "#b4b0da")
+            .filter(function (index) {
+                  return index == 1 || $(this).attr("id") == "fourth";
+                })
+            .css("border", "3px double red");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">Remove all elements that have a descendant ol element</span>
+</h4>
+<pre><code class="example">$("div").filter(function(index) {
+   return $("ol", this).length == 0;
+ });</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

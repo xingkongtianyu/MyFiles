@@ -1,0 +1,2029 @@
+这个文章主要是分析下Discuz x版本论坛的class_core.php文件， $Id: class_core.php 6914 2010-03-26 12:52:36Z cnteacher $ 。
+<?php  
+02   
+03 /**  
+04  *      [Discuz!] (C)2001-2099 Comsenz Inc.  
+05  *      This is NOT a freeware, use is subject to license terms  
+06  *  
+07  *      $Id: class_core.php 6914 2010-03-26 12:52:36Z cnteacher $  
+08  */
+09   
+10 /**  
+11  * Discuz 核心引擎  
+12  * 其他处理代码当中用到的变量不要在本核心 new 之前设置， 否则会自动清空  
+13  * 初始化功能，需要先加载核心文件  
+14  */
+
+15   
+
+16 define('IN_DISCUZ', true);  
+17 class discuz_core {  
+18   
+19     // 数据库存储引擎  
+20     var $db = null;  
+21   
+22     // 内存缓冲object  
+23     var $mem = null;  
+24   
+25     // 会话 object  
+26     var $session = null;  
+27   
+28     // 程序配置  
+29     var $config = array();  
+30   
+31     // $_G 数组的映射  
+32     var $var = array();  
+33   
+34     // 加载缓存的数组  
+35     var $cachelist = array();  
+36   
+37     // 是否初始化  
+38     var $init_setting = true;   //设置  
+39     var $init_user = true;      //用户  
+40     var $init_session = true;   //会话  
+41     var $init_cron = true;      //任务计划  
+42     var $init_misc = true;      //其他功能  
+43     var $init_memory = true;    //内存  
+44   
+45     // 是否已经初始化  
+46     var $initated = false;  
+47   
+48     var $superglobal = array(  
+49         'GLOBALS' => 1,  
+50         '_GET' => 1,  
+51         '_POST' => 1,  
+52         '_REQUEST' => 1,  
+53         '_COOKIE' => 1,  
+54         '_SERVER' => 1,  
+55         '_ENV' => 1,  
+56         '_FILES' => 1,  
+57     );  
+58   
+59     function &instance() {  
+60         static $object;  
+61         if(empty($object)) {  
+62             $object = new discuz_core();  
+63         }  
+64         return $object;  
+65     }  
+66   
+67     function discuz_core() {  
+68         $this->_init_env();  
+69         $this->_init_config();  
+70         $this->_init_input();  
+71         $this->_init_output();  
+72     }  
+73   
+74     function init() {  
+75         if(!$this->initated) {  
+76             $this->_init_db();  
+77             $this->_init_memory();  
+78             $this->_init_user();  
+79             $this->_init_session();  
+80             $this->_init_setting();  
+81             $this->_init_cron();  
+82             $this->_init_misc();  
+83         }  
+84         $this->initated = true;  
+85     }  
+86   
+87     function _init_env() {  
+88   
+89         error_reporting(E_ALL ^ E_NOTICE);  
+90         //error_reporting(E_ALL);  
+91   
+92         ///php 5.3前则关闭魔法引号匹配(自动转义)  
+93         if(phpversion() < '5.3.0') {  
+94             set_magic_quotes_runtime(0);  
+95         }  
+96   
+97         ///程序主目录，根据核心文件确定，原来是-7 代表在include下,现在是12代表在source/class下  
+98         define('DISCUZ_ROOT', substr(dirname(__FILE__), 0, -12));  
+99   
+100         ///和dz72一样，设置魔法引用(自动转义，单双引号反斜线)  
+101         define('MAGIC_QUOTES_GPC', function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc());  
+102   
+103         ///判断字符编码转换函数是否存在  
+104         define('ICONV_ENABLE', function_exists('iconv'));  
+105         ///亚洲字符转码函数是否存在, 因为mb_开头字符处理亚洲字符会比较高效，初步判断用于转码时先用mb_来处理:  
+106         define('MB_ENABLE', function_exists('mb_convert_encoding'));  
+107         ///是否存在输出缓存压缩函数，这个函数的目的，是在确认浏览器支持页面压缩后，才用该函数来压缩所有输出内容，否则直接传输  
+108         define('EXT_OBGZIP', function_exists('ob_gzhandler'));  
+109
+110         ///和DZ72一样，不过当前时间戳被定义为一个常量，效率更高吧，也不用global了。  
+111         define('TIMESTAMP', time());  
+112         ///获取默认时区  
+113         discuz_core::timezone_set();  
+114   
+115         ///加载function_core.php，作用推测类似global.func.php  
+116         if(!defined('DISCUZ_CORE_FUNCTION') && !@include(DISCUZ_ROOT.'./source/function/function_core.php')) {  
+117             $this->error('function_core.php is missing');  
+118         }  
+119   
+120         //判断浏览器是否是蜘蛛  
+121         define('IS_ROBOT', checkrobot());  
+122   
+123         //清理全局变量  
+124         ///全清理了，真是彻底把所有变量都从内存中注销了  
+125         foreach ($GLOBALS as $key => $value) {  
+126             if (!isset($this->superglobal[$key])) {  
+127                 $GLOBALS[$key] = null; unset($GLOBALS[$key]);  
+128             }  
+129         }  
+130   
+131         // 配置全局变量  
+132         ///和上一步结合，只留下自己需要的变量，并初始化。  
+133         ///这么做够狠，只要稍微小心点，就不会出现因为变量未初始化而出现的安全问题  
+134         global $_G;  
+135         $_G = array(  
+136             //公用全局定义  
+137             'uid' => 0,  
+138             'username' => '',  
+139             'adminid' => 0,  
+140             'groupid' => 1,  
+141             'sid' => '',  
+142             'formhash' => '',  
+143             'timestamp' => TIMESTAMP,  
+144             'starttime' => dmicrotime(),  
+145             'clientip' => $this->_get_client_ip(),  
+146             'referer' => '',  
+147             'charset' => '',  
+148             'gzipcompress' => '',  
+149             'authkey' => '',  
+150             'timenow' => array(),  
+151   
+152             'PHP_SELF' => '',  
+153             'siteurl' => '',  
+154   
+155             //公用全局数组定义  
+156             'config' => array(),  
+157             'setting' => array(),  
+158             'member' => array(),  
+159             'group' => array(),  
+160             'cookie' => array(),  
+161             'style' => array(),  
+162             'cache' => array(),  
+163             'session' => array(),  
+164             'lang' => array(),  
+165             'my_app' => array(),//默认应用  
+166             'my_userapp' => array(),//用户自添加应用  
+167   
+168             //论坛全局定义  
+169             'fid' => 0,  
+170             'tid' => 0,  
+171             'forum' => array(),  
+172             'rssauth' => '',  
+173   
+174             //uch 全局定义  
+175             'home' => array(),  
+176             'space' => array(),  
+177   
+178             //portal 全局定义  
+179             'block' => array(),  
+180             'article' => array(),  
+181   
+182             //Action  
+183             'action' => array(  
+184                 'action' => APPTYPEID,  
+185                 'fid' => 0,  
+186                 'tid' => 0,  
+187             )  
+188         );  
+189         //相对主目录的相对地址及文件名  
+190         $_G['PHP_SELF'] = htmlspecialchars($_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME']);  
+191         //基本脚本名，每个功能脚本首页前都会定义  
+192         //比如forum.php，则定义CURSCRIPT为forum,而forum_forumdisplay.php则不定义，因为属于forum  
+193         $_G['basescript'] = CURSCRIPT;  
+194         //站点网址  
+195         $_G['siteurl'] = htmlspecialchars('http://'.$_SERVER['HTTP_HOST'].preg_replace("/\/+(api)?\/*$/i", '', substr($_G['PHP_SELF'], 0, strrpos($_G['PHP_SELF'], '/'))).'/');  
+196   
+197         ///$_G的映射，也即超级全局变量  
+198         $this->var = & $_G;  
+199   
+200     }  
+201   
+202     function _init_input() {  
+203   
+204         //注意 禁止对全局变量注入  
+205         ///禁止GLOBALS=xxx的方式注入  
+206         if (isset($_REQUEST['GLOBALS']) || isset($_FILES['GLOBALS'])) {  
+207             error('request_tainting');  
+208         }  
+209   
+210         if(!empty($_GET['rewrite'])) {  
+211             $query_string = '?mod=';  
+212             $param = explode('-', $_GET['rewrite']);  
+213             $query_string .= $_GET['mod'] = $param[0];  
+214             array_shift($param);  
+215             $paramc = count($param);  
+216             for($i = 0;$i < $paramc;$i+=2) {  
+217                 $_REQUEST[$param[$i]] = $_GET[$param[$i]] = $param[$i + 1];  
+218                 $query_string .= '&'.$param[$i].'='.$param[$i + 1];  
+219             }  
+220             $_SERVER['QUERY_STRING'] = $query_string;  
+221             unset($param, $paramc, $query_string);  
+222         }  
+223   
+224         // slashes 处理,如果没有魔法引号处理（自动转义），则手动转义GET/POST/COOKIE/FILES中的单双引号、null反斜线\  
+225         if(!MAGIC_QUOTES_GPC) {  
+226             $_GET = daddslashes($_GET);  
+227             $_POST = daddslashes($_POST);  
+228             $_COOKIE = daddslashes($_COOKIE);  
+229             $_FILES = daddslashes($_FILES);  
+230         }  
+231   
+232         //cookie 处理  
+233         ///验证cookie前缀与config中的设置值是否一致，一致则转为$cookie数组中的值  
+234         $prelength = strlen($this->config['cookie']['cookiepre']);  
+235         foreach($_COOKIE as $key => $val) {  
+236             if(substr($key, 0, $prelength) == $this->config['cookie']['cookiepre']) {  
+237                 $this->var['cookie'][substr($key, $prelength)] = $val;  
+238             }  
+239         }  
+240   
+241         $_GET['diy'] = empty($_GET['diy']) ? '' : $_GET['diy'];  
+242   
+243         ///$_GET和$_POST转成与索引同名加"gp_"前缀的变量  
+244         ///如$_GET['username']直接用$gp_username来访问  
+245         foreach(array_merge($_POST, $_GET) as $k => $v) {  
+246             $this->var['gp_'.$k] = $v;  
+247         }  
+248   
+249         ///根据$_GET['mod']来确定m的值，$this->var为全局数组,gp_为上个语句的附加前缀  
+250         $this->var['mod'] = empty($this->var['gp_mod']) ? '' : htmlspecialchars($this->var['gp_mod']);  
+251         ///如果使用ajax，再判断是post传值或get和xmlhttprequest同时有效  
+252         $this->var['inajax'] = empty($this->var['gp_inajax']) ? 0 : ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' || $_SERVER['REQUEST_METHOD'] == 'POST' ? 1 : 0);  
+253         ///当前页码  
+254         $this->var['page'] = empty($this->var['gp_page']) ? 1 : max(1, intval($this->var['gp_page']));  
+255         ///确定cookie中的sid值  
+256         $this->var['sid'] = $this->var['cookie']['sid'] = isset($this->var['cookie']['sid']) ? htmlspecialchars($this->var['cookie']['sid']) : '';  
+257     }  
+258   
+259     ///初始化设置  
+260     function _init_config() {  
+261         ///加载设置文件  
+262         $_config = array();  
+263         @include DISCUZ_ROOT.'./config/config_global.php';  
+264         if(empty($_config)) {  
+265             error('config_notfound');  
+266         }  
+267         ///确定密钥，如果值为空，则密钥默认为cookie前缀与数据库名拼接的md5值，否则为配置文件中的值  
+268         ///authkey密钥是sid等参数加解密的重要参数  
+269         $_config['security']['authkey'] = empty($config['security']['authkey']) ? md5($_config['cookie']['cookiepre'].$_config['db'][1]['dbname']) : ($config['security']['authkey']);  
+270   
+271         $this->config = & $_config;  
+272         ///Discuz的调试  
+273         if(empty($this->config['debug']) || !file_exists(libfile('function/debug'))) {  
+274             define('DISCUZ_DEBUG', false);  
+275         } elseif($this->config['debug'] === 1 || $this->config['debug'] === 2 || !empty($_REQUEST['debug']) && $_REQUEST['debug'] === $this->config['debug']) {  
+276             define('DISCUZ_DEBUG', true);  
+277             if($this->config['debug'] == 2) {  
+278                 error_reporting(E_ALL);  
+279             }  
+280         }  
+281   
+282         $GLOBALS['_G']['config'] = & $this->config;  
+283         ///以浏览器版本为参考，进行密钥的二次md5加密  
+284         $GLOBALS['_G']['authkey'] = md5($this->config['security']['authkey'].$_SERVER['HTTP_USER_AGENT']);  
+285     }  
+286   
+287     function _init_output() {  
+288         ///如果设置中打开xss跨站脚本的防御模式，且网址中存在“<”和“"”等非法字符，则拒绝请求  
+289         if($this->config['security']['urlxssdefend'] && !empty($_SERVER['REQUEST_URI'])) {  
+290             $temp = urldecode($_SERVER['REQUEST_URI']);  
+291             if(strpos($temp, '<') !== false || strpos($temp, '"') !== false) {  
+292                 error('request_tainting');  
+293             }  
+294         }  
+295   
+296         ///存在ob_gzhandler则启用输出缓存压缩  
+297         if($this->config['output']['gzip'] && EXT_OBGZIP) {  
+298             ob_start('ob_gzhandler');  
+299             setglobal('gzipcompress', true);  
+300         } else {  
+301             ob_start();  
+302             setglobal('gzipcompress', false);  
+303         }  
+304   
+305         ///确定HTML页面编码，及其他编码  
+306         if($this->config['output']['forceheader']) {  
+307             @header('Content-Type: text/html; charset='.$this->config['output']['charset']);  
+308         }  
+309   
+310         setglobal('charset', $this->config['output']['charset']);  
+311         define('CHARSET', $this->config['output']['charset']);  
+312     }  
+313   
+314     ///拒绝机器人访问  
+315     function reject_robot() {  
+316         if(IS_ROBOT) {  
+317             exit(header("HTTP/1.1 403 Forbidden"));  
+318         }  
+319     }  
+320   
+
+321     ///获取客户端ip，  
+322     function _get_client_ip() {  
+323         $clientip = '';  
+324         ///环境变量客户端ip有值且字符长度大于unknown，则说明该变量有效，确定为客户端ip  
+325         if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {  
+326             $clientip = getenv('HTTP_CLIENT_IP');  
+327         ///否则取当前浏览用户的网关ip地址  
+328         } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {  
+329             $clientip = getenv('HTTP_X_FORWARDED_FOR');  
+330         ///用户计算机的ip地址  
+331         } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {  
+332             $clientip = getenv('REMOTE_ADDR');  
+333         } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {  
+334             $clientip = $_SERVER['REMOTE_ADDR'];  
+335         }  
+336   
+337         ///判断是否是数字与点组成的7-15位字符  
+338         preg_match("/[\d\.]{7,15}/", $clientip, $clientipmatches);  
+339         $clientip = $clientipmatches[0] ? $clientipmatches[0] : 'unknown';  
+340         return $clientip;  
+341     }  
+342   
+343     function _init_db() {  
+344         ///生成数据库对象  
+345         $this->db = & DB:bject();  
+346         ///加载设置文件并连接数据库  
+347         $this->db->set_config($this->config['db']);  
+348         $this->db->connect();  
+349     }  
+350   
+351     function _init_session() {  
+352   
+353         $this->session = new discuz_session();  
+354   
+355         if($this->init_session)  
+356         {  
+357             ///传入sid，客户端ip与uid作为session判断机制，分新老用户，老用户则查session表，否则创建  
+358             $this->session->init($this->var['cookie']['sid'], $this->var['clientip'], $this->var['uid']);  
+359             $this->var['sid'] = $this->session->sid;  
+360             $this->var['session'] = $this->session->var;  
+361   
+362             if($this->var['sid'] != $this->var['cookie']['sid']) {  
+363                 dsetcookie('sid', $this->var['sid'], 86400);  
+364             }  
+365   
+366             // 首次登陆更新最后访问时间，每隔 10 分钟更新用户最后动作时间  
+367             if($this->var['uid'] && ($this->session->isnew || ($this->session->get('lastactivity') + 600) < TIMESTAMP)) {  
+368   
+369                 $this->session->set('lastactivity', TIMESTAMP);  
+370   
+371                 $update = array('lastip' => $this->var['clientip'], 'lastactivity' => TIMESTAMP);  
+372                 if($this->session->isnew) {  
+373                     $update['lastvisit'] = TIMESTAMP;  
+374                 }  
+375                 更新会员状态  
+376                 DB::update('common_member_status', $update, "uid='".$this->var['uid']."'");  
+377             }  
+378         }  
+379     }  
+380   
+381     function _init_user() {  
+382   
+383         if($this->init_user) {  
+384             if($auth = getglobal('auth', 'cookie')) {  
+385                 $auth = daddslashes(explode("\t", authcode($auth, 'DECODE')));  
+386             }  
+387             list($discuz_pw, $discuz_uid) = empty($auth) || count($auth) < 2 ? array('', '') : $auth;  
+388   
+389             if($discuz_uid) {  
+390                 $user = getuserbyuid($discuz_uid);  
+391             }  
+392   
+393             if(!empty($user) && $user['password'] == $discuz_pw) {  
+394                 $this->var['member'] = $user;  
+395             } else {  
+396                 $user = array();  
+397                 $this->_init_guest();  
+398             }  
+399   
+400             $this->cachelist[] = 'usergroup_'.$this->var['member']['groupid'];  
+401             if($user && $user['adminid'] > 0 && $user['groupid'] != $user['adminid']) {  
+402                 $this->cachelist[] = 'admingroup_'.$this->var['member']['adminid'];  
+403             }  
+404   
+405         } else {  
+406             $this->_init_guest();  
+407         }  
+408   
+409         if(empty($this->var['cookie']['lastvisit'])) {  
+410             $this->var['member']['lastvisit'] = TIMESTAMP - 3600;  
+411             dsetcookie('lastvisit', TIMESTAMP - 3600, 86400 * 30);  
+412         } else {  
+413             $this->var['member']['lastvisit'] = empty($this->var['cookie']['lastvisit']);  
+414         }  
+415   
+416         setglobal('uid', getglobal('uid', 'member'));  
+
+417         setglobal('username', addslashes(getglobal('username', 'member')));  
+
+418         setglobal('adminid', getglobal('adminid', 'member'));  
+419         setglobal('groupid', getglobal('groupid', 'member'));  
+420     }  
+421   
+422     function _init_guest() {  
+423         setglobal('member', array( 'uid' => 0, 'username' => '', 'groupid' => 7, 'credits' => 0, 'timeoffset' => 9999));  
+424     }  
+425   
+426     function _init_cron() {  
+427         if($this->init_cron && $this->init_setting) {  
+428             if($this->var['cache']['cronnextrun'] <= TIMESTAMP) {  
+429                 discuz_cron::run();  
+430             }  
+431         }  
+432     }  
+433   
+434     function _init_misc() {  
+435   
+436         if(!$this->init_misc) {  
+437             return false;  
+438         }  
+439         // 调入核心语言包  
+440         lang('core');  
+441   
+442         //处理全局时区设置  
+443         if($this->init_setting && $this->init_user) {  
+444             if(!isset($this->var['member']['timeoffset']) || $this->var['member']['timeoffset'] == 9999 || $this->var['member']['timeoffset'] === '') {  
+445                 $this->var['member']['timeoffset'] = $this->var['setting']['timeoffset'];  
+446             }  
+447         }  
+448   
+449         $timeoffset = $this->init_setting ? $this->var['member']['timeoffset'] : $this->var['setting']['timeoffset'];  
+450         $this->var['timenow'] = array(  
+451             'time' => dgmdate(TIMESTAMP),  
+452             'offset' => $timeoffset >= 0 ? ($timeoffset == 0 ? '' : '+'.$timeoffset) : $timeoffset
+453         );  
+454         $this->timezone_set($timeoffset);  
+455   
+456         $this->var['formhash'] = formhash();  
+457         define('FORMHASH', $this->var['formhash']);  
+458   
+459         // 定义风格常量  
+460         if(is_array($this->var['style'])) {  
+461             foreach ($this->var['style'] as $key => $val) {  
+462                 $key = strtoupper($key);  
+463                 if(!defined($key) && !is_array($val)) {  
+464                     define($key, $val);  
+465                 }  
+466             }  
+467         }  
+468   
+469         //论坛开关检查  
+470         if($this->var['setting']['bbclosed'] && !(in_array($this->var['mod'], array('logging', 'seccode')) || getglobal('adminid', 'member') == 1)) {  
+471             $closedreason = DB::result_first("SELECT svalue FROM ".DB::table('common_setting')." WHERE skey='closedreason'");  
+472             showmessage($closedreason ? $closedreason : 'board_closed', NULL, array(), array('login' => 1));  
+473         }  
+474   
+475         $this->var['tpp'] = $this->var['setting']['topicperpage'] ? intval($this->var['setting']['topicperpage']) : 20;  
+476         $this->var['ppp'] = $this->var['setting']['postperpage'] ? intval($this->var['setting']['postperpage']) : 10;  
+477   
+478         if($this->var['setting']['nocacheheaders']) {  
+479             @header("Expires: -1");  
+480             @header("Cache-Control: no-store, private, post-check=0, pre-check=0, max-age=0", FALSE);  
+481             @header("ragma: no-cache");  
+482         }  
+483   
+484         $lastact = TIMESTAMP."\t".htmlspecialchars(basename($this->var['PHP_SELF']))."\t".htmlspecialchars($this->var['mod']);  
+485         dsetcookie('lastact', $lastact, 86400);  
+486   
+487     }  
+488   
+489     function _init_setting() {  
+490   
+491         if($this->init_setting) {  
+492   
+493             if(empty($this->var['setting'])) {  
+494                 $this->cachelist[] = 'setting';  
+495             }  
+
+496   
+497             if(empty($this->var['style'])) {  
+498                 $this->cachelist[] = 'style_default';  
+499             }  
+500   
+501             if(!isset($this->var['cache']['cronnextrun'])) {  
+502                 $this->cachelist[] = 'cronnextrun';  
+503             }  
+504         }  
+505   
+506         !empty($this->cachelist) && loadcache($this->cachelist);  
+507   
+508         if(!is_array($this->var['setting'])) {  
+509             $this->var['setting'] = array();  
+510         }  
+511         if($this->var['member'] && $this->var['member']['adminid'] > 0 && $this->var['member']['groupid'] != $this->var['member']['adminid'] && !empty($this->var['cache']['admingroup_'.$this->var['member']['adminid']])) {  
+512             $this->var['group'] = array_merge($this->var['group'], $this->var['cache']['admingroup_'.$this->var['member']['adminid']]);  
+513         }  
+514     }  
+515   
+516     function _init_memory() {  
+517         $this->mem = new discuz_memory();  
+518         if($this->init_memory) {  
+519             $this->mem->init($this->config['memory']);  
+520         }  
+521         $this->var['memory'] = $this->mem->type;  
+522     }  
+523   
+524     function timezone_set($timeoffset = 0) {  
+525         if(function_exists('date_default_timezone_set')) {  
+526             @date_default_timezone_set('Etc/GMT'.($timeoffset > 0 ? '-' : '+').(abs($timeoffset)));  
+527         }  
+528     }  
+529   
+
+530     function error($msg, $halt = true) {  
+531         $this->error_log($msg);  
+532         echo $msg;  
+533         $halt && exit();  
+534     }  
+535   
+536     function error_log($message) {  
+537         $time = date("Y-m-d H:i:s", TIMESTAMP);  
+538         $file =  DISCUZ_ROOT.'./data/log/errorlog_'.date("Ym").'.txt';  
+539         $message = "\n#{$time}:\t".str_replace(array("\t", "\r", "\n"), " ", $message);  
+540         error_log($message, 3, $file);  
+541     }  
+542   
+543 }  
+544   
+545 /**  
+
+546  * Discuz MySQL 类的支持  
+547  *  
+548  */  
+549 class db_mysql  
+550 {  
+551     var $tablepre;  
+552     var $version = '';  
+553     var $querynum = 0;  
+554     var $curlink;  
+555     var $link = array();  
+556     var $config = array();  
+557     var $sqldebug = array();  
+558   
+559     function db_mysql($config = array()) {  
+560         if(!empty($config)) {  
+561             $this->set_config($config);  
+562         }  
+563     }  
+564   
+565     function set_config($config) {  
+566         $this->config = &$config;  
+567         $this->tablepre = $config['1']['tablepre'];  
+568     }  
+569   
+570     function connect() {  
+571   
+572         if(empty($this->config) || empty($this->config[1])) {  
+573             $this->halt('notfound_config');  
+574         }  
+575   
+576         foreach ($this->config as $id => $config) {  
+577             $this->link[$id] = $this->_dbconnect(  
+578             $config['dbhost'],  
+579             $config['dbuser'],  
+580             $config['dbpw'],  
+581             $config['dbcharset'],  
+582             $config['dbname'],  
+583             $config['pconnect']  
+584             );  
+585         }  
+586         $this->curlink = $this->link[1];  
+587     }  
+588   
+589     function _dbconnect($dbhost, $dbuser, $dbpw, $dbcharset, $dbname, $pconnect) {  
+590         $link = null;  
+591         $func = empty($pconnect) ? 'mysql_connect' : 'mysql_pconnect';  
+
+592         if(!$link = @$func($dbhost, $dbuser, $dbpw, 1)) {  
+
+593             $this->halt('notconnect');  
+
+594         } else {  
+
+595             $this->curlink = $link;  
+
+596             if($this->version() > '4.1') {  
+
+597                 $serverset = $dbcharset ? 'character_set_connection='.$dbcharset.', character_set_results='.$dbcharset.', character_set_client=binary' : '';  
+
+598                 $serverset .= $this->version() > '5.0.1' ? ((empty($serverset) ? '' : ',').'sql_mode=\'\'') : '';  
+
+599                 $serverset && mysql_query("SET $serverset", $link);  
+
+600             }  
+
+601             $dbname && @mysql_select_db($dbname, $link);  
+
+602         }  
+
+603         return $link;  
+
+604     }  
+
+605   
+
+606     function table_name($tablename) {  
+
+607         return $this->tablepre.$tablename;  
+
+608     }  
+
+609   
+
+610     function select_db($dbname) {  
+
+611         return mysql_select_db($dbname, $this->curlink);  
+
+612     }  
+
+613   
+
+614     function fetch_array($query, $result_type = MYSQL_ASSOC) {  
+
+615         return mysql_fetch_array($query, $result_type);  
+
+616     }  
+
+617   
+
+618     function fetch_first($sql) {  
+
+619         return $this->fetch_array($this->query($sql));  
+
+620     }  
+
+621   
+
+622     function result_first($sql) {  
+
+623         return $this->result($this->query($sql), 0);  
+
+624     }  
+
+625   
+
+626     function query($sql, $type = '') {  
+
+627   
+
+628         if(defined('DISCUZ_DEBUG') && DISCUZ_DEBUG) {  
+
+629             $starttime = dmicrotime();  
+
+630         }  
+
+631         $func = $type == 'UNBUFFERED' && @function_exists('mysql_unbuffered_query') ?  
+
+632         'mysql_unbuffered_query' : 'mysql_query';  
+
+633         if(!($query = $func($sql, $this->curlink))) {  
+
+634             if(in_array($this->errno(), array(2006, 2013)) && substr($type, 0, 5) != 'RETRY') {  
+
+635                 $this->connect();  
+
+636                 return $this->query($sql, 'RETRY'.$type);  
+
+637             }  
+
+638             if($type != 'SILENT' && substr($type, 5) != 'SILENT') {  
+
+639                 $this->halt('query_error', $sql);  
+
+640             }  
+
+641         }  
+
+642   
+
+643         if(defined('DISCUZ_DEBUG') && DISCUZ_DEBUG) {  
+
+644             $this->sqldebug[] = array($sql, number_format((dmicrotime() - $starttime), 6), debug_backtrace());  
+
+645         }  
+
+646   
+
+647         $this->querynum++;  
+
+648         return $query;  
+
+649     }  
+
+650   
+
+651     function affected_rows() {  
+
+652         return mysql_affected_rows($this->curlink);  
+
+653     }  
+
+654   
+
+655     function error() {  
+
+656         return (($this->curlink) ? mysql_error($this->curlink) : mysql_error());  
+
+657     }  
+
+658   
+
+659     function errno() {  
+
+660         return intval(($this->curlink) ? mysql_errno($this->curlink) : mysql_errno());  
+
+661     }  
+
+662   
+
+663     function result($query, $row = 0) {  
+
+664         $query = @mysql_result($query, $row);  
+
+665         return $query;  
+
+666     }  
+
+667   
+
+668     function num_rows($query) {  
+
+669         $query = mysql_num_rows($query);  
+
+670         return $query;  
+
+671     }  
+
+672   
+
+673     function num_fields($query) {  
+
+674         return mysql_num_fields($query);  
+
+675     }  
+
+676   
+
+677     function free_result($query) {  
+
+678         return mysql_free_result($query);  
+
+679     }  
+
+680   
+
+681     function insert_id() {  
+
+682         return ($id = mysql_insert_id($this->curlink)) >= 0 ? $id : $this->result($this->query("SELECT last_insert_id()"), 0);  
+
+683     }  
+
+684   
+
+685     function fetch_row($query) {  
+
+686         $query = mysql_fetch_row($query);  
+
+687         return $query;  
+
+688     }  
+
+689   
+
+690     function fetch_fields($query) {  
+
+691         return mysql_fetch_field($query);  
+
+692     }  
+
+693   
+
+694     function version() {  
+
+695         if(empty($this->version)) {  
+
+696             $this->version = mysql_get_server_info($this->curlink);  
+
+697         }  
+
+698         return $this->version;  
+
+699     }  
+
+700   
+
+701     function close() {  
+
+702         return mysql_close($this->curlink);  
+
+703     }  
+
+704   
+
+705     function halt($message = '', $sql = '') {  
+
+706         global $_G;  
+
+707         $dberror = $this->error();  
+
+708         $dberrno = $this->errno();  
+
+709         $phperror = '<table style="font-size:11px" cellpadding="0"><tr><td width="270">File</td><td width="80">Line</td><td>Function</td></tr>';  
+
+710         foreach (debug_backtrace() as $error) {  
+
+711             $error['file'] = str_replace(DISCUZ_ROOT, '', $error['file']);  
+
+712             $error['class'] = isset($error['class']) ? $error['class'] : '';  
+
+713             $error['type'] = isset($error['type']) ? $error['type'] : '';  
+
+714             $error['function'] = isset($error['function']) ? $error['function'] : '';  
+
+715             $phperror .= "<tr><td>$error[file]</td><td>$error[line]</td><td>$error[class]$error[type]$error[function]()</td></tr>";  
+
+716         }  
+
+717         $phperror .= '</table>';  
+
+718         $helplink = "http://faq.comsenz.com/?type=mysql&dberrno=".rawurlencode($dberrno)."&dberror=".rawurlencode($dberror);  
+
+719         @header('Content-Type: text/html; charset='.$_G['config']['output']['charset']);  
+
+720         echo '<div style="position:absolute;font-size:11px;font-family:verdana,arial;background:#EBEBEB;padding:0.5em;line-height:1.5em">'.  
+
+721         error('db_error', array(  
+
+722             '$message' => error('db_'.$message, array(), true),  
+
+723             '$info' => $dberror ? error('db_error_message', array('$dberror' => $dberror), true) : '',  
+
+724             '$sql' => $sql ? error('db_error_sql', array('$sql' => $sql), true) : '',  
+
+725             '$errorno' => $dberrno ? error('db_error_no', array('$dberrno' => $dberrno), true) : '',  
+
+726             '$helplink' => $helplink,  
+
+727             ), true);  
+
+728         echo "<b>HP Backtrace</b><br />$phperror<br /></div>";  
+
+729         exit();  
+
+730     }  
+
+731   
+
+732 }  
+
+733   
+734 /**  
+735  * 对Discuz CORE 中 DB Object中的主要方法进行二次封装，方便程序调用  
+736  *  
+737  */
+738 class DB  
+739 {  
+740   
+741     /**  
+742      * 返回表名(pre_$table)  
+743      *  
+744      * @param 原始表名 $table  
+745      * @return 增加pre之后的名字  
+746      */
+747     function table($table) {  
+748         $a = & DB:bject();  
+749         return $a->table_name($table);  
+750     }  
+751   
+752     /**  
+753      * 删除一条或者多条记录  
+754      *  
+755      * @param string $table 原始表名  
+
+756      * @param string $condition 条件语句，不需要写WHERE  
+
+757      * @param int $limit 删除条目数  
+
+758      * @param boolean $unbuffered 立即返回？  
+
+759      */
+
+760     function delete($table, $condition, $limit = 0, $unbuffered = true) {  
+
+761         if(empty($condition)) {  
+
+762             $where = '1';  
+
+763         } elseif(is_array($condition)) {  
+
+764             $where = DB::implode_field_value($condition, ' AND ');  
+
+765         } else {  
+
+766             $where = $condition;  
+
+767         }  
+
+768         $sql = "DELETE FROM ".DB::table($table)." WHERE $where ".($limit ? "LIMIT $limit" : '');  
+
+769         return DB::query($sql, ($unbuffered ? 'UNBUFFERED' : ''));  
+
+770     }  
+
+771   
+
+772     /**  
+773      * 插入一条记录  
+774      *  
+775      * @param string $table 原始表名  
+776      * @param array $data 数组field->vlaue 对  
+777      * @param boolen $return_insert_id 返回 InsertID?  
+778      * @param boolen $replace 是否是REPLACE模式  
+779      * @param boolen $silent 屏蔽错误？  
+780      * @return InsertID or Result  
+781      */
+
+782     function insert($table, $data, $return_insert_id = false, $replace = false, $silent = false) {  
+783   
+784         $sql = DB::implode_field_value($data);  
+785   
+786         $cmd = $replace ? 'REPLACE INTO' : 'INSERT INTO';  
+787   
+788         $table = DB::table($table);  
+789         $silent = $silent ? 'SILENT' : '';  
+790   
+791         $return = DB::query("$cmd $table SET $sql", $silent);  
+792   
+793         return $return_insert_id ? DB::insert_id() : $return;  
+794   
+795     }  
+796   
+
+797     /**  
+798      * 更新一条或者多条数据记录  
+799      *  
+800      * @param string $table 原始表名  
+801      * @param array $data 数据field-value  
+802      * @param string $condition 条件语句，不需要写WHERE  
+803      * @param boolean $unbuffered 迅速返回？  
+804      * @param boolan $low_priority 延迟更新？  
+805      * @return result  
+806      */
+
+807     function update($table, $data, $condition, $unbuffered = false, $low_priority = false) {  
+808         $sql = DB::implode_field_value($data);  
+809         $cmd = "UPDATE ".($low_priority ? 'LOW_PRIORITY' : '');  
+810         $table = DB::table($table);  
+811         $where = $comma = '';  
+812         if(empty($condition)) {  
+813             $where = '1';  
+814         } elseif(is_array($condition)) {  
+815             $where = DB::implode_field_value($condition, ' AND ');  
+816         } else {  
+817             $where = $condition;  
+818         }  
+819         $res = DB::query("$cmd $table SET $sql WHERE $where", $unbuffered ? 'UNBUFFERED' : '');  
+820         return $res;  
+821     }  
+
+822   
+823     /**  
+824      * 格式化field字段和value，并组成一个字符串  
+825      *  
+826      * @param array $array 格式为 key=>value 数组  
+827      * @param 分割符 $glue  
+828      * @return string  
+829      */
+830     function implode_field_value($array, $glue = ',') {  
+831         //print_r(debug_backtrace());  
+832         $sql = $comma = '';  
+833         foreach ($array as $k => $v) {  
+834             $sql .= $comma."`$k`='$v'";  
+835             $comma = $glue;  
+836         }  
+837         return $sql;  
+838     }  
+839   
+840     /**  
+841      * 返回插入的ID  
+842      *  
+843      * @return int  
+844      */
+845     function insert_id() {  
+846         $db = & DB:bject();  
+847         return $db->insert_id();  
+848     }  
+849   
+850     /**  
+851      * 依据查询结果，返回一行数据  
+852      *  
+853      * @param resourceID $resourceid  
+854      * @return array  
+855      */
+
+856     function fetch($resourceid) {  
+857         $db = & DB:bject();  
+858         return $db->fetch_array($resourceid);  
+859     }  
+860   
+
+861     /**  
+862      * 依据SQL文，返回一条查询结果  
+863      *  
+864      * @param string $query 查询语句  
+865      * @return array  
+866      */
+
+867     function fetch_first($sql) {  
+868         $db = & DB:bject();  
+869         return $db->fetch_first($sql);  
+870     }  
+
+871   
+872     /**  
+873      * 依据查询结果，返回结果数值  
+874      *  
+875      * @param resourceid $resourceid  
+876      * @return string or int  
+877      */
+
+878     function result($resourceid, $row = 0) {  
+879         $db = & DB::object();  
+880         return $db->result($resourceid, $row);  
+881     }  
+
+882   
+883     /**  
+884      * 依据查询语句，返回结果数值  
+885      *  
+886      * @param string $query SQL查询语句  
+887      * @return unknown  
+888      */
+
+889     function result_first($sql) {  
+890         $db = & DB::object();  
+891         return $db->result_first($sql);  
+892     }  
+893   
+
+894     /**  
+895      * 执行查询  
+896      *  
+897      * @param string $sql  
+898      * @param 类型定义 $type UNBUFFERED OR SILENT  
+899      * @return Resource OR Result  
+900      */
+
+901     function query($sql, $type = '') {  
+902         $db = & DB::object();  
+903         return $db->query($sql, $type);  
+904     }  
+905   
+
+906     /**  
+907      * 返回select的结果行数  
+908      *  
+909      * @param resource $resourceid  
+910      * @return int  
+911      */
+
+912     function num_rows($resourceid) {  
+913         $db = & DB::object();  
+914         return $db->num_rows($resourceid);  
+915     }  
+
+916   
+917     /**  
+918      * 返回sql语句所影响的记录行数  
+919      *  
+920      * @return int  
+921      */
+
+922     function affected_rows() {  
+923         $db = & DB::object();  
+924         return $db->affected_rows();  
+925     }  
+926   
+927     function free_result($query) {  
+928         $db = & DB::object();  
+929         return $db->free_result($query);  
+930     }  
+931   
+932     function error() {  
+933         $db = & DB::object();  
+934         return $db->error();  
+935     }  
+936   
+937     function errno() {  
+938         $db = & DB::object();  
+939         return $db->errno();  
+940     }  
+941   
+
+942     /**  
+943      * 返回 DB object 指针  
+944      *  
+945      * @return pointer of db object from discuz core  
+946      */
+
+947     function &object() {  
+948         static $db;  
+949         if(empty($db)) {  
+950             $db = new db_mysql();  
+951         }  
+952         return $db;  
+953     }  
+954 }  
+955   
+956 class discuz_session {  
+957   
+958     ///sid,ip1-4, uid, username, groupid组id, invisible隐身与否,action行为,上次活动lastactivity,fid板块id,tid帖子id  
+959     var $sid = null;  
+960     var $var;  
+961     var $isnew = false;  
+962     var $newguest = array('sid' => 0, 'ip1' => 0, 'ip2' => 0, 'ip3' => 0, 'ip4' => 0,  
+963     'uid' => 0, 'username' => '', 'groupid' => 7, 'invisible' => 0, 'action' => 0,  
+964     'lastactivity' => 0, 'fid' => 0, 'tid' => 0);  
+965   
+
+966     var $old =  array('sid' =>  '', 'ip' =>  '', 'uid' =>  0);  
+967   
+968     ///与类同名的函数，构造函数，初始化session各值  
+969     function discuz_session($sid = '', $ip = '', $uid = 0) {  
+970         $this->old = array('sid' =>  $sid, 'ip' =>  $ip, 'uid' =>  $uid);  
+971         $this->var = $this->newguest;  
+972         if(!empty($ip)) {  
+973             $this->init($sid, $ip, $uid);  
+974         }  
+975     }  
+
+976     ///设置$newguest各项值  
+977     function set($key, $value) {  
+978         if(isset($this->newguest[$key])) {  
+979             $this->var[$key] = $value;  
+980        } elseif ($key == 'ip') {  
+981             $ips = explode('.', $value);  
+982             $this->set('ip1', $ips[0]);  
+983             $this->set('ip2', $ips[1]);  
+984             $this->set('ip3', $ips[2]);  
+985             $this->set('ip4', $ips[3]);  
+986         }  
+987     }  
+
+988   
+989     ///获取  
+990     function get($key) {  
+991         if(isset($this->newguest[$key])) {  
+992             return $this->var[$key];  
+993         } elseif ($key == 'ip') {  
+994             return $this->get('ip1').'.'.$this->get('ip2').'.'.$this->get('ip3').'.'.$this->get('ip4');  
+995         }  
+996     }  
+997   
+998     ///初始化，sid有值则可能是老用户，去读session表，判断sid，ip符合的值是否存在，存在则赋值给$sid  
+999     function init($sid, $ip, $uid) {  
+1000         $this->old = array('sid' =>  $sid, 'ip' =>  $ip, 'uid' =>  $uid);  
+1001         $session = array();  
+1002         if($sid) {  
+1003             $session = DB::fetch_first("SELECT * FROM ".DB::table('common_session').  
+1004                 " WHERE sid='$sid' AND CONCAT_WS('.', ip1,ip2,ip3,ip4)='$ip'");  
+1005         }  
+1006   
+1007         if(empty($session) || $session['uid'] != $uid) {  
+1008             $session = $this->create($ip, $uid);  
+1009         }  
+1010   
+1011         $this->var = $session;  
+1012         $this->sid = $session['sid'];  
+1013     }  
+
+1014   
+1015     ///新用户  
+1016     function create($ip, $uid) {  
+1017   
+1018         $this->isnew = true;  
+1019         $this->var = $this->newguest;  
+1020         $this->set('sid', random(6));  
+1021         $this->set('uid', $uid);  
+1022         $this->set('ip', $ip);  
+1023         $this->set('lastactivity', time());  
+1024         $this->sid = $this->var['sid'];  
+1025   
+
+1026         return $this->var;  
+
+1027     }  
+
+1028   
+
+1029     function delete() {  
+
+1030   
+
+1031         $onlinehold = 1800; //此数值应当取自全局变量  
+
+1032         $guestspan = 60; //避免游客重复激活sid  
+
+1033   
+
+1034         $onlinehold = time() - $onlinehold;  
+
+1035         $guestspan = time() - $guestspan;  
+
+1036   
+
+1037         //当前用户的sid  
+
+1038         $condition = " sid='{$this->sid}' ";  
+
+1039         //过期的 session  
+
+1040         $condition .= " OR lastactivity<$onlinehold ";  
+
+1041         //频繁的同一ip游客  
+
+1042         $condition .= " OR (uid='0' AND ip1='{$this->var['ip1']}' AND ip2='{$this->var['ip2']}' AND ip3='{$this->var['ip3']}' AND ip4='{$this->var['ip4']}' AND lastactivity>$guestspan) ";  
+
+1043         //当前用户的uid  
+
+1044         $condition .= $this->var['uid'] ? " OR (uid='{$this->var['uid']}') " : '';  
+
+1045         DB::delete('common_session', $condition);  
+
+1046     }  
+
+1047   
+
+1048     function update() {  
+
+1049         if($this->sid !== null) {  
+
+1050   
+
+1051             $data = daddslashes($this->var);  
+
+1052   
+
+1053             if($this->isnew) {  
+
+1054                 $this->delete();  
+
+1055                 DB::insert('common_session', $data, false, false, true);  
+
+1056             } else {  
+
+1057                 DB::update('common_session', $data, "sid='$data[sid]'");  
+
+1058             }  
+
+1059             dsetcookie('sid', $this->sid, 86400);  
+
+1060         }  
+
+1061     }  
+
+1062   
+
+1063     /**  
+
+1064      * 取在线用户数量  
+
+1065      *  
+
+1066      * @param int $type 0=全部 1=会员 2=游客  
+
+1067      */
+
+1068     function onlinecount($type = 0) {  
+
+1069         $condition = $type == 1 ? ' WHERE uid>0 ' : ($type == 2 ? ' WHERE invisible=1 ' : '');  
+
+1070         return DB::result_first("SELECT count(*) FROM ".DB::table('common_session').$condition);  
+
+1071     }  
+
+1072   
+
+1073 }  
+
+1074   
+
+1075 class discuz_cron  
+
+1076 {  
+
+1077   
+
+1078     /**  
+1079      * 运行cron  
+1080      *  
+1081      * @param int $cronid 执行某个cron，如果不指定则运行当前需要运行的  
+1082      * @return true  
+1083      */
+
+1084     function run($cronid = 0) {  
+
+1085   
+
+1086         $timestamp = TIMESTAMP;  
+
+1087         $cron = DB::fetch_first("SELECT * FROM ".DB::table('common_cron')."  
+
+1088                 WHERE ".($cronid ? "cronid='$cronid'" : "available>'0' AND nextrun<='$timestamp'")."
+
+1089                 ORDER BY nextrun LIMIT 1");  
+
+1090   
+
+1091         $processname ='DZ_CRON_'.(empty($cron) ? 'CHECKER' : $cron['cronid']);  
+
+1092   
+
+1093         if(!discuz_process::create($processname, 600)) {  
+
+1094             return false;  
+
+1095         }  
+
+1096   
+
+1097         if($cron) {  
+
+1098   
+
+1099             $cron['filename'] = str_replace(array('..', '/', '\\'), '', $cron['filename']);  
+
+1100             $cronfile = DISCUZ_ROOT.'./source/include/cron/'.$cron['filename'];  
+
+1101   
+
+1102             $cron['minute'] = explode("\t", $cron['minute']);  
+
+1103             discuz_cron::setnextime($cron);  
+
+1104   
+
+1105             @set_time_limit(1000);  
+
+1106             @ignore_user_abort(TRUE);  
+
+1107   
+
+1108             if(!@include $cronfile) {  
+
+1109                 //debug('CRON', $cron['name'].' : Cron script('.$cron['filename'].') not found or syntax error', 0);  
+
+1110             }  
+
+1111         }  
+
+1112   
+
+1113         discuz_cron::nextcron();  
+
+1114         discuz_process::delete($processname);  
+
+1115         return true;  
+
+1116     }  
+
+1117   
+
+1118     /**  
+1119      * 设定下一个计划任务将要执行的时间 here...  
+1120      *  
+1121      */
+
+1122     function nextcron() {  
+
+1123         $nextrun = DB::result_first("SELECT nextrun FROM ".DB::table('common_cron')." WHERE available>'0' ORDER BY nextrun LIMIT 1");  
+
+1124         if($nextrun !== FALSE) {  
+
+1125             save_syscache('cronnextrun', $nextrun);  
+
+1126         } else {  
+
+1127             save_syscache('cronnextrun', TIMESTAMP + 86400 * 365);  
+
+1128         }  
+
+1129         return true;  
+
+1130     }  
+
+1131   
+
+1132     /**  
+1133      * 设定某个计划任务下次执行时间  
+1134      *  
+1135      * @param array $cron  
+1136      * @return true  
+1137      */
+
+1138     function setnextime($cron) {  
+
+1139   
+
+1140         global $_G;  
+
+1141   
+
+1142         if(empty($cron)) return FALSE;  
+
+1143   
+
+1144         list($yearnow, $monthnow, $daynow, $weekdaynow, $hournow, $minutenow) = explode('-', gmdate('Y-m-d-w-H-i', TIMESTAMP + $_G['setting']['timeoffset'] * 3600));  
+
+1145   
+
+1146         if($cron['weekday'] == -1) {  
+
+1147             if($cron['day'] == -1) {  
+
+1148                 $firstday = $daynow;  
+
+1149                 $secondday = $daynow + 1;  
+
+1150             } else {  
+
+1151                 $firstday = $cron['day'];  
+
+1152                 $secondday = $cron['day'] + gmdate('t', TIMESTAMP + $_G['setting']['timeoffset'] * 3600);  
+
+1153             }  
+
+1154         } else {  
+
+1155             $firstday = $daynow + ($cron['weekday'] - $weekdaynow);  
+
+1156             $secondday = $firstday + 7;  
+
+1157         }  
+
+1158   
+
+1159         if($firstday < $daynow) {  
+
+1160             $firstday = $secondday;  
+
+1161         }  
+
+1162   
+
+1163         if($firstday == $daynow) {  
+
+1164             $todaytime = discuz_cron::todaynextrun($cron);  
+
+1165             if($todaytime['hour'] == -1 && $todaytime['minute'] == -1) {  
+
+1166                 $cron['day'] = $secondday;  
+
+1167                 $nexttime = discuz_cron::todaynextrun($cron, 0, -1);  
+
+1168                 $cron['hour'] = $nexttime['hour'];  
+
+1169                 $cron['minute'] = $nexttime['minute'];  
+
+1170             } else {  
+
+1171                 $cron['day'] = $firstday;  
+
+1172                 $cron['hour'] = $todaytime['hour'];  
+
+1173                 $cron['minute'] = $todaytime['minute'];  
+
+1174             }  
+
+1175         } else {  
+
+1176             $cron['day'] = $firstday;  
+
+1177             $nexttime = discuz_cron::todaynextrun($cron, 0, -1);  
+
+1178             $cron['hour'] = $nexttime['hour'];  
+
+1179             $cron['minute'] = $nexttime['minute'];  
+
+1180         }  
+
+1181   
+
+1182         $nextrun = @gmmktime($cron['hour'], $cron['minute'] > 0 ? $cron['minute'] : 0, 0, $monthnow, $cron['day'], $yearnow) - $_G['setting']['timeoffset'] * 3600;  
+
+1183   
+
+1184         $availableadd = $nextrun > TIMESTAMP ? '' : ', available=\'0\'';  
+
+1185         DB::query("UPDATE ".DB::table('common_cron')." SET lastrun='$_G[timestamp]', nextrun='$nextrun' $availableadd WHERE cronid='$cron[cronid]'");  
+
+1186   
+
+1187         return true;  
+
+1188     }  
+
+1189   
+
+1190     /**  
+1191      * 计算计划任务今日执行状态  
+1192      *  
+1193      * @param int $cron  
+1194      * @param int $hour  
+1195      * @param int $minute  
+1196      * @return int  
+1197      */
+
+1198     function todaynextrun($cron, $hour = -2, $minute = -2) {  
+
+1199         global $_G;  
+
+1200   
+
+1201         $hour = $hour == -2 ? gmdate('H', TIMESTAMP + $_G['setting']['timeoffset'] * 3600) : $hour;  
+
+1202         $minute = $minute == -2 ? gmdate('i', TIMESTAMP + $_G['setting']['timeoffset'] * 3600) : $minute;  
+
+1203   
+
+1204         $nexttime = array();  
+
+1205         if($cron['hour'] == -1 && !$cron['minute']) {  
+
+1206             $nexttime['hour'] = $hour;  
+
+1207             $nexttime['minute'] = $minute + 1;  
+
+1208         } elseif($cron['hour'] == -1 && $cron['minute'] != '') {  
+
+1209             $nexttime['hour'] = $hour;  
+
+1210             if(($nextminute = discuz_cron::nextminute($cron['minute'], $minute)) === false) {  
+
+1211                 ++$nexttime['hour'];  
+
+1212                 $nextminute = $cron['minute'][0];  
+
+1213             }  
+
+1214             $nexttime['minute'] = $nextminute;  
+
+1215         } elseif($cron['hour'] != -1 && $cron['minute'] == '') {  
+
+1216             if($cron['hour'] < $hour) {  
+
+1217                 $nexttime['hour'] = $nexttime['minute'] = -1;  
+
+1218             } elseif($cron['hour'] == $hour) {  
+
+1219                 $nexttime['hour'] = $cron['hour'];  
+
+1220                 $nexttime['minute'] = $minute + 1;  
+
+1221             } else {  
+
+1222                 $nexttime['hour'] = $cron['hour'];  
+
+1223                 $nexttime['minute'] = 0;  
+
+1224             }  
+
+1225         } elseif($cron['hour'] != -1 && $cron['minute'] != '') {  
+
+1226             $nextminute = discuz_cron::nextminute($cron['minute'], $minute);  
+
+1227             if($cron['hour'] < $hour || ($cron['hour'] == $hour && $nextminute === false)) {  
+
+1228                 $nexttime['hour'] = -1;  
+
+1229                 $nexttime['minute'] = -1;  
+
+1230             } else {  
+
+1231                 $nexttime['hour'] = $cron['hour'];  
+
+1232                 $nexttime['minute'] = $nextminute;  
+
+1233             }  
+
+1234         }  
+
+1235   
+
+1236         return $nexttime;  
+
+1237     }  
+
+1238   
+1239     /**  
+1240      * 计算计划任务执行时刻  
+1241      *  
+1242      * @param int $nextminutes  
+1243      * @param int $minutenow  
+1244      * @return int  
+1245      */
+
+1246     function nextminute($nextminutes, $minutenow) {  
+
+1247         foreach($nextminutes as $nextminute) {  
+
+1248             if($nextminute > $minutenow) {  
+
+1249                 return $nextminute;  
+
+1250             }  
+
+1251         }  
+
+1252         return false;  
+
+1253     }  
+
+1254 }  
+
+1255   
+
+1256 /**  
+1257  * 功能进程管理  
+1258  * 通常用于某些功能禁止?⒎⒃诵?  
+1259  *  
+1260  */
+
+1261   
+
+1262 class discuz_process  
+
+1263 {  
+
+1264   
+
+1265     /**  
+1266      * 获取某进程信息  
+1267      *  
+1268      * @param string $name 进程名字  
+1269      * @return array  
+1270      */
+
+1271     function get($name) {  
+
+1272         $name5 = md5($name);  
+
+1273         $res = DB::fetch_first("SELECT * FROM ".DB::table('common_process')." WHERE processid='$name5'");  
+
+1274   
+
+1275         if(empty($res)) {  
+
+1276             $res = array();  
+
+1277         } elseif($res['expiry'] < TIMESTAMP) {  
+
+1278             discuz_process::delete($name);  
+
+1279             $res = array();  
+
+1280         }  
+
+1281         return $res;  
+
+1282     }  
+
+1283   
+
+1284     /**  
+1285      * 创建进程  
+1286      *  
+1287      * @param string $name 进程名  
+1288      * @param int $lifespan 进程过期时间  
+1289      * @param int $extra 进程附属信息  
+1290      * @return boolean  
+1291      */
+
+1292     function create($name, $lifespan = 0, $extra = 0) {  
+
+1293         $check = discuz_process::get($name);  
+
+1294         if(empty($check)) {  
+
+1295             $lifespan = empty($lifespan) ? 600 : $lifespan;  
+
+1296             DB::insert('common_process', array(  
+
+1297                 'processid' => md5($name),  
+
+1298                 'expiry' => TIMESTAMP + $lifespan,  
+
+1299                 'extra' =>$extra), false, true);  
+
+1300             return true;  
+
+1301         }  
+
+1302         else {  
+
+1303             return false;  
+
+1304         }  
+
+1305     }  
+
+1306   
+
+1307     /**  
+1308      * 删除某个进程或过期进程  
+1309      *  
+1310      * @param string $name 进程名  
+1311      */
+
+1312     function delete($name = '') {  
+
+1313         $name = md5($name);  
+
+1314         DB::delete('common_process', "processid='$name' OR expiry<".TIMESTAMP);  
+
+1315     }  
+
+1316   
+
+1317 }  
+
+1318   
+
+1319 /**  
+
+1320  * Discuz 内存读写引擎  
+1321  * 支持 memcache, eAccelerator, XCache  
+1322  *  
+1323  * 使用的时候建议直接利用函数 memory()  
+1324  */
+
+1325 class discuz_memory  
+
+1326 {  
+
+1327     var $config;  
+
+1328     var $extension = array();  
+
+1329     var $memory;  
+
+1330     var $prefix;  
+
+1331     var $type;  
+
+1332     var $keys;  
+
+1333     var $enable = false;  
+
+1334   
+
+1335     /**  
+1336      * 确认当前系统支持的内存读写接口  
+1337      * @return discuz_memory  
+1338      */
+
+1339     function discuz_memory() {  
+
+1340         $this->extension['eaccelerator'] = extension_loaded('eAccelerator');  
+
+1341         $this->extension['xcache'] = extension_loaded('XCache');  
+
+1342         $this->extension['memcache'] = extension_loaded('memcache');  
+
+1343     }  
+
+1344   
+
+1345     /**  
+1346      * 依据config当中设置，初始化内存引擎  
+1347      * @param unknown_type $config  
+1348      */
+
+1349     function init($config) {  
+
+1350   
+
+1351         $this->config = $config;  
+
+1352         $this->prefix = empty($config['prefix']) ? substr(md5($_SERVER['HTTP_HOST']), 0, 6).'_' : $config['prefix'];  
+
+1353         $this->keys = array();  
+
+1354   
+
+1355         // memcache 接口  
+
+1356         if($this->extension['memcache'] && !empty($config['memcache']['server'])) {  
+
+1357             require_once libfile('class/memcache');  
+
+1358             $this->memory = new discuz_memcache();  
+
+1359             $this->memory->init($this->config['memcache']);  
+
+1360             if(!$this->memory->enable) {  
+
+1361                 $this->memory = null;  
+
+1362             }  
+
+1363         }  
+
+1364   
+
+1365         // eaccelerator 接口  
+
+1366         if(!is_object($this->memory) && $this->extension['eaccelerator'] && $this->config['eaccelerator']) {  
+
+1367             require_once libfile('class/eaccelerator');  
+
+1368             $this->memory = new discuz_eaccelerator();  
+
+1369             $this->memory->init(null);  
+
+1370         }  
+
+1371   
+
+1372         // xcache 接口  
+
+1373         if(!is_object($this->memory) && $this->extension['xcache'] && $this->config['xcache']) {  
+
+1374             require_once libfile('class/xcache');  
+
+1375             $this->memory = new discuz_xcache();  
+
+1376             $this->memory->init(null);  
+
+1377         }  
+
+1378   
+
+1379         // 当接口正常，引入当前已经缓存的变量数组  
+
+1380         if(is_object($this->memory)) {  
+
+1381             $this->enable = true;  
+
+1382             $this->type = str_replace('discuz_', '', get_class($this->memory));  
+
+1383             $this->keys = $this->get('memory_system_keys');  
+
+1384             $this->keys = !is_array($this->keys) ? array() : $this->keys;  
+
+1385         }  
+
+1386   
+
+1387     }  
+
+1388   
+
+1389     /**  
+1390      * 读取内存  
+1391      *  
+1392      * @param string $key  
+1393      * @return mix  
+1394      */
+
+1395     function get($key) {  
+
+1396         $ret = null;  
+
+1397         if($this->enable && (isset($this->keys[$key]) || $key == 'memory_system_keys')) {  
+
+1398             $ret = $this->memory->get($this->_key($key));  
+
+1399             if(!is_array($ret)) {  
+
+1400                 $ret = null;  
+
+1401             } else {  
+
+1402                 return $ret[0];  
+
+1403             }  
+
+1404         }  
+
+1405         return $ret;  
+
+1406     }  
+
+1407   
+
+1408     /**  
+1409      * 写入内存  
+1410      *  
+1411      * @param string $key  
+1412      * @param array_string_number $value  
+1413      * @param int过期时间 $ttl  
+1414      * @return boolean  
+1415      */
+
+1416     function set($key, $value, $ttl = 0) {  
+
+1417   
+
+1418         $ret = null;  
+
+1419         if($this->enable) {  
+
+1420             $ret = $this->memory->set($this->_key($key), array($value), $ttl);  
+
+1421             if($ret) {  
+
+1422                 $this->keys[$key] = true;  
+
+1423                 $this->memory->set($this->_key('memory_system_keys'), array($this->keys));  
+
+1424             }  
+
+1425         }  
+
+1426         return $ret;  
+
+1427     }  
+
+1428   
+
+1429     /**  
+1430      * 删除一个内存单元  
+1431      * @param 键值string $key  
+1432      * @return boolean  
+1433      */
+
+1434     function rm($key) {  
+
+1435         $ret = null;  
+
+1436         if($this->enable) {  
+
+1437             $ret = $this->memory->rm($this->_key($key));  
+
+1438             if($ret) {  
+
+1439                 unset($this->keys[$key]);  
+
+1440                 $this->memory->set($this->_key('memory_system_keys'), array($this->keys));  
+
+1441             }  
+
+1442         }  
+
+1443         return $ret;  
+
+1444     }  
+
+1445   
+
+1446     /**  
+1447      * 清除当前使用的所有内存  
+1448      */
+
+1449     function clear() {  
+
+1450         if($this->enable && is_array($this->keys)) {  
+
+1451             $this->keys['memory_system_keys'] = true;  
+
+1452             foreach ($this->keys as $k => $v) {  
+
+1453                 $this->memory->rm($this->_key($k));  
+
+1454             }  
+
+1455         }  
+
+1456         $this->keys = array();  
+
+1457         return true;  
+
+1458     }  
+
+1459   
+
+1460     /**  
+1461      * 内部函数 追加键值前缀  
+1462      * @param string $str  
+146      * @return boolean  
+1464      */
+
+1465     function _key($str) {  
+
+1466         return ($this->prefix).$str;  
+
+1467     }  
+
+1468   
+
+1469 }  
+
+1470   
+
+1471 ?>

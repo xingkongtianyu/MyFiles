@@ -1,0 +1,1516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://baike.baidu.com/view/94238.htm -->
+<HTML><HEAD><TITLE>正则表达式_百度百科</TITLE>
+<SCRIPT>var __PDC={pid:"103001",page_start:new Date()*1,time_snap:0,js_time:[],ext_data:{},vt_height:0};(function(){if(document.attachEvent){window.attachEvent("onload",function(){__PDC.complete()})}else{window.addEventListener("load",function(){__PDC.onload_start=new Date()*1},false)}})();__PDC.complete=function(){if(__PDC.pid==0){return}__PDC.onload_end=new Date()*1;var d=0.02,e=-1,b=false;var a=document.cookie.match(/BAIDUID=(\w*):/);if(a){e=parseInt(a[1].slice(-2),16)}if(b==true||(!isNaN(e)&&(e%(parseInt(1/d))==7))){var c=document.createElement("script");c.src="http://static.tieba.baidu.com/tb/pms/pmc.js?v=1.0";document.body.appendChild(c)}};</SCRIPT>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=X-UA-Compatible content=IE=7><LINK 
+href="http://img.baidu.com/img/baike/wap/iphone4_logo.png" rel=apple-touch-icon>
+<SCRIPT>__PDC.time_snap=new Date()*1;</SCRIPT>
+
+<SCRIPT src="正则表达式_百度百科.files/tangram-1.3.4.js" type=text/javascript></SCRIPT>
+
+<SCRIPT>__PDC.js_time.push("js_103102="+(new Date()*1-__PDC.time_snap));</SCRIPT>
+<LINK href="正则表达式_百度百科.files/bk.lemma.css" type=text/css rel=stylesheet>
+<SCRIPT>__PDC.time_snap=new Date()*1;</SCRIPT>
+
+<SCRIPT src="正则表达式_百度百科.files/bk.lemma.js" type=text/javascript></SCRIPT>
+
+<SCRIPT>__PDC.js_time.push("js_103103="+(new Date()*1-__PDC.time_snap));</SCRIPT>
+
+<SCRIPT>__PDC.head_area_end=new Date()*1;(function(){var b=document.body;if(b){var a=b.offsetHeight;if(a>0){__PDC.render_start=new Date().getTime();__PDC.ext_data._vtd="h_"+a;__PDC.vt_height=a;return}}setTimeout(arguments.callee,10)})();__PDC.ready=function(b,c){c=c||document;if(/complete/.test(c.readyState)){b()}else{if(c.addEventListener){if("interactive"==c.readyState){b()}else{c.addEventListener("DOMContentLoaded",b,false)}}else{var a=function(){a=new Function;b()};void function(){try{c.body.doScroll("left")}catch(d){return setTimeout(arguments.callee,10)}a()}();c.attachEvent("onreadystatechange",function(){("complete"==c.readyState)&&a()})}}};__PDC.ready(function(){__PDC.dom_ready=new Date()*1},document);__PDC.header_start=new Date()*1;</SCRIPT>
+
+<META content="MSHTML 6.00.2900.6104" name=GENERATOR></HEAD>
+<BODY id=view>
+<DIV id=usrbar></DIV>
+<DIV id=wrap>
+<DIV id=header>
+<SCRIPT>(function(){if(typeof __PDC=="object"){__PDC.header_start=new Date()*1}})();</SCRIPT>
+
+<DIV id=search>
+<DIV id=logo><A href="http://baike.baidu.com/"><IMG class=nslog:1008 height=46 
+alt=到百科首页 src="正则表达式_百度百科.files/logo-baike.gif" width=137 border=0></A> </DIV>
+<DIV id=search-content>
+<P class="nv nslog-area" data-nslog-type="1009"><A 
+href="http://news.baidu.com/ns?fr=bk&amp;cl=2&amp;rn=20&amp;tn=news&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">新闻</A><A 
+href="http://www.baidu.com/s?fr=bk&amp;cl=3&amp;wd=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD&amp;t=5">网页</A><A 
+href="http://tieba.baidu.com/f?fr=bk&amp;kw=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">贴吧</A><A 
+href="http://zhidao.baidu.com/q?fr=bk&amp;ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">知道</A><A 
+href="http://mp3.baidu.com/m?fr=bk&amp;tn=baidump3&amp;ct=134217728&amp;lm=-1&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">MP3</A><A 
+href="http://image.baidu.com/i?fr=bk&amp;tn=baiduimage&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">图片</A><A 
+href="http://video.baidu.com/v?fr=bk&amp;ct=301989888&amp;rn=20&amp;pn=0&amp;db=0&amp;s=24&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD">视频</A><STRONG>百科</STRONG><A 
+href="http://wenku.baidu.com/search?fr=bk&amp;word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD&amp;lm=0&amp;od=0">文库</A> 
+</P>
+<FORM name=f1 action=/searchword/ method=get target=_self><INPUT id=word 
+tabIndex=1 maxLength=400 value=正则表达式 name=word> <INPUT class="search-btn nslog:1010" onclick=document.f1.pic.value=1 tabIndex=2 type=submit value=进入词条><INPUT class="search-btn nslog:1011" onclick=document.f1.pic.value=2 tabIndex=3 type=submit value=搜索词条> 
+<INPUT id=sw1 type=hidden value=1 name=pic> <INPUT type=hidden value=1 name=sug> 
+<INPUT id=search-enc type=hidden value=gbk name=enc> </FORM></DIV>
+<DIV id=help><A class=nslog:1012 
+href="http://www.baidu.com/search/baike_help.html" target=_blank>帮助</A><A 
+class=nslog:1013 onclick="setSug();return false" 
+href="http://baike.baidu.com/view/94238.htm#">设置</A> </DIV>
+<DIV class=clear></DIV></DIV>
+<DIV class=nslog-area id=path data-nslog-type="1000">
+<UL class="nav f14 clearfix">
+  <LI class=home><A href="http://baike.baidu.com/">首页</A> </LI>
+  <LI><A href="http://baike.baidu.com/ziran/">自然</A> </LI>
+  <LI><A href="http://baike.baidu.com/wenhua/">文化</A> </LI>
+  <LI><A href="http://baike.baidu.com/dili/">地理</A> </LI>
+  <LI><A href="http://baike.baidu.com/lishi/">历史</A> </LI>
+  <LI><A href="http://baike.baidu.com/shenghuo/">生活</A> </LI>
+  <LI><A href="http://baike.baidu.com/shehui/">社会</A> </LI>
+  <LI><A href="http://baike.baidu.com/yishu/">艺术</A> </LI>
+  <LI><A href="http://baike.baidu.com/renwu/">人物</A> </LI>
+  <LI><A href="http://baike.baidu.com/jingji/">经济</A> </LI>
+  <LI><A href="http://baike.baidu.com/kexue/">科技</A> </LI>
+  <LI><A href="http://baike.baidu.com/tiyu/">体育</A> </LI>
+  <LI><A href="http://baike.baidu.com/cms/s/core/index.html" 
+  target=_blank>核心用户</A> </LI>
+  <LI>
+  <DIV class=nav-channel-hot></DIV><A 
+  href="http://baike.baidu.com/cms/s/zhuanti-hot1106/index.html" 
+  target=_blank>热词榜</A> 
+  <STYLE type=text/css compress>#path UL.nav LI {
+	POSITION: relative
+}
+UL.nav LI {
+	POSITION: relative
+}
+.nav {
+	OVERFLOW: visible
+}
+DIV.nav-channel-hot {
+	RIGHT: 7px; BACKGROUND: none transparent scroll repeat 0% 0%; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img.baidu.com/img/baike/icons/hot.png"); WIDTH: 24px; POSITION: absolute; TOP: -7px; HEIGHT: 15px
+}
+</STYLE>
+  </LI></UL>
+<SCRIPT type=text/javascript>
+   baidu.dom.ready(function(){
+            baidu.page.loadJsFile("http://img.baidu.com/img/baike/js/view.js?t="+new Date().getTime());
+               });
+</SCRIPT>
+</DIV></DIV>
+<DIV id=page>
+<DIV class="layout grid-m0s245 w1000" id=content-wrap>
+<DIV class="col-main article" id=content>
+<DIV class="main-wrap main-shadow">
+<DIV class=content-hd>
+<DIV class=content-hd-wrap></DIV></DIV>
+<DIV class="content-bd main-body">
+<DIV class=text><SPAN class="editable-lemma " data-edit-id="94238"></SPAN><A 
+class="dividable-lemma lemma-top-link" id=subSet hideFocus style="DISPLAY: none" 
+href="http://baike.baidu.com/divideload?lemmaid=94238" 
+data-edit-id="94238">拆分词条</A> 
+<H1 class=title>正则表达式</H1>
+<SCRIPT>baikeViewInfo={id:"94238",editable:"true",title:"正则表达式",expIndex:"0"};</SCRIPT>
+
+<DIV class=clear></DIV>
+<DIV class=mod-top>
+<H4 class=card-title><A class=throwbtl-link-view 
+onclick="userlogin();return false" href="http://baike.baidu.com/view/94238.htm#" 
+subLemmaTitle="" subLemmaId="" isViewCard="1">求助编辑</A>百科名片</H4>
+<DIV class="card-summary nslog-area" data-nslog-type="72">
+<DIV style="FLOAT: left; WIDTH: 690px">
+<P>在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。在很多文本编辑器或其他工具里，正则表达式通常被用来检索和/或替换那些符合某个模式的文本内容。许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在Perl中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由Unix中的工具软件（例如sed和grep）普及开的。正则表达式通常缩写成“regex”，单数有regexp、regex，复数有regexps、regexes、regexen。</P></DIV>
+<DIV class=clear></DIV></DIV></DIV>
+<FIELDSET class="text_dir nslog-area" id=catalog-0 data-nslog-type="1016" 
+data-subindex="0">
+<P>目录</P>
+<DL class=holder1 id=catalog-holder-0>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#1" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">历史和起源</A>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#2" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">概念</A>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#3" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">基础</A>
+  <OL>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_1">简单的例子</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_2">中级的例子</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_3">不同工具中的正则表达式</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_4">sed</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_5">awk</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_6">grep</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_7">egrep</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_8">正则表达式语法支持情况</A>
+    <LI><A href="http://baike.baidu.com/view/94238.htm#3_9">vi替换命令简介</A></LI></OL>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#4" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">常用的正则表达式</A>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#5" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">Editplus等软件中正则替换技巧</A>
+  <DD><A class=nslog:1274 href="http://baike.baidu.com/view/94238.htm#6" 
+  name=STAT_ONCLICK_UNSUBMIT_CATALOG log-data-detail="">启示</A></DD></DL>
+<DL class=holder2 id=catalog-holder-2-0></DL></FIELDSET> 
+<DIV class=clear></DIV>
+<SCRIPT type=text/javascript>bk.view.catalog().start("0");</SCRIPT>
+
+<DIV class=lemma-main-content id=lemmaContent-0>
+<H2 class="headline-1 first"><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:1"></SPAN><A name=1></A><SPAN 
+class=headline-content>历史和起源</SPAN></H2>　　正则表达式的“鼻祖”或许可一直追溯到科学家对人类神经系统工作原理的早期研究。美国新泽西州的Warren 
+McCulloch和出生在美国底特律的Walter 
+Pitts这两位神经生理方面的科学家，研究出了一种用数学方式来描述神经网络的新方法，他们创新地将神经系统中的神经元描述成了小而简单的自动控制元，从而作出了一项伟大的工作革新。 
+
+<DIV class=spctrl></DIV>　　在1956 年,出生在被马克·吐温（Mark 
+Twain）称为“美国最美丽的城市之一的”哈特福德市的一位名叫Stephen Kleene的数学科学家，他在Warren McCulloch和Walter 
+Pitts早期工作的基础之上，发表了一篇题目是《神经网事件的表示法》的论文，利用称之为正则集合的数学符号来描述此模型，引入了正则表达式的概念。正则表达式被作为用来描述其称之为“正则集的代数”的一种表达式，因而采用了“正则表达式”这个术语。 
+
+<DIV class=spctrl></DIV>　　之后一段时间，人们发现可以将这一工作成果应用于其他方面。Ken 
+Thompson就把这一成果应用于计算搜索算法的一些早期研究，Ken Thompson是 
+Unix的主要发明人，也就是大名鼎鼎的Unix之父。Unix之父将此符号系统引入编辑器QED，然后是Unix上的编辑器ed，并最终引入grep。Jeffrey 
+Friedl 在其著作“Mastering Regular Expressions (2nd 
+edition)”中对此作了进一步阐述讲解，如果你希望更多了解正则表达式理论和历史，推荐你看看这本书。 
+<DIV class=spctrl></DIV>　　自此以后，正则表达式被广泛地应用到各种UNIX或类似于UNIX的工具中，如大家熟知的<A 
+href="http://baike.baidu.com/view/46614.htm" 
+target=_blank>Perl</A>。Perl的正则表达式源自于Henry 
+Spencer编写的regex，之后已演化成了pcre（Perl兼容正则表达式Perl Compatible Regular 
+Expressions），pcre是一个由Philip Hazel开发的、为很多现代工具所使用的库。正则表达式的第一个实用应用程序即为Unix中的 qed 
+编辑器。 
+<DIV 
+class=spctrl></DIV>　　然后，正则表达式在各种计算机语言或各种应用领域得到了广大的应用和发展，演变成为目前计算机技术森林中的一只形神美丽且声音动听的百灵鸟。 
+
+<DIV 
+class=spctrl></DIV>　　以上是关于正则表达式的起源和发展的历史描述，到目前正则表达式在基于文本的编辑器和搜索工具中依然占据这一个非常重要的地位。 
+
+<DIV 
+class=spctrl></DIV>　　在最近的六十年中，正则表达式逐渐从模糊而深奥的数学概念，发展成为在计算机各类工具和软件包应用中的主要功能。不仅仅众多UNIX工具支持正则表达式，近二十年来，在WINDOW的阵营下，正则表达式的思想和应用在大部分 
+Windows 开发者工具包中得到支持和嵌入应用！从正则式在Microsoft Visual Basic 6 或 Microsoft VBScript到.NET 
+Framework中的探索和发展，WINDOWS系列产品对正则表达式的支持发展到无与伦比的高度，目前几乎所有 Microsoft 
+开发者和所有.NET语言都可以使用正则表达式。如果你是一位接触计算机语言的工作者，那么你会在主流操作系统（*nix[Linux, 
+Unix等]、Windws、HP、BeOS等）、目前主流的开发语言（<A href="http://baike.baidu.com/view/99.htm" 
+target=_blank>PHP</A>、<A href="http://baike.baidu.com/view/6590.htm" 
+target=_blank>C#</A>、<A href="http://baike.baidu.com/view/29.htm" 
+target=_blank>Java</A>、<A href="http://baike.baidu.com/view/824.htm" 
+target=_blank>C++</A>、<A href="http://baike.baidu.com/view/3063.htm" 
+target=_blank>VB</A>、<A href="http://baike.baidu.com/view/16168.htm" 
+target=_blank>Javascript</A>、<A href="http://baike.baidu.com/view/45135.htm" 
+target=_blank>Ruby</A>等）、数以亿万计的各种应用软件中，都可以看到正则表达式优美的舞姿。 <SUP>[1]</SUP><A 
+name=ref_[1]></A>
+<DIV class=bpctrl></DIV>
+<H2 class=headline-1><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:2"></SPAN><A name=2></A><SPAN 
+class=headline-content>概念</SPAN></H2>　　一个正则表达式，就是用某种模式去匹配一类字符串的一个公式。很多人因为它们看上去比较古怪而且复杂所以不敢去使用——很不幸，这篇文章也不能够改变这一点，不过，经过一点点练习之后我就开始觉得这些复杂的表达式其实写起来还是相当简单的，而且，一旦你弄懂它们，你就能把数小时辛苦而且易错的文本处理工作压缩在几分钟（甚至几秒钟）内完成。正则表达式被各种文本编辑软件、类库（例如Rogue 
+Wave的tools.h++）、脚本工具（像awk/grep/sed）广泛的支持，而且像Microsoft的Visual C++这种交互式IDE也开始支持它了。 
+
+<DIV 
+class=spctrl></DIV>　　我们将在如下的章节中利用一些例子来解释正则表达式的用法，绝大部分的例子是基于vi中的文本替换命令和grep文件搜索命令来书写的，不过它们都是比较典型的例子，其中的概念可以在sed、awk、perl和其他支持正则表达式的编程语言中使用。你可以看看不同工具中的正则表达式这一节，其中有一些在别的工具中使用正则表达式的例子。还有一个关于vi中文本替换命令（s）的简单说明附在文后供参考。
+<DIV class=bpctrl></DIV>
+<H2 class=headline-1><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:3"></SPAN><A name=3></A><SPAN 
+class=headline-content>基础</SPAN></H2>　　（摘自《<A 
+href="http://baike.baidu.com/view/1427403.htm" target=_blank>正则表达式之道</A>》） 
+<DIV class=spctrl></DIV>　　正则表达式由一些普通字符和一些<A 
+href="http://baike.baidu.com/view/1061241.htm" 
+target=_blank>元字符</A>（metacharacters）组成。普通字符包括大小写的字母和数字，而元字符则具有特殊的含义，我们下面会给予解释。 
+<DIV 
+class=spctrl></DIV>　　在最简单的情况下，一个正则表达式看上去就是一个普通的查找串。例如，正则表达式"testing"中没有包含任何元字符，它可以匹配"testing"和"123testing"等字符串，但是不能匹配"Testing"。 
+
+<DIV class=spctrl></DIV>　　要想真正的用好正则表达式，正确的理解元字符是最重要的事情。下表列出了所有的元字符和对它们的一个简短的描述。 
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD>元字符 </TD>
+    <TD>描述</TD></TR>
+  <TR>
+    <TD>.点 </TD>
+    <TD>匹配任何单个字符。例如正则表达式r.t匹配这些字符串：rat、rut、r t，但是不匹配root。 </TD></TR>
+  <TR>
+    <TD>$</TD>
+    <TD>匹配行结束符。例如正则表达式weasel$ 能够匹配字符串"He's a weasel"的末尾 <BR>但是不能匹配字符串"They are 
+      a bunch of weasels."</TD></TR>
+  <TR>
+    <TD>^</TD>
+    <TD>匹配一行的开始。例如正则表达式^When in能够匹配字符串"When in the course of human 
+      events"的开始，但是不能匹配"What and When in the"</TD></TR>
+  <TR>
+    <TD>*</TD>
+    <TD>匹配0或多个正好在它之前的那个字符。例如正则表达式。*意味着能够匹配任意数量的任何字符。</TD></TR>
+  <TR>
+    <TD>\ </TD>
+    <TD>这是引用符，用来将这里列出的这些元字符当作普通的字符来进行匹配。例如正则表达式\$被用来匹配美元符号，而不是行尾，类似的，正则表达式\.用来匹配点字符，而不是任何字符的通配符。</TD></TR>
+  <TR>
+    <TD>[ ] <BR>[c1-c2] <BR>[^c1-c2]</TD>
+    <TD>匹配括号中的任何一个字符。例如正则表达式r[aou]t匹配rat、rot和rut，但是不匹配ret。可以在括号中使用连字符-来指定字符的区间，例如正则表达式[0-9]可以匹配任何数字字符；还可以制定多个区间，例如正则表达式[A-Za-z]可以匹配任何大小写字母。另一个重要的用法是“排除”，要想匹配除了指定区间之外的字符——也就是所谓的补集——在左边的括号和第一个字符之间使用^字符，例如正则表达式[^269A-Z] 
+      将匹配除了2、6、9和所有大写字母之外的任何字符。</TD></TR>
+  <TR>
+    <TD>\&lt; \&gt;</TD>
+    <TD>匹配词（word）的开始（\&lt;）和结束（\&gt;）。例如正则表达式\&lt;the\&gt;能够匹配字符串"for the 
+      wise"中的"the"，但是不能匹配字符串"otherwise"中的"the"。注意：这个元字符不是所有的软件都支持的。</TD></TR>
+  <TR>
+    <TD>\( \)</TD>
+    <TD>将 \( 和 \) 
+      之间的表达式定义为“组”（group），并且将匹配这个表达式的字符保存到一个临时区域（一个正则表达式中最多可以保存9个），它们可以用 \1 到\9 
+      的符号来引用。</TD></TR>
+  <TR>
+    <TD>|</TD>
+    <TD>将两个匹配条件进行逻辑“或”（Or）运算。例如正则表达式(him|her) 匹配"it belongs to him"和"it 
+      belongs to her"，但是不能匹配"it belongs to them."。注意：这个元字符不是所有的软件都支持的。</TD></TR>
+  <TR>
+    <TD>+</TD>
+    <TD>匹配1或多个正好在它之前的那个字符。例如正则表达式9+匹配9、99、999等。注意：这个元字符不是所有的软件都支持的。</TD></TR>
+  <TR>
+    <TD>?</TD>
+    <TD>匹配0或1个正好在它之前的那个字符。注意：这个元字符不是所有的软件都支持的。</TD></TR>
+  <TR>
+    <TD>{i} <BR>{i,j}</TD>
+    <TD>匹配指定数目的字符，这些字符是在它之前的表达式定义的。例如正则表达式A[0-9]{3} 
+      能够匹配字符"A"后面跟着正好3个数字字符的串，例如A123、A348等，但是不匹配A1234。而正则表达式[0-9]{4,6} 
+      匹配连续的任意4个、5个或者6个数字字符。注意：这个元字符不是所有的软件都支持的。</TD></TR></TBODY></TABLE>
+<DIV 
+class=spctrl></DIV>　　最简单的元字符是点，它能够匹配任何单个字符（注意不包括换行符）。假定有个文件test.txt包含以下几行内容： 
+<DIV class=spctrl></DIV>　　he is a rat 
+<DIV class=spctrl></DIV>　　he is in a rut 
+<DIV class=spctrl></DIV>　　the food is Rotten 
+<DIV class=spctrl></DIV>　　I like root beer 
+<DIV 
+class=spctrl></DIV>　　我们可以使用grep命令来测试我们的正则表达式，grep命令使用正则表达式去尝试匹配指定文件的每一行，并将至少有一处匹配表达式的所有行显示出来。命令 
+
+<DIV class=spctrl></DIV>　　<I>grep r.t test.txt </I>
+<DIV 
+class=spctrl></DIV>　　在test.txt文件中的每一行中搜索正则表达式r.t，并打印输出匹配的行。正则表达式r.t匹配一个r接着任何一个字符再接着一个t。所以它将匹配文件中的rat和rut，而不能匹配Rotten中的Rot，因为正则表达式是大小写敏感的。要想同时匹配大写和小写字母，应该使用字符区间元字符（方括号）。正则表达式[Rr]能够同时匹配R和r。所以，要想匹配一个大写或者小写的r接着任何一个字符再接着一个t就要使用这个表达式：[Rr].t。 
+
+<DIV 
+class=spctrl></DIV>　　要想匹配行首的字符要使用抑扬字符（^）——又是也被叫做插入符。例如，想找到text.txt中行首"he"打头的行，你可能会先用简单表达式he，但是这会匹配第三行的the，所以要使用正则表达式^he，它只匹配在行首出现的h。 
+
+<DIV 
+class=spctrl></DIV>　　有时候指定“除了×××都匹配”会比较容易达到目的，当抑扬字符（^）出现在方括号中是，它表示“排除”，例如要匹配he 
+，但是排除前面是t or s的情形（也就是the和she），可以使用：[^st]he。 
+<DIV 
+class=spctrl></DIV>　　可以使用方括号来指定多个字符区间。例如正则表达式[A-Za-z]匹配任何字母，包括大写和小写的；正则表达式[A-Za-z][A-Za-z]* 
+匹配一个字母后面接着0或者多个字母（大写或者小写）。当然我们也可以用元字符+做到同样的事情，也就是：[A-Za-z]+ 
+，和[A-Za-z][A-Za-z]*完全等价。但是要注意元字符+ 并不是所有支持正则表达式的程序都支持的。关于这一点可以参考后面的正则表达式语法支持情况。 
+<DIV class=spctrl></DIV>　　要指定特定数量的匹配，要使用大括号（注意必须使用反斜杠来转义）。想匹配所有10和100的实例而排除1和 
+1000，可以使用：10\{1,2\}，这个正则表达式匹配数字1后面跟着1或者2个0的模式。在这个元字符的使用中一个有用的变化是忽略第二个数字，例如正则表达式0\{3,\} 
+将匹配至少3个连续的0。
+<H3 class=headline-2><A name=3_1></A><SPAN 
+class=headline-content>简单的例子</SPAN></H3>　　这里有一些有代表性的、比较简单的例子。 
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>vi 命令</B></TD>
+    <TD><B>作用</B></TD></TR>
+  <TR>
+    <TD>:%s/ */ /g</TD>
+    <TD>把一个或者多个空格替换为一个空格</TD></TR>
+  <TR>
+    <TD>:%s/ *$//</TD>
+    <TD>去掉行尾的所有空格</TD></TR>
+  <TR>
+    <TD>:%s/^/ /</TD>
+    <TD>在每一行头上加入一个空格</TD></TR>
+  <TR>
+    <TD>:%s/^[0-9][0-9]* //</TD>
+    <TD>去掉行首的所有数字字符</TD></TR>
+  <TR>
+    <TD>:%s/b[aeio]g/bug/g</TD>
+    <TD>将所有的bag、beg、big和bog改为bug。 </TD></TR>
+  <TR>
+    <TD>:%s/t\([aou]\)g/h\1t/g</TD>
+    <TD>将所有tag、tog和tug分别改为hat、hot和hut（注意用group的用法和使用\1引用前面被匹配的字符）</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_2></A><SPAN 
+class=headline-content>中级的例子</SPAN></H3>　　<B>例1</B> 
+<DIV 
+class=spctrl></DIV>　　将所有方法foo(a,b,c)的实例改为foo(b,a,c)。这里a、b和c可以是任何提供给方法foo()的参数。也就是说我们要实现这样的转换： 
+
+<DIV class=spctrl></DIV>　　之前 之后 
+<DIV class=spctrl></DIV>　　foo(10,7,2) foo(7,10,2) 
+<DIV class=spctrl></DIV>　　foo(x+13,y-2,10) foo(y-2,x+13,10) 
+<DIV class=spctrl></DIV>　　foo( bar(8), x+y+z, 5) foo( x+y+z, bar(8), 5) 
+<DIV class=spctrl></DIV>　　下面这条替换命令能够实现这一魔法： 
+<DIV 
+class=spctrl></DIV>　　<I>:%s/foo(\([^,]*\),\([^,]*\),\([^)]*\))/foo(\2,\1,\3)/g 
+</I>
+<DIV 
+class=spctrl></DIV>　　现在让我们把它打散来加以分析。写出这个表达式的基本思路是找出foo()和它的括号中的三个参数的位置。第一个参数是用这个表达式来识别的：：\([^,]*\)，我们可以从里向外来分析它： 
+
+<DIV class=spctrl></DIV>　　[^,] 除了逗号之外的任何字符 
+<DIV class=spctrl></DIV>　　[^,]* 0或者多个非逗号字符 
+<DIV class=spctrl></DIV>　　\([^,]*\) 将这些非逗号字符标记为\1，这样可以在之后的替换模式表达式中引用它 
+<DIV class=spctrl></DIV>　　\([^,]*\), 
+我们必须找到0或者多个非逗号字符后面跟着一个逗号，并且非逗号字符那部分要标记出来以备后用。 
+<DIV 
+class=spctrl></DIV>　　现在正是指出一个使用正则表达式常见错误的最佳时机。为什么我们要使用[^,]*这样的一个表达式，而不是更加简单直接的写法，例如：.*，来匹配第一个参数呢？设想我们使用模式.*来匹配字符串"10,7,2"，它应该匹配"10,"还是"10,7,"？为了解决这个两义性（ambiguity），正则表达式规定一律按照最长的串来，在上面的例子中就是"10,7,"，显然这样就找出了两个参数而不是我们期望的一个。所以，我们要使用[^,]*来强制取出第一个逗号之前的部分。 
+
+<DIV 
+class=spctrl></DIV>　　这个表达式我们已经分析到了：foo(\([^,]*\)，这一段可以简单的翻译为“当你找到foo(就把其后直到第一个逗号之前的部分标记为\1”。然后我们使用同样的办法标记第二个参数为\2。对第三个参数的标记方法也是一样，只是我们要搜索所有的字符直到右括号。我们并没有必要去搜索第三个参数，因为我们不需要调整它的位置，但是这样的模式能够保证我们只去替换那些有三个参数的foo()方法调用，在foo()是一个重载（overoading）方法时这种明确的模式往往是比较保险的。然后，在替换部分，我们找到foo()的对应实例，然后利用标记好的部分进行替换，是把第一和第二个参数交换位置。 
+
+<DIV class=spctrl></DIV>　　<B>例2</B> 
+<DIV class=spctrl></DIV>　　假设有一个CSV（comma separated 
+value）文件，里面有一些我们需要的信息，但是格式却有问题，目前数据的列顺序是：姓名，公司名，州名缩写，邮政编码，现在我们希望讲这些数据重新组织，以便在我们的某个软件中使用，需要的格式为：姓名，州名缩写-邮政编码，公司名。也就是说，我们要调整列顺序，还要合并两个列来构成一个新列。另外，我们的软件不能接受逗号前后面有任何空格（包括空格和制表符）所以我们还必须要去掉逗号前后的所有空格。 
+
+<DIV class=spctrl></DIV>　　这里有几行我们现在的数据： 
+<DIV class=spctrl></DIV>　　Bill Jones, HI-TEK Corporation , CA, 95011 
+<DIV class=spctrl></DIV>　　Sharon Lee Smith, Design Works Incorporated, CA, 95012 
+
+<DIV class=spctrl></DIV>　　B. Amos , Hill Street Cafe, CA, 95013 
+<DIV class=spctrl></DIV>　　Alexander Weatherworth, The Crafts Store, CA, 95014 
+<DIV class=spctrl></DIV>　　... 
+<DIV class=spctrl></DIV>　　我们希望把它变成这个样子： 
+<DIV class=spctrl></DIV>　　Bill Jones,CA 95011,HI-TEK Corporation 
+<DIV class=spctrl></DIV>　　Sharon Lee Smith,CA 95012,Design Works Incorporated 
+<DIV class=spctrl></DIV>　　B. Amos,CA 95013,Hill Street Cafe 
+<DIV class=spctrl></DIV>　　Alexander Weatherworth,CA 95014,The Crafts Store 
+<DIV class=spctrl></DIV>　　... 
+<DIV class=spctrl></DIV>　　我们将用两个正则表达式来解决这个问题。第一个移动列和合并列，第二个用来去掉空格。 
+<DIV class=spctrl></DIV>　　下面就是第一个替换命令： 
+<DIV class=spctrl></DIV>　　<I>:%s/\([^,]*\),\([^,]*\),\([^,]*\),\(.*\)/\1,\3 
+\4,\2/ </I>
+<DIV 
+class=spctrl></DIV>　　这里的方法跟例1基本一样，第一个列（姓名）用这个表达式来匹配：\([^,]*\)，即第一个逗号之前的所有字符，而姓名内容被用\1标记下来。公司名和州名缩写字段用同样的方法标记为\2和\3，而最后一个字段用\(.*\)来匹配（"匹配所有字符直到行末"）。替换部分则引用上面标记的那些内容来进行构造。 
+
+<DIV class=spctrl></DIV>　　下面这个替换命令则用来去除空格： 
+<DIV class=spctrl></DIV>　　<I>:%s/[ \t]*,[ \t]*/,/g </I>
+<DIV class=spctrl></DIV>　　我们还是分解来看：[ \t]匹配空格/制表符，[ \t]* 匹配0或多个空格/制表符，[ 
+\t]*,匹配0或多个空格/制表符后面再加一个逗号，最后，[ \t]*,[ 
+\t]*匹配0或多个空格/制表符接着一个逗号再接着0或多个空格/制表符。在替换部分，我们简单的我们找到的所有东西替换成一个逗号。这里我们使用了结尾的可选的g参数，这表示在每行中对所有匹配的串执行替换（而不是缺省的只替换第一个匹配串）。 
+
+<DIV class=spctrl></DIV>　　<B>例3</B> 
+<DIV class=spctrl></DIV>　　假设有一个多字符的片断重复出现，例如： 
+<DIV class=spctrl></DIV>　　Billy tried really hard 
+<DIV class=spctrl></DIV>　　Sally tried really really hard 
+<DIV class=spctrl></DIV>　　Timmy tried really really really hard 
+<DIV class=spctrl></DIV>　　Johnny tried really really really really hard 
+<DIV class=spctrl></DIV>　　而你想把"really"、"really 
+really"，以及任意数量连续出现的"really"字符串换成一个简单的"very"（simple is good!），那么以下命令： 
+<DIV class=spctrl></DIV>　　<I>:%s/\(really \)\(really \)*/very /</I> 
+<DIV class=spctrl></DIV>　　就会把上述的文本变成： 
+<DIV class=spctrl></DIV>　　Billy tried very hard 
+<DIV class=spctrl></DIV>　　Sally tried very hard 
+<DIV class=spctrl></DIV>　　Timmy tried very hard 
+<DIV class=spctrl></DIV>　　Johnny tried very hard 
+<DIV class=spctrl></DIV>　　表达式\(really \)*匹配0或多个连续的"really "（注意结尾有个空格），而\(really 
+\)\(really \)* 匹配1个或多个连续的"really "实例。
+<H3 class=headline-2><A name=3_3></A><SPAN 
+class=headline-content>不同工具中的正则表达式</SPAN></H3>　　OK，你已经准备使用RE（regular 
+expressions，正则表达式），但是你并准备使用vi。所以，在这里我们给出一些在其他工具中使用RE的例子。另外，我还会总结一下你在不同程序之间使用RE可能发现的区别。 
+
+<DIV class=spctrl></DIV>　　当然，你也可以在Visual 
+C++编辑器中使用RE。选择Edit-&gt;Replace，然后选择"Regular expression"选择框，Find 
+What输入框对应上面介绍的vi命令:%s/pat1/pat2/g中的pat1部分，而Replace输入框对应pat2部分。但是，为了得到vi的执行范围和g选项，你要使用Replace 
+All或者适当的手工Find Next and 
+Replace（译者按：知道为啥有人骂微软弱智了吧，虽然VC中可以选中一个范围的文本，然后在其中执行替换，但是总之不够vi那么灵活和典雅）。
+<H3 class=headline-2><A name=3_4></A><SPAN 
+class=headline-content>sed</SPAN></H3>　　Sed是Stream 
+EDitor的缩写，是Unix下常用的基于文件和管道的编辑工具，可以在手册中得到关于sed的详细信息。 
+<DIV 
+class=spctrl></DIV>　　这里是一些有趣的sed脚本，假定我们正在处理一个叫做price.txt的文件。注意这些编辑并不会改变源文件，sed只是处理源文件的每一行并把结果显示在标准输出中（当然很容易使用<A 
+href="http://baike.baidu.com/view/1245190.htm" target=_blank>重定向</A>来定制）： 
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>sed脚本</B></TD>
+    <TD><B>描述</B></TD></TR>
+  <TR>
+    <TD>sed 's/^$/d' price.txt</TD>
+    <TD>删除所有空行</TD></TR>
+  <TR>
+    <TD>sed 's/^[ \t]*$/d' price.txt</TD>
+    <TD>删除所有只包含空格或者制表符的行</TD></TR>
+  <TR>
+    <TD>sed 's/"//g' price.txt</TD>
+    <TD>删除所有引号</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_5></A><SPAN 
+class=headline-content>awk</SPAN></H3>　　awk是一种编程语言，可以用来对文本数据进行复杂的分析和处理。可以在手册中得到关于awk的详细信息。这个古怪的名字是它作者们的姓的缩写（Aho，Weinberger和Kernighan）。 
+
+<DIV class=spctrl></DIV>　　在Aho，Weinberger和Kernighan的书The AWK Programming 
+Language中有很多很好的awk的例子，请不要让下面这些微不足道的脚本例子限制你对awk强大能力的理解。我们同样假定我们针对price.txt文件进行处理，跟sed一样，awk也只是把结果显示在终端上。 
+
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>awk脚本</B></TD>
+    <TD><B>描述</B></TD></TR>
+  <TR>
+    <TD>awk ' !~ /^$/' price.txt</TD>
+    <TD>删除所有空行</TD></TR>
+  <TR>
+    <TD>awk 'NF &gt; 0' price.txt</TD>
+    <TD>awk中一个更好的删除所有行的办法</TD></TR>
+  <TR>
+    <TD>awk ' ~ /^[JT]/ ' price.txt</TD>
+    <TD>打印所有第二个字段是'J'或者'T'打头的行中的第三个字段</TD></TR>
+  <TR>
+    <TD>awk ' !~ /[Mm]isc/ {print + }' price.txt </TD>
+    <TD>针对所有第二个字段不包含'Misc'或者'misc'的行，打印第3和第4列的和（假定为数字）</TD></TR>
+  <TR>
+    <TD>awk ' !~ /^[0-9]+\.[0-9]*$/ ' price.txt </TD>
+    <TD>打印所有第三个字段不是数字的行，这里数字是指d.d或者d这样的形式，其中d是0到9的任何数字</TD></TR>
+  <TR>
+    <TD>awk ' ~ /John|Fred/ ' price.txt </TD>
+    <TD>如果第二个字段包含'John'或者'Fred'则打印整行</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_6></A><SPAN 
+class=headline-content>grep</SPAN></H3>　　grep是一个用来在一个或者多个文件或者输入流中使用RE进行查找的程序。它的name编程语言可以用来针对文件和管道进行处理。可以在手册中得到关于grep的完整信息。这个同样古怪的名字来源于vi的一个命令，g/re/p，意思是global 
+regular expression print。 
+<DIV 
+class=spctrl></DIV>　　下面的例子中我们假定在文件phone.txt中包含以下的文本，——其格式是姓加一个逗号，然后是名，然后是一个制表符，然后是电话号码： 
+
+<DIV class=spctrl></DIV>　　Francis, John 5-3871 
+<DIV class=spctrl></DIV>　　Wong, Fred 4-4123 
+<DIV class=spctrl></DIV>　　Jones, Thomas 1-4122 
+<DIV class=spctrl></DIV>　　Salazar, Richard 5-2522 
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>grep命令</B></TD>
+    <TD><B>描述</B></TD></TR>
+  <TR>
+    <TD>grep '\t5-...1' phone.txt </TD>
+    <TD>把所有电话号码以5开头以1结束的行打印出来，注意制表符是用\t表示的</TD></TR>
+  <TR>
+    <TD>grep '^S[^ ]* R' phone.txt </TD>
+    <TD>打印所有姓以S打头和名以R打头的行</TD></TR>
+  <TR>
+    <TD>grep '^[JW]' phone.txt </TD>
+    <TD>打印所有姓开头是J或者W的行</TD></TR>
+  <TR>
+    <TD>grep ', ....\t' phone.txt </TD>
+    <TD>打印所有姓是4个字符的行，注意制表符是用\t表示的</TD></TR>
+  <TR>
+    <TD>grep -v '^[JW]' phone.txt </TD>
+    <TD>打印所有不以J或者W开头的行</TD></TR>
+  <TR>
+    <TD>grep '^[M-Z]' phone.txt </TD>
+    <TD>打印所有姓的开头是M到Z之间任一字符的行</TD></TR>
+  <TR>
+    <TD>grep '^[M-Z].*[12]' phone.txt </TD>
+    <TD>打印所有姓的开头是M到Z之间任一字符，并且点号号码结尾是1或者2的行</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_7></A><SPAN 
+class=headline-content>egrep</SPAN></H3>　　egrep是grep的一个扩展版本，它在它的正则表达式中支持更多的元字符。下面的例子中我们假定在文件phone.txt中包含以下的文本，——其格式是姓加一个逗号，然后是名，然后是一个制表符，然后是电话号码： 
+
+<DIV class=spctrl></DIV>　　Francis, John 5-3871 
+<DIV class=spctrl></DIV>　　Wong, Fred 4-4123 
+<DIV class=spctrl></DIV>　　Jones, Thomas 1-4122 
+<DIV class=spctrl></DIV>　　Salazar, Richard 5-2522 
+<DIV class=spctrl></DIV>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>egrep命令</B></TD>
+    <TD><B>描述</B></TD></TR>
+  <TR>
+    <TD>egrep '(John|Fred)' phone.txt</TD>
+    <TD>打印所有包含名字John或者Fred的行</TD></TR>
+  <TR>
+    <TD>egrep 'John|22$|^W' phone.txt</TD>
+    <TD>打印所有包含John 或者以22结束或者以W的行</TD></TR>
+  <TR>
+    <TD>egrep 'net(work)?s' report.txt</TD>
+    <TD>从report.txt中找到所有包含networks或者nets的行</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_8></A><SPAN 
+class=headline-content>正则表达式语法支持情况</SPAN></H3>　　
+<TABLE class="table-view log-set-param" log-set-param="table-view">
+  <TBODY>
+  <TR>
+    <TD><B>命令或环境 </B></TD>
+    <TD><B>.</B></TD>
+    <TD><B>[ ]</B></TD>
+    <TD><B>^</B></TD>
+    <TD><B>$</B></TD>
+    <TD><B>\( \)</B></TD>
+    <TD><B>\{ \}</B></TD>
+    <TD><B>?</B></TD>
+    <TD><B>+</B></TD>
+    <TD><B>|</B></TD>
+    <TD><B>( )</B></TD></TR>
+  <TR>
+    <TD><B>vi</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>Visual C++</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>awk</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD></TR>
+  <TR>
+    <TD><B>sed</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>Tcl</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD></TR>
+  <TR>
+    <TD><B>ex</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>grep</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>egrep</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD></TR>
+  <TR>
+    <TD><B>fgrep</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD><B>perl</B></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD><BR></TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD>
+    <TD>X</TD></TR></TBODY></TABLE>
+<H3 class=headline-2><A name=3_9></A><SPAN 
+class=headline-content>vi替换命令简介</SPAN></H3>　　Vi的替换命令： 
+<DIV class=spctrl></DIV>　　:ranges/pat1/pat2/g 
+<DIV class=spctrl></DIV>　　其中 
+<DIV class=spctrl></DIV>　　: 这是Vi的命令执行界面。 
+<DIV class=spctrl></DIV>　　range 
+是命令执行范围的指定，可以使用百分号（%）表示所有行，使用点（.）表示当前行，使用美元符号（$）表示最后一行。你还可以使用行号，例如10,20表示第10到20行，.,$表示当前行到最后一行，.+2,$-5表示当前行后两行直到全文的倒数第五行，等等。 
+
+<DIV class=spctrl></DIV>　　s 表示其后是一个替换命令。 
+<DIV class=spctrl></DIV>　　pat1 这是要查找的一个正则表达式，这篇文章中有一大堆例子。 
+<DIV class=spctrl></DIV>　　pat2 这是希望把匹配串变成的模式的正则表达式，这篇文章中有一大堆例子。 
+<DIV class=spctrl></DIV>　　g 可选标志，带这个标志表示替换将针对行中每个匹配的串进行，否则则只替换行中第一个匹配串。
+<DIV class=bpctrl></DIV>
+<H2 class=headline-1><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:4"></SPAN><A name=4></A><SPAN 
+class=headline-content>常用的正则表达式</SPAN></H2>　　<B>常用的正则表达式主要有以下几种：</B> 
+<DIV class=spctrl></DIV>　　匹配中文字符的正则表达式： [\u4e00-\u9fa5] 
+<DIV class=spctrl></DIV>　　评注：匹配中文还真是个头疼的事，有了这个表达式就好办了哦 
+<DIV 
+class=spctrl></DIV>　　获取日期正则表达式：\d{4}[年|\-|\.]\d{\1-\12}[月|\-|\.]\d{\1-\31}日? 
+<DIV class=spctrl></DIV>　　评注：可用来匹配大多数年月日信息。 
+<DIV class=spctrl></DIV>　　匹配双字节字符(包括汉字在内)：[^\x00-\xff] 
+<DIV class=spctrl></DIV>　　评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1） 
+<DIV class=spctrl></DIV>　　匹配空白行的正则表达式：\n\s*\r 
+<DIV class=spctrl></DIV>　　评注：可以用来删除空白行 
+<DIV 
+class=spctrl></DIV>　　匹配HTML标记的正则表达式：&lt;(\S*?)[^&gt;]*&gt;.*?&lt;/&gt;|&lt;.*? 
+/&gt; 
+<DIV class=spctrl></DIV>　　评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力 
+<DIV class=spctrl></DIV>　　匹配首尾空白字符的正则表达式：^\s*|\s*$ 
+<DIV class=spctrl></DIV>　　评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式 
+<DIV 
+class=spctrl></DIV>　　匹配Email地址的正则表达式：\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* 
+
+<DIV class=spctrl></DIV>　　评注：表单验证时很实用 
+<DIV class=spctrl></DIV>　　匹配网址URL的正则表达式：[a-zA-z]+://[^\s]* 
+<DIV class=spctrl></DIV>　　评注：网上流传的版本功能很有限，上面这个基本可以满足需求 
+<DIV 
+class=spctrl></DIV>　　匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：^[a-zA-Z][a-zA-Z0-9_]{4,15}$ 
+
+<DIV class=spctrl></DIV>　　评注：表单验证时很实用 
+<DIV class=spctrl></DIV>　　匹配国内电话号码：\d{4}-\d{7}|\d{3}-\d{8} 
+<DIV class=spctrl></DIV>　　评注：匹配形式如 0511 - 4405222 或 021 - 87888822 
+<DIV class=spctrl></DIV>　　匹配腾讯QQ号：[1-9][0-9]\{4,\} 
+<DIV class=spctrl></DIV>　　评注：腾讯QQ号从1000 0 开始 
+<DIV class=spctrl></DIV>　　匹配中国邮政编码：[1-9]\d(?!\d) 
+<DIV class=spctrl></DIV>　　评注：中国邮政编码为6位数字 
+<DIV class=spctrl></DIV>　　匹配身份证：\d{17}[\d|X]|\d{15} 
+<DIV class=spctrl></DIV>　　评注：中国的身份证为15位或18位 
+<DIV 
+class=spctrl></DIV>　　匹配ip地址：((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)。 
+
+<DIV class=spctrl></DIV>　　评注：提取ip地址时有用 
+<DIV class=spctrl></DIV>　　匹配特定数字： 
+<DIV class=spctrl></DIV>　　^[1-9]\d*$　//匹配正整数 
+<DIV class=spctrl></DIV>　　^-[1-9]\d*$ //匹配负整数 
+<DIV class=spctrl></DIV>　　^-?[1-9]\d*$　//匹配整数 
+<DIV class=spctrl></DIV>　　^[1-9]\d*|0$　//匹配非负整数（正整数 + 0） 
+<DIV class=spctrl></DIV>　　^-[1-9]\d*|0$　//匹配非正整数（负整数 + 0） 
+<DIV class=spctrl></DIV>　　^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$　//匹配正浮点数 
+<DIV class=spctrl></DIV>　　^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$　//匹配负浮点数 
+<DIV class=spctrl></DIV>　　^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$　//匹配浮点数 
+<DIV class=spctrl></DIV>　　^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$　//匹配非负浮点数（正浮点数 
++ 0） 
+<DIV 
+class=spctrl></DIV>　　^(-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$　//匹配非正浮点数（负浮点数 
++ 0） 
+<DIV class=spctrl></DIV>　　评注：处理大量数据时有用，具体应用时注意修正 
+<DIV class=spctrl></DIV>　　匹配特定字符串： 
+<DIV class=spctrl></DIV>　　^[A-Za-z]+$　//匹配由26个英文字母组成的字符串 
+<DIV class=spctrl></DIV>　　^[A-Z]+$　//匹配由26个英文字母的大写组成的字符串 
+<DIV class=spctrl></DIV>　　^[a-z]+$　//匹配由26个英文字母的小写组成的字符串 
+<DIV class=spctrl></DIV>　　^[A-Za-z0-9]+$　//匹配由数字和26个英文字母组成的字符串 
+<DIV class=spctrl></DIV>　　^\w+$　//匹配由数字、26个英文字母或者下划线组成的字符串 
+<DIV class=spctrl></DIV>　　评注：最基本也是最常用的一些表达式 
+<DIV class=spctrl></DIV>　　Function IsRegu(Regu,s) 
+<DIV class=spctrl></DIV>　　'正则表达式校验 
+<DIV class=spctrl></DIV>　　If Regu="" Then 
+<DIV class=spctrl></DIV>　　Exit Function 
+<DIV class=spctrl></DIV>　　End if 
+<DIV class=spctrl></DIV>　　Dim Re,Sre 
+<DIV class=spctrl></DIV>　　Set Re = New RegExp 
+<DIV class=spctrl></DIV>　　Re.Pattern = Regu 
+<DIV class=spctrl></DIV>　　Sre = Re.Test(s) 
+<DIV class=spctrl></DIV>　　If Sre = True Then 
+<DIV class=spctrl></DIV>　　IsRegu = True 
+<DIV class=spctrl></DIV>　　Else 
+<DIV class=spctrl></DIV>　　IsRegu = False 
+<DIV class=spctrl></DIV>　　End If 
+<DIV class=spctrl></DIV>　　End Function 
+<DIV class=spctrl></DIV>　　tmp=" " 
+<DIV class=spctrl></DIV>　　if 
+(IsRegu("\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",tmp )) =false then 
+<DIV class=spctrl></DIV>　　msgbox "E-mail地址不合法 ！" 
+<DIV class=spctrl></DIV>　　FieldCheck#N=false 
+<DIV class=spctrl></DIV>　　end if 
+<DIV class=spctrl></DIV>　　不同的语言（如PHP和JAVA）、相同语言的不同类库（如来自Sun的Java Regular 
+Expression类库跟Apache Jakarta的正则表达式类库）间，用法会有所差别，在使用的时候，要注意这些差别。
+<DIV class=bpctrl></DIV>
+<H2 class=headline-1><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:5"></SPAN><A name=5></A><SPAN 
+class=headline-content>Editplus等软件中正则替换技巧</SPAN></H2>　　正则表达式应用实例目录： 
+<DIV class=spctrl></DIV>　　【1】 正则表达式应用——替换指定内容到行尾 
+<DIV class=spctrl></DIV>　　【2】 正则表达式应用——数字替换 
+<DIV class=spctrl></DIV>　　【3】 正则表达式应用——删除每一行行尾的指定字符 
+<DIV class=spctrl></DIV>　　【4】 正则表达式应用——替换带有半角括号的多行 
+<DIV class=spctrl></DIV>　　【5】 正则表达式应用——删除空行 
+<DIV class=spctrl></DIV>　　【6】 软件技巧——键盘记录的注意事项 
+<DIV class=spctrl></DIV>　　【7】 软件技巧——关闭文档标签的便捷方法 
+<DIV class=spctrl></DIV>　　【8】 软件技巧——如何去掉 EditPlus 保存文本文件时的添加后缀提示？ 
+<DIV class=spctrl></DIV>　　【9】 软件技巧——提示找不到语法文件的解决办法 
+<DIV class=spctrl></DIV>　　【10】软件技巧——设置editplus支持其它文字，如韩文 
+<DIV class=spctrl></DIV>　　【11】软件技巧——FTP 上传的设置 
+<DIV class=spctrl></DIV>　　【12】软件技巧——如何禁用备份文件功能？ 
+<DIV class=spctrl></DIV>　　【13】软件技巧——添加语法文件、自动完成文件、以及剪辑库文件 
+<DIV class=spctrl></DIV>　　【14】工具集成——编译器集成例子（Java、Borland C++、Visual C++、Inno 
+Setup、nsis、C#） 
+<DIV class=spctrl></DIV>　　【15】工具集成——让Editplus调试PHP程序 
+<DIV class=spctrl></DIV>　　【16】工具集成——打造 PHP 调试环境(二) 
+<DIV class=spctrl></DIV>　　【17】在 WINPE 中集成 EDITPLUS 
+<DIV class=spctrl></DIV>　　【18】支持带UTF-8标记/不带UTF-8标记的文件 
+<DIV class=spctrl></DIV>　　正则表达式应用实例： 
+<DIV class=spctrl></DIV>　　【1】正则表达式应用——替换指定内容到行尾 
+<DIV class=spctrl></DIV>　　原始文本如下面两行 
+<DIV class=spctrl></DIV>　　abc aaaaa 
+<DIV class=spctrl></DIV>　　123 abc 444 
+<DIV class=spctrl></DIV>　　希望每次遇到“abc”，则替换“abc”以及其后到行尾的内容为“abc efg” 
+<DIV class=spctrl></DIV>　　即上面的文本最终替换为： 
+<DIV class=spctrl></DIV>　　abc efg 
+<DIV class=spctrl></DIV>　　123 abc efg 
+<DIV class=spctrl></DIV>　　解决： 
+<DIV class=spctrl></DIV>　　① 在替换对话框，查找内容里输入“abc.*”，替换内容输入为“abc efg” 
+<DIV class=spctrl></DIV>　　② 同时勾选“正则表达式”复选框，然后点击“全部替换”按钮 
+<DIV class=spctrl></DIV>　　其中，符号的含义如下： 
+<DIV class=spctrl></DIV>　　“.” =匹配任意字符 
+<DIV class=spctrl></DIV>　　“*” =匹配0次或更多 
+<DIV 
+class=spctrl></DIV>　　注意：其实就是正则表达式替换，这里只是把一些曾经提出的问题加以整理，单纯从正则表达式本身来说，就可以引申出成千上万种特例。 
+
+<DIV class=spctrl></DIV>　　【2】正则表达式应用——数字替换 
+<DIV class=spctrl></DIV>　　希望把 
+<DIV class=spctrl></DIV>　　asdadas123asdasdas456asdasdasd789asdasd 
+<DIV class=spctrl></DIV>　　替换为: 
+<DIV class=spctrl></DIV>　　asdadas[123]asdasdas[456]asdasdasd[789]asdasd 
+<DIV class=spctrl></DIV>　　在替换对话框里面，勾选“正则表达式”复选框； 
+<DIV class=spctrl></DIV>　　在查找内容里面输入“([0-9])([0-9])([0-9])”，不含引号 
+<DIV class=spctrl></DIV>　　“替换为:”里面输入“[\1\2\3]”，不含引号 
+<DIV class=spctrl></DIV>　　范围为你所操作的范围，然后选择替换即可。 
+<DIV 
+class=spctrl></DIV>　　实际上这也是正则表达式的使用特例，“[0-9]”表示匹配0～9之间的任何特例，同样“[a-z]”就表示匹配a～z之间的任何特例 
+
+<DIV class=spctrl></DIV>　　上面重复使用了“[0-9]”，表示连续出现的三个数字 
+<DIV class=spctrl></DIV>　　括号用来选择原型，进行分组，替换时要用 
+<DIV class=spctrl></DIV>　　“\1”代表第一个“[0-9]”对应的原型，“\2”代表第二个“[0-9]”对应的原型，依此类推 
+<DIV class=spctrl></DIV>　　“[”、“]”为单纯的字符，表示添加“[”或“]”，如果输入“其它\1\2\3其它”，则替换结果为： 
+<DIV class=spctrl></DIV>　　asdadas其它123其它asdasdas其它456其它asdasdasd其它789其它asdasd 
+<DIV class=spctrl></DIV>　　功能增强： 
+<DIV class=spctrl></DIV>　　如果将查找内容“[0-9][0-9][0-9]”改为“[0-9]*[0-9]”，对应1 或 123 或 
+12345 或 ... 
+<DIV class=spctrl></DIV>　　大家根据需要定制 
+<DIV class=spctrl></DIV>　　相关内容还有很多，可以自己参考正则表达式的语法仔细研究一下 
+<DIV class=spctrl></DIV>　　【3】正则表达式应用——删除每一行行尾的指定字符 
+<DIV class=spctrl></DIV>　　因为这几个字符在行中也是出现的,所以肯定不能用简单的替换实现 
+<DIV class=spctrl></DIV>　　比如 
+<DIV class=spctrl></DIV>　　12345 1265345 
+<DIV class=spctrl></DIV>　　2345 
+<DIV class=spctrl></DIV>　　需要删除每行末尾的“345” 
+<DIV 
+class=spctrl></DIV>　　这个也算正则表达式的用法，其实仔细看正则表达式应该比较简单，不过既然有这个问题提出，说明对正则表达式还得有个认识过程，解决方法如下 
+
+<DIV class=spctrl></DIV>　　解决： 
+<DIV class=spctrl></DIV>　　在替换对话框中，启用“正则表达式”复选框 
+<DIV class=spctrl></DIV>　　在查找内容里面输入“345$” 
+<DIV class=spctrl></DIV>　　这里“$”表示从行尾匹配 
+<DIV class=spctrl></DIV>　　如果从行首匹配，可以用“^”来实现，不过 EditPlus 有另一个功能可以很简单的删除行首的字符串 
+<DIV class=spctrl></DIV>　　a. 选择要操作的行 
+<DIV class=spctrl></DIV>　　b. 编辑－格式－删除行注释 
+<DIV class=spctrl></DIV>　　c. 在弹出对话框里面输入要清除的行首字符，确定 
+<DIV class=spctrl></DIV>　　【4】正则表达式应用——替换带有半角括号的多行 
+<DIV class=spctrl></DIV>　　几百个网页中都有下面一段代码： 
+<DIV class=spctrl></DIV>　　&lt;script LANGUAGE="JavaScript1.1"&gt; 
+<DIV class=spctrl></DIV>　　&lt;!-- 
+<DIV class=spctrl></DIV>　　htmlAdWH('93163607', '728', '90'); 
+<DIV class=spctrl></DIV>　　//--&gt; 
+<DIV class=spctrl></DIV>　　&lt;/SCRIPT&gt; 
+<DIV class=spctrl></DIV>　　我想把它们都去掉，可是找了很多search &amp; replace的软件，都是只能对“一行”进行操作。 
+<DIV class=spctrl></DIV>　　EditPlus 打开几百个网页文件还是比较顺畅的，所以完全可以胜任这个工作。 
+<DIV class=spctrl></DIV>　　具体解决方法，在 Editplus 
+中使用正则表达式，由于“(”、“)”被用做预设表达式（或者可以称作子表达式）的标志，所以查找 
+<DIV class=spctrl></DIV>　　“&lt;script 
+LANGUAGE="JavaScript1.1"&gt;\n&lt;!--\nhtmlAdWH('93163607', '728', 
+'90'.);\n//--&gt;\n&lt;/SCRIPT&gt;\n” 
+<DIV 
+class=spctrl></DIV>　　时会提示查找不到，所以也就无法进行替换了，这时可以把“(”、“)”使用任意字符标记替代，即半角句号：“.”。替换内容为 
+
+<DIV class=spctrl></DIV>　　&lt;script 
+LANGUAGE="JavaScript1.1"&gt;\n&lt;!--\nhtmlAdWH.'93163607', '728', 
+'90'.;\n//--&gt;\n&lt;/SCRIPT&gt;\n 
+<DIV class=spctrl></DIV>　　在替换对话框启用“正则表达式”选项，这时就可以完成替换了 
+<DIV class=spctrl></DIV>　　补充： 
+<DIV class=spctrl></DIV>　　对( ) 这样的特殊符号，应该用\( \)来表示，这也是很标准的regexp语法，可以写为 
+<DIV class=spctrl></DIV>　　&lt;script 
+LANGUAGE="JavaScript1.1"&gt;\n&lt;!--\nhtmlAdWH\('93163607', '728', 
+'90'\);\n//--&gt;\n&lt;/SCRIPT&gt;\n 
+<DIV class=spctrl></DIV>　　【5】正则表达式应用——删除空行 
+<DIV class=spctrl></DIV>　　启动EditPlus，打开待处理的文本类型文件。 
+<DIV 
+class=spctrl></DIV>　　①、选择“查找”菜单的“替换”命令，弹出文本替换对话框。选中“正则表达式”复选框，表明我们要在查找、替换中使用正则表达式。然后，选中“替换范围”中的“当前文件”，表明对当前文件操作。 
+
+<DIV class=spctrl></DIV>　　②、单击“查找内容”组合框右侧的按钮，出现下拉菜单。 
+<DIV 
+class=spctrl></DIV>　　③、下面的操作添加正则表达式，该表达式代表待查找的空行。（技巧提示：空行仅包括空格符、制表符、回车符，且必须以这三个符号之一作为一行的开头，并且以回车符结尾，查找空行的关键是构造代表空行的正则表达式）。 
+
+<DIV class=spctrl></DIV>　　直接在"查找"中输入正则表达式“^[ \t]*\n”，注意\t前有空格符。 
+<DIV 
+class=spctrl></DIV>　　（1）选择“从行首开始匹配”，“查找内容”组合框中出现字符“^”，表示待查找字符串必须出现在文本中一行的行首。 
+<DIV 
+class=spctrl></DIV>　　（2）选择“字符在范围中”，那么在“^”后会增加一对括号“[]”，当前插入点在括号中。括号在正则表达式中表示，文本中的字符匹配括号中任意一个字符即符合查找条件。 
+
+<DIV class=spctrl></DIV>　　（3）按一下空格键，添加空格符。空格符是空行的一个组成成分。 
+<DIV class=spctrl></DIV>　　（4）选择“制表符”，添加代表制表符的“\t”。 
+<DIV class=spctrl></DIV>　　（5）移动光标，将当前插入点移到“]”之后，然后选择“匹配 0 
+次或更多”，该操作会添加星号字符“*”。星号表示，其前面的括号“[]”内的空格符或制表符，在一行中出现0个或多个。 
+<DIV class=spctrl></DIV>　　（6）选择“换行符”，插入“\n”，表示回车符。 
+<DIV 
+class=spctrl></DIV>　　④、“替换为”组合框保持空，表示删除查找到的内容。单击“替换”按钮逐个行删除空行，或单击“全部替换”按钮删除全部空行（注意：EditPlus有时存在“全部替换”不能一次性完全删除空行的问题，可能是程序BUG，需要多按几次按钮）。 
+
+<DIV class=spctrl></DIV>　　【6】软件技巧——键盘记录的注意事项 
+<DIV class=spctrl></DIV>　　EditPlus 的键盘记录有些类似于 UltraEdit 
+的宏操作，不过功能相对单一，录制的文件可编辑性较差。 
+<DIV 
+class=spctrl></DIV>　　由于基本无法编辑录制的文件，所以录制的时候为了避免录制失败，推荐纯粹使用键盘操作，以下是比较关键的几个键盘组合： 
+<DIV class=spctrl></DIV>　　Ctrl+F = 调出查找对话框 
+<DIV class=spctrl></DIV>　　Ctrl+H = 调出替换对话框 
+<DIV class=spctrl></DIV>　　Alt+F4 = 关闭作用，比如，关闭查找对话框、关闭替换对话框，等等 
+<DIV class=spctrl></DIV>　　其它键盘快捷键在“帮助－快捷键列表”里面可以很容易的查找到，这里就不细说了。 
+<DIV class=spctrl></DIV>　　【7】软件技巧——关闭文档标签的便捷方法 
+<DIV class=spctrl></DIV>　　右键单击文档标签工具条，弹出菜单中选择“标签选项”，选中“用鼠标中间的按钮关闭”，这里包括鼠标的滚轮。 
+<DIV class=spctrl></DIV>　　【8】软件技巧——如何去掉 EditPlus 保存文本文件时的添加后缀提示？ 
+<DIV class=spctrl></DIV>　　如果你使用 EditPlus 
+进行文本编辑，那么每次创建文本文件，编辑后保存时，尽管文件类型下拉列表中显示的是文本文件， EditPlus 还是询问你是否添加".txt"后缀，是不是很烦？ 
+<DIV class=spctrl></DIV>　　解决方法: 
+<DIV class=spctrl></DIV>　　① 在程序目录建立一个空的文件“template.txt” 
+<DIV class=spctrl></DIV>　　② 
+“工具－参数设置－模板”里面，单击“添加”按钮添加模板，“菜单文本”这里输入“Text”，浏览“template.txt”，之后确定即可 
+<DIV class=spctrl></DIV>　　③ 
+“文件－新建－text”，就可以建立一个空的文本文件，保存时，这个文件自动带有扩展名".txt"，也就避免了令人头疼的确认 
+<DIV class=spctrl></DIV>　　④ 模板设置文件名称为“template.ini”，如果和主程序同一路径，可以使用相对路径 
+<DIV class=spctrl></DIV>　　罗嗦了点，不过管用 
+<DIV class=spctrl></DIV>　　要自动创建带有某种后缀的文件，方法同上。 
+<DIV class=spctrl></DIV>　　【9】软件技巧——提示找不到语法文件 *.stx 的解决办法 
+<DIV class=spctrl></DIV>　　原因多为设置的语法文件不存在或者是路径设置不对。这是因为 EditPlus 
+的语法是设置文件采用的是绝对路径，而在你设置了语法文件之后，再把程序复制到其它目录，因而导致 EditPlus 无法找到该语法文件。 
+<DIV class=spctrl></DIV>　　解决办法： 
+<DIV class=spctrl></DIV>　　在主程序目录里，找到 Setting.ini 这是 EditPlus 存放语法的文件 
+<DIV class=spctrl></DIV>　　查找后缀为“.stx”、“acp”的文本内容，或者查找带有驱动器符号的行，比如 
+<DIV class=spctrl></DIV>　　Syntax file=C:\Program Files\EditPlus 2\cpp.stx 
+<DIV class=spctrl></DIV>　　那么，就把”C:\Program Files\EditPlus 2\“替换成你当前软件的路径。 
+<DIV class=spctrl></DIV>　　其它提示找不到文件的解决方法同上 
+<DIV class=spctrl></DIV>　　【10】软件技巧——设置editplus支持其它文字，如韩文 
+<DIV 
+class=spctrl></DIV>　　在editplus里打开文件，出来打开文件对话框；然后点击“转换器”后面的那个省略号，会出来自定义转换器对话框；在右边选择你需要的编码方式，添加到左边，然后点确定；最后在下拉框中选择需要的编码方式，然后打开文件即可。 
+
+<DIV class=spctrl></DIV>　　【11】软件技巧——FTP 上传的设置 
+<DIV class=spctrl></DIV>　　“文件-&gt;远程操作-&gt;FTP 
+上传”在“设置”选项卡中设置好参数（“子目录”前面应该加“/”如“/web/”），点击“确定”回到“FTP 
+上传”选项卡，然后点击“上传”即可；“批量上传”的设置类似。 
+<DIV class=spctrl></DIV>　　【12】软件技巧——如何禁用备份文件功能？ 
+<DIV class=spctrl></DIV>　　在“参数选择”的文件选项页，禁用“'保存时自动创建备份文件”选项 
+<DIV class=spctrl></DIV>　　【13】软件技巧——添加语法文件、自动完成文件、以及剪辑库文件 
+<DIV class=spctrl></DIV>　　要添加 *.STX（语法文件）或 *.ACP（自动完成文件）： 
+<DIV class=spctrl></DIV>　　1. 选择“参数选择→语法” 
+<DIV class=spctrl></DIV>　　2. 单击“添加”按钮，命名，在“扩展名”部分输入对应扩展名（不带“.”） 
+<DIV class=spctrl></DIV>　　3. 浏览/输入 STX（语法文件部分） 以及 ACP（自动完成文件部分）。 
+<DIV class=spctrl></DIV>　　添加剪辑库文件（*.CTL） 
+<DIV class=spctrl></DIV>　　复制相应 *.CTL 文件到软件安装目录，重新启动 EditPlus ，则系统自动识别。 
+<DIV class=spctrl></DIV>　　作者主页有很多语法自动完成文件下载，（地址见扩展阅读3） 
+<DIV class=spctrl></DIV>　　【14】工具集成——编译器集成例子（Java、Borland C++、Visual C++、Inno 
+Setup、nsis） 
+<DIV class=spctrl></DIV>　　在“工具→参数选择→用户工具”选项页设置，设置步骤 
+<DIV class=spctrl></DIV>　　① 设置组名称，这里也可以不设置 
+<DIV class=spctrl></DIV>　　② 单击“添加工具→应用程序”按钮并进行如下设置 
+<DIV class=spctrl></DIV>　　③ 各种类似"$(FilePath)"的参数可以在文本框右侧的箭头下拉菜单中获取，具体含义如下 
+<DIV class=spctrl></DIV>　　参数 描述 
+<DIV class=spctrl></DIV>　　$(FilePath) 文件路径（文件全名，含目录和文件名） 
+<DIV class=spctrl></DIV>　　$(FileDir) 文件目录（不带文件名） 
+<DIV class=spctrl></DIV>　　$(FileName) 文件名（不带目录） 
+<DIV class=spctrl></DIV>　　$(FileNameNoExt) 不带扩展名的文件名（不带目录） 
+<DIV class=spctrl></DIV>　　$(FileExt) 扩展名（当前文件） 
+<DIV class=spctrl></DIV>　　$(ProjectName) 工程名称（当前工程名） 
+<DIV class=spctrl></DIV>　　$(CurLine) 当前行号（光标位置处的行号） 
+<DIV class=spctrl></DIV>　　$(CurCol) 当前列号（光标位置处的列号） 
+<DIV class=spctrl></DIV>　　$(CurSel) 当前文本（插入当前选定文本） 
+<DIV class=spctrl></DIV>　　$(CurWord) 当前单词（插入当前单词） 
+<DIV class=spctrl></DIV>　　$(WindowList) 显示当前窗口列表并选择特定文件 
+<DIV class=spctrl></DIV>　　例子 1. Java 编译器 
+<DIV class=spctrl></DIV>　　菜单文本：Java 编译器 
+<DIV class=spctrl></DIV>　　命令：c:\java\bin\javac.exe 
+<DIV class=spctrl></DIV>　　参数："$(FilePath)" 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　要运行已编译的 Java 类文件，你可以进行如下设置： 
+<DIV class=spctrl></DIV>　　菜单文本：Java 
+<DIV class=spctrl></DIV>　　命令：c:\java\bin\java.exe 
+<DIV class=spctrl></DIV>　　参数：$(FileNameNoExt) 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　“命令”部分应当替换为实际的 Java 解释器的路径。 
+<DIV class=spctrl></DIV>　　例子 2. Borland C++ 
+<DIV class=spctrl></DIV>　　菜单文本：Borland C 
+<DIV class=spctrl></DIV>　　命令：c:\bc\bin\bcc32.exe 
+<DIV class=spctrl></DIV>　　参数：-Ic:\bc\include -Lc:\bc\lib -n$(FileDir) 
+$(FilePath) 
+<DIV class=spctrl></DIV>　　初始目录：c:\bc\bin 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　例子 3. Visual C++ 
+<DIV class=spctrl></DIV>　　菜单文本：Visual C++ 
+<DIV class=spctrl></DIV>　　命令：c:\msdev\vc98\bin\cl.exe 
+<DIV class=spctrl></DIV>　　参数："$(FilePath)" 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　例子 4. Inno Setup 
+<DIV class=spctrl></DIV>　　菜单文本：编译 Inno 
+<DIV class=spctrl></DIV>　　命令：C:\Program Files\Inno Setup 4\Compil32.exe” 
+<DIV class=spctrl></DIV>　　参数：/cc $(FileName) 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　例子 5. nsis 
+<DIV class=spctrl></DIV>　　菜单文本：编译 nsis 
+<DIV class=spctrl></DIV>　　命令：C:\NSIS\makensis.exe 
+<DIV class=spctrl></DIV>　　参数：$(FileName) 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　例子 6. C# 
+<DIV class=spctrl></DIV>　　菜单文本：编译 C# 
+<DIV class=spctrl></DIV>　　命令：C:\WINDOWS\Microsoft dot 
+NET\Framework\v1.0.3705\csc.exe 
+<DIV class=spctrl></DIV>　　参数：$(FileName) 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　捕获输出：开启 
+<DIV class=spctrl></DIV>　　在上面设置中，在命令部分，必须使用系统中各自编译器的绝对路径。 
+<DIV class=spctrl></DIV>　　设置完毕后，你可以在“工具”菜单运行对应工具了，运行结果会显示在底部的输出窗口，你也可以通过快捷键(Ctrl 
++ 0-9) 运行，或者是通过“用户工具栏”的快捷按钮运行。 
+<DIV class=spctrl></DIV>　　要运行已编译的 *.exe 文件，你可以进行如下设置（此时可执行文件需要和编译文件同名）： 
+<DIV class=spctrl></DIV>　　菜单文本：Run 
+<DIV class=spctrl></DIV>　　命令：$(FileNameNoExt) 
+<DIV class=spctrl></DIV>　　参数： 
+<DIV class=spctrl></DIV>　　初始目录：$(FileDir) 
+<DIV class=spctrl></DIV>　　【15】工具集成—— 让Editplus调试PHP程序 
+<DIV class=spctrl></DIV>　　1:打开Editplus，选择"工具-&gt;配置用户工具..."菜单。 
+<DIV class=spctrl></DIV>　　2:在弹出的窗口中选择"添加工具-&gt;应用程序",给新程序起一个好记的名字，比如这里我们用"Debug 
+PHP",在"菜单文本"中输入"Debug 
+PHP"。点击"命令行"右边的按钮,找到你的php.exe所在的路径，例如这里是"c:\php\php.exe"。再点击"参数"右边的下拉按钮选择"文件路径",最后再把"捕获输出"前面的复选框选上。 
+
+<DIV 
+class=spctrl></DIV>　　3:现在测试一下，新建一个php文件，按快捷键Ctrl+1可以激活刚才我们设置的工具(如果你设置了多个工具,快捷键可能会有所不同),现在你可以看到它已经能正常工作了。但是还有一点不太理想:如果你的PHP程序出错,在输出窗口会提示你第几行出错 
+,单击这一行提示,Editplus老是提示你找不到某某文件，是否新建。接下下我们要修正这个功能。 
+<DIV class=spctrl></DIV>　　4:打开刚才用户工具设置窗口，找到刚才设置的"Debug 
+PHP"工具。点击"捕获输出"复选框旁边的"输出模式"按钮,会弹出一个定义输出模式的窗体，把"使用默认输出模式"前面的复选框去掉, 
+在"正则表达式"这一项的文本框中输入" ^.+ in (.+) line ([0-9]+) 
+"(不包括引号),细心的朋友可能会发现，这里使用的也正则表达式的语法。然后，在下面的"文件名"下拉菜单中选择"预设表达式 
+1"，即上边正则表达式中的第一个参数,"行"下拉菜单项选择"预设表达式 2"，"列"下拉项保持为空。然后保存设置。 
+<DIV 
+class=spctrl></DIV>　　5:好了，现在再来试一下吧，双击出错的行数，Editplus就会自动激活出错文件，并把光标定位到出错行,是不是特别方便呢?! 
+
+<DIV 
+class=spctrl></DIV>　　现在,Editplus经过我们的"改造",已经可以即时的调试PHP文件了，虽然还不是"可视化"界面的，但对于一些平常的小程序来查错还是非常好用的。Editplus真是不款不可多得的好工具，如果你有什么使用技巧，不要忘了大家一起分享哦。^O^ 
+
+<DIV class=spctrl></DIV>　　如果不能切换错误行号，请尝试作如下修改： （by aukw@CCF） 
+<DIV class=spctrl></DIV>　　1.php.ini 中html_errors = Off打开 
+<DIV class=spctrl></DIV>　　//如果你不打开，3.中的表达式要修改 
+<DIV class=spctrl></DIV>　　2.参数改成：-q -f "$(FilePath)" 
+<DIV class=spctrl></DIV>　　//不加"符号的话文件名有空格的文件调试失败。 
+<DIV class=spctrl></DIV>　　//-q不输出html头信息，你去掉也行，不过调试时候你一般用不到那些header信息 
+<DIV class=spctrl></DIV>　　3." ^.+ in (.+) line ([0-9]+) " 改成 "^.+ in (.+) on 
+line ([0-9]+)$" 
+<DIV class=spctrl></DIV>　　//如果还是不行，请注意调试结果，自己修改表达式来取出文件名和行号 
+<DIV class=spctrl></DIV>　　【16】工具集成——打造 PHP 调试环境(二) 
+<DIV class=spctrl></DIV>　　1: 把剪辑库定位在 PHP4 Functions 上就可以在编辑时, 
+利用[插入]-&gt;[匹配剪辑]命令,就可以自动完成末输入完整的 PHP 函数(或直接按 F2 键) 
+<DIV class=spctrl></DIV>　　2: 类似上面,在选择部分文字后,同样可以自动完成。(同 F2) 
+<DIV class=spctrl></DIV>　　3: 在[参数选择]-&gt;[设置和语法]-&gt;PHP-&gt;自动完成, 选择目录下的 
+php.acp 文件,你可以定制自己的自动完成方式. 
+<DIV class=spctrl></DIV>　　4: 想要即时预览文件,可在[参数选择]-&gt;[工具]-&gt;WEB 
+服务器中添加本地目录，(注意不要加 http:// , 应是一个有效的站点)。 
+<DIV class=spctrl></DIV>　　如: 主机-&gt;localhost/php | 根目录-&gt;D:\php 
+<DIV class=spctrl></DIV>　　主机-&gt;localhost/asp | 根目录-&gt;D:\asp 
+<DIV class=spctrl></DIV>　　主机-&gt;localhost/cgi | 根目录-&gt;D:\cgi 
+<DIV class=spctrl></DIV>　　完成设置后只要脚本文件位于这些目录下(子目录也没问题), 就能够正确解释. 
+<DIV class=spctrl></DIV>　　5: 各种语法和模板文件可以在官方网站获得（地址见扩展阅读3），可根据需要选用和编辑。 
+<DIV class=spctrl></DIV>　　6: Ctrl+F11 可显示当前文件中的函数列表. 
+<DIV class=spctrl></DIV>　　7: 添加各种用户工具.如: 
+<DIV class=spctrl></DIV>　　启动MYSQL服务器管理工具-&gt;C:\mysql\bin\winmysqladmin.exe 
+<DIV class=spctrl></DIV>　　启动Apache服务器-&gt;C:\Apache\bin\Apache.exe -k start 
+<DIV class=spctrl></DIV>　　启动Apache服务器-&gt;C:\Apache\bin\Apache.exe -k stop 
+(shutdown) 
+<DIV class=spctrl></DIV>　　8: DBG 附带有一个 prof_results.php 文件,可剖析 PHP 程序的性能. 
+<DIV class=spctrl></DIV>　　虽不是真正的调试器,但已经够了. 
+<DIV class=spctrl></DIV>　　OK! 经过改造后,是不是有点象一个 IDE 什么?还差点,没有即时帮助...看我的,再来: 
+<DIV class=spctrl></DIV>　　9: 把 php_manual_en.chm (最好是扩展帮助手册)加入到用户工具中, 
+当遇到需要参考的关键字时, 把光标定位其上, 按下快捷键 Ctrl+1, 看到了吗. 
+<DIV class=spctrl></DIV>　　在输入时有想不起来的函数名时, 先按照第 1 条的方法调出函数, 然后...怎么样? 
+<DIV class=spctrl></DIV>　　以上有的是对于调试工具的设置，由于此类工具比较多，大家设置时参考以上的基本就差不多了，所以就不过多的列举了。 
+
+<DIV class=spctrl></DIV>　　【17】在 WINPE 中集成 EDITPLUS 
+<DIV class=spctrl></DIV>　　可以基于目前的bartpe做得WINPE中，菜单使用nu2menu制作 
+<DIV class=spctrl></DIV>　　默认位置为 \programs\editplus\ 
+<DIV class=spctrl></DIV>　　默认系统位置为光盘的 i386 目录 
+<DIV class=spctrl></DIV>　　i386/system32 的 autorun.bat 中添加外壳集成（系统右键） 
+<DIV class=spctrl></DIV>　　regedit /s %SystemDrive%\programs\editplus\REG.REG 
+<DIV class=spctrl></DIV>　　regsvr32 /s \programs\editplus\EPPSHELL.DLL 
+<DIV class=spctrl></DIV>　　（reg.reg保存了epp的工具栏信息，当然注册用户也可以放置注册信息） 
+<DIV 
+class=spctrl></DIV>　　复制editplus安装包里面的文件到programs\editplus\，注意，如果有setting.ini，删掉该文件，在nu2menu里面加入以下句子（可以根据需要安排位于特定菜单条目下） 
+
+<DIV class=spctrl></DIV>　　&lt;MITEM TYPE="ITEM" 
+DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\EditPlus\editplus.exe))" 
+CMD="RUN" 
+<DIV 
+class=spctrl></DIV>　　FUNC="@GetProgramDrive()\Programs\EditPlus\editplus.exe"&gt;EditPlus 
+文本编辑&lt;/MITEM&gt; 
+<DIV class=spctrl></DIV>　　【18】支持带UTF-8标记/不带UTF-8标记的文件 Lei@DRL提出并测试 
+<DIV class=spctrl></DIV>　　这里Byte Order Mark翻译为标记/文件头/标签 
+<DIV 
+class=spctrl></DIV>　　参数选择－文件－里面设置“支持不带有UTF-8文件头的UTF－8文件”，我这里翻译标签为UTF-8文件头，如果复选该项，应该是保存为不带标签的Utf-8，如果不复选，应该是保存成带有BOM的UTF-8。 
+
+<DIV 
+class=spctrl></DIV>　　这样就可以打开带签名的UTF-8文件，并且可以正常编辑，但是又不能打开不带签名的了，想要打开不带签名的还需要改回来...不过虽然有点麻烦，但是总算能用了 
+
+<DIV 
+class=spctrl></DIV>　　1.验证用户名和密码：（"^[a-zA-Z]\w{5,15}$"）正确格式："[A-Z][a-z]_[0-9]"组成,并且第一个字必须为字母6~16位； 
+
+<DIV 
+class=spctrl></DIV>　　2.验证电话号码：（"^(\d{3.4}-)\d{7,8}$"）正确格式：xxx/xxxx-xxxxxxx/xxxxxxxx； 
+
+<DIV class=spctrl></DIV>　　3.验证身份证号（15位或18位数字）：（"^\d{15}|\d{18}$"）； 
+<DIV 
+class=spctrl></DIV>　　4.验证Email地址：("^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$")； 
+
+<DIV class=spctrl></DIV>　　5.只能输入由数字和26个英文字母组成的字符串：("^[A-Za-z0-9]+$") ; 
+<DIV class=spctrl></DIV>　　6.整数或者小数：^[0-9]+\.{0,1}[0-9]{0,2}$ 
+<DIV class=spctrl></DIV>　　7.只能输入数字："^[0-9]*$"。 
+<DIV class=spctrl></DIV>　　8.只能输入n位的数字："^\d{n}$"。 
+<DIV class=spctrl></DIV>　　9.只能输入至少n位的数字："^\d{n,}$"。 
+<DIV class=spctrl></DIV>　　10.只能输入m~n位的数字：。"^\d{m,n}$" 
+<DIV class=spctrl></DIV>　　11.只能输入零和非零开头的数字："^(0|[1-9][0-9]*)$"。 
+<DIV class=spctrl></DIV>　　12.只能输入有两位小数的正实数："^[0-9]+(.[0-9]{2})?$"。 
+<DIV class=spctrl></DIV>　　13.只能输入有1~3位小数的正实数："^[0-9]+(.[0-9]{1,3})?$"。 
+<DIV class=spctrl></DIV>　　14.只能输入非零的正整数："^\+?[1-9][0-9]*$"。 
+<DIV class=spctrl></DIV>　　15.只能输入非零的负整数："^\-[1-9][]0-9"*$。 
+<DIV class=spctrl></DIV>　　16.只能输入长度为3的字符："^.{3}$"。 
+<DIV class=spctrl></DIV>　　17.只能输入由26个英文字母组成的字符串："^[A-Za-z]+$"。 
+<DIV class=spctrl></DIV>　　18.只能输入由26个大写英文字母组成的字符串："^[A-Z]+$"。 
+<DIV class=spctrl></DIV>　　19.只能输入由26个小写英文字母组成的字符串："^[a-z]+$"。 
+<DIV class=spctrl></DIV>　　20.验证是否含有^%&amp;',;=?$\"等字符："[^%&amp;',;=?$\x22]+"。 
+<DIV class=spctrl></DIV>　　21.只能输入汉字："^[\u4e00-\u9fa5]{0,}$" 
+<DIV 
+class=spctrl></DIV>　　22.验证URL："^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$"。 
+<DIV 
+class=spctrl></DIV>　　23.验证一年的12个月："^(0?[1-9]|1[0-2])$"正确格式为："01"～"09"和"1"～"12"。 
+<DIV 
+class=spctrl></DIV>　　24.验证一个月的31天："^((0?[1-9])|((1|2)[0-9])|30|31)$"正确格式为；"01"～"09"和"1"～"31"。 
+
+<DIV class=spctrl></DIV>　　.（小圆点） 
+<DIV class=spctrl></DIV>　　匹配除换行符号外的任意字符 
+<DIV class=spctrl></DIV>　　\w 
+<DIV class=spctrl></DIV>　　匹配字母、数字、下划线 
+<DIV class=spctrl></DIV>　　\s 
+<DIV class=spctrl></DIV>　　匹配任意空白字符 
+<DIV class=spctrl></DIV>　　\d 
+<DIV class=spctrl></DIV>　　匹配数字 
+<DIV class=spctrl></DIV>　　\b 
+<DIV class=spctrl></DIV>　　匹配单词的开始或结束 
+<DIV class=spctrl></DIV>　　^ 
+<DIV class=spctrl></DIV>　　匹配字符串的开始，或排除 
+<DIV class=spctrl></DIV>　　$ 
+<DIV class=spctrl></DIV>　　匹配字符串的结束 
+<DIV class=spctrl></DIV>　　以上都是单个字符匹配 
+<DIV class=spctrl></DIV>　　如果要求匹配元字符中的符号，则需要加反斜杠。例如\+表示匹配加号 
+<DIV class=spctrl></DIV>　　wqe.eew.rt和wqe\.eew\.rt* 
+<DIV class=spctrl></DIV>　　重复零次或多次 
+<DIV class=spctrl></DIV>　　+ 
+<DIV class=spctrl></DIV>　　重复一次或多次 
+<DIV class=spctrl></DIV>　　？ 
+<DIV class=spctrl></DIV>　　重复零次或一次 
+<DIV class=spctrl></DIV>　　{n} 
+<DIV class=spctrl></DIV>　　重复n次 
+<DIV class=spctrl></DIV>　　{n,} 
+<DIV class=spctrl></DIV>　　至少重复n次 
+<DIV class=spctrl></DIV>　　{n,m} 
+<DIV class=spctrl></DIV>　　重复n到m次 
+<DIV class=spctrl></DIV>　　\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} 
+<DIV class=spctrl></DIV>　　^w{3}\..+\.\w+$ 
+<DIV class=spctrl></DIV>　　[] 
+<DIV class=spctrl></DIV>　　表示匹配中括号中的任一字符 
+<DIV class=spctrl></DIV>　　() 
+<DIV class=spctrl></DIV>　　小括号内的为一个整体 
+<DIV class=spctrl></DIV>　　| 
+<DIV class=spctrl></DIV>　　前后两者任意匹配一种 
+<DIV class=spctrl></DIV>　　\(?0\d{2}[)-]?\d{8} 
+<DIV class=spctrl></DIV>　　(\(0\d{2}\)\d{8})|(0\d{2}-\d{8})|0\d{2}\d{8} 
+<DIV class=spctrl></DIV>　　\W：与\w相反 
+<DIV class=spctrl></DIV>　　\S：与\s相反 
+<DIV class=spctrl></DIV>　　\D：与\d相反 
+<DIV class=spctrl></DIV>　　\B：与\b相反 
+<DIV class=spctrl></DIV>　　[^something]：与[something]相反 
+<DIV class=spctrl></DIV>　　0\d{2}-\d{8} 
+<DIV class=spctrl></DIV>　　\b\w{6}\b 
+<DIV class=spctrl></DIV>　　^\w+ 
+<DIV class=spctrl></DIV>　　&lt;a[^&gt;]+&gt; 
+<DIV class=spctrl></DIV>　　Windows98|Windows2000|WindosXP 
+<DIV 
+class=spctrl></DIV>　　((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?) 
+
+<DIV class=spctrl></DIV>　　^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$ 
+<DIV class=spctrl></DIV>　　^\+?[1-9][0-9]*$和^\-[1-9][]0-9“*$ 
+<DIV class=spctrl></DIV>　　^[A-Za-z]+$和^[A-Z]+$和^[a-z]+$ 
+<DIV class=spctrl></DIV>　　^[a-zA-Z]\w{5,15}$
+<DIV class=bpctrl></DIV>
+<H2 class=headline-1><SPAN class="text_edit editable-title" 
+data-edit-id="94238:94238:6"></SPAN><A name=6></A><SPAN 
+class=headline-content>启示</SPAN></H2>　　（1） 
+心中时刻保持新颖想法，尝试用各种新办法来解决遇到的问题。对于遇到的问题，在用常规的解决思路无法解决或不能很好解决的时间，可以大胆探索尝试采用新的方法或思路来解决问题，说大点就是创新！没有新思路估计今天的正则表达式还要等几百年才能露现人间。 
+
+<DIV class=spctrl></DIV>　　（2） 善于学习和借鉴前人的经验和成果，UNIX鼻祖Ken 
+Thompson是什么样子的人？是被计算机界尊称为“UNIX之父”的大师级别的人物，大师都在不断思考从其它学科、其它知识领域的工作成果，来改进自己的工作或程序，事实也证明这样做取得巨大结果和后来的深远影响是事先谁也无法预估到的，我们在做一些事情或研究的时间，是否也考虑学习大师的优秀习惯？ 
+
+<DIV class=spctrl></DIV>　　（3） 
+学好数学、英语并保持对数学、英语的兴趣，数学也是人类几千年积累的智慧结晶，学习数学知识可以培养和训练人的思维能力。看这篇文章的朋友，我想很多都是计算机相关专业的朋友，至于数学和英语对于计算机学习和发展的重要性的道理，这里就不在多说，重在实践加持之以恒！ 
+
+<DIV class=spctrl></DIV>　　（4） 
+养成独立思考的习惯。上学时候老师经常说人与动物的最大区别是人能思考。拉美洲有句关于“思考”的谚语是，不会思考的人是白痴，不肯思考的人是懒汉，不敢思考的人是奴隶。我想大家和我一样，既不愿做懒汉、奴隶，更不愿做白痴。所以相信正则分享网的朋友们一定会选择做一个“会思、肯思、敢思”的人。 
+
+<DIV class=spctrl></DIV>　　<B>正则表达式匹配规则：</B> 
+<DIV 
+class=spctrl></DIV>　　一切从最基本的开始。模式，是正规表达式最基本的元素，它们是一组描述字符串特征的字符。模式可以很简单，由普通的字符串组成，也可以非常复杂，往往用特殊的字符表示一个范围内的字符、重复出现，或表示上下文。例如： 
+
+<DIV class=spctrl></DIV>　　^once 
+<DIV class=spctrl></DIV>　　这个模式包含一个特殊的字符^，表示该模式只匹配那些以once开头的字符串。例如该模式与字符串"once 
+upon a time"匹配，与"There once was a man from 
+NewYork"不匹配。正如如^符号表示开头一样，$符号用来匹配那些以给定模式结尾的字符串。 
+<DIV class=spctrl></DIV>　　bucket$ 
+<DIV class=spctrl></DIV>　　这个模式与"Who kept all of this cash in a 
+bucket"匹配，与"buckets"不匹配。字符^和$同时使用时，表示精确匹配（字符串与模式一样）。例如： 
+<DIV class=spctrl></DIV>　　^bucket$ 
+<DIV class=spctrl></DIV>　　只匹配字符串"bucket"。如果一个模式不包括^和$，那么它与任何包含该模式的字符串匹配。例如：模式 
+<DIV class=spctrl></DIV>　　once 
+<DIV class=spctrl></DIV>　　与字符串 
+<DIV class=spctrl></DIV>　　There once was a man from NewYorkWho kept all of his 
+cash in a bucket. 
+<DIV class=spctrl></DIV>　　是匹配的。 
+<DIV 
+class=spctrl></DIV>　　在该模式中的字母(o-n-c-e)是字面的字符，也就是说，他们表示该字母本身，数字也是一样的。其他一些??表符等），要用到转义序列。所有的转义序列都用反斜杠(\)打头。制表符的转义序列是：\t。所以如果我们要检测一个字符串是否以制表符开头，可以用这个模式： 
+
+<DIV class=spctrl></DIV>　　^\t 
+<DIV 
+class=spctrl></DIV>　　类似的，用\n表示“新行”，\r表示回车。其他的特殊符号，可以用在前面加上反斜杠，如反斜杠本身用\\表示，句号.用\.表示，以此类推。
+<DIV class=bpctrl style="CLEAR: both"></DIV>
+<DIV class=clear></DIV></DIV>
+<DIV class=clear></DIV>
+<DIV class=reinforce id=lemmaExtend>
+<DL class="nslog-area log-set-param" id=viewRefer data-nslog-type="2" 
+log-set-param="ext-reference">
+  <DT>参考资料 
+  <DD class=reference>
+  <UL>
+    <LI class=layout><SPAN class=ref-index><SPAN class=r-index>1</SPAN><SPAN 
+    class="slide s-right"></SPAN></SPAN> 
+    <DIV class="ref-bd line-1">
+    <P><A class=ref-top id=refIndex_1 title=向上跳转 
+    href="http://baike.baidu.com/view/94238.htm#ref_[1]" 
+    name=refIndex_1>&nbsp;&nbsp;</A> </P></DIV></LI></UL></DD></DL>
+<DL class="nslog-area log-set-param" id=viewExtRead data-nslog-type="1" 
+log-set-param="ext-reader">
+  <DT>扩展阅读： 
+  <DD class=reference>
+  <UL>
+    <LI class=layout><SPAN class=ref-index><SPAN class=r-index>1</SPAN><SPAN 
+    class="slide s-right"></SPAN></SPAN> 
+    <P class="ref-bd line-1"><A 
+    href="http://kb.microembedded.com/regularexpression" 
+    target=_blank>http://kb.microembedded.com/regularexpression</A> - Knowledge 
+    ME 正则表达式之道</P></LI>
+    <LI class=layout><SPAN class=ref-index><SPAN class=r-index>2</SPAN><SPAN 
+    class="slide s-right"></SPAN></SPAN> 
+    <P class="ref-bd line-1"><A 
+    href="http://www.cn-dos.net/forum/viewthread.php?tid=24206&amp;fpage=1&amp;highlight=%E6%AD%A3%E5%88%99" 
+    target=_blank>http://www.cn-dos.net/forum/viewthread.php?tid=24206&amp;fpage=1&amp;highlight=%E6%AD%A3%E5%88%99</A></P></LI>
+    <LI class=layout><SPAN class=ref-index><SPAN class=r-index>3</SPAN><SPAN 
+    class="slide s-right"></SPAN></SPAN> 
+    <P class="ref-bd line-1"><A 
+    href="http://zhidao.baidu.com/question/12878982.html" 
+    target=_blank>http://zhidao.baidu.com/question/12878982.html</A></P></LI>
+    <LI class=layout><SPAN class=ref-index><SPAN class=r-index>4</SPAN><SPAN 
+    class="slide s-right"></SPAN></SPAN> 
+    <P class="ref-bd line-1"><A href="http://editplus.com/files.html" 
+    target=_blank>http://editplus.com/files.html</A></P></LI></UL></DD></DL>
+<DL class="nslog-area log-set-param" id=viewExtCati data-nslog-type="19" 
+log-set-param="module-tag">
+  <DT>开放分类： 
+  <DD><A 
+  href="http://baike.baidu.com/taglist?tag=%BC%C6%CB%E3%BB%FA%BC%BC%CA%F5&amp;tagfromview" 
+  target=_blank>计算机技术</A>，<A 
+  href="http://baike.baidu.com/taglist?tag=%B1%E0%B3%CC&amp;tagfromview" 
+  target=_blank>编程</A>，<A 
+  href="http://baike.baidu.com/taglist?tag=%CB%E3%B7%A8&amp;tagfromview" 
+  target=_blank>算法</A>，<A 
+  href="http://baike.baidu.com/taglist?tag=%B1%E0%D2%EB%D4%AD%C0%ED&amp;tagfromview" 
+  target=_blank>编译原理</A> </DD></DL>
+<DIV class=clear></DIV>
+<DIV class=clear></DIV></DIV></DIV>
+<DIV class=clear></DIV></DIV>
+<DIV class=content-ft>
+<DIV class=reinforce>
+<DL class=nslog-area id=relatedLemmaDown data-nslog-type="18">
+  <DT><SPAN class=related_edit><A class=nslog:1005 
+  onclick='userlogin.check(bk.view.editRelated,false,"editrelated");return false' 
+  href="http://baike.baidu.com/view/94238.htm#">我来完善</A> </SPAN>“正则表达式”相关词条： 
+  <DD class=relative>
+  <DIV class=clear></DIV>
+  <DIV class=word_more1 id=word_more style="VISIBILITY: hidden" 
+  onclick=bk.view.showMoreRelated()>
+  <DIV></DIV></DIV>
+  <DIV id=onelinediv style="VISIBILITY: hidden"><SPAN 
+  id=onelinespan></SPAN></DIV>
+  <DIV class=word_more_con id=word_more_con style="DISPLAY: none"><A title=元字符 
+  href="http://baike.baidu.com/view/1061241.htm?func=retitle" 
+  target=_blank>元字符</A> <A title=面向对象 
+  href="http://baike.baidu.com/view/125370.htm?func=retitle" 
+  target=_blank>面向对象</A> <A title=数组 
+  href="http://baike.baidu.com/view/209670.htm?func=retitle" 
+  target=_blank>数组</A> <A title=变量 
+  href="http://baike.baidu.com/view/296689.htm?func=retitle" 
+  target=_blank>变量</A> <A title=字符串 
+  href="http://baike.baidu.com/view/56072.htm?func=retitle" 
+  target=_blank>字符串</A> <A title=xml 
+  href="http://baike.baidu.com/view/63.htm?func=retitle" target=_blank>xml</A> 
+  </DIV>
+  <DIV class=clear></DIV></DD></DL></DIV>
+<DIV class=clear></DIV>
+<DIV class=clear></DIV>
+<DIV class=end>
+<P class=declare>百度百科中的词条内容仅供参考，如果您需要解决具体问题（尤其在法律、医学等领域），建议您咨询相关领域专业人士。</P>
+<DIV class=text_vote1 id=vote_btn><B id=vote_num></B><SPAN 
+id=vote_txt>本词条对我有帮助</SPAN></DIV></DIV>
+<DIV class="layout share">
+<DIV class=share-item-title><A class="cang nslog:99" title=添加到搜藏 
+onclick='window.open("http://cang.baidu.com/do/add?it="+encodeURIComponent(document.title)+"&amp;iu="+encodeURIComponent(location.href)+"&amp;tn=%E7%99%BE%E7%A7%91%E8%AF%8D%E6%9D%A1%2C&amp;fr=bk#nw=1","_s","scrollbars=no,width=600,height=450,left=75,top=20,status=no,resizable= yes");return false' 
+href="http://cang.baidu.com/do/add" target=_blank>添加到搜藏</A> </DIV>
+<DIV class="share-item clearfix"><SPAN class=share-tip>分享到:</SPAN> <A 
+class="itieBa nslog:97" title=分享到i贴吧 
+href="http://tieba.baidu.com/i/sys/share?link=http%3A%2F%2Fbaike.baidu.com%2Fview%2F94238.htm&amp;type=text&amp;title=%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F_%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91&amp;content=%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%AD%EF%BC%8C%E6%98%AF%E6%8C%87%E4%B8%80%E4%B8%AA%E7%94%A8%E6%9D%A5%E6%8F%8F%E8%BF%B0%E6%88%96%E8%80%85%E5%8C%B9%E9%85%8D%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%A6%E5%90%88%E6%9F%90%E4%B8%AA%E5%8F%A5%E6%B3%95%E8%A7%84%E5%88%99%E7%9A%84......%EF%BC%88%E5%BC%95%E7%94%A8%E8%87%AA%40%E7%99%BE%E5%BA%A6%E7%99%BE%E7%A7%91%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%89" 
+target=_blank></A><A class="itieBa nslog:359" title=转贴到百度空间 
+style="BACKGROUND-POSITION: 0px -271px" 
+href="http://apps.hi.baidu.com/share?url=http%3A%2F%2Fbaike.baidu.com%2Fview%2F94238.htm" 
+target=_blank></A><A class=tsina title=分享到新浪微博 
+href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=3417820038',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();})(screen,document,encodeURIComponent,'BAIDUBAIKE','http://baike.baidu.com','','在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的......（引用自@百度百科 正则表达式）','http://baike.baidu.com/view/94238.htm',''));nslog(location.href,94,{name:'tsina',id:'94238',title:'正则表达式'})"></A><A 
+class=tdouban title=分享到豆瓣网 
+href="javascript:void((function(s,d,e,r,l,p,t,ab,z,c){var%20f='http://www.douban.com/recommend/',u=z||d.location,p=['?&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;abstract=',e(ab||'')].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();})(screen,document,encodeURIComponent,'BAIDUBAIKE','http://baike.baidu.com','','【正则表达式_百度百科】','在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。在很多文本编辑器或其他工具里，正则表达式通常被用来检索和/或替换那些符......','http://baike.baidu.com/view/94238.htm',''));nslog(location.href,257,{name:'tdouban',id:'94238',title:'正则表达式'})"></A><A 
+class=tsohu title=分享到搜狐微博 
+href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://t.sohu.com/third/post.jsp?',u=z||d.location,p=['&amp;url=',e(u),'&amp;title=',e(t||d.title),'&amp;content=',c||'gb2312','&amp;pic=',e(p||'')].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=660,height=470,left=',(s.width-660)/2,',top=',(s.height-470)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();})(screen,document,encodeURIComponent,'','','','在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的......（引用自@百度百科 正则表达式）','http://baike.baidu.com/view/94238.htm','utf-8'));nslog(location.href,327,{name:'tsohu',id:'94238',title:'正则表达式'})"></A><A 
+title=分享到网易微博 
+style="BACKGROUND: url(http://img1.cache.netease.com/cnews/css09/wblog.gif) no-repeat left center; COLOR: rgb(114,113,113)" 
+href="javascript:void((function(){var%20url%20=%20'link=http://baike.baidu.com&amp;source='+%20encodeURIComponent('百度百科')+%20'&amp;info='+encodeURIComponent('在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的......（引用自@百度百科%20正则表达式）http://baike.baidu.com/view/94238.htm');window.open('http://t.163.com/article/user/checkLogin.do?'+url+'&amp;'+new Date().getTime(),'newwindow','height=330,width=550,top='+(screen.height-280)/2+',left='+(screen.width-550)/2+', toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');})());nslog(location.href,1275,{name:'t163',id:'94238',title:'正则表达式'})" 
+target=_self></A><A title=分享到人人 
+style="BACKGROUND: url(http://a.xnimg.cn/imgpro/share/share-tinybtn.png) no-repeat left center" 
+href="javascript:void((function(s,d,e,r,l,p,t,z,c){%20var%20f='http://share.renren.com/share/buttonshare/post/2001',%20u=z||d.location,%20p=['?url=', e(u), '&amp;title=',e(t||d.title), '&amp;source=',e(r), '&amp;sourceUrl=',e(l), '&amp;content=',e(c||d.title), '&amp;pic=',e(p||'')].join(''); function a(){ if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join(''))) u.href=[f,p].join(''); }; if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a(); }) (screen,document,encodeURIComponent,'BAIDUBAIKE','http://baike.baidu.com','','正则表达式_百度百科' ,window.location.href,'在计算机科学中，是指一个用来描述或者匹配一系列符合某个句法规则的......（引用自@百度百科 正则表达式）'));nslog(window.location.href, 1640,{name:'renren',id:'94238',title:'正则表达式'});"></A></DIV></DIV>
+<DL class="lemma-ext-bottom nslog-area" data-nslog-type="16">
+  <DT>合作编辑者 
+  <DD>
+  <DIV class=onelineonly><SPAN id=co-editors><SPAN><A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=%D0%A1%D1%A9%CD%C3%B5%C4%D0%C4%C7%E9#3" 
+  target=_blank userName="小雪兔的心情">小雪兔的心情</A></SPAN> <SPAN>，<A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=lizhijun20#3" 
+  target=_blank userName="lizhijun20">lizhijun20</A></SPAN> <SPAN>，<A 
+  class=usercard title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=%BF%B3%B8%E2%D1%C7%BF%CB%CE%F7#3" 
+  target=_blank userName="砍糕亚克西">砍糕亚克西</A></SPAN> <SPAN>，<A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=fengzhangsh#3" 
+  target=_blank userName="fengzhangsh">fengzhangsh</A></SPAN> <SPAN>，<A 
+  class=usercard title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=jwzdhxn2#3" 
+  target=_blank userName="jwzdhxn2">jwzdhxn2</A></SPAN> <SPAN>，<A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=25508273#3" 
+  target=_blank userName="25508273">25508273</A></SPAN> <SPAN>，<A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=randy8877#3" 
+  target=_blank userName="randy8877">randy8877</A></SPAN> <SPAN>，<A 
+  class=usercard title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=442488160#3" 
+  target=_blank userName="442488160">442488160</A></SPAN> <SPAN>，<A 
+  class=usercard title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=1550911#3" 
+  target=_blank userName="1550911">1550911</A></SPAN> <SPAN>，<A class=usercard 
+  title=查看此用户资料 
+  href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=lpbottle#3" 
+  target=_blank userName="lpbottle">lpbottle</A></SPAN> </SPAN></DIV><A 
+  class="f12 ref_more" id=more-coeditor style="DISPLAY: none" 
+  href="http://baike.baidu.com/update/id=94238?from=au" target=_blank>更多</A> 
+  <DIV class=clear></DIV>
+  <DIV class="try f12">如果您认为本词条还需进一步完善，百科欢迎您也来参与<A class=try-edit 
+  onclick='bk.view.editLemma("/edit/","94238");return false' 
+  href="http://baike.baidu.com/view/94238.htm#">编辑词条</A>在开始编辑前，您还可以先学习<A 
+  href="http://www.baidu.com/search/baike_help.html#编辑原则" 
+  target=_blank>如何编辑词条</A></DIV></DD></DL>
+<P class=bk-feedback>如想投诉，请到<A class=nslog:1006 
+href="http://tousu.baidu.com/baike" target=_blank>百度百科投诉中心</A>；如想提出意见、建议，请到<A 
+class=nslog:1007 href="http://tieba.baidu.com/f?kw=%b0%d9%b6%c8%b0%d9%bf%c6" 
+target=_blank>百度百科吧</A>。 </P>
+<DIV class=clear></DIV></DIV></DIV></DIV>
+<DIV class=col-sub id=side>
+<DIV class=userinfo-side>
+<DIV id=userInfoDiv>
+<DIV class="userinfo-inner fix">
+<DIV class="fix mb10" id=userMessage><A onclick=nslog(this.href,221) 
+href="http://baike.baidu.com/uc/home" target=_blank><IMG class=userinfo-pic 
+id=userPic> </A>
+<DIV id=userDetail>
+<DIV id=userTitle><A id=kedoutuanPic onclick=nslog(this.href,223) 
+href="http://baike.baidu.com/cms/s/kdt/index.html" target=_blank><IMG id=iconOdp 
+title=百科蝌蚪团 alt=百科蝌蚪团 border=0> </A><A id=masterPic 
+href="http://baike.baidu.com/cms/topic/master/index.html" target=_blank><IMG 
+id=iconAdmin title=百科分类管理员 alt=百科分类管理员 border=0> </A><A id=corePic 
+href="http://baike.baidu.com/cms/s/core/index.html" target=_blank><IMG 
+id=iconVip title=核心用户 alt=核心用户 border=0> </A><A id=userTitleLink 
+onclick=nslog(this.href,222) href="http://baike.baidu.com/uc/home" 
+target=_blank></A></DIV>
+<P><A href="http://www.baidu.com/search/baike_help.html#百科积分体系" 
+target=_blank><IMG id=userTitlePic src="正则表达式_百度百科.files/blank.gif" 
+align=absMiddle> </A><A id=highVersionLink title=高质量版本 
+href="http://www.baidu.com/search/baike_help.html#高质量版本与优质版本评选规则（2011-02-14）" 
+target=_blank></A><SPAN id=highVersionNum></SPAN><A id=goodVersionLink 
+title=优质版本 
+href="http://www.baidu.com/search/baike_help.html#高质量版本与优质版本评选规则（2011-02-14）" 
+target=_blank></A><SPAN id=goodVersionNum></SPAN></P>
+<DIV id=userProcessBack>
+<DIV id=userProcess></DIV></DIV></DIV></DIV>
+<DIV class=userin-split></DIV>
+<DIV class="piece dnone">
+<DIV class="mb10 dnone" id=growupTask>
+<H3 class=fix><A class="mr8 icon-growup-task" onclick=nslog(this.href,447) 
+href="http://baike.baidu.com/uc/task" target=_blank></A><A class=title 
+onclick=nslog(this.href,447) href="http://baike.baidu.com/uc/task" 
+target=_blank>成长任务</A> </H3>
+<UL id=growupTasks></UL></DIV>
+<DIV class="mb10 dnone" id=dailyTask>
+<H3 class=fix><A class="mr8 icon-common-task" onclick=nslog(this.href,460) 
+href="http://baike.baidu.com/uc/task#3" target=_blank></A><A class=title 
+onclick=nslog(this.href,460) href="http://baike.baidu.com/uc/task#3" 
+target=_blank>日常任务</A> </H3>
+<UL class=dnone id=dailyTasks></UL></DIV>
+<DIV class="mb10 dnone" id=hotWord>
+<DIV style="POSITION: relative">
+<H3 class=fix><A class="mr8 icon-hotword" id=hotHelp 
+href="http://www.baidu.com/search/baike/hothelp/" target=_blank></A><A 
+class=title onclick=nslog(this.href,224) 
+href="http://baike.baidu.com/uc/recommend" target=_blank>热词推送</A> <A 
+class=hot-word-refresh id=hotWordRefresh 
+onclick=showHotwords();nslog(this.href,225) href="javascript:void(0)"></A></H3>
+<UL id=hotWords></UL>
+<DIV class=tip id=hotHelpTip>
+<DIV class=tipMain id=hotHelpTipMain>
+<P>编辑热词可获得额外经验值</P></DIV></DIV>
+<DIV class=tip id=completeTip>
+<DIV class=tipMain id=completeTipMain></DIV></DIV>
+<DIV class="tip reason-tip" id=hotReasonTip>
+<DIV class=tipMain id=hotReasonTipMain></DIV></DIV></DIV></DIV></DIV>
+<DIV class="piece dnone">
+<DIV class=mb10 id=encourage>
+<H3 class=fix><A class="mr8 fl" id=encourage_icon_href 
+href="http://baike.baidu.com/view/94238.htm#"><IMG 
+src="正则表达式_百度百科.files/encourage-title.gif"> </A><A class=title 
+id=encourage_title href="http://baike.baidu.com/view/94238.htm#"></A></H3>
+<UL id=encouragements></UL></DIV></DIV>
+<DIV class="piece dnone">
+<DIV class="mb10 dnone" id=effort>
+<H3 class=fix><A class="mr8 icon-lemma" onclick=nslog(this.href,241) 
+href="http://baike.baidu.com/uc/effort" target=_blank></A><A class=title 
+onclick=nslog(this.href,241) href="http://baike.baidu.com/uc/effort" 
+target=_blank>词条动态</A> </H3>
+<UL id=efforts></UL></DIV></DIV>
+<DIV class=gotouc-wrap><A class=gotouc onclick=nslog(this.href,227) 
+href="http://baike.baidu.com/uc/home" target=_blank>进入我的百科</A> </DIV>
+<DIV class=tip id=userTip>
+<DIV class=tipMain id=userTipMain>
+<P>您目前的等级是<SPAN id=userLevel></SPAN>级<BR>您目前的经验值是<SPAN 
+id=totalscore></SPAN>点<BR>您还需<SPAN id=scorediff></SPAN>点经验值即可升为<SPAN 
+id=nextlevel></SPAN>级<BR></P></DIV>
+<DIV id=userTipArrow></DIV>
+<DIV id=userTipBack></DIV></DIV></DIV></DIV></DIV>
+<DIV class=box2 id=lemma-overview>
+<DIV class=box2-inner>
+<H2>词条统计</H2>
+<P class="info f12">浏览次数：约 <SPAN id=viewPV></SPAN>次 <BR>编辑次数：24次 <A 
+class=nslog:1021 href="http://baike.baidu.com/update/id=94238" 
+target=_blank>历史版本</A> <BR>最近更新：<SPAN id=lastModifyTime>2011-06-15</SPAN> 
+<BR>创建者：<SPAN class=nslog:1022><A class=usercard title=查看此用户资料 
+href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=distian#3" 
+target=_blank userName="distian">distian</A></SPAN> </P></DIV></DIV>
+<DIV class="box2 nslog-area" id=pro-contributors>
+<DIV class=box2-inner>
+<H2><SPAN><A href="http://baike.baidu.com/update/id=94238" 
+target=_blank>更多</A></SPAN>贡献光荣榜</H2>
+<DIV class=usercard-info title=""><IMG 
+src="正则表达式_百度百科.files/what-contri.gif">鼠标滑过用户名，我们有名片啦！</DIV>
+<DIV id=contri-div>
+<TABLE class="topuser f12" cellSpacing=0 cellPadding=0 width=235 border=0>
+  <TBODY>
+  <TR>
+    <TD class=contri-type colSpan=4><STRONG>辛勤贡献者：</STRONG><IMG 
+      title=贡献复杂版本，被称为辛勤贡献者 src="正则表达式_百度百科.files/what.gif" 
+  align=absMiddle></TD></TR>
+  <TR>
+    <TD width=18></TD>
+    <TH width=100><A class=usercard title=查看此用户资料 
+      href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=Arliang#3" 
+      target=_blank userName="Arliang">Arliang</A></TH>
+    <TD align=right width=67><A 
+      href="http://www.baidu.com/search/baike_help.html#百科积分体系" 
+      target=_blank><IMG class="usertitle level3" style="WIDTH: 67px" 
+      src="正则表达式_百度百科.files/blank.gif" align=absMiddle></A> </TD>
+    <TD align=right><A href="http://www.baidu.com/search/baike_help.html#复杂编辑" 
+      target=_blank><IMG title=为词条改进贡献了复杂版本的用户，被称为辛勤贡献者 
+      src="正则表达式_百度百科.files/complexVersionAbs.gif" align=absMiddle></A>&nbsp;<A 
+      class="contri-a nslog:1040" 
+      href="http://baike.baidu.com/history/id=11707239" target=_blank>版本</A> 
+  </TD></TR>
+  <TR>
+    <TD width=18></TD>
+    <TH width=100><A class=usercard title=查看此用户资料 
+      href="http://passport.baidu.com/?business&amp;aid=7&amp;default_tab=2&amp;un=dodo7934#3" 
+      target=_blank userName="dodo7934">dodo7934</A></TH>
+    <TD align=right width=67><A 
+      href="http://www.baidu.com/search/baike_help.html#百科积分体系" 
+      target=_blank><IMG class="usertitle level4" style="WIDTH: 67px" 
+      src="正则表达式_百度百科.files/blank.gif" align=absMiddle></A> </TD>
+    <TD align=right><A href="http://www.baidu.com/search/baike_help.html#复杂编辑" 
+      target=_blank><IMG title=为词条改进贡献了复杂版本的用户，被称为辛勤贡献者 
+      src="正则表达式_百度百科.files/complexVersionAbs.gif" align=absMiddle></A>&nbsp;<A 
+      class="contri-a nslog:1040" 
+      href="http://baike.baidu.com/history/id=16255363" target=_blank>版本</A> 
+  </TD></TR></TBODY></TABLE></DIV></DIV></DIV>
+<DIV class=box2 id=bkDynamic style="DISPLAY: none">
+<DIV class=box2-inner>
+<H5 id=profileTitle></H5>
+<DIV class=f12>
+<DL class="task nslog-area" id=task style="DISPLAY: none" 
+data-nslog-type="1023"></DL>
+<DL class="notice nslog-area" id=notice 
+data-nslog-type="1024"></DL></DIV></DIV></DIV>
+<DIV class=box2 id=mabox style="DISPLAY: none">
+<DIV class=box2-inner id=box2-inner>
+<SCRIPT type=text/javascript>var arrBaiduAds=new Array();function BaiduAdsDisplay(_){if(typeof(arrBaiduAds[_])=="undefined"||arrBaiduAds[_]==""){return;}G("mabox").style.display="";nslog.set("maad",1);G("box2-inner").innerHTML=arrBaiduAds[_];}</SCRIPT>
+
+<SCRIPT type=text/javascript>/*<![CDATA[*/baidu.sio.callByBrowser("http://a.baidu.com/ecom?di=216&tm=baiduASPT216S&tn=baidubaike_pg&word=%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD",function(){BaiduAdsDisplay(216);});/*]]>*/</SCRIPT>
+</DIV></DIV>
+<DIV class=clear></DIV></DIV></DIV><IMG style="DISPLAY: none" src=""><INPUT 
+id=titleVal type=hidden value=正则表达式>
+<SCRIPT type=text/javascript>/*<![CDATA[*/if((baikeViewInfo.expIndex!=0)&&!(window.location.hash)){window.location.hash="#sub94238";}nslog.set("page","view");nslog.set("lemmaid","94238");nslog.set("ispolysemy","0");baidu.each(baidu.dom.query(".lemma-main-content"),function(_){baidu.on(_,"mousedown",function(_){var B=baidu.event.get(_),A=B.target;if(A.tagName.toLowerCase()=="a"&&/\/view\/\d+.htm(l)?$/.test(A.href)){nslog(A.href,12);}A=null;});});bk.view.logInfo={};baidu.each(baidu.q("log-set-param"),function(B){var _=baidu.dom.getAttr(B,"log-set-param").split(":");if(_.length==1){var A=bk.view.logInfo[_[0]]||0;A++;}else{A=_[1];}bk.view.logInfo[_[0]]=A;});baidu.object.each(bk.view.logInfo,function(_,A){nslog.set(A,_);});nslog(location.href,11);/*]]>*/</SCRIPT>
+
+<SCRIPT>__PDC.time_snap=new Date()*1;</SCRIPT>
+
+<SCRIPT src="正则表达式_百度百科.files/h.htm" type=text/javascript></SCRIPT>
+
+<SCRIPT>__PDC.js_time.push("js_103101="+(new Date()*1-__PDC.time_snap));</SCRIPT>
+ </DIV>
+<DIV class=nslog-area id=footer data-nslog-type="1001">&copy; 2011 Baidu <A 
+href="http://www.baidu.com/search/baike_help.html#百科协议" target=_blank>权利声明</A> 
+</DIV></DIV>
+<DIV id=sidecatalog style="DISPLAY: none; POSITION: absolute">
+<DIV class=sidebar id=sidebar></DIV><A class=gotop id=gotop title=返回顶部 
+href="http://baike.baidu.com/view/94238.htm#"></A></DIV>
+<DIV id=side-catalog-content style="DISPLAY: none; POSITION: absolute"></DIV>
+<SCRIPT>(function(){if(document.addEventListener){window.addEventListener("load",function(){__PDC.complete()},false)}else{window.attachEvent("onload",function(){__PDC.onload_start=new Date()*1})}})();</SCRIPT>
+</BODY></HTML>

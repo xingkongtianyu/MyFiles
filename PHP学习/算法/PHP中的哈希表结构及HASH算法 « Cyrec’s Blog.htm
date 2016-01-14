@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0050)http://cc.ecjtu.net/posts/php-internal-hash-struct -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PHP中的哈希表结构及HASH算法 « Cyrec’s Blog</title>
+        <meta name="Keywords" content="php,hash,算法,结构">
+		<meta name="Description" content="
+ PHP中的哈希表是十分重要的是一个数据接口，基本上大部分的语言特性都是基于哈希表的，例如：变量的作
+
+ 用域和变量的存储，类的实现以及Zend引擎内部的数据有很多都是保存在哈希表中的。PHP中的哈...,陈忱的博客">
+		<meta name="template" content="default">
+		
+        <style>	
+			#tianqi{text-align:center;padding:0px; margin:0px;boder:0px;*+html width:406px;width:406px !important;height:153px}
+			.weather {text-align:center;float:left;}
+			.weather p{padding:0px; margin:0px;width:135px;}
+		</style>
+        <link rel="stylesheet" type="text/css" href="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/style.css" media="screen">
+        <link type="text/css" rel="stylesheet" href="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/shCore.css">
+		<link type="text/css" rel="stylesheet" href="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/shThemeDefault.css">
+		<link rel="icon" href="http://cc.ecjtu.net/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="http://cc.ecjtu.net/favicon.ico" type="image/x-icon"> 
+		<link rel="alternate" type="application/rss+xml" href="http://cc.ecjtu.net/feed/post/php-internal-hash-struct" title="订阅PHP中的哈希表结构及HASH算法下的评论">
+				<script type="text/javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/script.js"></script>
+		<script type="text/javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/jquery.colorbox.js"></script>
+	    <script type="text/javascript">
+			$(document).ready(function() {
+				$("#weather a").colorbox();
+			});
+		</script>	
+		<script type="text/javascript" language="javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/scrolltopcontrol.js"></script>
+	</head>
+    <body><div id="cboxOverlay" style="display: none; "></div><div style="padding-bottom: 42px; padding-right: 42px; display: none; " id="colorbox" class=""><div id="cboxWrapper" style=""><div style=""><div id="cboxTopLeft" style="float: left; "></div><div id="cboxTopCenter" style="float: left; "></div><div id="cboxTopRight" style="float: left; "></div></div><div style="clear: left; "><div id="cboxMiddleLeft" style="float: left; "></div><div id="cboxContent" style="float: left; "><div id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden; " class=""></div><div id="cboxLoadingOverlay" style="" class=""></div><div id="cboxLoadingGraphic" style="" class=""></div><div id="cboxTitle" style="" class=""></div><div id="cboxCurrent" style="" class=""></div><div id="cboxNext" style="" class=""></div><div id="cboxPrevious" style="" class=""></div><div id="cboxSlideshow" style="" class=""></div><div id="cboxClose" style="" class=""></div></div><div id="cboxMiddleRight" style="float: left; "></div></div><div style="clear: left; "><div id="cboxBottomLeft" style="float: left; "></div><div id="cboxBottomCenter" style="float: left; "></div><div id="cboxBottomRight" style="float: left; "></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; "></div></div>
+        <div id="page">
+        <div id="header">
+        <div class="logo">
+            <h1><a href="http://cc.ecjtu.net/"><i><b>Cyrec’s Blog&nbsp;</b></i></a></h1>
+        </div>
+        <!--/logo -->
+        <div id="weather">
+        	<a href="http://cc.ecjtu.net/weather/" class="cboxElement">
+            	<img src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/weather.png" title="点击查看南昌天气">
+            </a>
+        </div>
+        <div class="clr"></div>
+        <div class="topnav">
+                <ul id="topnav">
+                    <li class="current_page_item"><a href="http://cc.ecjtu.net/"><span>首页</span></a></li>
+                    <li><a href="http://cc.ecjtu.net/gallery"><span>相册</span></a></li>
+			    	<li><a href="http://cc.ecjtu.net/pages/message"><span>留言</span></a></li>
+			    	<li><a href="http://cc.ecjtu.net/about"><span>关于我</span></a></li>
+                </ul>
+                <div class="clr"></div>
+        </div>
+        <!--/topnav -->
+        <script type="text/javascript" language="javascript">
+        var nav = document.getElementById("topnav");
+        var links = nav.getElementsByTagName("li");
+        var lilen = nav.getElementsByTagName("a");
+        var currenturl = document.location.href;
+        var last = 0;
+        for (var i = 0; i < links.length; i++) {
+            var linkurl = lilen[i].getAttribute("href");
+            if (currenturl.indexOf(linkurl) != -1) {
+                last = i;
+            }
+        }
+        links[last].className = "current_page_item";
+    </script>
+        <form method="get" id="searchform" action="http://cc.ecjtu.net/search">
+                <fieldset id="search">
+                        <span>
+                                <input type="text" value="Search..." onclick="this.value=&#39;&#39;;" name="s" id="s">
+                                <input type="image" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/search.gif" value="Search" id="searchsubmit" class="btn">
+                        </span>
+                </fieldset>
+        </form>
+        <!--/searchform -->
+       <!--
+<div class="clr"></div>
+<div class="header_h2">
+        <div class="clr"></div>
+        <div class="slider_bottom"> <a href="###"><img src="../public/images/test.gif" alt="" width="36" height="33" border="0" /></a>
+                <p>每天一个名言锦句。<br />
+                        <strong>谁谁谁</strong></p>
+        </div>
+</div>
+        -->
+        <br>
+        <div class="clr"></div>
+</div>
+<div id="container">    <div id="main"><!-- main -->
+    		 <div class="post">
+    				
+    				<h2><strong>PHP中的哈希表结构及HASH算法</strong></h2>
+    				
+    				<h4 class="metadata">
+						<span>发布于: February 29, 2012, 10:26 am</span>
+						<span>分类: <a href="http://cc.ecjtu.net/category/PhpInternal">PHP原理</a></span>
+						<span>作者: <a href="http://cc.ecjtu.net/authors/3">Cyrec</a></span>
+						<span class="no-border">阅读: [504]</span>
+					</h4>
+					
+					<div class="content">
+							
+						<p>
+ PHP中的哈希表是十分重要的是一个数据接口，基本上大部分的语言特性都是基于哈希表的，例如：变量的作</p>
+<p>
+ 用域和变量的存储，类的实现以及Zend引擎内部的数据有很多都是保存在哈希表中的。PHP中的哈希表使用也</p>
+<p>
+ 链接法来避免冲突(将映射到同一位置的值用双向链表保存)。PHP使用如下两个数据结构来实现哈希表，</p>
+<p>
+ HashTable结构体用于保存整个哈希表需要的基本信息，而Bucket结构体用于保存具体的数据内容，</p>
+<p>
+ 如下(摘自TIPI)：</p>
+<div id="highlighter_591307" class="syntaxhighlighter  "><div class="bar                                        "><div class="toolbar"><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_591307_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_591307" menu="false" src="http://cc.ecjtu.net/st_plugins/editor/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="plain">typedef struct _hashtable { </code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">uint nTableSize;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// hash Bucket的大小，最小为8，以2x增长。</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">uint nTableMask;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// nTableSize-1 ， 索引取值的优化</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">uint nNumOfElements;&nbsp;&nbsp;&nbsp; </code><code class="comments">// hash Bucket中当前存在的元素个数，count()函数会直接返回此值 </code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">ulong nNextFreeElement; </code><code class="comments">// 下一个数字索引的位置</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Bucket *pInternalPointer;&nbsp;&nbsp; </code><code class="comments">// 当前遍历的指针（foreach比for快的原因之一）</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Bucket *pListHead;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 存储数组头元素指针</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Bucket *pListTail;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 存储数组尾元素指针</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Bucket **arBuckets;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 存储hash数组</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">dtor_func_t pDestructor;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">zend_bool persistent;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">unsigned char nApplyCount; </code><code class="comments">// 标记当前hash Bucket被递归访问的次数（防止多次递归）</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">zend_bool bApplyProtection;</code><code class="comments">// 标记当前hash桶允许不允许多次访问，不允许时，最多只能递归3次</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="plain">#</code><code class="keyword">if</code> <code class="plain">ZEND_DEBUG</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">int inconsistent;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="plain">#</code><code class="keyword">endif</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="plain">} HashTable;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="plain">typedef struct bucket {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">ulong h;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 对char *key进行hash后的值，或者是用户指定的数字索引值</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">uint nKeyLength;&nbsp;&nbsp;&nbsp; </code><code class="comments">// hash关键字的长度，如果数组索引为数字，此值为0</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">void *pData;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 指向value，一般是用户数据的副本，如果是指针数据，则指向pDataPtr</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>22</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">void *pDataPtr;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">//如果是指针数据，此值会指向真正的value，同时上面pData会指向此值</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>23</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">struct bucket *pListNext;&nbsp;&nbsp; </code><code class="comments">// 整个hash表的下一元素</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>24</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">struct bucket *pListLast;&nbsp;&nbsp; </code><code class="comments">// 整个哈希表该元素的上一个元素</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>25</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">struct bucket *pNext;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 存放在同一个hash Bucket内的下一个元素</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>26</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">struct bucket *pLast;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="comments">// 同一个哈希bucket的上一个元素</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>27</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">char arKey[1];&nbsp; </code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>28</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">/*存储字符索引，此项必须放在最未尾，因为此处只字义了1个字节，存储的实际上是指向char *key的值，</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>29</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">这就意味着可以省去再赋值一次的消耗，而且，有时此值并不需要，所以同时还节省了空间。</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>30</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">*/</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>31</code></td><td class="content"><code class="plain">} Bucket;</code></td></tr></tbody></table></div></div></div>
+<p>
+ PHP的Hash采用的是目前最为普遍的DJBX33A (Daniel J. Bernstein, Times 33 with Addition), 这个算法被广泛</p>
+<p>
+ 运用与多个软件项目,Apache, Perl和Berkeley DB等. 对于字符串而言这是目前所知道的最好的哈希算法，原因</p>
+<p>
+ 在于该算法的速度非常快，而且分类非常好(冲突小,分布均匀).具体的介绍在这:<a href="http://www.laruence.com/2009/07/23/994.html" rel="bookmark" style="font-family: inherit; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: inherit; font-size: 16px; vertical-align: baseline; color: rgb(255, 102, 0); text-decoration: none; " title="Permanent Link to PHP中的Hash算法">PHP中的Hash算法</a></p>
+<p>
+ 算法的核心思想就是:hash(i) = hash(i-1) * 33 + str[i]</p>
+<p>
+ 使用PHP模拟实现:</p>
+<div id="highlighter_696990" class="syntaxhighlighter  "><div class="bar  "><div class="toolbar"><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#viewSource" title="view source" style="width: 16px; height: 16px; " class="item viewSource">view source</a><div class="item copyToClipboard"><embed width="16" height="16" id="highlighter_696990_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_696990" menu="false" src="http://cc.ecjtu.net/st_plugins/editor/syntaxhighlighter/scripts/clipboard.swf"></div><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#printSource" title="print" style="width: 16px; height: 16px; " class="item printSource">print</a><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct#about" title="?" style="width: 16px; height: 16px; " class="item about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">function</code> <code class="plain">times33(</code><code class="variable">$string</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="spaces">&nbsp;</code><code class="variable">$code</code> <code class="plain">= 5381;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="spaces">&nbsp;</code><code class="keyword">for</code> <code class="plain">(</code><code class="variable">$i</code> <code class="plain">= 0, </code><code class="variable">$len</code> <code class="plain">= </code><code class="functions">strlen</code><code class="plain">(</code><code class="variable">$string</code><code class="plain">); </code><code class="variable">$i</code> <code class="plain">&lt; </code><code class="variable">$len</code><code class="plain">; </code><code class="variable">$i</code><code class="plain">++) {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;</code><code class="variable">$code</code> <code class="plain">= (int) ((</code><code class="variable">$code</code> <code class="plain">&lt;&lt; 5) + </code><code class="variable">$code</code> <code class="plain">+ ord(</code><code class="variable">$string</code><code class="plain">{</code><code class="variable">$i</code><code class="plain">})) &amp; 0x7fffffff;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">//与0x7fffffff做与运算是为了防止内存溢出</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="spaces">&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="spaces">&nbsp;</code><code class="keyword">return</code> <code class="variable">$code</code><code class="plain">;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div>
+<p>
+ 通过times33算法将字符串产生的hash数字与hash表的大小求余就能得到比较均匀的hash分布。在PHP中有个</p>
+<p>
+ 这样的宏：#define HASH_INDEX(ht, key) (hash_str((key)) % (ht)-&gt;size)</p>					
+					</div>
+
+					
+					
+					<div class="related">
+						<h4><strong>相关日志:</strong></h4>
+							<ul>
+								<li><a href="http://cc.ecjtu.net/posts/php-foreach-each-details">PHP中foreach和each参数传递的区别</a>  (April 22, 2012, 3:03 pm)</li>
+<li><a href="http://cc.ecjtu.net/posts/PHP-variables-rule">PHP中变量命名规则原理</a>  (April 6, 2012, 5:20 pm)</li>
+<li><a href="http://cc.ecjtu.net/posts/php-life-cycle">PHP的生命周期</a>  (March 19, 2012, 10:20 pm)</li>
+<li><a href="http://cc.ecjtu.net/posts/php-error-reproting">PHP错误抑制符和error_reporting()</a>  (March 14, 2012, 2:25 pm)</li>
+<li><a href="http://cc.ecjtu.net/posts/php-Garbage-Collection-1">PHP中新的垃圾回收机制:Zend GC详解</a>  (March 10, 2012, 3:10 pm)</li>
+							</ul>				
+					</div>
+					
+					<div class="tags">
+													<h4><strong>标签:</strong> <a href="http://cc.ecjtu.net/tag/PHP%E5%8E%9F%E7%90%86">PHP原理</a></h4>
+											</div>
+				</div>
+
+			<script src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/shCore.js"></script>
+			<script src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/shBrushPhp.js"></script>	
+			<script src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/shBrushPython.js"></script>
+			<script>
+				SyntaxHighlighter.config.clipboardSwf = 'http://cc.ecjtu.net/st_plugins/editor/syntaxhighlighter/scripts/clipboard.swf';
+				SyntaxHighlighter.all();
+			</script>
+			<div id="contentleft">
+			<div id="comment-place">
+			<div class="comment-post" id="comment-post">
+				<div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
+				<p class="comment-header"><b>留言在这里：</b><a name="respond"></a></p>
+				<form method="post" name="commentform" action="http://cc.ecjtu.net/comment/301" id="commentform">
+				<script type="text/javascript" language="javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/jquery-ui.js"></script>
+				<script type="text/javascript" language="javascript" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/QapTcha.jquery.js"></script>
+				<script type="text/javascript">
+				    $(document).ready(function(){
+				        $("#QapTcha").QapTcha({disabledSubmit:true});
+				        });
+				</script>
+					<div id="QapTcha" style=""><div id="bgSlider"><div id="Slider" style="position: relative; " class="ui-draggable"></div></div><div id="Icons"></div><div class="clr"></div><div id="TxtStatus" class="dropError">发表评论前，请滑动滚动条解锁</div></div>
+					<p>
+						<input type="text" name="author" maxlength="49" value="" size="22" tabindex="1">
+						<label for="author"><small>昵称(不填则为匿名留言)</small></label>
+					</p>
+					<p>
+						<input type="text" name="mail" maxlength="128" value="" size="22" tabindex="2">
+						<label for="email"><small>邮件地址 (选填)</small></label>
+					</p>
+					<p>
+						<input type="text" name="url" maxlength="128" value="" size="22" tabindex="3">
+						<label for="url"><small>个人主页 (选填)</small></label>
+					</p>
+					<p><textarea name="text" id="comment" rows="10" tabindex="4"></textarea></p>
+					<p> <input type="submit" id="com_submit" value="发表评论" tabindex="6" style="opacity: 0; " disabled="disabled"></p>
+					<input type="hidden" name="parent" id="comment-pid" value="0" size="22" tabindex="1">
+					<input type="hidden" name="captcha_check" id="captcha_check" value="JgCNyvmaFU">
+				</form>
+			</div>			
+		</div>
+			<!--<p>你也可以选择.</p>-->
+		<div style="clear:both;"></div>
+</div>
+
+    </div><!-- //main -->
+            
+<div class="box">
+	<p></p><table id="wp-calendar" summary="日历"><caption>2012年十一月</caption><thead><tr><th scope="col" title="星期一">一</th><th scope="col" title="星期二">二</th><th scope="col" title="星期三">三</th><th scope="col" title="星期四">四</th><th scope="col" title="星期五">五</th><th scope="col" title="星期六">六</th><th scope="col" title="星期日">日</th></tr></thead><tfoot><tr><td colspan="3" id="prev"><a href="http://cc.ecjtu.net/archives/2012/08">« 八月</a></td><td class="pad">&nbsp;</td><td colspan="3" id="next">&nbsp;</td></tr></tfoot><tbody><tr><td class="pad">&nbsp;</td><td class="pad">&nbsp;</td><td class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr><tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr><tr><td><span title="今日是19号"><font color="red">19</font></span></td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="pad">&nbsp;</td><td class="pad">&nbsp;</td></tr></tbody></table><p></p>
+    <div class="content">
+        <ul class="list">
+       		<li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" class="active" rel="tabs_tag">标签</a></li>
+            <li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" rel="tabs_archive">归档</a></li>
+            <li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" class="last" rel="tabs_sort">分类</a></li>
+           <!-- <li><a href="###" rel="tabs_link" class="last">链接</a></li> -->
+        </ul>
+         <div class="tabs_tag tabs_list" style="display: block; ">
+            <div id="memo_tags">
+	            													  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+									  
+								            <a href="http://cc.ecjtu.net/tag/smarty" style="left: 67.47616211675782px; top: 117.42068954327074px; font-size: 6px; opacity: 0.21096318331109087; z-index: 1; ">smarty</a><a href="http://cc.ecjtu.net/tag/nginx" style="left: 54.69727271373503px; top: 92.29857083444925px; font-size: 5px; opacity: 0.11073720732700484; z-index: 35; ">nginx</a><a href="http://cc.ecjtu.net/tag/PNG%E5%9B%BE%E7%89%87" style="left: 87.03353086384648px; top: 100.12957081874842px; font-size: 5px; opacity: 0.004303390084223572; z-index: 2; ">PNG图片</a><a href="http://cc.ecjtu.net/tag/javascript" style="left: 88.17084268735965px; top: 126.94829911837931px; font-size: 5px; opacity: 0.06420134166489992; z-index: 3; ">javascript</a><a href="http://cc.ecjtu.net/tag/apache" style="left: 95.21089620388192px; top: 142.38335371135366px; font-size: 6px; opacity: 0.26160849397700325; z-index: 4; ">apache</a><a href="http://cc.ecjtu.net/tag/JS" style="left: 74.51515164795296px; top: 134.2437787135339px; font-size: 7px; opacity: 0.4899522109102376; z-index: 5; ">JS</a><a href="http://cc.ecjtu.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%85%A5" style="left: 45.037218298906566px; top: 108.67943844246875px; font-size: 7px; opacity: 0.5457424858091589; z-index: 6; ">数据库导入</a><a href="http://cc.ecjtu.net/tag/python" style="left: 35.88725627786785px; top: 80.21167548853845px; font-size: 6px; opacity: 0.382331909089594; z-index: 7; ">python</a><a href="http://cc.ecjtu.net/tag/CC" style="left: 48.7803429608437px; top: 62.23456541616963px; font-size: 6px; opacity: 0.16962976276407582; z-index: 8; ">C/C++</a><a href="http://cc.ecjtu.net/tag/php-fpm" style="left: 77.36887189819906px; top: 61.61949554115975px; font-size: 5px; opacity: 0.021176026922160217; z-index: 9; ">php-fpm</a><a href="http://cc.ecjtu.net/tag/CI" style="left: 109.62495803531793px; top: 77.58492587168514px; font-size: 5px; opacity: -0.043111691271404504; z-index: 10; ">CI</a><a href="http://cc.ecjtu.net/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" style="left: 115.1704411009191px; top: 103.54110301771391px; font-size: 5px; opacity: -0.027210693255571017; z-index: 11; ">设计模式</a><a href="http://cc.ecjtu.net/tag/ajax" style="left: 129.38752897972253px; top: 130.3006973405051px; font-size: 5px; opacity: 0.07120419985579052; z-index: 12; ">ajax</a><a href="http://cc.ecjtu.net/tag/%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB" style="left: 124.4389552436279px; top: 149.30071832691186px; font-size: 6px; opacity: 0.2649774199544541; z-index: 13; ">资源汇总</a><a href="http://cc.ecjtu.net/tag/mysql" style="left: 100.37138233149871px; top: 154.95896760234166px; font-size: 7px; opacity: 0.5640559432921349; z-index: 14; ">mysql</a><a href="http://cc.ecjtu.net/tag/HTTP%E5%8D%8F%E8%AE%AE" style="left: 76.76764790912682px; top: 145.7831998743622px; font-size: 8px; opacity: 0.9248283239663785; z-index: 15; ">HTTP协议</a><a href="http://cc.ecjtu.net/tag/BigPige" style="left: 52.998809333058546px; top: 124.25427224092215px; font-size: 9px; opacity: 1.1760335256902552; z-index: 16; ">BigPige</a><a href="http://cc.ecjtu.net/tag/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" style="left: 42.068500489507684px; top: 95.77215160772897px; font-size: 9px; opacity: 1.122172972738384; z-index: 17; ">正则表达式</a><a href="http://cc.ecjtu.net/tag/php%E6%8B%93%E5%B1%95" style="left: 46.90157497608435px; top: 67.08320283322328px; font-size: 8px; opacity: 0.8232732267523856; z-index: 18; ">php拓展</a><a href="http://cc.ecjtu.net/tag/%E7%BF%BB%E5%A2%99" style="left: 36.25839202516319px; top: 44.61994918917435px; font-size: 7px; opacity: 0.49152932848418857; z-index: 19; ">翻墙</a><a href="http://cc.ecjtu.net/tag/crontab" style="left: 50.29419376878755px; top: 33.11301420445383px; font-size: 6px; opacity: 0.23856684730974928; z-index: 20; ">crontab</a><a href="http://cc.ecjtu.net/tag/Twisted" style="left: 100.15487896885178px; top: 34.7144029171952px; font-size: 5px; opacity: 0.07809343496329854; z-index: 21; ">Twisted</a><a href="http://cc.ecjtu.net/tag/CI%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" style="left: 129.91870716102977px; top: 48.73387818859027px; font-size: 5px; opacity: -0.004083368897322785; z-index: 22; ">CI源码分析</a><a href="http://cc.ecjtu.net/tag/XML" style="left: 139.16046459576256px; top: 71.96189915348448px; font-size: 5px; opacity: -0.019648029535978183; z-index: 23; ">XML</a><a href="http://cc.ecjtu.net/tag/Vim" style="left: 146.42520313262818px; top: 99.4516079087951px; font-size: 5px; opacity: 0.0297178403235517; z-index: 24; ">Vim</a><a href="http://cc.ecjtu.net/tag/Socket" style="left: 149.94271056221038px; top: 125.56887915878406px; font-size: 6px; opacity: 0.15473520633647192; z-index: 25; ">Socket</a><a href="http://cc.ecjtu.net/tag/sql" style="left: 146.978781203907px; top: 145.0963842677274px; font-size: 6px; opacity: 0.3815394389605396; z-index: 26; ">sql</a><a href="http://cc.ecjtu.net/tag/django" style="left: 119.7921108846331px; top: 154.19183555378845px; font-size: 8px; opacity: 0.753155785474699; z-index: 27; ">django</a><a href="http://cc.ecjtu.net/tag/Jquery" style="left: 106.73444223201761px; top: 151.04450580993347px; font-size: 10px; opacity: 1.3092893633326326; z-index: 28; ">Jquery</a><a href="http://cc.ecjtu.net/tag/YII" style="left: 81.587018005685px; top: 136.13747319306498px; font-size: 12px; opacity: 1.9798766866698; z-index: 29; ">YII</a><a href="http://cc.ecjtu.net/tag/%E7%A0%B4%E8%A7%A3%E6%98%9F%E7%A9%BA%E6%9E%81%E9%80%9F" style="left: 68.26212527077735px; top: 112.09445885544284px; font-size: 14px; opacity: 2.398657111331268; z-index: 30; ">破解星空极速</a><a href="http://cc.ecjtu.net/tag/slider" style="left: 59.011545011085445px; top: 83.15863540218196px; font-size: 13px; opacity: 2.17672849858186; z-index: 31; ">slider</a><a href="http://cc.ecjtu.net/tag/putty" style="left: 51.77432086251474px; top: 54.407017923615555px; font-size: 11px; opacity: 1.5519127289720465; z-index: 32; ">putty</a><a href="http://cc.ecjtu.net/tag/PHPExcel" style="left: 46.26752681385945px; top: 30.841113868124914px; font-size: 9px; opacity: 0.9607697455643559; z-index: 33; ">PHPExcel</a><a href="http://cc.ecjtu.net/tag/sphinx" style="left: 64.88094892410876px; top: 16.508521875685958px; font-size: 7px; opacity: 0.5467067499296951; z-index: 34; ">sphinx</a><a href="http://cc.ecjtu.net/tag/python%E6%A8%A1%E5%9D%97" style="left: 88.88651753769325px; top: 13.800445437039372px; font-size: 6px; opacity: 0.289340475506991; z-index: 0; ">python模块</a><a href="http://cc.ecjtu.net/tag/web%E5%AE%89%E5%85%A8" style="left: 132.9232086310216px; top: 23.038987387321406px; font-size: 6px; opacity: 0.14591728223795714; z-index: 36; ">web安全</a><a href="http://cc.ecjtu.net/tag/memcache" style="left: 137.6749538153196px; top: 42.42059580731901px; font-size: 5px; opacity: 0.0882459789091794; z-index: 37; ">memcache</a><a href="http://cc.ecjtu.net/tag/%E5%A4%9A%E7%BA%BF%E7%A8%8B" style="left: 169.62875891086594px; top: 68.32507158904397px; font-size: 5px; opacity: 0.10559656423113536; z-index: 38; ">多线程</a><a href="http://cc.ecjtu.net/tag/php" style="left: 169.78690658187537px; top: 95.94116812774442px; font-size: 6px; opacity: 0.2042732496622261; z-index: 39; ">php</a><a href="http://cc.ecjtu.net/tag/strtotime" style="left: 169.71279423924358px; top: 120.10824249206351px; font-size: 7px; opacity: 0.41178737438260654; z-index: 40; ">strtotime</a><a href="http://cc.ecjtu.net/tag/%E7%BC%93%E5%AD%98" style="left: 152.8141816491308px; top: 136.2361157230712px; font-size: 8px; opacity: 0.7891644453737973; z-index: 41; ">缓存</a><a href="http://cc.ecjtu.net/tag/%E4%BC%98%E5%8C%96" style="left: 134.30749778594168px; top: 141.14807134483047px; font-size: 10px; opacity: 1.4506048409395853; z-index: 42; ">优化</a><a href="http://cc.ecjtu.net/tag/Gearman" style="left: 123.8572883406834px; top: 133.69816016630452px; font-size: 14px; opacity: 2.5419636324919668; z-index: 43; ">Gearman</a><a href="http://cc.ecjtu.net/tag/session" style="left: 106.43906348129352px; top: 115.04412710242744px; font-size: 19px; opacity: 3.900132172733057; z-index: 44; ">session</a><a href="http://cc.ecjtu.net/tag/%E6%97%B6%E9%97%B4%E8%BD%B4" style="left: 73.52390378459512px; top: 88.50854573078612px; font-size: 21px; opacity: 4.345398660313652; z-index: 45; ">时间轴</a><a href="http://cc.ecjtu.net/tag/rewrite" style="left: 70.22123222765335px; top: 59.02716988887903px; font-size: 17px; opacity: 3.281837225130259; z-index: 46; ">rewrite</a><a href="http://cc.ecjtu.net/tag/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94" style="left: 73.03503956893385px; top: 32.25633418365217px; font-size: 12px; opacity: 2.001339322595502; z-index: 47; ">生活随笔</a><a href="http://cc.ecjtu.net/tag/findKing" style="left: 85.8833126100595px; top: 13.479676782858604px; font-size: 9px; opacity: 1.1522864961282755; z-index: 48; ">findKing</a><a href="http://cc.ecjtu.net/tag/%E5%88%86%E9%A1%B5" style="left: 106.9980677670273px; top: 6.506825274934798px; font-size: 8px; opacity: 0.6690197155341717; z-index: 49; ">分页</a><a href="http://cc.ecjtu.net/tag/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1" style="left: 136.26552463180985px; top: 12.781797886848608px; font-size: 7px; opacity: 0.4157907057882273; z-index: 50; ">面向对象</a><a href="http://cc.ecjtu.net/tag/opcodes" style="left: 156.48809085335515px; top: 30.90771986456616px; font-size: 6px; opacity: 0.31516426251343194; z-index: 51; ">opcodes</a><a href="http://cc.ecjtu.net/tag/webservice" style="left: 170.96189416650878px; top: 56.7419939996483px; font-size: 6px; opacity: 0.33987507422033103; z-index: 52; ">webservice</a><a href="http://cc.ecjtu.net/tag/%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C" style="left: 194.17954985438607px; top: 84.12297751936799px; font-size: 7px; opacity: 0.5049213162799379; z-index: 53; ">定时执行</a><a href="http://cc.ecjtu.net/tag/%E7%AE%97%E6%B3%95" style="left: 189.90467561989146px; top: 106.16344620009562px; font-size: 8px; opacity: 0.8811981135396543; z-index: 54; ">算法</a><a href="http://cc.ecjtu.net/tag/%E7%A5%9E%E5%A5%87%E7%9A%84%E5%9B%BE%E7%89%87" style="left: 168.34058293516574px; top: 116.90391159421404px; font-size: 11px; opacity: 1.6427074903185515; z-index: 55; ">神奇的图片</a><a href="http://cc.ecjtu.net/tag/%E6%97%A5%E6%96%B0%E5%9B%BE%E5%BA%93" style="left: 143.64739210115687px; top: 112.98496154686056px; font-size: 16px; opacity: 3.1107020544812842; z-index: 56; ">日新图库</a><a href="http://cc.ecjtu.net/tag/PHP%E5%8E%9F%E7%90%86" style="left: 126.1613474808677px; top: 94.90450148357274px; font-size: 24px; opacity: 5.159932809252982; z-index: 57; ">PHP原理</a><a href="http://cc.ecjtu.net/tag/%E5%B7%A5%E5%85%B7" style="left: 104.83965193992336px; top: 67.41016533251653px; font-size: 24px; opacity: 5.3004937151693845; z-index: 58; ">工具</a><a href="http://cc.ecjtu.net/tag/ubuntu" style="left: 112.68116067116259px; top: 38.67605429970508px; font-size: 17px; opacity: 3.288399129802697; z-index: 59; ">ubuntu</a><a href="http://cc.ecjtu.net/tag/%E7%BD%91%E7%BB%9C" style="left: 112.62453564214476px; top: 18.154714408856726px; font-size: 11px; opacity: 1.777336553832222; z-index: 60; ">网络</a><a href="http://cc.ecjtu.net/tag/LinuxCtrl_Z" style="left: 133.64119592149774px; top: 13.387497294039733px; font-size: 9px; opacity: 1.0354179136313666; z-index: 61; ">Linux:Ctrl+Z</a><a href="http://cc.ecjtu.net/tag/socket5" style="left: 172.82964664173616px; top: 26.56826290071792px; font-size: 8px; opacity: 0.7522422787819322; z-index: 62; ">socket5</a><a href="http://cc.ecjtu.net/tag/QapTcha" style="left: 175.65703417470718px; top: 52.1921506685983px; font-size: 8px; opacity: 0.796542695611532; z-index: 63; ">QapTcha</a><a href="http://cc.ecjtu.net/tag/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7" style="left: 178.43337841214742px; top: 77.48867280367756px; font-size: 10px; opacity: 1.2358398565007895; z-index: 64; ">测试工具</a><a href="http://cc.ecjtu.net/tag/linux%E5%91%BD%E4%BB%A4" style="left: 174.99177490273982px; top: 87.19040277800195px; font-size: 14px; opacity: 2.379333347565383; z-index: 65; ">linux命令</a><a href="http://cc.ecjtu.net/tag/discuz" style="left: 145.2952704561023px; top: 72.94368790879436px; font-size: 20px; opacity: 4.03598554426429; z-index: 66; ">discuz</a><a href="http://cc.ecjtu.net/tag/substr-utf8" style="left: 132.45728894572892px; top: 44.355429195208615px; font-size: 17px; opacity: 3.250270715969348; z-index: 67; ">substr-utf8</a><a href="http://cc.ecjtu.net/tag/%E6%97%A5%E6%96%B0%E6%94%B9%E7%89%88" style="left: 163.97685373651925px; top: 31.538354296736244px; font-size: 11px; opacity: 1.737804518531138; z-index: 68; ">日新改版</a><a href="http://cc.ecjtu.net/tag/hash%E5%86%B2%E7%AA%81" style="left: 168.10519391743992px; top: 53.71882255089726px; font-size: 11px; opacity: 1.7732674540645976; z-index: 69; ">hash冲突</a></div>
+        </div>
+        <div class="tabs_archive tabs_list" style="display: none; ">
+            <ul>
+            	<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/08">2012年08月 [1]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/07">2012年07月 [6]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/06">2012年06月 [6]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/05">2012年05月 [13]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/04">2012年04月 [20]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/03">2012年03月 [21]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/02">2012年02月 [20]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2012/01">2012年01月 [31]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/12">2011年12月 [18]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/11">2011年11月 [10]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/10">2011年10月 [28]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/09">2011年09月 [18]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/08">2011年08月 [41]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/archives/2011/07">2011年07月 [18]</a></li>
+            </ul>
+        </div>
+        <div class="tabs_sort tabs_list" style="display: none; ">
+            <ul class="sf-menu sf-js-enabled">
+                <li class="cat-item">
+                   </li><li class="cat-item"><a href="http://cc.ecjtu.net/category/js" title="javascript,jquery,ajax">js,jquery,ajax [12]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/life" title="记录大学生活">生活随笔 [27]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/MySQL" title="MySQL性能优化">MySQL [24]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/lamp" title="ubantu,linux,freebsd,nginx,apache">linux,web服务器 [24]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/CI" title="php框架">Codelgniter [12]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/php5" title="PHP的学习积累">PHP [81]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/C" title="C/C++">C/C++ [5]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/python" title="python">python [28]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/arithmetic" title="算法">算法 [19]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/py-models" title="python模块">python模块 [4]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/twisted" title="twisted网络框架教程">twisted [19]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/oo" title="面向对象">面向对象,设计模式 [4]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/source" title="资源汇总">各种资源 [7]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/Django" title="python的web开发框架Django">Django [4]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/PhpInternal" title="PHP内核原理">PHP原理 [14]</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/category/YII-study" title="纯面向对象的PHP框架">YII [5]</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--/content -->
+    <br>
+    <div class="content">
+        <ul class="list">
+        	<li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" class="active" rel="tabs_last">最新</a></li>
+            <li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" rel="tabs_comment">评论</a></li>
+            <li><a href="http://cc.ecjtu.net/posts/php-internal-hash-struct###" rel="tabs_link" class="last">友链</a></li>
+        </ul>
+        <div class="tabs_last tabs_list" style="display: block; ">
+            <ul class="sf-menu sf-js-enabled">
+            	<li class="cat-item"><a href="http://cc.ecjtu.net/posts/js-associative-array" title="JS “关联数组”">JS “关联数组”</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/python-class-attributes" title="python中类属性和类实例的属性的区别(转)">python中类属性和类实例的属性的区别(转...</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/yii-import" title="Yii中import按需加载的实现">Yii中import按需加载的实现</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/Vim-ctags-codejump" title="Vim中实现PHP函数tags跳转">Vim中实现PHP函数tags跳转</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/Yii-Ajax-partialRender" title="Yii Ajax+partialRender更新内容">Yii Ajax+partialRender...</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/crontab-php-shell" title="crontab执行PHP脚本">crontab执行PHP脚本</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/linux-shell-2-1" title="Linux shell下&quot;2&gt;&amp;1&quot;的含义">Linux shell下"2&gt;...</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/CListView" title="Yii中的Ajax分页和CListview">Yii中的Ajax分页和CListview</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/Highcharts" title="Highcharts图标插件属性注释">Highcharts图标插件属性注释</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/render-renderPartial-different" title="YII中render和renderPartial的区别以及$content变量">YII中render和renderParti...</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/php-loophole-audit" title="PHP应用程序漏洞审核技术">PHP应用程序漏洞审核技术</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/YII-index-hide" title="YII隐藏index.php">YII隐藏index.php</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/ubuntu-terminal-relative-path" title="ubuntu终端改成显示相对路径">ubuntu终端改成显示相对路径</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/php-fpm" title="php-fpm配置中文详解">php-fpm配置中文详解</a></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/web-development-security" title="WEB开发安全浅析(PHP)">WEB开发安全浅析(PHP)</a></li>
+            </ul>
+        </div>
+        <div class="tabs_comment tabs_list" style="display: none; ">
+            <ul>
+                <li class="cat-item"><a href="http://cc.ecjtu.net/posts/django-filter-horizontal#comment-2958" title="对[django后台filter_horizontal无法显示的解决]一文的评论:">asd: </a><p>@YoungPay:as</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/not-enough-arguments-for-format-string#comment-2948" title="对[not enough arguments for format string解决]一文的评论:">charlottesanchezbs: </a><p>Modern Fashion Clothing- Their Incline Characteriz...</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/goagent-crosswall#comment-2927" title="对[翻墙利器GoAgent—基于谷歌GAE(亲测可用)]一文的评论:">游客: </a><p>这个每天有流量限制，超出了会怎样？</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/django-filter-horizontal#comment-2912" title="对[django后台filter_horizontal无法显示的解决]一文的评论:">YoungPay: </a><p>并不是bug，可以用中文的：verbose_name=u'作者'
+我和你碰到同样的问题，搜索+试验解...</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/mysql-partition-tables#comment-2908" title="对[MySQL分区表的使用介绍]一文的评论:">游客: </a><p>谢谢啊，，受用了，，</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/php-combinate#comment-2883" title="对[PHP实现数字(字符串)的全组合]一文的评论:">phper: </a><p>把数字换成123456789效率如何？LZ有没有试过？</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/PHP-memcache#comment-2848" title="对[PHP+memcache安装使用例子]一文的评论:">家电维修: </a><p>memcache对于访问量大的网站确实有效果。</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/pages/message#comment-2786" title="对[留言]一文的评论:">路灯魂: </a><p>您好，我想向您请教关于mysql的并发连接测试问题，您用过mysqlslap测试吗？谢谢~</p></li>
+<li class="cat-item"><a href="http://cc.ecjtu.net/posts/discuz-login#comment-2704" title="对[discuz论坛登陆框外部调用的几种方法]一文的评论:">风格: </a><p>如果他etrade</p></li>
+            </ul>
+        </div>
+        <div class="tabs_link tabs_list" style="display: none; ">
+            <ul>
+	            <li class="cat-item"><a href="http://www.yakecan.com/" target="_blank" title="黄校长">Creative Power</a></li>
+	            <li class="cat-item"><a href="http://holmesian.org/" target="_blank" title="欧阳">Holmesian Blog</a></li>
+	            <li class="cat-item"><a href="http://actionbi.sinaapp.com/" target="_blank" title="老毕">Actionbi's blog</a></li>
+	            <li class="cat-item"><a href="http://www.ichanging.org/" target="_blank" title="潘泉锦">Changing's blog</a></li>
+				<li class="cat-item"><a href="http://www.iforeach.com/" target="_blank" title="南北漂的博客">南北漂</a></li>
+			</ul>
+        </div>
+    </div>
+    <!--/content -->
+</div>	
+</div>
+</div>
+	<div id="page_bottom">
+        <div id="footer">
+                <div class="clr"></div>
+                <div class="text">©2010-2012 <a href="http://cc.ecjtu.net/">Cyrec’s Blog</a>, All Rights Reserved. | <a href="http://cc.ecjtu.net/feed">日志RSS</a> | <a href="http://cc.ecjtu.net/feed/comments">评论RSS</a> | <a href="http://cc.ecjtu.net/sitemap.xml">sitemap</a></div>
+                <div class="text2">Rendered In 0.0036 s / 0.67MB | Based On CodeIgniter 2&nbsp;<script src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/stat.php" language="JavaScript"></script><script src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/cnzz_core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=3413292" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/pic.gif"></a></div>
+                <div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+	</div>
+	<!--/footer -->
+    
+<div id="topcontrol" style="position: fixed; bottom: 50px; right: 25px; opacity: 0; cursor: pointer; " title="顶部"><img src="./PHP中的哈希表结构及HASH算法 « Cyrec’s Blog_files/up.png" style="width:38px; height:32px"></div></body></html>

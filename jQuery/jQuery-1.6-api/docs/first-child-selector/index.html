@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">:first-child Selector</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/child-filter-selectors/" title="View all posts in Child Filter">Child Filter</a></span>
+  
+  				</div>
+</div>
+<div id="first-child1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">first-child</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.1.4/">1.1.4</a></span>jQuery(':first-child')</h4>
+<p class="desc"><strong>描述： </strong>选择所有父级元素下的第一个子元素。</p>
+<div class="longdesc"><p>虽然<a href="#p=first-selector">:first</a>只匹配一个单独的元素，但是<code>:first-child</code>选择器可以匹配超过一个：为每个父级元素匹配第一个子元素。这相当于<code>:nth-child(1)</code>。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Finds the first span in each matched div to underline and add a hover state.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { color:#008; }
+  span.sogreen { color:green; font-weight: bolder; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;span&gt;John,&lt;/span&gt;
+    &lt;span&gt;Karl,&lt;/span&gt;
+    &lt;span&gt;Brandon&lt;/span&gt;
+
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;span&gt;Glen,&lt;/span&gt;
+    &lt;span&gt;Tane,&lt;/span&gt;
+    &lt;span&gt;Ralph&lt;/span&gt;
+
+  &lt;/div&gt;
+&lt;script&gt;
+    $("div span:first-child")
+        .css("text-decoration", "underline")
+        .hover(function () {
+              $(this).addClass("sogreen");
+            }, function () {
+              $(this).removeClass("sogreen");
+            });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

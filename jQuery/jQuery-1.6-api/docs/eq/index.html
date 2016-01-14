@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.eq()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/filtering/" title="View all posts in Filtering">Filtering</a></span>
+  
+  				</div>
+</div>
+<div id="eq1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.eq( index )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获取匹配集合中指定的元素。</p>
+<ul class="signatures">
+<li class="signature" id="eq-index">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.1.2/">1.1.2</a></span>.eq( index )</h4>
+<p class="arguement"><strong>index</strong>一个整数，指示元素基于0的位置。 </p>
+</li>
+<li class="signature" id="eq--index">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.eq( -index )</h4>
+<p class="arguement"><strong>-index</strong>一个整数，指示元素的位置，从集合中的最后一个元素开始倒数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果一个jQuery对象表示一个DOM元素的集合，<code>.eq()</code>方法从集合的一个元素中构造新的jQuery对象。所提供的索引标识这个集合中的元素的位置。 </p>
+<p>考虑一个页面上一个简单的列表：</p>
+<pre>
+  &lt;ul&gt;
+    &lt;li&gt;list item 1&lt;/li&gt;
+    &lt;li&gt;list item 2&lt;/li&gt;
+    &lt;li&gt;list item 3&lt;/li&gt;
+    &lt;li&gt;list item 4&lt;/li&gt;
+    &lt;li&gt;list item 5&lt;/li&gt;
+  &lt;/ul&gt;
+</pre>
+<p>我们可以在列表项目上设置此方法：</p>
+<pre>
+  $('li').eq(2).css('background-color', 'red');
+</pre>
+<p>此调用的结果是item 3的背景变成红色。请注意，提供的索引是从零开始的，并提及了元素在jQuery对象中的位置，不在DOM树中。</p>
+<p>提供一个负数表示的元素的位置从集合中的末尾开始，而不是开头。例如：</p>
+<pre>
+  $('li').eq(-2).css('background-color', 'red');
+</pre>
+<p>这一次清单item 4变成了红色，因为这是从集合的末尾开始的第二个。</p>
+<p>如果一个元素不能在指定的从零开始的索引值中被发现，该方法构造了一个空的新jQuery对象，<code>length</code>属性值是0。 </p>
+<pre>
+  $('li').eq(5).css('background-color', 'red');
+</pre>
+<p>在这里，列表项都没有变成了红色。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Turn the div with index 2 blue by adding an appropriate class.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:60px; height:60px; margin:10px; float:left;
+        border:2px solid blue; }
+  .blue { background:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+
+    $("body").find("div").eq(2).addClass("blue");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

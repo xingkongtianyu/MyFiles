@@ -1,0 +1,267 @@
+一、建立网站目录
+（设置DW的编码为UTF-8）
+1、 在我的电脑中新建文件夹smartynews，Web共享smartynews文件夹。
+并在smartynews文件夹中分别建立下面的文件夹：
+includes 作用：存放第三方类库和自定义的公用函数文件夹
+class  作用：存放项目中定义的类文件夹
+templates 作用:存放html摸板的文件夹
+compiled 作用:自动编译的文件(不用理会里面自动生成的文件)
+caches :作用:存放缓存用的文件夹
+
+2、 安装smarty：
+（1） 解压Smarty-2.6.18.tar.tar文件，并找到里面的libs文件夹，在smartynews文件夹中新建includes文件夹（注：该文件夹专门存入外部类、函数、自定义的函数），然后复制libs文件夹到includes中，然后重命名libs为smarty（该文件夹中的文件就是smarty技术中用到的主要文件）。
+（2） 采用DW新建一个init.php文件，把里面的HTML标签删除，并编写如下的代码：
+<?php
+require_once('smarty/smarty.class.php');
+$smarty=new Smarty;
+$smarty->template_dir='templates';
+$smarty->cache_dir='caches';
+$smarty->compile_dir='compiled';
+?>
+然后保存到smartynews文件夹中。
+init.php文件为项目的初始化代码。
+
+3,   采用mysql数据库，创建一个数据库nhnews，（注意设置它的编码为utf8_general_ci），然后导入smartynews/data中的数据表。
+
+4,  三层构架
+三层构架图：表现层（模板）调用-> 业务层（类）调用->数据层（操作数据库的类）
+
+5,三、 应用三层编写网站
+主要步骤：设计好数据层，通过调用数据层编写业务层，在界面层中调用业务层，并把数据赋值给模板。
+1、 数据层
+复制实验文件夹中的mysqlhelper.php文件到smartynews/class中，并打开该文件，查看里面的各函数的功能。
+? fetch_one_array( )  //读取一行
+? fetch_all_array( )  //读取全部
+? fetch_one( )   //读取一个
+? fetch_page_query( ) //读取分页的数据
+编写配置文件：
+新建config.inc.php，并保存到includes文件夹中，并删除里面的所有HTML代码，并在该文件中定义常量，如下：
+<?php
+define('DB_USERNAME','root');
+define('DB_PASSWORD','');
+define('DB_HOST','localhost');
+define('DB_NAME','nhnews');
+define('DB_PCONNECT',false);
+define('DATACHARSET','utf8');
+define('CHARSET','utf-8');
+?>
+理解上面各个常量的意义。
+
+已经编写好的数据层类(请大家下栽数据层类mysqlhelper.php
+)
+数据层类的源代码 code:
+==========================
+<?php
+error_reporting(7);
+class DB_MySQL  {
+var $querycount = 0;
+function error() {
+  return mysql_error();
+}
+function DB_MySQL()
+{
+    $this->connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PCONNECT);
+}
+function geterrno() {
+  return mysql_errno();
+}
+function insert_id() {
+  $id = mysql_insert_id();
+  return $id;
+}
+function connect($servername, $dbusername, $dbpassword, $dbname, $usepconnect=false) {
+  if($usepconnect) 
+   @mysql_pconnect($servername, $dbusername, $dbpassword) or die($this->error());
+  else 
+   @mysql_connect($servername, $dbusername, $dbpassword) or die($this->error());
+  if ($this-> version()> '4.1')
+        {
+   $charset=DATACHARSET;
+                mysql_query("SET character_set_connection=$charset, character_set_results=$charset, character_set_client=binary");
+            }
+  @mysql_select_db($dbname) or die($this->error());
+}
+function select_db($dbname) {
+  return @mysql_select_db($dbname);
+}
+function query($sql) {
+  $query = @mysql_query($sql) or die($this->error());
+  
+  $this->querycount++;
+  return $query;
+}
+function fetch_array($sql,$type='assoc') {
+     $result=$this->query($sql);
+  if($type=='assoc'){
+   return @mysql_fetch_assoc($result);
+  }
+  else if($type=='row'){
+   return @mysql_fetch_row($result);
+  }
+  else
+  return @mysql_fetch_array($result);
+}
+function fetch_row($sql) {
+     $result=$this->query($sql);
+  return @mysql_fetch_row($result);
+}
+function fetch_one_array($sql,$type='assoc') {
+  
+  $record = $this->fetch_array($sql,$type);
+  return $record;
+}
+function fetch_all_array($sql,$type='assoc')
+{
+     $records=array();
+  $result=$this->query($sql);
+  if($type=='assoc'){
+   while($row=@mysql_fetch_assoc($result))
+   {
+      $records[]=$row;
+   }
+  }
+  else if($type=='row'){
+   while($row=@mysql_fetch_row($result))
+   {
+      $records[]=$row;
+   }
+  }
+  else
+   while($row=@mysql_fetch_array($result))
+   {
+      $records[]=$row;
+   }
+  return $records;
+}
+function fetch_one($sql,$type = 'assoc') {
+  $record = $this->fetch_one_array($sql,'row');
+  Return $record;
+}
+function num_rows($query) {
+  $query = @mysql_num_rows($query);
+  return $query;
+}
+function free_result($query) {
+  $query = @mysql_free_result($query);
+  return $query;
+}
+function affected_rows(){
+return mysql_affected_rows();
+}
+//这个是分页数据层调用函数(function fetch_page_query)
+function fetch_page_query($sql,$page=1,$pagesize=20){
+   if($page===null) return $this->query($sql);
+   $countSQL=preg_replace('|select.*from|i','select count(*) as count from',$sql,1);
+  
+   $count=(int)$this->fetch_one($countSQL);
+   
+   $data['count']=$count;
+   $data['pageSize']=(int)$pagesize<1? 20 : (int)$pagesize;
+   $data['pageCount']=ceil($count/$data ['pageSize']);
+   $data['page']=$data['pageCount']==0? 0 : ((int)$page<1 ?  1  : ( int)$page);
+   $data['page']=$data['page']>$data['pageCount'] ? $data['pageCount'] :  $data['page'];
+   $start=($data['page']==0)?0 : ($data['page']-1)* $data['pageSize'];
+   $selectPageSQL=$sql.' limit '.$start.','.$data['pageSize'];
+   $data['data']=$this->fetch_all_array($selectPageSQL);
+   return $data;
+}function close() {
+  return @mysql_close();
+}
+function version() {
+  return @mysql_get_server_info();
+}
+function halt($msg,$sql=""){
+  $message = "<html>\n<head>\n";
+  $message .= "<meta content=\"text/html; charset=gb2312\" http-equiv=\"Content-Type\">\n";
+  $message .= "<STYLE TYPE=\"text/css\">\n";
+  $message .=  "body,td,p,pre {\n";
+  $message .=  "font-family : Verdana, sans-serif;font-size : 11px;\n";
+  $message .=  "}\n";
+  $message .=  "</STYLE>\n";
+  $message .= "</head>\n";
+  $message .= "<body bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#006699\" vlink=\"#5493B4\">\n";
+  $message .= "?: ".htmlspecialchars($msg)."\n<p>";
+  $message .= "<b>Mysql error description</b>: ".$this->error()."\n<br>";
+  $message .= "<b>Mysql error number</b>: ".$this->geterrno()."\n<br>";
+  $message .= "<b>Date</b>: ".date("Y-m-d @ H:i",time())."\n<br>";
+  $message .= "<b>Query</b>: ".$sql."\n<br>";
+  $message .= "<b>Script</b>: <A href="http://".$_SERVER['HTTP_HOST'].getenv("REQUEST_URI")."\n
+http://".$_SERVER['HTTP_HOST'].getenv("REQUEST_URI")."\n<br>";
+  $message .= "</body>\n</html>";
+  die($message);
+  exit;
+}
+}
+?>
+======================
+2、 编写业务层
+采用DW，新建一个php文件，删除里面的HTML标签，然后命名为news.class.php到class文件夹中。编写一个News类，并定义下面的方法：
+根据nid取得一条新闻的数据
+获取整个表的新闻，字段包括：nid,ntitle。
+代码如下：
+<?php
+class News{
+function getNewses(){//获取所有新闻，包括字段：nid,ntitle
+  $selectSQL="__________________________________________ ";
+  $db=new DB_MySQL;
+  $newslist=$db->fetch_all_array($selectSQL);
+  $db->close();
+  return $newslist;
+}
+function getNews($nid){//根据nid得到一条新闻
+  $selectSQL="_____________________________________________ ";
+  $db=new DB_MySQL;
+  $news=$db->fetch_one_array($selectSQL);
+  $db->close();
+  return $news;
+}
+
+}
+?>
+学习数据层如何调用。
+3、 设计表现层
+打开init.php文件，然后在最上面添加如下的代码：
+require_once("includes/config.inc.php");
+require_once("includes/functi****.php");
+require_once("class/mysqlhelper.php");
+新建news.php文件，并保存到smartynews文件夹中，删除所有的HTML代码，并完成如下的代码：
+<?php
+导入"init.php"文件;
+导入"class/news.class.php"文件;
+$nid=isset($_GET['nid'])?$_GET['nid']:0;
+$news=创建一个News对象
+$newsinfo=调用$news对象中的getNews($nid);
+$smarty->assign('news',$newsinfo);
+$smarty->display("news.html");
+?>
+编写news.html模板，把news.html文件复制到templates文件夹中，并修改该文件的内容，添加对应的smarty标签：
+<div id="main">
+  <h3 class="newstitle">{$news.ntitle}</h3>
+  <h4 class="newsdate">日期:{$news.ndate}</h4>
+  <div class="content">
+  {$news.ncontent}
+  </div>
+</div>
+4、 新建index.php文件，采用同样的方式，设计index.php。
+
+5、 制作分页功能
+（1）、修改业务类news.class.php中的getNewslist方法，使得它可以支持分页：
+function getNewses($page,$records){
+  $selectSQL="select nid,ntitle,ndate from news order by ndate desc,nid desc";
+  $db=new DB_MySQL;
+  $newslist=$db->fetch_page_query($selectSQL,$page,$records);
+  $db->close();
+  return $newslist;
+}
+（2）分页导航函数：
+复制实验文件夹中的         f u n c t i o n s.php文件到includes文件中，并打开该文件中的代码，研究下。
+在init.php文件中导入         f u n c t i o n s.php    文件，并修改index.php文件的代码如下：
+require_once("init.php");
+require_once("class/news.class.php");
+$page=isset($_GET['page'])?$_GET['page']:1;
+$news=new News;
+$newslist=$news-> getNewses($page,2);
+$smarty->assign('pagenav',getPageNav(2,$newslist['count']);
+$smarty->assign('newslist',$newslist['data']);
+$smarty->display("index.html");
+修改index.html，在分页导航位置放入pagenav标签。

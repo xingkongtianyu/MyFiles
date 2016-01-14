@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.each()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-each1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.each( collection, callback(indexInArray, valueOfElement) )</span> <span class="returns">Returns: <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>Description: </strong>一个通用的迭代函数，它可以用来无缝迭代对象和数组。数组和类似数组的对象通过一个长度属性（如一个函数的参数对象）来迭代数字索引，从0到length - 1。其他对象迭代通过其命名属性。</p>
+<ul class="signatures"><li class="signature" id="jQuery-each-collection-callbackindexInArray- valueOfElement">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.each( collection, callback(indexInArray, valueOfElement) )</h4>
+<p class="arguement"><strong>collection</strong>遍历的对象或数组。</p>
+<p class="arguement"><strong>callback(indexInArray, valueOfElement)</strong>每个成员/元素执行的回调函数。</p>
+</li></ul>
+<div class="longdesc">
+<p><code>$.each()</code>函数和<a href="#p=each/">.each()</a>是不一样的，这个是专门用来遍历一个jQuery对象。<code>$.each()</code>函数可用于迭代任何集合，无论是“名/值”对象（JavaScript对象）或阵列。在一个数组的情况下，回调函数每次传递一个数组索引和相应的数组值。（该值也可以通过访问<code>this</code>关键字，但是JavaScript将始终包裹<code>this</code>值作为一个<code>Object</code> ，即使它是一个简单的字符串或数字值。）该方法返回其第一个参数，这是迭代的对象。</p>
+<pre>$.each([52, 97], function(index, value) { 
+  alert(index + ': ' + value); 
+});
+</pre>
+<p>这将产生两个信息：
+</p>
+<p>
+  <span class="output">0: 52</span><br><span class="output">1: 97</span>
+</p>
+<p>如果对象是作为集合使用，回调函数每次传递一个键值对的：</p>
+<pre>var map = { 
+  'flammable': 'inflammable', 
+  'duh': 'no duh' 
+}; 
+$.each(map, function(key, value) { 
+  alert(key + ': ' + value); 
+});</pre>
+<p>再次，这将产生两个信息：
+</p>
+<p>
+      <span class="output">flammable: inflammable</span><br><span class="output">duh: no duh</span>
+    </p>
+<p>我们可以打破<code>$.each()</code>返回使得回调函数在某一特定的迭代循环的<code>false</code> 。返回<em>non-false</em>是一样的一个<code>continue</code>在一个循环语句，它会立即跳转到下一个迭代。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Iterates through the array displaying each number as both a word and numeral</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; }
+  div#five { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;div id="one"&gt;&lt;/div&gt;
+  &lt;div id="two"&gt;&lt;/div&gt;
+  &lt;div id="three"&gt;&lt;/div&gt;
+  &lt;div id="four"&gt;&lt;/div&gt;
+  &lt;div id="five"&gt;&lt;/div&gt;
+&lt;script&gt;
+    var arr = [ "one", "two", "three", "four", "five" ];
+    var obj = { one:1, two:2, three:3, four:4, five:5 };
+
+    jQuery.each(arr, function() {
+      $("#" + this).text("Mine is " + this + ".");
+       return (this != "three"); // will stop running after "three"
+   });
+
+    jQuery.each(obj, function(i, val) {
+      $("#" + i).append(document.createTextNode(" - " + val));
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Iterates over items in an array, accessing both the current item and its index.</span>
+</h4>
+<pre><code class="example">$.each( ['a','b','c'], function(i, l){
+   alert( "Index #" + i + ": " + l );
+ });</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Iterates over the properties in an object, accessing both the current item and its key.</span>
+</h4>
+<pre><code class="example">$.each( { name: "John", lang: "JS" }, function(k, v){
+   alert( "Key: " + k + ", Value: " + v );
+ });</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

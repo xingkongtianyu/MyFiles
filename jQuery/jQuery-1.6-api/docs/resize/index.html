@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.resize()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/browser-events/" title="View all posts in Browser Events">Browser Events</a></span>
+  
+  				</div>
+</div>
+<div id="resize1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.resize( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "resize" 事件绑定一个处理函数，或者触发元素上的 "resize" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="resize-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.resize( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="resize-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.resize( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="resize"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.resize()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('resize', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('resize')</code> 的快捷方式。</p>
+<p>当浏览器window的尺寸改变时，<code>resize</code>事件将被绑定到<code>window</code>元素：</p>
+<pre>$(window).resize(function() {
+  $('#log').append('&lt;div&gt;Handler for .resize() called.&lt;/div&gt;');
+});
+</pre>
+<p>现在，只要在浏览器窗口的大小改变时，根据不同的浏览器，该消息被追加到&lt;div id="log"&gt;一次或多次。</p>
+<p>代码在<code>resize</code>处理函数不应该依靠多次处理程序被调用。根据执行情况，<code>resize</code>事件可以连续发送,作为正在进行中的重定尺寸(在Internet Explorer和Safari和Chrome等基于WebKit的浏览器的典型行为),或只在改变尺寸操作上只执行一次手术（在Firefox中的典型行为）。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">To see the window width while (or after) it is resized, try:</span></h4>
+<pre><code class="example">
+$(window).resize(function() {
+  $('body').prepend('&lt;div&gt;' + $(window).width() + '&lt;/div&gt;');
+});
+  </code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

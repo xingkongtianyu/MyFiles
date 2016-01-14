@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title>
+</head>
+<body>
+<div class="entry-content">
+  <div class="entry-title roundTop">
+    <h1 class="jq-clearfix">:focus</h1>
+    <div class="entry-meta">Categories: <span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/form-events/" title="View all posts in Form Events">Form Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span> </div>
+  </div>
+  <div id="focus1" class="entry selector">
+    <h2 class="jq-clearfix roundTop section-title"> <span class="name">:focus</span> selector</h2>
+    <div class="jq-box roundBottom entry-details">
+      <h4 class="name"> <span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>jQuery(':focus')</h4>
+      <p class="desc"><strong>描述 </strong>选择当前获取焦点的元素。</p>
+      <div class="longdesc">
+        <p>如同其他伪类选择器（那些以":"开始），建议<code>:focus</code>前面用标记名称或其他选择;否则，通用选择("*")是不言而喻的。换句话说，<code>$(':focus')</code>等同为<code>$('*:focus')</code>。如果你正在寻找当前的焦点元素，<code>$( document.activeElement )</code>将检索，而不必搜索整个DOM树。</p>
+      </div>
+      <h3>Example:</h3>
+      <div class="entry-examples" id="entry-examples">
+        <div id="example-0">
+          <h4><span class="desc">Adds the focused class to whatever element has focus</span></h4>
+          <pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;head&gt;
+  &lt;style&gt;
+  .focused {
+  background: #abcdef;
+  }
+  &lt;/style&gt;
+  &lt;script src=&quot;http://code.jquery.com/jquery-latest.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  
+  &lt;input tabIndex=&quot;1&quot;&gt;
+  &lt;input tabIndex=&quot;2&quot;&gt;
+  &lt;select tabIndex=&quot;3&quot;&gt;
+  &lt;option&gt;select menu&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;div tabIndex=&quot;4&quot;&gt;
+  a div
+  &lt;/div&gt;
+&lt;script&gt;
+  $(&quot;*&quot;).live(&quot;focus blur&quot;, function(e) {
+  var el = $(this);
+  setTimeout(function() {
+  el.toggleClass(&quot;focused&quot;, el.is(&quot;:focus&quot;));
+  }, 0);
+  });
+  &lt;/script&gt;
+&lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+          <h4>Demo:</h4>
+          <div class="demo code-demo">
+            <iframe src="/index-blank.html" width="100%" height="125" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; "></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body>
+</html>

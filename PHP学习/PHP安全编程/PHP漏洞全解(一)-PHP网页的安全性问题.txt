@@ -1,0 +1,144 @@
+
+PHP漏洞全解(一)-PHP网页的安全性问题
+(2010-03-06 09:33:22)
+转载▼
+标签：
+杂谈
+	分类： php
+PHP漏洞全解(一)-PHP网页的安全性问题
+
+　　针对PHP的网站主要存在下面几种攻击方式:
+
+　　1、命令注入(Command Injection)
+
+　　2、eval注入(Eval Injection)
+
+　　3、客户端脚本攻击(Script Insertion)
+
+　　4、跨网站脚本攻击(Cross Site Scripting, XSS)
+
+　　5、SQL注入攻击(SQL injection)
+
+　　6、跨网站请求伪造攻击(Cross Site Request Forgeries, CSRF)
+
+　　7、Session 会话劫持(Session Hijacking)
+
+　　8、Session 固定攻击(Session Fixation)
+
+　　9、HTTP响应拆分攻击(HTTP Response Splitting)
+
+　　10、文件上传漏洞(File Upload Attack)
+
+　　11、目录穿越漏洞(Directory Traversal)
+
+　　12、远程文件包含攻击(Remote Inclusion)
+
+　　13、动态函数注入攻击(Dynamic Variable Evaluation)
+
+　　14、URL攻击(URL attack)
+
+　　15、表单提交欺骗攻击(Spoofed Form Submissions)
+
+　　16、HTTP请求欺骗攻击(Spoofed HTTP Requests)
+
+　　以后的每期连载，会逐个介绍这些漏洞的原理和防御方法。
+
+　　几个重要的php.ini选项
+
+　　Register Globals
+
+　　php>=4.2.0，php.ini的register_globals选项的默认值预设为Off，当register_globals的设定为On时，程序可以接收来自服务器的各种环境变量，包括表单提交的变量，而且由于PHP不必事先初始化变量的值，从而导致很大的安全隐患。
+
+　　例1:
+
+　　//check_admin()用于检查当前用户权限，如果是admin设置$is_admin变量为true，然后下面判断此变量是否为true，然后执行管理的一些操作
+
+　　//ex1.php
+
+　　<?php
+
+　　if (check_admin())
+
+　　{
+
+　　$is_admin = true;
+
+　　}
+
+　　if ($is_admin)
+
+　　{
+
+　　do_something();
+
+　　}
+
+　　?>
+
+　　这一段代码没有将$is_admin事先初始化为Flase，如果register_globals为On，那么我们直接提交 http://www.sectop.com/ex1.php?is_admin=true,就可以绕过check_admin()的验证
+
+　　例2:
+
+　　//ex2.php
+
+　　<?php
+
+　　if (isset($_SESSION["username"]))
+
+　　{
+
+　　do_something();
+
+　　}
+
+　　else
+
+　　{
+
+　　echo "您尚未登录!";
+
+　　}
+
+　　?>
+
+　　当register_globals=On时，我们提交http://www.sectop.com/ex2.php?_SESSION[username]=dodo，就具有了此用户的权限
+
+　　所以不管register_globals为什么，我们都要记住，对于任何传输的数据要经过仔细验证，变量要初始化
+
+　　safe_mode
+
+　　安全模式，PHP用来限制文档的存取、限制环境变量的存取，控制外部程序的执行。启用安全模式必须设置php.ini中的safe_mode = On
+
+　　1、限制文件存取
+
+　　safe_mode_include_dir = "/path1:/path2:/path3"
+
+　　不同的文件夹用冒号隔开
+
+　　2、限制环境变量的存取
+
+　　safe_mode_allowed_env_vars = string
+
+　　指定PHP程序可以改变的环境变量的前缀，如:safe_mode_allowed_env_vars = PHP_ ,当这个选项的值为空时，那么php可以改变任何环境变量
+
+　　safe_mode_protected_env_vars = string
+
+　　用来指定php程序不可改变的环境变量的前缀
+
+　　3、限制外部程序的执行
+
+　　safe_mode_exec_dir = string
+
+　　此选项指定的文件夹路径影响system、exec、popen、passthru，不影响shell_exec和“` `”。
+
+　　disable_functions = string
+
+　　不同的函数名称用逗号隔开，此选项不受安全模式影响
+
+　　magic quotes
+
+　　用来让php程序的输入信息自动转义，所有的单引号(“'”)，双引号(“"”)，反斜杠(“\”)和空字符(NULL)，都自动被加上反斜杠进行转义
+
+　　magic_quotes_gpc = On 用来设置magic quotes 为On，它会影响HTTP请求的数据(GET、POST、Cookies)
+
+　　程序员也可以使用addslashes来转义提交的HTTP请求数据，或者用stripslashes来删除转义

@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0051)http://blog.csdn.net/fu_zk/article/details/12997117 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta  name="description"  content="摘要：本文是关于MySQL数据库性能优化方面的问题，希望对初中级MySQL DBA以及其他对MySQL性能优化感兴趣的朋友们有所帮助。在平时被问及最多的问题就是关于MySQL数据库性能优化方面的问题，所以最近打算写一个MySQL数据库性能优化方面的系列文章，希望对初中级MySQL DBA以及其他对MySQL性能优化感兴趣的朋友们有所帮助。数据库属于IO密集型的应用程序，其主职责">
+    <script  type="text/javascript"  async=""  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/jquery.js"  type="text/javascript"></script>
+    <script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        
+       
+        <link  rel="stylesheet"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/index.css">
+        
+
+    <link  rel="Stylesheet"  type="text/css"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link  id="RSSLink"  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://blog.csdn.net/fu_zk/rss/list">
+    <link  rel="shortcut icon"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link  type="text/css"  rel="stylesheet"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+<link  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  type="text/javascript"  charset="utf-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/main.js"></script><script  type="text/javascript"  charset="utf-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/main(1).js"></script><link  rel="stylesheet"  type="text/css"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/style(1).css"><script  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/logger.js"></script></head>
+<body><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  class="goWebsite">百度分享</a></p></div></div></div>
+    
+   
+      
+    <script  id="toolbar-tpl-scriptId"  fixed="true"  prod="blog"  skin="black"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/html.js"  type="text/javascript"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://blog.csdn.net/"  target="_blank"  class="img blog-icon"></a></div>          <div  class="pull-right login-wrap ">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search?ref=toolbar"  method="get"  target="_blank">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display: none;"  class="number"></div>                <div  style="display: none;"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note">                      <div  class="box"><div  class="notifications notice_list_con curr">  <a  href="javascript:void 0"  class="close1"></a>  <div  class="menu_title">    <span  class="title"><a  href="http://notify.csdn.net/"  target="_blank"  class="go_all">查看所有通知</a></span>  </div>  <div  class="loading"></div>  <div  class="empty">暂没有新通知</div>  <div  class="notice_content"></div></div><div  class="notifications detail_con"  style="display: none">  <div  class="menu_title">    <span  class="title">      <a  class="go_back"  href="javascript:void 0;">返回通知列表</a>      <a  class="notifications_page_none nextnote"  href="javascript:void 0;">下一条</a>      <a  class="notifications_page prvnote"  href="javascript:void 0;">上一条</a>    </span>  </div>  <div  class="notice_content"></div></div><div  class="error"></div></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="https://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname">zc80330582</a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="http://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+    <div  id="container">
+        <div  id="header">
+    <div  class="header">
+        <div  id="blog_title">
+            <h1>
+                <a  href="http://blog.csdn.net/fu_zk">CPP工程师的专栏</a></h1>
+            <h2></h2>
+            <div  class="clear">
+            </div>
+        </div>
+        <div  class="clear">
+        </div>
+    </div>
+</div>
+<div  id="navigator">
+    <div  class="navigator_bg">
+    </div>
+    <div  class="navigator">
+        <ul>
+                <li  id="btnContents"><a  href="http://blog.csdn.net/fu_zk?viewmode=contents"><span >
+                    <img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li  id="btnView"><a  href="http://blog.csdn.net/fu_zk?viewmode=list"><span >
+                    <img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li  id="btnRss"><a  href="http://blog.csdn.net/fu_zk/rss/list"><span >
+                    <img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script  type="text/javascript">
+    var username = "fu_zk";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/fu_zk";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "zc80330582";
+</script>
+
+        <div  id="body">
+            <div  id="main">
+                <div  class="main">
+<div  class="notice tracking-ad"  data-mod="popu_3"> 
+
+
+<a  href="http://bbs.csdn.net/topics/390693540"  target="_blank"><font  color="red">2014年1月微软MVP当选名单揭晓！
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<a  href="http://blog.csdn.net/blogdevteam/article/details/17356319"  target="_blank">
+<font  color="red">“我的2013”年度征文获奖名单已公布
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a  href="http://www.csdn.net/article/2014-01-22/2818223"  target="_blank">
+<font  color="red">专访宋海涛：我们在做一款比Google Glass更酷的设备 </font></a>
+
+
+</div>                    <link  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/comment1.css"  type="text/css"  rel="stylesheet">
+<link  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/style1.css"  type="text/css"  rel="stylesheet">
+<div  id="article_details"  class="details">
+    <div  class="article_title">
+    <span  class="ico ico_type_Repost"></span>
+    <h3>
+        <span  class="link_title"><a  href="http://blog.csdn.net/fu_zk/article/details/12997117">
+        MySQL数据库性能优化之缓存参数优化
+        </a></span>
+    </h3>
+</div>
+
+    <div  class="article_manage">
+        <span  class="link_categories">
+        分类：
+            <a  href="http://blog.csdn.net/fu_zk/article/category/1598737">【MySQL】</a> 
+        </span>
+    <span  class="link_postdate">2013-10-24 13:52</span>
+    <span  class="link_view"  title="阅读次数">87人阅读</span>
+    <span  class="link_comments"  title="评论次数"><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#comments" >评论</a>(0)</span>
+    <span  class="link_collect"><a  href="javascript:void(0);"   title="收藏">收藏</a></span>
+    <span  class="link_report"><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#report"   title="举报">举报</a></span>
+    
+</div>
+<div  class="tag2box"><a  href="http://www.csdn.net/tag/%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96"  target="_blank" >性能优化</a><a  href="http://www.csdn.net/tag/MySQL"  target="_blank" >MySQL</a></div>
+
+    
+<div  id="article_content"  class="article_content">
+
+<div  class="summary"  style="margin:0px 0px 1.5em; padding:5px 10px; list-style:none; background-color:rgb(247,247,247); color:rgb(51,51,51); font-size:14px; line-height:24px">
+<span  style="font-family:Microsoft YaHei"><strong>摘要：本文是关于MySQL数据库性能优化方面的问题，希望对初中级MySQL DBA以及其他对MySQL性能优化感兴趣的朋友们有所帮助。</strong></span></div>
+<div  class="con news_content"  style="margin:0px 0px 30px; padding:0px; list-style:none; color:rgb(51,51,51); font-size:14px; line-height:24px">
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">在平时被问及最多的问题就是关于MySQL数据库性能优化方面的问题，所以最近打算写一个MySQL数据库性能优化方面的系列文章，希望对初中级MySQL DBA以及其他对MySQL性能优化感兴趣的朋友们有所帮助。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">数据库属于IO密集型的应用程序，其主职责就是数据的管理及存储工作。而我们知道，从内存中读取一个数据库的时间是微秒级别，而从一块普通硬盘上读取一个IO是在毫秒级别，二者相差3个数量级。所以，要优化数据库，首先第一步需要优化的就是IO，尽可能将磁盘IO转化为内存IO。本文先从MySQL数据库IO相关参数(缓存参数)的角度来看看可以通过哪些参数进行IO优化：</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•query_cache_size/query_cache_type (global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">Query cache作用于整个MySQL Instance，主要用来缓存MySQL中的ResultSet，也就是一条SQL语句执行的结果集，所以仅仅只能针对select语句。当我们打开了 Query Cache功能，MySQL在接受到一条select语句的请求后，如果该语句满足Query Cache的要求(未显式说明不允许使用Query Cache，或者已经显式申明需要使用Query Cache)，MySQL会直接根据预先设定好的HASH算法将接受到的select语句以字符串方式进行hash，然后到Query
+ Cache中直接查找是否已经缓存。也就是说，如果已经在缓存中，该select请求就会直接将数据返回，从而省略了后面所有的步骤(如SQL语句的解析，优化器优化以及向存储引擎请求数据等)，极大的提高性能。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">当然，Query Cache也有一个致命的缺陷，那就是当某个表的数据有任何任何变化，都会导致所有引用了该表的select语句在Query Cache中的缓存数据失效。所以，当我们的数据变化非常频繁的情况下，使用Query Cache可能会得不偿失。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">Query Cache的使用需要多个参数配合，其中最为关键的是query_cache_size和query_cache_type，前者设置用于缓存ResultSet的内存大小，后者设置在何场景下使用Query Cache。在以往的经验来看，如果不是用来缓存基本不变的数据的MySQL数据库，query_cache_size一般256MB是一个比较合适的大小。当然，这可以通过计算Query Cache的命中率(Qcache_hits/(Qcache_hits+Qcache_inserts)*100))来进行调整。query_cache_type可以设置为0(OFF)，1(ON)或者2(DEMOND)，分别表示完全不使用query
+ cache，除显式要求不使用query cache(使用sql_no_cache)之外的所有的select都使用query cache，只有显示要求才使用query cache(使用sql_cache)。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•binlog_cache_size (global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">Binlog Cache用于在打开了二进制日志(binlog)记录功能的环境，是MySQL用来提高binlog的记录效率而设计的一个用于短时间内临时缓存binlog数据的内存区域。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">一般来说，如果我们的数据库中没有什么大事务，写入也不是特别频繁，2MB～4MB是一个合适的选择。但是如果我们的数据库大事务较多，写入量比较大，可与适当调高binlog_cache_size。同时，我们可以通过binlog_cache_use以及binlog_cache_disk_use来分析设置的binlog_cache_size是否足够，是否有大量的binlog_cache由于内存大小不够而使用临时文件(binlog_cache_disk_use)来缓存了。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•key_buffer_size(global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">Key Buffer可能是大家最为熟悉的一个MySQL缓存参数了，尤其是在MySQL没有更换默认存储引擎的时候，很多朋友可能会发现，默认的MySQL配置文件中设置最大的一个内存参数就是这个参数了。key_buffer_size参数用来设置用于缓存MyISAM存储引擎中索引文件的内存区域大小。如果我们有足够的内存，这个缓存区域最好是能够存放下我们所有的MyISAM引擎表的所有索引，以尽可能提高性能。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">此外，当我们在使用MyISAM存储的时候有一个及其重要的点需要注意，由于MyISAM引擎的特性限制了他仅仅只会缓存索引块到内存中，而不会缓存表数据库块。所以，我们的SQL一定要尽可能让过滤条件都在索引中，以便让缓存帮助我们提高查询效率。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•bulk_insert_buffer_size (thread)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">和key_buffer_size一样，这个参数同样也仅作用于使用MyISAM存储引擎，用来缓存批量插入数据的时候临时缓存写入数据。当我们使用如下几种数据写入语句的时候，会使用这个内存区域来缓存批量结构的数据以帮助批量写入数据文件：</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">insert … select …</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">insert … values (…) ,(…),(…)…</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">load data infile… into… (非空表)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•innodb_buffer_pool_size(global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">当我们使用InnoDB存储引擎的时候，innodb_buffer_pool_size参数可能是影响我们性能的最为关键的一个参数了，他用来设置用于缓存InnoDB索引及数据块的内存区域大小，类似于MyISAM存储引擎的key_buffer_size参数，当然，可能更像是Oracle的db_cache_size。简单来说，当我们操作一个InnoDB表的时候，返回的所有数据或者去数据过程中用到的任何一个索引块，都会在这个内存区域中走一遭。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">和key_buffer_size对于MyISAM引擎一样，innodb_buffer_pool_size设置了InnoDB存储引擎需求最大的一块内存区域的大小，直接关系到InnoDB存储引擎的性能，所以如果我们有足够的内存，尽可将该参数设置到足够打，将尽可能多的InnoDB的索引及数据都放入到该缓存区域中，直至全部。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">我们可以通过(Innodb_buffer_pool_read_requests – Innodb_buffer_pool_reads) / Innodb_buffer_pool_read_requests * 100%计算缓存命中率，并根据命中率来调整innodb_buffer_pool_size参数大小进行优化。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•innodb_additional_mem_pool_size(global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">这个参数我们平时调整的可能不是太多，很多人都使用了默认值，可能很多人都不是太熟悉这个参数的作用。innodb_additional_mem_pool_size设置了InnoDB存储引擎用来存放数据字典信息以及一些内部数据结构的内存空间大小，所以当我们一个MySQL Instance中的数据库对象非常多的时候，是需要适当调整该参数的大小以确保所有数据都能存放在内存中提高访问效率的。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">这个参数大小是否足够还是比较容易知道的，因为当过小的时候，MySQL会记录Warning信息到数据库的error log中，这时候你就知道该调整这个参数大小了。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•innodb_log_buffer_size (global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">这是InnoDB存储引擎的事务日志所使用的缓冲区。类似于Binlog Buffer，InnoDB在写事务日志的时候，为了提高性能，也是先将信息写入Innofb Log Buffer中，当满足innodb_flush_log_trx_commit参数所设置的相应条件(或者日志缓冲区写满)之后，才会将日志写到文件(或者同步到磁盘)中。可以通过innodb_log_buffer_size 参数设置其可以使用的最大内存空间。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">注：innodb_flush_log_trx_commit参数对InnoDB Log的写入性能有非常关键的影响。该参数可以设置为0，1，2，解释如下：</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">0：log buffer中的数据将以每秒一次的频率写入到log file中，且同时会进行文件系统到磁盘的同步操作，但是每个事务的commit并不会触发任何log buffer 到log file的刷新或者文件系统到磁盘的刷新操作;</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">1：在每次事务提交的时候将log buffer 中的数据都会写入到log file，同时也会触发文件系统到磁盘的同步;</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">2：事务提交会触发log buffer到log file的刷新，但并不会触发磁盘文件系统到磁盘的同步。此外，每秒会有一次文件系统到磁盘同步操作。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">此外，MySQL文档中还提到，这几种设置中的每秒同步一次的机制，可能并不会完全确保非常准确的每秒就一定会发生同步，还取决于进程调度的问题。实际上，InnoDB能否真正满足此参数所设置值代表的意义正常Recovery还是受到了不同OS下文件系统以及磁盘本身的限制，可能有些时候在并没有真正完成磁盘同步的情况下也会告诉mysqld 已经完成了磁盘同步。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">•innodb_max_dirty_pages_pct (global)</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">这个参数和上面的各个参数不同，他不是用来设置用于缓存某种数据的内存大小的一个参数，而是用来控制在InnoDB Buffer Pool中可以不用写入数据文件中的Dirty Page的比例(已经被修但还没有从内存中写入到数据文件的脏数据)。这个比例值越大，从内存到磁盘的写入操作就会相对减少，所以能够一定程度下减少写入操作的磁盘IO。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">但是，如果这个比例值过大，当数据库Crash之后重启的时间可能就会很长，因为会有大量的事务数据需要从日志文件恢复出来写入数据文件中。同时，过大的比例值同时可能也会造成在达到比例设定上限后的flush操作“过猛”而导致性能波动很大。</span></p>
+<p  style="margin-top:0px; margin-bottom:1.5em; padding-top:0px; padding-bottom:0px; list-style:none">
+<span  style="font-family:Microsoft YaHei">上面这几个参数是MySQL中为了减少磁盘物理IO而设计的主要参数，对MySQL的性能起到了至关重要的作用。</span></p>
+</div>
+
+</div>
+
+
+
+
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"  style="float: right;">
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"></a>
+<a  class="bds_t163"  title="分享到网易微博"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"></a>
+<span  class="bds_more">更多</span>
+<a  class="shareCount"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  title="累计分享0次">0</a>
+</div>
+
+
+
+
+<div  class="article_next_prev">
+            <li  class="prev_article"><span>上一篇：</span><a  href="http://blog.csdn.net/fu_zk/article/details/12905705" >程序员遇到bug时常见的30种反应</a></li>
+            <li  class="next_article"><span>下一篇：</span><a  href="http://blog.csdn.net/fu_zk/article/details/13001649" >【C++ STL】三十分钟掌握STL</a></li>
+</div>
+
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=1536434"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+    <div  id="ad_cen">
+        <script  type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/o.js"></script><div  id="BAIDU_DUP_wrapper_117306_0"></div><script  charset="utf-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ecom"></script><script  charset="utf-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/fixed7o.js"></script><script  type="text/javascript"><!--
+google_ad_client = "ca-pub-1076724771190722";
+/* blog正文下方728x90 */
+google_ad_slot = "4497271841";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    </div>
+    <script  type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div  id="comment_title"  class="panel_head">
+    查看评论<a  name="comments"></a></div>
+<div  id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div  class="clear"></div></div>
+<div  id="comment_bar">
+</div>
+<div  id="comment_form"><a  name="commentbox"></a><a  name="reply"></a><a  name="quote"></a><form  action="http://blog.csdn.net/fu_zk/comment/submit?id=12997117"  method="post" ><div  class="commentform"><div  class="panel_head">发表评论</div><ul><li  class="left">用 户 名：</li><li  class="right">zc80330582</li></ul><ul><li  class="left">评论内容：</li><li  class="right"  style="position:relative;"><div  id="ubbtools"><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#insertcode"  code="code"><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/code.gif"  border="0"  alt="插入代码"  title="插入代码"></a></div><div  id="lang_list"  style="position: absolute; top: 28px; left: 0px; display: none;"><a  class="long_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#html">HTML/XML</a><a  class="long_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#objc">objective-c</a><a  class="zhong_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#delphi">Delphi</a><a  class="zhong_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#ruby">Ruby</a><a  href="http://blog.csdn.net/fu_zk/article/details/12997117#php">PHP</a><a  class="duan_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#csharp">C#</a><a  style=" border-right: none;"  class="duan_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#cpp">C++</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#javascript">JavaScript</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#vb">Visual Basic</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#python">Python</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#java">Java</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#css">CSS</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#sql">SQL</a><a  style="border:none;"  class="duan_name"  href="http://blog.csdn.net/fu_zk/article/details/12997117#plain">其它</a></div><textarea  class="comment_content"  name="comment_content"  id="comment_content"  style="width: 400px; height: 200px;"></textarea></li></ul><ul><input  type="hidden"  id="comment_replyId"  name="comment_replyId"><input  type="hidden"  id="comment_userId"  name="comment_userId"  value="521203"><input  type="hidden"  id="commentId"  name="commentId"  value=""><input  type="submit"  class="comment_btn"  value="提交">&nbsp;&nbsp;<span  id="tip_comment"  style="color: Red; display: none;"></span></ul></div></form></div>
+<div  class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a  name="reply"></a><a  name="quote"></a></div>
+<script  type="text/javascript">
+    var fileName = '12997117';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div  id="ad_bot">
+    <iframe  id="ad_frm_0"  frameborder="0"  scrolling="no"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ad(1).htm"  style="border-width: 0px; overflow: hidden; width: 984px; height: 170px;"></iframe></div>
+    <script  type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div  id="report_dialog">
+</div>
+<div  id="d-top"  style="">
+    <a  id="d-top-a"  href="http://blog.csdn.net/fu_zk/article/details/12997117#"  title="回到顶部" >
+        <img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/top.png"  alt="TOP"></a>
+</div>
+<script  type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style  type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div  class="tag_list">
+    <h5>
+        <a  href="http://www.csdn.net/tag/"  target="_blank">核心技术类目</a></h5>
+    <div  class="classify">
+<a  title="全部主题"  href="http://www.csdn.net/tag"  target="_blank" >全部主题</a>
+<a  title="Java"  href="http://www.csdn.net/tag/Java"  target="_blank" >Java</a>
+<a  title="VPN"  href="http://www.csdn.net/tag/vpn"  target="_blank" >VPN</a>
+<a  title="Android"  href="http://www.csdn.net/tag/android"  target="_blank" >Android</a>
+<a  title="iOS"  href="http://www.csdn.net/tag/ios"  target="_blank" >iOS</a>
+<a  title="ERP"  href="http://www.csdn.net/tag/erp"  target="_blank" >ERP</a>
+<a  title="IE10"  href="http://www.csdn.net/tag/ie10"  target="_blank" >IE10</a>
+<a  title="Eclipse"  href="http://www.csdn.net/tag/eclipse"  target="_blank" >Eclipse</a>
+<a  title="CRM"  href="http://www.csdn.net/tag/crm"  target="_blank" >CRM</a>
+<a  title="JavaScript"  href="http://www.csdn.net/tag/javascript"  target="_blank" >JavaScript</a>
+<a  title="Ubuntu"  href="http://www.csdn.net/tag/ubuntu"  target="_blank" >Ubuntu</a>
+<a  title="NFC"  href="http://www.csdn.net/tag/nfc"  target="_blank" >NFC</a>
+<a  title="WAP"  href="http://www.csdn.net/tag/wap"  target="_blank" >WAP</a>
+<a  title="jQuery"  href="http://www.csdn.net/tag/jquery"  target="_blank" >jQuery</a>
+<a  title="数据库"  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank" >数据库</a>
+<a  title="BI"  href="http://www.csdn.net/tag/bi"  target="_blank" >BI</a>
+<a  title="HTML5"  href="http://www.csdn.net/tag/html5"  target="_blank" >HTML5</a>
+<a  title="Spring"  href="http://www.csdn.net/tag/spring"  target="_blank" >Spring</a>
+<a  title="Apache"  href="http://www.csdn.net/tag/apache"  target="_blank" >Apache</a>
+<a  title="Hadoop"  href="http://www.csdn.net/tag/hadoop"  target="_blank" >Hadoop</a>
+<a  title=".NET"  href="http://www.csdn.net/tag/.net"  target="_blank" >.NET</a>
+<a  title="API"  href="http://www.csdn.net/tag/api"  target="_blank" >API</a>
+<a  title="HTML"  href="http://www.csdn.net/tag/html"  target="_blank" >HTML</a>
+<a  title="SDK"  href="http://www.csdn.net/tag/sdk"  target="_blank" >SDK</a>
+<a  title="IIS"  href="http://www.csdn.net/tag/iis"  target="_blank" >IIS</a>
+<a  title="Fedora"  href="http://www.csdn.net/tag/fedora"  target="_blank" >Fedora</a>
+<a  title="XML"  href="http://www.csdn.net/tag/xml"  target="_blank" >XML</a>
+<a  title="LBS"  href="http://www.csdn.net/tag/lbs"  target="_blank" >LBS</a>
+<a  title="Unity"  href="http://www.csdn.net/tag/unity"  target="_blank" >Unity</a>
+<a  title="Splashtop"  href="http://www.csdn.net/tag/splashtop"  target="_blank" >Splashtop</a>
+<a  title="UML"  href="http://www.csdn.net/tag/uml"  target="_blank" >UML</a>
+<a  title="components"  href="http://www.csdn.net/tag/components"  target="_blank" >components</a>
+<a  title="Windows Mobile"  href="http://www.csdn.net/tag/windowsmobile"  target="_blank" >Windows Mobile</a>
+<a  title="Rails"  href="http://www.csdn.net/tag/rails"  target="_blank" >Rails</a>
+<a  title="QEMU"  href="http://www.csdn.net/tag/qemu"  target="_blank" >QEMU</a>
+<a  title="KDE"  href="http://www.csdn.net/tag/kde"  target="_blank" >KDE</a>
+<a  title="Cassandra"  href="http://www.csdn.net/tag/cassandra"  target="_blank" >Cassandra</a>
+<a  title="CloudStack"  href="http://www.csdn.net/tag/cloudstack"  target="_blank" >CloudStack</a>
+<a  title="FTC"  href="http://www.csdn.net/tag/ftc"  target="_blank" >FTC</a>
+<a  title="coremail"  href="http://www.csdn.net/tag/coremail"  target="_blank" >coremail</a>
+<a  title="OPhone "  href="http://www.csdn.net/tag/ophone"  target="_blank" >OPhone </a>
+<a  title="CouchBase"  href="http://www.csdn.net/tag/couchbase"  target="_blank" >CouchBase</a>
+<a  title="云计算"  href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97"  target="_blank" >云计算</a>
+<a  title="iOS6"  href="http://www.csdn.net/tag/iOS6"  target="_blank" >iOS6</a>
+<a  title="Rackspace "  href="http://www.csdn.net/tag/rackspace"  target="_blank" >Rackspace </a>
+<a  title="Web App"  href="http://www.csdn.net/tag/webapp"  target="_blank" >Web App</a>
+<a  title="SpringSide"  href="http://www.csdn.net/tag/springside"  target="_blank" >SpringSide</a>
+<a  title="Maemo"  href="http://www.csdn.net/tag/maemo"  target="_blank" >Maemo</a>
+<a  title="Compuware"  href="http://www.csdn.net/tag/compuware"  target="_blank" >Compuware</a>
+<a  title="大数据"  href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank" >大数据</a>
+<a  title="aptech"  href="http://www.csdn.net/tag/aptech"  target="_blank" >aptech</a>
+<a  title="Perl"  href="http://www.csdn.net/tag/perl"  target="_blank" >Perl</a>
+<a  title="Tornado"  href="http://www.csdn.net/tag/tornado"  target="_blank" >Tornado</a>
+<a  title="Ruby"  href="http://www.csdn.net/tag/ruby"  target="_blank" >Ruby</a>
+<a  title="Hibernate"  href="http://www.csdn.net/hibernate"  target="_blank" >Hibernate</a>
+<a  title="ThinkPHP"  href="http://www.csdn.net/tag/thinkphp"  target="_blank" >ThinkPHP</a>
+<a  title="Spark"  href="http://www.csdn.net/tag/spark"  target="_blank" >Spark</a>
+<a  title="HBase"  href="http://www.csdn.net/tag/hbase"  target="_blank" >HBase</a>
+<a  title="Pure"  href="http://www.csdn.net/tag/pure"  target="_blank" >Pure</a>
+<a  title="Solr"  href="http://www.csdn.net/tag/solr"  target="_blank" >Solr</a>
+<a  title="Angular"  href="http://www.csdn.net/tag/angular"  target="_blank" >Angular</a>
+<a  title="Cloud Foundry"  href="http://www.csdn.net/tag/cloudfoundry"  target="_blank" >Cloud Foundry</a>
+<a  title="Redis"  href="http://www.csdn.net/tag/redis"  target="_blank" >Redis</a>
+<a  title="Scala"  href="http://www.csdn.net/tag/scala"  target="_blank" >Scala</a>
+<a  title="Django"  href="http://www.csdn.net/tag/django"  target="_blank" >Django</a>
+<a  title="Bootstrap"  href="http://www.csdn.net/tag/bootstrap"  target="_blank" >Bootstrap</a>
+    </div>
+</div>
+
+                    <div  class="clear">
+                    </div>
+                </div>
+            </div>
+            <div  id="side">
+    <div  class="side">
+<div  id="panel_Profile"  class="panel">
+<ul  class="panel_head"><span>个人资料</span></ul>
+<ul  class="panel_body profile">
+<div  id="blog_userface">
+    <a  href="http://my.csdn.net/fu_zk"  target="_blank">
+    <img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/1_fu_zk.jpg"  title="访问我的空间"  style="max-width:90%">
+    </a>
+    <br>
+    <span><a  href="http://my.csdn.net/fu_zk"  class="user_name"  target="_blank">CPP攻城师</a></span>
+</div>
+<div  class="interact">
+<a  href="javascript:void(0);"  class="attent"  id="span_add_follow"  title="[加关注]" ></a>
+<a  href="javascript:void(0);"  class="letter"   title="[发私信]"></a>
+</div>
+<div  id="blog_medal">
+<div  id="bms_box"><a  href="http://medal.blog.csdn.net/allmedal.aspx"  target="_blank"><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/holdon_s2.gif"    alt=""></a></div></div>
+<ul  id="blog_rank">
+    <li>访问：<span>22683次</span></li>
+    <li>积分：<span>812分</span></li>
+    <li>排名：<span>第17208名</span></li>
+</ul>
+<ul  id="blog_statistics">
+    <li>原创：<span>45篇</span></li>
+    <li>转载：<span>88篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>11条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div  class="panel"  id="panel_Search">
+    <ul  class="panel_head"><span>文章搜索</span></ul>
+    <ul  class="panel_body">
+        <form  id="frmSearch"  action="http://so.csdn.net/search"  class="form_search"  target="_blank">
+        <span><input  id="inputSearch"  type="text"  class="blogsearch"  title="请输入关键字"></span>
+        <input  id="btnSubmit"  type="submit"  value="搜索"  title="search in blog">
+        <input  type="hidden"  name="q"  id="inputQ">
+        <input  type="hidden"  name="t"  value="blog">
+        <a  id="btnSearchBlog"  target="_blank"></a>
+        </form>
+    </ul>
+</div><div  id="panel_Category"  class="panel">
+<ul  class="panel_head"><span>文章分类</span></ul>
+<ul  class="panel_body">
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1317501">【C++基础】</a><span>(30)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1704939">【C++ STL】</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1705131">【C++进阶】</a><span>(11)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1635339">【Java基础】</a><span>(5)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1636329">【UML入门】</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1567331">【设计模式】</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1303377">【算法理论】</a><span>(11)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1656937">【网络基础】</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1598737">【MySQL】</a><span>(9)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1616745">【Android】</a><span>(15)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1649249">【COCOS2D-X】</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1660117">【面试题库】</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1695235">【Windows编程】</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1694477">【个人管理】</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1698003">【架构设计】</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1710709">【硬件故障】</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1712889">【XMPP协议】</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/category/1746269">【编译原理】</a><span>(3)</span>
+</li>
+</ul>
+</div><div  id="panel_Archive"  class="panel">
+<ul  class="panel_head"><span>文章存档</span></ul>
+<ul  class="panel_body">
+<div  id="archive_list"><li><a  href="http://blog.csdn.net/fu_zk/article/month/2014/02">2014年02月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2014/01">2014年01月</a><span>(2)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/12">2013年12月</a><span>(11)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/11">2013年11月</a><span>(14)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/10">2013年10月</a><span>(34)</span></li><span  class="hidelist"  style="display:none;"><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/09">2013年09月</a><span>(23)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/08">2013年08月</a><span>(24)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/07">2013年07月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/06">2013年06月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/05">2013年05月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/04">2013年04月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2013/01">2013年01月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2012/12">2012年12月</a><span>(9)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2010/03">2010年03月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/fu_zk/article/month/2009/12">2009年12月</a><span>(1)</span></li></span><div  id="archive_list_button"  class="list_closed">展开</div></div>
+</ul>
+</div>
+<div  id="hotarticls"  class="panel">
+<ul  class="panel_head"><span>阅读排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/14057007"  title="【MySQL函数】MYSQL IFNULL和IF函数的使用">【MySQL函数】MYSQL IFNULL和IF函数的使用</a><span>(989)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/4967591"  title="jsp中页面的跳转3种写法多多指教">jsp中页面的跳转3种写法多多指教</a><span>(806)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/12836431"  title="编写Android.mk中的LOCAL_SRC_FILES的终极技巧">编写Android.mk中的LOCAL_SRC_FILES的终极技巧</a><span>(787)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/11746797"  title="android整合--notification推送通知">android整合--notification推送通知</a><span>(496)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/10477113"  title="MySQL存储引擎：InnoDB和MyISAM的差别/优劣评价/评测/性能测试">MySQL存储引擎：InnoDB和MyISAM的差别/优劣评价/评测/性能测试</a><span>(493)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/10539705"  title="C++结构体：默认构造函数，复制构造函数，重载=运算符">C++结构体：默认构造函数，复制构造函数，重载=运算符</a><span>(450)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/11892095"  title="单例模式——C++实现线程安全的单例">单例模式——C++实现线程安全的单例</a><span>(426)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/8906042"  title="swprintf_s 实现字符串的拼接">swprintf_s 实现字符串的拼接</a><span>(419)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/9135927"  title="通过加载Kernel32来动态判断 当前操作系统32bit还是64bit">通过加载Kernel32来动态判断 当前操作系统32bit还是64bit</a><span>(415)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/8889699"  title="c++ 停止服务">c++ 停止服务</a><span>(394)</span>
+</li>
+</ul>
+</div>
+<div  id="hotarticls2"  class="panel">
+<ul  class="panel_head"><span>评论排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/13091217"  title="UML类图关系大全">UML类图关系大全</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/9624033"  title="c++ 本地磁盘判断">c++ 本地磁盘判断</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/9229671"  title="程序员要要养成自己的习惯">程序员要要养成自己的习惯</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/11892095"  title="单例模式——C++实现线程安全的单例">单例模式——C++实现线程安全的单例</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/9135927"  title="通过加载Kernel32来动态判断 当前操作系统32bit还是64bit">通过加载Kernel32来动态判断 当前操作系统32bit还是64bit</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/11558033"  title="Android Activity 各函数解析">Android Activity 各函数解析</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/12836431"  title="编写Android.mk中的LOCAL_SRC_FILES的终极技巧">编写Android.mk中的LOCAL_SRC_FILES的终极技巧</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/17077023"  title="【C++基础】C++之类的前置声明">【C++基础】C++之类的前置声明</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/12857171"  title="C++命名规则">C++命名规则</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/fu_zk/article/details/13022921"  title="【C++进阶】结构体和类的区别及面向对象的认识">【C++进阶】结构体和类的区别及面向对象的认识</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div  id="homepageArticles"  class="panel tracking-ad"  data-mod="popu_4">
+<ul  class="panel_head"><span>推荐文章</span></ul>
+<ul  class="panel_body"  id="ad_commend"><iframe  id="ad_frm_1"  frameborder="0"  scrolling="no"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ad.htm"  style="border-width: 0px; overflow: hidden; width: 194px; height: 200px;"></iframe></ul>
+</div>
+<script  type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div  id="newcomments"  class="panel">
+<ul  class="panel_head"><span>最新评论</span></ul>
+<ul  class="panel_body itemlist">
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/12836431#comments">编写Android.mk中的LOCAL_SRC_FILES的终极技巧</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/XiMist"  class="user_name">木之岚</a>:
+报错 FIND参数格式不正确
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/17077023#comments">【C++基础】C++之类的前置声明</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/fu_zk"  class="user_name">CPP攻城师</a>:
+第二张图中的成员变量应该是指针
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/13091217#comments">UML类图关系大全</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/fu_zk"  class="user_name">CPP攻城师</a>:
+@wl58796351:多谢支持
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/13091217#comments">UML类图关系大全</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/wl58796351"  class="user_name">wl58796351</a>:
+很不错，受用了，希望能多出好文章
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/9135927#comments">通过加载Kernel32来动态判断 当前操作系统32bit还是64bit</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/liyongming1982"  class="user_name">李子</a>:
+谢谢分享
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/11892095#comments">单例模式——C++实现线程安全的单例</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/zchengvip"  class="user_name">zchengvip</a>:
+看晕了
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/11558033#comments">Android Activity 各函数解析</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/fu_zk"  class="user_name">CPP攻城师</a>:
+@u012083693:谢谢你
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/9624033#comments">c++ 本地磁盘判断</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/fu_zk"  class="user_name">CPP攻城师</a>:
+@styz198464:多谢指正啊，嗯，这个是有问题的，以后我会再看，当时，查了一下，就写上了，所以...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/9624033#comments">c++ 本地磁盘判断</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/styz198464"  class="user_name">styz198464</a>:
+第一：移动硬盘也是DRIVE_FIXED,这样根本不能将本地硬盘和移动硬盘区分开来，第二，你这代码写...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/fu_zk/article/details/9229671#comments">程序员要要养成自己的习惯</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/fu_zk"  class="user_name">CPP攻城师</a>:
+@ganpengjin1:嗯，大家都要努力
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div  class="clear">
+    </div>
+</div>
+
+            <div  class="clear">
+            </div>
+        </div>
+        
+
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script  type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">QQ客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="http://bbs.csdn.net/forums/Service"  target="_blank"  class="online">论坛反馈</a> <a  href="mailto:webmaster@csdn.net"  class="email">联系邮箱：webmaster@csdn.net</a> <span  class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+<script  type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/pv.aspx"  border="0"  width="0"  height="0">
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/count.js"></script><iframe  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/logs.htm"  frameborder="0"  width="0"  height="0"></iframe>
+<script  type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      
+    
+    <script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./MySQL数据库性能优化之缓存参数优化 - CPP工程师的专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     
+
+
+</body></html>

@@ -1,0 +1,31 @@
+题目：如何知道一个未知长度的字符串哪个字符出现的次数最多？（字符串可由字母，数字及其他字符组成）请写出代码。
+
+$str="asdfgfdas323344##$\$fdsdfg*$**$*$**$$443563536254fas";//任意长度字符串
+
+//解法一(最快速的解法，但是基本功要扎实)
+$arr=str_split($str);
+$arr=array_count_values($arr);
+arsort($arr);
+print_r($arr);
+
+//解法二(朋友提供的解法，对逻辑能力有一定要求)
+$arr=str_split($str);
+$con=array();
+foreach ($arr as $v){
+    if (!@$con[$v]){
+        @$con[$v]=1;
+    }else{
+        @$con[$v]++;
+    }
+}
+arsort($con);
+print_r($con);
+
+//解法三
+$arr=str_split($str);
+$unique=array_unique($arr);
+foreach ($unique as $a){
+    $arr2[$a]=substr_count($str, $a);
+}
+arsort($arr2);
+print_r($arr2);

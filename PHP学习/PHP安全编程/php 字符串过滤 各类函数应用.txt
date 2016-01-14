@@ -1,0 +1,111 @@
+首先自我检讨一下..因为正则不过关,所以自己写的过滤条件基本失败了...
+上网查的函数也看不懂,改了也出错....
+
+在csdn的各路神仙指点下,略微开了点窍...原问题帖链接
+
+现放出各个路子的函数,供各位已经死过还尚未死成的同志使用....
+希望大家积极补充,把平时常用的方法帖出来
+
+基础函数
+-----------------------------------------------------------------------------------
+其实mysql和php自带很多函数可以处理字符问题,下面给出几个会经常用到的.
+ps:由于php6开始不支持magic_quotes_gpc,所以下面的东西都是假设在magic_quotes_gpc=off的条件上(不知道php6会出什么新东西....)
+
+mysql_real_escape_string()
+定义:函数转义 SQL 语句中使用的字符串中的特殊字符。
+语法: mysql_real_escape_string(string,connection)
+说明:本函数将 string 中的特殊字符转义，并考虑到连接的当前字符集，因此可以安全用于 mysql_query()。
+由于实例代码过长,给出函数解释链接  w3school     phpnet
+
+addSlashes()
+定义:addslashes() 函数在指定的预定义字符前添加反斜杠。
+语法:addslashes(string)
+注释：默认情况下，PHP 指令 magic_quotes_gpc 为 on，对所有的 GET、POST 和 COOKIE 数据自动运行 addslashes()。不要对已经被 magic_quotes_gpc 转义过的字符串使用 addslashes()，因为这样会导致双层转义。遇到这种情况时可以使用函数 get_magic_quotes_gpc() 进行检测。
+由于实例代码过长,给出函数解释链接  w3school    phpnet
+相关函数
+StripSlashes()去掉反斜线字符。(解释过滤字符时用)
+
+mb_convert_encoding()
+PHP的内码转换函数
+版本(PHP 4 >= 4.0.6, PHP 5)
+这个函数可以将各种编码互相转换
+相关链接 phpnet
+
+iconv()
+php内码转换函数,同上
+因为iconv()在转换gb2312时的bug,所以要这样处理
+PHP code
+
+iconv( "UTF-8", "gb2312//IGNORE" , $str)
+
+ignore的意思是忽略转换时的错误，发现iconv在转换字符"—"到gb2312时会出错，如果没有ignore参数，所有该字符后面的字符串都无法被保存。
+另外mb_convert_encoding没有这个bug，所以最好的写法是:
+PHP code
+	
+mb_convert_encoding($str,"gb2312", "UTF-8");
+
+但是需要先enable mbstring 扩展库。
+也可以把mysql数据库的collation设成utf-8就不用作转换了
+三句mysql真言
+SQL code
+	
+SET NAMES utf8;
+SET CHARACTER SET utf8;
+SET COLLATION_CONNECTION='utf8_general_ci';
+
+相关链接 phpnet
+资料参考 link1  link2  link3
+
+自定函数1
+-----------------------------------------------------------------------------------
+网上找的转换函数,将GB2312进行转换的,修改为utf-8后转换错误,无法解析中文.....期待正则狂人...
+PHP code
+	
+<?php
+function escape($str) {
+         preg_match_all("/[\x80-\xff].|[\x01-\x7f]+/",$str,$r);
+        $ar = $r[0];
+        foreach($ar as $k=>$v) {
+                 if(ord($v[0]) < 128)
+                            $ar[$k] = rawurlencode($v);
+                 else
+                            $ar[$k] = "%u".bin2hex(iconv("GB2312","UCS-2",$v));
+                                                     }
+        return join("",$ar);
+}
+ 
+function unescape($str) {
+       $str = rawurldecode($str);
+       preg_match_all("/(?:%u.{4})|.+/",$str,$r);
+       $ar = $r[0];
+       foreach($ar as $k=>$v) {
+                if(substr($v,0,2) == "%u" && strlen($v) == 6)
+                $ar[$k] = iconv("UCS-2","GB2312",pack("H4",substr($v,-4)));
+                  }
+       return join("",$ar);
+}
+?>
+
+
+自定函数2
+-----------------------------------------------------------------------------------
+感谢论坛gingzai777 ,高手就是不一样,一眼就能看出问题所在.....
+以后php过滤用这个行了,不需要顾虑文件编码了.....
+PHP code
+
+<?php
+function addslashes_str($str){
+$str=addslashes($str);
+$str=str_replace($str,";",'\;');
+return $str;
+}
+function stripslashes_str($str){
+$str=stripslashes($str);
+$str=str_replace($str,'\;',";");
+return $str;
+}
+?>
+
+
+-------------------------------------------------------------------------------------
+ps:如果有什么错误,希望大家指出,另外希望大家把平时用到的一些方法提供一下,互相学习...散分...

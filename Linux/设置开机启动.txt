@@ -1,0 +1,68 @@
+linux设置开机服务自动启动/关闭自动启动命令 
+
+[root@localhost ~]# chkconfig --list     显示开机可以自动启动的服务
+[root@localhost ~]# chkconfig --add *** 添加开机自动启动***服务
+[root@localhost ~]# chkconfig --del ***   删除开机自动启动***服务
+
+
+[root@localhost ~]# setup     可以在shell图形终端里面配置的命令，去service里选择
+
+
+[root@localhost ~]# ntsysv    在shell终端图形配置开机启动服务命令，选项没上面那个多
+
+setup 、rc.local 和chkconfig三种方式都可以设置
+
+第一种)
+输入#setup指令进入系统服务菜单，选择你想启动的服务比如httpd，然后重起机器或者 /etc/rc.d./init.d/httpd 
+  start  
+
+第二种)
+把启动命令放到/etc/rc.d/rc.local文件里这样就可以每次启动的时候自动启动服务了,例如对于 apache,编译好apache后会在安装目录的bin下生成apachectl文件,这是个启动脚本,我们只需要把这个命令加到rc.local里就可以了
+（suse没有rc.local。SUSE是可以这么定义自己的脚本的，如果希望在切换运行级之前和之后运行自己的脚本，那么可以分别创建：
+/etc/init.d/before.local
+/etc/init.d/after.local）
+echo /usr/local/apache/bin/apachectl >> /etc/rc.d/rc.local,
+设置服务自动启动的方式是在rc.local里还可以加入类似以下的一些脚本：
+#sshd
+/usr/local/sbin/sshd
+
+#proftpd
+/usr/local/sbin/proftpd
+
+#apache
+/home/apache/bin/apachectl start
+
+#mysql
+/home/mysql/bin/safe_mysqld --port=3306 &
+
+#start oracle8i listener first
+su - oracle -c 'lsnrctl start'
+
+#start oracle8i
+su - oracle -c 'dbstart'
+
+第三种)
+通过chkconfig指令.
+
+使用chkconfig命令来把某项服务加到系统的各项运行级别中,步骤如下,
+1 创建启动脚本.
+   对于apache,mysql,ssh这样的软件都是自己带的,我们只要稍微修改一下使之支持chkconfig就可以了
+2 修改脚本
+我们需要在脚本的前面加上一下2行,才能支持chkconfig命令
+# chkconfig: 2345 08 92
+#
+# description: Automates a packet filtering firewall with ipchains.
+#
+
+chkconfig:后面定义的使启动服务的运行级别(例子中使2345启动改服务),以及关闭和启动服务的顺序,(上例中关闭服务的顺序使8,启动的顺序使92)
+descriptions:对改服务的描述(上例中是ipchains包过滤),你可以换成自己想要的
+
+修改好之后执行
+cp 你的脚本 /etc/rc.d/init.d/脚本名
+chmod 700 /etc/rc.d/init.d/脚本名
+chkconfig --add 脚本名
+例如:
+将其加入Linux启动过程，仅在level 3, level 5级别下运行
+[root@Tester init.d]/sbin/chkconfig --add apache-httpd
+[root@Tester init.d]/sbin/chkconfig --level 35 apache-httpd on
+之后就可以了,以后每次重新启动服务器都会自动启动和关闭我们的服务了

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.not()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/filtering/" title="View all posts in Filtering">Filtering</a></span>
+  
+  				</div>
+</div>
+<div id="not1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.not( selector )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>删除匹配的元素集合中元素。</p>
+<ul class="signatures">
+<li class="signature" id="not-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.not( selector )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于确定到哪个前辈元素时停止匹配。</p>
+</li>
+<li class="signature" id="not-elements">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.not( elements )</h4>
+<p class="arguement"><strong>elements</strong>匹配的元素集合一个或多个DOM元素。</p>
+</li>
+<li class="signature" id="not-functionindex">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.not( function(index) )</h4>
+<p class="arguement"><strong>function(index)</strong>一个用来检查集合中每个元素的函数。<code>this</code>是当前的元素。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果提供的jQuery代表了一组DOM元素，<code>.not()</code>方法构建一个新的匹配元素的jQuery对象的一个子集。所提供的选择器是对每个元素进行测试;如果元素不匹配的选择将包括在结果中。</p>
+<p>考虑一个页面上一个简单的列表：
+</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+  &lt;li&gt;list item 2&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们可以应用此方法来设置列表：</p>
+<pre>$('li').not(':even').css('background-color', 'red');</pre>
+<p>此调用的结果是项目2和4下为红色的背景，因为它们不匹配选择（记得:even 和 :odd使用基于0的索引）。</p>
+<h4>删除特殊的元素</h4>
+<p>第二个版本<code>.not()</code>方法允许我们删除匹配的元素集合中元素。假设我们已经通过其他方式找到了一些元素。例如，假设我们有一个ID列表应用到它的项目之一：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+  &lt;li&gt;list item 2&lt;/li&gt;
+  &lt;li id="notli"&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们可以使用原生的JavaScript <code>getElementById()</code>函数取第三个列表项目，软后从一个jQuery对象删除它：</p>
+<pre>
+$('li').not(document.getElementById('notli'))
+  .css('background-color', 'red');
+</pre>
+<p>此声明的更改1，2，4和5项目的颜色。我们可以用一个简单的jQuery表达式完成同样的事情，但这种技术有时候可能很有用，例如，其他库提供纯DOM节点的引用。</p>
+<p>在jQuery 1.4中，<code>.not()</code>方法可以采用一个函数作为参数，这和<code>.filter()</code>方式是一样。元素通过该函数返回<code>true</code>在排除过滤集合中的元素;所有其他元素都包括在内。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Adds a border to divs that are not green or blue.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:50px; height:50px; margin:10px; float:left;
+        background:yellow; border:2px solid white; }
+  .green { background:#8f8; }
+  .gray { background:#ccc; }
+  #blueone { background:#99f; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div id="blueone"&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div class="green"&gt;&lt;/div&gt;
+
+  &lt;div class="green"&gt;&lt;/div&gt;
+  &lt;div class="gray"&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+    $("div").not(".green, #blueone")
+            .css("border-color", "red");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Removes the element with the ID "selected" from the set of all paragraphs.</span>
+</h4>
+<pre><code class="example">$("p").not( $("#selected")[0] )</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Removes the element with the ID "selected" from the set of all paragraphs.</span>
+</h4>
+<pre><code class="example">$("p").not("#selected")</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Removes all elements that match "div p.selected" from the total set of all paragraphs.</span>
+</h4>
+<pre><code class="example">$("p").not($("div p.selected"))</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

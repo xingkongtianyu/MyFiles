@@ -1,0 +1,100 @@
+用过AJAX的朋友肯定知道javascript是使用UTF-8国际编码，即每个汉字用4个字节来存储，但是这就造成了用AJAX来send数据的时候出现乱码。
+
+有一种解决办法就是使用encodeURIComponent加上修改 Content-Type 为 application/x-www-form-urlencoded" 来把数据统一编码成 url 格式，当然，也可以指定编码,如：“application/x-www-form-urlencoded; charset=utf-8 ”，例子：http_request = new ActiveXObject("Msxml2.XMLHTTP"); http_request.setrequestheader("content-type","application/x-www-form-urlencoded; charset=utf-8");
+另一种方法就是通过vbscript 的写的函数把数据转成gb2312格式的，我个人觉得这种方法比较好。有兴趣的朋友可以到网上去查一下。
+
+也可以在js发送数据之前用escape函数把data转换为16进制的字符串，用js读取数据的时候再用unescape转换回来就ok了。
+
+今天突发奇想，AJAX调用的时候会不会发送cookie 呢？马上写了一个程序测试一下，果然能，这样就可以在调用ajax之前，先把数据通过javascript写到cookie里，然后再send就可以将cookie里的数据发送出去了，太爽了！！
+
+www.php100.com
+
+客户端代码 ajax.htm
+
+以下为引用的内容：
+<title>AJAX使用cookie传值例子</title> 
+<script> 
+var oDiv 
+var xh 
+function getXML() 
+{ 
+setcookie($('name').value,$('val').value); 
+oDiv = document.all.m 
+oDiv.innerHTML = "正在装载，请稍侯......." 
+oDiv.style.display= "" 
+xh = new ActiveXObject("Microsoft.XMLHTTP") 
+xh.onreadystatechange = getReady 
+xh.open("POST","a.php",false) 
+xh.send(); 
+}
+
+function getReady() 
+{ 
+if(xh.readyState==4) 
+{ 
+if(xh.status==200)
+
+www.php100.com
+
+{ 
+oDiv.innerHTML = "完成" 
+} 
+else 
+{ 
+oDiv.innerHTML = "抱歉，装载数据失败。原因：" + xh.statusText 
+} 
+} 
+} //author : PHP100中文网 www.php100.com
+
+function setcookie(name,value) 
+{ 
+var cookiestr=name+"="+value+";"; 
+var expires = ""; 
+var cookieexp=60*60*1000; 
+var d = new Date(); 
+d.setTime( d.getTime() + cookieexp); 
+expires = "expires=" + d.toGMTString()+";"; 
+document.cookie = cookiestr+ expires; 
+} 
+function $(a) 
+{ 
+return document.getElementById(a); 
+} 
+</script>
+
+<body> 
+AJAX使用cookie传值例子:<br/> 
+<form name=myform> 
+name:<input id=name value="变量名甚至可以是中文" size=20><br/> 
+value:<input type=text size=20 id=val value=这里><br/> 
+<input onclick="getXML()" type="button" value="送出数据"> phperz~com 
+<input onclick="if(xh && xh.responseText) {alert(xh.responseText);}" type="button" value="显示返回结果"><br/> 
+<div id=m bgcolor=blue>在此显示状态</div> 
+<input type=button onclick="alert(document.cookie)" value=显示本地COOKIE> 
+</form>
+
+
+服务器端代码 a.php
+
+以下为引用的内容：
+<? 
+header("Content-type: text/html;charset=GB2312"); 
+echo "以下是您送出的所有COOKIE变量及其值\n"; 
+print_r($_COOKIE); 
+?>
+
+phperz~com
+
+
+第一，javascript沿用java的字符处理方式，内部是使用unicode来处理所有字符的，
+第二，utf-8是每个汉字（unicode字符）用3个字节来存储。
+第三，用utf-8来send数据是不会出现乱码的，是后台程序没有正确解码才会出现乱码。
+第四，ajax发送数据的时候如果修改 Content-Type 为 application/x-www-form-urlencoded"，肯定是用post方式，而“太大的数据往往会出错”是用GET方式发送数据造成的。
+第五，用vbscript写的函数是用来把数据转成gbk编码（操作系统默认的编码方式。如果在繁体系统上就是big5之类的编码）的，而不是gb2312，两者的编码字符数量相差3倍左右。
+第六，用cookie来发送数据，一是很容易溢出，二是要不停的擦屁股，否则cookie里面的数据在每个http请求（包括图片和脚本请求）中都会被发送。三是并发几个http请求的时候，没有办法指定那个cookie是要发送给那个http请求的。
+
+用AJAX来GET回一个页面时，RESPONSETEXT里面的中文多半会出现乱码，这是因为xmlhttp在处理返回的responseText的时候，是把resposeBody按UTF-8编码进解码考形成的，如果服务器送出的确实是UTF-8的数据流的时候汉字会正确显示，而送出了GBK编码流的时候就乱了。解决的办法就是在送出的流里面加一个HEADER，指明送出的是什么编码流，这样XMLHTTP就不会乱搞了。 phperz.com
+
+PHP:header('Content-Type:text/html;charset=GB2312');
+ASP:Response.Charset("GB2312")
+JSP:response.setHeader("Charset","GB2312"); 

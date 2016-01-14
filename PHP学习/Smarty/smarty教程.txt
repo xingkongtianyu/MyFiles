@@ -1,0 +1,1614 @@
+大师兄Smarty教程修正版，修改了一些网上复制大师兄教程的错误：
+
+整个教程分四大部分：
+一、模板设计部分
+二、程序设计部分
+三、实例篇(使用PHP内置MySQL函数)
+四、实例篇(使用phplib的DB类)
+
+                                              教程一：模板设计部分
+
+一、什么是smarty?
+smarty是一个使用PHP写出来的模板PHP模板引擎，它提供了逻辑与外在内容的分离，简单的讲，目的就是要使用PHP程序员同美工分离,使用的程序员改变程序的逻辑内容不会影响到美工的页面设计，美工重新修改页面不会影响到程序的程序逻辑，这在多人合作的项目
+中显的尤为重要。
+
+二、smarty优点：
+1. 速度：采用smarty编写的程序可以获得最大速度的提高，这一点是相对于其它的模板引擎技术而言的。
+
+2. 编译型：采用smarty编写的程序在运行时要编译成一个非模板技术的PHP文件，这个文件采用了PHP与HTML混合的方式，在下一次访问模板时将WEB请求直接转换到这个文件中，而不再进行模板重新编译（在源程序没有改动的情况下） 
+
+3. 缓存技术：smarty选用的一种缓存技术，它可以将用户最终看到的HTML文件缓存成一个静态的HTML页，当设定smarty的cache属性为true时，在smarty设定的cachetime期内将用户的WEB请求直接转换到这个静态的HTML文件中来，这相当于调用一个静态的HTML文件。
+
+4. 插件技术：smarty可以自定义插件。插件实际就是一些自定义的函数。
+
+5. 模板中可以使用if/elseif/else/endif。在模板文件使用判断语句可以非常方便的对模板进行格式重排。
+
+
+三、不适合使用smarty的地方：
+
+1. 需要实时更新的内容。例如像股票显示，它需要经常对数据进行更新，这类型的程序使用smarty会使模板处理速度变慢。
+
+2. 小项目。小项目因为项目简单而美工与程序员兼于一人的项目，使用smarty会丧失php开发迅速的优点。
+
+四、安装smarty类：
+
+安装smarty的环境：php版本4.06以上版本。
+
+安装smarty方法非常简单，从http://smarty.php.net/do_download.p...libs中所有文件
+拷入comm目录,完成基本安装.
+
+其它高级安装使用方法请看手册.
+
+五、smarty在模板中的使用：
+
+本节通过几个实例来讲一讲smarty的使用。smarty模板通常使用.tpl来标识，有些人为了美工方便，将扩展名直接写成.html，也是可以的。本文中采用smarty标准写法:以.tpl来表示为一个smarty模板。
+
+
+实例1：
+
+先来看一个简单的例子。
+
+index.tpl
+
+
+CODE:[Copy to clipboard]{* 显示是smarty变量识符里的用*包含的文字为注释内容 *}
+<{include file="header.tpl"}>{*页面头*}
+大家好，我叫<{$name}>, 欢迎大家阅读我的smarty学习材料。
+<{include file="foot.tpl"}>{*页面尾*} 
+
+上边的这个例子是一个tpl模板，其中：
+1. <{**}>是模板页的注释，它在smarty对模板进行解析时不进行任何输出，仅供模板设计师对模板进行注释。
+2. <{include file="xxx.tpl"}>使用此句将一个模板文件包含到当前页面中，例子中将在网站中公用事的head.tpl与foot.tpl进行了包含，你可以
+这样想，使用这一句将xxx.tpl中的内容全部复制在当前语句处。当然，你不使用这一句也可以，将XXX.tpl中的内容复制到当前语句处
+也是完全可以了。
+
+3.{$name}: 模板变量，smarty中的核心组成，采用smarty定义的左边界符{与右边界符}包含着、以PHP变量形式给出，在smarty程序中将使用
+$smarty->assign("name", "李晓军")；将模板中的$name替换成“李晓军”三个字。
+整个实例源程序如下：
+
+header.tpl
+
+
+CODE:[Copy to clipboard]<html>
+<head>
+<title>大师兄smarty教程</title>
+</head>
+<body>
+foot.tpl
+
+
+CODE:[Copy to clipboard]<hr>
+<center> CopyRight(C) by 大师兄 2004年8月 Email: teacherli@163.com </center>
+<hr>
+</body>
+</html>
+index.tpl
+
+
+CODE:[Copy to clipboard]{* 显示是smarty变量识符里的用*包含的文字为注释内容 *}
+{include file="header.tpl"}{*页面头*}
+大家好，我叫{$name}, 欢迎大家阅读我的smarty学习材料。
+{include file="foot.tpl"}{*页面尾*} 
+index.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： index.php
+* 作 用： 显示实例程序
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->template_dir = "./templates";//设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+
+//----------------------------------------------------
+//左右边界符，默认为{}，但实际应用当中容易与JavaScript
+//相冲突，所以建议设成<{}>或其它。
+//----------------------------------------------------
+$smarty->left_delimiter = "<{"; 
+$smarty->right_delimiter = "}>";
+
+$smarty->assign("name", "李晓军"); //进行模板变量替换
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("index.tpl"); 
+?>
+最终执行这个程序时将显示为：
+================================
+执行index.php
+================================
+<html>
+<head>
+<title>大师兄smarty教程</title>
+</head>
+<body>
+大家好，我叫李晓军, 欢迎大家阅读我的smarty学习材料。
+<hr>
+<center> CopyRight(C) by 大师兄 2004年8月 Email: teacherli@163.com </center>
+<hr>
+</body>
+</html>
+
+
+实例2：
+这个例子是综合使用smarty模板参数的一个例子，这些参数用来控制模板的输出，我只选其中几个，其它的参数你去看参考吧。
+
+example2.tpl
+
+
+CODE:[Copy to clipboard]<html>
+<head><title>大师兄smarty示例2</title></head>
+<body>
+1. 第一句首字母要大写：{$str1|capitalize}<br>
+2. 第二句模板变量 + 李晓军：{$str2|cat:"李晓军"}<br>
+3. 第三句输出当前日期：{$str3|date_format:"%Y年%m月%d日"}<br>
+4. 第四句.php程序中不处理，它显示默认值：{$str4|default:"没有值！"}<br>
+5. 第五句要让它缩进8个空白字母位，并使用"*"取替这8个空白字符：<br>
+{$str5|indent:8:"*"}}<br>
+6. 第六句把TEACHerLI@163.com全部变为小写：{$str6|lower}<br>
+7. 第七句把变量中的teacherli替换成：李晓军：{$str7|replace:"teacherli":"李晓军"}<br>
+8. 第八句为组合使用变量修改器：{$str8|capitalize|cat:"这里是新加的时间："|date_format:"%Y年%m月%d日"|lower}
+</body>
+</html>
+example2 .php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： example2.php
+* 作 用： 显示实例程序2
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->template_dir = "./templates";//设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+
+//----------------------------------------------------
+//左右边界符，默认为{}，但实际应用当中容易与JavaScript
+//相冲突，所以建议设成<{}>或其它。
+//----------------------------------------------------
+$smarty->left_delimiter = "{"; 
+$smarty->right_delimiter = "}";
+
+$smarty->assign("str1", "my name is xiao jun, li."); //将str1替换成My Name Is Xiao Jun, Li.
+$smarty->assign("str2", "我的名字叫："); //输出: 我的名字叫:李晓军
+$smarty->assign("str3", "公元"); //输出公元2004年8月21日（我的当前时间）
+//$smarty->assign("str4", ""); //第四句不处理时会显示默认值，如果使用前面这一句则替换为""
+$smarty->assign("str5", "前边8个*"); //第五句输出：********前边8个*
+$smarty->assign("str6", "TEACHerLI@163.com"); //这里将输出teacherli@163.com
+$smarty->assign("str7", "this is teacherli"); //在模板中显示为：this is 李晓军
+$smarty->assign("str8", "HERE IS COMBINING:");
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("example2.tpl"); 
+?>
+最终输出效果：
+======================================================
+example2.php输出效果：
+======================================================
+<html>
+<head><title>大师兄smarty示例2</title></head>
+<body>
+1. 第一句首字母要大写：My Name Is Xiao Jun, Li.<br>
+2. 第二句模板变量 + 李晓军：我的名字叫：李晓军<br>
+3. 第三句输出当前日期：公元2004年8月21日<br>
+4. 第四句.php程序中不处理，它显示默认值：没有值！<br>
+5。第五句要让它缩进8个空白字母位，并使用"*"取替这8个空白字符：<br>
+********前边8个*<br>
+6. 第六句把TEACHerLI@163.com全部变为小写：teacherli@163.com<br>
+7. 第七句把变量中的teacherli替换成：李晓军：this is 李晓军<br>
+8. 第八句为组合使用变量修改器：Here is Combining:这里是新加的时间：2004年8月21日
+</body>
+</html>  
+ 
+2006-10-15 09:35 PM #1 
+            
+ 
+  
+chaizx (chaizx) 
+注册会员
+
+初级会员
+
+
+
+UID 24298
+精华 0
+积分 159
+帖子 126
+金钱 159 喜悦币
+威望 0 
+人脉 0 
+阅读权限 20
+注册 2003-11-1
+状态 离线  [推荐阅读] 有没有介绍PHP新函数的中文地方?
+--------------------------------------------------------------------------------
+ 在模板中的这些参数被称为变量修改器（variable modifiers），使用这些参数可对模板进行一系列的修改控制。变量修改器
+使用"|"和调节器名称应用修改器， 使用":"分开修改器参数。变量修改器可以组合使用，像第八句一样，实际使用中可以灵活应用。
+
+
+
+实例3.
+
+example3.tpl
+
+
+CODE:[Copy to clipboard]<html>
+<head><title>模板中内定的一些函数</title></head>
+<body>
+
+{*下面的这一段相当于在模板内部定义一个变量UserName*}
+{assign var="UserName" value="大师兄"} 
+这里将显示模板内部定义的一个变量:UserName = {$UserName}
+
+下面的这一行将显示3个checkBox:<br>
+{html_checkboxes name="CheckBox" values=$CheckName checked=$IsChecked output=$value separator="<br />"}
+下面在这一行将显示3个radio:<br>
+{html_radios name="RadioBox" values=$RadioName checked=$IsChecked output=$value separator="<br />"}
+
+
+下面显示一个月,日, 年选择框:<br>
+{html_select_date}
+
+<hr><b>CopyRight(C) By XiaoJun, Li 2004<b>{mailto address="teacherli@163.ccom" text="联系作者"}
+
+</body>
+</html>
+example3.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： example3.php
+* 作 用： 显示实例程序3
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+
+require_once ("./comm/Smarty.class.php");
+
+$smarty = new Smarty();
+$smarty->template_dir = './templates/';
+$smarty->compile_dir = './templates_c/';
+$smarty->config_dir = './configs/';
+$smarty->cache_dir = './cache/';
+$smarty->caching = false;
+
+//--------------------------------------------------------------------------------------
+//处理{html_checkboxes name="CheckBox" values=$CheckName checked=$IsChecked output=$value separator="<br />"}
+//--------------------------------------------------------------------------------------
+$smarty->assign('CheckName', array(
+1001 => '语文',
+1002 => '数学',
+1003 => '外语'));
+$smarty->assign('IsChecked', 1001);
+
+
+//--------------------------------------------------------------------------------------
+//处理{html_radios name="RadioBox" values=$RadioName checked=$IsChecked output=$value separator="<br />"}
+//--------------------------------------------------------------------------------------
+$smarty->assign('RadioName', array(
+1001 => '语文',
+1002 => '数学',
+1003 => '外语'));
+$smarty->assign('IsChecked', 1001);
+
+//--------------------------------------------------------------------------------------
+//{html_select_date}不用处理会自动输出
+//--------------------------------------------------------------------------------------
+
+$smarty->display("example3.tpl");
+?>
+======================================================
+example3.php输出效果:
+======================================================
+<html>
+<head><title>模板中内定的一些函数</title></head>
+<body>
+
+{assign var="UserName" value="大师兄"} 
+这里将显示模板内部定义的一个变量:UserName = 大师兄
+
+下面的这一行将显示3个checkBox:<br>
+<input type="checkbox" name="CheckBox[]" value="1000">语文<br />
+<input type="checkbox" name="CheckBox[]" value="1001" checked="checked">数学<br />
+<input type="checkbox" name="CheckBox[]" value="1002">外语<br />
+下面在这一行将显示3个radio:<br>
+<input type="radio" name="RadioBox[]" value="1000">语文<br />
+<input type="radio" name="RadioBox[]" value="1001" checked="checked">数学<br />
+<input type="radio" name="RadioBox[]" value="1002">外语<br />
+下面显示一个月,日, 年选择框:<br>
+<select name="Date_Month">
+<option label="January" value="01">January</option>
+<option label="February" value="02">February</option>
+<option label="March" value="03">March</option>
+<option label="April" value="04">April</option>
+<option label="May" value="05">May</option>
+<option label="June" value="06">June</option>
+<option label="July" value="07">July</option>
+<option label="August" value="08" selected="selected">August</option>
+<option label="September" value="09">September</option>
+<option label="October" value="10">October</option>
+<option label="November" value="11">November</option>
+<option label="December" value="12">December</option>
+</select>
+<select name="Date_Day">
+<option label="01" value="1">01</option>
+<option label="02" value="2">02</option>
+<option label="03" value="3">03</option>
+<option label="04" value="4">04</option>
+<option label="05" value="5">05</option>
+<option label="06" value="6">06</option>
+<option label="07" value="7">07</option>
+<option label="08" value="8">08</option>
+<option label="09" value="9">09</option>
+<option label="10" value="10">10</option>
+<option label="11" value="11">11</option>
+<option label="12" value="12">12</option>
+<option label="13" value="13">13</option>
+<option label="14" value="14">14</option>
+<option label="15" value="15">15</option>
+<option label="16" value="16">16</option>
+<option label="17" value="17">17</option>
+<option label="18" value="18">18</option>
+<option label="19" value="19">19</option>
+<option label="20" value="20">20</option>
+<option label="21" value="21" selected="selected">21</option>
+<option label="22" value="22">22</option>
+<option label="23" value="23">23</option>
+<option label="24" value="24">24</option>
+<option label="25" value="25">25</option>
+<option label="26" value="26">26</option>
+<option label="27" value="27">27</option>
+<option label="28" value="28">28</option>
+<option label="29" value="29">29</option>
+<option label="30" value="30">30</option>
+<option label="31" value="31">31</option>
+</select>
+<select name="Date_Year">
+<option label="2004" value="2004" selected="selected">2004</option>
+</select>
+<hr><b>CopyRight(C) By XiaoJun, Li 2004<b><a href="mailto:teacherli@163.com">李晓军</a>
+</body>
+</html>
+
+例3使用了一些smarty模板中内置的一些函数,相似的函数大家可以在手册中查到,使用方法很简单,大家可以自己去查找.
+
+例4.模板控制(if / elseif / else/ endif )
+
+example4.tpl
+
+
+CODE:[Copy to clipboard]<html>
+<head><title>模板中的流程控制</title><head>
+<body>
+<table border="1" align="center">
+{assign var="tbColor" value="green"}
+色彩:{$tbColor}<br>
+
+{section name=loop loop=$News}
+{if $tbColor == "green"}
+<tr bgcolor="{$tbColor}">
+{assign var="tbColor" value="orange"}
+{else $tbColor == "orange"}
+<tr bgcolor = "{$tbColor}">
+{assign var="tbColor" value="green"}
+{/if}
+<td>{$News[loop].newsID}</td>
+<td>{$News[loop].newsTitle}</td>
+<tr>
+{/section}
+</table>
+</body>
+</html>
+example4.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： example4.php
+* 作 用： 显示实例程序4
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest 
+*********************************************/
+
+require_once ("./comm/Smarty.class.php");
+
+$smarty = new Smarty();
+$smarty->template_dir = './templates/';
+$smarty->compile_dir = './templates_c/';
+$smarty->config_dir = './configs/';
+$smarty->cache_dir = './cache/';
+$smarty->caching = false;
+
+$array[]= array("newsID"=>"001", "newsTitle"=>"第1条新闻"); 
+$array[]= array("newsID"=>"002", "newsTitle"=>"第2条新闻");
+$array[]= array("newsID"=>"003", "newsTitle"=>"第3条新闻");
+$array[]= array("newsID"=>"004", "newsTitle"=>"第4条新闻");
+$array[]= array("newsID"=>"005", "newsTitle"=>"第5条新闻");
+$array[]= array("newsID"=>"006", "newsTitle"=>"第6条新闻");
+$array[]= array("newsID"=>"007", "newsTitle"=>"第7条新闻");
+$array[]= array("newsID"=>"008", "newsTitle"=>"第8条新闻");
+
+
+$smarty->assign("News", $array);
+
+$smarty->display("example4.tpl");
+?>
+example4.php输出:
+==================================================
+<html>
+<head><title>模板中的流程控制</title><head>
+<body>
+<table border="1">
+
+<tr bgcolor="#D4D0C8">
+
+<td>001</td>
+<td>第1条新闻</td>
+</tr>
+<tr bgcolor = "#EEEEEE">
+
+<td>002</td>
+<td>第2条新闻</td>
+</tr>
+<tr bgcolor="#D4D0C8">
+
+<td>003</td>
+<td>第3条新闻</td>
+</tr>
+<tr bgcolor = "#EEEEEE">
+
+<td>004</td>
+<td>第4条新闻</td>
+</tr>
+<tr bgcolor="#D4D0C8">
+
+<td>005</td>
+<td>第5条新闻</td>
+</tr>
+<tr bgcolor = "#EEEEEE">
+
+<td>006</td>
+<td>第6条新闻</td>
+</tr>
+<tr bgcolor="#D4D0C8">
+
+<td>007</td>
+<td>第7条新闻</td>
+</tr>
+<tr bgcolor = "#EEEEEE">
+
+<td>008</td>
+<td>第8条新闻</td>
+</tr>
+</table>
+</body>
+</html>
+===================================================
+模板文件中使用:
+
+
+CODE:[Copy to clipboard]<?php
+{if $tbColor == "#D4D0C8"}
+<tr bgcolor="{$tbColor}">
+{assign var="tbColor" value="#EEEEEE"}
+{else $tbColor == "#EEEEEE"}
+<tr bgcolor = "{$tbColor}">
+{assign var="tbColor" value="#D4D0C8"}
+{/if}
+?>
+这一语句块进行设置每一行的背景颜色, {assign var="tbColor" value="#D4D0C8"}还记的吧,是例3中设置模板内部变量的定义方法,
+
+使用模板内置的流程控制语句有时可以极大程度上提高程序的控制能力,下面一个例子是phpx.com中曾经有位朋友问过的,我将它作为
+实例放在这里供大家学习.
+例4我用来说明{if / elseif /else /if}的使用方法,如果单为了实现隔行的目的,大家可以使用这一句就行了:
+
+
+CODE:[Copy to clipboard]<?php
+{section name=rows loop=$data}
+<tr bgcolor="{cycle values="#D4D0C8,#EEEEEE"}">
+<td>{$data[rows]}</td>
+</tr>
+{/section}
+?>
+例5: 使用模板内置流程控制语句进行一行多单元格内容输出, 也就是在视觉上smarty每记输出几条记录:
+
+example5.tpl
+
+
+CODE:[Copy to clipboard]<html>
+<head>
+<title>一行输出多条记录</title>
+</head>
+<body>
+<table>
+<tr>
+{section name=loop loop=$News step=1}
+{if $smarty.section.loop.index % 4==0}
+</tr>
+<tr>
+{/if}
+<td>{$News[loop].newsID}</td>
+<td>{$News[loop].newsTitle}</td>
+{/section}
+</tr>
+</table>
+</body>
+</html>
+example5.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： example5.php
+* 作 用： 显示实例程序5
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest 
+*********************************************/
+
+require_once ("./comm/Smarty.class.php");
+
+$smarty = new Smarty();
+$smarty->template_dir = './templates/';
+$smarty->compile_dir = './templates_c/';
+$smarty->config_dir = './configs/';
+$smarty->cache_dir = './cache/';
+$smarty->caching = false;
+
+$array[]= array("newsID"=>"001", "newsTitle"=>"第1条新闻"); 
+$array[]= array("newsID"=>"002", "newsTitle"=>"第2条新闻");
+$array[]= array("newsID"=>"003", "newsTitle"=>"第3条新闻");
+$array[]= array("newsID"=>"004", "newsTitle"=>"第4条新闻");
+$array[]= array("newsID"=>"005", "newsTitle"=>"第5条新闻");
+$array[]= array("newsID"=>"006", "newsTitle"=>"第6条新闻");
+$array[]= array("newsID"=>"007", "newsTitle"=>"第7条新闻");
+$array[]= array("newsID"=>"008", "newsTitle"=>"第8条新闻");
+
+
+$smarty->assign("News", $array);
+
+$smarty->display("example5.tpl");
+?>
+==================================================
+example5.php输出内容:
+==================================================
+<html>
+<head><title>一行输出多条记录</title></head>
+<body>
+<table>
+<tr>
+
+</tr> 
+<tr>
+<td>001</td>
+<td>第1条新闻</td>
+
+<td>002</td>
+<td>第2条新闻</td>
+
+<td>003</td>
+<td>第3条新闻</td>
+
+<td>004</td>
+<td>第4条新闻</td>
+
+</tr> 
+<tr>
+<td>005</td>
+<td>第5条新闻</td>
+
+<td>006</td>
+<td>第6条新闻</td>
+
+<td>007</td>
+<td>第7条新闻</td>
+
+<td>008</td>
+<td>第8条新闻</td>
+</tr> 
+</table>
+</body>
+</html>
+
+说明:本来还可以优化,使得第一行不输出一个空行的<tr> </tr>,但是学习程序,简单为好,先就这么用了. 在这里说明一下:
+
+
+CODE:[Copy to clipboard]<?php
+{section name=loop loop=$News step=1} 
+{if $smarty.section.loop.index % 4 == 0}
+</tr> 
+<tr>
+{/if}
+<td>{$News[loop].newsID}</td>
+<td>{$News[loop].newsTitle}</td>
+{/section}
+?>
+{section}{/section}指的是一个循环部分,在下一节会有详细的介绍,我们主要来看看这一句:
+{if $smarty.section.loop.index % 4 == 0}
+$smarty.section.loop指出$smarty的实例中的section段有一个叫loop的部分, 它有一个属性叫index, 它的表示当前循环的索引值,从0开始递增,我们把它%4后与0相比较,也就是说,如果当前的索引值是4的倍数,它就输出一个</tr><tr>,否则执行下面的部分,
+很简单的就解决了一个在程序上实现起来很麻烦的事情.这里我仅演示的是如何使用{if}语句功能,实现这个功能在Smarty的模板中还有一个非常方便的办法:{cycle},使用的例子如下所示:
+
+
+CODE:[Copy to clipboard]<?php
+{section name=rows loop=$data}
+<tr bgcolor="{cycle values="#D4D0C8,#EEEEEE"}">
+<td>{$data[rows]}</td>
+</tr>
+{/section}
+?> 
+ 
+教程之二：程序设计部分
+
+在smarty的模板设计部分我简单的把smarty在模板中的一些常用设置做了简单的介绍，这一节主要来介绍一下如何在smarty中开始我们程序设计。
+
+
+首先来介绍一下在上一节中我们使用的过的.php文件中的一些元素。同样，我们拿上一节中最开始的那个index.php文件来说明一下：
+
+================================================
+index.php
+================================================
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： index.php
+* 作 用： 显示实例程序
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+*
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->template_dir = "./templates";//设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+
+
+//****大家注意，这里我是我新加入的****//
+
+$tpl->cache_dir = "./cache"; //设置缓存目录
+$smarty->cache_lifetime = 60 * 60 * 24; //设置缓存时间
+$smarty->caching = true; //设置缓存方式
+
+//----------------------------------------------------
+//左右边界符，默认为{}，但实际应用当中容易与JavaScript
+//相冲突，所以建议设成<{}>或其它。
+//----------------------------------------------------
+$smarty->left_delimiter = "<{"; 
+$smarty->right_delimiter = "}>";
+
+$smarty->assign("name", "李晓军"); //进行模板变量替换
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("index.tpl"); 
+?>
+我们可以看到，smarty的程序部分实际就是符合php语言规范的一组代码，我们依次来解释一下：
+1。/**/语句： 
+包含的部分为程序篇头注释。主要的内容应该为对程序的作用，版权与作者及编写时间做一个简单的介绍，这在smarty中不是必需的，但从程序的风格来讲，这是一个好的风格。
+
+2。include_once语句：
+它将安装到网站的smarty文件包含到当前文件中，注意包含的路径一定要写正确。
+
+3。$smarty = new Smarty():
+这一句新建一个Smarty对象$smarty,简单的一个对象的实例化。
+
+4。$smarty->template_dir = "" : 
+这一句指明$smarty对象使用tpl模板时的路径，它是一个目录，在没有这一句时，Smarty默认的模板路径为当前目录的templates目录，实际在写程序时，我们要将这一句写明，这也是一种好的程序风格。
+5。$smarty->compile_dir = "" :
+这一句指明$smarty对象进行编译时的目录。在模板设计篇我们已经知道Smarty是一种编译型模板语言，而这个目录，就是它编译模板的目录，这里要注意，如果站点位于*nix服务器上，请确保compile_dir里定义的这个目录具有可写可读权限，默认情况下它的编译目录是当前目录下的templates_c，出于同样的理由我们将其明确的写出来。
+
+6。$smarty->left_delimiter与$smarty->right_delimiter:
+指明在查找模板变量时的左右分割符。默认情况下为"{"与"}"，但在实际中因为我们要在模板中使用<script>,Script中的函数定义难免会使用{}，虽然它有自己的解决办法，但习惯上我们将它重新定义为"<{"与"}>"或是"<!--{"与"}-->"或其它标志符，注意，如果在这里定义了左右分割符后，在模板文件中相应的要使每一个变量使用与定义相同的符号，例如在这里指定为"<{"与"}>"，tpl模板中也要相应的将{$name}变成<{$name}>,这样程序才可以正确的找到模板变量。
+
+
+7。$tpl->cache_dir = "./cache";:
+告诉Smarty输出的模板文件缓存的位置。上一篇我们知道Smarty最大的优点在于它可以缓存，这里就是设置缓存的目录。默认情况下为当前目录下的cache目录，与templates_c目录相当，在*nix系统中我们要确保它的可读可写性。
+
+8. $smarty->cache_lifetime = 60 * 60 * 24:
+
+这里将以秒为单位进行计算缓存有效的时间。第一次缓存时间到期时当Smarty的caching变量设置为true时缓存将被重建。当它的取值为-1时表示建立起的缓存从不过期，为0时表示在程序每次执行时缓存总是被重新建立。上面的设置表示将cache_lifetime设置为一天。
+
+9. $smarty->caching = 1:
+这个属性告诉Smarty是否要进行缓存以及缓存的方式。它可以取3个值，0：Smarty默认值，表示不对模板进行缓存；1：表示Smarty将使用当前定义的cache_lifetime来决定是否结束cache；2：表示Smarty将使用在cache被建立时使用cache_lifetime这个值。习惯上使用true与false来表示是否进行缓存。
+
+10. $smarty->assign("name", "李晓军")：
+该数的原型为assign(string varname, mixed var),varname为模板中使用的模板变量，var指出要将模板变量替换的变量名；其第二种原形为assign(mixed var),我们要在后面的例子详细的讲解这个成员函数的使用方法，assign是Smarty的核心函数之一，所有对模板变量的替换都要使用它。
+
+11. $smarty->display("index.tpl"):
+该函数原形为display(string varname),作用为显示一个模板。简单的讲，它将分析处理过的模板显示出来，这里的模板文件不用加路径，只要使用一个文件名就可以了，它路径我们已经在$smarty->templates(string path)中定义过了。
+
+程序执行完后我们可以打开当前目录下的templates_c与cache目录，就会发现在下边多出一些%%的目录，这些目录就是Smarty的编译与缓存目录，它由程序自动生成，不要直接对这些生成的文件进行修改。
+以上我简单的把Smarty程序中的一些常用的基本元素介绍了一下，在后边的例子中你可以看到将它们将被多次的使用。
+
+
+接下来介绍一个section循环块与foreach循环块，本来它应该属于模板部分，但是由于它们是smarty的精华所在，而且与smarty程序设计部分联系非常紧密，所以就在本节单独拿出来讲一下。
+
+1. foreach：用于循环简单数组，它是一个选择性的section循环，它的定义格式为:
+
+
+CODE:[Copy to clipboard]{foreach from=$array item=array_id}
+{foreachelse}
+{/foreach}
+其中，from 指出要循环的数组变量，item为要循环的变量名称，循环次数由from所指定的数组变量的个数所决定。{foreachelse}用来当程序中传递过来的数组为空时的处理，下面是一个简单的例子：
+===========================================
+example6.tpl
+===========================================
+
+
+CODE:[Copy to clipboard]<html>
+<head><title>这是一个foreach使用的例子</title></head>
+<body>
+这里将输出一个数组：<br>
+<{foreach from=$newsArray item=newsID}>
+新闻编号：<{$newsID.newsID}><br>
+新闻内容：<{$newsID.newsTitle}><br><hr>
+<{foreachelse}>
+对不起，数据库中没有新闻输出！
+<{/foreach}>
+</body>
+</html>
+==========================================
+example6.php
+==========================================
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： example6.php
+* 作 用： 显示实例程序2
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); 
+
+$smarty = new Smarty(); 
+$smarty->templates("./templates"); 
+$smarty->templates_c("./templates_c"); 
+$smarty->cache("./cache");
+$smarty->cache_lifetime = 0;
+$smarty->caching = true;
+$smarty->left_delimiter = "<{"; 
+$smarty->right_delimiter = "}>";
+
+$array[] = array("newsID"=>1, "newsTitle"=>"第1条新闻"); 
+$array[] = array("newsID"=>2, "newsTitle"=>"第2条新闻"); 
+$array[] = array("newsID"=>3, "newsTitle"=>"第3条新闻"); 
+$array[] = array("newsID"=>4, "newsTitle"=>"第4条新闻"); 
+$array[] = array("newsID"=>5, "newsTitle"=>"第5条新闻"); 
+$array[] = array("newsID"=>6, "newsTitle"=>"第6条新闻"); 
+
+$smarty->assign("newsArray", $array);
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("example6.tpl"); 
+?>
+=================================================
+example6.php 输出文件
+=================================================
+<html>
+<head><title>foreach使用的例子</title></head>
+<body>
+这里将输出一个数组：<br>
+
+新闻编号：1<br>
+新闻内容：第1条新闻<br><hr>
+
+新闻编号：2<br>
+新闻内容：第2条新闻<br><hr>
+
+新闻编号：3<br>
+新闻内容：第3条新闻<br><hr>
+
+新闻编号：4<br>
+新闻内容：第4条新闻<br><hr>
+
+新闻编号：5<br>
+新闻内容：第5条新闻<br><hr>
+
+新闻编号：6<br>
+新闻内容：第6条新闻<br><hr>
+</body>
+</html>
+
+foreach还可以用foreachelse来匹配，用foreachelse来表示当传递给foreach的数组为空值时程序要执行的操作，具体的使用方法，请参考手册的说明。
+
+2. section: 
+section的产生是为解决foreach的不足的，与foreach一样，它用于设计模板内的循环块，它较为复杂，可极大程序上满足程序需要，所以在程序中我习惯使用它而不使用foreach,基本原形为：
+
+
+CODE:[Copy to clipboard]
+
+{section name = name loop = $varName[, start = $start, step = $step, max = $max, show = true]}
+name: section的名称，不用加$
+$loop: 要循环的变量，在程序中要使用assign对这个变量进行操作。
+$start: 开始循环的下标，循环下标默认由0开始
+$step: 每次循环时下标的增数
+$max: 最大循环下标
+$show: boolean类型，决定是否对这个块进行显示，默认为true
+
+这里有个名词需要说明：
+循环下标：实际它的英文名称为index，是索引的意思，这里我将它译成"下标"，主要是为了好理解。它表示在显示这个循环块时当前的循环索引，默认从0开始，受$start的影响，如果将$start设为5，它也将从5开始计数，在模板设计部分我们使用过它，这是当前{section}的一个属性，调用方式为Smarty.section.sectionName.index,这里的sectionName指的是函数原型中的name属性。
+{section}块具有的属性值，分别为：
+1. index: 上边我们介绍的"循环下标"，默认为0
+2. index_prev: 当前下标的前一个值，默认为-1
+3. index_next: 当前下标的下一个值，默认为1
+4. first: 是否为第一下循环
+5. last: 是否为最后一个循环
+6. iteration: 循环次数
+7. rownum: 当前的行号，iteration的另一个别名
+8. loop: 最后一个循环号，可用在section块后统计section的循环次数
+9. total: 循环次数，可用在section块后统计循环次数
+10. show: 在函数的声明中有它，用于判断section是否显示
+
+它们的具体属性大家可以参考手册，在程序中可灵活使用它的这些属性，模板部分我就使用过index属性，大家可以回过头去看看。
+
+同样，{section}也可以配合使用{sectionelse}，用来表示传入的数组变量为空时对模板进行的处理。
+
+我们把上边的那个例子使用{section}来替代{foreach}来实现现样的功能，注意，在这个例子中我只将tpl模板中的{foreach}用
+
+{section}来实现，php程序文件中没有任何改动，同时加了{sectionelse}处理块：
+
+===========================================
+example7.tpl
+===========================================
+
+
+CODE:[Copy to clipboard]
+<html>
+<head><title>这是一个foreach使用的例子</title></head>
+<body>
+这里将输出一个数组：<br>
+<{section name=loop loop=$News}>
+新闻编号：<{$News[loop].newsID}><br>
+新闻标题：<{$News[loop].newsTitle}><br><hr>
+<{sectionelse}>
+对不起，没有任何新闻输入！
+<{/section}>
+</body>
+</html> 
+==========================================
+example7.php
+==========================================
+
+
+CODE:[Copy to clipboard]
+<?php
+/*********************************************
+*
+* 文件名： example7.php
+* 作 用： 显示实例程序2
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); 
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->template_dir = "./templates";//设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+
+$smarty->cache_dir = "./cache"; //设置缓存目录
+$smarty->cache_lifetime = 0;
+$smarty->caching = true;
+$smarty->left_delimiter = "<{"; 
+$smarty->right_delimiter = "}>";
+
+$array[] = array("newsID"=>1, "newsTitle"=>"第1条新闻"); 
+$array[] = array("newsID"=>2, "newsTitle"=>"第2条新闻"); 
+$array[] = array("newsID"=>3, "newsTitle"=>"第3条新闻"); 
+$array[] = array("newsID"=>4, "newsTitle"=>"第4条新闻"); 
+$array[] = array("newsID"=>5, "newsTitle"=>"第5条新闻"); 
+$array[] = array("newsID"=>6, "newsTitle"=>"第6条新闻"); 
+
+$smarty->assign("News", $array);
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("example7.tpl"); 
+?>
+=================================================
+example7.php 输出文件
+=================================================
+<html>
+<head><title>foreach使用的例子</title></head>
+<body>
+这里将输出一个数组：<br>
+
+新闻编号：1<br>
+新闻内容：第1条新闻<br><hr>
+
+新闻编号：2<br>
+新闻内容：第2条新闻<br><hr>
+
+新闻编号：3<br>
+新闻内容：第3条新闻<br><hr>
+
+新闻编号：4<br>
+新闻内容：第4条新闻<br><hr>
+
+新闻编号：5<br>
+新闻内容：第5条新闻<br><hr>
+
+新闻编号：6<br>
+新闻内容：第6条新闻<br><hr>
+</body>
+</html>
+
+这里的{section}块的对于变量的命名方式感觉有些别扭，不过没关系，你只要记住模板变量使用：
+$loopName[name].var这种模式就行了，loopName为loop处赋予的变量名，[name]为name处赋予的字符串，.后为为你要在程序数组中设定要与值相对应的下标名称就行了。
+
+
+好了，smarty学习指南---程序设计篇就写到这里，对于一般的应用，这些知识已经够用了，其它的一些高级技巧大家请参看手册中的例子，下一节将讲讲Smarty在实际应用中的例子，将分别以php内置的mysql语句，phplib中的DB类，来分别讲一下各个类库在同一个例子中的实现。 
+Smarty实例教程之三：----实例篇( 使用PHP内置MYSQL函数)
+
+Smarty实例教程之三：----实例篇( 使用PHP内置MYSQL函数)
+从本节开始我们来学习一下如果把Smarty应用到实际的例子中. 为了演示说明,我将以前写的一个站点作为实例来讲来下.先说明一下, 我本人的美术功底不是很强,所以设计出来的页面不太好看,大家就对付着看吧
+在看本文之前，可以先看看indexbak.htm与newsbak.htm，它们是我们生成后的例图。
+
+一、 首先来说明一下我们将要使用到的数据库,下面我先将数据库源文件给大家例出来:
+
+
+CODE:[Copy to clipboard]
+
+CREATE DATABASE News;
+
+USE News;
+
+/****************************
+*
+* 表 名: tb_news_ch
+* 用 途: 国内新闻表
+*
+****************************/
+CREATE TABLE tb_news_ch
+(
+iNewsID interger(11) primary key auto_increment,
+vcNewsTitle varchar(50) not null,
+ltNewsContent longtext not null
+);
+/* 执行成功的语句
+CREATE TABLE `my_subject`.`tb_news_ch` (
+`iNewsID` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`vcNewsTitle` VARCHAR( 50 ) NOT NULL ,
+`ltNewsContent` LONGTEXT NOT NULL 
+) ENGINE = InnoDB 
+*/
+/****************************
+*
+* 表 名: tb_news_in
+* 用 途: 国际新闻表
+*
+****************************/
+CREATE TABLE tb_news_in
+(
+iNewsID interger(11) primary key auto_increment,
+vcNewsTitle varchar(50) not null,
+ltNewsContent longtext not null
+);
+
+
+/****************************
+*
+* 表 名: tb_news_mu
+* 用 途: 娱乐新闻表
+*
+****************************/
+
+CREATE TABLE tb_news_mu
+(
+iNewsID interger(11) primary key auto_increment,
+vcNewsTitle varchar(50) not null,
+ltNewsContent longtext not null
+);
+我这里简单的将数据库说明一下.
+
+第一个问题: 
+大家可以看到,其实3个数据表的字段名都一样,那么为什么不把它们合并成一个数据表呢,答案很简单:效率,在开发的时候我们可能感觉不出有什么可提高效率的地方,不过大家想想,当这个网站运行一段时间后,它的新闻数据量就会变的很大,而且考虑到如果将来网站做大后可能将各个类型分离出来形成类似china.xxx.com, international.xxx.com, music.xxx.com,将每一栏目独立分出去物理上做成一个单独的站点,到那时如果新闻还是合起来放置的话就会造成数据库瓶颈,所以针对当前的站点,我认为还是分开的比较合理.
+
+第二个问题:
+有人可能问了,你在字段前加的i, vc,lt干什么用?这里是按照字段类型来命名的, 这也是一种良好风格的体现,将类型前缀放在变量前,使用用户不用看字段定义就可以知道字段是什么类型,这是从微软的匈牙利命名法中参考过来的,在数据库设计时,我先将每种类型定义成1--3个字母,然后在每个字段前加相应的代码来代表它的类型.像上边,我将各个数据库字段类型定义为:
+
+integer i
+varchar vc
+longtext lt
+char c
+....
+
+在使用的时候,你可以往每个数据表中输入5条数据记录以备我们在调试实例时使用.
+
+二、示例站点目录结构：
+
+PHP代码:--------------------------------------------------------------------------------
++Web (站点根目录)
+|
+|----+comm (Smarty相关文档目录) 
+| |
+| |----+plugins (Smarty插件目录)
+| |-----Config_File.class.php (Smarty配置文件)
+| |-----Smarty.class.php (Smarty类主文件)
+| |-----Smarty_Compiler.class.php (Smarty编译类文件)
+|
+|----+cache (Smarty缓存目录，*nix下保证读写权限)
+|
+|----+templates (站点模板文件存放目录)
+| |
+| |----header.tpl(页面页头模板文件)
+| |----index.tpl(站点首页模板文件)
+| |----foot.tpl(页面页脚模板文件)
+| |----news.tpl (新闻页模板文件)
+|
+|
+|----+templates_c (模板文件编译后存放目录，*nix下保证读写权限)
+|
+|----+css (站点CSS文件目录)
+|
+|----+image (站点图片目录)
+|
+|----+media (站点Flash动画存放目录)
+|
+|----indexbak.htm (首页原始效果图)
+|
+|----newsbak,htm (新闻页原始效果图)
+|
+|----index.php (Smarty首页程序文件)
+|
+|----news.php (Smarty新闻显示文件)
+|
+|----例程说明.txt (目录说明)
+|
+|----数据库建立文件.txt (数据库的建立文档)
+
+详细情况请大家下载实例后对照结构图。
+
+--------------------------------------------------------------------------------
+
+三、模板中的实例片段：
+
+1. index.tpl:
+
+index.tpl是站点首页的模板类，打开它的源文件后我们可以首先看到这么二句：
+==================================================
+1. <{*下面这一句为本页面的页面头*}>
+2. <{include file="header.tpl"}>
+==================================================
+第 1 句大家都知道了，是模板注释
+第 2 句表示在当前位置要包含另一个文件，什么文件呢，header.tpl，这里的这个header.tpl是页面的标准页头文件，把它单独拿出来是为将这一部分独立出来，以便在在其它页面进行重用，习惯上要把页头文件写在一个table中，但因为我的实例是早已做好的，所以有些不符合规范。
+
+再来看最后一句：
+=================================================
+3. <{include file="foot.tpl"}>
+=================================================
+不用说大家都明白了，就是包含一个页脚文件。
+
+再看看国内新闻部分的模板代码：
+
+
+CODE:[Copy to clipboard]<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#B9E9FF">
+<tr> 
+<td height="115" width="10"></td>
+<td valign="top" width="295" bgcolor="#B9E9FF">
+<{section name=loop loop=$News_CH}> 
+<li class="newsfont"><a href="news.php?type=1&id=<{$News_CH[loop].NewsID}>" class="newsfont"><{$News_CH[loop].NewsTitle}></a>
+<{/section}>
+</td>
+</tr>
+</table>
+大家关键看<{section}>与<{/section}>,它们之外的那一部分是为了更好的理解代码的意思而列出来的。能看明白吗？这里将以前讲过的内容复习一遍：定义了一个section循环模板块，名字叫loop, 要循环的是$News_CH这个数组，以<a href="xxxx">处将为当前的新闻产生一个链接，地址为news.php?type=1&id=xxx,这里的xxx是从数据库里提取的iNewsID,指的是要在新闻显示页里显示编号为id的新闻。$News_CH[loop].NewsTitle这种表示形式来看的懂吧？看不懂的话看看上一节讲过的《Smarty实例教学 ---程序设计》部分中的<{section}>语法。
+也许大家对<{}>感觉有点陌生，这里的<{}>为模板语句定义块，在前2节我们都使用{}，但因为这里是具体的应用，所以就不取{}了，使用大家习惯的<{}>来表示，当然这在.php文件中要设置的。
+
+再看国际新闻与娱乐新闻的代码：
+
+
+国际新闻：
+
+
+CODE:[Copy to clipboard]<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr> 
+<td width="295" height="115" valign="top"> 
+<{section name=loop loop=$News_IN}>
+<li class="newsfont"><a href="news.php?type=2&id=<{$News_IN[loop].NewsID}>" class="newsfont"><{$News_IN[loop].NewsTitle}></a> 
+<{/section}>
+</td>
+</tr>
+</table>
+娱乐新闻：
+
+
+CODE:[Copy to clipboard]<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr> 
+<td width="296" height="115" valign="top"> 
+<{section name=loop loop=$News_MU}>
+<li class="newsfont"><a href="news.php?type=3&id=<{$News_MU[loop].NewsID}>" class="newsfont"><{$News_MU[loop].NewsTitle}></a>
+<{/section}>
+</td>
+</tr>
+</table>
+有没有看出有什么不同? loop部分不同，loop指的是要循环的数组，这里要注意的，不可将多个section的loop指定为同一个值，那样的话Smarty进行分析模板的时候就会将两个具有相同名字的section同时分析，生成两个一样的记录。
+
+看到这里，有人就会产生疑问：循环块我已经有了，我怎么才能就它在当前位置只显示我们想要的记录数呢？这个问题简单，我们对Smarty的section循环块的循环次数控制是在.php文件中控制要替换这个循环块的数组来决定的，在设计模板时我们不用考虑。
+
+
+其次，我们再来看看news.tpl:
+
+1. 看这一句：
+<title><{$NewsTitle}> ----天骄信息网</title>
+将要显示的新闻页的标题显示为新闻标题 + "----天骄信息网"
+2. 新闻标题：
+<div align="center" class="NewsTitle"><{$NewsTitle}></div>
+这里又设置了一个模板变量$NewsTitle,意思说要.php将$NewsTitle(包括标题栏)替换为数据库中当前新闻的标题。
+3. 新闻内容：
+<p><{$NewsContext}></p>
+这一句也容易，在当前位置显示新闻内容。
+
+当然，这里只是简单的将新闻列出来了，在实际应用时你还可以把文章出处，发表时间，作者，相关新闻一起列出来，这里就不作多的讨论了.
+
+
+三、程序部分：
+
+1. 大家先来看看index.php的源文件，然后我们再来慢慢分析它的作用： 
+
+index.php
+
+
+CODE:[Copy to clipboard]<?php
+1. /*********************************************
+*
+* 文件名： index.php
+* 作 用： 显示实例程序
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+2. include_once("./comm/Smarty.class.php"); //包含smarty类文件
+3. define("NUM", 5); //定义每次显示的新闻条数
+
+4. $smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->templates_dir = "./templates"; //设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+$smarty->cache_dir = "./cache"; //设置缓存目录
+$smarty->cache_lifetime = 60 * 60 * 24; //设置缓存时间
+$smarty->caching = false; //这里是调试时设为false,发布时请使用true
+$smarty->left_delimiter = "<{"; //设置左边界符
+$smarty->right_delimiter = "}>"; //设置右边界符
+
+
+5. $db = mysql_connect("localhost", "root", "");
+mysql_select_db("News", $db);
+
+
+//这里将处理国内新闻部分
+6. $strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_ch ORDER BY iNewsID DESC";
+$result = mysql_query($strQuery);
+$i = NUM;
+7. while(($row = mysql_fetch_array($result)) && $i > 0)
+{
+$array[] = array("NewsID"=>substr($row["iNewsID"], 0, 40),
+"NewsTitle"=>substr($row["vcNewsTitle"], 0, 40));
+
+$i--;
+}
+8. $smarty->assign("News_CH", $array);
+9. unset($array);
+mysql_free_result();
+
+
+10. //这里处理国际新闻部分
+$strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_in ORDER BY iNewsID DESC";
+$result = mysql_query($strQuery);
+$i = NUM;
+while(($row = mysql_fetch_array($result)) && $i > 0)
+{
+$array[] = array("NewsID"=>substr($row["iNewsID"], 0, 40),
+"NewsTitle"=>substr($row["vcNewsTitle"], 0, 40));
+
+$i--;
+}
+$smarty->assign("News_IN", $array);
+unset($array);
+mysql_free_result();
+
+
+11. //这里将处理娱乐新闻部分
+$strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_mu ORDER BY iNewsID DESC";
+$result = mysql_query($strQuery);
+$i = NUM;
+while(($row = mysql_fetch_array($result)) && $i > 0)
+{
+$array[] = array("NewsID"=>substr($row["iNewsID"], 0, 40),
+"NewsTitle"=>substr($row["vcNewsTitle"], 0, 40));
+
+$i--;
+}
+$smarty->assign("News_MU", $array);
+unset($array);
+mysql_free_result();
+
+
+mysql_close($db);
+
+//编译并显示位于./templates下的index.tpl模板
+12. $smarty->display("index.tpl"); 
+?>
+为了方便说明，我把每一个要说明的地方都标了号，下面就来说说每一个部分的作用：
+
+1. 程序注释, 风格问题,我多次在程序中加这个就是为了让读者也养成这种习惯.
+2. 文件包含. 这一句意思是把Smarty的类文件包含到当前程序文件中.
+3. 常数定义: 定义NUM为5,为新闻显示条数
+4. 设置Smarty参数: 关于里边的参数大家可以参考上一节讲过的,这里只想特别说明一下$smarty->cache属性,在我们的程序调试过程中,要把它设置为false,正式发布的时候将它设计为true就可以实现我们的程序缓存效果.
+5. 数据库连接: 这一部分我不用说吧?标准的PHP语句.
+6. 进行国内新闻查找SQL语句: 标准的SQL语句,按新题编号降序排序.
+7. while():
+这一句控制将要显示的新闻行数.首先给$i赋值为NUM,NUM为我们在开始外定义的一个常量, 在while()的开始判断处使用$i>0 这个条件,while()每次循环时要将$i的值减1,这样,当它完成5次循环时while就会结束.
+这里我们主要来看看$array[]这个数组:
+$array[]在理论上为一个二维数组,也就是一个数组中的元素为另一个数组,像上例中,当while()语句结束时,$array就是一个包含5个数组元素的数组,而每一元素又是一个字符索引的数组.而这些字符索引正是在模板中定义section循环块的$news[loop]的属性值,大家一定要注意这里要与模板循环块的属性值相对应,否则将不能显示出来!
+在构建这个二维数组时我们使用了一个substr()方法进行字符截取,这个方法在这里仅供参考,实际使用当中因为中文为全角字符,使用它时可能会造成乱码,在以后的例子中我们将使用另一个网友与的csubstr()函数来实现字符截取功能.
+
+8. 对模板中的loop = $News_CH的section循环块进行解析.
+大家要注意,使用$smarty->assign("News_CH", $array),assign的第一个参数为section中的loop的值, 第二个参数为上面所建立的数组.
+
+9. 注销$array: $array[]在使用完后要注销,因为使用赋值语句对$array进行赋值时不会将它清空,而是将新数组作为它的一个元素增加,为了不产生副作用,这里使用unset()是必需的.
+
+10. 国际新闻处理模块:
+同国内新闻处理模块一样,大家可以对比一下模板与这一段,找找其中有什么关联之处.
+
+11. 娱乐新闻处理模块:同上,大家找找其中的关系.相信大家看完会有收获的.
+
+12. 处理并显示index.tpl.
+
+
+2. 下面再来看看news.php的源文件:
+
+news.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： news.php
+* 作 用： 新闻显示程序
+*
+* 作 者： 大师兄
+* Email： teacherli@163.com
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+define("NUM", 5); //定义每次显示的新闻条数
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->templates_dir = "./templates"; //设置模板目录
+$smarty->compile_dir = "./templates_c"; //设置编译目录
+$smarty->cache_dir = "./cache"; //设置缓存目录
+$smarty->cache_lifetime = 60 * 60 * 24; //设置缓存时间
+$smarty->caching = false; //这里是调试时设为false,发布时请使用true
+$smarty->left_delimiter = "<{"; //设置左边界符
+$smarty->right_delimiter = "}>"; //设置右边界符
+
+
+$db = mysql_connect("localhost", "root", "") or die("数据库连接错误!");
+mysql_select_db("News", $db);
+
+$NewsID = $_GET["id"]; //获取新闻编号
+$NewsType = $_GET["type"]; //要显示的新闻类型
+switch($NewsType)
+{
+case 1:
+$dbName = "tb_news_ch";
+break;
+case 2:
+$dbName = "tb_news_in";
+break;
+case 3:
+$dbName = "tb_news_mu";
+break;
+}
+
+$strQuery = "SELECT vcNewsTitle, ltNewsContent FROM $dbName";
+$result = mysql_query($strQuery) or die("数据库查询错误!");
+if($row = mysql_fetch_array($result))
+{
+$smarty->assign("NewsTitle", $row["vcNewsTitle"]);
+$smarty->assign("NewsContent", $row["ltNewsContent"]);
+
+mysql_free_result($result);
+$smarty->display("news.tpl");
+}
+
+mysql_close($db);
+
+?>
+这上面关于Smarty的程序语句主要只有3行:
+
+
+CODE:[Copy to clipboard]<?php
+$smarty->assign("NewsTitle", $row["vcNewsTitle"]);
+$smarty->assign("NewsContent", $row["ltNewsContent"]);
+
+mysql_free_result($result);
+?>
+很简单的将新闻页中的NewsTitle, NewsContent替换成从数据库中查找出来的内容.
+
+好了,关于这一讲的Smarty例程学习的初级部分就讲到这里,相信大家学完后会对Smarty的用法有个基本的了解,下一节还使用个这个例子来讲讲如何使用phplib中的DB类来实现对模板的控制. 
+教程之四：---实例篇(使用phplib的DB类)
+
+前几天有些事情，所以这个实例一直到今天写，为什么要拿phplib中的DB类来讲呢？很多人在学习PHP时，可能最先接触到的模板就是phplib了，原因很简单：很多PHP学习资料中都介绍PHPLIB，phplib在PHP3的时候很火，原因之一就是它实现了在PHP3没有实现的session功能，直到现在还有很多人使用phplib的模板技术，原因就是它很简单。同时，phplib上的数据库操作类也以文件小、加载速度快而备受人们喜爱。我喜欢它的语法，感觉很接近于PHP中的mysql语句。好了，废话不多说了，来看我们的程序。程序还以实例一中的那个站点一讲，关于数据库的建立与模板的建立这里就不多讲了，请参看上一节的介绍，这里主要来介绍一下在程序中新加入的东西。先来看目录表：
++Web (站点根目录)
+|
+|----+comm (Smarty相关文档目录) 
+| |
+| |----+plugins (Smarty插件目录)
+| |-----Config_File.class.php (Smarty配置文件)
+| |-----Smarty.class.php (Smarty类主文件)
+| |-----Smarty_Compiler.class.php (Smarty编译类文件)
+| |-----db_mysql.inc.php (phplib中的DB类)
+| |-----csub.inc.php (一个截取中文的函数)
+|
+|----+cache (Smarty缓存目录，*nix下保证读写权限)
+|
+|----+templates (站点模板文件存放目录)
+| |
+| |----header.tpl(页面页头模板文件)
+| |----index.tpl(站点首页模板文件)
+| |----foot.tpl(页面页脚模板文件)
+| |----news.tpl (新闻页模板文件)
+|
+|
+|----+templates_c (模板文件编译后存放目录，*nix下保证读写权限)
+|
+|----+css (站点CSS文件目录)
+|
+|----+image (站点图片目录)
+|
+|----+media (站点Flash动画存放目录)
+|
+|----indexbak.htm (首页原始效果图)
+|
+|----newsbak,htm (新闻页原始效果图)
+|
+|----index.php (Smarty首页程序文件)
+|
+|----news.php (Smarty新闻显示文件)
+|
+|----例程说明.txt (本文档)
+
+这里主要在/comm/目录多出两个文件，一个是db_mysql.inc.php,在phplib中它的文件名叫db_mysql.inc,inc文件在默认情况下直接从浏览器中定位时会显示在浏览器中，所以为了安全我们将它的扩展名改为db_mysql.inc.php; 第二个文件是一个包含截取中文字符的一个函数
+
+csubstr(),在用的时候我们将它的源码显示出来。
+这里先将db_mysql.inc.php中定义的DB_Sql的主要成员变量与成员函数给大家简单介绍一下：
+一、成员变量：
+1. $Host: 主机名
+2. $Database: 数据库名称
+3. $User:用户名
+4. $Password:密码
+二、成员函数：
+1. connect($Database="", $Host="", $User="", $Password=""): 建立连接，返回连接ID
+2. query($Query_String):进行查询，返回查询ID
+3. free(): 释放当前查询ID资源
+4. next_record(): 返回下一条返回集
+5. num_rows(): 当前查询号中的数据行数
+6. f($name): 当前字段的值
+
+其它的函数在我们的程序中基本用不到，所以就不介绍了，感兴趣的读者可以自己查看相关资料。
+
+PHP代码:--------------------------------------------------------------------------------
+
+templates中的index.tpl与news.tpl与上一节的相当，不同的只是在index.php与news.tpl中，先来看看index.php:
+
+
+index.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： index.php
+* 作 用： 显示实例程序
+*
+* 作 者： 大师兄
+* Email： [email]teacherli@163.com[/email]
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+1. //=======================================
+include_once("./comm/db_mysql.inc.php"); //包含数据库操作类
+include_once("./comm/csubstr.inc"); //包含中文截取类
+//=======================================
+define("NUM", 5); //定义每次显示的新闻条数
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->templates_dir = "./templates"; //设置模板目录
+$smarty->compile_dir ="./templates_c"; //设置编译目录
+$smarty->cache_dir = "./cache"; //设置缓存目录
+$smarty->caching = false; //这里是调试时设为false,发布时请使用true
+$smarty->left_delimiter = "<{"; //设置左边界符
+$smarty->right_delimiter = "}>"; //设置右边界符
+
+
+2. $db = new DB_Sql(); //实例化一个DB类 
+$db->Host = "localhost"; // 数据库主机名
+$db->Database = "news"; //数据库名称
+$db->User = "root"; //用户名
+$db->Password = ""; //密码
+
+$db->connet(); //进行数据库连接
+
+//这里将处理国内新闻部分
+$strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_ch ORDER BY iNewsID DESC";
+3. $db->query($strQuery);
+$i = NUM;
+4. while($db->next_record() && $i > 0)
+{
+5. $array[] = array("NewsID"=>csubstr($db->f("iNewsID"), 0, 20),
+"NewsTitle"=>csubstr($db->f("vcNewsTitle"), 0, 20));
+
+$i--;
+}
+$smarty->assign("News_CH", $array);
+unset($array);
+6. $db->free();
+
+
+//这里处理国际新闻部分
+$strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_in ORDER BY iNewsID DESC";
+$db->query($strQuery);
+$i = NUM;
+while($db->next_record() && $i > 0)
+{
+$array[] = array("NewsID"=>csubstr($db->f("iNewsID"), 0, 20),
+"NewsTitle"=>csubstr($db->f("vcNewsTitle"), 0, 20));
+
+$i--;
+}
+$smarty->assign("News_IN", $array);
+unset($array);
+$db->free();
+
+
+//这里将处理娱乐新闻部分
+$strQuery = "SELECT iNewsID, vcNewsTitle FROM tb_news_mu ORDER BY iNewsID DESC";
+$db->query($strQuery);
+$i = NUM;
+while($db->next_record() && $i > 0)
+{
+$array[] = array("NewsID"=>csubstr($db->f("iNewsID"), 0, 20),
+"NewsTitle"=>csubstr($db->f("vcNewsTitle"), 0, 20));
+
+$i--;
+}
+$smarty->assign("News_MU", $array);
+unset($array);
+$db->free();
+
+
+//编译并显示位于./templates下的index.tpl模板
+$smarty->display("index.tpl"); 
+?>
+老规矩，对于关键的地方我加了标号，来看这些地方：
+1. 这里是将DB_Sql类文件包含进来，下面一行是将一个中文截取类包含到当前页
+2. 实例化一个类，并设置类的Host, Database, User, Password属性, 最后connect数据库
+3. 调用$db->query($strQuery)进行一次数据查询
+4. $db->next_record()读取数据库查询返回值的下一行（注：调用query()返回数据集的第一条记录的前一个记录）
+5. csubstr()是我们使用的一个中文截取类，类的源文件如下：
+=====================================================
+csubstr.inc.php
+=====================================================
+
+
+6.$db->free(): 释放当前的查询返回资源
+
+好了，使用类进行数据库操作，可以极大程序上提高程序的可读性，同时也方便了对数据库的操作。
+接下来我们再看看news.php:
+
+news.php
+
+
+CODE:[Copy to clipboard]<?php
+/*********************************************
+*
+* 文件名： news.php
+* 作 用： 新闻显示程序
+*
+* 作 者： 大师兄
+* Email： [email]teacherli@163.com[/email]
+
+* 修 正： forest
+*********************************************/
+include_once("./comm/Smarty.class.php"); //包含smarty类文件
+//=======================================
+include_once("./comm/db_mysql.inc.php"); //包含数据库操作类
+include_once("./comm/csubstr.inc"); //包含中文截取类
+//=======================================
+define("NUM", 5); //定义每次显示的新闻条数
+
+$smarty = new Smarty(); //建立smarty实例对象$smarty
+$smarty->templates_dir = "./templates"; //设置模板目录
+$smarty->compile_dir ="./templates_c"; //设置编译目录
+$smarty->cache_dir = "./cache"; //设置缓存目录
+$smarty->cache_lifetime = 60 * 60 * 24; //设置缓存时间
+$smarty->caching = false; //这里是调试时设为false,发布时请使用true
+$smarty->left_delimiter = "<{"; //设置左边界符
+$smarty->right_delimiter = "}>"; //设置右边界符
+
+
+$db = new DB_Sql(); //实例化一个DB类 
+$db->Host = "localhost"; // 数据库主机名
+$db->Database = "news"; //数据库名称
+$db->User = "root"; //用户名
+$db->Password = ""; //密码
+
+$db->connet(); //进行数据库连接
+
+$NewsID = $_GET["id"]; //获取新闻编号
+$NewsType = $_GET["type"]; //要显示的新闻类型
+switch($NewsType)
+{
+case 1:
+$dbName = "tb_news_ch";
+break;
+case 2:
+$dbName = "tb_news_in";
+break;
+case 3:
+$dbName = "tb_news_mu";
+break;
+}
+
+$strQuery = "SELECT vcNewsTitle, ltNewsContent FROM " . $dbName;
+1. $db->query($strQuery);
+2. if($db->next_record())
+{
+$smarty->assign("NewsTitle", $db->f("vcNewsTitle"));
+$smarty->assign("NewsContent", $db->f("ltNewsContent"));
+
+$db->free();
+$smarty->display("news.tpl");
+}else
+{
+echo "没有新闻内容";
+}
+
+?>
+大家可以看看1, 2两处，是不是比原来直接使用mysql函数要简单一些？
+多余的话就不多说了，如果大家认真的看过上一篇实例，那么这一篇应该非常好理解的。
+
+======================
+后记:
+模板部分我基本是以手册中的例子来讲的,把它具体化了一些,实际的精华在程序设计部分,要学它的话要看两个例程序,我把两个例程及先前提到的那些示例程序放入3个打包文件中,由 “神仙姐姐” 测试过,大家可以边看边调试. 

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title>
+</head>
+<body>
+<div class="entry-content">
+  <div class="entry-title roundTop">
+    <h1 class="jq-clearfix">jQuery.ajaxSetup()</h1>
+    <div class="entry-meta">Categories: <span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/low-level-interface/" title="View all posts in Low-Level Interface">Low-Level Interface</a></span> </div>
+  </div>
+  <div class="entry method" id="jQuery.ajaxSetup1">
+    <h2 class="jq-clearfix roundTop section-title"> <span class="name">jQuery.ajaxSetup( options )</span> <span class="returns"></span> </h2>
+    <div class="jq-box roundBottom entry-details">
+      <p class="desc"><strong>描述: </strong>设置未来（可以理解为全局）的 AJAX请求默认选项。</p>
+      <ul class="signatures">
+        <li class="signature" id="jQuery.ajaxSetup-options">
+          <h4 class="name"> <span class="versionAdded">version added: <a href="/category/version/1.1/">1.1</a></span>jQuery.ajaxSetup( options )</h4>
+          <p class="arguement"><strong>options</strong>A set of key/value pairs that configure the default Ajax request. All options are optional. </p>
+        </li>
+      </ul>
+      <div class="longdesc">
+        <p>用于设置<code>$.ajaxSetup()</code>的详细参数, 参见 <code><a href="#p=jQuery.ajax">$.ajax()</a></code>. </p>
+        <p>所有后面的 Ajax 调用任何函数都将使用新的设置参数,除非被特别的请求, 直到下一次调用<code>$.ajaxSetup()</code>.</p>
+        <p>举个例子,我们可以事先设置服务器重复响应的默认URL参数：</p>
+        <pre>$.ajaxSetup({
+  url: 'ping.php',
+});</pre>
+        <p>现在每次Ajax请求将自动使用这个URL：</p>
+        <pre>
+$.ajax({
+  data: {'name': 'Tim'},
+});</pre>
+        <blockquote>
+          <p><strong>注意</strong>: 全局回调函数应使用他们各自的全局Ajax事件处理方法-<code><a href="#p=ajaxStart">.ajaxStart()</a></code>, <code><a href="#p=ajaxStop">.ajaxStop()</a></code>, <code><a href="#p=ajaxComplete">.ajaxComplete()</a></code>, <code><a href="#p=ajaxError">.ajaxError()</a></code>, <code><a href="#p=ajaxSuccess">.ajaxSuccess()</a></code>, <code><a href="#p=ajaxSend">.ajaxSend()</a></code>-设置，而不是为 <code>$.ajaxSetup()</code> 设置 <code>settings</code> 对象。</p>
+        </blockquote>
+      </div>
+      <h3>举例:</h3>
+      <div id="entry-examples" class="entry-examples">
+        <div id="example-0">
+          <h4><span class="desc">设置 AJAX 请求默认地址为 "/xmlhttp/"，禁止触发全局 AJAX 事件，用 POST 代替默认 GET 方法。其后的 AJAX 请求不再设置任何选项参数。 </span></h4>
+          <pre><code class="example">$.ajaxSetup({
+   url: "/xmlhttp/",
+   global: false,
+   type: "POST"
+
+ });
+ $.ajax({ data: myData });</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body>
+</html>

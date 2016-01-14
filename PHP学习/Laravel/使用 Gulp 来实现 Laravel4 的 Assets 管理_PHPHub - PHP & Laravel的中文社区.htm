@@ -1,0 +1,1280 @@
+<!--
+______                            _              _                                     _
+| ___ \                          | |            | |                                   | |
+| |_/ /___ __      __ ___  _ __  | |__   _   _  | |      __ _  _ __  __ _ __   __ ___ | |
+|  __// _ \\ \ /\ / // _ \| '__| | '_ \ | | | | | |     / _` || '__|/ _` |\ \ / // _ \| |
+| |  | (_) |\ V  V /|  __/| |    | |_) || |_| | | |____| (_| || |  | (_| | \ V /|  __/| |
+\_|   \___/  \_/\_/  \___||_|    |_.__/  \__, | \_____/ \__,_||_|   \__,_|  \_/  \___||_|
+                                          __/ |
+                                         |___/
+  ========================================================
+                                           phphub.org
+
+  --------------------------------------------------------
+  Laravel: v4.2.8
+-->
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+		<meta charset="UTF-8"><script src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/229d5871c8" type="text/javascript"></script><script src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/analytics.js" async=""></script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(n,e,t){function r(t){if(!e[t]){var o=e[t]={exports:{}};n[t][0].call(o.exports,function(e){var o=n[t][1][e];return r(o?o:e)},o,o.exports)}return e[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({QJf3ax:[function(n,e){function t(n){function e(e,t,a){n&&n(e,t,a),a||(a={});for(var u=c(e),f=u.length,s=i(a,o,r),p=0;f>p;p++)u[p].apply(s,t);return s}function a(n,e){f[n]=c(n).concat(e)}function c(n){return f[n]||[]}function u(){return t(e)}var f={};return{on:a,emit:e,create:u,listeners:c,_events:f}}function r(){return{}}var o="nr@context",i=n("gos");e.exports=t()},{gos:"7eSDFh"}],ee:[function(n,e){e.exports=n("QJf3ax")},{}],3:[function(n,e){function t(n){return function(){r(n,[(new Date).getTime()].concat(i(arguments)))}}var r=n("handle"),o=n(1),i=n(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(n,e){window.NREUM[e]=t("api-"+e)}),e.exports=window.NREUM},{1:12,2:13,handle:"D5DuLP"}],gos:[function(n,e){e.exports=n("7eSDFh")},{}],"7eSDFh":[function(n,e){function t(n,e,t){if(r.call(n,e))return n[e];var o=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(n,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return n[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=t},{}],D5DuLP:[function(n,e){function t(n,e,t){return r.listeners(n).length?r.emit(n,e,t):(o[n]||(o[n]=[]),void o[n].push(e))}var r=n("ee").create(),o={};e.exports=t,t.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(n,e){e.exports=n("D5DuLP")},{}],XL7HBI:[function(n,e){function t(n){var e=typeof n;return!n||"object"!==e&&"function"!==e?-1:n===window?0:i(n,o,function(){return r++})}var r=1,o="nr@id",i=n("gos");e.exports=t},{gos:"7eSDFh"}],id:[function(n,e){e.exports=n("XL7HBI")},{}],loader:[function(n,e){e.exports=n("G9z0Bl")},{}],G9z0Bl:[function(n,e){function t(){var n=h.info=NREUM.info;if(n&&n.licenseKey&&n.applicationID&&f&&f.body){c(l,function(e,t){e in n||(n[e]=t)}),h.proto="https"===d.split(":")[0]||n.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=f.createElement("script");e.src=h.proto+n.agent,f.body.appendChild(e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=n("handle"),c=n(1),u=(n(2),window),f=u.document,s="addEventListener",p="attachEvent",d=(""+location).split("?")[0],l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-593.min.js"},h=e.exports={offset:i(),origin:d,features:{}};f[s]?(f[s]("DOMContentLoaded",o,!1),u[s]("load",t,!1)):(f[p]("onreadystatechange",r),u[p]("onload",t)),a("mark",["firstbyte",i()])},{1:12,2:3,handle:"D5DuLP"}],12:[function(n,e){function t(n,e){var t=[],o="",i=0;for(o in n)r.call(n,o)&&(t[i]=e(o,n[o]),i+=1);return t}var r=Object.prototype.hasOwnProperty;e.exports=t},{}],13:[function(n,e){function t(n,e,t){e||(e=0),"undefined"==typeof t&&(t=n?n.length:0);for(var r=-1,o=t-e||0,i=Array(0>o?0:o);++r<o;)i[r]=n[e+r];return i}e.exports=t},{}]},{},["G9z0Bl"]);</script>
+
+		<title>
+			使用 Gulp 来实现 Laravel4 的 Assets 管理_PHPHub  - PHP &amp; Laravel的中文社区
+			
+		</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="keywords" content="PHP,Laravel,PHP论坛,Laravel论坛,PHP社区,Laravel社区">
+		<meta name="author" content="The PHP China Community.">
+		<meta name="description" content="The Problem 需要有一个自动化工具来管理 Assets (css,js,img etc..) , 具备以下功能 支持编译 scss, coffee script, less 等语言; 合并文件的能力, 把页面上所有的 css 和 js 各自合并为一个文件, 将极大提高网页的加载速度;
+压缩 css 和 js 的能力, 减少文件大小, 注意这里的压缩不只是去除空格和换行;
+支持 CDN 加...
+">
+
+        <link rel="stylesheet" href="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/styles-12adced3.css">
+
+        <link rel="shortcut icon" href="https://dn-phphub.qbox.me/favicon.ico">
+
+        <script>
+            Config = {
+                'cdnDomain': 'https://dn-phphub.qbox.me/',
+                'user_id': 0,
+                'routes': {
+                    'notificationsCount' : 'https://phphub.org/notifications/count',
+                    'upload_image' : 'https://phphub.org/upload_image'
+                },
+                'token': 'rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP',
+            };
+        </script>
+
+	    
+	</head>
+	<body id="body">
+
+		<div id="wrap">
+
+			<div role="navigation" class="navbar navbar-default navbar-static-top topnav">
+  <div class="container">
+    <div class="navbar-header">
+
+      <a href="https://phphub.org/" class="navbar-brand">PHPHub</a>
+    </div>
+    <div id="top-navbar-collapse" class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class=" active"><a href="https://phphub.org/topics">社区</a></li>
+        <li class=""><a href="https://phphub.org/wiki">Wiki</a></li>
+        <li class=""><a href="https://phphub.org/users">会员</a></li>
+        <li class=""><a href="https://phphub.org/about">关于</a></li>
+        <li><a href="http://laravel-china.org/" target="_blank">文档</a></li>
+      </ul>
+
+      <div class="navbar-right">
+        <form method="GET" action="https://phphub.org/search" accept-charset="UTF-8" class="navbar-form navbar-left">
+          <div class="form-group">
+          <input class="form-control search-input mac-style" placeholder="搜索" name="q" type="text">
+          </div>
+        </form>
+        <ul class="nav navbar-nav github-login">
+                        <a href="https://phphub.org/login" class="btn btn-info" id="login-btn">
+                <i class="fa fa-github-alt"></i>
+                登 录
+              </a>
+                  </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+			<div class="container">
+
+				
+				
+<div class="col-md-9 topics-show main-col">
+
+  <!-- Topic Detial -->
+  <div class="topic panel panel-default">
+    <div class="infos panel-heading">
+
+      <div class="pull-right avatar_large">
+        <a href="https://phphub.org/users/1">
+          <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/324764.jpg" style="width:65px; height:65px;" class="img-thumbnail avatar">
+        </a>
+      </div>
+
+      <h1 class="panel-title topic-title">使用 Gulp 来实现 Laravel4 的 Assets 管理</h1>
+
+      <div class="votes">
+
+        <a style="cursor:pointer;" data-method="post" href="javascript:void(0);" data-url="https://phphub.org/topics/49/upvote" title="Up Vote" id="up-vote" class="vote ">
+            <li class="fa fa-chevron-up"></li> 2
+        
+<form action="https://phphub.org/topics/49/upvote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+         &nbsp;
+        <a style="cursor:pointer;" data-method="post" href="javascript:void(0);" data-url="https://phphub.org/topics/49/downvote" title="Down Vote" id="down-vote" class="vote ">
+            <li class="fa fa-chevron-down"></li>
+        
+<form action="https://phphub.org/topics/49/downvote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+      </div>
+
+      <div class="meta inline-block">
+
+  <a href="https://phphub.org/nodes/8" class="remove-padding-left">
+    Laravel
+  </a>
+  •
+  <a href="https://phphub.org/users/1">
+    Summer
+  </a>
+  •
+  于 <abbr title="2014-08-31 11:05:57" class="timeago">7个月前</abbr>
+  •
+
+      最后由
+      <a href="https://phphub.org/users/870">
+        songzj8
+      </a>
+     于 <abbr title="2015-02-15 11:39:07" class="timeago">1个月前</abbr>
+    •
+  
+  4444 阅读
+</div>
+<div class="clearfix"></div>
+    </div>
+
+    <div class="content-body entry-content panel-body">
+
+      <div class="markdown-body" id="emojify">
+<h2>The Problem</h2>
+
+<p>需要有一个自动化工具来管理 Assets (css,js,img etc..) , 具备以下功能</p>
+
+<ul><li>支持编译 scss, coffee script, less 等语言; </li>
+<li>合并文件的能力, 把页面上所有的 css 和 js 各自合并为一个文件, 将极大提高网页的加载速度;</li>
+<li>压缩 css 和 js 的能力, 减少文件大小, 注意这里的压缩不只是去除空格和换行;</li>
+<li>支持 CDN 加速, 需要对每次修改的文件加版本号, 这是最有效的, 也是最合理的客户端样式更新方法;</li>
+<li>开发要足够简单;</li>
+<li>部署要足够简单;</li>
+</ul>
+
+<p>有两个工具作为候选, 一个是 <code>Grunt</code>, 一个是 <code>Gulp</code>, 最后选择 <code>Gulp</code> , 因为其易用性, 并且是个新奇玩意, 此项目在 web 开发的开源世界中非常受欢迎, 虽然出现的时间只有短短的一年 (第一个提交 contra authored on Jul 4, 2013).</p>
+
+<h2>安装和配置 gulp.js</h2>
+
+<p>gulp.js 依赖于 nodejs, 如果你使用 <code>Homestead</code> 作为开发环境的话, 这些东西已经都装好了, 如果你还没有安装 <code>Homestead</code> 请看这里 <a href="http://phphub.org/topics/2">Laravel 4 的 Homestead 开发环境部署</a> .</p>
+
+<h2>配置 package.json</h2>
+
+<p>在项目根目录下, 创建 <code>package.json</code> 并填入以下内容:</p>
+
+<pre class="  language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">"devDependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"del"</span><span class="token punctuation">:</span> <span class="token string">"^0.1.2"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp"</span><span class="token punctuation">:</span> <span class="token string">"^3.8.7"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-asset-manifest"</span><span class="token punctuation">:</span> <span class="token string">"0.0.4"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-autoprefixer"</span><span class="token punctuation">:</span> <span class="token string">"0.0.10"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-concat"</span><span class="token punctuation">:</span> <span class="token string">"^2.3.4"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-minify-css"</span><span class="token punctuation">:</span> <span class="token string">"^0.3.7"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-rev"</span><span class="token punctuation">:</span> <span class="token string">"^1.1.0"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-sass"</span><span class="token punctuation">:</span> <span class="token string">"^0.7.3"</span><span class="token punctuation">,</span>
+    <span class="token string">"gulp-uglify"</span><span class="token punctuation">:</span> <span class="token string">"^1.0.0"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</pre>
+
+<p>关于里面每一个 <code>package</code> 的说明见以下注释:</p>
+
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">"devDependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"del"</span><span class="token punctuation">:</span> <span class="token string">"^0.1.2"</span><span class="token punctuation">,</span>           <span class="token comment" spellcheck="true"> // 删除文件
+</span>    <span class="token string">"gulp"</span><span class="token punctuation">:</span> <span class="token string">"^3.8.7"</span><span class="token punctuation">,</span>          <span class="token comment" spellcheck="true"> // 主程序
+</span>    <span class="token string">"gulp-asset-manifest"</span><span class="token punctuation">:</span> <span class="token string">"0.0.4"</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true"> // 压缩 css 
+</span>    <span class="token string">"gulp-autoprefixer"</span><span class="token punctuation">:</span> <span class="token string">"0.0.10"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"> // 自动给 css3 属性加浏览器前缀, 如: `-webkit-`
+</span>    <span class="token string">"gulp-concat"</span><span class="token punctuation">:</span> <span class="token string">"^2.3.4"</span><span class="token punctuation">,</span>       <span class="token comment" spellcheck="true"> // 文件合并
+</span>    <span class="token string">"gulp-minify-css"</span><span class="token punctuation">:</span> <span class="token string">"^0.3.7"</span><span class="token punctuation">,</span>   <span class="token comment" spellcheck="true"> // // 压缩 css 
+</span>    <span class="token string">"gulp-rev"</span><span class="token punctuation">:</span> <span class="token string">"^1.1.0"</span><span class="token punctuation">,</span>          <span class="token comment" spellcheck="true"> // 给文件加版本号, 如 `script-$version$.js`
+</span>    <span class="token string">"gulp-sass"</span><span class="token punctuation">:</span> <span class="token string">"^0.7.3"</span><span class="token punctuation">,</span>     <span class="token comment" spellcheck="true"> // 编译 scss
+</span>    <span class="token string">"gulp-uglify"</span><span class="token punctuation">:</span> <span class="token string">"^1.0.0"</span>    <span class="token comment" spellcheck="true"> // 压缩 js
+</span>  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<p>保存后在根目录下运行以下命令下载 package</p>
+
+<pre class=" language-javascript"><code class=" language-javascript">npm install
+</code></pre>
+
+<h2>Gulpfile.js</h2>
+
+<p>在根目录下创建文件 <code>Gulpfile.js</code> , 填入以下内容:</p>
+
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> sass <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-sass'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> autoprefixer <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-autoprefixer'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> uglify <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-uglify'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> concat <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-concat'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> rev <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-rev'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> del <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'del'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> filename <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-asset-manifest'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> minifycss <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-minify-css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// Paths to your asset files
+</span><span class="token keyword">var</span> paths <span class="token operator">=</span> <span class="token punctuation">{</span>
+    frontend<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        scripts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'app/assets/js/jquery.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/bootstrap.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/moment.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/zh-cn.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/emojify.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/jquery.scrollUp.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/jquery.pjax.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/nprogress.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/jquery.autosize.min.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/prism.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/jquery.textcomplete.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/emoji.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/ekko-lightbox.js'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/js/main.js'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        styles<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'app/assets/css/bootstrap.min.css'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/css/font-awesome.min.css'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/css/main.css'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/css/markdown.css'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/css/nprogress.css'</span><span class="token punctuation">,</span>
+            <span class="token string">'app/assets/css/prism.css'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">
+// CSS task
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'css'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+   <span class="token comment" spellcheck="true"> // Convert scss first
+</span>    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>sass<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>scss'<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">sass<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">autoprefixer<span class="token punctuation">(</span></span><span class="token string">'last 10 version'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'app/assets/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true"> // Cleanup old assets
+</span>    <span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'public/assets/css/styles-*.css'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true"> // Prefix, compress and concat the CSS assets
+</span>   <span class="token comment" spellcheck="true"> // Afterwards add the MD5 hash to the filename
+</span>    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>paths<span class="token punctuation">.</span>frontend<span class="token punctuation">.</span>styles<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">concat<span class="token punctuation">(</span></span><span class="token string">'styles.css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">rev<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">filename<span class="token punctuation">(</span></span><span class="token punctuation">{</span> bundleName<span class="token punctuation">:</span> <span class="token string">'frontend.styles'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // This will create/update the assets.json file
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">minifycss<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'public/assets/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// JavaScript task
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true"> // Cleanup old assets
+</span>    <span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'public/assets/js/scripts-*.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true"> // Concat and uglify the JavaScript assets
+</span>   <span class="token comment" spellcheck="true"> // Afterwards add the MD5 hash to the filename
+</span>    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>paths<span class="token punctuation">.</span>frontend<span class="token punctuation">.</span>scripts<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">concat<span class="token punctuation">(</span></span><span class="token string">'scripts.js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">uglify<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">rev<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">filename<span class="token punctuation">(</span></span><span class="token punctuation">{</span> bundleName<span class="token punctuation">:</span> <span class="token string">'frontend.scripts'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // This will create/update the assets.json file
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'public/assets/js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'build'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'css'</span><span class="token punctuation">,</span> <span class="token string">'js'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'watch'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>sass<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>scss<span class="token string">', ['</span>css'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>css<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>css<span class="token string">', ['</span>css'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>js<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js<span class="token string">', ['</span>js'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// The default task (called when you run `gulp` from cli)
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'default'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'build'</span><span class="token punctuation">,</span> <span class="token string">'watch'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>关于上面代码的一些解释:</p>
+
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// 第一部分是引入 package
+</span><span class="token keyword">var</span> gulp <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 中间省略一堆
+<span class="token keyword">var</span> minifycss <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'gulp-minify-css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// 手动来设置这些文件, 这样的话会我们可以控制其合并文件时候
+</span><span class="token comment" spellcheck="true">// 的顺序, 以后要加入某个 js 或者 css 的时候都在此添加
+</span><span class="token keyword">var</span> paths <span class="token operator">=</span> <span class="token punctuation">{</span>
+    frontend<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        scripts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'app/assets/js/jquery.min.js'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 中间省略一堆
+            <span class="token string">'app/assets/js/main.js'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        styles<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+            <span class="token string">'app/assets/css/bootstrap.min.css'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 中间省略一堆
+            <span class="token string">'app/assets/css/prism.css'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">
+// CSS task
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'css'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+   <span class="token comment" spellcheck="true"> // 先编译 scss 
+</span>    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>sass<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>scss'<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">sass<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">autoprefixer<span class="token punctuation">(</span></span><span class="token string">'last 10 version'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'app/assets/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true"> // 清除之前的文件
+</span>    <span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'public/assets/css/styles-*.css'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>paths<span class="token punctuation">.</span>frontend<span class="token punctuation">.</span>styles<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // 处理scc 文件
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">concat<span class="token punctuation">(</span></span><span class="token string">'styles.css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // 合并
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">rev<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>                   <span class="token comment" spellcheck="true"> // 加版本号
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">filename<span class="token punctuation">(</span></span><span class="token punctuation">{</span> bundleName<span class="token punctuation">:</span> <span class="token string">'frontend.styles'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 生成 asset_manifest.json 文件
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">minifycss<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>             <span class="token comment" spellcheck="true"> // 压缩
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'public/assets/css'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true"> // 存放到 `public/assets/css` 文件夹
+</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// JavaScript task
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'js'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true"> // 清除之前的文件
+</span>    <span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">[</span><span class="token string">'public/assets/js/scripts-*.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    gulp<span class="token punctuation">.</span><span class="token function">src<span class="token punctuation">(</span></span>paths<span class="token punctuation">.</span>frontend<span class="token punctuation">.</span>scripts<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"> // 处理 js 文件列表
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">concat<span class="token punctuation">(</span></span><span class="token string">'scripts.js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true"> // 合并
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">uglify<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>                <span class="token comment" spellcheck="true"> // 压缩  
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">rev<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>                   <span class="token comment" spellcheck="true"> // 加版本号
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span><span class="token function">filename<span class="token punctuation">(</span></span><span class="token punctuation">{</span> bundleName<span class="token punctuation">:</span> <span class="token string">'frontend.scripts'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true"> // 生成 asset_manifest.json 文件
+</span>        <span class="token punctuation">.</span><span class="token function">pipe<span class="token punctuation">(</span></span>gulp<span class="token punctuation">.</span><span class="token function">dest<span class="token punctuation">(</span></span><span class="token string">'public/assets/js'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true"> // 存放到 `public/assets/js` 文件夹
+</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// 设置 build 任务, 此任务调用上面定义的 css 和  js 任务
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'build'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'css'</span><span class="token punctuation">,</span> <span class="token string">'js'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// 设置 build 任务, 方便开发, css 和 js 文件一修改, 立刻进行重新编译
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'watch'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>sass<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>scss<span class="token string">', ['</span>css'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>css<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>css<span class="token string">', ['</span>css'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gulp<span class="token punctuation">.</span><span class="token function">watch<span class="token punctuation">(</span></span>'app<span class="token operator">/</span>assets<span class="token operator">/</span>js<span class="token comment" spellcheck="true">/**/</span><span class="token operator">*</span><span class="token punctuation">.</span>js<span class="token string">', ['</span>js'<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
+// 默认命令行运行 `gulp` 的时候开始执行 build 和 watch 任务
+</span>gulp<span class="token punctuation">.</span><span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'default'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'build'</span><span class="token punctuation">,</span> <span class="token string">'watch'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+<h2>asset_manifest.json 文件</h2>
+
+<p>保存完上面文件后, 当我们在命令行下运行</p>
+
+<pre><code class="language-bash">gulp build
+</code></pre>
+
+<p>后, 就会在 <code>public/assets/js</code> 和 <code>public/assets/css</code> 生成最终会在模版里面使用的文件, 文件名: 
+* styles-$version$.css 
+* scripts-$version$.js</p>
+
+<p>其中 <code>$version$</code> 是变量, 每一次文件修改的时候, 都会不一样, 类似于 <code>scripts-39eb8a9a.js</code> 和 <code>styles-7c717f38.css</code>.</p>
+
+<h3>问题: <code>$version$</code> 会随着文件修改而变化, 模版里该怎么来引用他们?</h3>
+
+<p><code>asset_manifest.json</code> 文件的作用就是为了解决这个问题, 每一次文件一修改, 作为各种操作后, <code>gulp-asset-manifest</code> 插件会把修改后的文件名存放到此文件里面, 类似于这样:</p>
+
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">{</span>
+    <span class="token string">"frontend.scripts"</span><span class="token punctuation">:</span><span class="token punctuation">[</span>
+        <span class="token string">"scripts-39eb8a9a.js"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"frontend.styles"</span><span class="token punctuation">:</span><span class="token punctuation">[</span>
+        <span class="token string">"styles-7c717f38.css"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<p>那么接下需要做的事情就是写一个 php 脚本来读取并解析此文件, 获取最终处理好的 css 和 js 文件名, 并在模版里面引用.</p>
+
+<h2>Laravel4 的 asset-manager Package</h2>
+
+<p><code>asset-manager</code> 正是做了上面最后谈到的 <code>一个 php 脚本</code> 所做的事, 原始的项目在这里 <a href="https://github.com/modbase/asset-manager">modbase/asset-manager</a> , 可惜只支持 Laravel4.1, 原作者已经不再维护, 只能自己  folk 一份, 并做了些许修改 <a href="https://github.com/summerblue/asset-manager">summerblue/asset-manager</a> .</p>
+
+<h3>Composer 安装 <code>asset-manager</code></h3>
+
+<p>使用 repository 来安装, 在 composer.json 里面加入:</p>
+
+<pre class=" language-javascript"><code class=" language-javascript">    <span class="token string">"repositories"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"vcs"</span><span class="token punctuation">,</span>
+            <span class="token string">"url"</span><span class="token punctuation">:</span> <span class="token string">"https://github.com/summerblue/asset-manager"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span> 
+</code></pre>
+
+<p>在 require 节点下添加</p>
+
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token string">"summerblue/asset-manager"</span><span class="token punctuation">:</span> <span class="token string">"0.2.*"</span>
+</code></pre>
+
+<p>修改后如下图:</p>
+
+<p><img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/6d86d850gw1ejvmjkc3vqj20po0fn0uq.jpg" alt=""></p>
+
+<p>然后</p>
+
+<pre><code class="language-bash">composer update
+</code></pre>
+
+<p>修改 <code>app/config/app.php</code>, 在 <code>providers</code> 数组里面添加:</p>
+
+<pre class=" language-php"><code class=" language-php"><span class="token string">'Modbase\AssetManager\AssetManagerServiceProvider'</span>
+</code></pre>
+
+<p>至此部署完成, 接下来讲讲怎么使用.</p>
+
+<h2>一般使用</h2>
+
+<p>在修改 css 和 js 之前, 先在项目根目录下命令行执行 <code>gulp</code> :</p>
+
+<pre><code class="language-bash">➜  phphub git:(master) ✗ gulp
+[07:45:45] Using gulpfile ~/Projects/phphub.org/phphub/Gulpfile.js
+[07:45:45] Starting 'css'...
+[07:45:45] Finished 'css' after 12 ms
+[07:45:45] Starting 'js'...
+[07:45:45] Finished 'js' after 10 ms
+[07:45:45] Starting 'build'...
+[07:45:45] Finished 'build' after 5.17 μs
+[07:45:45] Starting 'watch'...
+[07:45:45] Finished 'watch' after 14 ms
+[07:45:45] Starting 'default'...
+[07:45:45] Finished 'default' after 5 μs
+[07:45:47] Starting 'css'...
+[07:45:47] Finished 'css' after 4.12 ms
+[07:45:47] Starting 'css'...
+[07:45:47] Finished 'css' after 4.13 ms
+</code></pre>
+
+<p>请让此命令行一直保持执行着, 因为 TA 正在监控着你的文件修改.</p>
+
+<p>需要添加 css 和 js 文件的话, 请到 <code>Gulpfile.js</code> 里面的 <code>paths</code> 选项下添加, 并重启 <code>gulp</code> 的监控.</p>
+
+<h3>添加 .gitignore 文件</h3>
+
+<p>修改根目录下的 <code>. gitignore</code> 文件, 添加这几行:</p>
+
+<pre><code>public/assets/css/*
+public/assets/js/*
+asset_manifest.json
+</code></pre>
+
+<p>这些是 gulp 的产生物, 不需要入版本.</p>
+
+<h3>生产环境下的部署</h3>
+
+<p>生产环境下, 每一次修改 assets 的话, 都需要执行此命令:</p>
+
+<pre><code class="language-bash">gulp build
+</code></pre>
+
+<p>如果是使用 envoy 进行远程部署的话, 只需要添加多一个 task :</p>
+
+<pre class=" language-php"><code class=" language-php">@<span class="token function">task<span class="token punctuation">(</span></span><span class="token string">'assets:publish'</span><span class="token punctuation">)</span>
+    cd <span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>www<span class="token operator">/</span>phphub
+    git pull origin master
+    gulp build
+@endtask
+</code></pre>
+
+<p>允许本地命令行下运行一条命令进行部署:</p>
+
+<pre><code class="language-bash">envoy run assets:publish
+</code></pre>
+
+<p>关于 Envoy 请见这里 <a href="http://phphub.org/topics/24">Laravel Envoy 优雅的 SSH 远程任务执行工具</a>.</p>
+
+<hr>
+
+<p><img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/sun_with_face.png" class="emoji" alt=":sun_with_face:" title=":sun_with_face:" align="absmiddle"> <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/sun_with_face.png" class="emoji" alt=":sun_with_face:" title=":sun_with_face:" align="absmiddle"> <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/sun_with_face.png" class="emoji" alt=":sun_with_face:" title=":sun_with_face:" align="absmiddle">  <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/sunflower.png" class="emoji" alt=":sunflower:" title=":sunflower:" align="absmiddle"> <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/sunglasses.png" class="emoji" alt=":sunglasses:" title=":sunglasses:" align="absmiddle"></p>
+
+<p>-- EOF --</p>
+
+</div>
+
+      <div class="ribbon">
+          <div class="ribbon-excellent">
+          <i class="fa fa-trophy"></i> 本帖已被设为精华帖！
+      </div>
+    
+          <div class="ribbon-wiki">
+          <i class="fa fa-graduation-cap"></i> 本帖已被设为社区 Wiki！
+      </div>
+      </div>
+    </div>
+
+    
+    <div class="panel-footer operate">
+
+  <div class="pull-left" style="font-size:15px;">
+    <a class="" href="http://service.weibo.com/share/share.php?url=https%3A%2F%2Fphphub.org%2Ftopics%2F49&amp;type=3&amp;pic=&amp;title=%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86" target="_blank" title="分享到微博">
+      <i class="fa fa-weibo"></i>
+    </a>
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fphphub.org%2Ftopics%2F49&amp;text=%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86&amp;via=phphub.org" class="" target="_blank" title="分享到 Twitter">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <a href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fphphub.org%2Ftopics%2F49" class="" target="_blank" title="分享到 Facebook">
+      <i class="fa fa-facebook"></i>
+    </a>
+    <a href="https://plus.google.com/share?url=https%3A%2F%2Fphphub.org%2Ftopics%2F49" class="" target="_blank" title="分享到 Google Plus">
+      <i class="fa fa-google-plus"></i>
+    </a>
+  </div>
+
+  <div class="pull-right">
+
+          <a style="cursor:pointer;" data-method="post" id="topic-attent-button" href="javascript:void(0);" data-url="https://phphub.org/attentions/49">
+        <i class="glyphicon glyphicon-eye-open"></i> <span>关注</span>
+      
+<form action="https://phphub.org/attentions/49" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+    
+          <a style="cursor:pointer;" data-method="post" id="topic-favorite-button" href="javascript:void(0);" data-url="https://phphub.org/favorites/49">
+        <i class="glyphicon glyphicon-bookmark"></i> <span>收藏</span>
+      
+<form action="https://phphub.org/favorites/49" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+    
+    
+    
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">添加附言</h4>
+      </div>
+
+     <form method="POST" action="https://phphub.org/topics/49/append" accept-charset="UTF-8"><input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+
+        <div class="modal-body">
+
+          <div class="alert alert-warning">
+              附加内容, 使用此功能的话, 会给所有参加过讨论的人发送提醒.
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" style="min-height: 20px; overflow: hidden; word-wrap: break-word; resize: horizontal; height: 88px;" placeholder="请使用 Markdown 格式书写 ;-)" name="content" cols="50" rows="10"></textarea>
+
+          </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="submit" class="btn btn-primary">提交</button>
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- Reply List -->
+  <div class="replies panel panel-default list-panel replies-index">
+    <div class="panel-heading">
+      <div class="total">回复数量: <b>11</b> </div>
+    </div>
+
+    <div class="panel-body">
+
+              <ul class="list-group row">
+
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/111">
+        <img class="media-object img-thumbnail avatar" alt="yzdel200" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/7234632.jpg" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/111" title="yzdel200" class="remove-padding-left author">
+            yzdel200
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-08-31 12:07:19">7个月前</abbr>
+        <span> •  </span>
+        <a name="reply217" class="anchor" href="#reply217" aria-hidden="true">#217</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-217" href="javascript:void(0);" data-url="https://phphub.org/replies/217/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/217/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('yzdel200');" title="回复 yzdel200"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p><a href="https://github.com/CodeSleeve/asset-pipeline">CodeSleeve/asset-pipeline</a>
+这个可以用。不过很久没更新了。</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/1">
+        <img class="media-object img-thumbnail avatar" alt="Summer" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/324764.jpg" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/1" title="Summer" class="remove-padding-left author">
+            Summer
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-08-31 12:51:32">7个月前</abbr>
+        <span> •  </span>
+        <a name="reply219" class="anchor" href="#reply219" aria-hidden="true">#219</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-219" href="javascript:void(0);" data-url="https://phphub.org/replies/219/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/219/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('Summer');" title="回复 Summer"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p><a href="http://phphub.org/users/111">@yzdel200</a> 大部分能找到的, 不是弃用了就是很久没有更新. gulp 是比较合理的方式.</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/34">
+        <img class="media-object img-thumbnail avatar" alt="lifesign" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/2189610.jpg" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/34" title="lifesign" class="remove-padding-left author">
+            lifesign
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-08-31 14:17:35">7个月前</abbr>
+        <span> •  </span>
+        <a name="reply220" class="anchor" href="#reply220" aria-hidden="true">#220</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-220" href="javascript:void(0);" data-url="https://phphub.org/replies/220/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/220/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('lifesign');" title="回复 lifesign"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p><img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/thumbsup.png" class="emoji" alt=":thumbsup:" title=":thumbsup:" align="absmiddle"> 想起了百度的fis 也是通过导出一个json配置来结合前后端</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/114">
+        <img class="media-object img-thumbnail avatar" alt="purekid" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/1232703.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/114" title="purekid" class="remove-padding-left author">
+            purekid
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-08-31 15:10:33">7个月前</abbr>
+        <span> •  </span>
+        <a name="reply222" class="anchor" href="#reply222" aria-hidden="true">#222</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-222" href="javascript:void(0);" data-url="https://phphub.org/replies/222/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/222/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('purekid');" title="回复 purekid"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>通过json导出配置应该是最通用的方式了，以前用着蛮不错的basset也是如此</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/132">
+        <img class="media-object img-thumbnail avatar" alt="Chitunet" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/6070154.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/132" title="Chitunet" class="remove-padding-left author">
+            Chitunet
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-09-02 23:58:10">7个月前</abbr>
+        <span> •  </span>
+        <a name="reply265" class="anchor" href="#reply265" aria-hidden="true">#265</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-265" href="javascript:void(0);" data-url="https://phphub.org/replies/265/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/265/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('Chitunet');" title="回复 Chitunet"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<h2>有点意思</h2>
+
+<p>***不过用起来有点复杂</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/16">
+        <img class="media-object img-thumbnail avatar" alt="xi4oh4o" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/141127.jpg" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/16" title="xi4oh4o" class="remove-padding-left author">
+            xi4oh4o
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-09-04 11:35:20">6个月前</abbr>
+        <span> •  </span>
+        <a name="reply293" class="anchor" href="#reply293" aria-hidden="true">#293</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-293" href="javascript:void(0);" data-url="https://phphub.org/replies/293/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/293/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('xi4oh4o');" title="回复 xi4oh4o"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>folk &gt; fork <img src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/thumbsup.png" class="emoji" alt=":thumbsup:" title=":thumbsup:" align="absmiddle"></p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/162">
+        <img class="media-object img-thumbnail avatar" alt="clippit" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/343973.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/162" title="clippit" class="remove-padding-left author">
+            clippit
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-09-04 14:25:19">6个月前</abbr>
+        <span> •  </span>
+        <a name="reply300" class="anchor" href="#reply300" aria-hidden="true">#300</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-300" href="javascript:void(0);" data-url="https://phphub.org/replies/300/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/300/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('clippit');" title="回复 clippit"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>我的上一个项目，用了类似的配置，不过最终不是生成 JSON 文件，而是直接生成 PHP 文件（使用了 gulp-template），放在 <code>config</code> 目录下，这样 Laravel 就可以直接读取。</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/3">
+        <img class="media-object img-thumbnail avatar" alt="monkey" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/3413430.jpg" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/3" title="monkey" class="remove-padding-left author">
+            monkey
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-09-12 11:23:17">6个月前</abbr>
+        <span> •  </span>
+        <a name="reply453" class="anchor" href="#reply453" aria-hidden="true">#453</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-453" href="javascript:void(0);" data-url="https://phphub.org/replies/453/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/453/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('monkey');" title="回复 monkey"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>Laravel 4 的 assets 管理一直是个诟病， 这个方案看起来不错， 下一个项目实践下。</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/211">
+        <img class="media-object img-thumbnail avatar" alt="bopo" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/77651.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/211" title="bopo" class="remove-padding-left author">
+            bopo
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-09-17 10:55:41">6个月前</abbr>
+        <span> •  </span>
+        <a name="reply523" class="anchor" href="#reply523" aria-hidden="true">#523</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-523" href="javascript:void(0);" data-url="https://phphub.org/replies/523/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/523/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('bopo');" title="回复 bopo"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>继续支持</p>
+
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/296">
+        <img class="media-object img-thumbnail avatar" alt="blue5tar" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/7549002.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/296" title="blue5tar" class="remove-padding-left author">
+            blue5tar
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2014-10-11 15:02:20">5个月前</abbr>
+        <span> •  </span>
+        <a name="reply745" class="anchor" href="#reply745" aria-hidden="true">#745</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-745" href="javascript:void(0);" data-url="https://phphub.org/replies/745/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/745/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('blue5tar');" title="回复 blue5tar"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>laravel 官方 Gulp tasks  <a href="https://github.com/laravel/elixir">https://github.com/laravel/elixir</a>   目前还木有文档。。。</p>
+      </div>
+
+    </div>
+
+  </li>
+     <li class="list-group-item media" style="margin-top: 0px;">
+
+    <div class="avatar pull-left">
+      <a href="https://phphub.org/users/870">
+        <img class="media-object img-thumbnail avatar" alt="songzj8" src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/1744034.png" style="width:48px;height:48px;">
+      </a>
+    </div>
+
+    <div class="infos">
+
+      <div class="media-heading meta">
+
+        <a href="https://phphub.org/users/870" title="songzj8" class="remove-padding-left author">
+            songzj8
+        </a>
+        <span> •  </span>
+        <abbr class="timeago" title="2015-02-15 11:39:07">1个月前</abbr>
+        <span> •  </span>
+        <a name="reply2478" class="anchor" href="#reply2478" aria-hidden="true">#2478</a>
+
+        <span class="operate pull-right">
+          <a style="cursor:pointer;" data-method="post" id="reply-up-vote-2478" href="javascript:void(0);" data-url="https://phphub.org/replies/2478/vote" title="Vote Up">
+             <i class="fa fa-thumbs-o-up" style="font-size:14px;"></i> 
+          
+<form action="https://phphub.org/replies/2478/vote" method="POST" style="display:none">
+   <input name="_method" value="post" type="hidden">
+   <input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+</form>
+</a>
+          <span> •  </span>
+
+                    <a class="fa fa-reply" href="javascript:void(0)" onclick="replyOne('songzj8');" title="回复 songzj8"></a>
+        </span>
+
+      </div>
+
+      <div class="media-body markdown-reply content-body">
+<p>elixir效果怎么样？ 在homestead上安装总不成功。</p>
+      </div>
+
+    </div>
+
+  </li>
+  
+</ul>
+      
+      <!-- Pager -->
+      <div class="pull-right" style="padding-right:20px">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Reply Box -->
+  <div class="reply-box form box-block">
+
+    
+    <form method="POST" action="https://phphub.org/replies" accept-charset="UTF-8" id="reply-form"><input name="_token" value="rTVzE5p75hLZ5b9C4MHGJj3Uz6d9pOJbIa0EvnNP" type="hidden">
+      <input name="topic_id" value="49" type="hidden">
+
+        <div id="reply_notice" class="box" style="display:none">
+    <ul class="helpblock list">
+      <li>请注意单词拼写，以及中英文排版，<a href="https://github.com/sparanoid/chinese-copywriting-guidelines">参考此页</a></li>
+      <li>支持 Markdown 格式, <strong>**粗体**</strong>、~~删除线~~、<code>`单行代码`</code>, 更多语法请见这里 <a href="https://github.com/riku/Markdown-Syntax-CN/blob/master/syntax.md">Markdown 语法</a></li>
+      <li>支持表情，见 <a href="http://www.emoji-cheat-sheet.com/" target="_blank" rel="nofollow">Emoji cheat sheet</a></li>
+      <li>@name 会链接到用户页面，并会通知他</li>
+      <li>上传图片, 支持拖拽和剪切板黏贴上传, 格式限制 - jpg, png, gif</li>
+    </ul>
+</div>
+        <div class="form-group">
+                          <textarea style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 124px;" class="form-control" disabled="disabled" rows="5" placeholder="需要登录后才能发表评论." name="body" cols="50"></textarea>
+                    </div>
+
+        <div class="form-group status-post-submit">
+
+                          <input class="btn btn-primary disabled" id="reply-create-submit" value="回复" type="submit">
+            
+            <span class="help-inline" title="Or Command + Enter">Ctrl+Enter</span>
+        </div>
+
+        <div class="box preview markdown-reply" id="preview-box" style="display:none;"></div>
+
+    </form>
+  </div>
+
+</div>
+
+<div class="col-md-3 side-bar">
+
+
+  <div class="panel panel-default corner-radius">
+
+          <div class="panel-heading text-center">
+        <h3 class="panel-title">Laravel</h3>
+      </div>
+    
+    <div class="panel-body text-center">
+      <div class="btn-group">
+        <a href="https://phphub.org/topics/create?node_id=8" class="btn btn-success btn-lg">
+          <i class="glyphicon glyphicon-pencil"> </i> 发 布 新 帖
+        </a>
+      </div>
+    </div>
+  </div>
+
+  
+  
+      <div class="panel panel-default corner-radius">
+      <div class="panel-heading text-center">
+        <h3 class="panel-title">节点下其他主题</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list">
+
+                      <li>
+            <a href="https://phphub.org/topics/579">
+              Mail 邮件内容输出或者代理方式发邮件求助
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/578">
+              中间件特性太好用了
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/575">
+              Laravel 5 做 App 后端的问题
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/573">
+              Laravel 中文转拼音 overtrue/laravel-pinyin
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/572">
+              所以说有人知道这是为什么么？
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/570">
+              Laravel 5 多语言包来啦，37 国语言随意换： overtrue/laravel-lang
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/569">
+              Laravel 5 与 Laravel 4.2   的主要差异和新功能
+            </a>
+            </li>
+                      <li>
+            <a href="https://phphub.org/topics/568">
+              homestead update 是否可以使用本地的 box 文件？
+            </a>
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  
+  <div class="panel panel-default corner-radius">
+    <div class="panel-heading text-center">
+      <h3 class="panel-title">小贴士</h3>
+    </div>
+    <div class="panel-body">
+      <a href="http://www.buzzsprout.com/11908" target="_blank">Laravel.io 博客</a> - 听 Laravel 社区的几个领导者谈论技术.
+    </div>
+  </div>
+
+
+  <div class="panel panel-default corner-radius">
+    <div class="panel-heading text-center">
+      <h3 class="panel-title">统计信息</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li>社区会员: 1056 </li>
+        <li>主题数: 539 </li>
+        <li>评论数: 2813 </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<div class="clearfix"></div>
+
+
+			</div>
+
+		</div>
+
+	  <div id="footer" class="footer">
+	    <div class="container small">
+	      <p class="pull-left">
+	      	<i class="fa fa-heart-o"></i> Made With Love By The EST Group. <br>
+			&nbsp;<i class="fa fa-lightbulb-o"></i> Inspired by v2ex &amp; ruby-china.
+	      </p>
+
+	      <p class="pull-right">
+	      	<i class="fa fa-cloud"></i> Powered by <a href="https://www.linode.com/?r=3cfb2c09c29cf2b6e6c87cc1f71ffdc2f9ea5722" target="_blank">Linode <i class="fa fa-external-link"></i></a>.
+	      </p>
+	    </div>
+	  </div>
+
+        <script src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/scripts-a0f0e0e4.js"></script>
+
+	    
+        		<script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-53903425-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        
+	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"229d5871c8","applicationID":"12032708","transactionName":"ZFdUZUMCV0UHUURdWl0dY0NYTFBYAldIGkVbQg==","queueTime":0,"applicationTime":91,"ttGuid":"","agentToken":"","atts":"SBBXEwsYREs=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-593.min.js"}</script>
+
+<a style="position: fixed; z-index: 2147483647; display: none;" href="#top" id="scrollUp">Scroll to top</a><textarea id="autosizejs" class="autosizejs" tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px none; padding: 0px; box-sizing: content-box; word-wrap: break-word; height: 0px ! important; min-height: 0px ! important; overflow: hidden; transition: none 0s ease 0s ; font-family: lato-regular,&quot;Helvetica Neue&quot;,Helvetica,Arial,&quot;Hiragino Sans GB&quot;,&quot;Microsoft YaHei&quot;,sans-serif; font-size: 13px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; word-spacing: 0px; text-indent: 0px; line-height: 18.5667px; width: 724px;">需要登录后才能发表评论.
+</textarea><script src="%E4%BD%BF%E7%94%A8%20Gulp%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%20Laravel4%20%E7%9A%84%20Assets%20%E7%AE%A1%E7%90%86_PHPHub%20-%20PHP%20&amp;%20Laravel%E7%9A%84%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA_files/nr-593.js"></script></body></html>

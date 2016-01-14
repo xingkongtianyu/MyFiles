@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.contents()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/miscellaneous-traversal/" title="View all posts in Miscellaneous Traversing">Miscellaneous Traversing</a></span>
+  
+  				</div>
+</div>
+<div id="contents1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.contents()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获得每个匹配元素集合元素的子元素，包括文字和注释节点。</p>
+<ul class="signatures"><li class="signature" id="contents"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.contents()</h4></li></ul>
+<div class="longdesc">
+<p>鉴于一个jQuery对象，表示一个DOM元素的集合，<code>.contents()</code>方法允许我们能够通过搜索这些元素和DOM树，并在他们的祖先从匹配的元素构造一个新的jQuery对象。<code>.contents()</code>和<code>.children()</code>方法类似，只不过前者包括文本节点以及jQuery对象中产生的HTML元素。</p>
+<p>如果IFRAME是在与主页同域，<code>.contents()</code>方法也可用于获取iframe中的文件内容。</p>
+<p>考虑一个简单<code>&lt;div&gt;</code>中一些文本节点，其中每个元素是相隔两换行符（<code>&lt;br /&gt;</code> ）：</p>
+<pre>&lt;div class="container"&gt;
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+  do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+  &lt;br /&gt;&lt;br /&gt;
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+  laboris nisi ut aliquip ex ea commodo consequat.
+  &lt;br /&gt; &lt;br /&gt;
+  Duis aute irure dolor in reprehenderit in voluptate velit 
+  esse cillum dolore eu fugiat nulla pariatur.
+&lt;/div&gt;
+</pre>
+<p>我们可以使用<code>.contents()</code>方法帮助转化为三合式团块为段文字：</p>
+<pre>
+$('.container').contents().filter(function() {
+  return this.nodeType == 3;
+})
+  .wrap('&lt;p&gt;&lt;/p&gt;')
+.end()
+.filter('br')
+  .remove();
+</pre>
+<p>此代码首先检索内容的<code>&lt;div class="container"&gt;</code>，然后过滤它的文本节点，它被包裹在段落标记。这是通过测试元素的<a href="https://developer.mozilla.org/en/nodeType"><code>.nodeType</code>属性</a>。这个DOM属性保存一个数字代码，以显示节点的类型;文本节点使用代码3。再次过滤的内容是，这个时间<code>&lt;br /&gt;</code>元素，这些元素都将被删除。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Find all the text nodes inside a paragraph and wrap them with a bold tag.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello &lt;a href="http://ejohn.org/"&gt;John&lt;/a&gt;, how are you doing?&lt;/p&gt;
+&lt;script&gt;$("p").contents().filter(function(){ return this.nodeType != 1; }).wrap("&lt;b/&gt;");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Change the background colour of links inside of an iframe.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;iframe src="http://api.jquery.com/" width="80%" height="600" id='frameDemo'&gt;&lt;/iframe&gt; 
+&lt;script&gt;$("#frameDemo").contents().find("a").css("background-color","#BADA55");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

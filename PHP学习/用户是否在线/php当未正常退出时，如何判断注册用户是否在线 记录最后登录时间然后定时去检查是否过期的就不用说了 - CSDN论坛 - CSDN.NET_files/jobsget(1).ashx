@@ -1,0 +1,1 @@
+document.write('<li><a href="http://www.csdn.net/article/2013-11-26/2817624-zte-jumps-on-smartwatch-bandwagon" target=_blank>中兴明年推智能手表 暂只能与自家手机搭配使用</a></li><li><a href="http://www.csdn.net/article/2013-11-26/2817620-microsoft-windows-Windows-RT-windows-Phone" target=_blank>微软高管：我们不会有三个版本的Windows</a></li>');

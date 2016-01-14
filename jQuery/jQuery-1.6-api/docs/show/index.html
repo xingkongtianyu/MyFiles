@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.show()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/basics/" title="View all posts in Basics">Basics</a></span>
+  
+  				</div>
+</div>
+<div id="show1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.show(  )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>说明： </strong>显示匹配的元素。</p>
+<ul class="signatures">
+<li class="signature" id="show"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.show()</h4></li>
+<li class="signature" id="show-duration-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.show( duration, [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="show-duration-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.show( [ duration ], [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>easing</strong>一个用来表示使用哪个缓冲函数来过渡的字符串。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果没有参数，<code>.show()</code>方法是最简单的方法来显示一个元素：</p>
+
+<pre>$('.target').show();
+</pre>
+<p>匹配的元素将被立即显示，没有动画。这大致相当于调用<code>.css('display', 'block')</code>，但<code>display</code>属性值保存在jQuery的数据缓存中，所以<code>display</code>可以方便以后可以恢复到其初始值。如果一个元素的<code>display</code>属性值为<code>inline</code>，然后是隐藏和显示，这个元素将再次显示<code>inline</code>。</p>
+<p>当提供一个持续时间参数，<code>.show()</code>成为一个动画方法。<code>.show()</code>方法将为匹配元素的宽度，高度，以及不透明度，同时进行动画。</p>
+<p>持续时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。</p>
+<p>如果提供回调函数参数，回调函数会在动画完成的时候调用。这个对于将不同的动画串联在一起按顺序排列是非常有用的。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是每执行一次回调匹配的元素，而不是作为一个整体的动画一次。</p>
+<p>我们可以给任何元素做动画，比如一个简单的图片：</p>
+<pre>&lt;div id="clickme"&gt;
+  Click here
+&lt;/div&gt;
+&lt;img id="book" src="book.png" alt="" width="100" height="123" /&gt;
+With the element initially hidden, we can show it slowly:
+$('#clickme').click(function() {
+  $('#book').show('slow', function() {
+    // Animation complete.
+  });
+});</pre>
+<p class="image four-across">
+  <img src="/images/0042_06_01.png" alt=""><img src="/images/0042_06_02.png" alt=""><img src="/images/0042_06_03.png" alt=""><img src="/images/0042_06_04.png" alt=""></p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">缓慢地显示所有隐藏的段落，600毫秒内完成的动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+      p { background:yellow; }
+      &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Show it&lt;/button&gt;
+
+      &lt;p style="display: none"&gt;Hello  2&lt;/p&gt;
+&lt;script&gt;
+    $("button").click(function () {
+    $("p").show("slow");
+    });
+    &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Animates all hidden divs to show fastly in order, completing each animation within 200 milliseconds. Once each animation is done, it starts the next one.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { background:#def3ca; margin:3px; width:80px; 
+  display:none; float:left; text-align:center; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;button id="showr"&gt;Show&lt;/button&gt;
+  &lt;button id="hidr"&gt;Hide&lt;/button&gt;
+  &lt;div&gt;Hello 3,&lt;/div&gt;
+
+  &lt;div&gt;how&lt;/div&gt;
+  &lt;div&gt;are&lt;/div&gt;
+  &lt;div&gt;you?&lt;/div&gt;
+&lt;script&gt;
+$("#showr").click(function () {
+  $("div:eq(0)").show("fast", function () {
+    /* use callee so don't have to name the function */
+    $(this).next("div").show("fast", arguments.callee);
+  });
+});
+$("#hidr").click(function () {
+  $("div").hide(2000);
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Shows all span and input elements with an animation. Once the animation is done, it changes the text.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { display:none; }
+  div { display:none; }
+  p { font-weight:bold; background-color:#fcd; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Do it!&lt;/button&gt;
+  &lt;span&gt;Are you sure? (type 'yes' if you are) &lt;/span&gt;
+  &lt;div&gt;
+    &lt;form&gt;
+      &lt;input type="text"  value="as;ldkfjalsdf"/&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+  &lt;p style="display:none;"&gt;I'm hidden...&lt;/p&gt;
+  
+&lt;script&gt;
+function doIt() {
+  $("span,div").show("slow");
+}
+/* can pass in function name */
+$("button").click(doIt);
+
+$("form").submit(function () {
+  if ($("input").val() == "yes") {
+    $("p").show(4000, function () {
+      $(this).text("Ok, DONE! (now showing)");
+    });
+  }
+  $("span,div").hide("fast");
+  /* to stop the submit */
+  return false; 
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

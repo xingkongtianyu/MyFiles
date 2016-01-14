@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">jQuery.sub()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/core/" title="View all posts in Core">Core</a></span>
+  
+
+          </div>
+
+</div>
+<div id="jQuery-sub1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.sub()</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>可创建一个新的jQuery副本，不影响原有的jQuery对像。</p>
+<ul class="signatures"><li class="signature" id="jQuery-sub"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.5/">1.5</a></span>jQuery.sub()</h4></li></ul>
+<div class="longdesc">
+<p>
+有两个具体使用jQuery.sub（）创建案例。首先是提供完全没有破坏jQuery原有一切的方法，另一个用于帮助做jQuery插件封装和基本命名空间。</p>
+<p>请注意，jQuery.sub（）不会做任何特殊的隔离 - 这不是它的意图。所有关于jQuery的sub'd版本的方法将仍然指向原来的jQuery。（绑定和触发仍将通过主jQuery的事件，数据将通过主绑定的元素的jQuery，Ajax的查询和活动将通过主jQuery的运行，等等）。</p>
+<p>请注意，如果你正在寻找使用这个开发插件，应首先<i>认真</i>考虑使用一些类似jQuery UI widget工厂，这两个状态和插件管理子方法。 <a href="http://blog.nemikor.com/2010/05/15/building-stateful-jquery-plugins/">使用jQuery UI widget的一些例子</a>建立一个插件。</p>
+<p>这种方法的具体使用情况下可以通过一些例子最好的描述。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">添加一个jQuery的方法，以便它不会受到外部分：</span>
+</h4>
+<pre><code class="example">  (function(){
+    var sub$ = jQuery.sub();
+
+    sub$.fn.myCustomMethod = function(){
+      return 'just for me';
+    };
+
+    sub$(document).ready(function() {
+      sub$('body').myCustomMethod() // 'just for me'
+    });
+  })();
+  
+  typeof jQuery('body').myCustomMethod // undefined</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">改写一些jQuery的方法，以提供新的功能。
+</span>
+</h4>
+<pre><code class="example">
+(function() {
+  var myjQuery = jQuery.sub();
+
+  myjQuery.fn.remove = function() {
+    // New functionality: Trigger a remove event
+    this.trigger("remove");
+
+    // Be sure to call the original jQuery remove method
+    return jQuery.fn.remove.apply( this, arguments );
+  };
+
+  myjQuery(function($) {
+    $(".menu").click(function() {
+      $(this).find(".submenu").remove();
+    });
+
+    // A new remove event is now triggered from this copy of jQuery
+    $(document).bind("remove", function(e) {
+      $(e.target).parent().hide();
+    });
+  });
+})();
+
+// Regular jQuery doesn't trigger a remove event when removing an element
+// This functionality is only contained within the modified 'myjQuery'.</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">创建一个插件，它返回插件的具体办法。
+</span>
+</h4>
+<pre><code class="example">
+(function() {
+  // Create a new copy of jQuery using sub()
+  var plugin = jQuery.sub();
+
+  // Extend that copy with the new plugin methods
+  plugin.fn.extend({
+    open: function() {
+      return this.show();
+    },
+    close: function() {
+      return this.hide();
+    }
+  });
+
+  // Add our plugin to the original jQuery
+  jQuery.fn.myplugin = function() {
+    this.addClass("plugin");
+
+    // Make sure our plugin returns our special plugin version of jQuery
+    return plugin( this );
+  };
+})();
+
+$(document).ready(function() {
+  // Call the plugin, open method now exists
+  $('#main').myplugin().open();
+
+  // Note: Calling just $("#main").open() won't work as open doesn't exist!
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

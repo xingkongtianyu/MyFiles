@@ -1,0 +1,682 @@
+
+PHP设计模式之：工厂模式
+(2012-09-18 21:16:07)
+转载▼
+标签：
+php
+设计模式
+工厂模式
+it
+杂谈
+	分类： PHP设计模式
+工厂模式：
+
+由工厂类根据参数来决定创建出哪一种产品类的实例；
+
+工厂类是指包含了一个专门用来创建其他对象的方法的类。所谓按需分配，传入参数进行选择，返回具体的类。工厂模式的最主要作用就是对象创建的封装、简化创建对象操作。 
+
+简单的说，就是调用工厂类的一个方法（传入参数）来得到需要的类；
+
+代码实现：
+
+示例1（最基本的工厂类）：
+
+<?php
+
+ 
+
+class MyObject {
+
+ 
+
+public function __construct(){}
+
+ 
+
+public function test(){
+
+return '测试';
+
+}
+
+ 
+
+}
+
+ 
+
+class MyFactory {
+
+ 
+
+public static function factory(){
+
+//返回对象的实例
+
+return new MyObject();
+
+}
+
+ 
+
+}
+
+ 
+
+//调用工厂类MyFactory中的静态方法,获取类MyObject的实例
+
+$myobject=MyFactory::factory();
+
+echo $myobject->test();
+
+ 
+
+示例2：
+
+<?php
+
+//简单工厂模式
+
+/1*
+
+ * 定义运算类
+
+ */
+
+abstract class Operation {
+
+ 
+
+protected $_NumberA = 0;
+
+protected $_NumberB = 0;
+
+protected $_Result  = 0;
+
+ 
+
+public function __construct($A,$B){
+
+$this->_NumberA = $A;
+
+$this->_NumberB = $B;
+
+}
+
+ 
+
+public function setNumber($A,$B){
+
+$this->_NumberA = $A;
+
+$this->_NumberB = $B;
+
+}
+
+ 
+
+/1*
+
+protected function clearResult(){
+
+$this->_Result  = 0;
+
+}
+
+*/
+
+ 
+
+public function clearResult(){
+
+$this->_Result  = 0;
+
+}
+
+ 
+
+//抽象方法无方法体
+
+abstract protected function getResult();
+
+ 
+
+}
+
+ 
+
+//继承一个抽象类的时候，子类必须实现抽象类中的所有抽象方法；
+
+//另外，这些方法的可见性 必须和抽象类中一样（或者更为宽松）
+
+class OperationAdd extends Operation {
+
+ 
+
+public function getResult(){
+
+$this->_Result=$this->_NumberA + $this->_NumberB;
+
+return $this->_Result;
+
+}
+
+ 
+
+}
+
+ 
+
+class OperationSub extends Operation {
+
+ 
+
+public function getResult(){
+
+$this->_Result=$this->_NumberA - $this->_NumberB;
+
+return $this->_Result;
+
+}
+
+ 
+
+}
+
+ 
+
+class OperationMul extends Operation {
+
+ 
+
+public function getResult(){
+
+$this->_Result=$this->_NumberA * $this->_NumberB;
+
+return $this->_Result;
+
+}
+
+ 
+
+}
+
+ 
+
+class OperationDiv extends Operation {
+
+ 
+
+public function getResult(){
+
+$this->_Result=$this->_NumberA / $this->_NumberB;
+
+return $this->_Result;
+
+}
+
+ 
+
+}
+
+ 
+
+class OperationFactory {
+
+ 
+
+//创建保存实例的静态成员变量
+
+private static $obj;
+
+ 
+
+//创建访问实例的公共的静态方法
+
+public static function CreateOperation($type,$A,$B){
+
+switch($type){
+
+case '+':
+
+self::$obj = new OperationAdd($A,$B);
+
+break;
+
+case '-':
+
+self::$obj = new OperationSub($A,$B);
+
+break;
+
+case '*':
+
+self::$obj = new OperationMul($A,$B);
+
+break;
+
+case '/':
+
+self::$obj = new OperationDiv($A,$B);
+
+break;
+
+}
+
+return self::$obj;
+
+}
+
+ 
+
+}
+
+ 
+
+//$obj = OperationFactory::CreateOperation('+');
+
+//$obj->setNumber(4,4);
+
+$obj = OperationFactory::CreateOperation('*',5,6);
+
+echo $obj->getResult();
+
+/1*
+
+echo '<br>';
+
+$obj->clearResult();
+
+echo '<br>';
+
+echo $obj->_Result;
+
+*/
+
+ 
+
+示例3：
+
+<?php
+
+//抽象工厂
+
+ 
+
+//青铜会员的打折商品
+
+class BronzeRebateCommodity {
+
+//描述
+
+public $desc = '青铜会员的打折商品';
+
+}
+
+ 
+
+//白银会员的打折商品
+
+class SilverRebateCommodity {
+
+public $desc = '白银会员的打折商品';
+
+}
+
+ 
+
+//青铜会员的推荐商品
+
+class BronzeCommendatoryCommodity {
+
+public $desc = '青铜会员的推荐商品';
+
+}
+
+ 
+
+//白银会员的推荐商品
+
+class SilverCommendatoryCommodity {
+
+public $desc = '白银会员的推荐商品';
+
+}
+
+ 
+
+//各个工厂的接口
+
+interface ConcreteFactory {
+
+//生产对象的方法
+
+public function create($what);
+
+}
+
+ 
+
+//青铜工厂
+
+class BronzeFactory implements ConcreteFactory {
+
+ 
+
+//生产对象的方法
+
+public function create($what){
+
+$productName = 'Bronze'.$what.'Commodity';
+
+return new $productName;
+
+}
+
+ 
+
+}
+
+ 
+
+//白银工厂
+
+class SilverFactory implements ConcreteFactory {
+
+ 
+
+//生产对象的方法
+
+public function create($what){
+
+$productName = 'Silver'.$what.'Commodity';
+
+return new $productName;
+
+}
+
+ 
+
+}
+
+ 
+
+//调度中心
+
+class CenterFactory {
+
+ 
+
+//获取工厂的方法
+
+public function getFactory($what){
+
+$factoryName = $what.'Factory';
+
+return new $factoryName;
+
+}
+
+ 
+
+//获取工厂的静态方法
+
+public static function getFactory2($what){
+
+$factoryName = $what.'Factory';
+
+return new $factoryName;
+
+}
+
+ 
+
+}
+
+ 
+
+//实例化调度中心
+
+$center  = new CenterFactory();
+
+//获得一个白银工厂
+
+$factory = $center->getFactory('Silver');
+
+//让白银工厂制造一个推荐商品
+
+$product = $factory->create('Commendatory');
+
+//得到白银会员的推荐商品
+
+echo $product->desc.'<br>';
+
+ 
+
+//获得一个青铜工厂
+
+$factory2 = CenterFactory::getFactory2('Bronze');
+
+//让青铜工厂制造一个打折商品
+
+$product2 = $factory2->create('Rebate');
+
+//得到青铜会员的推荐商品
+
+echo $product2->desc;
+
+ 
+
+示例4：
+
+<?php
+
+//使用工厂类解析图像文件
+
+interface IImage {
+
+ 
+
+function getWidth();
+
+function getHeight();
+
+function getData();
+
+ 
+
+}
+
+ 
+
+class Image_PNG implements IImage {
+
+ 
+
+protected $_width,$_height,$_data;
+
+ 
+
+public function __construct($file){
+
+$this->_file = $file;
+
+$this->_parse();
+
+}
+
+ 
+
+private function _parse(){
+
+//完成PNG格式的解析工作
+
+//并填充$_width,$_height和$_data
+
+$this->_data   = getimagesize($this->_file);
+
+list($this->_width,$this->_height)=$this->_data;
+
+}
+
+ 
+
+public function getWidth(){
+
+return $this->_width;
+
+}
+
+ 
+
+public function getHeight(){
+
+return $this->_height;
+
+}
+
+ 
+
+public function getData(){
+
+return $this->_data;
+
+}
+
+ 
+
+}
+
+ 
+
+class Image_JPEG implements IImage {
+
+ 
+
+protected $_width,$_height,$_data;
+
+ 
+
+public function __construct($file){
+
+$this->_file = $file;
+
+$this->_parse();
+
+}
+
+ 
+
+private function _parse(){
+
+//完成JPEG格式的解析工作
+
+//并填充$_width,$_height和$_data
+
+//$this->_width  = imagesx($this->_file);
+
+//$this->_height = imagesy($this->_file);
+
+$this->_data   = getimagesize($this->_file);
+
+list($this->_width,$this->_height)=$this->_data;
+
+}
+
+ 
+
+public function getWidth(){
+
+return $this->_width;
+
+}
+
+ 
+
+public function getHeight(){
+
+return $this->_height;
+
+}
+
+ 
+
+public function getData(){
+
+return $this->_data;
+
+}
+
+ 
+
+}
+
+ 
+
+//工厂类
+
+class ImageFactory {
+
+ 
+
+public static function factory($file){
+
+ 
+
+$filename = pathinfo($file);
+
+switch(strtolower($filename['extension'])){
+
+case 'jpg':
+
+$return = new Image_JPEG($file);
+
+break;
+
+case 'png':
+
+$return = new Image_PNG($file);
+
+break;
+
+default:
+
+echo '图片类型不正确';
+
+break;
+
+}
+
+if($return instanceof IImage){
+
+return $return;
+
+}else{
+
+echo '出错了';
+
+exit();
+
+}
+
+ 
+
+}
+
+ 
+
+}
+
+ 
+
+$image = ImageFactory::factory('images/11.jpg');
+
+var_dump($image->getWidth());
+
+echo '<br>';
+
+print_r($image->getheight());
+
+echo '<br>';
+
+print_r($image->getData()); 

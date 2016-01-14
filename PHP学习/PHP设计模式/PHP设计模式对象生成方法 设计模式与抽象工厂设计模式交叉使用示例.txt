@@ -1,0 +1,88 @@
+
+PHP设计模式对象生成方法 设计模式与抽象工厂设计模式交叉使用示例
+2010年10月10日  2,089 次浏览 陈华 抢沙发
+
+<?php
+/*
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式对象生成方法
+ * PHP工厂模式不难理解，顾名思义，就是一个加工厂，然后工厂是制造产品的，只要制造产品
+ * 就必须有几个要素：“方法”，“模型”，“工厂车间”。
+ */
+
+/*示例 单例设计模式与抽象工厂 设计模式交叉使用
+ * */
+
+class setclass {//参数设置类
+ static $type=”zhangsan”;
+}
+class pepole{}
+class zhangsan extends pepole{
+ function getName(){
+  return “zhangsan”;
+ }
+}
+class lisi extends pepole{
+ function getName(){
+  return “lisi”;
+ }
+}
+class make_class {
+    private static $instance;//单例模式应有的静态属性
+    private $class_name;
+    private $class_name_str;
+ 
+ private function __construct(){
+  $this->make();
+ }
+ 
+    private function make(){
+     switch (setclass::$type){
+      case “zhangsan”:
+       $this->class_name=new zhangsan();
+       break;
+      case “lisi”:
+       $this->class_name=new lisi();
+       break; 
+     }
+    }
+   
+    public static function getInstance(){
+     if (empty(self::$instance)){
+      self::$instance= new self();//返回当前类的实例，如同new make_class()
+     }
+     return self::$instance;
+    }
+   
+    public function setClassName($name){
+     $this->class_name_str=$name;
+    }
+   
+    public function getClassName(){
+     return $this->class_name_str;
+    }
+    public function getPepole(){
+     return $this->class_name;
+    }
+}
+
+$pepole=make_class::getInstance();//实例化单例模式的类
+
+$p1=$pepole->getInstance();//获取按照参数类（class setclass）生成的实例
+
+$p1->setClassName(“www.chhua.com“);
+
+$zhangsan=$p1->getPepole();//获取最终成品类
+
+echo $zhangsan->getName();//输出最终类的方法
+
+unset($p1);//注销第一个实例之后
+$p2=$pepole->getInstance();//再获取一个实例
+
+echo $p2->getClassName();//输出的照样是实例一设置的属性:“www.chhua.com”，这是单例模式的最大特点
+/*
+ * 单例模式再总结：
+ * 一、单例模式不能直接实例化
+ * 二、单例模式最少要有一个静态方法
+ * 三、单例模式直接通过静态方法来实例化一个类
+ * 四、单例模式的属性只要被实例A设置之后，那么通过这个类实例化之后的B，C,D全能共享*/
+?> 

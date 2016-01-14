@@ -1,0 +1,25 @@
+1. 定期备份网站代码和文件
+脚本web.sh
+#!/bin/bash 
+cd /home/wwwroot 
+date=`date -I`; 
+# backup website 
+/bin/tar -cjf ./backup/website_$date.tar.bz2 website 
+# romove old data 
+find ./backup -type f -mtime +7 -exec rm -f {} \
+脚本原理：先进入备份目录；然后定义日期格式；按日器执行备份；删除旧的备份数据（7天前）。
+
+2. 定期备份数据库
+脚本db.sh
+#!/bin/bash 
+cd /home/wwwroot/backup 
+date=`date -I`; 
+/usr/bin/mysqldump -u root --password=123456 website > website_$date.sql 
+/bin/gzip -9 website_$date.sql
+上述脚本中-u后接数据库用户名， –password后接数据库密码，紧接着是数据库名，>后面是备份的目录。
+gzip -9 是用最高的压缩率把导出的数据库进行压缩。
+
+3. 定期执行任务
+crontab -e
+58 23 * * * /home/wwwroot/backup/web.sh 
+59 23 * * * /home/wwwroot/backup/db.sh

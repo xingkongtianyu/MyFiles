@@ -1,0 +1,100 @@
+ 我们知道PHP语言作为开源社区的一员，提供了各种模板引擎，如FastTemplate，Smarty，SimpleTemplate等，而Smarty是现在使用得比较多的PHP模板引擎，下面介绍Smarty的缓存操作技巧。
+
+一、使用缓存
+
+要开启smarty的缓存,只需将caching设为true,并指定cache_dir即可.
+
+使用cache_lefetime指定缓存生存时间,单位为秒
+
+要对相同页面生成多个不同的缓存,在display或fetch中加入第二参数cache_id,如$smarty->display('index.tpl',$my_cache_id);此特性可用于对不同的$_GET进行不同的缓存
+
+二、清除缓存
+
+clear_all_cache();//清除所有缓存  
+clear_cache('index.tpl');//清除index.tpl的缓存  
+clear_cache('index.tpl',cache_id);//清除指定id的缓存 
+三、使用自定义缓存方式
+
+设置cache_handler_func使用自定义的函数处理缓存
+如:
+
+$smarty->cache_handler_func = "myCache";  
+function myCache($action, &$smarty_obj, &$cache_content, $tpl_file=null, 
+$cache_id=null, $compile_id=null)  
+{  
+} 
+该函数的一般是根椐$action来判断缓存当前操作:
+
+switch($action){  
+case "read"://读取缓存内容  
+case "write"://写入缓存  
+case "clear"://清空  
+} 
+一般使用md5($tpl_file.$cache_id.$compile_id)作为唯一的cache_id
+
+如果需要,可使用gzcompress和gzuncompress来压缩和解压
+
+四、局部关闭缓存
+
+要在某些区域使缓存失效(只对需要的缓存),有几种方法:
+
+insert:
+
+定义一个insert标签要使用的处理函数,函数名格式为:
+
+insert_xx(array $params, object &$smarty) 
+其中的xx是insert的name,也就是说,如果你定义的函数为insert_abc,则模板中使用方法为
+
+{insert name='abc'} 
+参数通过$params传入
+
+也可以做成insert插件,文件名命名为:insert.xx.php,函数命名为:smarty_insert_aa($params,&$smarty),xx定义同上
+
+register_block:
+
+定义一个
+
+block:  
+smarty_block_name($params,$content, &$smarty)  
+{  
+return $content;  
+} //name表示区域名 
+注册
+
+blocksmarty->register_block('name', 'smarty_block_name', false);   
+//第三参数false表示该区域不被缓存 
+模板写法:{name}内容{/name}
+
+写成block插件:
+
+1)定义一件插件函数:block.cacheless.php,放在smarty的plugins目录
+
+block.cacheless.php的内容如下:
+
+<?php  
+function smarty_block_cacheless($param, $content, &$smarty) {  
+return $content;  
+}  
+?> 
+2) 编写程序及模板
+
+示例程序:testCacheLess.php
+
+<?php  
+include('Smarty.class.php');  
+$smarty = new Smarty;  
+$smarty->caching=true;  
+$smarty->cache_lifetime = 6;  
+$smarty->display('cache.tpl');  
+?> 
+所用的模板:cache.tpl
+
+已经缓存的
+
+{$smarty.now}<br>  
+{cacheless} 
+没有缓存的:
+
+{$smarty.now}  
+{/cacheless} 
+到这，就给大家介绍完了。建议大家看看这两篇文章，《PHP模板之Smarty教程》和《详细介绍PHP模板引擎Smarty》，供大家参考。

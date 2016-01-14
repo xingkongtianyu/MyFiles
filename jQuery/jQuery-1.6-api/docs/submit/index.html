@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.submit()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/form-events/" title="View all posts in Form Events">Form Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span>
+  
+  				</div>
+</div>
+<div id="submit1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.submit( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述L： </strong>为 "submit" 事件绑定一个处理函数，或者触发元素上的 "submit" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="submit-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.submit( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="submit-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.submit( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="submit"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.submit()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('submit', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('submit')</code> 的快捷方式。</p>
+
+<p>当用户试图提交表单时，<code>submit</code>事件将被发送到一个元素。它只能附加在<code>&lt;form&gt;</code>元素。表单可以通过点击一个明确的<code>&lt;input type="submit"&gt;</code>, <code>&lt;input type="image"&gt;</code>, 或者 <code>&lt;button type="submit"&gt;</code>，或者当某些表单元素获取焦点时敲击<kbd>Enter</kbd>（回车键），都可以提交。</p>
+<blockquote><p>根据不同的浏览器，如果表单只能有一个文本字段，回车键可能只会导致一个表单提交，或仅当有一个当前的提交按钮。该接口不应该依赖于一个特定的行为，除非这一关键问题是通过观察就按下回车键KeyPress事件被迫的。（The interface should not rely on a particular behavior for this key unless the issue is forced by observing the keypress event for presses of the Enter key.）</p></blockquote>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;form id="target" action="destination.html"&gt;
+  &lt;input type="text" value="Hello there" /&gt;
+  &lt;input type="submit" value="Go" /&gt;
+&lt;/form&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p>这个事件处理程序可以绑定到表单</p>
+<pre>$('#target').submit(function() {
+  alert('Handler for .submit() called.');
+  return false;
+});</pre>
+<p>现在当表单提交时，警告将被显示。出现这种情况的实际提交之前，所以我们可以通过调用事件对象的<code>.preventDefault()</code>或在处理函数中返回 <code>false</code> 来取消提交：</p>
+<pre>$('#other').click(function() {
+  $('#target').submit();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span> 同样会警报显示。此外，默认的<code>submit</code>表单上的动作上会被触发，所以表格将被提交。</p>
+<p>JavaScript的<code>submit</code>事件不会在Internet Explorer的泡沫。However, scripts that rely on event delegation with the <code>submit</code> event will work consistently across browsers as of jQuery 1.4, which has normalized the event's behavior. </p>
+</div>
+<h3 id="notes-0">Additional Notes:</h3>
+<div class="longdesc"><ul><li>表单及他们的子元素不应该使元素名称或ID属性冲突，比如<code>submit</code>, <code>length</code>, 或 <code>method</code>。名称冲突可能会导致混乱的失败。对于一个完整的规则列表，并检查这些问题标记，看<a href="http://yura.thinkweb2.com/domlint/">DOMLint</a>。
+</li></ul></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">If you'd like to prevent forms from being submitted unless a flag variable is set, try:</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { margin:0; color:blue; }
+  div,p { margin-left:10px; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Type 'correct' to validate.&lt;/p&gt;
+  &lt;form action="javascript:alert('success!');"&gt;
+    &lt;div&gt;
+      &lt;input type="text" /&gt;
+
+      &lt;input type="submit" /&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  &lt;span&gt;&lt;/span&gt;
+&lt;script&gt;
+
+    $("form").submit(function() {
+      if ($("input:first").val() == "correct") {
+        $("span").text("Validated...").show();
+        return true;
+      }
+      $("span").text("Not valid!").show().fadeOut(1000);
+      return false;
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">If you'd like to prevent forms from being submitted unless a flag variable is set, try:</span>
+</h4>
+<pre><code class="example">$("form").submit( function () {
+  return this.some_flag_variable;
+} );</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">To trigger the submit event on the first form on the page, try:</span>
+</h4>
+<pre><code class="example">$("form:first").submit();</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,35 @@
+伪静态设置
+一、Apache 下伪静态设置
+
+请首先咨询您的空间服务商，空间是否支持 Rewrite 以及是否支持对站点目录中 .htaccess 的文件解析，否则即便按照下面的方法设置好了，也无法使用。（需要服务器支持Apache的Mod_Rewrite功能）
+
+1、首先您需要找到 Apache 安装目录，之后找到 conf 目录下的 httpd.conf 文件。
+
+2、将下面的代码复制到 httpd.conf 文件中，注意将 /phpcms 替换为您的商店的实际 安装目录。
+
+    <Directory /phpcms>    
+      Options FollowSymLinks   
+      AllowOverride All   
+    </Directory>  
+
+3、在 httpd.conf 中搜索 LoadModule rewrite_module，将该行前面的 # 号删除。 如果您的 Apache 是1.3.x版本还需要查找 AddModule mod_rewrite.c， 请将前面的#删除。
+
+4、保存 httpd.conf。
+
+5、将doc目录下的.htacces复制到 phpcms 根目录下。
+
+6、重新启动 Apache。
+二、IIS 服务器
+
+1、首先请进入以下网址 http://www.helicontech.com/download/，下载免费版的 ISAPI_Rewrite组件：ISAPI_Rewrite Lite ( freeware )。如果您仅仅是测试用途使用 这个就足够了，如果您是商业应用建议您购买完整版的 ISAPI_Rewrite Full。
+
+2、点击下载到本地的文件 isapi_rwl_x86_0064.msi （该文件名和您下载的版本有关） 进行安装，安装成功之后进入安装目录（默认在 C:/Program Files/Helicon/ISAPI_Rewrite）找到httpd.ini文件，点击右键将文件只读 属性去掉。然后进入： 开始菜单->程序->Helicon->ISAPI_Rewrite->httpd.ini， 点击打开 httpd.ini 文件。
+[ISAPI_Rewrite]   
+
+    # 为了确保重写规则不影响服务器上的其他站点   
+    # 请将下面的语句前的#号去掉，并将(?:www\.)?site1\.com改为商店所在域名    
+    #RewriteCond %{HTTP:Host} (?:www\.)?site1\.com     
+    RewriteRule ^(.*)show-([0-9]+)-([0-9]+)\.html$ $1/show.php?contentid=$2&page=$3  
+    RewriteRule ^(.*)list-([0-9]+)-([0-9]+)\.html$ $1/list.php?catid=$2&page=$3  
+    RewriteRule ^(.*)show-([0-9]+)\.html$ $1/show.php?specialid=$2  
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.outerHeight()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/dimensions/" title="View all posts in Dimensions">Dimensions</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>
+  
+  				</div>
+</div>
+<div id="outerHeight1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.outerHeight( [ includeMargin ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Integer">Integer</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，border和选择性的margin。</p>
+<ul class="signatures"><li class="signature" id="outerHeight-includeMargin">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.6/">1.2.6</a></span>.outerHeight( [ includeMargin ] )</h4>
+<p class="arguement"><strong>includeMargin</strong>一个表明是否在计算时包含元素的margin的布尔值。</p>
+</li></ul>
+<div class="longdesc">
+<p>在<code>.outerHeight()</code>计算中总是包含padding-top ,padding-bottom 和 border-top，border-bottom ；如果<code>includeMargin</code>参数是<code>true</code>，那么margin (top 和 bottom)也会被包含。</p>
+<p>这个方法不适用于window and document对象，可以使用<code><a href="#p=height">.height()</a></code>代替。 </p>
+<p class="image"><img src="/images/0042_04_03.png"></p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">获取一个段落的outerHeight。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { margin:10px;padding:5px;border:2px solid #666; } &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;script&gt;var p = $("p:first");
+$("p:last").text( "outerHeight:" + p.outerHeight() + " , outerHeight(true):" + p.outerHeight(true) );&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

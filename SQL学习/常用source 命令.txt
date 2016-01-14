@@ -1,0 +1,6 @@
+常用source 命令
+进入mysql数据库控制台,
+如mysql -u root -p
+mysql>use 数据库
+然后使用source命令,后面参数为脚本文件(如这里用到的.sql)
+mysql>source d:wcnc_db.sql

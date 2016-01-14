@@ -1,0 +1,6 @@
+
+(new PopularQueryRenderer(document.getElementById("queries"))).render({
+"title" : "google搜索",
+"popularQueries" : [
+]
+})

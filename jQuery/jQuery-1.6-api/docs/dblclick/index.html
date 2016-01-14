@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.dblclick()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+<div id="dblclick1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.dblclick( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "dblclick" 事件绑定一个处理函数，或者触发元素上的 "dblclick" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="dblclick-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.dblclick( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="dblclick-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.dblclick( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="dblclick"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.dblclick()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('dblclick', handler)</code> 的快捷方式，第二种用法是 <code>.bind('dblclick')</code> 的快捷方式。</p>
+<p>一个元素被双击时候将触发 dblclick 事件。任何HTML元素都可以收到此事件。</p>
+<p>举例来说，请看下面的HTML：</p>
+
+<pre>&lt;div id="target"&gt;
+  Double-click here
+&lt;/div&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p class="image"><img src="/images/0042_05_04.png" alt=""></p>
+<p>这个事件处理器可以绑定到任何<code><div></code> ：</p>
+<pre>$('#target').dblclick(function() {
+  alert('Handler for .dblclick() called.');
+});</pre>
+<p>现在，如果我们双击这个元素，警报显示：</p>
+<p><span class="output">Handler for .dblclick() called.</span></p>
+<p>当不同的元素被点击时我们也可以触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').dblclick();
+});</pre>
+<p>这些代码执行后，单击<span class="output">Trigger the handler</span>同样警报显示。</p>
+<p><code>dblclick</code>事件触发需要以下几点：</p>
+<ul>
+<li>鼠标指针在元素里面时点击。</li>
+  <li>鼠标指针在元素里面时释放。</li>
+<li>鼠标指针在元素里面时再次点击，点击间隔时间，是系统而定。</li>
+<li>鼠标指针在元素里面时再次释放。</li>
+</ul>
+<p>在同一个元素上绑定<code>click</code> 和 <code>dblclick</code>时间是不明智的。在不同浏览器上这个事件的触发顺序是多样的，一些接受两个<code>click</code>事件,其他接受一个<code>click</code>事件。如果一个接口对于单，双击反应不同是无法避免，那么<code>dblclick</code>事件应该模拟<code>click</code>处理器。我们可以通过在处理器中保存时间戳来实现这一点，然后比较当前时间在后续的点击保存时间戳。如果差异足够小，我们可以把它当作一个双击点击。
+</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">To bind a "Hello World!" alert box the dblclick event on every paragraph on the page:</span>
+</h4>
+<pre><code class="example">$("p").dblclick( function () { alert("Hello World!"); });</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Double click to toggle background color.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div { background:blue;
+        color:white;
+        height:100px;
+        width:150px;
+ }
+  div.dbl { background:yellow;color:black; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;&lt;span&gt;Double click the block&lt;/span&gt;
+&lt;script&gt;
+    var divdbl = $("div:first");
+    divdbl.dblclick(function () { 
+      divdbl.toggleClass('dbl'); 
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

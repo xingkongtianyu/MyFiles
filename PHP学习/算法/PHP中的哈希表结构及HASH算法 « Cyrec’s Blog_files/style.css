@@ -1,0 +1,460 @@
+/*=== Setup ===*/
+* { border:0; margin:0 auto; padding:0; outline:none;font-family:Tahoma,Arial,Helvetica,STHeiti;}
+body { background:#fafafa url(../images/main_bg.gif) top center repeat-x; font-size:14px; color:#494949; margin:0; }
+html{ height:100%;width:99%;}
+a { color:#F93;text-decoration:none; }
+a:hover { text-decoration:none;color:#FFF;background-color:#F93;}
+p.clr, .clr { clear:both; margin:0; background:none; }
+p.bg, .bg { clear:both; margin:10px 0; border-bottom:1px solid #bababa; height:2px; }
+input, select, textarea { border:#cfcfcf 1px solid; color:#404040; font-size:12px; padding:3px; }
+li { list-style:none; }
+h1{font-size:26px;; font-weight:normal; letter-spacing:-1px; margin:8px 0; }
+h2 { color:#222; font-size:1.5em; font-weight:normal; letter-spacing:-1px; margin:0 0 1em; }
+h3 { color:#333; font-size:1.2em; margin:0 0 .8em; margin:0; }
+h4 { font-size:1em; margin:0 0 1em; }
+p { line-height:1.5em; padding:0 0 1.3em; }
+/*====calendar====*/
+#wp-calendar {width:80%;}
+#wp-calendar caption {color:#222; font-size:14px; font-weight:bold; padding-bottom:4px; text-align:center;}
+#wp-calendar thead {font-size:12px; text-align:center;}
+#wp-calendar tbody td {background:#F5F5F5; border:1px solid #FFF; padding:3px 0 2px; text-align:center;}
+#wp-calendar tbody .pad {background:none;}
+#wp-calendar tfoot #next {text-align:right;}
+/*=== Layout ===*/
+#page { width:980px; }
+#page img.maain { margin:0; }
+#weather{ height:85px;*height:78px; width:75px;float:right}
+#weather a{width:74px;}
+#container
+{
+    /***/
+    width: 80%;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: left;
+}
+/*=== Header ===*/
+.header_h2  { padding:18px 0; margin:0; }
+
+/*- Logo -*/
+.logo { width:260px; float:left; margin:0; padding:0 0 1px 50px; }
+.logo h1 { /*background: url(../images/logo.png) top no-repeat;*/ float:left; text-indent:9px; width:190px; margin-top:33px;color:#222;}
+.logo h1 a { display:block; line-height: 175%; color:#ccc;}
+.logo h1 a:hover { text-decoration: underline;color:#FFF; background:#333;}
+/* Search form */
+#search span { width:300px; display:block; float:right; background:url url(../images/search.gif) left top no-repeat; height:31px; margin:7px 0 0 0; }
+#search input#s { float:left; width:237px; padding:8px 0 6px 5px; margin:0; background:none; color:#909090; font-size:12px; }
+#search .btn { float:left; margin:0; border:0; padding:0; width:auto; }
+*html #search{margin:0px; padding:0;}
+*+html #search{margin:10px 0px 0px 0px; padding:0;}
+/*- Top Nav -*/
+.topnav { float:left; width:380px; margin:2px 0px 0px 0px;*margin:-2px 0px 0px 0px;padding:0; }
+*+html .topnav { float:left; width:380px;*+margin:10px 0px 0px 0px;padding:0; }
+.topnav ul { list-style:none; padding:0; margin:0; }
+.topnav li { float:left; padding:0 2px; }
+.topnav li a { font-size:14px; color:#737373; display:block; float:left; padding:15px; text-decoration:none; }
+.topnav li a:hover { color:#fff; background:url(../images/hover.gif) top repeat-x; }
+.topnav li.current_page_item a{ color:#fff; background:url(../images/hover.gif) top repeat-x; }
+/*- Social Links -*/
+/*
+.social-links { font-size:12px; padding:5px 0; margin:0 0 5px 0; color:#9b9b9b; border-bottom:1px solid #dadada; border-top:1px solid #dadada;}
+.social-links a { color:#da5700; font-weight:normal; text-decoration:none;  }
+.social-links a:hover { text-decoration:underline; }
+*/
+
+/*=== Styling Boxes ===*/
+/*- Box -*/
+.box { margin:0 0 15px 0;float:right; width:270px;}
+.box .content { height:1%; }
+.box .ac { padding:5px 0; text-align:center; }
+
+/*=== Styling Lists ===*/
+/*- List -*/
+.list { height:30px; color:#373737; font-size:11px/13px; clear:both; padding:0 0 10px 0; }
+.list li { float:left; margin:0; padding:0 5px 0 0; }
+.list li a { display:block; float:left; padding:9px 10px; text-align:center; text-decoration:none; color:#373737; }
+.list li a:hover,.list li a.active { color:#373737; background:#f0f0f0; padding:8px 9px; border:1px solid #ddd; }
+/*.list li a.active { color:#373737; background:#f0f0f0; padding:8px 9px; border:1px solid #ddd; }*/
+div.tabs_list { border:1px solid #e8e8e8; margin:0; border-bottom: 0;}
+div.tabs_list ul { list-style:none; text-align:left; padding:0; }
+div.tabs_list ul li { font-size:13px; margin:0; }
+div.tabs_list ul li a { border-bottom:1px solid #e8e8e8; display:block; padding:5px 0 5px 10px; margin:0; color:#828282; background:url(../images/li_a.gif) 0px 10px no-repeat; }
+div.tabs_list ul li a:hover { text-decoration:none; color:#828282; background: #f4f4f4 url(../images/li_a_hover.gif) 0px 10px no-repeat; }
+div.tabs_list ul li ul.children { }
+div.tabs_list ul li ul.children li { border:0; margin:0; }
+div.tabs_list ul li ul.children a { background:none; }
+div.tabs_list ul li ul.children a:hover { background:#e0e0e0; color:#000; }
+div.tabs_list ul li ul.children li a { padding:5px 0 5px 25px; display:block; }
+div.tabs_list ul li ul.children li li a { padding:5px 0 5px 30px; display:block; }
+
+/*- List1 -*/
+.list1 li { /*background:url(images/ico-list1.gif) no-repeat 0 1.1em;*/ border-bottom:1px solid #e7e7e7; height:1%; padding:.7em 0 .7em 13px; }
+.list1 li.last { border:0; }
+#rightcol .list1 li a:hover { color:#33707e;}
+
+/*=== Styling Forms ===*/
+input.btn { background:none; border:0; margin:0; }
+select { padding:1px; }
+
+/*=== Footer ===*/
+#page_bottom { background:url(../images/footer.png) top repeat-x; margin:0;width:100%;}
+#footer { color:#969696; text-decoration:none; font-size:12px;  padding:5px 0;width:100%;}
+#footer a { color:#969696; font-weight:bold; }
+#footer span { color:#969696; }
+#footer .text2 { padding:30px 30px; width:40%; float:right; text-align:left;}
+#footer .text { padding:30px 0px; width:50%; float:left; text-align:right;}
+
+/*=== Misc. ===*/
+.fix { clear:both; height:1px; margin:-1px 0 0; overflow:hidden; }
+.hl, .hl2 { background:url(../images/hl-dot.gif) repeat-x top; clear:both; height:2px; overflow:hidden; width:100%; }
+.hl2 { background:none; border-top:1px solid #e7e7e7; height:1px; margin:0 0 .8em; }
+.fl { float:left; }
+.fr { float:right; }
+.ac { text-align:center; }
+.ar { text-align:right; }
+.noBorder { border:0; }
+.font-sm { font-weight:normal; }
+.white { color:#FFF; }
+
+/* Slieder Tabs */
+.slider_bottom { background:#fff; padding:17px; margin:10px auto 0 auto; border:1px solid #e1e1e1;}
+.slider_bottom p { font: italic 12px Arial, Helvetica, sans-serif; color:#a6a6a6; padding:3px 0 0 0; margin:0;}
+.slider_bottom img { float:left; margin:0 10px 20px 0; padding:0;}
+/*-----memo tags*/
+#memo_tags {position:relative; margin:0px; width: 270px; height: 180px; overflow: hidden;border-bottom:1px solid #dadada;}
+#memo_tags a {position:absolute; top:0px; left:0px; color:#999; text-decoration:none; padding: 2px 3px; font-size:10px; }
+#memo_tags a:hover {border: 1px solid #ddd; color:#fff;background:#666666; }
+
+/* SUPERFISH STYLESHEET ---------------------------------- */
+.sf-menu,
+.sf-menu * { margin:0; padding:0; list-style:none; }
+.sf-menu { line-height:1.0; }
+.sf-menu ul { top:-999em; }
+.sf-menu ul li { width:100%; }
+/* fixes IE7 'sticky bug' */
+.sf-menu li:hover { visibility:inherit; }
+.sf-menu li { position:relative; }
+.sf-menu a { display:block; position:relative; }
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul { left:0; top:29px; /* match top ul list item height */ z-index:99; }
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul { top:-999em; }
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul { left:12em; top:-0.1em; }
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul { top:-999em; }
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul { left:12em; top:-0.1em; }
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul { left:0; top:51px; /* match top ul list item height */ z-index:99; }
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul { top:-999em; }
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul { left:10em; /* match ul width */ top:0; }
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul { top:-999em; }
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul { left:10em; /* match ul width */ top:0; }
+blockquote:before, blockquote:after, q:before, q:after
+{
+    content: "";
+}
+blockquote, q
+{
+    quotes: "" "";
+}
+strike
+{
+	text-decoration: line-through;
+	color:#cc0000;
+}
+/** layout */
+#container
+{
+    /***/
+    width: 100%;
+    overflow: hidden;
+    margin: 0px auto;
+    text-align: left;
+}
+#main
+{
+    /***/
+    width: 70%;
+    padding: 10px 0;
+    float: left;
+}
+#main p/***/
+{
+    padding: 5px 0px 5px 0px;
+}
+/***/
+.related
+{
+    margin:0px 5px 5px 0px;
+    color: gray;
+    padding:0 5px 5px 0;
+}
+.related ul
+{
+    margin-left:25px;
+}
+.related ul li
+{
+    padding-top:5px;
+    list-style-type: square;
+}
+.post{
+		border-bottom: 1px #CCC dashed;
+		padding-top:5px;
+	}
+.post .read{
+		text-align:right;
+	}
+.post .metadata
+{
+    /***/
+    color: #666;
+    margin-bottom: 0.5em;
+}
+.post .metadata span
+{
+    /***/
+    margin-right: 5px;
+    padding-right: 0px;
+    border-right: 1px solid #ddd;
+}
+.post .metadata span.no-border
+{
+    border-color: transparent;
+}
+/***/
+.post .content
+{
+    /***/
+    margin:0px 5px 5px 0px;
+}
+.content ol
+{
+    margin-left:25px;
+}
+.content ol li
+{
+    padding-top:5px;
+    margin-left: 15px;
+    list-style-type:decimal;
+}
+.content ul
+{
+    margin-left:25px;
+    margin-bottom: 10px;
+}
+.content ul li
+{
+    padding-top:5px;
+    margin-left: 15px;
+    list-style-type:none;
+}
+.hints
+{
+	background: #FBE6F2;
+	border: 1px solid #D893A1;
+	color: #333;
+	margin: 10px 0 5px 2px;
+	padding: 10px;
+
+}
+div.pagination
+{
+    /***/
+    margin-top: 10px;
+    text-align:center;
+    padding:4px 6px 4px 0;
+}
+div.pagination a
+{
+    /***/
+    text-decoration:none;
+    padding:5px 6px 4px 5px;
+    margin:0 3px 0 3px;
+    /* border: 1px solid transparent; */
+    background-color: transparent;
+}
+div.pagination a:hover
+{
+    /***/
+    color:#ffffff;
+    border:1px solid #333333;
+    background-color:#333333;
+}
+div.pagination span.current
+{
+    /***/
+    padding:5px 6px 4px 5px;
+    margin:0 3px 0 3px;
+    border: 1px solid #c1c1c1;
+    font-weight:bold;
+    color:#444444;
+    background-color:#ddd;
+}
+div.pagination span.disabled
+{
+    /***/
+    display:none;
+}
+/* = comment */
+#contentleft .comment-header{margin:15px 0px 5px 0px}
+#contentleft .comment-post {clear:both}
+#contentleft .comment-post p{margin:5px 0px}
+#contentleft .comment-post .cancel-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;padding-right:10%}
+#contentleft .comment-post .cancel-reply:hover{text-decoration:underline}
+#contentleft .comment-post small{font-size:12px; color:#999}
+#contentleft .comment-post input{padding:5px 5px; border:1px #b6b6b6 solid; font-size:12px; color:#333; width:40%}
+#contentleft .comment-post #comment{ width:90%; border:1px #b6b6b6 solid; font-size:12px; color:#333}
+#contentleft .comment-post #com_submit{background:url(../images/em_button.gif) no-repeat; border:0; color:#000000; width:111px; height:29px; text-align:center; cursor:pointer; _cursor:hand}
+#contentleft .comment-post .input{width:100px}
+#contentleft .comment{margin:10px 0; padding:10px 0px; font-size:12px; border-bottom:1px #CCC dashed; overflow:hidden; color:#333; height:100%; zoom:1}
+#contentleft .comment span{color:#ff7a15;}
+#contentleft .comment .comment-time{color:#999999; display:inline; font-size:10px;}
+#contentleft .comment .avatar{float:left;margin:5px}
+#contentleft .comment .comment-info{float:left;width:90%}
+#contentleft .comment .comment-info b {color:#F93}
+#contentleft .comment .commnet-content{margin:8px 0px 0px 0px;}
+#contentleft .comment .comment-reply{float:right;font-size:12px;cursor:pointer; _cursor:hand;}
+#contentleft .comment .comment-reply:hover{text-decoration:underline}
+#contentleft .comment-children-1{ margin-left:20px;clear:both;border-bottom:1px #CCC dashed;padding:0}
+#contentleft .comment-children-2{ margin-left:40px;clear:both;border-bottom:1px #CCC dashed;padding:0}
+#contentleft .comment-children-3{margin-left:60px;clear:both;border-bottom:1px #CCC dashed;padding:0}
+#contentleft .comment-children-4{margin-left:80px;clear:both;border-bottom:1px #CCC dashed;padding:0}
+#contentleft .comment .comment-post{width:90%;margin:15px auto}
+@charset "utf-8";
+/*滑动插件*/
+#QapTcha {
+        padding:10px;
+        border:0px solid #F4F4F4;
+        margin-top:10px;
+}
+#QapTcha .clr{clear:both}
+
+#QapTcha #bgSlider {
+        width:202px;
+        height:22px;
+        background:transparent url(../images/sprites.png) no-repeat 0 -22px;
+        float:left;
+}
+
+#QapTcha #Slider {
+        width:48px;
+        height:22px;
+        background:transparent url(../images/sprites.png) no-repeat -32px 0;
+        cursor:e-resize;
+		float:left;
+}
+
+#QapTcha #Icons {
+        float:left;
+        width:16px;
+        height:16px;
+        background:transparent url(../images/sprites.png) no-repeat 0 0;
+        margin-top:3px;
+        margin-left:10px;
+}
+
+#QapTcha #TxtStatus {
+        width:100%;
+        margin-top:7px;
+        text-align:left;
+        font-family:Verdana;
+        font-size:12px;
+        clear:both;
+        display:block;
+}
+
+#QapTcha .dropSuccess {
+        color:#3C6;
+}
+#QapTcha .dropError {
+        color:#bb2828;
+}
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+
+/* 
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:url(../images/overlay.png) repeat 0 0;}
+#colorbox{}
+    #cboxTopLeft{width:21px; height:21px; background:url(../images/controls.png) no-repeat -100px 0;}
+    #cboxTopRight{width:21px; height:21px; background:url(../images/controls.png) no-repeat -129px 0;}
+    #cboxBottomLeft{width:21px; height:21px; background:url(../images/controls.png) no-repeat -100px -29px;}
+    #cboxBottomRight{width:21px; height:21px; background:url(../images/controls.png) no-repeat -129px -29px;}
+    #cboxMiddleLeft{width:21px; background:url(../images/controls.png) left top repeat-y;}
+    #cboxMiddleRight{width:21px; background:url(../images/controls.png) right top repeat-y;}
+    #cboxTopCenter{height:21px; background:url(../images/border.png) 0 0 repeat-x;}
+    #cboxBottomCenter{height:21px; background:url(../images/border.png) 0 -29px repeat-x;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:28px;}
+        #cboxTitle{position:absolute; bottom:4px; left:0; text-align:center; width:100%; color:#949494;}
+        #cboxCurrent{position:absolute; bottom:4px; left:58px; color:#949494;}
+        #cboxSlideshow{position:absolute; bottom:4px; right:30px; color:#0092ef;}
+        #cboxPrevious{position:absolute; bottom:0; left:0; background:url(../images/controls.png) no-repeat -75px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxPrevious.hover{background-position:-75px -25px;}
+        #cboxNext{position:absolute; bottom:0; left:27px; background:url(../images/controls.png) no-repeat -50px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxNext.hover{background-position:-50px -25px;}
+        #cboxLoadingOverlay{background:url(../images/loading_background.png) no-repeat center center;}
+        #cboxLoadingGraphic{background:url(../images/loading.gif) no-repeat center center;}
+        #cboxClose{position:absolute; bottom:0; right:0; background:url(../images/controls.png) no-repeat -25px 0; width:25px; height:25px; text-indent:-9999px;}
+        #cboxClose.hover{background-position:-25px -25px;}
+
+/*
+  The following fixes a problem where IE7 and IE8 replace a PNG's alpha transparency with a black fill
+  when an alpha filter (opacity change) is set on the element or ancestor element.  This style is not applied to IE9.
+*/
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}
+
+/*
+  The following provides PNG transparency support for IE6
+*/
+.cboxIE6 #cboxTopLeft{background:url(../images/ie6/borderTopLeft.png);}
+.cboxIE6 #cboxTopCenter{background:url(../images/ie6/borderTopCenter.png);}
+.cboxIE6 #cboxTopRight{background:url(../images/ie6/borderTopRight.png);}
+.cboxIE6 #cboxBottomLeft{background:url(../images/ie6/borderBottomLeft.png);}
+.cboxIE6 #cboxBottomCenter{background:url(../images/ie6/borderBottomCenter.png);}
+.cboxIE6 #cboxBottomRight{background:url(../images/ie6/borderBottomRight.png);}
+.cboxIE6 #cboxMiddleLeft{background:url(../images/ie6/borderMiddleLeft.png);}
+.cboxIE6 #cboxMiddleRight{background:url(../images/ie6/borderMiddleRight.png);}
+
+.cboxIE6 #cboxTopLeft,
+.cboxIE6 #cboxTopCenter,
+.cboxIE6 #cboxTopRight,
+.cboxIE6 #cboxBottomLeft,
+.cboxIE6 #cboxBottomCenter,
+.cboxIE6 #cboxBottomRight,
+.cboxIE6 #cboxMiddleLeft,
+.cboxIE6 #cboxMiddleRight {
+    _behavior: expression(this.src = this.src ? this.src : this.currentStyle.backgroundImage.split('"')[1], this.style.background = "none", this.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=" + this.src + ", sizingMethod='scale')");
+}

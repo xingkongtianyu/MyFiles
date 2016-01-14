@@ -1,0 +1,68 @@
+mysql优化
+在整体的系统运行过程中，数据库服务器 MySQL 的压力是最大的，不仅占用很多的内存和 cpu 资源，而且占用着大部分的磁盘 io 资源，连 PHP 的官方都在声称，说 PHP 脚本 80% 的时间都在等待 MySQL 查询返回的结果。由此可见，提高系统的负载能力，降低 MySQL 的资源消耗迫在眉睫。
+1、页面缓存功能：
+
+页面缓存功能降低MySQL的资源消耗的（系统本身就已经考虑，采用生成HTML页面，大大降低了数据库的压力）。
+2、mysql服务器的优化
+  2.1、修改全站搜索
+    修改my.ini(my.cnf) ，在 [mysqld] 后面加入一行“ft_min_word_len=1”，然后重启Mysql，再登录网站后台（模块管理->全站搜索）重建全文索引。 
+  2.2、记录慢查询sql语句，修改my.ini(my.cnf)，添加如下代码：
+    #log-slow-queries
+    long_query_time = 1 #是指执行超过多久的 sql 会被 log 下来
+    log-slow-queries = E:/wamp/logs/slow.log #设置把日志写在那里，可以为空，系统会给一个缺省的文件
+    #log-slow-queries = /var/youpath/slow.log linux下     host_name-slow.log
+    log-queries-not-using-indexes
+  2.3、mysql缓存的设置
+   mysql>show variables like '%query_cache%';     mysql本身是有对sql语句缓存的机制的，合理设置我们的mysql缓存可以降低数据库的io资源。
+    #query_cache_type= 查询缓存的方式(默认是 ON)
+    query_cache_size 如果你希望禁用查询缓存，设置 query_cache_size=0。禁用了查询缓存，将没有明显的开销
+    query_cache_limit 不缓存大于这个值的结果。(缺省为 1M)
+   2.4、查询缓存的统计信息
+   mysql> SHOW STATUS LIKE ‘qcache%’;
+     Qcache_free_blocks 缓存中相邻内存块的个数。数目大说明可能有碎片。FLUSH QUERY CACHE 会对缓存中的碎片进行整理，从而得到一个空闲块。
+    Qcache_free_memory 缓存中的空闲内存。
+    Qcache_hits 每次查询在缓存中命中时就增大。
+    Qcache_inserts 每次插入一个查询时就增大。命中次数除以插入次数就是不中比率；用 1 减去这个值就是命中率。在上面这个例子中，大约有 87% 的查询都在缓存中命中。
+    Qcache_lowmem_prunes 缓存出现内存不足并且必须要进行清理以便为更多查询提供空间的次数。这个数字最好长时间来看；如果这个数字在不断增长，就表示可能碎片非常严重，或者内存很少。（上面的 free_blocks 和 free_memory 可以告诉您属于哪种情况）。
+    Qcache_not_cached 不适合进行缓存的查询的数量，通常是由于这些查询不是 SELECT 语句。
+    Qcache_queries_in_cache 当前缓存的查询（和响应）的数量。
+    Qcache_total_blocks 缓存中块的数量。通常，间隔几秒显示这些变量就可以看出区别，这可以帮助确定缓存是否正在有效地使用。运行 FLUSH STATUS 可以重置一些计数器，如果服务器已经运行了一段时间，这会非常有帮助。
+   2.5、my.ini(my.conf)配置
+    2.5.1、key_buffer_size = 256M
+    # key_buffer_size指定用于索引的缓冲区大小，增加它可得到更好的索引处理性能。     对于内存在4GB左右的服务器该参数可设置为256M或384M。注意：该参数值设置的过大反而会是服务器整体效率降低！
+    2.5.2、
+    max_allowed_packet = 4M
+    thread_stack = 256K
+    table_cache = 128K
+    sort_buffer_size = 6M
+    查询排序时所能使用的缓冲区大小。注意：该参数对应的分配内存是每连接独占！如果有100个连接，那么实际分配的总共排序缓冲区大小为100 × 6 ＝ 600MB。所以，对于内存在4GB左右的服务器推荐设置为6-8M。
+    2.5.3、
+    read_buffer_size = 4M
+    读查询操作所能使用的缓冲区大小。和sort_buffer_size一样，该参数对应的分配内存也是每个连接独享！
+    2.5.4、join_buffer_size = 8M
+    联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每个连接独享！
+    2.5.5、
+    myisam_sort_buffer_size = 64M
+    table_cache = 512
+    thread_cache_size = 64
+    query_cache_size = 64M
+    指定MySQL查询缓冲区的大小。可以通过在MySQL控制台执行以下命令观察：
+    # > SHOW VARIABLES LIKE '%query_cache%';
+    # > SHOW STATUS LIKE 'Qcache%';
+    # 如果Qcache_lowmem_prunes的值非常大，则表明经常出现缓冲不够的情况；
+    #如果Qcache_hits的值非常大，则表明查询缓冲使用非常频繁，如果该值较小反而会影响效率，那么可以考虑不用查询缓冲；
+    Qcache_free_blocks，如 果该值非常大，则表明缓冲区中碎片很多
+    2.5.6、
+    tmp_table_size = 256M
+     max_connections = 768
+    指定MySQL允许的最大连接进程数。如果在访问论坛时经常出现Too Many Connections的错误提示，则需要增大该参数值。
+    2.5.7、
+    max_connect_errors = 10000000
+    wait_timeout = 10
+    指定一个请求的最大连接时间，对于4GB左右内存的服务器可以设置为5-10。
+    2.5.8、
+    thread_concurrency = 8
+    该参数取值为服务器逻辑CPU数量×2，如果服务器有2颗物理CPU，而每颗物理CPU又支持H.T超线程，所以实际取值为4 × 2 ＝ 8
+     2.5.9、
+    skip-networking
+    开启该选项可以彻底关闭MySQL的TCP/IP连接方式，如果WEB服务器是以远程连接的方式访问MySQL数据库服务器则不要开启该选项！否则将无法正常连接！

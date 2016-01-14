@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">.removeProp()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/general-attributes/" title="View all posts in General Attributes">General Attributes</a></span>
+  
+
+          </div>
+
+</div>
+<div id="removeProp1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.removeProp( propertyName, value )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素删除设置的属性。</p>
+<ul class="signatures"><li class="signature" id="removeProp-propertyName-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.removeProp( propertyName, value )</h4>
+<p class="arguement"><strong>propertyName</strong>要设置属性的名称.</p>
+<p class="arguement"><strong>value</strong>要设置属性的值</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.removeProp()</code>方法用来删除由<a href="#p=prop"><code>.prop()</code></a>方法设置的属性集。</p>
+<p>随着一些内置属性的DOM元素或<code>window</code>对象，如果试图将删除该属性，浏览器可能会产生错误。jQuery第一次分配<code>undefined</code>值的属性，而忽略了浏览器生成的任何错误。</p>
+</div>
+<h3 id="notes-0">其他注意事项:</h3>
+<div class="longdesc"><ul><li>在Internet Explorer之前的版本9，使用<a   target="_blank" href="http://api.jquery.com/prop/"><code>.prop()</code></a>设置DOM元素的属性值以外的任何一个简单的原始（数字，字符串或布尔）如果DOM元素之前从文档中不删除该属性（使用<a href="#p=removeProp"><code>.removeProp()</code></a>),可能导致内存泄漏。为了安全地设置对象无泄漏内存值对DOM，使用<a href="#p=data"><code>.data()</code></a></li></ul></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">设置一个段落数字属性，然后将其删除。
+</span></h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  img { padding:10px; }
+  div { color:red; font-size:24px; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;p&gt;&lt;/p&gt;
+
+
+&lt;script&gt;
+var $para = $("p");
+$para.prop("luggageCode", 1234);
+$para.append("The secret luggage code is: ", String($para.prop("luggageCode")), ". ");
+$para.removeProp("luggageCode");
+$para.append("Now the secret luggage code is: ", String($para.prop("luggageCode")), ". ");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

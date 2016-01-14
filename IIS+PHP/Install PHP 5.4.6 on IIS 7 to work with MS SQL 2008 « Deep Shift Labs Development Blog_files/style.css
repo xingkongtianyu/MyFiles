@@ -1,0 +1,990 @@
+
+
+
+
+
+body {
+	font-size: 62.5%; 
+	font-family: Verdana, 'Lucida Grande', Arial, Sans-Serif;
+	background: #FFFFCB;
+	color: #333;
+	text-align: center;
+	}
+
+#page {
+	background-color: white;
+	border: 1px solid #959596;
+	text-align: left;
+	}
+
+#header {
+	background: transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/header_tr.gif") no-repeat top center;
+	}
+
+#content {
+	font-size: 1.2em
+	}
+
+.widecolumn .entry p {
+	font-size: 1.05em;
+	}
+
+.narrowcolumn .entry, .widecolumn .entry {
+	line-height: 1.4em;
+	}
+
+.widecolumn {
+	line-height: 1.6em;
+	}
+
+.narrowcolumn .postmetadata {
+	text-align: center;
+	}
+
+.thread-alt {
+	background-color: #f8f8f8;
+}
+.thread-even {
+	background-color: white;
+}
+.depth-1 {
+border: 1px solid #ddd;
+}
+
+.even, .alt {
+
+	border-left: 1px solid #ddd;
+}
+
+#footer {
+	background: transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/footer_tr.gif") no-repeat top;
+	border: none;
+	}
+
+small {
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 0.9em;
+	line-height: 1.5em;
+	}
+
+h1, h2, h3 {
+	font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-weight: bold;
+	}
+
+h1 {
+	font-size: 4em;
+	text-align: center;
+	}
+
+#headerimg .description {
+	font-size: 1.2em;
+	text-align: center;
+	}
+
+h2 {
+	font-size: 1.6em;
+	}
+
+h2.pagetitle {
+	font-size: 1.6em;
+	}
+
+#sidebar h2 {
+	font-family: 'Lucida Grande', Verdana, Sans-Serif;
+	font-size: 1.2em;
+	}
+
+h3 {
+	font-size: 1.3em;
+	}
+
+h1, h1 a, h1 a:hover, h1 a:visited, #headerimg .description {
+	text-decoration: none;
+	color: white;
+	}
+
+h2, h2 a, h2 a:visited, h3, h3 a, h3 a:visited {
+	color: #339933;
+	}
+
+h2, h2 a, h2 a:hover, h2 a:visited, h3, h3 a, h3 a:hover, h3 a:visited, #sidebar h2, #wp-calendar caption, cite {
+	text-decoration: none;
+	}
+
+.entry p a:visited {
+	color: #b85b5a;
+	}
+
+.commentlist li, #commentform input, #commentform textarea {
+	font: 0.9em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	}
+.commentlist li ul li {
+	font-size: 1em;
+}
+
+.commentlist li {
+	font-weight: bold;
+}
+
+.commentlist li .avatar { 
+	float: right;
+	border: 1px solid #eee;
+	padding: 2px;
+	background: #fff;
+	}
+
+.commentlist cite, .commentlist cite a {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 1.1em;
+	}
+
+.commentlist p {
+	font-weight: normal;
+	line-height: 1.5em;
+	text-transform: none;
+	}
+
+#commentform p {
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	}
+
+.commentmetadata {
+	font-weight: normal;
+	}
+
+#sidebar {
+	font: 1em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	}
+
+small, #sidebar ul ul li, #sidebar ul ol li, .nocomments, .postmetadata, blockquote, strike {
+	color: #777;
+	}
+
+code {
+	font: 1.1em 'Courier New', Courier, Fixed;
+	}
+
+acronym, abbr, span.caps
+{
+	font-size: 0.9em;
+	letter-spacing: .07em;
+	}
+
+a, h3 a:hover {
+	color: #06c;
+	text-decoration: none;
+	}
+h2 a:hover {
+	color: #339933;
+}
+
+a:hover {
+	color: #147;
+	text-decoration: underline;
+	}
+
+#wp-calendar #prev a, #wp-calendar #next a {
+	font-size: 9pt;
+	}
+
+#wp-calendar a {
+	text-decoration: none;
+	}
+
+#wp-calendar caption {
+	font: bold 1.3em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	text-align: center;
+	}
+
+#wp-calendar th {
+	font-style: normal;
+	text-transform: capitalize;
+	}
+
+#archive a {
+	color: #000000;
+	text-decoration: underline;
+	margin-bottom: 3px;
+	line-height: 17px;
+	font-size: 13px;
+}
+#archive a:hover {
+	background-color: #000000;
+	color: #FFFFFF;
+	text-decoration: underline;
+	
+}
+
+
+
+
+
+body {
+	margin: 0 0 20px 0;
+	padding: 0;
+	}
+
+#page {
+	background-color: white;
+	margin: 20px auto;
+	padding: 0;
+	width: 986px;
+	
+	}
+
+#header {
+	
+	padding: 0;
+	height: 160px;
+	
+	}
+
+#headerimg {
+	margin: 0px;
+	height: 120px;
+	width: 120px;
+	
+    float: right;
+    padding:30px 65px 0 0;
+	}
+
+#langs, #ords {
+	text-align: center;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+#ords {
+	padding-top: 10px;
+}
+
+#langs a,#langs a:hover {
+	border-bottom:1px dotted;
+	text-decoration: none;
+	}
+
+#ords a,#ords a:hover {
+	border-bottom:1px dotted;
+	text-decoration: none;
+	}
+
+#headertxt {
+	padding: 55px 0 20px 60px;
+	width: 670px;
+	text-align: center;
+	color:#333333;
+	font-family:verdana;
+	font-size:12px;
+	font-weight:normal;
+	line-height:1.4em;
+    float: left;
+}
+
+#hdr_notice {
+	padding: 5px 0 10px 80px;
+	margin-left: 40px;
+}
+
+#hdr_short_notice {
+	margin-left:160px;
+	padding:5px 10px 10px;
+}
+
+
+.narrowcolumn {
+	float: left;
+	padding: 0 0 20px 40px;
+	margin: 0px 0 0;
+	width: 690px;
+	}
+
+.widecolumn {
+	float: left;
+	padding: 0px 0 20px 0;
+	margin: 0px 0 0 45px;
+	width: 700px;
+	}
+
+.post {
+	margin: 0 0 40px;
+	text-align: justify;
+	}
+
+.post hr {
+	display: block;
+	}
+
+.widecolumn .post {
+	margin: 0;
+	}
+
+.narrowcolumn .postmetadata {
+	padding-top: 5px;
+	}
+
+.widecolumn .postmetadata {
+	margin: 30px 0;
+	}
+
+.widecolumn .smallattachment {
+	text-align: center;
+	float: left;
+	width: 128px;
+	margin: 5px 5px 5px 0px;
+}
+
+.widecolumn .attachment {
+	text-align: center;
+	margin: 5px 0px;
+}
+
+.postmetadata {
+	clear: both;
+}
+
+.post_comment {
+	background-color: #FFFFE6;
+	border: 1px solid #BFBF60;
+	color: #805959;
+	font-size: 0.9em;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.c_title {
+	line-height:20px;
+	padding: 5px 0pt 0pt 40px; 
+	background: transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/comment.gif") no-repeat scroll 0pt 0pt; 
+	color: #CC99CC; 
+	height: 30px; 
+	font-size: 1.5em; 
+	font-weight: bold;
+}
+.post_comment2 {
+	background-color: #FFFFE6;
+	border: 1px solid #BFBF60;
+	color: #805959;
+	font-size: 0.9em;
+	margin: 10px auto;
+	padding: 10px;
+        overflow: hidden;
+}
+div.post_comment2 p{
+	margin: 0 5px 5px;
+}
+.c_title2 {
+	line-height:20px;
+	padding: 5px 0pt 0pt 40px; 
+	background: transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/comment.gif") no-repeat scroll 0pt 0pt; 
+	color: #CC99CC; 
+	height: 30px; 
+	font-size: 1.5em; 
+	font-weight: bold; 
+}
+.c_title3  {
+    background:url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/help.gif") no-repeat scroll 0 0 transparent;
+    color:#CC99CC;
+    font-size:1.5em;
+    font-weight:bold;
+    height:30px;
+    line-height:20px;
+    padding:5px 0 0 40px;
+}
+.post_question {
+	background-color: #FFFFE6;
+	border: 1px solid #BFBF60;
+	color: #805959;
+	
+	margin: 10px auto;
+	padding: 10px;
+    overflow: hidden;
+}
+.post_quote {
+	background-color:#F7F5E7; 
+	border:1px solid #CCCCCC; 
+	float: left; 
+	padding: 10px 10px 10px 0; 
+	margin: 5px 0 5px 0;
+	color: #805959;
+	font-size: 0.9em;
+}
+.forum_quote {
+	font-weight:normal;
+	color:#949494;
+
+	font-size:13px;
+	text-align:left;
+	font-family:tahoma, verdana, arial, sans-serif;
+	line-height:1;
+}
+.forum_notes {
+	font-weight:normal;
+	color:#949494;
+	font-size:13px;
+	font-style:italic;
+	text-align:left;
+	font-family:tahoma, verdana, arial, sans-serif;
+}
+.q_title {
+	line-height:20px;
+	background: transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/quote.gif") no-repeat scroll 0px 0px; 
+	padding:5px 10px 0 40px; 
+	margin: 0 0 0 10px;
+	height: 30px;
+	color: #CC99CC;
+	font-size: 1.5em; 
+	font-weight: bold;
+}
+
+div.post_quote p{
+ 	margin:0 15px 5px 40px;
+}
+.clear {
+	clear: both;
+}
+
+#footer {
+	padding: 0;
+	margin: 0 auto;
+	width: 986px;
+	clear: both;
+    height: 61px;
+	}
+
+#footer p {
+	margin: 0;
+	padding: 5px 0;
+	text-align: center;
+	}
+
+
+
+
+
+h1 {
+	padding-top: 70px;
+	margin: 0;
+	}
+
+h2 {
+	margin: 30px 0 0;
+	}
+
+h2.pagetitle {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#sidebar h2 {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #996;
+	text-transform: uppercase;
+	font-size: 9px;
+	font-weight: bold;
+  }
+
+h3 {
+	padding: 0;
+	margin: 30px 0 0;
+	}
+
+h3.comments {
+	padding: 0;
+	margin: 40px auto 20px ;
+	}
+
+#archive h2{
+	font-size: 26px;
+	margin:30px 0 10px;
+}
+
+
+
+
+
+p img {
+	padding: 0;
+	max-width: 100%;
+	}
+
+
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+	}
+
+.alignright {
+	float: right;
+	}
+
+.alignleft {
+	float: left
+	}
+
+
+
+
+
+
+html>body .entry ul {
+	margin-left: 0px;
+	padding: 0 0 0 30px;
+	list-style: none;
+	padding-left: 10px;
+	text-indent: -10px;
+	}
+
+html>body .entry li {
+	margin: 7px 0 8px 10px;
+	}
+
+.entry ul li:before, #sidebar ul ul li:before {
+	content: "\00BB \0020";
+	}
+
+.entry ol {
+	padding: 0 0 0 35px;
+	margin: 0;
+	}
+
+.entry ol li {
+	margin: 0;
+	padding: 0;
+	}
+
+.postmetadata ul, .postmetadata li {
+	display: inline;
+	list-style-type: none;
+	list-style-image: none;
+	}
+
+#sidebar ul, #sidebar ul ol {
+	margin: 0;
+	padding: 0;
+	}
+
+#sidebar ul li {
+	list-style-type: none;
+	list-style-image: none;
+	margin-bottom: 15px;
+	}
+
+#sidebar ul p, #sidebar ul select {
+	margin: 5px 0 8px;
+	}
+
+#sidebar ul ul, #sidebar ul ol {
+	margin: 5px 0 0 10px;
+	}
+
+#sidebar ul ul ul, #sidebar ul ol {
+	margin: 0 0 0 10px;
+	}
+
+ol li, #sidebar ul ol li {
+	list-style: decimal outside;
+	}
+
+#sidebar ul ul li, #sidebar ul ol li {
+	margin: 3px 0 0;
+	padding: 0;
+	}
+
+.filled_block {
+	background-color: #F7F5E7;
+	padding: 10px;
+	font-family: "lucida grande", verdana, arial, helvetica, sans-serif;
+	
+	text-align: center;
+}
+
+
+
+
+
+#searchform {
+	margin: 10px auto;
+	padding: 5px 3px;
+	text-align: center;
+	}
+
+#sidebar #searchform #s {
+	width: 108px;
+	padding: 2px;
+	}
+
+#sidebar #searchsubmit {
+	padding: 1px;
+	}
+
+.entry form { 
+	text-align:center;
+	}
+
+select {
+	width: 130px;
+	}
+
+#commentform input {
+	width: 170px;
+	padding: 2px;
+	margin: 5px 5px 1px 0;
+	}
+
+#commentform {
+	margin: 5px 10px 0 0;
+	}
+#commentform textarea {
+	width: 100%;
+	padding: 2px;
+	}
+#respond:after {
+		content: "."; 
+	    display: block; 
+	    height: 0; 
+	    clear: both; 
+	    visibility: hidden;
+	}
+#commentform #submit {
+	margin: 0 0 5px auto;
+	float: right;
+	}
+	
+.MailPressFormEmail {
+	width:160px;
+}
+#sidebar input.txt {
+	width: 160px;
+}
+div#MailPress{
+	padding-top: 20px;
+}
+input.MailPressFormSubmit {
+	margin-top: 13px;
+}	
+
+
+
+
+
+.alt {
+	margin: 0;
+	padding: 10px;
+	}
+
+.commentlist {
+	padding: 0;
+	text-align: justify;
+	}
+
+.commentlist li {
+	margin: 15px 0 10px;
+	padding: 5px 5px 10px 10px;
+	list-style: none;
+
+	}
+.commentlist li ul li { 
+	margin-right: -5px;
+	margin-left: 10px;
+}
+
+.commentlist p {
+	margin: 10px 5px 10px 0;
+}
+.children { padding: 0; }
+
+#commentform p {
+	margin: 5px 0;
+	}
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	}
+
+.commentmetadata {
+	margin: 0;
+	display: block;
+	}
+
+
+
+
+
+#sidebar
+{
+	padding: 20px 0 10px 0;
+	margin-left: 775px;
+	width: 200px;
+	}
+
+#sidebar form {
+	margin: 0;
+	}
+
+
+
+
+
+#wp-calendar {
+	empty-cells: show;
+	margin: 10px auto 0;
+	width: 155px;
+	}
+
+#wp-calendar #next a {
+	padding-right: 10px;
+	text-align: right;
+	}
+
+#wp-calendar #prev a {
+	padding-left: 10px;
+	text-align: left;
+	}
+
+#wp-calendar a {
+	display: block;
+	}
+
+#wp-calendar caption {
+	text-align: center;
+	width: 100%;
+	}
+
+#wp-calendar td {
+	padding: 3px 0;
+	text-align: center;
+	}
+
+#wp-calendar td.pad:hover { 
+	background-color: #fff; }
+
+
+
+
+
+acronym, abbr, span.caps {
+	cursor: help;
+	}
+
+acronym, abbr {
+	border-bottom: 1px dashed #999;
+	}
+
+blockquote {
+	margin: 15px 30px 0 10px;
+	padding-left: 20px;
+	border-left: 5px solid #ddd;
+	}
+
+blockquote cite {
+	margin: 5px 0 0;
+	display: block;
+	}
+
+.center {
+	text-align: center;
+	}
+
+.hidden {
+	display: none;
+	}
+
+hr {
+	display: none;
+	}
+
+a img {
+	border: none;
+	}
+
+.navigation {
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 60px;
+	}
+.arch_teaser {
+	background-color:#F2F7FE;
+	border-bottom:1px dotted #CCCCCC;
+	border-top:1px dotted #CCCCCC;
+	margin: 0px 0 5px 0;
+	padding: 5px;
+}
+.announce_teaser{
+	background-color:#DDFEF8;
+	border-bottom:1px dotted #CCCCCC;
+	border-top:1px dotted #CCCCCC;
+	margin: 0px 0 5px 0;
+	padding: 5px;
+}
+.ann_title{
+	border-bottom:1px dotted #000000;
+	padding-bottom:2px;
+}
+#fut_cont, 
+#past_cont,
+#present{
+	position: relative;
+}
+
+#fut_cont, #past_cont {
+	position: block;
+	height:125px;
+}
+#fut_cont {
+	height:30px;
+}
+
+#fut_arr_ru, #fut_arr_en {
+	height:30px;
+	left:-165px;
+	position:absolute;
+	width:150px;
+	top: 50px;
+}
+
+#fut_arr_ru {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/fut_arrow_ru_150.gif") no-repeat scroll 0 0;}
+#fut_arr_en {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/fut_arrow_en_150.gif") no-repeat scroll 0 0;}
+
+#past_arr_ru, #past_arr_en {
+	height:30px;
+	left:-165px;
+	position:absolute;
+	width:150px;
+	top:-40px;
+}
+
+#past_arr_ru {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/past_arrow_ru_150.gif") no-repeat scroll 0 0;}
+#past_arr_en {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/past_arrow_en_150.gif") no-repeat scroll 0 0;}
+
+#pres_arr_ru, #pres_arr_en {
+	height:33px;
+	left:-165px;
+	position:absolute;
+	width:150px;
+}
+
+#pres_arr_ru {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/present_arrow_ru_150.gif") no-repeat scroll 0 0;}
+#pres_arr_en {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/present_arrow_en_150.gif") no-repeat scroll 0 0;}
+
+#collout_ru, #collout_en {
+	height:100px;
+	left:-140px;
+	position:absolute;
+	top:15px;
+	width:150px;
+}
+
+#collout_ru {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/collout_ru.gif") no-repeat scroll 0 0;}
+#collout_en {background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/collout_en.gif") no-repeat scroll 0 0;}
+
+#fut_pic {
+	background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/future_arch_250.gif") no-repeat scroll 0 0;
+	height:170px;
+	left:-170px;
+	position:absolute;
+	top:-135px;
+	width:250px;
+}
+
+#past_pic {
+	background:transparent url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/past_arch_250.gif") no-repeat scroll 0 0;
+	height:150px;
+	left:-170px;
+	position:absolute;
+	
+	width:250px;
+}
+
+.blog_notice, .blog_short_notice {
+	background-color:#FFFFCC;
+	border-bottom:1px dotted #CCCCCC;
+	border-top:1px dotted #CCCCCC;
+	font-size:11px;
+	margin: 0px 0 20px 0px;
+	padding:10px;
+	width: 650px;
+}
+
+.blog_short_notice {
+	width:500px;
+}
+
+
+
+
+
+.aligncenter,
+div.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wp-caption {
+	border: 1px solid #ddd;
+	text-align: center;
+	background-color: #f3f3f3;
+	padding-top: 4px;
+	margin: 10px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.wp-caption img {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+.wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	padding: 0 4px 5px;
+	margin: 0;
+}
+
+div.post h2, div.post h2 a:link, div.post h2 a:visited {
+	color:#339933;
+	font-family:helvetica,arial,sans-serif;
+	font-size:28px;
+	letter-spacing:-1px;
+	line-height:30px;
+	margin:0;
+	padding:0;
+	text-decoration:none;
+}
+.post_date {
+	color: #DDDDDD;
+	font-size:24px;
+}
+.author {
+	color: #CC99CC;
+	font-size:24px;
+}
+
+
+
+
+

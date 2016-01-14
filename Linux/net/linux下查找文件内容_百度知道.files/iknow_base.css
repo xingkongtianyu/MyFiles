@@ -1,0 +1,1776 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+HR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BLOCKQUOTE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+PRE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LEGEND {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BUTTON {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+INPUT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TEXTAREA {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BODY {
+	FONT: 12px/1.5 arial,宋体,sans-serif
+}
+BUTTON {
+	FONT: 12px/1.5 arial,宋体,sans-serif
+}
+INPUT {
+	FONT: 12px/1.5 arial,宋体,sans-serif
+}
+SELECT {
+	FONT: 12px/1.5 arial,宋体,sans-serif
+}
+TEXTAREA {
+	FONT: 12px/1.5 arial,宋体,sans-serif
+}
+H1 {
+	FONT-SIZE: 100%
+}
+H2 {
+	FONT-SIZE: 100%
+}
+H3 {
+	FONT-SIZE: 100%
+}
+H4 {
+	FONT-SIZE: 100%
+}
+H5 {
+	FONT-SIZE: 100%
+}
+H6 {
+	FONT-SIZE: 100%
+}
+ADDRESS {
+	FONT-STYLE: normal
+}
+CITE {
+	FONT-STYLE: normal
+}
+DFN {
+	FONT-STYLE: normal
+}
+EM {
+	FONT-STYLE: normal
+}
+VAR {
+	FONT-STYLE: normal
+}
+CODE {
+	FONT-FAMILY: courier new,courier,monospace
+}
+KBD {
+	FONT-FAMILY: courier new,courier,monospace
+}
+PRE {
+	FONT-FAMILY: courier new,courier,monospace
+}
+SAMP {
+	FONT-FAMILY: courier new,courier,monospace
+}
+SMALL {
+	FONT-SIZE: 12px
+}
+UL {
+	LIST-STYLE-TYPE: none
+}
+OL {
+	LIST-STYLE-TYPE: none
+}
+A {
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+SUP {
+	VERTICAL-ALIGN: text-top
+}
+SUB {
+	VERTICAL-ALIGN: text-bottom
+}
+LEGEND {
+	COLOR: #000
+}
+FIELDSET {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+BUTTON {
+	FONT-SIZE: 100%
+}
+INPUT {
+	FONT-SIZE: 100%
+}
+SELECT {
+	FONT-SIZE: 100%
+}
+TEXTAREA {
+	FONT-SIZE: 100%
+}
+TABLE {
+	BORDER-COLLAPSE: collapse; border-spacing: 0
+}
+.details {
+	FONT-SIZE: 12px; VERTICAL-ALIGN: middle; COLOR: #666; LINE-HEIGHT: 22px; FONT-FAMILY: tahoma
+}
+#body {
+	FONT: 14px/24px arial,宋体,sans-serif; VERTICAL-ALIGN: middle
+}
+BUTTON {
+	FONT: 14px/24px arial,宋体,sans-serif; VERTICAL-ALIGN: middle
+}
+INPUT {
+	FONT: 14px/24px arial,宋体,sans-serif; VERTICAL-ALIGN: middle
+}
+SELECT {
+	FONT: 14px/24px arial,宋体,sans-serif; VERTICAL-ALIGN: middle
+}
+TEXTAREA {
+	FONT: 14px/24px arial,宋体,sans-serif; VERTICAL-ALIGN: middle
+}
+H1 {
+	DISPLAY: block; FONT-WEIGHT: bold
+}
+H3 {
+	DISPLAY: block; FONT-WEIGHT: bold
+}
+#body H1 {
+	FONT-SIZE: 15px
+}
+#body H3 {
+	FONT-SIZE: 12px
+}
+.f12 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 22px
+}
+.f14 {
+	FONT-SIZE: 14px
+}
+.f20 {
+	FONT-SIZE: 20px
+}
+.bold {
+	FONT-WEIGHT: bold
+}
+A:link {
+	VERTICAL-ALIGN: baseline; TEXT-DECORATION: none
+}
+A:visited {
+	VERTICAL-ALIGN: baseline; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A:link {
+	COLOR: #133db6
+}
+A:visited {
+	COLOR: #133db6
+}
+A:hover {
+	COLOR: #133db6
+}
+.page-num A:link {
+	FONT-SIZE: 14px; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+.page-num A:visited {
+	FONT-SIZE: 14px; FONT-FAMILY: arial; TEXT-DECORATION: underline
+}
+#body .green {
+	COLOR: #4bb900
+}
+#body .blue {
+	COLOR: #133db6
+}
+#body .red {
+	COLOR: #d55111
+}
+#body .black {
+	COLOR: #000
+}
+#body .gray {
+	COLOR: #666
+}
+.mb10 {
+	MARGIN-BOTTOM: 10px
+}
+.mb20 {
+	MARGIN-BOTTOM: 20px
+}
+.mt10 {
+	MARGIN-TOP: 10px
+}
+.mt20 {
+	MARGIN-TOP: 20px
+}
+.ml10 {
+	MARGIN-LEFT: 10px
+}
+.ml20 {
+	MARGIN-LEFT: 20px
+}
+.m20 {
+	MARGIN: 20px 0px
+}
+.align-r {
+	TEXT-ALIGN: right
+}
+.align-c {
+	TEXT-ALIGN: center
+}
+.clear {
+	CLEAR: both
+}
+.g-hide {
+	
+}
+.clf:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; VISIBILITY: hidden; WIDTH: 0px; LINE-HEIGHT: 0; HEIGHT: 0px; content: ' '
+}
+.clf {
+	CLEAR: both; ZOOM: 1
+}
+#page DIV.border-none {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+#page LI.border-none {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.v-split {
+	MARGIN: 0px 5px; COLOR: #c1c1c1
+}
+.select-wrap .class-table {
+	MARGIN-RIGHT: 10px
+}
+#page {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#header {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#body {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#footer {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#page {
+	PADDING-BOTTOM: 30px; PADDING-TOP: 22px
+}
+.w984 {
+	WIDTH: 984px
+}
+.l-main-col {
+	MIN-HEIGHT: 1px; FLOAT: left; WIDTH: 100%
+}
+.l-aside {
+	FLOAT: left
+}
+.l-extend {
+	FLOAT: left
+}
+.l-grid-2:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.l-grid-3:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.l-main-wrap:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.l-aside:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.l-extend:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.l-grid-2 {
+	ZOOM: 1
+}
+.l-grid-3 {
+	ZOOM: 1
+}
+.l-main-wrap {
+	ZOOM: 1
+}
+.l-aside {
+	ZOOM: 1
+}
+.l-extend {
+	ZOOM: 1
+}
+.l-uc-frame .l-uc-con {
+	BACKGROUND: #fff
+}
+.l-uc-frame .l-uc-aside {
+	FLOAT: left; MARGIN: -2px 20px 0px -3px; WIDTH: 170px
+}
+.l-uc-frame .l-uc-main {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 12px; WIDTH: 764px; PADDING-TOP: 12px
+}
+.l-uc-frame .tl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 6px; HEIGHT: 6px
+}
+.l-uc-frame .tr {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 6px; HEIGHT: 6px
+}
+.l-uc-frame .bl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 6px; HEIGHT: 6px
+}
+.l-uc-frame .br {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 6px; HEIGHT: 6px
+}
+.l-uc-frame .tl {
+	BACKGROUND-POSITION: -14px -70px; FLOAT: left
+}
+.l-uc-frame .tr {
+	BACKGROUND-POSITION: -20px -70px; FLOAT: right
+}
+.l-uc-frame .bl {
+	BACKGROUND-POSITION: -14px -76px; MARGIN-TOP: -6px; FLOAT: left
+}
+.l-uc-frame .br {
+	BACKGROUND-POSITION: -20px -76px; MARGIN-TOP: -6px; FLOAT: right
+}
+.l-uc-frame .l-uc-outer {
+	BORDER-RIGHT: #66a630 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #66a630 1px solid; PADDING-LEFT: 1px; BACKGROUND: #b1db66; PADDING-BOTTOM: 1px; BORDER-LEFT: #66a630 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #66a630 1px solid
+}
+.l-uc-frame .l-uc-inner {
+	BORDER-RIGHT: #68ba2b 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #68ba2b 1px solid; PADDING-LEFT: 1px; BACKGROUND: #66a630; PADDING-BOTTOM: 1px; BORDER-LEFT: #68ba2b 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #68ba2b 1px solid
+}
+.container-33 {
+	MARGIN-LEFT: auto; WIDTH: 980px; MARGIN-RIGHT: auto; POSITION: relative
+}
+.span-1 {
+	WIDTH: 20px
+}
+.span-2 {
+	WIDTH: 50px
+}
+.span-3 {
+	WIDTH: 80px
+}
+.span-4 {
+	WIDTH: 110px
+}
+.span-5 {
+	WIDTH: 140px
+}
+.span-6 {
+	WIDTH: 170px
+}
+.span-7 {
+	MARGIN-LEFT: -200px; WIDTH: 200px
+}
+.span-8 {
+	MARGIN-LEFT: -230px; WIDTH: 230px
+}
+.span-9 {
+	MARGIN-LEFT: -260px; WIDTH: 260px
+}
+.span-10 {
+	MARGIN-LEFT: -290px; WIDTH: 290px
+}
+.span-11 {
+	WIDTH: 320px
+}
+.span-12 {
+	WIDTH: 350px
+}
+.span-13 {
+	WIDTH: 380px
+}
+.span-14 {
+	WIDTH: 410px
+}
+.span-15 {
+	WIDTH: 440px
+}
+.span-16 {
+	WIDTH: 470px
+}
+.span-17 {
+	WIDTH: 500px
+}
+.span-18 {
+	WIDTH: 530px
+}
+.span-19 {
+	MARGIN-LEFT: -560px; WIDTH: 560px
+}
+.span-20 {
+	WIDTH: 590px
+}
+.span-21 {
+	WIDTH: 620px
+}
+.span-22 {
+	WIDTH: 650px
+}
+.span-23 {
+	WIDTH: 680px
+}
+.span-24 {
+	WIDTH: 710px
+}
+.span-25 {
+	WIDTH: 740px
+}
+.span-26 {
+	WIDTH: 770px
+}
+.span-27 {
+	WIDTH: 800px
+}
+.span-28 {
+	WIDTH: 830px
+}
+.span-29 {
+	WIDTH: 860px
+}
+.span-30 {
+	WIDTH: 890px
+}
+.span-31 {
+	WIDTH: 920px
+}
+.span-32 {
+	WIDTH: 950px
+}
+.span-33 {
+	WIDTH: 980px
+}
+.ml-1 {
+	MARGIN-LEFT: 30px
+}
+.ml-3 {
+	MARGIN-LEFT: 90px
+}
+.ml-7 {
+	MARGIN-LEFT: 210px
+}
+.ml-10 {
+	MARGIN-LEFT: 300px
+}
+.l-grid-2 .l-main-wrap {
+	MARGIN: 0px
+}
+.l-grid-3 .l-aside {
+	MARGIN-LEFT: -100%
+}
+.rc-block1 {
+	MARGIN-BOTTOM: 10px
+}
+.rc-block1 .tl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.rc-block1 .tr {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.rc-block1 .bl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.rc-block1 .br {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.rc-block1 .tl {
+	BACKGROUND-POSITION: -4px -57px; FLOAT: left
+}
+.rc-block1 .tr {
+	BACKGROUND-POSITION: -7px -57px; FLOAT: right
+}
+.rc-block1 .bl {
+	BACKGROUND-POSITION: -4px -60px; FLOAT: left
+}
+.rc-block1 .br {
+	BACKGROUND-POSITION: -7px -60px; FLOAT: right
+}
+.rc-block1 .bl {
+	MARGIN-TOP: -3px
+}
+.rc-block1 .br {
+	MARGIN-TOP: -3px
+}
+.rc-block1 .outer {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #91d550; PADDING-BOTTOM: 3px; PADDING-TOP: 3px
+}
+.rc-block1 .inner {
+	BORDER-RIGHT: #76b95c 1px solid; BORDER-TOP: #76b95c 1px solid; BACKGROUND: #fff; BORDER-LEFT: #76b95c 1px solid; BORDER-BOTTOM: #76b95c 1px solid
+}
+.rc-block1-yellow .outer {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #ffdd90; PADDING-BOTTOM: 3px; PADDING-TOP: 3px
+}
+.rc-block1-yellow .inner {
+	BORDER-RIGHT: #f4bc44 1px solid; BORDER-TOP: #f4bc44 1px solid; BACKGROUND: #fff; BORDER-LEFT: #f4bc44 1px solid; BORDER-BOTTOM: #f4bc44 1px solid
+}
+.rc-block1-yellow .tl {
+	BACKGROUND-POSITION: -10px -57px
+}
+.rc-block1-yellow .tr {
+	BACKGROUND-POSITION: -13px -57px
+}
+.rc-block1-yellow .bl {
+	BACKGROUND-POSITION: -10px -60px
+}
+.rc-block1-yellow .br {
+	BACKGROUND-POSITION: -13px -60px
+}
+.rc-block2 {
+	MARGIN-BOTTOM: 10px
+}
+.rc-block2 .outer {
+	BORDER-RIGHT: #88c369 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #88c369 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #88c369 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #88c369 1px solid
+}
+.rc-block2 .inner {
+	BORDER-RIGHT: #e6f4d0 1px solid; BORDER-TOP: #e6f4d0 1px solid; BORDER-LEFT: #e6f4d0 1px solid; BORDER-BOTTOM: #e6f4d0 1px solid
+}
+.rc-block2 .tl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2 .tr {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2 .bl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2 .br {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2 .tl {
+	BACKGROUND-POSITION: -4px -53px; FLOAT: left
+}
+.rc-block2 .tr {
+	BACKGROUND-POSITION: -6px -53px; FLOAT: right
+}
+.rc-block2 .bl {
+	BACKGROUND-POSITION: -4px -55px; FLOAT: left
+}
+.rc-block2 .br {
+	BACKGROUND-POSITION: -6px -55px; FLOAT: right
+}
+.rc-block2 .bl {
+	MARGIN-TOP: -2px
+}
+.rc-block2 .br {
+	MARGIN-TOP: -2px
+}
+.rc-block2 .hd {
+	PADDING-LEFT: 12px; BACKGROUND: #e6f4d0; COLOR: #125908; LINE-HEIGHT: 26px; HEIGHT: 26px
+}
+.rc-block2 .hd H3 {
+	FONT-SIZE: 14px; FLOAT: left; LINE-HEIGHT: 26px
+}
+.rc-block2 .hd A.more {
+	FLOAT: right; LINE-HEIGHT: 26px; MARGIN-RIGHT: 6px
+}
+.rc-block2-blue .outer {
+	BORDER-RIGHT: #acc1dc 1px solid; BORDER-TOP: #acc1dc 1px solid; BORDER-LEFT: #acc1dc 1px solid; BORDER-BOTTOM: #acc1dc 1px solid
+}
+.rc-block2-blue .inner {
+	BORDER-RIGHT: #e1ebf8 1px solid; BORDER-TOP: #e1ebf8 1px solid; BORDER-LEFT: #e1ebf8 1px solid; BORDER-BOTTOM: #e1ebf8 1px solid
+}
+.rc-block2-blue .hd {
+	BACKGROUND: #e1ebf8 0px 0px; COLOR: #082c59
+}
+.rc-block2-gray .hd H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: left; COLOR: #333; LINE-HEIGHT: 26px
+}
+.rc-block2-gray .outer {
+	BORDER-RIGHT: #cacaca 1px solid; BORDER-TOP: #cacaca 1px solid; BORDER-LEFT: #cacaca 1px solid; BORDER-BOTTOM: #cacaca 1px solid
+}
+.rc-block2-gray .inner {
+	BORDER-RIGHT: #f0f0f0 1px solid; BORDER-TOP: #f0f0f0 1px solid; BORDER-LEFT: #f0f0f0 1px solid; BORDER-BOTTOM: #f0f0f0 1px solid
+}
+.rc-block2-gray .hd {
+	BACKGROUND: #f0f0f0 0px 0px; COLOR: #082c59
+}
+.rc-block2-gray .tl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-gray .tr {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-gray .bl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-gray .br {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_bg.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-gray .tl {
+	BACKGROUND-POSITION: -28px -62px; FLOAT: left
+}
+.rc-block2-gray .tr {
+	BACKGROUND-POSITION: -30px -62px; FLOAT: right
+}
+.rc-block2-gray .bl {
+	BACKGROUND-POSITION: -28px -64px; FLOAT: left
+}
+.rc-block2-gray .br {
+	BACKGROUND-POSITION: -30px -64px; FLOAT: right
+}
+.rc-block2-pink .hd H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: left; COLOR: #2f1301; LINE-HEIGHT: 26px
+}
+.rc-block2-pink .outer {
+	BORDER-RIGHT: #f2af70 1px solid; BORDER-TOP: #f2af70 1px solid; BORDER-LEFT: #f2af70 1px solid; BORDER-BOTTOM: #f2af70 1px solid
+}
+.rc-block2-pink .inner {
+	BORDER-RIGHT: #fce7d3 1px solid; BORDER-TOP: #fce7d3 1px solid; BORDER-LEFT: #fce7d3 1px solid; BORDER-BOTTOM: #fce7d3 1px solid
+}
+.rc-block2-pink .hd {
+	BACKGROUND: #fce7d3 0px 0px
+}
+.rc-block2-pink .tl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_icon1.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-pink .tr {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_icon1.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-pink .bl {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_icon1.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-pink .br {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/userteam/team_icon1.gif) no-repeat; OVERFLOW: hidden; WIDTH: 2px; HEIGHT: 2px
+}
+.rc-block2-pink .tl {
+	BACKGROUND-POSITION: -58px -27px; FLOAT: left
+}
+.rc-block2-pink .tr {
+	BACKGROUND-POSITION: -60px -27px; FLOAT: right
+}
+.rc-block2-pink .bl {
+	BACKGROUND-POSITION: -58px -29px; FLOAT: left
+}
+.rc-block2-pink .br {
+	BACKGROUND-POSITION: -60px -29px; FLOAT: right
+}
+.ra-block1 {
+	BORDER-RIGHT: #c2c2c2 1px solid; BORDER-TOP: #c2c2c2 1px solid; MARGIN: 3px 3px 6px; BORDER-LEFT: #c2c2c2 1px solid; BORDER-BOTTOM: #c2c2c2 1px solid
+}
+.ra-block1 .outer {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.ra-block1 .hd H3 {
+	FONT-SIZE: 14px; FLOAT: left
+}
+.ra-block1 .hd A.more {
+	FLOAT: right
+}
+.ra-block1 .bd {
+	CLEAR: both
+}
+.r1 {
+	DISPLAY: block; BACKGROUND: url(http://img.baidu.com/img/iknow/gongshe/bgs.gif) no-repeat 0px -65px; FLOAT: left; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.r2 {
+	DISPLAY: block; BACKGROUND: url(http://img.baidu.com/img/iknow/gongshe/bgs.gif) no-repeat 0px -65px; FLOAT: left; OVERFLOW: hidden; WIDTH: 3px; HEIGHT: 3px
+}
+.r2 {
+	BACKGROUND-POSITION: -3px -65px; FLOAT: right
+}
+.rc-block3 {
+	BORDER-RIGHT: #c5eab7 1px solid; BORDER-TOP: #c5eab7 1px solid; BACKGROUND: #ecfae9; MARGIN-BOTTOM: 10px; BORDER-LEFT: #c5eab7 1px solid; BORDER-BOTTOM: #c5eab7 1px solid
+}
+.rc-block3 DT {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/iknow/gongshe/bgs.gif) repeat-x 0px -69px; PADDING-BOTTOM: 0px; COLOR: #176100; LINE-HEIGHT: 29px; PADDING-TOP: 0px; ZOOM: 1
+}
+.rc-block3 .more {
+	FONT-WEIGHT: normal; FLOAT: right; COLOR: #176100
+}
+.rc-block3 DD {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; MARGIN: 0px 4px 4px; PADDING-TOP: 10px
+}
+.ra-block2 {
+	BORDER-RIGHT: #c5eab7 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #c5eab7 1px solid; PADDING-LEFT: 4px; BACKGROUND: #e8f7e4 0px 0px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 4px; BORDER-LEFT: #c5eab7 1px solid; PADDING-TOP: 4px; BORDER-BOTTOM: #c5eab7 1px solid
+}
+.ra-block2 .inner {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 14px; BACKGROUND: #fff 0px 0px; PADDING-BOTTOM: 10px; COLOR: #333; LINE-HEIGHT: 22px; PADDING-TOP: 10px
+}
+.m-header1 {
+	LINE-HEIGHT: 28px; BORDER-BOTTOM: #aad29e 2px solid; HEIGHT: 28px
+}
+.m-header1 H2 {
+	FONT-SIZE: 14px; MARGIN-BOTTOM: -2px; WIDTH: 107px; COLOR: #125908; BORDER-BOTTOM: #269d00 2px solid; POSITION: relative
+}
+.switch-tab {
+	BACKGROUND: #e6f4d0; BORDER-BOTTOM: #a3cf8c 2px solid; HEIGHT: 30px
+}
+.switch-tab UL {
+	MARGIN-LEFT: 10px; LIST-STYLE-TYPE: none
+}
+.switch-tab LI {
+	BACKGROUND: #f7fcf0; FLOAT: left; MARGIN: 3px 12px -2px 0px; WIDTH: 110px; POSITION: relative; HEIGHT: 26px
+}
+.switch-tab A:link {
+	BORDER-RIGHT: #cce5be 1px solid; PADDING-RIGHT: 8px; BORDER-TOP: #cce5be 1px solid; DISPLAY: block; PADDING-LEFT: 8px; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; BORDER-LEFT: #cce5be 1px solid; COLOR: #333; LINE-HEIGHT: 28px; PADDING-TOP: 0px; BORDER-BOTTOM: #cce5be 1px; HEIGHT: 26px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.switch-tab A:visited {
+	BORDER-RIGHT: #cce5be 1px solid; PADDING-RIGHT: 8px; BORDER-TOP: #cce5be 1px solid; DISPLAY: block; PADDING-LEFT: 8px; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; BORDER-LEFT: #cce5be 1px solid; COLOR: #333; LINE-HEIGHT: 28px; PADDING-TOP: 0px; BORDER-BOTTOM: #cce5be 1px; HEIGHT: 26px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.switch-tab LI.on A:link {
+	BORDER-RIGHT: #a3cf8c 2px solid; BORDER-TOP: #a3cf8c 1px solid; FONT-WEIGHT: bold; BACKGROUND: #fff; BORDER-LEFT: #a3cf8c 1px solid; BORDER-BOTTOM: #fff 2px solid
+}
+.switch-tab LI.on A:visited {
+	BORDER-RIGHT: #a3cf8c 2px solid; BORDER-TOP: #a3cf8c 1px solid; FONT-WEIGHT: bold; BACKGROUND: #fff; BORDER-LEFT: #a3cf8c 1px solid; BORDER-BOTTOM: #fff 2px solid
+}
+.box .outter {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; BORDER-LEFT: 1px solid; BORDER-BOTTOM: 1px solid
+}
+.box .inner {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BACKGROUND: #f1f8e9; BORDER-LEFT: #fff 1px solid; BORDER-BOTTOM: #fff 1px solid
+}
+.box-gr-top {
+	BORDER-RIGHT: #e3e3e3 1px solid; BORDER-TOP: #4cbe00 2px solid; BACKGROUND: #fcfefc; BORDER-LEFT: #e3e3e3 1px solid; BORDER-BOTTOM: #e3e3e3 1px solid
+}
+.box-gray {
+	BORDER-RIGHT: #d6d6d6 1px solid; BORDER-TOP: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; BORDER-BOTTOM: #d6d6d6 1px solid
+}
+.box-gray-active {
+	BORDER-RIGHT: #eef3ee 1px solid; BORDER-TOP: #eef3ee 1px solid; BACKGROUND: #f6fcf6; BORDER-LEFT: #eef3ee 1px solid; BORDER-BOTTOM: #eef3ee 1px solid
+}
+.box-pink {
+	BORDER-RIGHT: #fadec4 1px solid; BORDER-TOP: #fadec4 1px solid; BACKGROUND: #fffcf6; BORDER-LEFT: #fadec4 1px solid; BORDER-BOTTOM: #fadec4 1px solid
+}
+.box-gr {
+	BORDER-RIGHT: #60a506 2px solid; BORDER-TOP: #60a506 2px solid; BORDER-LEFT: #60a506 2px solid; BORDER-BOTTOM: #60a506 2px solid; ZOOM: 1
+}
+.box-rod {
+	ZOOM: 1
+}
+.box-rod .rod2 {
+	BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; MARGIN: 0px 1px; OVERFLOW: hidden; BORDER-LEFT: 0px solid; BORDER-BOTTOM: 0px solid; HEIGHT: 1px
+}
+.box-rod .rod3 {
+	BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; MARGIN: 0px 1px; OVERFLOW: hidden; BORDER-LEFT: 0px solid; BORDER-BOTTOM: 0px solid; HEIGHT: 1px
+}
+.box-rod .rod1 {
+	BORDER-TOP: 1px solid; FONT-SIZE: 0px; MARGIN: 0px 3px; OVERFLOW: hidden; HEIGHT: 0px
+}
+.box-rod .rod4 {
+	FONT-SIZE: 0px; MARGIN: 0px 3px; OVERFLOW: hidden; BORDER-BOTTOM: 1px solid; HEIGHT: 0px
+}
+.box-rod .rod2 {
+	BORDER-LEFT-WIDTH: 2px; BORDER-RIGHT-WIDTH: 2px
+}
+.box-rod .rod3 {
+	BORDER-LEFT-WIDTH: 1px; BORDER-RIGHT-WIDTH: 1px
+}
+.box-rod .rod {
+	BORDER-RIGHT: 1px solid; BORDER-LEFT: 1px solid
+}
+#usrbar {
+	PADDING-RIGHT: 10px; Z-INDEX: 65532; RIGHT: 0px; FONT: 12px arial; WIDTH: 100%! important; POSITION: absolute; TOP: 3px; TEXT-ALIGN: right
+}
+#usrbar A:link {
+	COLOR: #261cdc; TEXT-DECORATION: underline
+}
+#usrbar A:visited {
+	COLOR: #261cdc; TEXT-DECORATION: underline
+}
+#usrbar .g-un {
+	FONT-WEIGHT: bold
+}
+#usrbar SPAN {
+	ZOOM: 1
+}
+#nav-extra {
+	DISPLAY: none; FONT-SIZE: 12px; Z-INDEX: 65535; WIDTH: 104px; POSITION: absolute; TEXT-ALIGN: left
+}
+#nav-extra A {
+	CURSOR: pointer; COLOR: #00c! important; LINE-HEIGHT: 18px; POSITION: static; TEXT-DECORATION: underline! important
+}
+#nav-extra .g-top {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 5px; Z-INDEX: 65531; PADDING-BOTTOM: 3px; BORDER-LEFT: #999 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #999 0px solid; POSITION: absolute; TOP: 6px; HEIGHT: 18px; BACKGROUND-COLOR: #fff
+}
+#nav-extra .g-body {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; Z-INDEX: 65530; BACKGROUND: #fff; BORDER-LEFT: #999 1px solid; BORDER-BOTTOM: #999 1px solid; POSITION: absolute; TOP: 25px
+}
+#nav-extra .g-body A {
+	PADDING-RIGHT: 11px; DISPLAY: block; PADDING-LEFT: 5px; PADDING-BOTTOM: 3px; PADDING-TOP: 3px
+}
+#nav-extra .g-body A:hover {
+	BACKGROUND: #e4e4e4
+}
+#usrbar #my-home_container {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px
+}
+#nav-app {
+	DISPLAY: none; FONT-SIZE: 12px; Z-INDEX: 65535; WIDTH: 84px; POSITION: absolute; TEXT-ALIGN: left
+}
+#nav-app A {
+	LINE-HEIGHT: 18px
+}
+#nav-app .g-top {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 5px; Z-INDEX: 65531; PADDING-BOTTOM: 3px; BORDER-LEFT: #999 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #999 0px solid; POSITION: absolute; TOP: 6px; HEIGHT: 18px; BACKGROUND-COLOR: #fff
+}
+#nav-app .g-body {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 5px; Z-INDEX: 65530; BACKGROUND: #fff; PADDING-BOTTOM: 5px; MARGIN-LEFT: -30px; BORDER-LEFT: #999 1px solid; WIDTH: 95px; PADDING-TOP: 5px; BORDER-BOTTOM: #999 1px solid; POSITION: absolute; TOP: 25px
+}
+#nav-app .g-body A {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+#nav-app .g-body A:hover {
+	BACKGROUND: #e4e4e4
+}
+#usrbar A.g-gradeholder {
+	COLOR: #256e16; TEXT-DECORATION: none
+}
+#usrbar A.g-gradeholder:visited {
+	COLOR: #256e16; TEXT-DECORATION: none
+}
+A.g-gradeholder {
+	CURSOR: pointer; COLOR: #256e16; TEXT-DECORATION: none
+}
+A.g-gradeholder:link {
+	CURSOR: pointer; COLOR: #256e16; TEXT-DECORATION: none
+}
+A.g-gradeholder:visited {
+	CURSOR: pointer; COLOR: #256e16; TEXT-DECORATION: none
+}
+A.g-gradeholder:hover {
+	CURSOR: pointer; COLOR: #256e16; TEXT-DECORATION: none
+}
+A.g-gradeholder {
+	MARGIN-LEFT: 4px
+}
+.g-grade1 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade2 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade3 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade4 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade5 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade6 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade7 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade8 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade9 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade10 {
+	PADDING-RIGHT: 22px; PADDING-LEFT: 8px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 8px
+}
+.g-grade11 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade12 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade13 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade14 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade15 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade16 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade17 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade18 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade19 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-grade20 {
+	PADDING-RIGHT: 23px; PADDING-LEFT: 5px; PADDING-BOTTOM: 1px; COLOR: #256e16; PADDING-TOP: 3px; ZOOM: 1; FONT-FAMILY: "宋体"; LETTER-SPACING: 1px
+}
+.g-star0 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star1 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star2 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star3 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star4 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star5 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star6 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat
+}
+.g-star1 {
+	BACKGROUND-POSITION: 0px -23px
+}
+.g-star2 {
+	BACKGROUND-POSITION: 0px -46px
+}
+.g-star3 {
+	BACKGROUND-POSITION: 0px -69px
+}
+.g-star4 {
+	BACKGROUND-POSITION: 0px -92px
+}
+.g-star5 {
+	BACKGROUND-POSITION: 0px -115px
+}
+.g-star6 {
+	BACKGROUND-POSITION: 0px -138px
+}
+.tip-holder {
+	Z-INDEX: 1; BACKGROUND: url(http://img.baidu.com/img/iknow/tip_bg.gif) no-repeat left bottom; WIDTH: 231px; POSITION: absolute
+}
+.tip-body {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 12px; LINE-HEIGHT: 18px; PADDING-TOP: 0px
+}
+.tip-left-arrow {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/tip_bg.gif) #fff no-repeat left top; HEIGHT: 20px
+}
+.tip-right-arrow {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/tip_bg.gif) #fff no-repeat right top; HEIGHT: 20px
+}
+.tip-icon {
+	FLOAT: left
+}
+.tip-close {
+	FLOAT: right; CURSOR: pointer
+}
+.tip-body DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 45px; PADDING-TOP: 0px
+}
+.tip-body DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.tip-body DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.tip-body .tip-more {
+	TEXT-ALIGN: right
+}
+.top-search-box .logo {
+	FLOAT: left; MARGIN-RIGHT: 9px; PADDING-TOP: 2px
+}
+.top-search-box .xjd {
+	MARGIN-TOP: -10px
+}
+.top-search-box UL {
+	MARGIN-BOTTOM: 4px; LINE-HEIGHT: 16px; HEIGHT: 16px
+}
+.top-search-box LI {
+	FONT-SIZE: 14px; FLOAT: left; MARGIN-RIGHT: 12px; ZOOM: 1
+}
+.top-search-box .box A {
+	FLOAT: left; MARGIN-LEFT: 6px; LINE-HEIGHT: 27px
+}
+.top-search-box A:link {
+	COLOR: #261cdc; TEXT-DECORATION: underline
+}
+.top-search-box A:visited {
+	COLOR: #261cdc; TEXT-DECORATION: underline
+}
+.top-search-box .pipe {
+	FLOAT: left; MARGIN-LEFT: 6px; LINE-HEIGHT: 27px
+}
+.top-search-box .hdi {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-SIZE: 16px; FLOAT: left; PADDING-BOTTOM: 3px; WIDTH: 358px; LINE-HEIGHT: 19px; PADDING-TOP: 3px; FONT-FAMILY: Arial
+}
+.top-search-box .btns {
+	CLEAR: left; PADDING-TOP: 3px; ZOOM: 1
+}
+#top-search-form {
+	FLOAT: left
+}
+#top-ask-btn {
+	MARGIN: 0px 5px
+}
+.tangram_sug_wpr {
+	BORDER-RIGHT: #817f82 1px solid; BORDER-TOP: #817f82 1px solid; LEFT: 0px; BORDER-LEFT: #817f82 1px solid; BORDER-BOTTOM: #817f82 1px solid; POSITION: absolute; TOP: 28px
+}
+.tangram_sug_wpr TABLE {
+	BACKGROUND: #fff; WIDTH: 100%; CURSOR: default
+}
+.tangram_sug_wpr TD {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; FONT: 14px verdana; PADDING-TOP: 2px
+}
+.tangram_sug_ml {
+	COLOR: #000; BACKGROUND-COLOR: #fff
+}
+.tangram_sug_mo {
+	COLOR: #fff; BACKGROUND-COLOR: #36c
+}
+.tangram_sug_app {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; BACKGROUND: #fff; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; TEXT-ALIGN: right
+}
+.tangram_sug_app A {
+	FONT-SIZE: 14px
+}
+#menu {
+	CLEAR: both; MARGIN: 10px 0px
+}
+.main-menu {
+	PADDING-LEFT: 4px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat 0px -30px
+}
+.main-menu A {
+	TEXT-DECORATION: none
+}
+.main-menu A:hover {
+	TEXT-DECORATION: underline
+}
+.main-menu .outer {
+	PADDING-RIGHT: 4px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat right -30px; ZOOM: 1
+}
+.main-menu .inner {
+	PADDING-LEFT: 17px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) repeat-x 0px -65px; OVERFLOW: hidden; HEIGHT: 34px
+}
+.main-menu UL {
+	FLOAT: left; ZOOM: 1
+}
+.main-menu LI {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat right -100px; FLOAT: left; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; ZOOM: 1; TEXT-ALIGN: center
+}
+.main-menu LI A:link {
+	DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN: 0px auto; COLOR: #fff; LINE-HEIGHT: 36px; ZOOM: 1; HEIGHT: 36px; TEXT-DECORATION: none
+}
+.main-menu LI A:visited {
+	DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN: 0px auto; COLOR: #fff; LINE-HEIGHT: 36px; ZOOM: 1; HEIGHT: 36px; TEXT-DECORATION: none
+}
+.main-menu LI A:hover {
+	TEXT-DECORATION: underline
+}
+.main-menu LI.current A:link {
+	PADDING-RIGHT: 12px; PADDING-LEFT: 12px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat 0px 4px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; COLOR: #408f24; PADDING-TOP: 0px; ZOOM: 1; HEIGHT: 34px; TEXT-DECORATION: none
+}
+.main-menu LI.current A:visited {
+	PADDING-RIGHT: 12px; PADDING-LEFT: 12px; BACKGROUND: url(http://img.baidu.com/img/iknow/home/bg.gif) no-repeat 0px 4px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; COLOR: #408f24; PADDING-TOP: 0px; ZOOM: 1; HEIGHT: 34px; TEXT-DECORATION: none
+}
+.main-menu .total {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; FLOAT: right; PADDING-BOTTOM: 8px; COLOR: #fffdbb; PADDING-TOP: 8px
+}
+.sub-menu {
+	BORDER-RIGHT: #b8d5ad 1px solid; BORDER-TOP: #b8d5ad 1px; MARGIN-TOP: -1px; BORDER-LEFT: #b8d5ad 1px solid; BORDER-BOTTOM: #b8d5ad 1px solid; HEIGHT: 30px
+}
+.sub-menu UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 30px; PADDING-BOTTOM: 0px; PADDING-TOP: 8px
+}
+.sub-menu LI {
+	BORDER-RIGHT: #090 1px solid; FLOAT: left; WIDTH: 100px; LINE-HEIGHT: 14px; HEIGHT: 14px; TEXT-ALIGN: center
+}
+.sub-menu LI.last {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.sub-menu LI A:link {
+	COLOR: #090; TEXT-DECORATION: none
+}
+.sub-menu LI A:visited {
+	COLOR: #090; TEXT-DECORATION: none
+}
+.sub-menu LI A:hover {
+	TEXT-DECORATION: underline
+}
+.sub-menu A.on {
+	FONT-WEIGHT: bold
+}
+.has-sub-menu .main-menu {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/nav_conner.gif) no-repeat 0px 0px
+}
+.has-sub-menu .outer {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/home/nav_conner.gif) no-repeat 100% 0px
+}
+#footer {
+	CLEAR: both; MARGIN-TOP: 10px; FONT: 12px/1.5 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+#footer A:link {
+	CLEAR: both; MARGIN-TOP: 10px; FONT: 12px/1.5 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+#footer A:visited {
+	CLEAR: both; MARGIN-TOP: 10px; FONT: 12px/1.5 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+.btn-global {
+	FONT-SIZE: 14px; WIDTH: 6em; PADDING-TOP: 2px; FONT-FAMILY: Arial; HEIGHT: 2em
+}
+.btn-comm {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/iknow/bg_popbtn.gif) no-repeat 0px 0px; PADDING-BOTTOM: 5px; CURSOR: pointer; COLOR: #2f5124; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 32px; BORDER-BOTTOM-STYLE: none
+}
+.btn-short {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/iknow/bg_popbtn.gif) no-repeat 0px 0px; PADDING-BOTTOM: 5px; CURSOR: pointer; COLOR: #2f5124; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 32px; BORDER-BOTTOM-STYLE: none
+}
+.btn-long {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/iknow/bg_popbtn.gif) no-repeat 0px 0px; PADDING-BOTTOM: 5px; CURSOR: pointer; COLOR: #2f5124; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 32px; BORDER-BOTTOM-STYLE: none
+}
+.btn-long2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/iknow/bg_popbtn.gif) no-repeat 0px 0px; PADDING-BOTTOM: 5px; CURSOR: pointer; COLOR: #2f5124; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 32px; BORDER-BOTTOM-STYLE: none
+}
+.btn-comm {
+	BACKGROUND-POSITION: 0px 0px; WIDTH: 77px; TEXT-ALIGN: center
+}
+.btn-short {
+	BACKGROUND-POSITION: 0px -37px; WIDTH: 92px
+}
+.btn-long {
+	BACKGROUND-POSITION: 0px -74px; WIDTH: 104px
+}
+.btn-long2 {
+	BACKGROUND-POSITION: 0px -111px; WIDTH: 149px
+}
+A.operation:link {
+	PADDING-RIGHT: 15px; DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat left -263px; PADDING-BOTTOM: 0px; FONT: 12px/23px '宋体'; VERTICAL-ALIGN: middle; WIDTH: 54px; COLOR: #589b00; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 23px; TEXT-ALIGN: center; TEXT-DECORATION: none; min-width: 54px
+}
+A.operation:visited {
+	PADDING-RIGHT: 15px; DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat left -263px; PADDING-BOTTOM: 0px; FONT: 12px/23px '宋体'; VERTICAL-ALIGN: middle; WIDTH: 54px; COLOR: #589b00; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 23px; TEXT-ALIGN: center; TEXT-DECORATION: none; min-width: 54px
+}
+BUTTON.operation {
+	PADDING-RIGHT: 15px; DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat left -263px; PADDING-BOTTOM: 0px; FONT: 12px/23px '宋体'; VERTICAL-ALIGN: middle; WIDTH: 54px; COLOR: #589b00; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 23px; TEXT-ALIGN: center; TEXT-DECORATION: none; min-width: 54px
+}
+A.operation:hover {
+	BACKGROUND-POSITION: left -263px; COLOR: #7bbe24
+}
+BUTTON.operation:hover {
+	BACKGROUND-POSITION: left -263px; COLOR: #7bbe24
+}
+A.operation SPAN {
+	PADDING-RIGHT: 15px; DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat right -263px; CURSOR: pointer; LINE-HEIGHT: 23px; MARGIN-RIGHT: -15px; HEIGHT: 23px
+}
+A.operation:hover SPAN {
+	BACKGROUND-POSITION: right -263px
+}
+.text-nomarl {
+	BORDER-RIGHT: #bebebe 1px solid; BORDER-TOP: #bebebe 1px solid; BORDER-LEFT: #bebebe 1px solid; LINE-HEIGHT: 21px; BORDER-BOTTOM: #bebebe 1px solid; HEIGHT: 21px
+}
+.text-focus {
+	BORDER-RIGHT: #4cbe00 1px solid; BORDER-TOP: #4cbe00 1px solid; BORDER-LEFT: #4cbe00 1px solid; BORDER-BOTTOM: #4cbe00 1px solid
+}
+A.button {
+	DISPLAY: inline-block; FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat left -132px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; WIDTH: 62px; LINE-HEIGHT: 10; HEIGHT: 19px
+}
+A.b-question {
+	BACKGROUND-POSITION: right -66px
+}
+A.b-askhelp {
+	BACKGROUND-POSITION: -188px -144px; WIDTH: 54px; HEIGHT: 17px
+}
+A.b-askhelp-expert {
+	BACKGROUND-POSITION: -188px -144px; WIDTH: 54px; HEIGHT: 17px
+}
+A.b-askhelp-expert {
+	BACKGROUND-POSITION: -188px -162px
+}
+A.b-addfriend {
+	BACKGROUND-POSITION: right -86px
+}
+A.b-question-experts {
+	BACKGROUND-POSITION: right -243px; WIDTH: 74px
+}
+A.b-hitalk-on {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat 0px -309px; WIDTH: 77px
+}
+A.b-hitalk-off {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat -77px -309px; WIDTH: 77px
+}
+BUTTON.btn {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px 5px; VERTICAL-ALIGN: middle; OVERFLOW: visible; BORDER-LEFT: 0px; CURSOR: pointer; PADDING-TOP: 0px; BORDER-BOTTOM: 0px
+}
+A.btn {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; PADDING-LEFT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-BOTTOM: 0px; MARGIN: 0px 5px; VERTICAL-ALIGN: middle; OVERFLOW: visible; BORDER-LEFT: 0px; CURSOR: pointer; PADDING-TOP: 0px; BORDER-BOTTOM: 0px
+}
+A.btn {
+	DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/button_bg.png) no-repeat 0px 0px; FONT: 15px/30px "微软雅黑"; CURSOR: pointer; COLOR: #fff; WHITE-SPACE: nowrap; HEIGHT: 31px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+A.btn SPAN {
+	DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/button_bg.png) no-repeat 0px 0px; FONT: 15px/30px "微软雅黑"; CURSOR: pointer; COLOR: #fff; WHITE-SPACE: nowrap; HEIGHT: 31px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+BUTTON.btn SPAN {
+	DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/button_bg.png) no-repeat 0px 0px; FONT: 15px/30px "微软雅黑"; CURSOR: pointer; COLOR: #fff; WHITE-SPACE: nowrap; HEIGHT: 31px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+BUTTON.btn B {
+	DISPLAY: inline-block; PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/button_bg.png) no-repeat 0px 0px; FONT: 15px/30px "微软雅黑"; CURSOR: pointer; COLOR: #fff; WHITE-SPACE: nowrap; HEIGHT: 31px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+A.btn SPAN {
+	PADDING-RIGHT: 15px; BACKGROUND-POSITION: right 0px; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 50px; PADDING-TOP: 0px; min-width: 50px
+}
+BUTTON.btn B {
+	PADDING-RIGHT: 15px; BACKGROUND-POSITION: right 0px; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 50px; PADDING-TOP: 0px; min-width: 50px
+}
+A.btn:hover {
+	BACKGROUND-POSITION: 0px -31px; TEXT-DECORATION: none
+}
+BUTTON.btn:hover SPAN {
+	BACKGROUND-POSITION: 0px -31px; TEXT-DECORATION: none
+}
+A.btn:hover SPAN {
+	BACKGROUND-POSITION: right -31px
+}
+BUTTON.btn:hover B {
+	BACKGROUND-POSITION: right -31px
+}
+A.icon {
+	FONT-FAMILY: tahoma
+}
+SPAN.icon {
+	FONT-FAMILY: tahoma
+}
+A.icon {
+	DISPLAY: inline-block; PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat left 30px; VERTICAL-ALIGN: middle; LINE-HEIGHT: 24px; FONT-FAMILY: tahoma; HEIGHT: 24px
+}
+SPAN.icon {
+	DISPLAY: inline-block; PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat left 30px; VERTICAL-ALIGN: middle; LINE-HEIGHT: 24px; FONT-FAMILY: tahoma; HEIGHT: 24px
+}
+A.i-finished {
+	BACKGROUND-POSITION: left -2px
+}
+SPAN.i-finished {
+	BACKGROUND-POSITION: left -2px
+}
+A.i-wapuser {
+	BACKGROUND-POSITION: left -32px
+}
+SPAN.i-wapuser {
+	BACKGROUND-POSITION: left -32px
+}
+A.i-userspace {
+	BACKGROUND-POSITION: left -62px
+}
+SPAN.i-userspace {
+	BACKGROUND-POSITION: left -62px
+}
+A.i-otheranswer {
+	BACKGROUND-POSITION: left -92px
+}
+SPAN.i-otheranswer {
+	BACKGROUND-POSITION: left -92px
+}
+A.i-voting {
+	BACKGROUND-POSITION: left -122px
+}
+SPAN.i-voting {
+	BACKGROUND-POSITION: left -122px
+}
+A.i-being {
+	BACKGROUND-POSITION: left -1094px
+}
+SPAN.i-being {
+	BACKGROUND-POSITION: left -1094px
+}
+A.i-relatedanswer {
+	BACKGROUND-POSITION: left -152px
+}
+SPAN.i-relatedanswer {
+	BACKGROUND-POSITION: left -152px
+}
+A.i-waitinganswer {
+	BACKGROUND-POSITION: left -182px
+}
+SPAN.i-waitinganswer {
+	BACKGROUND-POSITION: left -182px
+}
+A.i-thanks {
+	BACKGROUND-POSITION: left -212px
+}
+SPAN.i-thanks {
+	BACKGROUND-POSITION: left -212px
+}
+A.i-prize {
+	BACKGROUND-POSITION: left -242px
+}
+SPAN.i-prize {
+	BACKGROUND-POSITION: left -242px
+}
+A.i-reward {
+	BACKGROUND-POSITION: left -272px
+}
+SPAN.i-reward {
+	BACKGROUND-POSITION: left -272px
+}
+A.i-prize-famous {
+	BACKGROUND-POSITION: left -302px
+}
+SPAN.i-prize-famous {
+	BACKGROUND-POSITION: left -302px
+}
+A.i-prize-todas {
+	BACKGROUND-POSITION: left -332px
+}
+SPAN.i-prize-todas {
+	BACKGROUND-POSITION: left -332px
+}
+A.i-experts {
+	BACKGROUND-POSITION: left -362px
+}
+SPAN.i-experts {
+	BACKGROUND-POSITION: left -362px
+}
+A.i-openiknow {
+	BACKGROUND-POSITION: left -392px
+}
+SPAN.i-openiknow {
+	BACKGROUND-POSITION: left -392px
+}
+A.i-openiknow1 {
+	BACKGROUND-POSITION: left -963px
+}
+SPAN.i-openiknow1 {
+	BACKGROUND-POSITION: left -963px
+}
+A.i-openiknow2 {
+	BACKGROUND-POSITION: left -1064px
+}
+SPAN.i-openiknow2 {
+	BACKGROUND-POSITION: left -1064px
+}
+A.i-iknowstar {
+	BACKGROUND-POSITION: left -422px
+}
+SPAN.i-iknowstar {
+	BACKGROUND-POSITION: left -422px
+}
+A.i-adopt {
+	BACKGROUND-POSITION: left -452px
+}
+SPAN.i-adopt {
+	BACKGROUND-POSITION: left -452px
+}
+A.i-added {
+	BACKGROUND-POSITION: left -482px
+}
+SPAN.i-added {
+	BACKGROUND-POSITION: left -482px
+}
+A.i-enhance {
+	BACKGROUND-POSITION: left -512px
+}
+SPAN.i-enhance {
+	BACKGROUND-POSITION: left -512px
+}
+A.i-forward {
+	BACKGROUND-POSITION: left -542px
+}
+SPAN.i-forward {
+	BACKGROUND-POSITION: left -542px
+}
+A.i-startvoting {
+	BACKGROUND-POSITION: left -572px
+}
+SPAN.i-startvoting {
+	BACKGROUND-POSITION: left -572px
+}
+A.i-noanswer {
+	BACKGROUND-POSITION: left -602px
+}
+SPAN.i-noanswer {
+	BACKGROUND-POSITION: left -602px
+}
+A.i-insertimg {
+	BACKGROUND-POSITION: left -632px
+}
+SPAN.i-insertimg {
+	BACKGROUND-POSITION: left -632px
+}
+A.i-insertmap {
+	BACKGROUND-POSITION: left -662px
+}
+SPAN.i-insertmap {
+	BACKGROUND-POSITION: left -662px
+}
+A.i-insertvideo {
+	BACKGROUND-POSITION: left -692px
+}
+SPAN.i-insertvideo {
+	BACKGROUND-POSITION: left -692px
+}
+A.i-deleteimg {
+	BACKGROUND-POSITION: left -1040px
+}
+SPAN.i-deleteimg {
+	BACKGROUND-POSITION: left -1040px
+}
+A.i-deletemap {
+	BACKGROUND-POSITION: left -1018px
+}
+SPAN.i-deletemap {
+	BACKGROUND-POSITION: left -1018px
+}
+A.i-webuser {
+	BACKGROUND-POSITION: left -722px
+}
+SPAN.i-webuser {
+	BACKGROUND-POSITION: left -722px
+}
+A.i-group {
+	BACKGROUND-POSITION: 0px -997px
+}
+SPAN.i-group {
+	BACKGROUND-POSITION: 0px -997px
+}
+A.i-itieba {
+	BACKGROUND-POSITION: 0px -1118px
+}
+SPAN.i-itieba {
+	BACKGROUND-POSITION: 0px -1118px
+}
+A.i-sina {
+	BACKGROUND-POSITION: 0px -1141px
+}
+SPAN.i-sina {
+	BACKGROUND-POSITION: 0px -1141px
+}
+A.i-qqzone {
+	BACKGROUND-POSITION: 0px -1216px
+}
+SPAN.i-qqzone {
+	BACKGROUND-POSITION: 0px -1216px
+}
+A.i-renren {
+	BACKGROUND-POSITION: 0px -1270px
+}
+SPAN.i-renren {
+	BACKGROUND-POSITION: 0px -1270px
+}
+A.i-kaixin {
+	BACKGROUND-POSITION: 0px -1246px
+}
+SPAN.i-kaixin {
+	BACKGROUND-POSITION: 0px -1246px
+}
+A.i-qqwb {
+	BACKGROUND-POSITION: 0px -1384px
+}
+SPAN.i-qqwb {
+	BACKGROUND-POSITION: 0px -1384px
+}
+A.i-qqpy {
+	BACKGROUND-POSITION: 0px -1325px
+}
+SPAN.i-qqpy {
+	BACKGROUND-POSITION: 0px -1325px
+}
+A.i-douban {
+	BACKGROUND-POSITION: 0px -1352px
+}
+SPAN.i-douban {
+	BACKGROUND-POSITION: 0px -1352px
+}
+A.i-msn {
+	BACKGROUND-POSITION: 0px -1296px
+}
+SPAN.i-msn {
+	BACKGROUND-POSITION: 0px -1296px
+}
+.i-grade {
+	DISPLAY: inline-block; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/iknow/grade.gif) no-repeat 0px 0px; WIDTH: 62px; LINE-HEIGHT: 18px; LETTER-SPACING: 6px; HEIGHT: 18px; TEXT-ALIGN: left
+}
+A.i-grade:link {
+	COLOR: #256e16; TEXT-DECORATION: none
+}
+A.i-grade:visited {
+	COLOR: #256e16; TEXT-DECORATION: none
+}
+A.i-grade:hover {
+	COLOR: #256e16; TEXT-DECORATION: none
+}
+.i-grade-1 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-2 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-3 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-4 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-5 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-6 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-7 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-8 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-9 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-10 {
+	TEXT-INDENT: 8px; LETTER-SPACING: 8px
+}
+.i-grade-11 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-12 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-13 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-14 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-15 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-16 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-17 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-18 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-19 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-grade-2010 {
+	PADDING-LEFT: 4px; LETTER-SPACING: 1px
+}
+.i-star-1 {
+	BACKGROUND-POSITION: 0px -23px
+}
+.i-star-2 {
+	BACKGROUND-POSITION: 0px -46px
+}
+.i-star-3 {
+	BACKGROUND-POSITION: 0px -69px
+}
+.i-star-4 {
+	BACKGROUND-POSITION: 0px -92px
+}
+.i-star-5 {
+	BACKGROUND-POSITION: 0px -115px
+}
+.i-star-6 {
+	BACKGROUND-POSITION: 0px -138px
+}
+#mulan-mybaidu A.icon {
+	PADDING-LEFT: 4px
+}
+.tangram-dialog-main {
+	BACKGROUND: #999
+}
+.tangram-dialog {
+	BORDER-RIGHT: #60a506 2px solid; PADDING-RIGHT: 15px; BORDER-TOP: #60a506 2px solid; PADDING-LEFT: 15px; BACKGROUND: #fff 0px 0px; LEFT: -4px; PADDING-BOTTOM: 10px; BORDER-LEFT: #60a506 2px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #60a506 2px solid; POSITION: relative; TOP: -4px
+}
+.tangram-dialog-close {
+	RIGHT: 15px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) -114px -131px; OVERFLOW: hidden; WIDTH: 20px; CURSOR: pointer; POSITION: absolute; TOP: 0px; HEIGHT: 20px
+}
+.tangram-dialog-title {
+	FONT-WEIGHT: normal; FONT-SIZE: 18px; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 10px; CURSOR: move; BORDER-BOTTOM: #3daa11 2px solid; FONT-FAMILY: "微软雅黑","黑体",Arial; POSITION: relative
+}
+.tangram-dialog-footer {
+	OVERFLOW: hidden; TEXT-ALIGN: center
+}
+.tangram-dialog-accept {
+	FLOAT: left
+}
+.tangram-dialog-cancel {
+	FLOAT: left
+}
+.tangram-dialog-ok {
+	FLOAT: left
+}
+.tangram-dialog-accept {
+	MARGIN-RIGHT: 10px
+}
+.tangram-dialog-main .smart-cover-iframe {
+	FILTER: alpha(opacity=0)
+}
+.tangram-dialog-iframe {
+	ZOOM: 1
+}
+#note {
+	Z-INDEX: 20; POSITION: absolute
+}
+.note-up {
+	PADDING-TOP: 10px
+}
+.note-left {
+	PADDING-LEFT: 10px
+}
+.note-down {
+	PADDING-BOTTOM: 10px
+}
+#note .note-arr {
+	Z-INDEX: 10; BACKGROUND: url(http://img.baidu.com/img/iknow/task/arrow.gif) no-repeat 0px 0px; OVERFLOW: hidden; POSITION: absolute
+}
+#note .up {
+	LEFT: 40px; WIDTH: 21px; TOP: 0px; HEIGHT: 11px
+}
+#note .left {
+	LEFT: 0px; WIDTH: 11px; TOP: 9px; HEIGHT: 21px
+}
+#note .down {
+	BACKGROUND-POSITION: 0px -10px; LEFT: 40px; WIDTH: 21px; BOTTOM: 0px; HEIGHT: 11px
+}
+#note .note-close {
+	Z-INDEX: 2; RIGHT: 2px; BACKGROUND: url(http://img.baidu.com/img/iknow/task/close.gif) no-repeat 0px 0px; OVERFLOW: hidden; WIDTH: 13px; CURSOR: pointer; POSITION: absolute; TOP: 2px; HEIGHT: 13px
+}
+#note .note-body {
+	BORDER-RIGHT: #fbe5a3 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #fbe5a3 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; BACKGROUND: #fff9e3; PADDING-BOTTOM: 10px; BORDER-LEFT: #fbe5a3 1px solid; WIDTH: 210px; PADDING-TOP: 10px; BORDER-BOTTOM: #fbe5a3 1px solid; POSITION: relative
+}
+#note .note-info {
+	PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/task/note.gif) no-repeat 0px center
+}
+.ui-tip {
+	Z-INDEX: 500; ZOOM: 1; POSITION: absolute
+}
+.tip-shadow {
+	BACKGROUND: #eee
+}
+.tip-dir-up {
+	PADDING-TOP: 12px
+}
+.tip-dir-left {
+	PADDING-LEFT: 12px
+}
+.tip-dir-down {
+	PADDING-BOTTOM: 8px
+}
+.tip-orange .tip-arr {
+	Z-INDEX: 10; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global-large.png) no-repeat 0px 0px; OVERFLOW: hidden; POSITION: absolute
+}
+.tip-blue .tip-arr {
+	Z-INDEX: 10; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global-large.png) no-repeat 0px 0px; OVERFLOW: hidden; POSITION: absolute
+}
+.tip-blue .tip-arr {
+	BACKGROUND-POSITION: -23px 0px
+}
+.ui-tip .up {
+	LEFT: 20px; WIDTH: 21px; TOP: 0px; HEIGHT: 11px
+}
+.ui-tip .left {
+	LEFT: 0px; WIDTH: 11px; TOP: 9px; HEIGHT: 21px
+}
+.tip-orange .down {
+	BACKGROUND-POSITION: 0px -10px; LEFT: 20px; WIDTH: 21px; BOTTOM: 0px; HEIGHT: 11px
+}
+.tip-blue .down {
+	BACKGROUND-POSITION: 0px -10px; LEFT: 20px; WIDTH: 21px; BOTTOM: 0px; HEIGHT: 11px
+}
+.tip-blue .down {
+	BACKGROUND-POSITION: -23px -10px
+}
+.ui-tip .tip-close-btn {
+	Z-INDEX: 2; RIGHT: 2px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -806px; OVERFLOW: hidden; WIDTH: 13px; CURSOR: pointer; POSITION: absolute; TOP: 2px; HEIGHT: 13px
+}
+.tip-orange .tip-body {
+	BORDER-RIGHT: #fbe5a3 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #fbe5a3 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; BACKGROUND: #fff9e3; LEFT: -2px; PADDING-BOTTOM: 10px; BORDER-LEFT: #fbe5a3 1px solid; WIDTH: 210px; PADDING-TOP: 10px; BORDER-BOTTOM: #fbe5a3 1px solid; ZOOM: 1; POSITION: relative; TOP: -2px
+}
+.tip-blue .tip-body {
+	BORDER-RIGHT: #fbe5a3 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #fbe5a3 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; BACKGROUND: #fff9e3; LEFT: -2px; PADDING-BOTTOM: 10px; BORDER-LEFT: #fbe5a3 1px solid; WIDTH: 210px; PADDING-TOP: 10px; BORDER-BOTTOM: #fbe5a3 1px solid; ZOOM: 1; POSITION: relative; TOP: -2px
+}
+.tip-blue .tip-body {
+	BORDER-RIGHT: #d6edcb 1px solid; BORDER-TOP: #d6edcb 1px solid; BACKGROUND: #f6fef2 0px 0px; BORDER-LEFT: #d6edcb 1px solid; BORDER-BOTTOM: #d6edcb 1px solid
+}
+.ui-tip .tip-info {
+	PADDING-LEFT: 20px; LINE-HEIGHT: 18px
+}
+.tip-orange .tip-icon {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -759px; WIDTH: 14px; POSITION: absolute; HEIGHT: 14px
+}
+.tip-blue .tip-icon {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -759px; WIDTH: 14px; POSITION: absolute; HEIGHT: 14px
+}
+.tip-blue .tip-icon {
+	BACKGROUND-POSITION: 0px -782px
+}
+.tangram-tooltip {
+	BACKGROUND: #999
+}
+.ucard-box {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 12px; LEFT: -2px; PADDING-BOTTOM: 10px; LINE-HEIGHT: 22px; PADDING-TOP: 10px; POSITION: relative; TOP: -2px
+}
+.ucard-box .carefield A {
+	FONT-SIZE: 12px; MARGIN-RIGHT: 8px
+}
+.ucard-box .split {
+	BORDER-TOP: #999 1px dotted; FONT-SIZE: 0px; MARGIN: 12px 0px 8px; OVERFLOW: hidden; HEIGHT: 1px
+}
+.ucard-box .space {
+	PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/hi/img/index/i1.gif) no-repeat 0px 0px; LINE-HEIGHT: 20px
+}

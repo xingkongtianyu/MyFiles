@@ -1,0 +1,542 @@
+
+
+
+
+a:link, a:active {color : #6FBC4C;}
+a:visited {color : #6FBC4C;}
+a:hover {color : #646464;}
+
+
+
+body {
+	margin:0px;
+	padding:0px;
+	font-family: verdana,Arial,helvetica,sans-seriff;
+	font-size:12px; 
+	line-height:1.6;
+	background:#EEFBEC;
+}
+
+
+td {
+	font-size:12px;
+	FONT-FAMILY: Verdana,Helvetica,Arial;
+	word-break:break-all;
+	line-height:1.5;
+}
+
+
+.header {
+	height:132px;
+	background-image:url();
+	background-repeat:no-repeat;
+	background-position:center middle;
+	border-bottom:0px solid #000000;
+	padding-left:0px;
+	padding-top:12px;
+}
+
+a.headermaintitle:visited,a.headermaintitle:active,a.headermaintitle:link {
+	color:#3C3C3C;
+	font-size:16px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+a.headermaintitle:hover {
+	color:gray;
+}
+
+
+#leftcontent {
+	position : absolute;
+	top : 144px;
+	right : 10px;	
+	width : 200px;
+	background-color : #FFFFFF;	
+	border : 1px dotted #B9ECAE;
+	font-family:Arial;
+	font-size:12px;	
+}
+
+#leftcontentcontainer  {
+	padding:10px;
+	
+	background-repeat:no-repeat
+}
+
+#centercontent {
+   	padding-top:10px;
+   	padding-right:220px;
+   	padding-left:10px;
+
+}
+
+#mytopmenu {
+	border:0px solid #5E5E5E;
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_menu.jpg");
+	background-repeat:no-repeat;
+   	padding:6px;
+   	padding-left:0px;
+   	padding-right:220px;
+    height:54px
+	margin-right:20px;
+   	margin-left:12px;
+   	text-align:right;
+	font-size:12px;
+}	
+
+#mystats {
+	margin-top:0px;
+	color:#646464
+}
+
+a.menu:link,a.menu:visited,a.menu:active {
+	color:#6FBC4C
+}
+a.menu:hover {
+	color:#646464	
+}
+
+#rightcontent {
+	position: absolute;
+	right:10px;
+	top:70px;
+	width:200px;
+	background:#fffFFF;
+}
+
+#mylinks {
+	font-size:12px;
+	position:absolute;
+   	padding:2px;
+   	padding-left:2px;
+   	padding-right:0px;
+   	left:20px;
+	}
+		
+.footer {
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_footer.jpg");
+	background-repeat:no-repeat;
+    background-position:left middle;
+	color:black;
+   	padding-top:10px;
+   	padding-left:20px;
+	margin-top:0px;
+	margin-right:19px;
+   	margin-left:10px;
+   	text-align:left;
+   	line-height:20px;
+    height:45px
+    
+}
+
+
+
+.day {
+	border:1px dotted #B9ECAE;
+	background-color:white;
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_day.jpg");
+	background-repeat:no-repeat;
+	background-position:left middle;
+   	padding:20px;
+	color:#4B4B4B;
+	margin-bottom:20px;
+	margin-left:2px;
+}
+
+.dayTitle {
+	font-size:13px;
+	font-weight:bold;
+	margin-bottom:40px;	
+	padding:0px 0px 0px 0px;
+	
+}
+
+a.dayTitle:link,a.dayTitle:visited,a.dayTitle:active {
+	color:#6FBC4C;
+	text-decoration:none;
+}
+a.dayTitle:hover {
+	color:#646464
+}
+
+.postSeparator {
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_line.jpg");
+	background-repeat:no-repeat;
+	height:10;
+	border-top:0px dotted #000000;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.news {
+	font-family:Verdana;
+	font-size:11px;
+	font-weight:bold;
+}
+
+.newsItem {
+	margin-top:2px;
+	margin-bottom:0px;
+	text-align:center;
+}
+
+.blogstats {
+	font-size:10px;
+}
+
+.entrylist {
+	border:1px dotted #B9ECAE;
+   	background-color:White;
+   	padding:20px;
+   	padding-bottom:8px;
+	color:#7B7D62;
+}
+
+.listtitle {
+    background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_list.jpg");
+	background-repeat:no-repeat;
+	font-family:verdana;
+	font-size:14.7px;
+	font-weight:bold;
+	color:#666666;
+	padding-top:3px;
+	margin-bottom:5px;
+	height:33;
+}
+
+.entrylistTitle {
+	font-family:verdana;
+	font-size:16px;
+	font-weight:bold;
+	color:Black;
+}
+
+.entrylistDescription {
+	margin-bottom:20px;
+}
+
+.entrylistItemTitle {
+	font-size:13px;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.entrylistItemPostDesc {
+	font-size:12px;
+}
+
+.gallery {
+	border:1px dotted #B9ECAE;
+   	background-color:White;
+   	padding:20px;
+	color:#7B7D62;
+}
+
+.galleryTitle {
+	font-family:verdana;
+	font-size:16px;
+	font-weight:bold;
+	color:Black;
+}
+
+.galleryDescription {
+	margin-bottom:20px;	
+}
+
+.galleryThumbnail {
+	padding:20px;
+	padding-left:0px;
+}
+
+div.posttitle {
+	color: #355EA0;
+	font-family: verdana, arial, sans-serif;	
+	font-size: 14.7px;
+	font-weight: bold;
+	margin-bottom:10px;
+	background-image: url("http://common.cnblogs.com/Skins/clover/images/bg_title.jpg");
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding: 0px 0px 0px 25px;
+	height: 40px
+}
+
+.post {
+	border:1px dotted #B9ECAE;
+	background: white;
+   	background-image: url("http://common.cnblogs.com/Skins/clover/images/bg_post.jpg");
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding:20px;
+	color:#4B4B4B;
+}
+
+.postTitle {
+	font-size:14.7px;
+	font-weight:bold;
+	margin-bottom:10px;
+
+}
+
+a.postTitle2:link,a.postTitle2:visited,a.postTitle2:active {
+	color:#646464;	
+}
+
+a.postTitle:hover {
+	color:#646464;
+	text-decoration:underline;
+}
+
+a.postTitle2 {
+	text-decoration:none;
+	color:#646464;
+}
+
+a.postTitle2:link,a.postTitle2:visited,a.postTitle2:active {
+	color:#646464;	
+}
+
+a.postTitle2:hover {
+	color:#646464;
+	text-decoration:underline;
+}
+
+.postDesc {
+	color:#303030;
+	margin-top:10px;
+	text-align:right
+}
+
+.contact {
+	border:1px dotted #B9ECAE;
+   	background-color:White;
+   	padding:20px;
+   	padding-left:22px;
+	font-family:Verdana;
+	font-weight:bold;
+	font-size:11px;   	
+}
+
+.comments {
+	border:1px dotted #B9ECAE;
+	border-top:0px;	
+   	background-color:White;
+   	padding:20px;
+   	padding-left:22px;
+   	padding-top:0px;
+	font-family:Verdana;
+	font-weight:bold;
+	font-size:11px;   	
+}
+
+.commentsTable {
+	font-family:Verdana;
+	font-size:11px;  
+	margin-top:15px; 
+}
+
+.feedback {
+	border:1px dotted #B9ECAE;
+	border-bottom:0px;	
+   	background-color:White;
+   	margin-top:20px;
+   	margin-bottom:0px;
+   	padding:20px;
+	padding-left:20px;
+   	padding-bottom:30px;
+}
+
+.feedbackTitle {
+	font-family:Verdana;
+	font-weight:bold;
+	font-size:11px;
+}
+
+.feedbackItem, .feedbackNoItems {
+	margin-bottom:0px;
+	margin-top:20px;
+	line-height:2;
+}
+
+.feedbackList {
+	list-style: none;
+	margin-left:0px;
+	margin-right:0px; 
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.feedbackListTitle {
+	padding-bottom:6px;
+	position:absolute;
+	font-size:9px;
+	padding:5px;
+	padding-left:7px;
+	color:#000000;
+}
+
+.feedbackListSubtitle {
+	background-color:white;
+	color:#000000;
+	padding:5px;
+	padding-right:7px;
+	border:1px dotted #B9ECAE;
+	text-align:right;
+	font-size:9px;
+	margin-bottom:8px;
+	margin-right:10px;
+}
+
+.catListTitle {
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_list.jpg");
+	background-repeat:no-repeat;
+	background-position:center;
+	font-family:verdana;
+	font-size:14.7px;
+	font-weight:bold;
+	color:#666666;
+	padding-top:3px;
+	margin-bottom:5px;
+	height:33px;
+}
+
+.catList {
+	list-style: none;
+	border-top: 0px;
+	margin: 0px;
+	padding-left: 10px;
+	margin-bottom:20px;
+}
+
+catListItem { 
+	padding 1px 0px 1 px 0px;
+	margin-left: 5px;
+	text-align: left;
+}
+
+ul {
+	list-style: none;
+	margin : 0px;
+	padding-left : 5px;
+	margin-left : 5px;
+	margin-bottom : 10px;
+	font-size : 11px;
+}
+
+.Cal
+{
+	border-color:transparent;
+	width:90%;
+	font-family:Arial;
+	font-size: 12px;
+	margin-top:10px;
+	margin-bottom:10px;
+	height:180px;
+	border:0px;
+}
+
+.CalTitle
+{
+	background-color :transparent;
+	font-family:verdana;
+	font-size: 12px;
+	margin-left : 0px;
+	padding : 0px;
+	height:100%;
+	font-weight:bold;
+	color:#6FBC4C
+
+}
+
+.CalOtherMonthDay
+{
+	color:gray;
+	font-weight:bold;
+	
+}
+
+.CalSelector
+{
+	background-color:#FFFFFF;
+	
+}
+
+a.CalNextPrev,a.CalNextPrev:link, a.CalNextPrev:visited, a.CalNextPrev:active
+{
+	color:#FFF;
+}
+
+.CalNextPrev
+{
+	color:#FFF;
+}
+
+
+.CalDayHeader
+{
+	background-color:transparent;
+	font-weight:bold;
+	color:#6FBC4C
+	
+}
+
+.CalSelectedDay
+{
+    background-color:#CCCCCC;
+     
+}
+
+.CalWeekendDay
+{
+	background-color:transparent;
+}
+
+.CalTodayDay
+{
+	background-color:#555555;
+	color:white
+	
+    
+}
+
+h1 {
+	margin : 0px;
+	margin-top : 10px;
+	margin-bottom : 5px;
+	font-size : 14.7px;
+	color:#666666;
+	text-align:center;
+}
+
+h3 {
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bg_list.jpg");
+	margin : 0px;
+	margin-top : 10px;
+	margin-bottom : 5px;
+	font-size : 14.7px;
+	color:#666666;
+	text-align:center;
+}
+
+
+.feedbackListTitle{
+  font-size: 12px;
+  color:black
+}
+
+.feedbackListSubtitle{
+  font-size: 12px;
+  color:black
+}
+.bottom{
+	background-image:url("http://common.cnblogs.com/Skins/clover/images/bottom.gif");
+	background-repeat:no-repeat;
+	background-position:left middle;
+}
+
+span 
+	{
+		line-height:1.5;
+	}

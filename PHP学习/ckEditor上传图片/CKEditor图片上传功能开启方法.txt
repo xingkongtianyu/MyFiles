@@ -1,0 +1,109 @@
+    CKEditor图片上传功能开启方法
+
+    2012-03-02 10:39:42     我来说两句       
+    收藏    我要投稿 
+
+    PHP怎么给ckeditor编辑器加上传图片的功能？CKEditor官方演示是有上传图片和浏览服务器文件功能的，但是我们自己下载回来的却没有这两个功能……
+
+    其实还需要下载另外一个组件：CKFinder，用它配合CKEditor来实现上传功能。
+
+    官方提供了PHP，Asp.Net和Asp三个语言版本的CKFinder，下载地址：http://ckfinder.com/download
+
+    将CKFinder解压缩到网站目录。调用方法如下(假设CKFinder在网站根目录，可以使用相对路径)：
+
+     
+
+    CKEDITOR.replace(  'editor1',
+    {
+    filebrowserBrowseUrl :  '/ckfinder/ckfinder.html',
+    filebrowserImageBrowseUrl :  '/ckfinder/ckfinder.html?Type=Images',
+    filebrowserFlashBrowseUrl :  '/ckfinder/ckfinder.html?Type=Flash',
+    filebrowserUploadUrl :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+    filebrowserImageUploadUrl  :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+    filebrowserFlashUploadUrl  :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+
+    同时默认情况下是禁止上传的，还需要打开CKFinder目录下的config.php，将第32行的return  false;修改为return true;
+
+    这里就是上传权限的认证了，你可以注意到上面有一大段英文注释，意思是不要简单的将它修改为return  true，而是加上例如session验证等等，否则会很危险……
+
+    下面是官方文档，关于如何增加文件上传功能，给英文好的同学参考，上面说的方法其实就是下文中的Example  5：
+
+    Basic Configuration
+    The filebrowserBrowseUrl setting is the  location of an external file browser, that should be launched when "Browse  Server" button(1) is pressed.
+
+    The filebrowserUploadUrl setting is the  location of a script that handles file uploads. If set, the "Upload" tab(2) will  appear in dialog boxes (only where such functionality is available, i.e. in  "Link", "Image" and "Flash" dialog windows).
+
+    Example 1 
+    CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl :  '/browser/browse.php',
+    filebrowserUploadUrl : '/uploader/upload.php',
+    }); 
+    It is also possible to set a separate url for a selected dialog box, using  the dialog name in file browser settings: filebrowser[dialogName]BrowseUrl and  filebrowser[dialogName]UploadUrl.
+
+    For example to set a special upload  url for the image dialog, set the filebrowserImageUploadUrl property: 
+
+    Example 2
+    CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl :  '/browser/browse.php',
+    filebrowserImageBrowseUrl :  '/browser/browse.php?type=Images'
+    filebrowserUploadUrl :  '/uploader/upload.php',
+    filebrowserImageUploadUrl :  '/uploader/upload.php?type=Images'
+    });
+    In the example above,  filebrowserBrowseUrl and filebrowserUploadUrl settings will be used by default,  however in the Image dialog box, CKEditor will use filebrowserImageBrowseUrl and  filebrowserImageUploadUrl configuration settings instead.
+
+    File Browser  Window Size The default width of file browser window in CKEditor is set to 80%  of screen width, the default hight is set to 70% of screen height. If for some  reasons, the default values are not suitable for you, you can change it to any  other value.
+
+    Use filebrowserWindowWidth to change width and  filebrowserWindowHeight to change height of the window.
+
+    To set the size  of the window in pixels, just set the number value (e.g. "800"). If you prefer  to set height and width of the window in percentage of the screen, remember to  add percent sign at the end (e.g. "60%").
+
+    Example 3 
+    CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl :  '/browser/browse.php',
+    filebrowserUploadUrl :  '/uploader/upload.php',
+    filebrowserWindowWidth :  '640',
+    filebrowserWindowHeight : '480',
+    });
+    To set the window size of  file browser inside of a specific dialog box, use  filebrowser[dialogName]WindowWidth and filebrowser[dialogName]WindowHeight  settings.
+
+    For example, to change the file browser window size only in  "Image" dialog box, change set the filebrowserImageWindowWidth and  filebrowserImageWindowHeight settings.
+
+    Example 4
+    CKEDITOR.replace(  'editor1', {
+    filebrowserBrowseUrl :  '/browser/browse.php',
+    filebrowserUploadUrl :  '/uploader/upload.php',
+    filebrowserImageWindowWidth :  '640',
+    filebrowserImageWindowHeight : '480',
+    });
+
+    Using  CKFinder
+    CKFinder may be easily integrated with CKEditor (see live demo). 
+
+    The integration may be done in two ways: by setting CKEditor  configuration options (example below) or using the CKFinder.SetupCKEditor()  method available in CKFinder API.
+
+    Example 5
+    CKEDITOR.replace(  'editor1',
+    {
+    filebrowserBrowseUrl :  '/ckfinder/ckfinder.html',
+    filebrowserImageBrowseUrl :  '/ckfinder/ckfinder.html?Type=Images',
+    filebrowserFlashBrowseUrl :  '/ckfinder/ckfinder.html?Type=Flash',
+    filebrowserUploadUrl :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+    filebrowserImageUploadUrl  :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+    filebrowserFlashUploadUrl  :  '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+    The  example above is valid for PHP environment. /ckfinder/ is a base path to the  CKFinder installation directory. If your using CKFinder for ASP, ASP.NET or  ColdFusion remember to change "php" to the right extension:
+
+    asp  - CKFinder for ASP
+    aspx – CKFinder for ASP.NET
+    cfm – CKFinder for  ColdFusion
+    php – CKFinder for PHP
+
+    Example 6
+    CKEditor +  CKFinder integration with the use of CKFinder.SetupCKEditor() function: 
+
+    var editor = CKEDITOR.replace( 'editor1' );
+    CKFinder.SetupCKEditor(  editor, '/ckfinder/' );
+    The second parameter of the SetupCKEditor() method is  the path to the CKFinder installation.
+
+    Please check the  _samples/js/ckeditor.html sample distributed with CKFinder to see the full  working example of this integration method.

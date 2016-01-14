@@ -1,0 +1,25 @@
+linux安装subversion
+2010-07-27 15:02
+linux安装subversion 
+文章分类:操作系统 
+根据上一章配置好的apache。这一章开始安装subversion 
+安装步骤 
+1. 下载subversion 到官网http://subversion.apache.org/
+下载subversion-1.6.12.tar.bz2 
+和 subversion-deps-1.6.12.tar.bz 2 。
+前者是 svn的源文件，后者是编译时可能需要用到的包。 
+2. 解压这两个文件(这两个自动解压成一个包)： Java代码 
+tar jxvf subversion-1.6.12.tar.bz2 
+tar jxvf subversion-deps-1.6.12.tar.bz2 
+3. 安装subversion 
+cd subversion-1.6.12 ./configure --prefix=/usr/local/subversion --with-apxs=/usr/local/apache/bin/apxs --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util --with-ssl --with-zlib=/usr/local/lib --enable-maintainer-mode 
+make 
+make install 注意：可能会出现以下错误： configure: WebDAV support is enabled checking expat.h usability... no checking expat.h presence... no checking for expat.h... no checking for xml2-config... no configure: error: no XML parser was found: expat or libxml 2.x required configure failed for neon 检查是否安装 expat2 如果没有请在http://sourceforge.net/projects/expat/files/下载最新expat-2.0.1.tar.gz。 
+安装expat命令如下： 
+tar zxvf expat-2.0.1.tar.gz 
+cd expat-2.0.1 
+./configure 
+make 
+make install 
+如果还依然出现以下2行错误 > checking for xml2-config... no > configure: error: no XML parser was found: expat or libxml 2.x required 是由于neon没有安装 cd /usr/local/subversion-1.5.0/neon ./configure --with-ssl make make install 如果安装过程中出现了问题2/3，就安装libssl-dev和libxml2-dev包 sudo apt-get install libssl-dev libxml2-dev 如果出现以下错误： configure: error: with-zlib requires an argument 那是因为你没有指定路径--with-zlib=/usr/local/lib 其中/usr/local/lib为默认路径 转自：http://theron19.javaeye.com/blog/709652 
+

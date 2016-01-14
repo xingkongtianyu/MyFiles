@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">Attribute Contains Selector [name*=value]</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/attribute-selectors/" title="View all posts in Attribute">Attribute</a></span>
+  
+  				</div>
+</div>
+<div id="attributeContains1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">attributeContains</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery('[attribute*=value]')</h4>
+<ul class="signatures"><li><dl class="arguments">
+<dt>attribute</dt>
+<dd>一个属性名.</dd>
+<dt>value</dt>
+<dd>一个属性值，引号是可选的.</dd>
+</dl></li></ul>
+<p class="desc"><strong>描述： </strong>选择指定属性具有包含一个给定的子字符串的元素。（选择给定的属性是以包含某些值的元素）</p>
+<div class="longdesc"><p>这是最慷慨的jQuery的属性选择器匹配一个值。如果选择器的字符串内的任何地方出现的元素的属性值，它会被选择。比较这个词的选择选择属性包含（例如：[attr~=word]），更重要的是在许多情况下适当的。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Finds all inputs with a name attribute that contains 'man' and sets the value with some text.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;input name="man-news" /&gt;
+
+  &lt;input name="milkman" /&gt;
+  &lt;input name="letterman2" /&gt;
+  &lt;input name="newmilk" /&gt;
+&lt;script&gt;$("input[name*='man']").val("has man in it!");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

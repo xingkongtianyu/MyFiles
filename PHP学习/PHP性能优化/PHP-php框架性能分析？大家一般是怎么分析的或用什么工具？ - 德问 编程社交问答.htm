@@ -1,0 +1,1676 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0027)http://www.dewen.org/q/1635 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+<link  type="text/css"  rel="stylesheet"  href="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/base.css">
+<link  type="text/css"  rel="stylesheet"  href="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/wmd.css">
+<script  type="text/javascript"  async=""  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/ga.js"></script><script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/lib.js"></script>
+<script  type="text/javascript">
+    var DW = DW || {};
+        DW.global = {uid: '',upoints: '',ulabel:'',is_admin:'',is_active: '',reviews:'',editor_upload_path: 'http://img.dewen.org/upload/editor/tmp/',ask_count:'','prison':''};
+        DW.cookie = {prefix: '', domain: '.dewen.org', expires: '1209600', path: '/'}
+    function cookie_prefix(name) {
+        return DW.cookie.prefix + "" + name;
+    }
+</script>
+        <title>PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问:编程社交问答</title>       
+        <meta  name="keywords"  content="PHP,性能,自己写了个php框架 control类怎样才能调用到model类和view类呢？想不懂,想自己写个php框架 外部GET传的值如何传递到框架类里面呢？,如何快速的熟悉一个PHP框架">
+        <meta  name="description"  content="其实我不知道你分析这个干什么用，一般框架说明都很详细了，框架对区域，产品都是有针对性的，你可以参考下这个：[http://tommyhu.cn/php-framework/][1]  [1]: http://tommyhu.cn/php-framework/这个是国内外框架的一些说明，你可以看下">
+    <script  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/wmd,showdown,prettify,tpl.js"  class="lazyload"  charset="utf-8"></script></head>
+    <body>
+        <div  class="banner_tips">
+            <div  class="banner_wrap">
+                <div  class="banner_text">
+                <h3>德问，最纯粹的编程社交问答</h3>
+                <p>帮您解答各类编程问题，交流与扩展专业知识及技能。</p>
+                </div>
+            <a  href="http://www.dewen.org/fast_ask/goto_reg"  class="joinbtn"></a>
+            </div>
+            <div  class="banner_close"><img  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/close_btn.png"></div>
+    </div>
+            <div  id="wrap"  style="margin-top:86px;">
+                
+ <div  id="header-wrap">
+ 	<div  id="header">
+ 	<div  class="logo"><a  href="http://www.dewen.org/">德问</a></div>
+        <div  id="ask_form">
+            <span  style="position:absolute;left:30px;top:5px;z-index:2;font-size:16px;"  id="choose_topic"></span>             <span  class="search_m"> </span>           
+            <input  type="text"  value="搜索问题、话题或者人"  id="search_input"  autocomplete="off"  maxlength="150"  placeholder=""  name="query"  class="text placeholder">
+                    </div>
+	<div  class="header_right">	
+            <ul  id="tabb"  class="_topMenu">
+            <li><a  class="thead "  href="http://www.dewen.org/"><span>首 页</span></a></li>
+            <li><a  id="header_unresolved"  class="thead "  href="http://www.dewen.org/questions/unanswered"><span>待解决</span></a></li>
+            <li  class="pers"  style="margin-right:9px;"><a  id="header_browse"  class="brower thead "  href="http://www.dewen.org/questions"><span>浏 览 <i></i></span></a>
+   
+                <div  class="items"  style="display:none; z-index:89; width:350px;">
+                    <div  class="browerbox">
+                        <div  class="browelist">
+                            <span>问 题</span>
+                            <dl>
+                                <dd><a  href="http://www.dewen.org/questions">全部问题</a></dd>
+                                <dd><a  href="http://www.dewen.org/questions/unanswered">待解决问题</a></dd>
+                                <dd><a  href="http://www.dewen.org/questions/hot">热门问题</a></dd>
+                                <dd><a  href="http://www.dewen.org/questions/featured">悬赏问题 </a></dd>
+                            </dl>
+                        </div>
+
+                        <div  class="browelist">
+                            <span>用 户</span>
+                            <dl>
+                                <dd><a  href="http://www.dewen.org/users/reputation">热门用户</a></dd>
+                                <dd><a  href="http://www.dewen.org/users/newest">新用户</a></dd>
+                            </dl>
+                        </div>
+
+                        <div  class="browelist">
+                            <span>其 他</span>
+                            <dl>
+                                <dd><a  href="http://www.dewen.org/topics">全部话题</a></dd>
+                                <dd><a  href="http://www.dewen.org/allbadges">全部徽章</a></dd>
+                                <dd><a  href="http://www.dewen.org/log/recent">协作记录</a></dd>
+                            </dl>
+                        </div>
+
+                    </div>
+                </div>      
+
+            </li>
+                        <li  class="singin"  ><a  class="thead user"  style="line-height:36px;"  href="javascript:void(0);">登 录</a>
+                <form  method="post"  id="top_login" >
+                    <ul  id="ullogin"  class="loginout"  style="display:none">
+                        <li>邮箱: <input  type="text"  name="email"  class="text"  autocomplete="off"></li>
+                        <li>密码: <input  type="password"  name="passwd"  class="text"></li>
+                        <li  style="font-size:11px;color:#999;"><input  type="checkbox"  checked="checked">在这台电脑上记住我</li>
+                        <li  style="margin-top:10px;"  id="top_show_error"><input  type="submit"  value="登 录"  class="w90"  style="cursor:pointer;border-radius:3px;"></li>
+                        <li  style="margin-top:10px;"><a  href="http://www.dewen.org/account/findpasswd">忘记密码?</a>&nbsp;&nbsp;&nbsp;<a  href="http://www.dewen.org/account/reg">注册新账号</a></li>
+                    </ul>
+                </form>
+            </li>
+            		</ul>
+		</div>
+        <div  class="headerArrow"></div>
+	</div>
+</div>
+<div  class="clear"></div>
+            <div  class="container">
+                <div  class="qa_lft top20">
+                    <div  id="edit1">
+                                                                        <div  id="question_vote_1635"  class="tipbox"  style="display:none;">
+                            <p  class="close"></p>
+                            <p  class="black3">您的投票让 <a  href="http://www.dewen.org/people/36855384">4GSpace</a> 声誉值增加5分。</p>
+                            <p  class="black6">支持投票，不仅能让提问用户获得声誉值，让好的问题有更多的曝光，更能帮助社区筛选出好的内容，构建高质量的知识库。</p>
+                            
+                        </div>
+                                                                        
+                        <div  id="topic"  class="lftlink hei30">
+                                                        <a  class="t_layer"  rel="top04|4"  href="http://www.dewen.org/topic/4">PHP</a>
+                                                        <a  class="t_layer"  rel="top1335|335"  href="http://www.dewen.org/topic/335">性能</a>
+                                                    </div>
+
+                        
+                        <h1  id="title"  class="f20 clear edit-version titbar"  ctime="1329410242"  rel="3,1635">php框架性能分析？大家一般是怎么分析的或用什么工具？                                                </h1>
+                        <div  class="padb10"  id="changebg">
+                            <div  class="pad6"  style="padding-top:0px;">
+                                <ul  class="floatul">
+                                    <li  class="voting favorite"  rel="3|1635"  score="7"  vote="0">
+                                        <a  href="javascript:void(0);"  class="upbtn "></a>
+                                        <a  href="javascript:void(0);"  class="downbtn "></a>
+                                                                            </li>
+                                    <li  class="list_tt">
+                                        <p  class="lftp">
+                                                                                        <a  href="http://www.dewen.org/people/36855384"  class="c_369 fw">4GSpace</a>
+                                                                                    </p>
+                                        <p  class="lftp"  style="padding-top:5px;"><span  class="votes_score">7 票</span></p>
+                                    </li>
+                                    
+                                    
+                                    <li  class="li_rgt"  style="width:40px;">
+                                        <dl  class="imgdl">
+                                                                                        <dt  class="f_left">
+                                                <a  href="http://www.dewen.org/people/36855384">
+                                                    <img  alt="4GSpace"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_36855384_avatar_1331052137_k.jpg"  class="f_16_a u_layer"  rel="u36855384|36855384">
+                                                </a>
+                                            </dt>
+                                                                                                                                    <dd  style="cursor:pointer;width:40px;text-align:center;"  title="声誉值：1835"  id="userpoints">1835</dd>
+                                                                                    </dl>
+                                    </li>
+                                                                        
+                                </ul>
+                                <div  class="clear"></div>
+                            </div>
+                            <div  class="padl38">
+                                <div>
+                                    <div  id="qst_content"  class="post_area"  style="_height:30px; height:auto; min-height:30px;"  type="que">
+                                        <div  class="codetitle"  rel="1635,0,0"  topic="4,335"  qtitle="php框架性能分析？大家一般是怎么分析的或用什么工具？"  summary="">
+                                            <div  class="que_con">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  class="microbar"  rel="3,1635">
+                                    
+                                    
+
+                                    <div  id="queue_vote_info"></div>
+                                    <div  id="queue_status_info">
+                                        
+                                        <div  id="close_wait"  class="qastats microbar"  style="display:none;">
+                                          <b>该问题被发起关闭投票</b>
+                                            <div  class="close_by">
+                                                <p>
+                                                    投票剩余时间：<b  style="color:#666;font-weight:normal;"  id="close_vote_remain_time"></b>
+                                                    <span  id="close_vote_btn">
+                                                                                                                <a  href="javascript:void(0)"  class="votebox close"><b>参与关闭投票</b></a>
+                                                                                                                (/3)
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div  id="reopen_wait"  class="qastats microbar"  style="display: none;">
+                                          <b>该问题被发起重新开启投票 </b>
+                                            <div  class="close_by">
+                                                <p>
+                                                   投票剩余时间：<b  style="color:#666;font-weight:normal;"  id="reopen_vote_remain_time"></b>
+                                                    <span  id="reopen_vote_btn">
+                                                                                                                <a  href="javascript:void(0)"  class="votebox reopen"><b>参与重新开启投票 (/3)</b></a>
+                                                                                                                
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div  class="close_reason"><b>之前被关闭原因：</b></div> 
+                                        </div>
+
+                                        
+                                        <div  id="delete_wait"  class="qastats microbar"  style="display: none;">
+                                            <b>该问题被发起删除投票</b>
+                                            <div  class="close_by">
+                                                <p>
+                                                    投票剩余时间：<b  style="color:#666;font-weight:normal;"  id="delete_vote_remain_time"></b>
+                                                    <span  id="delete_vote_btn">
+                                                                                                                <a  href="javascript:void(0)"  class="votebox del"><b>参与删除投票</b></a>
+                                                                                                                (/3)
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div  id="bounty_status"  class="bgf2"  style="display:none;">
+                                        <div  class="close_by">
+                                            <span  id="bounty_user"  style=" color:#006699; font-size:14px; font-weight: bold;">
+                                                <a  href="http://www.dewen.org/people/"></a>
+                                            </span>
+                                            发起了声誉值为 <span  class="featured_num1"  id="bounty_num"  style="top:0px;"></span> 分的悬赏
+                                    </div>
+                                        <div  class="close_by">
+                                            距离悬赏到期还有：<span  id="bounty_deadline"></span>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div  id="qst_closed"  class="bgf2"  style="display: none;">
+                                        <b  id="closed_time">该问题已经在很久很久以前被关闭</b>
+                                        <div  class="closed_by">
+                                            <p  id="closed_users">参与关闭投票者：
+                                                                                            </p>
+                                            <p  id="closed_reason">关闭原因：</p>
+                                            <div  id="show_reopen_div"  class="unclose"  style="display:none;">该问题如果有必要重新开启？ <a  class="reopen"  href="javascript:void(0)"><b>请发起开启投票</b></a></div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div  id="qst_locked"  class="bgf2"  style="display: none;">
+                                        <b>该问题已经被锁定</b>
+                                        <div>
+                                            <p  class="closed_by">锁定原因：（）</p>
+                                                                                    </div>
+                                    </div>
+
+                                    
+                                    <div  id="qst_protected"  class="bgf2"  style="display: none;">
+                                        <b  id="closed_time">该问题已被保护</b>
+                                        <div  class="closed_by">
+                                            <p>保护原因：避免来自新用户不合宜或无意义的致谢、跟帖答案。</p>
+                                                                                    </div>
+                                    </div>
+                                    
+                                    <div  id="qst_deleted"  class="suggest_edited microbar"  style="display: none;">
+                                        该问题已成功删除，仅对您可见，其他人不能够查看。 <a  class="undel"  href="javascript:void(0);">取消删除问题</a>                                    </div>
+                                                                 
+                                    <div  class="clear"></div>
+                                    <div  class="function_items">
+                                         <a  href="javascript:void(0)"  id="comment7-count-1635"  class="qcmtNum comment-count">评论 (<b  class="cmtNum">1</b>)</a>
+                                                                                                                        • <a  href="javascript:void(0);"  class="c_369 share">分享</a>
+                                                                                                                                                                • <a  href="javascript:void(0);"  class="linkq link"  url="http://www.dewen.org/q/1635">链接</a>
+                                        • <span>2012-02-17</span>　
+                                        <input  type="hidden"  id="question_id"  name="question_id"  value="1635">
+                                        <div  class="clear"></div>
+                                    </div>
+
+                                </div>
+                                                                
+                                <ul  id="comments7-1635"  class="comments">
+        <li  id="comment7-15261"  class="comment">
+        <div  class="comment-actions">
+            <span  class="comment-num">0</span>
+                            <span  title="支持"  voted="0"  class="comment-vote ">支持</span>
+                    </div>
+        <div  class="comment-text">
+            <span  class="comment-cnt">没啥好使得,哈哈</span>
+             –&nbsp;<a  href="http://www.dewen.org/people/50598580">佩恩</a>
+            <span  class="comment-date">2012-11-09</span> 
+                    </div>
+    </li>
+    </ul>
+<div  id="comments7-link-1635"  class="comments-link"  rel="question"></div>                            </div>
+                        </div>
+                    </div>
+                                        <div  class="answers_num">
+                        <span  style="float: left;">3个答案</span>
+
+                        <div  class="answersort">
+                            <a  href="javascript:void(0);"   class="c_369 under opt normal">
+                            	 
+                            	票 数
+                            	 <img  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/arrows.png">
+                            </a>
+                            <ul  id="answer_sort"  style="display:none;"  class="answer_sort">
+                                <li><a  href="http://www.dewen.org/q/1635?sort=votes">票 数</a></li>
+                                <li><a  href="http://www.dewen.org/q/1635?sort=newest">最 新</a></li>
+                                <li><a  href="http://www.dewen.org/q/1635?sort=active">活 跃</a></li>
+                            </ul>
+                        </div>
+
+                      <b  class="clear"></b>
+                    </div>
+                                        
+                                                                                                <a  name="good_answer_3535"></a>
+                        	
+                                        
+                    <div  id="ans3535"  class="ans_item fold_ans_item">
+                                                                            <div  id="answer_vote_3535"  class="tipbox"  style="display:none;">
+                                <p  class="close"></p>
+                                <p  class="black3">您的投票让 <a  href="http://www.dewen.org/people/80047241">冯义军</a> 声誉值增加了10分。</p>
+                                <p  class="black6">支持投票，不仅能让回答用户获得声誉值，让好答案排序靠前，更能帮助社区筛选出好的内容，构建高质量的知识库。</p>
+                            </div>                     
+                             
+                                          
+                        <div  id="3535"  class="author_box">
+                            <ul  class="floatul">
+                                <li  class="voting"  rel="4|3535"  score="2"  vote="0">
+                                    <a  href="javascript:void(0);"  class="upbtn "></a>
+                                    <a  href="javascript:void(0);"  class="downbtn "></a>
+                                </li>
+                                <li  class="list_tt">
+                                    <p  class="lftp small-box">
+                                                                                    <a  href="http://www.dewen.org/people/80047241">冯义军</a>                                        
+                                        
+                                                                                                                        </p>
+                                    <p  class="lftp"><span  class="votes_score">2 票</span></p>
+                                </li>
+                                
+                                <li  class="li_rgt"  style="width:40px;text-align:center;">
+                                    <dl  class="imgdl">
+                                                                            	<dt  class="f_left"><a  href="http://www.dewen.org/people/80047241"><img  alt="冯义军"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_80047241_avatar_1371800849_k.png"  class="f_16_a u_layer"  rel="ua80047241|80047241"></a></dt>
+                                        <dd  class="small-box"  style="width:40px;margin-top:0px;cursor:pointer;"  title="声誉值：13786">13.79K</dd>                                        
+                                                                            </dl>
+                                </li>
+                                
+								                                <li  class="list_tt"  style="float:right;display:inline;">
+                                <p  class="ans_edit_area"  style="margin-top:4px;"  id="update3535"  rel="3535|0|0|">
+                                
+                                                                                	                                       			 <a  title="该问题的提问者在 2012-02-17 设定了该回答为最佳答案"  class="best_ans"> <span  class="best_ans_text">最佳答案</span></a>
+                                      			 
+                                        	                                                                            </p>
+                                </li>
+                                                            </ul>
+                            <div  class="clear"></div>
+                        </div>
+                        <div  class="as_box">
+                            <a  name="3535"></a>
+                            <div  class="post_area"  id="ans_content_3535"  type="ans">                                
+                                <div  class="codetitle"  rel="3535,0,1"  summary=""  qid="1635">
+                                    <div  class="ans_con">
+                                        <p>1查看从入口文件到页面最终响应用多长时间，使用microtime(),比如测试ci：</p>
+
+<div  class="code_block"  id="code_block_0"><a  href="javascript:void(0)"  id="copy_code_0"  class="copy_code"  title="复制代码"  style="position: absolute; visibility: hidden; left: 480px;">&nbsp;</a><a  href="javascript:void(0)"  class="tool"  title="新窗口代码预览"  style="position: absolute; visibility: hidden; left: 550px; top: 3px;">&nbsp;</a><pre  class="prettyprint  linenums:1"  lang="other"  index="0"><ol  class="linenums"><li  class="L0"><span  class="pln">$t</span><span  class="pun">=</span><span  class="pln"> microtime</span><span  class="pun">(</span><span  class="kwd">true</span><span  class="pun">);</span><span  class="pln"></span><br></li><li  class="L1"><span  class="pln">require_once BASEPATH</span><span  class="pun">.</span><span  class="str">'core/CodeIgniter'</span><span  class="pun">.</span><span  class="pln">EXT</span><span  class="pun">;</span><span  class="pln"></span><br></li><li  class="L2"><span  class="pln">echo microtime</span><span  class="pun">(</span><span  class="kwd">true</span><span  class="pun">)</span><span  class="pln"> </span><span  class="pun">-</span><span  class="pln"> $t</span><span  class="pun">;</span></li></ol></pre><div  class="swf"  title="复制代码"  style="position: absolute; left: 529px; top: 8px; width: 16px; height: 15px; z-index: 99;"><embed  id="ZeroClipboardMovie_1"  src="http://www.dewen.org/theme/images/editor/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="16"  height="15"  name="ZeroClipboardMovie_1"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=1&amp;width=16&amp;height=15"  wmode="transparent"></div></div>
+
+<p>2查看框架运行默认加载的文件数量：</p>
+
+<div  class="code_block"  id="code_block_1"><a  href="javascript:void(0)"  id="copy_code_1"  class="copy_code"  title="复制代码"  style="position: absolute; visibility: hidden; left: 480px;">&nbsp;</a><a  href="javascript:void(0)"  class="tool"  title="新窗口代码预览">&nbsp;</a><pre  class="prettyprint  linenums:1"  lang="other"  index="1"><ol  class="linenums"><li  class="L0"><span  class="pln">get_included_files</span><span  class="pun">()</span></li></ol></pre><div  class="swf"  title="复制代码"  style="position: absolute; left: 529px; top: 8px; width: 16px; height: 15px; z-index: 99;"><embed  id="ZeroClipboardMovie_2"  src="http://www.dewen.org/theme/images/editor/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="16"  height="15"  name="ZeroClipboardMovie_2"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=2&amp;width=16&amp;height=15"  wmode="transparent"></div></div>
+
+<p>3查看框架使用的内存：</p>
+
+<div  class="code_block"  id="code_block_2"><a  href="javascript:void(0)"  id="copy_code_2"  class="copy_code"  title="复制代码"  style="position: absolute; visibility: hidden; left: 480px;">&nbsp;</a><a  href="javascript:void(0)"  class="tool"  title="新窗口代码预览"  style="position: absolute; visibility: hidden; left: 550px; top: 3px;">&nbsp;</a><pre  class="prettyprint  linenums:1"  lang="other"  index="2"><ol  class="linenums"><li  class="L0"><span  class="pln">memory_get_usage</span><span  class="pun">()</span></li></ol></pre><div  class="swf"  title="复制代码"  style="position: absolute; left: 529px; top: 8px; width: 16px; height: 15px; z-index: 99;"><embed  id="ZeroClipboardMovie_3"  src="http://www.dewen.org/theme/images/editor/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="16"  height="15"  name="ZeroClipboardMovie_3"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=3&amp;width=16&amp;height=15"  wmode="transparent"></div></div>
+
+<p>4查看函数定义，以及常量，等</p>
+
+<div  class="code_block"  id="code_block_3"><a  href="javascript:void(0)"  id="copy_code_3"  class="copy_code"  title="复制代码"  style="position: absolute; visibility: hidden; left: 480px;">&nbsp;</a><a  href="javascript:void(0)"  class="tool"  title="新窗口代码预览"  style="position: absolute; visibility: hidden; left: 550px; top: 3px;">&nbsp;</a><pre  class="prettyprint  linenums:1"  lang="other"  index="3"><ol  class="linenums"><li  class="L0"><span  class="pln">$funs </span><span  class="pun">=</span><span  class="pln"> get_defined_functions</span><span  class="pun">();</span><span  class="pln"></span><br></li><li  class="L1"><span  class="pln"></span><span  class="com">//get_defined_constants()</span><span  class="pln"></span><br></li><li  class="L2"><span  class="pln">var_dump</span><span  class="pun">(</span><span  class="pln">$funs</span><span  class="pun">[</span><span  class="str">'user'</span><span  class="pun">]);</span></li></ol></pre><div  class="swf"  title="复制代码"  style="position: absolute; left: 529px; top: 8px; width: 16px; height: 15px; z-index: 99;"><embed  id="ZeroClipboardMovie_4"  src="http://www.dewen.org/theme/images/editor/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="16"  height="15"  name="ZeroClipboardMovie_4"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=4&amp;width=16&amp;height=15"  wmode="transparent"></div></div>
+
+<p>当然前提是你的控制器没有任何逻辑处理,目前想到的就这么多吧。</p>
+                                    </div>
+                                </div>                 
+                            </div>
+
+                                                        <div  rel="312||"  id="del_answer_3535"  class="del_answer_other"  style="display:none;">
+                                    <div  id="qst_deleted"  class="suggest_edited_other microbar">
+                                                                            </div>
+                                                                        <div  class="arrow_other"></div>
+                                                                </div>
+                            <div  style="display:none;">
+                                    <div  class="suggest_edited_other"  id="ans_lock_3535">
+                                            <div  style="margin-left: 5px;">该答案已被锁定，无法对其进行评论，编辑及投票。</div>
+                                            <span  style="color:#666666;font-size:12px;margin-left: 5px;">（）</span>
+                                    </div>
+                                    <div  class="arrow_other"></div>
+                            </div>                            
+                            <div  class="function_items ans_microbar"  rel="3535">
+                                    <a  href="javascript:void(0)"  id="comment8-count-3535"  class="acmtNum comment-count">评论 (<b  class="cmtNum">0</b>)</a>
+                                                                    • <a  href="javascript:void(0);"  class="linka link"  url="http://www.dewen.org/q/1635#ans3535">链接</a>
+                                    • 2012-02-17                            </div>
+                                                        
+                            <div  id="comments8-link-3535"  class="comments-link"  rel="answer"></div>                               
+                        </div>
+                          
+                    </div>
+                                                                                                        	
+                                        
+                    <div  id="ans3518"  class="ans_item fold_ans_item">
+                                                                            <div  id="answer_vote_3518"  class="tipbox"  style="display:none;">
+                                <p  class="close"></p>
+                                <p  class="black3">您的投票让 <a  href="http://www.dewen.org/people/59093730">崔苔吾</a> 声誉值增加了10分。</p>
+                                <p  class="black6">支持投票，不仅能让回答用户获得声誉值，让好答案排序靠前，更能帮助社区筛选出好的内容，构建高质量的知识库。</p>
+                            </div>                     
+                             
+                                          
+                        <div  id="3518"  class="author_box">
+                            <ul  class="floatul">
+                                <li  class="voting"  rel="4|3518"  score="3"  vote="0">
+                                    <a  href="javascript:void(0);"  class="upbtn "></a>
+                                    <a  href="javascript:void(0);"  class="downbtn "></a>
+                                </li>
+                                <li  class="list_tt">
+                                    <p  class="lftp small-box">
+                                                                                    <a  href="http://www.dewen.org/people/59093730">崔苔吾</a>                                        
+                                        
+                                                                                                                        </p>
+                                    <p  class="lftp"><span  class="votes_score">3 票</span></p>
+                                </li>
+                                
+                                <li  class="li_rgt"  style="width:40px;text-align:center;">
+                                    <dl  class="imgdl">
+                                                                            	<dt  class="f_left"><a  href="http://www.dewen.org/people/59093730"><img  alt="崔苔吾"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_59093730_avatar_1362532084_k.JPG"  class="f_16_a u_layer"  rel="ua59093730|59093730"></a></dt>
+                                        <dd  class="small-box"  style="width:40px;margin-top:0px;cursor:pointer;"  title="声誉值：7547">7547</dd>                                        
+                                                                            </dl>
+                                </li>
+                                
+								                                <li  class="list_tt"  style="float:right;display:inline;">
+                                <p  class="ans_edit_area"  style="margin-top:4px;"  id="update3518"  rel="3518|0|0|">
+                                
+                                                                            </p>
+                                </li>
+                                                            </ul>
+                            <div  class="clear"></div>
+                        </div>
+                        <div  class="as_box">
+                            <a  name="3518"></a>
+                            <div  class="post_area"  id="ans_content_3518"  type="ans">                                
+                                <div  class="codetitle"  rel="3518,0,1"  summary=""  qid="1635">
+                                    <div  class="ans_con">
+                                        <p>其实我不知道你分析这个干什么用，一般框架说明都很详细了，框架对区域，产品都是有针对性的，你可以参考下这个：<a  rel="nofollow"  target="_blank"  href="http://tommyhu.cn/php-framework/">http://tommyhu.cn/php-framework/</a></p>
+
+<p>这个是国内外框架的一些说明，你可以看下</p>
+                                    </div>
+                                </div>                 
+                            </div>
+
+                                                        <div  rel="427||"  id="del_answer_3518"  class="del_answer_other"  style="display:none;">
+                                    <div  id="qst_deleted"  class="suggest_edited_other microbar">
+                                                                            </div>
+                                                                        <div  class="arrow_other"></div>
+                                                                </div>
+                            <div  style="display:none;">
+                                    <div  class="suggest_edited_other"  id="ans_lock_3518">
+                                            <div  style="margin-left: 5px;">该答案已被锁定，无法对其进行评论，编辑及投票。</div>
+                                            <span  style="color:#666666;font-size:12px;margin-left: 5px;">（）</span>
+                                    </div>
+                                    <div  class="arrow_other"></div>
+                            </div>                            
+                            <div  class="function_items ans_microbar"  rel="3518">
+                                    <a  href="javascript:void(0)"  id="comment8-count-3518"  class="acmtNum comment-count">评论 (<b  class="cmtNum">0</b>)</a>
+                                                                    • <a  href="javascript:void(0);"  class="linka link"  url="http://www.dewen.org/q/1635#ans3518">链接</a>
+                                    • 2012-02-17                            </div>
+                                                        
+                            <div  id="comments8-link-3518"  class="comments-link"  rel="answer"></div>                               
+                        </div>
+                          
+                    </div>
+                                                                                                        	
+                                        
+                    <div  id="ans3521"  class="ans_item fold_ans_item"  style="border-bottom:0px;">
+                                                                            <div  id="answer_vote_3521"  class="tipbox"  style="display:none;">
+                                <p  class="close"></p>
+                                <p  class="black3">您的投票让 <a  href="http://www.dewen.org/people/27779108">浪际天涯</a> 声誉值增加了10分。</p>
+                                <p  class="black6">支持投票，不仅能让回答用户获得声誉值，让好答案排序靠前，更能帮助社区筛选出好的内容，构建高质量的知识库。</p>
+                            </div>                     
+                             
+                                          
+                        <div  id="3521"  class="author_box">
+                            <ul  class="floatul">
+                                <li  class="voting"  rel="4|3521"  score="0"  vote="0">
+                                    <a  href="javascript:void(0);"  class="upbtn "></a>
+                                    <a  href="javascript:void(0);"  class="downbtn "></a>
+                                </li>
+                                <li  class="list_tt">
+                                    <p  class="lftp small-box">
+                                                                                    <a  href="http://www.dewen.org/people/27779108">浪际天涯</a><img  title="认证专家"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/label3.png"  class="labelmargin">                                        
+                                        
+                                                                                                                        </p>
+                                    <p  class="lftp"><span  class="votes_score">0 票</span></p>
+                                </li>
+                                
+                                <li  class="li_rgt"  style="width:40px;text-align:center;">
+                                    <dl  class="imgdl">
+                                                                            	<dt  class="f_left"><a  href="http://www.dewen.org/people/27779108"><img  alt="浪际天涯"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_27779108_avatar_1328678140_k.jpg"  class="f_16_a u_layer"  rel="ua27779108|27779108"></a></dt>
+                                        <dd  class="small-box"  style="width:40px;margin-top:0px;cursor:pointer;"  title="声誉值：13203">13.2K</dd>                                        
+                                                                            </dl>
+                                </li>
+                                
+								                                <li  class="list_tt"  style="float:right;display:inline;">
+                                <p  class="ans_edit_area"  style="margin-top:4px;"  id="update3521"  rel="3521|0|0|">
+                                
+                                                                            </p>
+                                </li>
+                                                            </ul>
+                            <div  class="clear"></div>
+                        </div>
+                        <div  class="as_box">
+                            <a  name="3521"></a>
+                            <div  class="post_area"  id="ans_content_3521"  type="ans">                                
+                                <div  class="codetitle"  rel="3521,0,1"  summary=""  qid="1635">
+                                    <div  class="ans_con">
+                                        <p>现在目前网络上有很多针对众多开源PHP框架的测试结果，你可以参考一下，不过话说回来，这些测试结果的准确性无从考据，因为每个人测试的方式、测试环境不一样，导致的测试结果也不一样，但综合所有的测试来看，也大概能看出各个框架的性能。</p>
+
+<p>如果你实在要自己测试一下，推荐你一个方法吧：<br>1、为PHP安装Xdebug扩展。并将参数xdebug.profiler_enable设置为on,参数xdebug.profiler_output_dir设置一个临时文件的保存路径，因为这样设置后每运行一个页面Xdebug就会为每个站点生成一个临时文件，里面记录了最后一次运行的跟踪信息。<br>例如：<br>   xdebug.profiler_enable=On<br>   xdebug.profiler_output_dir="E:/CACHE/temp"<br>2、下载安装WinCacheGrind工具(windows平台)，此工具用于分析Xdebug跟踪的临时文件。<br>3、写一段简单的代码，然后在各个不同的框架中运行这段代码。<br>4、最后用WinCacheGrind打开Xdebug生成的临时文件，就能很直观的看到框架运行时的加载信息，和每个模块的运行时间，甚至每个类里的每个方法的运行时间也能够精确的计算出来，而且还包括PHP自的方法运行时间也能够统计，很好用的一个工具。</p>
+
+<p>通过这个方法你可以很直观的去查看并分析PHP代码和框架的瓶颈。试试吧，以下是我给你做的一个测试，我测试的是我们自己内部写的框架<br><img  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/201202171003221935.png"  loadsrc="http://www.dewen.org/upload/editor/27779108/201202171003221935.png"  alt="点击查看原始尺寸"  title="点击查看原始尺寸"  style="display: inline; width: 560px; height: 419.4566623544631px; cursor: pointer;"></p>
+                                    </div>
+                                </div>                 
+                            </div>
+
+                                                        <div  rel="354||"  id="del_answer_3521"  class="del_answer_other"  style="display:none;">
+                                    <div  id="qst_deleted"  class="suggest_edited_other microbar">
+                                                                            </div>
+                                                                        <div  class="arrow_other"></div>
+                                                                </div>
+                            <div  style="display:none;">
+                                    <div  class="suggest_edited_other"  id="ans_lock_3521">
+                                            <div  style="margin-left: 5px;">该答案已被锁定，无法对其进行评论，编辑及投票。</div>
+                                            <span  style="color:#666666;font-size:12px;margin-left: 5px;">（）</span>
+                                    </div>
+                                    <div  class="arrow_other"></div>
+                            </div>                            
+                            <div  class="function_items ans_microbar"  rel="3521">
+                                    <a  href="javascript:void(0)"  id="comment8-count-3521"  class="acmtNum comment-count">评论 (<b  class="cmtNum">0</b>)</a>
+                                                                    • <a  href="javascript:void(0);"  class="linka link"  url="http://www.dewen.org/q/1635#ans3521">链接</a>
+                                    • 2012-02-17                            </div>
+                                                        
+                            <div  id="comments8-link-3521"  class="comments-link"  rel="answer"></div>                               
+                        </div>
+                          
+                    </div>
+                                                            
+                                        
+                    <div  class="page top20"></div>
+                    <a  name="errortips"  id="errorid"></a>
+                    <div  class="hei40"></div> 
+                    
+                                        <div  id="relate_tech">
+                        <h2  class="rgttit clear">不是您所需，查看更多相关问题与答案</h2>
+                        <ul  class="rgtul">
+                                                    <li><a  href="http://www.dewen.org/search/q/%E9%80%9A%E4%BF%A1%20%E9%95%BF%E8%BF%9E%E6%8E%A5%20php%E6%A1%86%E6%9E%B6">通信 长连接 php框架</a>,</li>
+                                                    <li><a  href="http://www.dewen.org/search/q/php%20%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7">php 性能分析工具</a>,</li>
+                                                    <li><a  href="http://www.dewen.org/search/q/php%20%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%20%E6%80%A7%E8%83%BD">php 静态方法 性能</a>,</li>
+                                                    <li><a  href="http://www.dewen.org/search/q/php%20%E5%A4%A7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%80%A7%E8%83%BD">php 大配置文件性能</a>,</li>
+                                                    <li><a  href="http://www.dewen.org/search/q/java%20%E6%B7%B7%E6%B7%86%E5%99%A8%E5%B9%B2%E4%BB%80%E4%B9%88%E7%94%A8">java 混淆器干什么用</a></li>
+                                                </ul>
+                    </div>
+                                        
+                                        <div  class="ans_div">
+                                                                        <div  class="qa_tips">德问是一个专业的编程问答社区，请 <a  href="http://www.dewen.org/q/1635#" >登录</a> 或 <a  href="http://www.dewen.org/account/reg">注册</a> 后再提交答案</div>
+                                            </div>
+                    
+                </div>            
+               
+                
+                <div  class="qa_rgt top20">
+                    <div  class="operate">
+                                                                     </div>
+
+                    
+                                        
+                   
+                    
+                    <div  class="relate_questions"  style="margin-top:0px;">
+                        <h2  class="rgttit clear">相关问题</h2>
+                        <ul  class="rgtul">
+                                                                                    <li><a  href="http://www.dewen.org/q/8106/%E8%87%AA%E5%B7%B1%E5%86%99%E4%BA%86%E4%B8%AAphp%E6%A1%86%E6%9E%B6%EF%BC%8Ccontrol%E7%B1%BB%E6%80%8E%E6%A0%B7%E6%89%8D%E8%83%BD%E8%B0%83%E7%94%A8%E5%88%B0model%E7%B1%BB%E5%92%8Cview%E7%B1%BB%E5%91%A2%EF%BC%9F%E6%83%B3%E4%B8%8D%E6%87%82">自己写了个php框架，control类怎样才能调用到model类和view类呢？想不懂</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/8057/%E6%83%B3%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%AAphp%E6%A1%86%E6%9E%B6%EF%BC%8C%E5%A4%96%E9%83%A8GET%E4%BC%A0%E7%9A%84%E5%80%BC%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%88%B0%E6%A1%86%E6%9E%B6%E7%B1%BB%E9%87%8C%E9%9D%A2%E5%91%A2%EF%BC%9F">想自己写个php框架，外部GET传的值如何传递到框架类里面呢？</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/10418/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%9A%84%E7%86%9F%E6%82%89%E4%B8%80%E4%B8%AAPHP%E6%A1%86%E6%9E%B6">如何快速的熟悉一个PHP框架</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/11857/php%E6%A1%86%E6%9E%B6%E4%B8%AD%24this-%26gt%3Bdisplay%28%29%E6%98%AF%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F%E5%B9%B6%E4%BC%A0%E9%80%92%E5%88%B0%E6%A8%A1%E6%9D%BF%E9%87%8C%E9%9D%A2%E7%9A%84%EF%BC%9F">php框架中$this-&gt;display()是如何获取本方法定义的变量并传递到模板里面的？</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/12875/%E6%B1%82%E6%8C%87%E5%AF%BC%EF%BC%9A%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E8%AE%BE%E8%AE%A1PHP%E6%A1%86%E6%9E%B6">求指导：如何合理设计PHP框架</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/15526/php%E6%A1%86%E6%9E%B6+%E5%8D%95%E5%85%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0">php框架 单入口的实现</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/15933/PHP%E6%A1%86%E6%9E%B6Zend+Framework+%E8%BF%9E%E6%8E%A5MSSQL2000">PHP框架Zend Framework 连接MSSQL2000</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/575/%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%E9%80%82%E7%94%A810%E4%B8%87%E7%BA%A7%E8%AE%BF%E9%97%AE%E9%87%8F%E7%9A%84php%E6%A1%86%E6%9E%B6%EF%BC%9F">推荐一个适用10万级访问量的php框架？</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/5545/%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E8%AF%84%E4%BC%B0%E4%B8%80%E4%B8%AA%E6%A1%86%E6%9E%B6%E7%9A%84%E6%80%A7%E8%83%BD">如何正确评估一个框架的性能</a></li>
+                                                        <li><a  href="http://www.dewen.org/q/822/%E5%9C%A8%E4%BD%A0%E5%BF%83%E4%B8%ADPHP%E5%81%9A%E9%A1%B5%E9%9D%A2%E5%BC%80%E5%8F%91%E7%9A%84%E5%9C%B0%E4%BD%8D">在你心中PHP做页面开发的地位</a></li>
+                                                                                </ul>
+                    </div>
+
+                                     
+                                        <div  class="follow_questions">
+                   <h2  class="rgttit clear">
+	                关注该问题的人 
+                                            <span>
+                        （8人）
+                                        </span>
+                        </h2>
+
+                        <div  class="carepeo">
+                            <ul  class="floatul ulr8">
+                                                                <li><a  href="http://www.dewen.org/people/25449500"><img  class="u_layer"  rel="uf25449500|25449500"  alt="PHP_Tim"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_25449500_avatar_1364020033_s.jpg"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/28935400"><img  class="u_layer"  rel="uf28935400|28935400"  alt="forthxu"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_28935400_avatar_1351225991_s.png"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/16686959"><img  class="u_layer"  rel="uf16686959|16686959"  alt="scofier"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_16686959_avatar_1374830835_s.jpg"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/73440642"><img  class="u_layer"  rel="uf73440642|73440642"  alt="jimmy"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_73440642_avatar_1329104401_s.jpg"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/80047241"><img  class="u_layer"  rel="uf80047241|80047241"  alt="冯义军"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_80047241_avatar_1371800849_s.png"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/27779108"><img  class="u_layer"  rel="uf27779108|27779108"  alt="浪际天涯"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_27779108_avatar_1328678140_s.jpg"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/59093730"><img  class="u_layer"  rel="uf59093730|59093730"  alt="崔苔吾"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_59093730_avatar_1362532084_s.JPG"></a></li>
+                                                                <li><a  href="http://www.dewen.org/people/36855384"><img  class="u_layer"  rel="uf36855384|36855384"  alt="4GSpace"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/user_36855384_avatar_1331052137_s.jpg"></a></li>
+                                                            </ul>
+                            <div  class="clear"></div>
+                        </div>
+                    </div>
+                    
+                    
+                                  
+                    
+                    <div  class="top20"></div>
+
+                    <div  class="question_stats">
+                        <h2  class="rgttit clear">问题状态</h2>
+                        <div  class="stats">
+                            <p>
+                             <span  class="qa_activity">最近活动:</span>
+                             <a  href="http://www.dewen.org/question/1635/logs"><b>2012-02-17</b></a></p>
+                            <p  class="farial c_6">共被浏览 <b>(3548)</b> 次</p>
+                        </div>
+                    </div>
+                    
+                  
+                                 
+
+
+                </div>
+                <div  class="clear"></div>
+            </div>
+        </div>
+        
+        <div  id="footer-wrap">
+    <div  id="footer">
+        <ul  class="sections">
+            <li  class="first">
+                <ul>
+                    <li><h5>关于</h5></li>
+                    <li><a  href="http://www.dewen.org/about">关于德问</a></li>
+                    <li><a  href="http://www.dewen.org/blog/user_manual">社区指南</a></li>
+                    <li><a  href="http://blog.dewen.org/">官方博客</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h5>指导方针</h5></li>
+                    <li><a  href="http://www.dewen.org/blog/good">好问题的重要性</a></li>
+                    <li><a  href="http://www.dewen.org/blog/ask">提好的主观问题</a></li>
+                    <li><a  href="http://www.dewen.org/blog/vote">善用您的投票权</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h5>协议</h5></li>
+                    <li><a  href="http://www.dewen.org/q/1635#x">服务条款</a></li>
+                    <li><a  href="http://www.dewen.org/terms">隐私协议</a></li>
+                    <li><a  href="http://www.dewen.org/blog/copyright">WiKi协作与CC版权</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h5>其他</h5></li>
+                    <li><a  href="http://hp.dewen.org/">黑客与画家</a></li>
+                    <li>
+                        <a  target="_blank"  href="http://weibo.com/dewen2012">官方微博</a>
+                        <iframe  style="vertical-align:middle"  width="63"  height="24"  frameborder="0"  allowtransparency="true"  marginwidth="0"  marginheight="0"  scrolling="no"  border="0"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/followbutton.htm"></iframe>
+                    </li>
+                    <li><a  href="http://www.dewen.org/qqgroup">德问QQ群</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h5>友情链接</h5></li>
+                    <li><a  href="http://www.kuqin.com/"  target="_blank">程序员</a></li>
+                    <li><a  href="http://blog.csdn.net/v_JULY_v"  target="_blank">结构之法 算法之道</a></li>
+                    <li><a  href="http://www.admin10000.com/"  target="_blank">WEB开发者</a></li>      
+                </ul>
+            </li>
+        </ul>
+
+        <div  class="notice prose">
+            <p>
+                <a  rel="license"  href="http://zh.wikipedia.org/wiki/Wikipedia:CC-by-sa-3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC"><img  alt="知识共享许可协议"  style="border-width:0"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/88x31.png"></a><br>本站所有协作内容均采用<a  rel="license"  href="http://zh.wikipedia.org/wiki/Wikipedia:CC-by-sa-3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC">CC-BY-SA 3.0协议（署名-相同方式共享）</a>进行许可。
+            </p>
+            <p  style="margin-top:6px"><a  href="http://www.miibeian.gov.cn/"  target="_blank">京ICP备09007496号-9</a></p>
+        </div>
+    </div>
+</div>
+
+
+    
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/base.js"></script><div  class="backToTop"  title="返回顶部"  style="display: none;">返回顶部</div>
+<script  type="text/javascript">
+if ($.browser.msie) {
+    $(function() {
+        //top suggest
+        if(DW.global.uid){
+            DW.search_suggest = setup_suggest({id:'search_input',filter:'',func:'page_loaction',link:true,rs:true, direct_enter:function(){DW.ask.add();},suggest_topic:false,union_search:1});
+        }else {
+            DW.search_suggest = setup_suggest({id:'search_input',filter:'3',func:'page_loaction',link:true,rs:false});
+        }
+
+        DW.ask.init();
+        DW.vote.init('.voting');
+
+        //浮动层
+        DW.tip_layer.init_topic('.t_layer');
+        DW.tip_layer.init_user('.u_layer');
+        DW.tip_layer.init_badge('.b_layer');
+
+        //关注
+        DW.follow.question('.q_follow');
+        DW.follow.topic('.t_follow');
+        DW.follow.user('.u_follow');
+        //站内通知
+        DW.notify.init();
+             });
+ } else {
+    //top suggest
+    if(DW.global.uid){
+        DW.search_suggest = setup_suggest({id:'search_input',filter:'',func:'page_loaction',link:true,rs:true, direct_enter:function(){DW.ask.add();},union_search:1});
+    }else {
+        DW.search_suggest = setup_suggest({id:'search_input',filter:'3',func:'page_loaction',link:true,rs:false});
+    }
+
+    DW.ask.init();
+    DW.vote.init('.voting');
+
+    //浮动层
+    DW.tip_layer.init_topic('.t_layer');
+    DW.tip_layer.init_user('.u_layer');
+    DW.tip_layer.init_badge('.b_layer');
+
+    //关注
+    DW.follow.question('.q_follow');
+    DW.follow.topic('.t_follow');
+    DW.follow.user('.u_follow');
+    //站内通知
+    DW.notify.init();
+    
+    
+    
+ }
+ DW.switch_header_tab.init();
+//用户首次登陆社区显示提示（代码已去掉）
+//gloabl auth
+(function($){
+    function login_notice() {
+        var head_layer = '<div id="login_notice">Meta站登陆提示，你可以使用德问账号登录。</div>';
+        $(head_layer).prependTo("body").show().animate({opacity:1}, 1);
+    }
+    DW.gauth = Cookies.get(cookie_prefix("gauth"));
+    if(DW.global.uid) {
+        if(DW.gauth == undefined || DW.gauth == 1) {
+            $.post("/api/global_login_request", function(msg){
+                Cookies.set(cookie_prefix("gauth"), 2);
+                $(document).ready(function() {
+                    $("#footer").append("<iframe id='global-auth-frame' style='display:none' src='" + msg + "'></iframe>")
+                })
+            });
+        }
+    } else {
+        $(document).ready(function() {
+            if(DW.gauth == undefined || DW.gauth == 0) {
+                var surl = "http://uc.dewen.org/login.php?id=1&callback=?";
+
+                setTimeout(function(){
+                    $.getJSON(surl,  function(rtndata) {
+                        $.get("/user/login?sess_token="+rtndata, function(data){
+                            if(data == 0) {
+                                Cookies.set(cookie_prefix("gauth"), 0);
+                            } else if (data == 1) {
+                                //提示使用德问账号登陆
+                                //login_notice();
+                            } else {
+                                Cookies.set(cookie_prefix("gauth"), 2);
+                                var res = $.parseJSON(data);
+                                var head_layer = '<div id="overlay-header">您已使用账号<a href="/people/'+res.puid+'">'+res.name+'</a>登录, <a href="javascript:location.reload(true)">点击这里</a>刷新页面。</div>';
+                                $(head_layer).prependTo("body").show().animate({opacity:0.97}, 1000);
+                            }
+                        });
+                    });
+                }, 700);
+            } else if(DW.gauth == 1) {
+                //提示使用德问账号登陆
+                //login_notice();
+            }
+        })
+    }
+})($);
+</script><input  type="hidden"  value=""><input  type="hidden"  value=""><input  type="hidden"  value=""><input  type="hidden"  value="">
+<script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/not_loggedin.js"></script>        <input  type="hidden"  id="box_info"  value="0">
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/qst_operate.js"></script>        
+        <script  type="text/javascript">
+
+        $('#fold_answers_list').find('span').click(function(){
+
+            if($('#fold_ans_container').is(':visible')) {
+                $('#fold_ans_container').hide();
+                return false;
+            }else {
+                if($('#fold_ans_container').children().length > 0) {
+                    $('#fold_ans_container').animate({
+                       opacity: 'show'
+                     },500);
+                    return false;
+                }
+            }
+            var timer = true;
+            $('#fold_answers_list').find('i').addClass('loading');
+            $.post('/ajax/get_fold_answers',{'qid':'1635'},function(data){
+                $('#fold_answers_list').find('i').removeClass('loading');
+                $('#fold_ans_container').append($(data)).animate({
+                       opacity: 'show'
+                     },500,function(){
+                        AnsMicroBar.init();
+                        share_qs_link();
+                        $('#fold_ans_container').find('.comments-link').each(function(){
+                            new CommentManager($(this));
+                        });
+                        DW.tip_layer.init_bounty('.bounty_layer');
+                        //图片缩放
+                        DW.img_resize.init($('#fold_ans_container').find('.post_area'));
+                        DW.vote.init('.voting');
+                        ans_edit_init();
+                        //评审未决版本
+                        DW.unsolved_queue.init();
+                        answer.set_bestans();
+                        answer.editcode();
+                        answer.copycode();
+                        qus.set_bounty();
+                        $('#fold_ans_container').find('.edit_a').bind('click', mClick2);
+                        $('#best_ans_img').unbind('mouseover').mouseover(function(){
+                            $('#best_ans_text').html('取消最佳').removeClass('best_ans_text');
+                        });
+
+                        $('#best_ans_img').unbind('mouseout').mouseout(function(){
+                            $('#best_ans_text').html('最佳答案').addClass('best_ans_text');
+                        });
+                        //浮动层
+                        DW.tip_layer.init_user('.u_layer');
+                        prettyPrint();
+                        var k,index,old_code,reg_li,li_length,total = parseInt($(".prettyprint").length);
+                        var reg = /(<ol\s*class="linenums">)<li\s*class="L0">(<ol\s*class="linenums">)([\s\S]+)(<\/ol>)<\/li><\/ol>/i;
+                        for(k=0;k<total;k++){
+                                var html = $.trim($(".prettyprint").eq(k).html());
+                                if(reg.test(html)){
+                                        index = 0;
+                                        old_code = '<ol class="linenums">';
+                                        var s_arr = [];
+                                        var tmp_arr = reg.exec(html);
+                                        reg_li = /(<li\s*class="L\d+">.*?<\/li>)/i;
+                                        var t_arr = (tmp_arr[3]).split(reg_li);
+                                        for(var i in t_arr){
+                                            if($.trim(t_arr[i]) != ''){
+                                                    s_arr[index] = t_arr[i];
+                                                    ++index;
+                                            }
+                                        }
+                                        old_code += s_arr[0];
+                                        //alert(old_code);
+                                        li_length = s_arr.length;
+                                        if(li_length > 2){
+                                            for(j=1;j<li_length;j++){
+                                                if(j%2 == 0)
+                                                old_code += s_arr[j];
+                                            }
+                                        }
+                                old_code += "</ol>";
+                                $(".prettyprint").eq(k).html(old_code);
+
+                            }
+                            $(".prettyprint").eq(k).attr("index",k);
+                            $(".prettyprint").eq(k).closest('.code_block').children(".copy_code").attr("id","copy_code_"+k);
+                            $(".prettyprint").eq(k).closest('.code_block').attr('id','code_block_'+k);
+                            //释放空间
+                            delete(s_arr);
+                            delete(tmp_arr);
+                            delete(t_arr);
+                        }
+                       
+                     });
+                     
+            })
+        })
+        
+        //分享问题和答案的连接
+        function share_qs_link() {
+            //问题答案链接分享
+            $('.linkq').unbind('click').bind('click',function(){
+                var url = $(this).attr('url');
+                if($(this).next().attr('class') == 'share-tip') {
+                    $(this).next().remove();
+                } else {
+                    $(this).after('<div class="share-tip">复制链接分享该问题<input type="text" value="'+url+'"><a class="close-share-tip">关闭</a></div>');                   
+                }
+                 $(this).next('div').find('input').focus().select();
+                $('.close-share-tip').unbind('click').bind('click',function(){
+                    $(this).parent('div').remove();
+                });
+            });     
+            $('.linka').unbind('click').bind('click',function(){
+                var url = $(this).attr('url');
+                if($(this).next().attr('class') == 'share-tip') {
+                    $(this).next().remove();
+                } else {
+                    $(this).after('<div class="share-tip">复制链接分享该答案<input type="text" value="'+url+'"><a class="close-share-tip">关闭</a></div>');                   
+                }
+                 $(this).next('div').find('input').focus().select();
+                $('.close-share-tip').unbind('click').bind('click',function(){
+                    $(this).parent('div').remove();
+                });
+            });    
+        }
+        share_qs_link();
+
+            $(".rgtul > li").find('a').click(function(){
+                Cookies.set(cookie_prefix('temp_hash'),'#question_info','','/');
+            })
+            
+            //微博绑定成功回调
+            function bind_ok(url,name,is_auto){
+                $('.connect_sina').each(function(){
+                    var obj = $(this);
+                    obj.empty().fadeIn(function(){
+                        var html = '<img src="/theme/images/sina_16x16.png" style="margin-bottom:4px;"/>&nbsp;&nbsp;<span class="black6">已经绑定新浪微博账号</span> <a href="'+url+'" target="_blank">@'+name+'</a>';
+                        $(html).appendTo(obj);                   
+                    });                    
+                })
+                if($('#share_ans_box').length) {
+                    $('#share_button_4')
+                    .bind('click',function(){
+                        share_sina(4);
+                    });
+                }
+                if($('#share_qst_box').length) {
+                    $('#share_button_3')
+                    .bind('click',function(){
+                        share_sina(3);
+                    })
+                }              
+                if(is_auto == 1) {
+                    //答案自动分享到微博
+                    if($('#share_ans_box').length){                        
+                        setTimeout('share_sina(4)',500);
+                    }
+                    //问题自动分享到微博
+                    if($('#share_qst_box').length){
+                        setTimeout('share_sina(3)',500);
+                    }
+                }
+            }
+            //微博绑定失败回调
+            function bind_fail(name,url,third_name,weibo_url) { 
+                $('.connect_sina').each(function(){
+                    var obj = $(this);
+                    obj.empty().fadeIn(function(){
+                        var html = '<span style="background:#FFF9D4;color:#996600;padding:4px;float:left;width:99.4%;font-size:13px;"><img src="/theme/images/sina_16x16.png" style="margin-bottom:4px;display:inline;">&nbsp;您正在连接的微博 <a href="'+weibo_url+'" target="_blank"><strong>@'+third_name+'</strong></a> 当前已与德问账号 <a href="'+url+'" target="_blank"><strong>'+name+'</strong></a> 相关联，请勿重复绑定。</span>';
+                       $(html).appendTo(obj);              
+                    });
+                })                       
+            }
+            //分享到微博
+            function share_sina(type) {
+               
+               var share_content = $.trim($('#share_content_'+type).val());
+               $.ajax({
+                   type:'post',
+                   beforeSend:function(){
+                       if(share_content == '') {
+                           alert('微博内容不能为空');
+                           return false;
+                       }
+                       //判断长度
+                       if(DW.util.check_length(share_content) < 0){
+                           if(type == 3) {
+                               $('#share_qst_box').find('.left_words').fadeOut().fadeIn();
+                           } else if(type == 4) {
+                               $('#share_ans_box').find('.left_words').fadeOut().fadeIn();
+                           }
+                           return false;
+                       }
+                       $('#share_button_'+type).removeClass('addans').addClass('sending').html('微博发送中...').unbind('click');
+                   },
+                   data:'share_content='+encodeURIComponent(share_content)+'&type='+type,
+                   url:'/oauth/share',
+                   success:function(data){
+                       var res = $.parseJSON(data);
+                       if(res.success) { 
+                           //setTimeout(function(){
+                           DW.util.msg('分享成功');                              
+                           switch(type) {
+                               case 3:
+                                   $('#share_qst_box').fadeOut(function(){
+                                       $(this).remove();                                      
+                                   })                               
+                                   break;
+                               case 4:
+                                   $('#share_ans_box').fadeOut(function(){
+                                       $(this).remove();                                       
+                                   });                               
+                                   break;
+                               default:
+                                   break;    
+                           }
+                           //},2000);                       
+                       } else {
+                           DW.util.msg(res.msg);
+                           $('#share_button_'+type).removeClass('sending').addClass('sending').html('重新发送').bind('click',function(){share_sina(type)});
+                       }
+                   }
+               }) 
+            }              
+            //分享到微博相关
+            $(function(){                
+                $('#share_ans_box').find('.left_words').html('还可以输入'+DW.util.check_length($('#share_content_4').val())+'个字');   
+                //输入字数检测 
+                $('#share_content_4').unbind('keyup change').bind('keyup change',function(){
+                    var len = DW.util.check_length($('#share_content_4').val());
+                    if(len < 0){
+                        $('#share_ans_box').find('.left_words').html('已超出<font color="red">'+Math.abs(len)+'</font>个字');
+                    } else {
+                        $('#share_ans_box').find('.left_words').html('还可以输入'+len+'个字');
+                    }
+                }); 
+                $('#share_qst_box').find('.left_words').html('还可以输入'+DW.util.check_length($('#share_content_3').val())+'个字');   
+                //输入字数检测 
+                $('#share_content_3').unbind('keyup change').bind('keyup change',function(){
+                    var len = DW.util.check_length($('#share_content_3').val());
+                    if(len < 0){
+                        $('#share_qst_box').find('.left_words').html('已超出<font color="red">'+Math.abs(len)+'</font>个字');
+                    } else {
+                        $('#share_qst_box').find('.left_words').html('还可以输入'+len+'个字');
+                    }
+                });                                              
+            });  
+
+            //问题分享到微博
+            $('.share').click(function(){
+                if(!DW.global.uid) {
+                    location.href='/user/login?redirect_to='+location.href;
+                    return;
+                }
+
+                var data = "id=1635&type=sina&ajax=1";
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/get_share_box",
+                    data: data,
+                    success:function(msg){
+                        var result = $.parseJSON( msg );
+                        if (result.success) {                            
+                            //显示弹出层
+                            var box = $('#wBox').wBox({
+                                title: '分享',
+                                html: result.msg
+                            });
+                            box.showBox();
+                            $('#wBox').find('.left_words').html('还可以输入'+DW.util.check_length($('#share_content_3').val())+'个字');   
+                            //输入字数检测 
+                            $('#wBox').find('#share_content_3').unbind('keyup change').bind('keyup change',function(){
+                                var len = DW.util.check_length($('#share_content_3').val());
+                                if(len < 0){
+                                    $('#share_qst_box').find('.left_words').html('已超出<font color="red">'+Math.abs(len)+'</font>个字');
+                                } else {
+                                    $('#share_qst_box').find('.left_words').html('还可以输入'+len+'个字');
+                                }
+                            });                            
+                            $('#wBox').find('.cancel').click(function(){
+                                box.close();
+                            });
+                        } else {
+                            DW.util.msg( result.msg );
+                        }
+                    }
+                });
+            }); 
+            
+            //弹出授权页
+            function open_oauth(url,h,w) {
+                var top = (window.screen.availHeight - 30 - h)/2;
+                var left = (window.screen.availWidth - 10 - w)/2;
+                window.open (url, '', 'height = ' + h + ', width = ' + w +', top = ' + top + ', left=' + left +',toolbar=no, menubar=no, scrollbars=yes, resizable=no, location=yes, status=yes'); 
+				return false;
+            }                       
+        </script>
+        <script  type="text/javascript">
+            (function(){
+                
+                var fold_answer_tip_timer = null;
+                $('#show_fold_answer_tip').mouseover(function(){
+                    clearTimeout(fold_answer_tip_timer);
+                    $('#fold_answer_tip').fadeIn();
+                }).mouseout(function(){
+                    fold_answer_tip_timer = setTimeout(function(){$('#fold_answer_tip').hide();},100);
+                }).click(function(){return false;})
+                $('#fold_answer_tip').mouseover(function(){
+                    clearTimeout(fold_answer_tip_timer);
+                }).mouseout(function(){
+                    fold_answer_tip_timer = setTimeout(function(){$('#fold_answer_tip').hide();},100);
+                })
+
+                //发布问题时，显示友好提示
+                                //发布答案时，显示友好提示
+                                             
+                //高亮答案区域
+                highlight_ans();
+				
+                                                
+                /*$('#wmd-input, .answertips').click(function(){$('.answertips').fadeOut('slow',function(){
+                        $(this).remove();
+                        $('.answertips_new').slideDown(500);
+                    });
+                });*/
+                /*鼠标点击编辑器开始*/
+                $('#wmd-input, .answertips').click(function(){
+		    $(".site_invite_answer").slideUp(600);			                
+                    $('.answertips').slideUp(300, function(){$(this).remove();
+                        $('.answertips_new').find('h3').css('opacity',0).show();
+                        $('.answertips_new').show();
+                        answertip_show();
+                    })
+                
+                });
+                var tipTimer = null;
+                function answertip_show() {
+                   
+                    var tipTop = parseInt($('.answertips_new').css('top'));
+                    if(tipTop == -20) {
+                        $('.answertips_new').find('h3').animate({opacity:1},500,function(){
+                            //$('.answertips_new').unbind('click').click(function(){answertip_hide();})
+                        });
+                    }
+                    if(tipTop == -85) {
+                        clearTimeout(tipTimer);
+                    }else {
+                        $('.answertips_new').css('top',(tipTop - 5) + "px");
+                        tipTimer = setTimeout(answertip_show,50);
+                    }
+                }
+
+                function answertip_hide() {
+
+                     var tipTop = parseInt($('.answertips_new').css('top'));
+                     if(tipTop == -60)$('.answertips_new').find('h3').animate({opacity:0},300);
+                     if(tipTop == 10){
+                        clearTimeout(tipTimer);$('.answertips_new').remove();
+                     }else {
+                        $('.answertips_new').css('top',(tipTop + 5) + "px");
+                        tipTimer = setTimeout(answertip_hide,50);
+                     }
+                } 
+                /*鼠标点击编辑器结束*/
+                
+                var edit_btn = $('div#qst_content').children().last();
+                		/*$(function(){
+		     $('#title,#changebg').mouseover(function() {
+                	var bounty_html = '<a title="提供您的部分声誉值发起悬赏，征集优质答案。" class="bounty tmpbounty" href="javascript:void(0);" id="bounty_btn">悬 赏</a>';
+                        $('#edit_btn').show();
+                        if(!($("#edit_btn").find("#bounty_btn"))){
+                            $("#title").append(bounty_html);
+                        }
+                    });
+                    $('#title,#changebg').mouseleave(function() {
+                        $('#edit_btn').hide();
+                        $("#title").remove('#bounty_btn');
+                    });
+		});*/
+
+                //悬赏按钮自动添加
+                
+                                ans_edit_init();
+            })($);
+
+            function ans_edit_init(){
+                //将答案的编辑按钮添加进内容后面
+                $('.ans_edit_area').each(function() {
+                    var rel = $(this).attr('rel').split('|');
+                    var aid = rel[0], show_cw = rel[1], edit_status = rel[2], vote_type = rel[3];
+                    if (edit_status != 0) {
+                        var str = '';
+                        var cnt = $('#ans_content_'+aid);
+                        var ans = $('#ans'+aid);
+                        var edit_btn = cnt.children().last();
+
+                        if (edit_status == 1 || edit_status == 2) {
+                            
+                            //将编辑按钮添加进内容后面
+                            if ( edit_btn.length == 0 ) {
+                                cnt.append('<a id="edit_btn_'+aid+'" style="display:none;" href="javascript:void(0);" class="c_369 edit_answer edit_a" rel="'+aid+'">该答案没有详情，请尝试完善</a>');
+                            } else {
+                                //var btn_text = edit_status == 2 ? '您的内容正在评审，可继续完善' : '完善';
+                                var btn_text = '完善';
+                                var btn = '<a id="edit_btn_'+aid+'" style="display:none;" href="javascript:void(0)" class="c_369 edit_answer edit_a" rel="'+aid+'">'+btn_text+'</a>';
+                                
+                                var last_node = cnt.children('p').last();
+                                if( last_node.length && last_node.next().length == 0)
+                                {
+                                   last_node.append(btn);
+                                }
+                                else
+                                {
+                                    cnt.append('<p>'+ btn +'&nbsp;</p>');
+                                }
+                                /*
+                                var last_node = cnt.find('.ans_con').find("p").last();
+                                var has_block = (cnt.find('.ans_con').children(".code_block").length > 0) ? true  : false;
+                                if(has_block){
+                                    var last_text = $.trim(cnt.find('.ans_con').children(".code_block").next().html());
+                                    if(last_text){
+                                        last_node.append('<span>'+ btn +'&nbsp;</span>');
+                                    }else{
+                                        var last_elem = cnt.find('.ans_con').find(".code_block").last();
+                                        last_elem.append('<span>'+ btn +'&nbsp;</span>');
+                                    }
+                                }else{
+                                    last_node.append('<span>'+ btn +'&nbsp;</span>');
+                                }*/
+                                if(edit_status == 2)
+                                {
+                                    cnt.append('<div class="suggest_edited">您的建议修改需要得到两位评审成员认可后生效，评审结束前可继续完善。</div>');
+                                }
+                            }
+
+                            ans.mouseover(function() {
+                                $('#edit_btn_'+aid).show();
+                            });
+                            ans.mouseleave(function() {
+                                $('#edit_btn_'+aid).hide();
+                            });
+                        } else {
+                            //有未决版本&&无审核权限
+                            if (edit_status == 3) {
+                                str = '<div title="该答案有新版本在评审中, 评审结束后再来编辑完善。" class="suggest_edited not_edit">存在未决版本, 请等待评审结束后再进行完善。</div>';
+                            } else if (edit_status == 4) {
+                                var vote_text = vote_type == 1 ? '接受' : '拒绝';
+                                str = '&nbsp;&nbsp;<div class="suggest_edited">当前答案存在一个<a class="unsolved_a" href="javascript:void(0)" rel="'+aid+'">未决版本</a>, 您已对该版本做过 <b>'+vote_text+'投票</b></div>';
+                            } else if (edit_status == 5) {
+                                str = '<div class="suggest_edited">该答案存在未决版本等待审核。<a rel="'+aid+'" href="javascript:void(0);" class="unsolved_a">审核未决版本</a></div>';
+                            }
+
+                            if ( edit_btn.length == 0 ) {
+                                cnt.append(str);
+                            } else {
+                                var last_node = cnt.children('p').last();
+                                if( last_node.length && last_node.next().length == 0)
+                                {
+                                   last_node.append(str);
+                                }
+                                else
+                                {
+                                    cnt.append('<p>'+ str +'&nbsp;</p>');
+                                }
+                                //edit_btn.append(str);
+                            }
+                        }
+                    }
+                });
+            }
+            
+            //编辑器拖拉函数
+            function editor_drag() {
+                var f = $;
+                var i,
+                g;
+                var c = 0;
+                var h = 32;
+                var b;
+                f.fn.TextAreaResizer = function() {
+                    return this.each(function() {
+                        i = f(this);
+                        g = null;
+                        var drag = f('<div class="grippie"><span class="preview_ans">预览</span></div>').bind("mousedown", {
+                            el: this
+                        },
+                        j);
+                        drag.insertAfter(f(this));
+                        var k = f("div.grippie", f(this).parent())[0];
+                        $('.grippie .preview_ans').unbind('mousedown').bind('click', function(){
+                            if($('#wmd-preview').is(':hidden'))
+                            {
+                                $('#wmd-preview').show();
+                                $(this).text('收起');
+                            }
+                            else
+                            {
+                                $('#wmd-preview').hide();
+                                $(this).text('预览');
+                            }
+                        });
+                    });
+                };
+                function j(k) {
+                    i = f(k.data.el);
+                    i.blur();
+                    c = d(k).y;
+                    g = i.height() - c;
+                    //i.css("opacity", 0.25);
+                    f(document).mousemove(e).mouseup(a);
+                    return false
+                }
+                function e(m) {
+                    var k = d(m).y;
+                    var l = g + k;
+                    if (c >= (k)) {
+                        l -= 5
+                    }
+                    c = k;
+                    l = Math.max(h, l);
+                    i.height(l + "px");
+                    if (l < h) {
+                        a(m)
+                    }
+                    return false
+                }
+                function a(k) {
+                    f(document).unbind("mousemove", e).unbind("mouseup", a);
+                    //i.css("opacity", 1);
+                    i.focus();
+                    i = null;
+                    g = null;
+                    c = 0
+                }
+                function d(k) {
+                    return {
+                        x: k.clientX + document.documentElement.scrollLeft,
+                        y: k.clientY + document.documentElement.scrollTop
+                    }
+                }
+            }
+
+            //文档就绪
+            $(function(){               
+                var timer;
+                $('.follow_question').unbind('click mouseover mouseout').click(function(){
+                    
+                    if(!DW.global.uid) {
+                        location.href='/user/login?redirect_to='+location.href;
+                        //Tip_login.follow.login($(this),'question_view','follow_question');
+                        return;
+                    }
+                    var obj = $(this);
+                    var uid = obj.attr('id');
+                    var action = obj.attr('rel');
+
+                    clearTimeout(timer);
+                    timer = setTimeout(function(){
+                        $.ajax({
+                            type: "POST",
+                            url: "/ajax/"+action,
+                            data: "id=" + uid + "&type=question"+"&ajax=1",
+                            success: function(msg){
+                                var result = $.parseJSON( msg );
+                                if (result.success == 1) {
+                                    if(action == 'follow')
+                                    {
+                                        obj.addClass('btncanc');
+                                        obj.removeClass('btnadd');
+                                        obj.text('取消关注');
+                                        obj.attr('rel', 'unfollow');
+                                    } else {
+                                        obj.addClass('btnadd');
+                                        obj.removeClass('btncanc');
+                                        obj.text('关注该问题');
+                                        obj.attr('rel', 'follow');
+                                        if(obj.parents('.operate').find('.vote_question').length > 0) {
+                                            $('.vote_question').remove();
+                                        }
+                                    }
+                                } else {
+                                    DW.util.msg(result.message,3000);
+                                }
+                            }
+                        });
+                    }, 300);
+                }).mouseover(function(){
+                    var action = $(this).attr('rel');
+                    if (action == 'unfollow') {
+                        $(this).html('取消关注');
+                    }
+                }).mouseout(function(){
+                    var action = $(this).attr('rel');
+                    if (action == 'unfollow') {
+                        $(this).html('关注中');
+                    }
+                });
+
+                //悬赏浮动层
+                DW.tip_layer.init_bounty('.bounty_layer');
+
+                if((DW.global.upoints < 1000 && DW.global.is_admin == 1) && (DW.global.upoints < 1000 && DW.global.ulabel == '')) {                    
+                    $('#invite_user_input').focus(function(){
+                        $(this).val('');
+                        DW.util.error_msg($(this),'您的声誉值不足1000，无法邀请人回答');
+                    }).blur(function(){
+                        $(this).val('搜索用户');
+                    });
+                } else { 
+                    $('#invite_user_input').focus(function(){
+                        if($(this).val() == '键入要邀请的用户名') {
+                            $(this).css({color:'#444444'});
+                            $(this).val('');
+                        } 
+                    }).blur(function(){
+                        if($(this).val() == '') {
+                            $(this).css({color:'#999999'});
+                            $(this).val('键入要邀请的用户名');
+                        }
+                    });                                                
+                    //站内邀请人回答
+                    setup_suggest({id:'invite_user_input',filter:'1',func:function(obj){return add_invite_user(obj);},link:true});
+		    
+                }
+                //站内邀请回调函数
+                function add_invite_user(obj){
+                    var invitee_uid = obj.id;
+                    var qid = '1635';
+                    $.ajax({
+                        type:'post',
+                        beforeSend:function(){
+                            if(DW.global.uid == invitee_uid) {
+                               DW.util.error_msg($('#invite_user_input'), '不能邀请自己回答');
+                               return false;
+                            }
+                        },                        
+                        data:'uid='+invitee_uid+'&qid='+qid,
+                        url:'/ajax/invite_question',
+                        success:function(data){
+                            var res = $.parseJSON(data);
+                            if(res.success) {
+                                if($('#invite_close_now > ul').find('li').length >= 12) {
+                                    $('#invite_close_now > ul').find('li').each(function(index){
+                                        if(index == 11) {
+                                            $(this).hide();  
+                                        }
+                                    });  
+                                }                                
+                                $('#invite_close_now > ul').prepend('<li><a href="/people/'+obj.id+'" title="'+obj.text+'"><img class="invite_avatar_'+DW.global.uid+'" alt="'+obj.text+'" src="'+res.msg+'"></a><span><a href="javascript:void(0);" class="cancel_invite_button_'+DW.global.uid+'" rel="'+qid+'|'+obj.id+'"></a></span></li>');    
+                                if($('#invite_close_now > ul').find('li').length == 13) {
+                                    if($('#invite_close_now').find('morethis').length == 0) {
+                                       $('<div class="morethis"><a id="view_all_invite" href="javascript:void(0);">查看全部</a></div>').appendTo($('.site_invite_answer')); 
+                                       $('#view_all_invite').click(function(){show_all_invite('show');});
+                                    }
+                                }
+			                    $("#has_inviter").show();
+			                    $("#no_inviter").hide();
+				                $(".invite_number").html("(已邀请"+parseInt($('#invite_close_now > ul').find('li').length)+'人)');                             
+                                $('#invite_user_input').val('');
+                                //绑定取消邀请事件
+                                cancel_invite_user();
+                            } else {
+                                DW.util.error_msg($('#invite_user_input'), res.msg);
+                            }
+                        }
+                    });                    
+                }
+                //取消邀请
+                function cancel_invite_user() {                        
+                    $('#invite_close_now').find('.invite_avatar_'+DW.global.uid).each(function(){
+                        var timer;
+                        var obj = $(this);
+                        obj.unbind('mouseover mouseout').bind('mouseover',function(){                                                        clearTimeout(timer);
+                            obj.addClass('this');                       
+                            $(this).parents('li').find('.cancel_invite_button_'+DW.global.uid).html('')
+                            $('<img src="/theme/images/close_now1.png">').appendTo(obj.parents('li').find('.cancel_invite_button_'+DW.global.uid)).unbind('mouseover mouseout click').bind('mouseover',function(){
+                                clearTimeout(timer);
+                                $(this).attr('src','/theme/images/close_now2.png');                          
+                            }).bind('mouseout',function(){
+                                $(this).attr('src','/theme/images/close_now1.png');
+                                timer = setTimeout(function(){
+                                    obj.removeClass('this');
+                                    obj.parents('li').find('.cancel_invite_button_'+DW.global.uid).html('');
+                                },200);                           
+                            }).bind('click',function(){
+                                var rel = $(this).parent('a').attr('rel').split('|');
+                                var self = $(this);
+                                $.ajax({
+                                   type:'POST',
+                                   data:'qid='+rel[0]+'&uid='+rel[1],
+                                   url:'/ajax/cancel_invite',
+                                   success:function(data){
+                                       var res = $.parseJSON(data);
+                                       if(res.success) {                                            
+                                           self.parents('li').fadeOut('slow',function(){
+                                               if($('#invite_close_now > ul').find('li').length > 12) {
+                                                    $('#invite_close_now > ul').find('li').each(function(index){
+                                                        if(index == 12) {
+                                                            $(this).show();  
+                                                        }
+                                                    });  
+                                               }                                                
+                                               $(this).remove();  
+                                               if($('#invite_close_now > ul').find('li').length < 13) {
+                                                   $('.morethis').remove();  
+                                               }                                                                                              
+                                           });                                         
+                                       } else {
+                                           DW.util.error_msg(self, res.msg);    
+                                       }
+                                   } 
+                                });
+                            });
+                        }).bind('mouseout',function(){
+                            var obj = $(this);
+                            timer = setTimeout(function(){
+                                obj.removeClass('this');
+                                obj.parents('li').find('.cancel_invite_button_'+DW.global.uid).html('');
+                            },200);
+                        });
+                    });  
+                }
+                cancel_invite_user();
+                               
+                //查看全部
+                function show_all_invite(type) {
+                    if(type == 'show') {
+                        $('#view_all_invite')
+                        .html('收起')
+                        .css({background:"url('/theme/images/retract.png') no-repeat scroll 22px 4px transparent"})
+                        .click(function(){
+                            show_all_invite('hide');
+                        });
+                        $('#invite_close_now').find('li').each(function(){
+                            $(this).show();
+                        }); 
+                        DW.tip_layer.init_user('.u_layer');                  
+                    } else {
+                        $('#view_all_invite')
+                        .html('查看全部')
+                        .css({background:"url('/theme/images/more_down.png') no-repeat scroll 47px 4px transparent"})
+                        .click(function(){
+                            show_all_invite('show');
+                        });
+                        $('#invite_close_now').find('li').each(function(index){
+                            if(index > 11) {
+                                $(this).hide();
+                            }
+                        })                          
+                    }                 
+                }
+                $('#view_all_invite').click(function(){show_all_invite('show');});
+                //问题邀请回答结束
+
+                $('#best_ans_img').unbind('mouseover').mouseover(function(){
+                    $('#best_ans_text').html('取消最佳').removeClass('best_ans_text');
+                });
+
+                $('#best_ans_img').unbind('mouseout').mouseout(function(){
+                    $('#best_ans_text').html('最佳答案').addClass('best_ans_text');
+                });
+
+                //微操作
+                QstMicroBar.init();
+                AnsMicroBar.init();
+                                //评论
+                //DW.cmt.init();
+                $('.comments-link').each(function(){
+                    new CommentManager($(this));
+                });
+
+                //评审未决版本
+                DW.unsolved_queue.init();
+                //图片缩放
+                DW.img_resize.init('.post_area');
+                //显示图片提示
+                DW.show_img_tip.init("/theme/images/close_tips.png");
+                //landing page
+                                DW.LandingPage.init({"relevance":"<ul class=\"list\">\n      <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/219\/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84Flash%2FActionscript+CPU%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E5%91%A2%EF%BC%9F\" title=\"\u6709\u6ca1\u6709\u6bd4\u8f83\u597d\u7684Flash\/Actionscript CPU\u6027\u80fd\u5206\u6790\u5de5\u5177\u5462\uff1f\">\u6709\u6ca1\u6709\u6bd4\u8f83\u597d\u7684Flash\/Actionscript..<\/a><span class=\"t\">2011-10-22<\/span><\/li>\n      <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/188\/Web%E6%B8%B8%E6%88%8F%E3%80%81%E5%B9%B3%E5%8F%B0%E5%AE%9E%E9%99%85%E5%BC%80%E5%8F%91%E4%B8%AD%E7%94%A8%E5%88%B0%E5%93%AA%E4%BA%9B%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E3%80%81%E6%8F%92%E4%BB%B6%E4%BB%A5%E5%8F%8A%E6%A1%86%E6%9E%B6\" title=\"Web\u6e38\u620f\u3001\u5e73\u53f0\u5b9e\u9645\u5f00\u53d1\u4e2d\u7528\u5230\u54ea\u4e9b\u5f00\u53d1\u5de5\u5177\u3001\u63d2\u4ef6\u4ee5\u53ca\u6846\u67b6\">Web\u6e38\u620f\u3001\u5e73\u53f0\u5b9e\u9645\u5f00\u53d1\u4e2d\u7528\u5230\u54ea\u4e9b\u5f00\u53d1\u5de5\u5177\u3001\u63d2\u4ef6\u4ee5..<\/a><span class=\"t\">2011-10-18<\/span><\/li>\n      <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/3780\/php%E7%A8%8B%E5%BA%8F%E4%B8%ADwaring%E5%AF%B9%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BD%B1%E5%93%8D\" title=\"php\u7a0b\u5e8f\u4e2dwaring\u5bf9\u7a0b\u5e8f\u7684\u5f71\u54cd\">php\u7a0b\u5e8f\u4e2dwaring\u5bf9\u7a0b\u5e8f\u7684\u5f71\u54cd<\/a><span class=\"t\">2012-07-26<\/span><\/li>\n      <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/8512\/PHP%E7%99%BB%E5%BD%95SSH%E5%88%B0%E4%B8%AD%E5%85%B4%E4%BA%A4%E6%8D%A2%E6%9C%BA\" title=\"PHP\u767b\u5f55SSH\u5230\u4e2d\u5174\u4ea4\u6362\u673a\">PHP\u767b\u5f55SSH\u5230\u4e2d\u5174\u4ea4\u6362\u673a<\/a><span class=\"t\">2012-11-23<\/span><\/li>\n   <\/ul>\n","online_cnt":59,"qid":"1635","hot":" <ul class=\"list\">\t\t\t\n  <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/16034\/%E6%88%AA%E5%9B%BE%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E7%A6%81%E6%AD%A2%E6%88%AA%E5%9B%BE%EF%BC%8C%E5%8C%85%E6%8B%AC%E4%BB%BB%E4%BD%95%E8%BD%AF%E4%BB%B6%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AD%89%E7%9A%84%E6%88%AA%E5%9B%BE%E8%A1%8C%E4%B8%BA%EF%BC%9F\" title=\"\u622a\u56fe\u7684\u539f\u7406\u662f\u4ec0\u4e48\uff1f\u5982\u4f55\u7981\u6b62\u622a\u56fe\uff0c\u5305\u62ec\u4efb\u4f55\u8f6f\u4ef6\u3001\u64cd\u4f5c\u7cfb\u7edf\u7b49\u7684\u622a\u56fe\u884c\u4e3a\uff1f\">\u622a\u56fe\u7684\u539f\u7406\u662f\u4ec0\u4e48\uff1f\u5982\u4f55\u7981\u6b62\u622a\u56fe\uff0c\u5305\u62ec\u4efb\u4f55\u8f6f\u4ef6\u3001\u64cd\u4f5c\u7cfb\u7edf\u7b49\u7684\u622a\u56fe\u884c\u4e3a\uff1f<\/a><span class=\"t\">02-09<\/span><\/li>\n <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/16033\/mysql+update%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9B%B4%E6%96%B0%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%E8%A6%810.04%E7%A7%92%E5%B7%A6%E5%8F%B3%EF%BC%8C+innodb%E5%BC%95%E6%93%8E%EF%BC%8C%E6%B1%82%E8%A7%A3\" title=\"mysql update\u5f88\u6162\uff0c\u66f4\u65b0\u4e00\u6761\u8bb0\u5f55\u89810.04\u79d2\u5de6\u53f3\uff0c innodb\u5f15\u64ce\uff0c\u6c42\u89e3\">mysql update\u5f88\u6162\uff0c\u66f4\u65b0\u4e00\u6761\u8bb0\u5f55\u89810.04\u79d2\u5de6\u53f3\uff0c innodb\u5f15\u64ce\uff0c..<\/a><span class=\"t\">02-09<\/span><\/li>\n <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/16030\/php+%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%E6%98%AF%E8%BF%99%E6%A0%B7%E5%86%99%E7%9A%84%EF%BC%9A%2F%28%5Cs%7C%5C%26amp%3Bnbsp%5C%3B%7C%E3%80%80%7C%5Cxc2%5Cxa0%29%2F%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%99%E9%83%A8%E5%88%86%5Cxc2%5Cxa0%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D\" title=\"php \u7528\u6b63\u5219\u5339\u914d\u66ff\u6362\u7a7a\u683c\u662f\u8fd9\u6837\u5199\u7684\uff1a\/(\\s|\\&amp;nbsp\\;|\u3000|\\xc2\\xa0)\/\uff0c\u8bf7\u95ee\u8fd9\u90e8\u5206\\xc2\\xa0\u662f\u4ec0\u4e48\u610f\u601d\">php \u7528\u6b63\u5219\u5339\u914d\u66ff\u6362\u7a7a\u683c\u662f\u8fd9\u6837\u5199\u7684\uff1a\/(\\s|\\&amp;nbsp\\;|\u3000|\\..<\/a><span class=\"t\">02-08<\/span><\/li>\n <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/16025\/showModalDialog%E5%AF%B9%E8%AF%9D%E7%AA%97%E5%8F%A3%E6%9C%89%E4%B8%80%E8%A1%8C%E7%BD%91%E5%9D%80%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89\" title=\"showModalDialog\u5bf9\u8bdd\u7a97\u53e3\u6709\u4e00\u884c\u7f51\u5740\u600e\u4e48\u53bb\u6389\">showModalDialog\u5bf9\u8bdd\u7a97\u53e3\u6709\u4e00\u884c\u7f51\u5740\u600e\u4e48\u53bb\u6389<\/a><span class=\"t\">02-06<\/span><\/li>\n <li>\u2022 <a href=\"http:\/\/www.dewen.org\/q\/16032\/php%E7%9A%84sessionid%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%B8%8E%E5%85%B6%E5%AF%B9%E5%BA%94%E7%9A%84session%E6%96%87%E4%BB%B6\" title=\"php\u7684sessionid\u5982\u4f55\u627e\u5230\u4e0e\u5176\u5bf9\u5e94\u7684session\u6587\u4ef6\">php\u7684sessionid\u5982\u4f55\u627e\u5230\u4e0e\u5176\u5bf9\u5e94\u7684session\u6587\u4ef6<\/a><span class=\"t\">02-08<\/span><\/li>\n<\/ul>\n<div class=\"recommend_topics\">\n  <a class=\"t_layer\" rel=\"0|8\" href=\"\/topic\/8\">Python<\/a>\n <a class=\"t_layer\" rel=\"1|38\" href=\"\/topic\/38\">MySQL<\/a>\n <a class=\"t_layer\" rel=\"2|85\" href=\"\/topic\/85\">phpMyAdmin<\/a>\n <a class=\"t_layer\" rel=\"3|274\" href=\"\/topic\/274\">\u7b97\u6cd5<\/a>\n <a class=\"t_layer\" rel=\"4|4\" href=\"\/topic\/4\">PHP<\/a>\n <a class=\"t_layer\" rel=\"5|391\" href=\"\/topic\/391\">\u5b58\u50a8\u8fc7\u7a0b<\/a>\n <a class=\"t_layer\" rel=\"6|37\" href=\"\/topic\/37\">Oracle<\/a>\n <a class=\"t_layer\" rel=\"7|3\" href=\"\/topic\/3\">C++<\/a>\n<\/div>\n<div class='clear'><\/div>\n\n"});
+                                //显示感兴趣的问题
+                                if($('#interesting_qst_area').length) {                                       
+                    $('#interesting_qst_area').parents('.ans_item').css('backgroundColor','#f5f5f5');
+                    setTimeout(function(){
+                        $('#interesting_qst_area').css({
+                        left: $('#interesting_qst_area').parents('.ans_item').width() + 'px'
+                        //height:$('#interesting_qst_area').parents('.ans_item').height() + 'px'                 
+                        }).show("slide"); 
+                        $('#interesting_qst_area').find('a').unbind('click').click(function(){
+                            Cookies.set(cookie_prefix('temp_hash'),'#interesting','','/');
+                        }); //增加点击统计
+                        $('#close_itr').click(function(){
+                            $('#interesting_qst_area').hide("slode",function(){
+                                $(this).parents('.ans_item').css('backgroundColor','#fff');
+                                $(this).remove();
+                            })
+                        })  
+                    },1000);                      
+                }
+                                
+                //收藏
+                DW.favorite.init($('.favorite'));
+            });
+            
+            //关闭页面判断内容是否保存
+            window.onbeforeunload = function(e){  
+            	var value = $.trim($('#wmd-input').val());                                      	
+            	if ('' && value.length > 0 && value != '请在这里输入您的答案') {
+            		save_check = false;
+            	}
+      	        if(save_check == false){
+                    e = e || window.event;
+                    return '您好，你有编辑未保存！';
+                }
+            }
+            $("#add_answer").unbind("bind").bind("click",function(){         		
+            	$(".site_invite_answer").slideUp(500);
+        		$(this).css({"color":"#000000"});
+        		$("#invite_answer").css({"color":"#004b73"});
+        		$("#no_inviter").show(300);     	            	
+            });
+            $("#invite_answer").unbind("bind").bind("click",function(){
+        		if($(".site_invite_answer").css("display") == 'none'){
+            		$(".site_invite_answer").slideDown(500);
+            		$("#no_inviter").hide();
+        		}else{
+        			$(".site_invite_answer").slideUp(500);
+        			$("#no_inviter").show(300);
+        		}
+        		$(this).css({"color":"#000000"});
+        		$("#add_answer").css({"color":"#004b73"});		     	
+            });           
+            $('.banner_close').click(function(){
+                $('.banner_tips').animate({'top':'-97px'},200);
+                $('#wrap').animate({'margin-top':'0px'},200);
+            });
+            $('.banner_text').children().click(function(){
+                location.href='/blog/values';
+            });
+        </script>
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/diff_match_patch.js"></script>
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/showdown_diff.js"></script>
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/ZeroClipboard.js"  defer="true"></script>
+        <script  type="text/javascript"  src="./PHP-php框架性能分析？大家一般是怎么分析的或用什么工具？ - 德问 编程社交问答_files/qus_ans.js"  defer="true"></script>
+        <script  type="text/javascript">
+    var js_arr = ['http://img.dewen.org/theme/js/wmd,showdown,prettify,tpl.js'];
+    //var js_arr = ['http://img.dewen.org/theme/js/wmd.js','http://img.dewen.org/theme/js/showdown.js','http://img.dewen.org/theme/js/prettify.js','http://img.dewen.org/theme/js/jtemplates_uncompressed.js'];
+    $(function(){
+        LazyLoad.js(js_arr, function () {
+            Tip_login.cheakAll(); //检测未登录前的动作，并执行
+                        
+                                    prettyPrint();
+
+                    });
+    });
+</script>
+        <script  type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-6399524-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+        
+    
+
+<input  type="hidden"  value=""><input  type="hidden"  value=""><input  type="hidden"  value=""><input  type="hidden"  value=""><div  class="poprecommend"><div  class="tit"><span  class="c"></span></div><div  class="cnt"><div  class="poptabtit"  id="poptabtit"><em  class="active"  id="relevance">相关推荐</em><em  id="site_hot">社区热门</em></div><div  class="poptabcnt"  id="poptabcnt"><div  class="popcntitem db"><ul  class="list">
+      <li>• <a  href="http://www.dewen.org/q/219/%E6%9C%89%E6%B2%A1%E6%9C%89%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84Flash%2FActionscript+CPU%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E5%91%A2%EF%BC%9F"  title="有没有比较好的Flash/Actionscript CPU性能分析工具呢？">有没有比较好的Flash/Actionscript..</a><span  class="t">2011-10-22</span></li>
+      <li>• <a  href="http://www.dewen.org/q/188/Web%E6%B8%B8%E6%88%8F%E3%80%81%E5%B9%B3%E5%8F%B0%E5%AE%9E%E9%99%85%E5%BC%80%E5%8F%91%E4%B8%AD%E7%94%A8%E5%88%B0%E5%93%AA%E4%BA%9B%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E3%80%81%E6%8F%92%E4%BB%B6%E4%BB%A5%E5%8F%8A%E6%A1%86%E6%9E%B6"  title="Web游戏、平台实际开发中用到哪些开发工具、插件以及框架">Web游戏、平台实际开发中用到哪些开发工具、插件以..</a><span  class="t">2011-10-18</span></li>
+      <li>• <a  href="http://www.dewen.org/q/3780/php%E7%A8%8B%E5%BA%8F%E4%B8%ADwaring%E5%AF%B9%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BD%B1%E5%93%8D"  title="php程序中waring对程序的影响">php程序中waring对程序的影响</a><span  class="t">2012-07-26</span></li>
+      <li>• <a  href="http://www.dewen.org/q/8512/PHP%E7%99%BB%E5%BD%95SSH%E5%88%B0%E4%B8%AD%E5%85%B4%E4%BA%A4%E6%8D%A2%E6%9C%BA"  title="PHP登录SSH到中兴交换机">PHP登录SSH到中兴交换机</a><span  class="t">2012-11-23</span></li>
+   </ul>
+</div><div  class="popcntitem"> <ul  class="list">			
+  <li>• <a  href="http://www.dewen.org/q/16034/%E6%88%AA%E5%9B%BE%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E7%A6%81%E6%AD%A2%E6%88%AA%E5%9B%BE%EF%BC%8C%E5%8C%85%E6%8B%AC%E4%BB%BB%E4%BD%95%E8%BD%AF%E4%BB%B6%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AD%89%E7%9A%84%E6%88%AA%E5%9B%BE%E8%A1%8C%E4%B8%BA%EF%BC%9F"  title="截图的原理是什么？如何禁止截图，包括任何软件、操作系统等的截图行为？">截图的原理是什么？如何禁止截图，包括任何软件、操作系统等的截图行为？</a><span  class="t">02-09</span></li>
+ <li>• <a  href="http://www.dewen.org/q/16033/mysql+update%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9B%B4%E6%96%B0%E4%B8%80%E6%9D%A1%E8%AE%B0%E5%BD%95%E8%A6%810.04%E7%A7%92%E5%B7%A6%E5%8F%B3%EF%BC%8C+innodb%E5%BC%95%E6%93%8E%EF%BC%8C%E6%B1%82%E8%A7%A3"  title="mysql update很慢，更新一条记录要0.04秒左右， innodb引擎，求解">mysql update很慢，更新一条记录要0.04秒左右， innodb引擎，..</a><span  class="t">02-09</span></li>
+ <li>• <a  href="http://www.dewen.org/q/16030/php+%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC%E6%98%AF%E8%BF%99%E6%A0%B7%E5%86%99%E7%9A%84%EF%BC%9A%2F%28%5Cs%7C%5C%26amp%3Bnbsp%5C%3B%7C%E3%80%80%7C%5Cxc2%5Cxa0%29%2F%EF%BC%8C%E8%AF%B7%E9%97%AE%E8%BF%99%E9%83%A8%E5%88%86%5Cxc2%5Cxa0%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D"  title="php 用正则匹配替换空格是这样写的：/(\s|\&amp;nbsp\;|　|\xc2\xa0)/，请问这部分\xc2\xa0是什么意思">php 用正则匹配替换空格是这样写的：/(\s|\&amp;nbsp\;|　|\..</a><span  class="t">02-08</span></li>
+ <li>• <a  href="http://www.dewen.org/q/16025/showModalDialog%E5%AF%B9%E8%AF%9D%E7%AA%97%E5%8F%A3%E6%9C%89%E4%B8%80%E8%A1%8C%E7%BD%91%E5%9D%80%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%89"  title="showModalDialog对话窗口有一行网址怎么去掉">showModalDialog对话窗口有一行网址怎么去掉</a><span  class="t">02-06</span></li>
+ <li>• <a  href="http://www.dewen.org/q/16032/php%E7%9A%84sessionid%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%B8%8E%E5%85%B6%E5%AF%B9%E5%BA%94%E7%9A%84session%E6%96%87%E4%BB%B6"  title="php的sessionid如何找到与其对应的session文件">php的sessionid如何找到与其对应的session文件</a><span  class="t">02-08</span></li>
+</ul>
+<div  class="recommend_topics">
+  <a  class="t_layer"  rel="0|8"  href="http://www.dewen.org/topic/8">Python</a>
+ <a  class="t_layer"  rel="1|38"  href="http://www.dewen.org/topic/38">MySQL</a>
+ <a  class="t_layer"  rel="2|85"  href="http://www.dewen.org/topic/85">phpMyAdmin</a>
+ <a  class="t_layer"  rel="3|274"  href="http://www.dewen.org/topic/274">算法</a>
+ <a  class="t_layer"  rel="4|4"  href="http://www.dewen.org/topic/4">PHP</a>
+ <a  class="t_layer"  rel="5|391"  href="http://www.dewen.org/topic/391">存储过程</a>
+ <a  class="t_layer"  rel="6|37"  href="http://www.dewen.org/topic/37">Oracle</a>
+ <a  class="t_layer"  rel="7|3"  href="http://www.dewen.org/topic/3">C++</a>
+</div>
+<div  class="clear"></div>
+
+</div></div></div><div  class="fastask"><span  style="color:#666;padding-right:20px;">当前有<b>59位</b>技术同行在线。</span>&nbsp;&nbsp;&nbsp;<a  href="http://www.dewen.org/fast_ask?q=1635"  class="askbtn">快速提问</a></div></div></body></html>

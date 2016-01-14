@@ -1,0 +1,237 @@
+#block DIV.main DIV.htmltitle {
+	TEXT-ALIGN: center; WIDTH: 670px; HEIGHT: 60px; OVERFLOW: hidden
+}
+#block DIV.main DIV.htmltitle H1 {
+	LINE-HEIGHT: 30px; WIDTH: 660px; HEIGHT: 30px; COLOR: #008800; FONT-SIZE: 15px; OVERFLOW: hidden
+}
+#block DIV.main DIV.htmltitle H1  a{color:#558393;}
+#block DIV.main DIV.htmltitle SPAN {
+	LINE-HEIGHT: 25px; COLOR: #909090
+}
+#block DIV.main DIV.htmltags {
+ LINE-HEIGHT: 25px; WIDTH: 670px; HEIGHT: 25px;
+}
+#block DIV.main DIV.htmltags SPAN {
+	DISPLAY: inline
+}
+#block DIV.main DIV.htmltags SPAN A {
+	PADDING-BOTTOM: 0px; MARGIN: 0px 5px; PADDING-LEFT: 18px; PADDING-RIGHT: 0px; FLOAT: left; COLOR: #727272; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmltags SPAN A:hover {
+	COLOR: #880000; TEXT-DECORATION: underline
+}
+#block DIV.main DIV.htmltags SPAN A.a1 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px 5px
+}
+#block DIV.main DIV.htmltags SPAN A.a2 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -24px
+}
+#block DIV.main DIV.htmltags SPAN A.a3 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -135px
+}
+#block DIV.main DIV.htmltags SPAN A.a4 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -78px
+}
+#block DIV.main DIV.htmltags SPAN A.a5 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -108px
+}
+#block DIV.main DIV.htmltags SPAN A.a6 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -51px
+}
+#block DIV.main DIV.htmltags SPAN A.a7 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -166px
+}
+#block DIV.main DIV.htmltags SPAN A.a8 {
+	BACKGROUND: url(../images/icon_5.gif) no-repeat 0px -196px
+}
+#block DIV.main DIV.htmltags SPAN.l {
+	FLOAT: left
+}
+#block DIV.main DIV.htmltags SPAN.r {
+	FLOAT: right
+}
+#block DIV.main DIV.htmltags SPAN.l STRONG {
+	PADDING-LEFT: 5px
+}
+#block DIV.main DIV.htmltags SPAN.l STRONG A {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 5px; FLOAT: none; COLOR: #ff6600; FONT-WEIGHT: normal; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmltags SPAN.ll STRONG A {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 5px; FLOAT: none;  FONT-WEIGHT: normal; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT:180%; PADDING-LEFT: 10px; WIDTH: 650px; PADDING-RIGHT: 0px; WORD-WRAP: break-word; HEIGHT: auto; COLOR: #333333; FONT-SIZE: 14px; OVERFLOW: hidden; PADDING-TOP: 8px;	font-family:Verdana,Arial;
+}
+.htmlcontent a{color:#4466BB}
+/*Comic Sans MS,Segoe UI,Arial,'Microsoft YaHei',serif;
+#block DIV.main DIV.htmlcontent DIV {
+	MARGIN: 0px 0px 5px; COLOR: #383838; FONT-SIZE: 14px;
+}*/
+#block DIV.main DIV.htmlcontent P {
+	 FONT-SIZE: 13px;color:#333333;
+}
+
+
+
+.htmlcontent h1 { font-size:20px; font-weight:normal; font-family:"microsoft yahei","黑体"; line-height:1.8;}
+.htmlcontent h2 { font-size:16px; font-family:"microsoft yahei"; line-height:1.8; margin-top:8px;}
+.htmlcontent h3 { font-size:14px; font-weight:bold; line-height:1.8; margin-top:8px;}
+
+
+.tishi{
+	width:652px;height:auto;
+	padding-left:5px;
+	font-family: verdana,arial,tahoma;
+        line-height:170%;
+	margin:10px 5px;
+	font-size:14px;
+
+	color:#333333;
+	background-color:#F6F6F6;
+	border-left:4px solid #558393;
+	border-right:4px solid #558393;
+
+}
+ .tishi span{
+	font-weight:bold;
+}
+
+#block DIV.main DIV.htmlcontent IMG {
+	MAX-WIDTH: 645px
+}
+#block DIV.main DIV.htmlcontent DIV.moban {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 310px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.font {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 310px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.font EMBED {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 310px; PADDING-RIGHT: 0px; HEIGHT: 280px; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.coolsite {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 313px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.coolsite IMG {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 313px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.tubiao {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 313px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.tubiao IMG {
+	BORDER-RIGHT-WIDTH: 0px; WIDTH: 313px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 650px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm SPAN.intro {
+	BORDER-BOTTOM: #fbd581 1px dashed; BORDER-LEFT: #fbc652 1px solid; PADDING-BOTTOM: 4px; MARGIN: 0px; PADDING-LEFT: 5px; WIDTH: 638px; PADDING-RIGHT: 5px; DISPLAY: inline; BACKGROUND: #ffffe7; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; BORDER-TOP: #fbc652 1px solid; BORDER-RIGHT: #fbc652 1px solid; PADDING-TOP: 4px
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm SPAN.links {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 650px; PADDING-RIGHT: 0px; DISPLAY: inline; BACKGROUND: url(../images/concodebg.gif) no-repeat 0px -14px; FLOAT: left; HEIGHT: 27px; OVERFLOW: hidden; PADDING-TOP: 5px
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm SPAN.links A {
+	BORDER-BOTTOM: #fbc652 1px solid; BORDER-LEFT: #fbc652 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; MARGIN: 0px 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: inline; BACKGROUND: #fffff2; FLOAT: left; HEIGHT: 20px; COLOR: #d39205; FONT-SIZE: 12px; BORDER-TOP: #fbc652 1px solid; BORDER-RIGHT: #fbc652 1px solid; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm SPAN.links A:hover {
+	BACKGROUND: #d39205; COLOR: #ffffff; TEXT-DECORATION: none
+}
+#block DIV.main DIV.htmlcontent DIV.codesumm SPAN.links FONT {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 21px; MARGIN: 0px 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: inline; BACKGROUND: url(../images/concodebg.gif) no-repeat 0px -125px; FLOAT: left; HEIGHT: 25px; COLOR: #ffffff; FONT-SIZE: 12px; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.codecont {
+	PADDING-BOTTOM: 0px; MARGIN: 2px 0px 0px; PADDING-LEFT: 0px; WIDTH: 650px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#block DIV.main DIV.htmlcontent DIV.cddline {
+	PADDING-BOTTOM: 0px; MARGIN: 8px 0px 0px; PADDING-LEFT: 0px; WIDTH: 650px; PADDING-RIGHT: 0px; DISPLAY: inline; FLOAT: left; HEIGHT: auto; OVERFLOW: hidden; BORDER-TOP: #dedede 1px solid; PADDING-TOP: 5px
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; MARGIN: 0px 20px 0px 5px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; DISPLAY: inline; FLOAT: left; COLOR: #727272; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A:hover {
+	COLOR: #880000; TEXT-DECORATION: none
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A.cdemo {
+	BORDER-BOTTOM: #45a0d1 1px solid; BORDER-LEFT: #45a0d1 1px solid; BACKGROUND: #e7f5fd; COLOR: #0066cc; BORDER-TOP: #45a0d1 1px solid; BORDER-RIGHT: #45a0d1 1px solid
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A.cdemo:hover {
+	BORDER-BOTTOM: #45a0d1 1px solid; BORDER-LEFT: #45a0d1 1px solid; BACKGROUND: #45a0d1; COLOR: #ffffff; BORDER-TOP: #45a0d1 1px solid; BORDER-RIGHT: #45a0d1 1px solid
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A.cdown {
+	BORDER-BOTTOM: #008800 1px solid; BORDER-LEFT: #008800 1px solid; BACKGROUND: #e9fee9; COLOR: #008800; BORDER-TOP: #008800 1px solid; BORDER-RIGHT: #008800 1px solid
+}
+#block DIV.main DIV.htmlcontent DIV.cddline A.cdown:hover {
+	BORDER-BOTTOM: #008800 1px solid; BORDER-LEFT: #008800 1px solid; BACKGROUND: #008800; COLOR: #ffffff; BORDER-TOP: #008800 1px solid; BORDER-RIGHT: #008800 1px solid
+}
+#block DIV.main DIV.htmlrelated {
+	WIDTH: 670px; HEIGHT: 165px; OVERFLOW: hidden
+}
+#block DIV.main DIV.htmlrelated H3 {
+	BORDER-BOTTOM: #dddddd 1px solid; LINE-HEIGHT: 30px; PADDING-LEFT: 25px; MARGIN-BOTTOM: 3px; BACKGROUND: url(../images/icon_6.gif) no-repeat 5px 5px; HEIGHT: 30px; COLOR: #333333; FONT-SIZE: 12px
+}
+#block DIV.main DIV.htmlrelated UL {
+	HEIGHT: 125px
+}
+#block DIV.main DIV.htmlrelated LI {
+	LINE-HEIGHT: 25px; PADDING-LEFT: 0px; WIDTH: 320px; TEXT-OVERFLOW: ellipsis; DISPLAY: inline; WHITE-SPACE: nowrap; FLOAT: left; HEIGHT: 25px; COLOR: #aaaaaa; OVERFLOW: hidden; MARGIN-RIGHT: 5px
+}
+#block DIV.main DIV.htmlrelated LI A {
+	COLOR: #19489e; TEXT-DECORATION: underline
+}
+#block DIV.main DIV.htmlrelated LI A:hover {
+	COLOR: #666666; TEXT-DECORATION: none
+}
+/*js特效运行*/
+ .texiao{
+	text-align:center;
+	width:640px;
+	border:1px solid #F5F5F5;
+	margin-top:5px;
+	margin-bottom:5px;
+	background-color:#E9E9EB;
+}
+ .texiao .daima{
+	background:url(../images/daima.gif) no-repeat left center;
+	text-align:left;
+	padding-left:18px;
+	height:22px;
+	line-height:24px;
+}
+ .texiao textarea{
+	border:0;
+	width:635px;
+	border-top:1px solid #D9D9D9;
+	border-bottom:1px solid #D9D9D9;
+	font-family: verdana,arial,tahoma;
+	font-size:13px;
+}
+.texiao input{
+	padding:1px;
+	border:0;
+	background:#4899E0;
+width:100px;
+height:30px;
+line-height:30px;
+color:#ffffff;font-size:14px;
+font-weight:bold;	
+}
+
+.htmlcontent BLOCKQUOTE {
+   background: url("../images/quote.png") no-repeat scroll 4px 0 #F9F9FF;
+    border: 2px dashed #DDDDDD;
+    border-radius: 8px 8px 8px 8px;
+    margin: 4px 2px !important;
+    padding: 8px 6px 8px 40px !important;
+}
+
+BLOCKQUOTE P{ margin:0; text-indent:0;color:#333333;font-size:14px;font-family:consolas,"Courier New",courier,monospace;}
+#block DIV.main DIV.htmlcontent P.shm{
+	width:650px;height:auto;
+	padding-left:5px;
+	font-family: consolas,"Courier New",courier,monospace;
+        line-height:25px;
+	height:25px;
+	margin:10px 0;
+	font-size:14px;
+	border-left:4px solid #558393;
+}
+blockquote pre{color:#333333;font-size:14px}

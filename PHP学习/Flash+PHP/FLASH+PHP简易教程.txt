@@ -1,0 +1,58 @@
+          这次我打算写一个新的系列教程,就是用FLASH CS4 + PHP 开发一个简易的FLASH聊天室(可以点击图片看看),也可以说成是留言板的扩展版本，大家如果认真的看的话,可以学到,FLASH是如何与PHP通信,然后再得到返回的数据，mysql输出XML数据等一些技巧.
+      在开始之前,我先把整体思路说一下,今天第一篇,不往深了讲,只说FLASH是如何与PHP通信的,只要理解了这点,再往下面讲就简单了很多.具体的制作简易聊天室思路会在下一篇详细说明.
+      那么FLASH是怎么样与PHP通信的呢?
+      首先我们先把PHP端的代码写好,如下:
+
+<?php
+$m = $_GET['messages'];
+echo $m;
+?>
+
+       并把这个PHP文件命名为message.php,然后你测试下,输入路径,然后最后加上: ?messages=hello;看看页面是否显示,OK,如果显示出:hello,那说明PHP端的文件搞定了,
+       下一步我们详细说明FLASH端的代码.我把这些个步骤形容为:三板斧。
+       第一板斧：点击
+
+       简单的很，只要在FLASH舞台上放个BUTTON，然后命名为：send_btn.然后在主AS里，先写上第一行代码，主要是监听点击事件。
+      
+
+send_btn.addEventListener(MouseEvent.CLICK,btnClick);
+function btnClick(e:MouseEvent):void{
+  sendMessage();
+}
+
+       这就是第一板斧，很简单，那么你肯定会问，为什么不把发送的代码全写在btnClick构造函数里呢，而是另放在sendMessage()这个构造函数里，其实这是为了代码方便，也是为了下一步有用。
+
+       第二板斧：发送
+       顾名思义，就是把FLASH里的内容发送给PHP，这个代码如下：
+      
+
+function sendMessage():void {
+   //定义PHP文件地址
+  var phpFile:String="http://localhost/flashChatroom/message.php";
+
+  var variables:URLVariables = new URLVariables();
+  variables.messages="hello";
+
+  var urlRequest:URLRequest=new URLRequest(phpFile);
+  //可选，不过为了数据安全建议用上，然后把PHP端的$m = $_GET['messages'];
+  //修改为 $m = $_POST['messages'];即可
+  urlRequest.method=URLRequestMethod.POST;
+  urlRequest.data=variables;
+
+
+  var urlLoader:URLLoader = new URLLoader();
+  urlLoader.addEventListener(Event.COMPLETE,getMessage);
+  urlLoader.load(urlRequest);
+}
+
+
+第三板斧：接受
+     这个就简单了，目前我们只用trace();命令来接收数据，代码如下：
+
+function getMessage(e:Event):void {
+  trace(e.target.data);
+}
+
+     
+
+      总结，看了这三板斧，大概明白了吧，怎么让FLASH 与 PHP 通信，不过目前只是讲个最初的概念，不过别看这么简单，后期的程序都是以此框架展开的。特别是第三板斧，因为根据数据不同，格式不同，接收的方法也会不一样，里面有很多文章可做。所以等第二篇吧，明天应该可以写出来了。

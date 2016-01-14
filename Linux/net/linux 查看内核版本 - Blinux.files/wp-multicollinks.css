@@ -1,0 +1,18 @@
+.ml_col {
+	FLOAT: left; POSITION: relative
+}
+.ml_col_2 {
+	WIDTH: 50%
+}
+.ml_col_3 {
+	WIDTH: 33%
+}
+.ml_col_4 {
+	WIDTH: 25%
+}
+.ml_fixed {
+	CLEAR: both
+}
+.ml_showall {
+	FLOAT: right
+}

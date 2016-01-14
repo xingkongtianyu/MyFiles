@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.undelegate()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span>
+  
+  				</div>
+</div>
+<div id="undelegate1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.undelegate(  )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为当前选择所匹配的所有元素移除一个事件处理程序，现在或将来，基于一组特定的根元素。</p>
+<ul class="signatures">
+<li class="signature" id="undelegate"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.2/">1.4.2</a></span>.undelegate()</h4></li>
+<li class="signature" id="undelegate-selector-eventType">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.2/">1.4.2</a></span>.undelegate( selector, eventType )</h4>
+<p class="arguement"><strong>selector</strong>用于过滤事件结果的选择器。</p>
+<p class="arguement"><strong>eventType</strong>一个字符串，其中包含一个JavaScript事件类型，如“点击”或“的keydown”</p>
+</li>
+<li class="signature" id="undelegate-selector-eventType-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.2/">1.4.2</a></span>.undelegate( selector, eventType, handler )</h4>
+<p class="arguement"><strong>selector</strong>用于过滤事件结果的选择器。</p>
+<p class="arguement"><strong>eventType</strong>一个字符串，其中包含一个JavaScript事件类型，如“点击”或“的keydown”</p>
+<p class="arguement"><strong>handler</strong>一个函数，用来该事件被触发后执行。</p>
+</li>
+<li class="signature" id="undelegate-selector-events">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.undelegate( selector, events )</h4>
+<p class="arguement"><strong>selector</strong>用于过滤事件结果的选择器。</p>
+<p class="arguement"><strong>events</strong>一个或多个事件类型和以前绑定的功能映射到他们解除绑定。</p>
+</li>
+<li class="signature" id="undelegate-namespace">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.undelegate( namespace )</h4>
+<p class="arguement"><strong>namespace</strong>一个字符串，其中包含一个命名空间取消绑定的所有事件。</p>
+</li>
+</ul>
+<div class="longdesc"><p>Undelegate是用来移除使用<a href="#p=delegate">.delegate()</a>的方式已经绑定的事件处理程序。它的工作原理与<a href="#p=die">.die()</a>用另外一个选择器过滤参数（这是委托工作所需）几乎相同。</p></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">可以绑定和取消绑定事件的彩色按钮。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+button { margin:5px; }
+button#theone { color:red; background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="theone"&gt;Does nothing...&lt;/button&gt;
+&lt;button id="bind"&gt;Bind Click&lt;/button&gt;
+&lt;button id="unbind"&gt;Unbind Click&lt;/button&gt;
+&lt;div style="display:none;"&gt;Click!&lt;/div&gt;
+&lt;script&gt;
+function aClick() {
+  $("div").show().fadeOut("slow");
+}
+$("#bind").click(function () {
+  $("body").delegate("#theone", "click", aClick)
+    .find("#theone").text("Can Click!");
+});
+$("#unbind").click(function () {
+  $("body").undelegate("#theone", "click", aClick)
+    .find("#theone").text("Does nothing...");
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">解除绑定的所有段落都从委托的事件：
+</span>
+</h4>
+<pre><code class="example">$("p").undelegate()</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">解除绑定的所有段落的所有委托点击事件:</span>
+</h4>
+<pre><code class="example">$("p").undelegate( "click" )</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">为了undelegate只是一个以前绑定的处理程序，通过在作为第三个参数的函数：</span>
+</h4>
+<pre><code class="example">var foo = function () {
+// code to handle some kind of event
+};
+
+$("body").delegate("p", "click", foo); // ... now foo will be called when paragraphs are clicked ...
+
+$("body").undelegate("p", "click", foo); // ... foo will no longer be called.</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">为了拆散他们的命名空间的所有委托事件：</span>
+</h4>
+<pre class="prettyprint"><code class="example"><span class="kwd">var</span><span class="pln"> foo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br></span><span class="com">// code to handle some kind of event</span><span class="pln"><br></span><span class="pun">};</span><span class="pln"><br><br></span><span class="com">// delegate events under the ".whatever" namespace</span><span class="pln"><br>$</span><span class="pun">(</span><span class="str">"form"</span><span class="pun">).</span><span class="kwd">delegate</span><span class="pun">(</span><span class="str">"click.whatever"</span><span class="pun">,</span><span class="pln"> </span><span class="str">":button"</span><span class="pun">,</span><span class="pln"> foo</span><span class="pun">);</span><span class="pln"><br><br>$</span><span class="pun">(</span><span class="str">"form"</span><span class="pun">).</span><span class="kwd">delegate</span><span class="pun">(</span><span class="str">"keypress.whatever"</span><span class="pun">,</span><span class="pln"> </span><span class="str">":text"</span><span class="pun">,</span><span class="pln"> foo</span><span class="pun">);</span><span class="pln"> <br><br></span><span class="com">// unbind all events delegated under the ".whatever" namespace</span><span class="pln"><br><br>$</span><span class="pun">(</span><span class="str">"form"</span><span class="pun">).</span><span class="pln">undelegate</span><span class="pun">(</span><span class="str">".whatever"</span><span class="pun">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

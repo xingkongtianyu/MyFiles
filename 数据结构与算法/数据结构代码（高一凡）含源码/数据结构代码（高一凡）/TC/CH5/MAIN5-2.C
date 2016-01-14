@@ -1,0 +1,39 @@
+ /* main5-2.c 检验bo5-2.c的主程序 */
+ #include"c1.h"
+ typedef int ElemType;
+ #include"c5-2.h"
+ #include"bo5-2.c"
+ void main()
+ {
+   TSMatrix A,B,C;
+   printf("创建矩阵A: ");
+   CreateSMatrix(&A);
+   PrintSMatrix(A);
+   printf("由矩阵A复制矩阵B:\n");
+   CopySMatrix(A,&B);
+   PrintSMatrix1(B);
+   DestroySMatrix(&B);
+   printf("销毁矩阵B后:\n");
+   PrintSMatrix1(B);
+   printf("创建矩阵B2:(与矩阵A的行、列数相同，行、列分别为%d,%d)\n",A.mu,A.nu);
+   CreateSMatrix(&B);
+   PrintSMatrix1(B);
+   AddSMatrix(A,B,&C);
+   printf("矩阵C1(A+B):\n");
+   PrintSMatrix1(C);
+   SubtSMatrix(A,B,&C);
+   printf("矩阵C2(A-B):\n");
+   PrintSMatrix1(C);
+   TransposeSMatrix(A,&C);
+   printf("矩阵C3(A的转置):\n");
+   PrintSMatrix1(C);
+   printf("创建矩阵A2: ");
+   CreateSMatrix(&A);
+   PrintSMatrix1(A);
+   printf("创建矩阵B3:(行数应与矩阵A2的列数相同=%d)\n",A.nu);
+   CreateSMatrix(&B);
+   PrintSMatrix1(B);
+   MultSMatrix(A,B,&C);
+   printf("矩阵C5(A×B):\n");
+   PrintSMatrix1(C);
+ }

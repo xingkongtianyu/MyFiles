@@ -1,0 +1,259 @@
+论坛向社区化发展已经成为趋势，站长对网站的个性化需求越来越高，同时随着网站规模的扩大，站长对于一些特殊功能的需求也越来越多， Discuz! 标准程序作为一个通用程序，从某种意义上讲很难满足所有站长个性化功能的需求，因此论坛插件就成为对标准程序最好的功能补充。
+
+从目前来看，正在做插件和想做插件的人越来越多，从Discuz! 官方论坛的统计数据大家就可以看出，目前插件区已经成为仅次于安装使用区之后的第二大版块。于此我们同时也发现许多希望开发插件的作者，有时候感觉插件开 发很难上手，一定程度上也影响了插件的丰富性和多样性。特此，写这样一篇文章，谈不上有什么教育意义，只是给那些希望开发插件的朋友一块敲门砖，让更多的 人成为一名插件作者，拿出你们的创意，让论坛更加丰富多彩。
+
+第一种是利用已有的插件机制，这种机制官方有详细的开发文档，可以利用现有的一些接口和函数，按照文档规定的文件以及目录结构，进行开发就可以了， 这种方式是官方鼓励的开发方式，所开发的插件比较标准，在后台可以轻松管理并导入导出，利于插件的安装。但是这种方式需要插件作者看懂开发文档，严格按照 开发文档做。个人感觉局限性相对而言比较大，不过推荐新手可以试试这种方式，毕竟这种方式插件方便插件使用者安装，相对而言比较利于插件的推广。
+
+第二种就是我这篇文章可能要重点推荐的，我称它为自由方式，这种方式需要插件作者对 Discuz! 程序相关接口和函数有一定了解。当然我会在下面的文章里面对一些常用函数做一个简单介绍。这种方式的好处就是在编写程序时候比较自由，不需要像第一种那样 需要放在规定的目录中，给插件作者发挥的余地更大。还有，就是这样写出的程序更像论坛程序的一部分，而不是一个插件，哈哈。不过这种方式编写的插件也有一 定的缺陷，比如安装上面相对第一种方式比较繁琐，如果需要管理后台，还需要自己来编写。不过这些对于大家来说应该是小意思了吧，呵呵。
+
+下面我一步一步来介绍自由方式编写插件的过程，以及一些常用的函数和其用法。先强调一点，我这里所介绍的插件是有独立运行文件的，而不是那种只修改原文件。
+
+首先介绍一下插件的组成，一个普通的插件不管是小型的还是大型的，一般都会有一个主程序文件，作为 Discuz! 的插件，如果有独立页面一般会有模板文件。当然随着插件功能增加可能还会有其他文件，比如后台管理文件、自定义函数文件等等。总的来说一个插件最低限度要 有一个主程序 PHP 文件，基本上都会有一个主程序文件和模板文件。高级一些插件还会存在后台管理文件以及相关程序文件。
+
+文件存放目录，一般主程序会放在论坛根目录下，这样比较规范而且方便插件前台调用。模板目录一般放在 template/default 目录下，这样即使更换风格也可以正常使用，因为 Discuz! 模板处理程序会有这样的一个机制：如果生成模板缓存的时候，当前模板目录下没有需要的模板文件，会自动到默认模板目录下获取，如果还没有才会报错。所以作 为插件的模板最好放在默认模板目录下。
+
+其他文件可以根据功能不同放在不同的目录下，比如说后台管理文件，一般会放在论坛根目录 admin 目录下，然后通过 admincp.php 里面调用，调用方法我会在后面说到。用的一些 function 之类的东西，可以写成一个文件放在 include 目录下，不过最好是单独建立一个目录放在里面，这样比较方便今后的拆卸。
+
+最后还有一部分文件，就是你页面中可能会用到的图片文件，这些图片文件一般放在images 目录下，至于放在那里在这里我们就没有严格的要求了。
+
+说完了文件，下面简单介绍一下插件中对数据表的操作。对于插件而言实际上是不希望对论坛的数据表进行修改的，特别是论坛的几个主要数据 表：members、 posts、threads，对这几个表如果修改的不恰当，很可能造成整个论坛系统性能的下降。为了防止给插件拆卸带来不便，所以我们在制作插件时候尽量 避免对上面三个数据表的结构进行修改。如果非要修改，尽量能单独建立数据表，然后通过 uid 、 pid 、 tid 进行数据关联，当使用的时候再调用。
+
+退一步说如果非要在上述三个数据表里面添加字段，所添加的字段如果是字符类型必须是定长字段，例如 char ，如果是数字类型根据数值范围不同，尽量用 tinyint 、 smallint 、int ，这样尽可能不影响论坛效率。当然在实际使用中还有许多要注意的地方，鉴于文章的篇幅有限这里不做太多详细的说明，另外我会对插件数据库要注意的问题，单 独写成文档和大家一起讨论。
+
+上面都是一些常识问题，下面我以一个以前我写过的插件为例子，具体对插件的编写，以及一些 Discuz! 常用函数的使用做说明。
+
+这个插件很简单，就是一个抽奖的插件，主要功能是根据会员的一些论坛资料，比如发帖数、精华帖、在线时间、注册时间等计算出获奖几率，并获得一定数 量指定积分。主要由三部分文件组成，主程序文件：luck.php、模板文件 templatesdefaultluck.htm 模板文件和图片文件 imagesdefault ，增加了一个数据表：cdb_luck。
+
+下面我将 luck.php 和模板文件部分关键代码进行详解，讲解前我先介绍几个必备的文件和自定义函数。
+
+首先是几乎在所有插件都要用到的文件 common.inc.php ，这个文件是 Discuz! 核心文件，几乎所有的程序文件都会用到，这个文件主要是一些重要的变量进行初始化以及赋值，调用常用的自定义函数，以及一些共用程序。并且在里面对用户登 陆以及相关操作做了处理，具体的代码这里就不详细分析了。
+
+其次就是几个自定义函数了：
+
+1、 function showmessage($message, $url_forward = '', $extra = '')
+
+这个函数的主要作用就是返回提示信息，参数变量有三个：
+
+$memssage 要返回的提示信息，支持 html ；
+
+$url_forward 返回提示信息后跳转的 url ；
+
+$extra 其他参数，主要有两个 HALTED 、 NOPERM ，其中 NOPERM 是比较常用的，是当一个用户没有权限时候，用这个参数会自动出现无权限页面以及要求登陆的界面。
+
+这个函数使用还有一个小技巧，就是当 $memssage 包含“返回”这个字样的时候，无需填写 $url_forward 变量，会自动返回上一页。
+
+2、function submitcheck($var, $allowget = 0, $seccodecheck = 0, $secqaacheck = 0)
+
+主要作用验证表单提交是否合法， Discuz! 系统中为了防止非法表单提交，所有的表单提交页面都会有一个隐藏 input ， name 为 formhash ，这个 hash 是根据一些用户资料经过加密生成的，主要验证该用户的表单提交动作是否合作。这个函数在有表单提交的时候会经常用到。
+
+这个函数的参数变量有四个：
+
+$var 提交 submit 的 name ；
+
+$allowget 这个表单是否允许 get 方式提交；
+
+$seccodecheck 提交表单是否需要验证码；
+
+$secqaacheck 提交表单是否需要验证问题。
+
+3、 function template($file, $templateid = 0, $tpldir = '')
+
+这个也是插件中比较常用的自定义函数之一，主要用户生成插件的模板，参数变量有三个：
+
+$file 要生成模板的文件名（不包括扩展名）这个指的是上面所说的模板文件；
+
+$templateid 指定模板 ID ， Discuz! 系统支持多套模板，每个模板都有对应的 ID ，这里可以指定某套模板的 id 下面的某个模板文件，一般不需要填写；
+
+$tpldir 模板文件目录，这个一般情况下也不用填写。
+
+因为Discuz!的模板最终会编译成 PHP 文件，所以在用这个函数的时候，还需要引用一下，一般用 PHP 中的 include 函数引用。
+
+4、严格说这个是一个 class ，主要用于一些数据库操作，比较多，这里就不一一描述了，大家可以自己看 includedb_mysql.class.php 文件，简单说
+
+两个常用：
+
+$db-query(“$sql”) 执行某一特定的 SQL 语句，支持几乎所有的 MYSQL 常用语句。
+
+$db-fetch_array($query) 将 SQL 语句的结果输出为数组，主要用于 SELECT 操作。
+
+最后还要提一下一些在插件中可能用到的， Discuz! 系统中一些全局变量：
+
+$discuz_uid 用户 uid
+
+$discuz_user 用户名
+
+$tablepre 数据表前缀
+
+$timestamp 当前时间（时间戳形式）
+
+说了这么多了，下面我们来看具体代码，我会把程序中每行代码做解释，希望大家能获得一点启发吧
+
+require_once '.includecommon.inc.php';
+
+这行代码就是前面说的 common.inc.php 这个系统核心文件的引用，几乎所有插件都会用到。
+
+代码如下：
+
+    以下为引用 if(!$discuz_uid) {
+        showmessage('not_loggedin', NULL, 'NOPERM');
+    }n', NULL, 'NOPERM');
+    }
+
+这段的含义是当程序发现访问者是游客时，自动会提示无权访问，请登陆的界面，在Discuz! 里面是通过 common.inc.php 做处理，然后给 $discuz_uid 这个变量赋值，当这个变量为空或者为 0 时，程序会认为这个访问者是游客，否则这个变量将被赋值为该会员的 uid 。和这个变量类似的还有 $discuz_user 这个是用于显示会员用户名的，如果为空也说明访问者为游客。
+
+代码如下：
+
+    $startdate = '2007-02-17';    开始日期，填写格式2007-02-17
+    $enddate = '2007-02-24';    结束日期，填写格式2007-02-24
+    $joincount = 30;             可以参与抽奖的次数
+    $getcredit = 1;             增加扩展积分1~8
+    $mincredit = 1;             获得积分的最小值
+    $maxcredit = 100;             获得积分的最大值
+
+复制代码
+
+这段代码是一些程序里面用到的设置变量，如果你的插件有后台程序可以把这些变量放到后台进行设置，然后写到数据库或者缓存为文件。
+
+代码如下：
+
+    以下为引用的内容：
+            if(empty($getcredit)  $getcredit  1  $getcredit  8) {
+        showmessage('积分设置有问题，请返回修改');
+    }
+
+这段代码也是一个提示类型的判断语句，当不满足 if 里面的条件时，就会跳到提示页面，提示：积分设置有问题，请返回修改，大家注意这个的提示语言有“返回”的字样，这样我们不需要在填写提示后返回的页面。 Showmessage 会自动生成返回上一页的连接。
+
+代码如下：
+
+    以下为引用的内容：
+            $starttime = strtotime($startdate) + date('Z') - ($timeoffset  3600);
+    $endtime = strtotime($enddate) + date('Z') - ($timeoffset  3600);
+    if($startdate  $enddate) {
+        showmessage('开始时间大于结束，请返回修改');
+    } elseif($timestamp  $starttime) {
+        showmessage('活动还没开始，请返回');
+    } elseif($timestamp  $endtime) {
+        showmessage('活动已经结束了', 'index.php');
+    }
+
+这段代码主要是对抽奖这个活动开始和结束时间做了计算，把标准时间格式转换为 UNIX 时间戳。并对开始结束时间和当前时间做比较，返回一些错误情况的提示信息。
+
+代码如下：
+
+    以下为引用的内容：
+            $query = $db-query(SELECT COUNT(uid) as joinnum, SUM(credits) as credits
+    FROM {$tablepre}luck);
+    $total = $db-fetch_array($query);
+    $query = $db-query(SELECT count, credits FROM {$tablepre}luck WHERE uid='$discuz_uid');
+    if($luck = $db-fetch_array($query)) {
+        $update = 1;
+    } else {
+        $update = 0;
+    }
+    $remaincount = $joincount - $luck['count'];
+    $remaincount = $remaincount  0  $remaincount  0;
+
+从这段开始涉及到一些数据库的查询，以及根据查询情况进行一些变量的赋值。例如其中的这句。
+
+代码如下：
+
+    以下为引用的内容：
+            $query = $db-query(SELECT COUNT(uid) as joinnum, SUM(credits) as credits
+    FROM {$tablepre}luck);
+    $total = $db-fetch_array($query);
+
+就是取一下当前抽奖活动参与的任务和送出的总奖金数，并将这个结果生成数组放到$total 里面。
+
+代码如下：
+
+    以下为引用的内容：
+          if(!submitcheck('lucksubmit', 1)) {
+        $query = $db-query(SELECT l.credits, l.uid, m.username
+                FROM {$tablepre}luck l
+                LEFT JOIN {$tablepre}members m ON m.uid=l.uid
+                ORDER BY l.credits DESC LIMIT 0, 10);
+        while($top = $db-fetch_array($query)) {
+            $toplist[] = $top;
+             }
+    include template('luck');
+    } else {
+        if($luck['count']  $joincount) {
+            $query = $db-query(SELECT regdate, posts, digestposts, oltime
+    FROM {$tablepre}members WHERE uid='$discuz_uid');
+            $member = $db-fetch_array($query);
+            $regday = intval(($timestamp - $member['regdate'])  86400);
+            $lucknum = ($member['digestposts']  15 + $member['post']  10 + $member['oltime']  5
+    + $regday  5)  100;
+            $mostcredit = $lucknum  $maxcredit  $maxcredit  intval($lucknum);
+            $mostcredit = $mostcredit  $mincredit  $mostcredit  $mincredit;
+            $finalcredit = rand($mincredit, $mostcredit);
+            $db-query(UPDATE {$tablepre}members SET extcredits$getcredit=extcredits$getcredit
+    +'$finalcredit' WHERE uid='$discuz_uid');
+            if($update) {
+                $db-query(UPDATE {$tablepre}luck SET count=count+1, credits=credits+'$finalcredit'
+    WHERE uid='$discuz_uid');
+            } else {
+                $db-query(INSERT INTO {$tablepre}luck (uid, count, credits) VALUES ('$discuz_uid', '1',
+    '$finalcredit'), 'UNBUFFERED');
+            }
+            showmessage('恭喜你获得'.$finalcredit.$extcredits[$getcredit]['title'], 'luck.php');
+        } else {
+            showmessage('每人只有'.$joincount.'次抽奖机会，做人不要太贪心啊!', dreferer());
+        }
+    }
+
+这段代码比较长我们把它分为两部分讲解， else 前面为一部分，后面会一部分。 else前面的部分是当 !submitcheck('lucksubmit', 1) 这个条件不满足的时候，也就是说当用户没有提交这个表单的时候，会进行一次数据库查询，并生成没有提交前的界面。
+
+这段代码有两点要注意，第一点就是 include template('luck'); 前面一段，这段是从cdb_luck 这个数据表中取得一些需要的数据，首先生成一个数组，然后再把这个数组，循环写到 $toplist[] 这个数组中，最终形成了一个多维数组，这个数组会在下面的生成模板中生成列表用，其中的 include template('luck'); 就是用 templatesdefaultluck.htm 这个模板生成页面的语句。
+
+else 后面的部分主要是当用户点击提交按钮后，系统自动判断提交请求是否合法，当判断确实合法后会通过一系列的计算，计算出该用户获得的分值，并写入对应的 member 数据表中。并返回成功或者失败信息。
+
+这个插件的 PHP 部分就讲完了，下面我来简单讲一下模板和数据库部分。
+
+模板文件上面已经说过了，一般会放在 templatesdefault 目录下，这个插件也不例外。插件的模板和论坛的模板是一样的，大部分都是由 html 代码组成的，这里我就不多讲了。重点我要讲的时候模板中的一些 PHP 语法，了解 Discuz! 系统的人都知道模板在使用前会经过论坛系统自带的一个模板处理函数进行编译，生成一个 PHP 文件，放在缓存目录下，所以在 Discuz! 模板中就会有一些 PHP 的语法，不过这些语法都是一些比较简单的。在这个插件里面就用带了一些，下面我和大家具体说说。
+
+其中最常用的就是 if 语句，在模板中的写法是这样的：
+
+代码如下：
+
+    以下为引用的内容：
+            !--{if 变量名称}--显示模板!--{else}--显示模板!--{if}--
+
+这个和 PHP 的 if 语法和用作是一样的，支持 else 和 elseif 这个是 Discuz! 模板中最常用的一个，也是今后大家做插件模板中最常用到的。
+
+第二个常用到的模板语句： loop ，书写格式如下
+
+代码如下：
+
+    以下为引用的内容：
+            !--{loop 数组名称 key 值元素名称}--!--{loop}--
+
+这个和PHP里面的foreach语法和作用是一样的，主要用于在模板中配合一些 html里面的trli之类的语句，生成一些列表样式的页面，比如上文中提到的 $toplist[] 数组，在程序中被赋值后，在模板中通过 loop 循环配合trtdtdtr就生成了一个排行榜的页面。这个模板语句也是用得比较多的一个
+
+当然模板中还可以用一些其他 PHP 的语句，例如 eval 等，特别要提的还有就是在每个插件里面都会用到的 {template header} 、 {template footer} 这两个虽然没有对应的 PHP 语句，不过对应的是前文提到的 template 这个论坛自定义函数，这个函数的作用主要是引用其他模板，在这里主要引用的是，论坛的 header 和 footer 模板。同时这个语句还可以引用其他模板，用法为 {template 模板文件名前缀} 。
+
+模板部分就说这么多了，其实只要知道了这些，一些专门做 html 不懂 PHP 的人稍加学习也可以做 Discuz! 的模板了。
+
+模板和文件说完了，最后来说说这个插件的数据库，前面已经说到了一些插件数据库的基本要求，下面结合这个插件具体说说，首先在设计数据库的时候，要 想明白这个数据库要记录那些东西，这些东西是字符串类型还是数字类型，如果是字符串类型的最大长度是多少，如果是数字类型的最大和最小值又是多少，那些字 段是可以共用的。
+
+结合这个插件我的数据库是这么设计，需要三个字段 uid 用于存放参与抽奖用户的 uid ，最大值和论坛用户表一致，为 mediumint(8) unsigned 。 count 参与抽奖的次数，一般有 255 次就够了，所以设计成 tinyint(1) unsigned 。最后一个就是 credits 获得积分，这个也和论坛数据字段一致 int(10) unsigned ，字段设计好了，下面开始设计索引。
+
+索引主要是为了让数据查询更快，尽可能少占用 mysql 资源，所以在设计时候首先要想一下我们需要查询数据表里面那些数据，哪些是我们经常查的。以这个插件为例我们经常要查的就是两个字段，一个是 uid 和 credits ，因为每次用户抽奖的时候我们都要查这个用户参与了几次抽奖，获得多少积分，所以肯定要根据用户的 uid 进行查询，所以首先我们将 uid设计为主键，同时还考虑到我们还要计算所有用户的总共获得的分数，所以我们把 credits 设置为索引，这样以来基本上就可以满足我们的需要了。当然索引的设计是一门学问，可能在设计过程中还会遇到一些问题，比如联合索引，索引优化等等。但是只 要你把你要查询的语句想清楚，设计索引也不是一件很困难的事情。
+
+关于索引设置的数量的问题，如果设置的数量过多，将会大大影响数据写入的速度，所以在设计索引的时候还要想清楚，所设计的这个数据表写操作和读操作那个更多，如果写操作比较频繁索引一定不要设置过多，否则会事倍功半的。
+
+根据上面的这些东西，最终我设计成数据表导出 SQL 语句如下
+
+代码如下：
+
+    以下为引用的内容：
+            CREATE TABLE `cdb_luck` (
+      `uid` mediumint(8) unsigned NOT NULL,
+      `count` tinyint(1) unsigned NOT NULL default '0',
+      `credits` int(10) unsigned NOT NULL default '0',
+      PRIMARY KEY  (`uid`),
+      KEY `credits` (`credits`)
+    ) TYPE=MyISAM;
+
+到此为止，一个插件的所有内容就完成了，当然如果你是一个追求完美的人可能还要给插件做上后台以及安装界面，接下来的时候就是来的插件区发布了。怎 么样，还不算很复杂吧，我这里只能从技术上告诉大家，至于你的插件能不能受到大家的喜爱还要一个很重要的东西就是创意，别人能想到的东西你能想到，别人想 不到的东西你也能想到，这样你的插件才能受到大家的喜爱。
+

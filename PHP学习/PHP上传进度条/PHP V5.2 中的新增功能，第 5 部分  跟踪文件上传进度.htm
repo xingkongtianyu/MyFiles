@@ -1,0 +1,1229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0060)http://www.ibm.com/developerworks/cn/opensource/os-php-v525/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>PHP V5.2 中的新增功能，第 5 部分: 跟踪文件上传进度</title>
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+  <meta name="Owner" content="dw@cn.ibm.com">
+  <meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+  <meta name="IBM.Country" content="CN">
+<meta name="Security" content="Public">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003,1004">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<meta name="Abstract" content="PHP V5.2 为开发人员添加了 hook 以利用实时跟踪文件上传进度的功能。本文是 “PHP V5.2 中的新增功能” 系列文章（共五部分）的第 5 部分，将向您展示如何监视文件上传并相应地编写代码，以及如何创建 PHP 进度条。">
+<meta name="Description" content="PHP V5.2 为开发人员添加了 hook 以利用实时跟踪文件上传进度的功能。本文是 “PHP V5.2 中的新增功能” 系列文章（共五部分）的第 5 部分，将向您展示如何监视文件上传并相应地编写代码，以及如何创建 PHP 进度条。">
+<meta name="Keywords" content="PHP 5.2, $_POST array, APC_UPLOAD_PROGRESS, progress, Tracy Peterson, open source, $_POST 数组, 进度, 开放源码, tttosca, tttwaca">
+<meta name="DC.Date" scheme="iso8601" content="2007-06-08">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TT400">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCOSRCN">
+<meta name="DC.Rights" content="© Copyright IBM Corporation 2007">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2007-06-08">
+<meta name="title" content="PHP V5.2 中的新增功能，第 5 部分: 跟踪文件上传进度">
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/all.css" media="all" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/screen-uas.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/screen-fonts.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/handheld.css" media="handheld" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/print.css" media="print" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/overlay.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<!-- dW-specific CSS -->
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-local-site.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-screen-comments-ratings-signin.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/jquery.cluetip.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<!-- JPP: LOCAL URL FOR TESTING V16 DEFIANT MASTHEAD/FOOTER -->
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-mf2013-03.css" rel="stylesheet" title="www" type="text/css">
+<link href="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-mf-cn.css" rel="stylesheet" title="www" type="text/css">
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/ibmcommon.js" type="text/javascript">//</script><link rel="search" type="application/opensearchdescription+xml" href="http://www.ibm.com/search/opensearch/description.xml" title="IBM Search">
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dynamicnav.js" type="text/javascript">//</script>
+<script language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+<script language="JavaScript" type="text/javascript">
+  // <![CDATA[
+
+ dwr = {};
+  dwr.clickhere = '点击评分';
+  dwr.starIntro = ''; 
+  dwr.stars = '星';
+  dwr.star = '星'; 
+  dwr.avgRatingOf = '平均分';
+  dwr.youRated = '您的评分是';
+  dwr.avgRating = '平均分';
+  dwr.basedOnVote = '共 {1} 个评分'; // {1} to be substitue by code
+  dwr.basedOnVotes = '共 {1} 个评分';
+  dwr.leftParen = '（'; 
+  dwr.rightParen = ' ）'; 
+  dwr.space = ' '; 
+  dwr.yourRating = '您的评分';
+dwr.avgRating2 = '总共 {1} 评分的平均分';
+dwr.avgRating3 = '平均分{1} 星';
+dwr.rateThisArticle = '为本文评分';
+dwr.votes = '{1}个评分';
+dwr.vote = '{1}个评分';
+dwr.submitErr = '错误：提交失败，请重试。';
+dwr.noRatingErr = '错误：请选择一个评分并重新提交。';
+dwr.submit = '提交';
+// ]]>
+</script>
+
+<!-- Rating_START -->
+<script language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/showrating.js" type="text/javascript"></script>
+<style type="text/css">
+  .metavalue {
+  display: none;
+  }
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('defaultHere');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+  <!-- Include file support -->
+  <script language="JavaScript" type="text/javascript">
+    (function($) {
+    jQuery.extend({
+    getInc: function(u,d){
+    if(u==null)return;
+    jQuery.ajax({
+    type: "GET",
+    url: u,
+    dataType: "text",
+    success: function(t) {
+    jQuery(d).html(t);
+    ibmCommon.initShowHide(jQuery(d).children()[0]);	
+    },
+    async: true
+    });
+    }
+    });
+    })(jQuery);
+  </script>
+<script id="mhMenu" type="text/javascript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/cnzh-utf8.js" charset="UTF-8"></script><script id="wiBundle" type="text/javascript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/Controller" charset="UTF-8"></script></head>
+
+<body id="ibm-com">
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-content">跳转到主要内容</a></div>
+<div id="ibm-masthead-dw">
+  
+    <!-- TOP ROW -->    
+    <div id="dw-masthead-top-row">
+    	<ul id="ibm-mast-options-dw" class="cn">
+    		<li id="dw-mast-top-0"> 	
+    			<a class="" href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&lang=zh&d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F" title="">登录 (或注册)</a>
+    		</li>
+    		<li id="dw-mast-top-1" class="dw-mast-top-1-cn">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#SELECTLANG">中文</a><img class="dw-preload" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/arrow-down-active.gif" width="8" height="7" alt="">
+    		</li>
+    		<li id="dw-mast-top-2" class="dw-mf-hide">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/photo.do" alt="PHOTO" class="dw-mast-profimg" width="20" height="20"> [userid]</a>
+    		</li>
+    		<li id="dw-mast-top-3">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/ibm-smlogo.gif" width="44" height="16" alt="IBM®"></a>
+    		</li>
+    	</ul>
+	</div>
+    
+    <!-- TOP ROW SLIDER -->
+    <div id="ibm-my-menu-dw">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+                <!-- Sign-in -->
+                <div class="dw-mast-columns">                
+					<div class="dw-mast-col-1-1">
+						<div id="dw-mast-sso">
+							<!--<div id="dw-mast-sso-reg">
+								<p class="dw-mast-sso-reg-cn">如果您还没有注册到 IBM 注册系统，我们为给您带来的不便表示道歉，并请您马上注册。 							
+									<a href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh&amp;d='+encodeURIComponent(location.href);})();">现在注册</a>。</p>
+							</div>-->
+							<div id="signin_error_mf" class="no-display"></div>
+							<div id="dw-mast-sso-form">
+								<form id="sForm_mf" action="" method="post" name="sForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-sso-id" class="dw-mast-sso-id-cn">
+										<label for="ibmid_mf">IBM ID：</label>
+										<input id="ibmid_mf" type="text" value="" name="ibmid_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,&#39;mf&#39;);" class="">
+									</div>
+									<div id="dw-mast-sso-pw" class="dw-mast-sso-pw-cn">
+										<label for="pw_mf">密码：</label>
+										<input id="pw_mf" type="password" value="" name="pw_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,&#39;mf&#39;);" class="">
+									</div>
+									<div id="dw-mast-sso-target" class="dw-mast-sso-target-cn">
+										<p class="dw-mf-perm-box">
+											<input id="perm_mf" type="checkbox" name="perm_name_mf"><label for="perm_mf"> 保持登录。</label>
+										</p>
+									</div>
+									<div id="dw-mast-sso-terms">
+										<p class="dw-mast-sso-terms-cn">单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">查看条款和条件</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-cn" name="ibm_submit_name_mf" value="提交" onclick="signin(&#39;mf&#39;);return false;" type="submit">
+									</div>
+								</form>
+							</div>
+							<div id="dw-mast-sso-update">
+								<div id="dw-mast-sso-update-id">
+									<ul>
+										<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.href);})();">需要一个 IBM ID？</a></li>
+										
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a></li>
+									</ul>
+								</div>
+								<div id="dw-mast-sso-update-pw">
+								<ul class="dw-mf-pwupdate">
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a></li>
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></li>
+								</ul>
+									</div>
+							</div>
+							<div id="dw-mast-sso-text">
+			<!-- lk v17 updated text -->				    
+			<p>这是您第一次登陆到 developerWorks，已经自动为您创建了您的概要文件。 <strong>选择您概要文件中可以公开的信息的信息（如姓名、国家/地区，以及公司），这些信息同时也会与您所发布的内容相关联。 </strong>您可以随时更新您的 IBM 账号。</p>
+							<p class="dw-mf-secure-cn">所有提交的信息确保安全。</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>	
+						</div>
+						
+						<div id="dw-mast-dname" class="dw-mf-hide">
+							<p>当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+							<div id="signin_dname_error_mf" class="no-display"></div>
+							<div id="dw-mast-dname-form">
+								<form id="dForm_mf" action="" method="post" name="dForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-dname-mf">
+										<label for="dname_mf">昵称：</label>
+										<input id="dname_mf" name="dname_name_mf" maxlength="31" size="25" value="" type="text" onkeypress="handleEP(event,this.form,&#39;mf&#39;);">
+									</div>
+									<div id="dw-mast-dname-terms">
+										<p class="dw-mast-dname-terms-cn">单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">查看条款和条件</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-cn" name="dname_submit_name_mf" value="提交" onclick="signin(&#39;mf&#39;);return false;" type="submit">
+									</div>
+								</form>								
+							</div>
+							<div id="dw-mast-dname-secure">
+								<p class="dw-mf-secure-cn">所有提交的信息确保安全。</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>	
+						</div>
+	
+						<div id="dw-mast-auth" class="dw-mf-hide">
+							<div>
+
+								<h2>My developerWorks:</h2>
+<!-- lk v17 updated links and text -->							    
+               		<ul>
+							<li><a id="dw-mast-top-0-0" href="http://www.ibm.com/developerworks/community/homepage?lang=zh">我的首页</a></li>						    
+							<li><a href="http://www.ibm.com/developerworks/community/profiles/html/myProfileView.do?lang=zh">我的概要信息</a></li>
+							<li><a href="http://www.ibm.com/developerworks/community/groups/service/html/mycommunities?lang=zh">我的社区</a></li>
+			                 <li><a href="http://www.ibm.com/developerworks/community/news/?lang=zh">设置</a></li>
+										    
+						</ul>      
+							</div>
+							<div id="dw-mast-notify" class="dw-mf-hide">
+								<h2>我的通知：</h2>
+								<ul>
+									<li><a id="new_notify" href="http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=zh">{[num_notify] 个新通知}([num_notify] 个新通知)</a></li>
+									<li><a id="new_invite" href="http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/wc.do?action=in&requireAuth=true&widgetId=friends&lang=[lang]">{[num_invite] 个网络请求}([num_invite] 个网络请求)</a></li>  
+								</ul>
+							</div>
+							<div class="dw-mast-more">
+								<ul class="ibm-link-list">
+									<li><a class="dw-more-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="signOut(); return false;"><strong>退出</strong></a></li>
+								</ul>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>		
+						</div>
+						
+					</div>
+                	
+                </div>
+                <!-- Site selector --> 
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2>选择语言：</h2>
+						<ul>
+							<li><a id="dw-mast-top-1-0" href="http://www.ibm.com/developerworks/">English</a></li>
+							<li><a href="http://www.ibm.com/developerworks/cn/">中文</a></li>
+							<li><a href="http://www.ibm.com/developerworks/jp/">日本語</a></li>
+						    <li><a href="http://www.ibm.com/developerworks/ru/">Русский</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/ssa/">Español</a></li>
+							<li><a href="http://www.ibm.com/developerworks/vn/">Việt</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-lang"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                <div class="dw-mast-columns"><!-- Authenticated --></div>
+                <!-- IBM -->
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<ul>
+							<li><a id="dw-mast-top-3-0" href="http://www.ibm.com/cn/zh/">IBM 主页</a></li>
+							<li><a href="http://www.ibm.com/solutions/cn/zh/">解决方案</a></li>
+							<li><a href="http://www.ibm.com/software/cn/">软件</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2 dw-mast-ibm">
+						<ul>
+							<li><a href="http://www.ibm.com/support/cn/zh/">支持门户</a></li>
+							<li><a href="http://www.ibm.com/support/documentation/cn/zh/">产品文档</a></li>
+							<li><a href="http://www.ibm.com/redbooks/">Redbooks（英文）</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-ibm-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+						</ul>
+                    </div> 
+				</div>
+			</div>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div id="ibm-universal-nav-dw">
+        <ul id="ibm-unav-links-dw">
+        	<li id="ibm-unav-home-dwlogo">
+        		<a href="http://www.ibm.com/developerworks/cn/"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw-wordmark.gif" width="218" height="32" alt="developerWorks®"></a>
+        	</li>
+        </ul>
+    	<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-cn">
+    		
+    		<li id="dw-mast-nav-0"><a href="http://www.ibm.com/developerworks/cn/topics">技术主题</a></li>
+    		<li id="dw-mast-nav-1"><a href="http://www.ibm.com/developerworks/cn/downloads/">软件下载</a></li>
+    		<li id="dw-mast-nav-2"><a href="https://www.ibm.com/developerworks/community/?lang=zh">社区</a></li>
+    		<li id="dw-mast-nav-3"><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></li>
+    	</ul>   
+    	<form id="ibm-search-form" action="http://www.ibm.com/search/csass/search/" method="get" name="form1">
+    		<input type="hidden" name="sn" value="dw">
+    		<input type="hidden" name="lang" value="zh">
+    		<input type="hidden" name="cc" value="CN">
+    		<input type="hidden" name="en" value="utf">
+    		<input type="hidden" name="hpp" value="20">
+    		<input type="hidden" name="dws" value="cndw">
+    		<input type="hidden" name="lo" value="zh">
+    		<p>
+    			<label for="q"><img alt="查询:" height="1" width="1" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif"></label>
+    			<input type="text" value="搜索 developerWorks" name="q" maxlength="100" id="q">
+    			<input type="submit" id="ibm-search" class="ibm-btn-search ibm-btn-search-cn" name="Search" value="搜索">
+    		</p>
+    	</form>
+    </div>
+    
+    <!-- BOTTOM ROW SLIDER -->
+    <div id="ibm-common-menu-dw">
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Technical topics category -->
+  
+            	<div class="dw-mast-columns">
+            	<div class="dw-mast-col-5-1">
+            		<h2><a id="dw-mast-nav-0-0" href="http://www.ibm.com/developerworks/cn/topics/">技术主题</a></h2>
+            		
+            		<ul>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/agile/">Agile
+            			    transformation</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/aix/">AIX and UNIX</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/bigdata/">Big data</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/cloud/">Cloud computing</a></li>
+            		
+            			
+            		</ul>     
+            	</div>
+            	<div class="dw-mast-col-5-2">
+            		
+            		<ul>
+						<li><a href="http://www.ibm.com/developerworks/cn/ibmi/">IBM i</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/data/">Information management</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/java/">Java technology</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/linux/">Linux</a></li>
+            			
+           			
+            		</ul>
+            	</div>
+            	<div class="dw-mast-col-5-3">
+            		
+            		<ul>
+						<li><a href="http://www.ibm.com/developerworks/cn/lotus/">Lotus</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/mobile/">Mobile development</a></li>
+						<li><a href="http://www.ibm.com/developerworks/cn/opensource/">Open source</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/rational/">Rational</a></li>
+            			<!--<li><a href="http://www.ibm.com/developerworks/cn/webservices/">SOA and web services</a></li>-->
+						
+            			</ul>
+            		
+            	</div>
+            	<div class="dw-mast-col-5-4">
+            		<ul>
+					<li><a href="http://www.ibm.com/developerworks/cn/social/">Social Business</a></li> 
+             		<li><a href="http://www.ibm.com/developerworks/cn/web/">Web development</a></li>  
+					<li><a href="http://www.ibm.com/developerworks/cn/websphere/">WebSphere</a></li> 
+           		<!--	<li><a href="http://www.ibm.com/developerworks/cn/xml/">XML</a></li>-->
+            		</ul>        
+            	</div>
+            	<div class="dw-mast-col-5-5">
+            		<ul>
+            			<li><a href="http://www.ibm.com/developerworks/cn/library/"><strong>文档库</strong></a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/products/"><strong>产品 A - Z</strong></a></li>				    
+            		</ul>        
+            	</div>
+            	<div class="dw-mast-close">
+            		<ul>
+            			<li><div class="dw-mast-close-tech-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            		</ul>
+            	</div>
+            </div>
+            	<!-- Evaluation software category -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-2-1">
+            			<h2><a id="dw-mast-nav-1-0" href="http://www.ibm.com/developerworks/cn/downloads">软件下载</a></h2>
+            			<ul>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#data">Information management</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#lotus">Lotus</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#rational">Rational</a></li>
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-col-2-2">
+            			<ul>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#tivoli">Tivoli</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#websphere">WebSphere</a></li>
+            				
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-eval-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            	<!-- Community category -->
+                <!-- lk v17 removed links, updated urls -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-2-1">
+            			<h2><a id="dw-mast-nav-2-0" href="https://www.ibm.com/developerworks/community/?lang=zh">社区</a></h2>
+            			<ul>
+            				<li><a href="https://www.ibm.com/developerworks/community/homepage/?lang=zh">我的首页</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/profiles/?lang=zh">概要信息</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/groups/?lang=zh">群组</a></li>
+							<li><a href="https://www.ibm.com/developerworks/community/blogs/?lang=zh">博客</a></li>
+             			</ul>     
+            		</div>
+            		<div class="dw-mast-col-2-2">
+            			<ul>
+                    
+				    <li><a href="https://www.ibm.com/developerworks/community/forums/?lang=zh">论坛</a></li>
+					<li><a href="https://www.ibm.com/developerworks/community/wikis/?lang=zh">Wiki</a></li>
+					<li><a href="https://www.ibm.com/developerworks/community/activities/?lang=zh">活动</a></li>
+            			</ul>
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-comm-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            	<!-- Events category -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-1-1">
+            			<h2><a id="dw-mast-nav-3-0" href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></h2>
+            			<ul>
+            				<li><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/swi/">多媒体课堂</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/find/webcasts/">网络广播（英文）</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/find/events/">查找活动（技术讲座，网络广播，会议等）（英文）</a></li> 
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-event-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+	
+</div>
+<div id="fdiv" class="ibm-access"><embed type="application/x-shockwave-flash" src="https://www.ibm.com/developerworks/js/dw-mf/connect.swf" width="1" height="1" id="sflash" name="sflash" quality="high" menu="false" wmode="window" movie="https://www.ibm.com/developerworks/js/dw-mf/connect.swf" swliveconnect="true" allowscriptaccess="always"></div>
+<!-- MASTHEAD_END --><!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+      <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li class="ibm-first"><a href="http://www.ibm.com/developerworks/cn/">developerWorks 中国</a></li><li><a href="http://www.ibm.com/developerworks/cn/opensource/">Open source</a></li><li><a href="http://www.ibm.com/developerworks/cn/views/opensource/libraryview.jsp">文档库</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>PHP V5.2 中的新增功能，第 5 部分: 跟踪文件上传进度</h1><p><em>用 $_POST 数组和 APC_UPLOAD_PROGRESS 创建实时进度条</em></p>
+</div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a class="dwauthor" rel="#authortip1" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#author1">Tracy Peterson</a> (<a href="mailto:tracy@tracypeterson.com?subject=%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6&cc=dwxed@us.ibm.com">tracy@tracypeterson.com</a>), 自由撰稿人, Consultant</div><div id="authortip1" class="dwauthor-onload-state ibm-no-print" style="display: none;">自 1997 年以来，Tracy Peterson 担任过 IT 项目经理和 Web 开发人员，并且目前担任 Microsoft 的 MSN Search 的运算程序主管。他目前的工作地点位于旧金山。</div>
+<p></p>
+  <p><strong>简介：</strong>&nbsp;PHP V5.2 为开发人员添加了 hook 以利用实时跟踪文件上传进度的功能。本文是 “<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v52/">PHP V5.2 中的新增功能</a>” 系列文章（共五部分）的第 5 部分，将向您展示如何监视文件上传并相应地编写代码，以及如何创建 PHP 进度条。</p>
+<p class="ibm-no-print"><a href="http://www.ibm.com/developerworks/views/opensource/libraryview.jsp?search_by=what+new+php+5.2">查看本系列更多内容</a></p>
+ 
+</div>
+
+<div class="ibm-column ibm-second">
+
+<p class="leading"><b>发布日期：</b>&nbsp;2007 年 6 月 08 日
+  
+<br><b>级别：</b>&nbsp;中级
+    
+
+<br><strong>访问情况 ：</strong>&nbsp;13438 次浏览
+  <br><strong>评论：</strong>&nbsp;<span id="nCmts">2&nbsp;(<a class="dw-view-comment" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#icomments">查看</a>&nbsp;|&nbsp;<a onclick="showSignIn();return false;" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">添加评论</a> - 登录)</span>
+  <!-- Rating_Area_Begin -->
+  </p><div id="art-rating-summary"><img alt="平均分 4 星 共 17 个评分" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-4b.jpg" class="dw-avg-rating"> 平均分 (17个评分)<br><a class="dw-view-comment" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#iratings">为本文评分</a></div>
+  <!-- Rating_Area_End -->
+  <br>
+<p></p>
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area_And_Overlays_Begin -->
+
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+<p>Web 2.0 是 Internet 上最炙手可热的时髦字眼，投资者纷纷把资金投入到涉及这项技术的投资项目中。数以百万计的 Web 站点和应用程序覆盖的描述性术语有很多。使用 Web 2.0，我们将描述一类 Web 站点，这些站点都提供了了解 Internet 上数以百万计用户心声的途径。与众不同之处在于它们全都为用户提供了交流和分享与共同利益相关的观点和数据的场所，这些站点可以快速生成大量内容。</p>
+            <p>每个用户都将提供某种内容 —— 评论咖啡店、上班路线等。<a href="http://www.youtube.com/">YouTube</a> 在这点上是一个优秀示例，为人们提供一个空间可以上传视频并使其他用户可以观看这些视频并提供反馈。YouTube 是 Web 2.0 奉行者的新宠，值得关注的是到目前为止 YouTube 的流行度上升得比 Internet 中的任何一个站点都要快。这种流行度可以归因于大量各式各样的内容，以及能够让用户以留言的形式发表自己对内容的看法。并且不仅可以留言，用户甚至还可以上传与视频相对应的视频留言。</p>
+            <p><a name="N10067"><span class="atitle">文本领域</span></a></p>
+            <p>许多接收文件的 Web 站点都会在文本框旁边安置令人厌恶的 <strong>Browse</strong> 按钮，强制要求用户一次上传一个文件。这可能要花费很长时间，尤其是在以小型文件组的形式提供视频、甚至照片或其他项目的情况下。由于每个文件都必须单独上传，因此可能会十分繁琐。假定上传超大型文件所花的时间会使耐心不足的用户感到难以容忍，那么给这些用户提供积极反馈避免他们放弃并走开将十分重要。</p>
+
+            <p>幸运的是，PHP V5.2 引入到文件上传过程中的新 hook 使我们可以向用户实时显示上传的进展情况。在本文中，将使用 PHP V5.2 为用户创建一个进度条（要获得源代码，请参阅 <a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#download">下载</a>）。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1007A"><span class="atitle">完整说明</span></a></p>
+
+            <p>如果安装并配置了正确的库，则 PHP V5.2 中的新 “hook” 实际上是在文件传输过程中可获得的数据点。这些新 hook 将使用一种称为 Alternative PHP Cache 的功能。当 PHP 脚本收到一个上传文件时，解释程序将自动检查 <code>$_POST array</code> 以查找名为 APC_UPLOAD_PROGRESS 的隐藏字段，它将成为缓存变量，存储关于上传的信息以便脚本可以访问上传文件。当此信息已被缓存并且随时可以访问后，可以给用户提供可视化反馈，从而提高用户体验。</p>
+            <p>我们将介绍 HTML 表单中的 APC 代码的实现，以及如何在 PHP 中识别该实现及如何访问缓存的信息。表示此数据有很多方法：从 Ajax 到 FLEX，但是我们要关注的是准备这些前端技术所需的访问数据的方法。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1008A"><span class="atitle">设置</span></a></p>
+            <p>默认情况下，PHP V5.2 中的 APC 不启用。由于新 hook 是 APC 的一部分，因此需要确保安装扩展并使其可用于 PHP 解释程序。这将通过下载 php_apc 扩展文件来完成。在我们的例子中，将使用 WAMP 安装，这是包括 Apache 和 MySQL 的免费获得打包的 PHP for Windows®。它提供了友好的用户界面并且由于拥有支持配置选项的菜单而十分易于管理。</p>
+            <p>要在 WAMP 上设置 APC，请执行以下步骤：</p>
+            <ol>
+                <li>要下载库和 WAMP，请参阅 <a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#resources">参考资料</a>。</li>
+                <li>安装 WAMP。</li>
+                <li>把 php_apc.dll 文件放到 PHP 的扩展文件夹中。默认情况下，此文件夹为 &lt;wamproot&gt;/php/ext。</li>
+                <li>使用系统盘 WAMP 菜单来选择 <strong>PHP settings&gt;PHP Extensions&gt;Add Extension</strong>。</li>
+                <li>在弹出的命令行界面中，键入 <code>php_apc.dll</code> 并按 <strong>Enter</strong>。</li>
+                <li>使用文本编辑器，打开 &lt;wamproot&gt;/php/php.ini 并添加代码行 <code>apc.rfc1867 = on</code>（添加到任何位置都可以）。如果要尝试在本地进行测试并计划上传大型文件以便可以实际看到进度，则还需要添加以下指令：<code>apc.max_file_size = 200M</code>、<code>upload_max_filesize = 200M</code> 和 <code>post_max_size = 200M</code>。请不要在活动的生成服务器上执行此操作，不过，不这样做很可能用尽带宽和磁盘空间配额，更不必说会降低其他人的访问速度。</li>
+                <li>重新启动 PHP。</li>
+            </ol>
+            <p>APC 现在应当已设置并被初始化。APC 的 RFC1867 特性 —— 使您可以跟踪文件上传的特性 —— 现在应当已被启用为选项，并且应当准备好探究文件上传以启用实时状态。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N100D1"><span class="atitle">可接收文件的帐户</span></a></p>
+
+            <p>要接收文件，必须先设置接收文件的表单。很方便的是，HTML 附带了文件的标准字段类型。同所有 HTML 表单字段一样，它在逻辑上被命名为类型 <code>file</code>。默认情况下，附带了显示在块右侧的便捷 <strong>Browse</strong> 按钮。</p>
+            <br><a name="N100E5"><b>清单 1. upload.php 的 HTML 表单</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+   $id = $_GET['id'];
+?&gt;
+
+&lt;form enctype="multipart/form-data" id="upload_form" 
+      action="target.php" method="POST"&gt;
+
+&lt;input type="hidden" name="APC_UPLOAD_PROGRESS" 
+       id="progress_key"  value="&lt;?php echo $id?&gt;"/&gt;
+
+&lt;input type="file" id="test_file" name="test_file"/&gt;&lt;br/&gt;
+
+&lt;input onclick="window.parent.startProgress(); return true;"
+ type="submit" value="Upload!"/&gt;
+
+&lt;/form&gt;
+</pre></td></tr></tbody></table><br>
+            <p>需要为此表单创建一个 PHP 页面，因为需要使用惟一密钥来跟踪上传。最后，它将是用于调用此页面作为 <code>GET</code> 值的 URL 的一部分。此数字将是稍后将检索的 APC 缓存条目密钥的值。要传递该值，表单字段需要有一个拥有特殊名称的隐藏字段，使 APC 知道它需要保存文件上传状态。此字段被称为 APC_UPLOAD_PROGRESS。这是前述的启动缓存过程的 hook。为确保 PHP 可以访问缓存中的正确条目，我们使用检索到的惟一 ID 作为隐藏字段的值，从而创建该值的密钥。用户提交表单后 —— 我们将简短地处理提交按钮 —— 浏览器将把文件和密钥作为发送给服务器的 <code>POST</code> 数据的一部分进行发送。</p>
+            <p>装入到浏览器中后，此页面应当提供一个非常简单的表单，如图 1 所示：</p>
+            
+                <br><a name="N100FB"><b>图 1. 上传表单</b></a><br>
+                <img alt="上传表单" height="306" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/fig01.jpg" width="368">
+            <br>
+            <br>
+            <p>要在不重新装入整个页面的情况下使用户可以提交文件，需要把此表单嵌入到另一个文件的 <code>iframe</code> 中。如果尝试仅使用表单操作页面 (target.php) 来检索数据，则无法看到任何缓存信息，因为在上传完成之前页面不会返回任何信息。鉴于这个原因，使用此新 hook 的最常见示例都是用 Ajax 编写的。通过该方法，您可以提交表单并且还可以在同一个窗口中继续检查上传的状态而无需刷新。</p>
+            <p>要使脚本运行，需要继续转到一个包含页面，该页面将设置 <code>iframe</code> 并接收已上传文件的信息。还需要使用一组 JavaScript 函数来为进度指示器获得数据以及显示进度指示器。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N10117"><span class="atitle">捕获已接收的文件</span></a></p>
+
+            <p>提交表单中包括文件时，该文件将发送到服务器的临时位置中，直至它被保存到永久位置。当它在临时存储设备中时，可以通过 <code>$_FILES</code> 关联数组获得它。使用 PHP 附带的标准版本文件上传函数，可以选择路径并将这些函数保存到服务器上，或者按自己的需要处理这些函数。</p>
+            <br><a name="N10128"><b>清单 2. target.php 文件</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php  
+
+if($_SERVER['REQUEST_METHOD']=='POST') {
+  move_uploaded_file($_FILES["test_file"]["tmp_name"], 
+  "c:\\sw\\wamp\\www\\" . $_FILES["test_file"]["name"]);
+  echo "&lt;p&gt;File uploaded.  Thank you!&lt;/p&gt;";
+}
+
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>首先，查看来自表单的 <code>POST</code> 变量是否已被设定并表示我们已经收到了表单数据。如果收到表单数据，并且但愿包括文件，则还应当有一个全局数组 <code>$_FILES</code>。把已上传的文件移到安全位置，这取决于需要对其采取的操作。在本例中，只需把文件移到 \sw\wamp\www（当然，这是完全任意的位置。请随意选择一个所需位置）。完成该操作后，我们将感谢用户。</p>
+            <p>在这里包括实际文件处理主要是为了实现完整性。由于本文讲述的是进度条，因此收到实际文件后如何处理它无关紧要。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1013C"><span class="atitle">制作进度条</span></a></p>
+            <p>还将需要一个返回实际上传进度的脚本。清单 3 显示了一个非常简单的版本。</p>
+            <br><a name="N10149"><b>清单 3. getprogress.php 文件</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+if(isset($_GET['progress_key'])) {
+
+  $status = apc_fetch('upload_'.$_GET['progress_key']);
+  echo $status['current']/$status['total']*100;
+
+}
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>此脚本首先将查找 progress_key，它是先前讨论的 <code>$id</code> 值（不必担心，您马上就将看到它的来源）。这将导致调用从 APC 缓存返回数据的 <code>apc_fetch()</code>。我们需要正确的文件信息，因此需要惟一 ID，在本文中表示为 <code>$_GET['progress_key']</code>。调用带有 <em>upload_xxxxxx</em> 参数的 <code>apc_fetch()</code>，其中 <em>xxxxxx</em> 是惟一 ID；PHP 将自动预先追加 upload_ part。</p>
+
+            <p>获得数据后，可以使用 JSON 扩展给信息设定一种更便于在 JavaScript 中使用的格式并返回整个对象（如果需要）。<code>$status</code> 对象是拥有以下字段的数组：</p>
+            <dl>
+                <dt><b>
+                    <code>total</code>
+                </b></dt>
+                <dd>文件的总大小</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>current</code>
+                </b></dt>
+                <dd>到目前为止收到的文件数</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>rate</code>
+                </b></dt>
+                <dd>上传速度（以字节每秒为单位）</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>filename</code>
+                </b></dt>
+                <dd>文件名</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>name</code>
+                </b></dt>
+                <dd>变量名</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>temp_filename</code>
+                </b></dt>
+                <dd>PHP 保存文件的临时副本的位置</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>cancel_upload</code>
+                </b></dt>
+                <dd>上传是已取消 (1)，还是未取消 (0)</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <code>done</code>
+                </b></dt>
+                <dd>上传是已完成 (1)，还是尚未完成 (0)</dd>
+            </dl>
+            <p>在本例中，只需要完成百分比。您可以在自己的应用程序中选择使用更多信息。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N101DA"><span class="atitle">显示进度条的 JavaScript</span></a></p>
+            <p>现在已经准备好开始构建实际的进度条。为了简单起见，脚本将使用 CSS 创建一个用于模拟进度条并可以使用 JavaScript 进行控制的 div，如清单 4 所示：</p>
+            <br><a name="N101E7"><b>清单 4. 主文件 progress.php</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Upload Example&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script type="text/javascript"&gt;
+
+var counter = 0;
+
+function startProgress(){
+    document.getElementById("progressouter").style.display="block";
+    fire();
+}
+
+function fire(){
+   if (counter &lt; 101){
+     document.getElementById("progressinner").style.width =
+                                                     counter+"%";
+     counter++;
+     setTimeout("fire()",100);
+   }
+}
+
+&lt;/script&gt;
+
+&lt;div id="progressouter" style=
+    "width: 500px; height: 20px; border: 6px solid red; display:none;"&gt;
+   &lt;div id="progressinner" style=
+       "position: relative; height: 20px; background-color: purple; width: 0%; "&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;span onclick="startProgress()"&gt;Start me up!&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></tbody></table><br>
+            <p>此页面包含了两个嵌套的 <code>div</code> 元素，外面的那个用作边框。脚本将调整内部 <code>div</code> 相对于边框的大小以显示进度。当用户单击 <strong>Start me up!</strong> 文本时，<code>startProgress()</code> 脚本将调用 <code>fire()</code> 函数。该函数将检查计数器的值，并且如果该值尚未超过 100，就把内部 <code>div</code> 设为外部 <code>div</code> 宽度的该百分比值。然后它将增加计数器的值并告诉浏览器每十分之一秒就执行一次全部上述过程。</p>
+            <p>结果将与图 2 非常相似：</p>
+            
+                <br><a name="N10210"><b>图 2. 进度条脚本</b></a><br>
+                <img alt="进度条脚本" height="389" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/fig02.jpg" width="572">
+            <br>
+            <br>
+            <p>现在只需要有一种获得脚本以更新宽度的方法，此宽度不是任意的数字而是完成百分比。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N10221"><span class="atitle">整合</span></a></p>
+            <p>现在剩下的只是要把所有内容 hook 到一起。您可以通过 progress.php 页面来完成此操作。</p>
+            <br><a name="N1022E"><b>清单 5. 最终的 progress.php 页面</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+   $id = uniqid("");
+?&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Upload Example&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+
+&lt;script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=&lt;yourkeyhere&gt;"
+            type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+
+function getProgress(){
+  GDownloadUrl("getprogress.php?progress_key=&lt;?php echo($id)?&gt;", 
+               function(percent, responseCode) {
+                   document.getElementById("progressinner").style.width = percent+"%";
+                   if (percent &lt; 100){
+                        setTimeout("getProgress()", 100);
+                   }
+               });
+
+}
+
+function startProgress(){
+    document.getElementById("progressouter").style.display="block";
+    setTimeout("getProgress()", 1000);
+}
+
+&lt;/script&gt;
+
+&lt;iframe id="theframe" name="theframe" 
+        src="upload.php?id=&lt;?php echo($id) ?&gt;" 
+        style="border: none; height: 100px; width: 400px;" &gt; 
+&lt;/iframe&gt;
+&lt;br/&gt;&lt;br/&gt;
+
+&lt;div id="progressouter" style=
+   "width: 500px; height: 20px; border: 6px solid red; display:none;"&gt;
+   &lt;div id="progressinner" style=
+       "position: relative; height: 20px; background-color: purple; width: 0%; "&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></td></tr></tbody></table><br>
+            <p>从底层开始向上层工作，我们已经添加了嵌入清单 1 中的 upload.php 脚本的 <code>iframe</code>，给它提供了在页面顶部生成的惟一 ID。</p>
+            <p>现在，是否还记得该表单中的 <strong>Submit</strong> 按钮？</p>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">&lt;input onclick="window.parent.startProgress(); return true;"
+ type="submit" value="Upload!"/&gt;
+</pre></td></tr></tbody></table><br>
+
+            <p>该按钮将完成两项工作。提交表单，像普通的 <strong>Submit</strong> 按钮一样；但在执行该操作之前，它将在主窗口中调用 <code>startProgress()</code> 脚本。<code>startProgress()</code> 脚本将告诉进度条显示自身 —— 开始时无显示属性，然后告诉浏览器等待一秒，然后再执行 <code>getProgress()</code> 脚本。</p>
+            <p>现在，<code>getProgress()</code> 脚本将使事情变得有趣。记不记得在前面我说过将需要使用 Ajax 或某种类似的方法来检查文件的进度？对，在本例中，表单将采用捷径，调用来自 Google Maps API 库的 <code>GdownloadUrl()</code> 函数（注意，表单将导入位于页面顶部的库。您将需要获得自己的访问此库的密钥，但是它是从 <a href="http://www.google.com/apis/maps/signup.html">Google</a> 免费获取的）。</p>
+            <p>此函数将下载 URL 的内容 —— 本例中为 getprogress.php 脚本 —— 并执行在其中定义的匿名函数。函数所接受的第一个参数是从 URL 返回的数据，本例中为百分比，以便使用它更新进度条。最后，如果文件尚未完成下载，则告诉浏览器每十分之一秒重试一次（在实际情况中，可能无法那么快地执行这些调用，但是浏览器将尽其所能进行操作）。</p>
+            <p>最终结果是页面使用户可以查看文件正被上传的进度。</p>
+            
+                <br><a name="N1026F"><b>图 3. Progress.php 的输出</b></a><br>
+                <img alt="Progress.php 的输出" height="382" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/fig03.jpg" width="572">
+            <br>
+            <br>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1027D"><span class="atitle">结束语</span></a></p>
+            <p>在 Web 2.0 的世界里，我们鼓励用户在 Web 站点中彼此提供信息和内容。作为开发人员，我们为人与人之间的这种开放、自由的数据交换创建了一个框架。虽然能实现这种功能的工具很早以前就有了，但是用户体验还没有达到所能具有的最佳程度。在本文中，您已经看到了向用户提供实时反馈（尤其是为用户上传到站点的信息提供进度条）来提高用户体验和应用程序质量的一些方法。</p>
+        <!-- CMA ID: 229466 --> <!-- Site ID: 10 --> <!-- XSLT stylesheet used to transform this file:  dw-article-6.0-beta.xsl -->
+<br><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><span class="atitle"><a name="download">下载</a></span></p><table width="100%" class="ibm-data-table" cellspacing="0" cellpadding="0" border="0"><tbody><tr><th scope="col">描述</th><th scope="col">名字</th><th scope="col">大小</th><th scope="col">下载方法</th></tr><tr><td class="tb-row" scope="row">样例 jar 文件</td><td nowrap="nowrap">os-php-v525.source.zip</td><td nowrap="nowrap">2.5KB</td><td nowrap="nowrap"><a class="fbox" href="http://www.ibm.com/developerworks/apps/download/index.jsp?contentid=229466&filename=os-php-v525.source.zip&method=http&locale=zh_CN">HTTP</a></td></tr></tbody></table><p><a href="http://www.ibm.com/developerworks/cn/whichmethod.html" class="ibm-forward-link">关于下载方法的信息</a></p><br>
+<p><a name="resources"><span class="atitle">参考资料 </span></a></p><p><b>学习</b></p><ul><li>阅读 <a href="http://www.php.net/releases/5_2_0.php">PHP 5.2.0 发行说明</a>。<br><br></li><li>尝试 <a href="http://progphp.com/progress.php">Upload hook demo</a>。<br><br></li><li>从 <a href="http://us3.php.net/">PHP.net</a> 获得 <a href="http://us3.php.net/json">JSON in PHP 文档</a>。<br><br></li><li>访问 IBM developerWorks <a href="http://www.ibm.com/developerworks/cn/ajax/">Ajax 资源中心</a>。<br><br></li><li>要获得从浏览器或会话上传文件或者使用 PHP 处理 XML 的教程，请阅读 “<a href="http://www.ibm.com/developerworks/cn/views/opensource/tutorials.jsp?cv_doc_id=91118">学习 PHP，第 2 部分</a>”。<br><br></li><li>获得关于 <a href="http://www.google.com/apis/maps/documentation/">Google Maps API</a> 的更多信息。<br><br></li><li>访问 <a href="http://www.php.net/">PHP.net</a> 以获得 PHP 文档。<br><br></li><li>在 “<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v5migr/">PHP V5 迁移指南</a>” 中了解如何将在 PHP V4 中开发的代码移植到 PHP V5 中。<br><br></li><li>
+                <a href="http://www.php.net/">PHP.net</a> 是 PHP 开发者的资源。<br><br></li><li>查阅“<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-read">PHP 推荐读物列表</a>”。<br><br></li><li>浏览 developerWorks 上的所有 <a href="http://www.ibm.com/developerworks/cn/views/opensource/articles.jsp?view_by=search&search_by=PHP">PHP 文章</a> 和 <a href="http://www.ibm.com/developerworks/cn/views/opensource/tutorials.jsp?view_by=search&search_by=PHP">PHP 教程</a>。<br><br></li><li>查看 IBM developerWorks 的 <a href="http://www.ibm.com/developerworks/cn/opensource/top-projects/php.html">PHP 项目资源</a> 扩展 PHP 技巧。<br><br></li><li>收听针对软件开发人员的有趣访谈和讨论，一定要访问 <a href="http://www.ibm.com/developerworks/podcast/">developerWorks podcast</a>。<br><br></li><li>随时关注 developerWorks 的 <a href="http://www.ibm.com/developerworks/offers/techbriefings/?S_TACT=105AGX03&S_CMP=art">技术事件和网络广播</a>。<br><br></li><li>要将数据库与 PHP 结合使用？查看 <a href="http://www.ibm.com/software/data/info/zendcore/">Zend Core for IBM</a>，它是支持 IBM DB2 9 的无缝、即用且易于安装的 PHP 开发和生产环境。<br><br></li><li>查阅最近将在全球举办的面向 IBM 开放源码开发人员的研讨会、交易展览、网络广播和其他 <a href="http://www.ibm.com/developerworks/views/opensource/events.jsp">活动</a>。<br><br></li><li>访问 developerWorks <a href="http://www.ibm.com/developerworks/cn/opensource/">开放源码专区</a>，获得丰富的 how-to 信息、工具和项目更新，帮助您用开放源码技术进行开发，并与 IBM 产品结合使用。<br><br></li></ul><p><b>获得产品和技术</b></p><ul><li>下载 <a href="http://pecl4win.php.net/download.php/ext/5_2/5.2.1/php_apc.dll">适用于 Windows 的 APC</a>。<br><br></li><li>下载 <a href="http://pecl.php.net/package/APC">适用于其他平台的 APC</a>。<br><br></li><li>下载 <a href="http://www.wampserver.com/en/">WAMP</a>。<br><br></li><li>注册 <a href="http://www.google.com/apis/maps/signup.html">Google Maps API 密钥</a>。<br><br></li><li>使用 <a href="http://www.ibm.com/developerworks/cn/downloads/">IBM 试用软件</a> 改进您的下一个开发项目，这些软件可以通过下载或从 DVD 中获得。<br><br></li><li>下载 <a href="http://www.ibm.com/developerworks/cn/downloads/">IBM 产品评估版本</a>，并开始使用 DB2®、Lotus®、Rational®、Tivoli® 和 WebSphere® 的应用程序开发工具和中间件产品。<br><br></li></ul><p><b>讨论</b></p><ul><li>参与 <a href="http://www.ibm.com/developerworks/blogs">developerWorks blog</a>，加入 developerWorks 社区。<br><br></li><li>加入 developerWorks <a href="http://www.ibm.com/developerworks/forums/dw_forum.jsp?forum=992&cat=51">PHP Forum: Developing PHP applications with IBM Information Management products (DB2, IDS)</a>。<br><br></li></ul>
+<p><a name="author"><span class="atitle">关于作者</span></a></p><div class="ibm-container ibm-portrait-module ibm-alternate-two"><div class="ibm-container-body"><p><a name="author1"> </a>自 1997 年以来，Tracy Peterson 担任过 IT 项目经理和 Web 开发人员，并且目前担任 Microsoft 的 MSN Search 的运算程序主管。他目前的工作地点位于旧金山。</p></div></div>
+<!-- MAIN_COLUMN_CONTENT_END -->
+  <!-- OVERLAYS_START -->
+  <!-- Report_Abuse_Start -->
+  <div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlay">
+    <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">关闭 [x]</a></p></div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <a class="ibm-access" name="reportabuseoverlay">关于报告滥用的帮助</a>   
+        <div class="ibm-title"><h1>报告滥用</h1></div>
+        <div class="ibm-container ibm-alternate">
+          <p><strong>谢谢!</strong>  此内容已经标识给管理员注意。</p>
+          <div class="ibm-overlay-rule"><hr></div>
+          <div class="ibm-buttons-row">
+            <input type="button" onclick="ibmCommon.Overlays.hide(&#39;reportabuseoverlay&#39;);return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="关闭">
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Report_Abuse_Error_Start -->
+  <div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlayerror">
+    <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">关闭 [x]</a></p></div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <a class="ibm-access" name="reportabuseoverlayerror">关于报告滥用的帮助</a>   
+        <div class="ibm-title"><h1>报告滥用</h1></div>
+        <div class="ibm-container ibm-alternate">
+          <p class="ibm-ind-error"><strong>报告滥用提交失败。  请稍后重试。</strong></p>
+          <div class="ibm-overlay-rule"><hr></div>
+          <div class="ibm-buttons-row">
+            <input type="button" onclick="ibmCommon.Overlays.hide(&#39;reportabuseoverlayerror&#39;);return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="关闭">
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Sign in OVERLAY STARTS HERE --> 
+  <div class="ibm-common-overlay" id="signin_overlay">
+    <div class="ibm-head">
+      <p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="clearForm();">关闭 [x]</a></p>
+    </div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <div class="ibm-title ibm-subtitle">
+          <h1>developerWorks：登录</h1>
+          <div id="ibm-overlay-error-signin" class="no-display"></div>
+        </div>
+        
+        <div class="ibm-container ibm-alternate ibm-buttons-last">
+          <div class="ibm-container-body">
+
+            <form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+              <p><label for="ibmid">IBM ID：</label><span><input name="ibm-id" id="ibmid" size="25" value="" class="required" type="text" onkeypress="handleEP(event,this.form);">
+                <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.href);})();">需要一个 IBM ID？</a>
+                <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a></span>   
+              </p> 
+              <p><label for="password">密码：</label><span><input name="password" id="password" size="25" value="" class="required" type="password" onkeypress="handleEP(event,this.form);"><br>
+                <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a><br>
+                <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></span></p> 
+
+              <p class="dw-perm-box">
+                <span><input id="perm" type="checkbox" name="perm_name"><label for="perm"> 保持登录。</label></span>
+              </p>
+
+              <p>单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">使用条款</a></p>
+              <div class="ibm-buttons-row">
+                <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+                  <input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide(&#39;signin_overlay&#39;);return false;"></p>
+              </div>
+            </form>
+            <div class="ibm-overlay-rule"><hr></div>
+            <p>当您初次登录到 developerWorks 时，将会为您创建一份概要信息。<strong>您在 developerWorks 概要信息中选择公开的信息将公开显示给其他人，但您可以随时修改这些信息的显示状态。</strong>您的姓名（除非选择隐藏）和昵称将和您在 developerWorks 发布的内容一同显示。</p>
+            <div class="dw-overlay-legal"><p>所有提交的信息确保安全。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Sign in OVERLAY ENDS HERE --> 
+  
+  
+  <!-- Display name OVERLAY STARTS HERE --> 
+  <div class="ibm-common-overlay" id="displayname_overlay">
+    <div class="ibm-head">
+      <p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="clearForm();">关闭 [x]</a></p>
+    </div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <div class="ibm-title ibm-subtitle">
+          <h1>请选择您的昵称：</h1>
+          <div id="ibm-overlay-error-dname" class="no-display"></div>
+        </div>
+        <div class="ibm-container ibm-alternate ibm-buttons-last">
+          <div class="ibm-container-body">
+            <p class="ibm-overlay-intro">当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+            <form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+              <p><label for="displayname">昵称：</label><span><input name="displayname" id="displayname" size="25" value="" type="text" onkeypress="handleEP(event,this.form);"></span><span class="ibm-form-note">（长度在 3 至 31 个字符之间）</span>
+              </p>
+              
+              <div class="ibm-overlay-rule"><hr>
+              </div>
+              <p>单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">使用条款</a>.</p>
+              <div class="ibm-buttons-row">
+                <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+                  <input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide(&#39;displayname_overlay&#39;);return false;"></p>
+              </div>
+            </form>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="dw-overlay-legal"><p>所有提交的信息确保安全。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Display name OVERLAY ENDS HERE -->
+  <!-- OVERLAYS_END -->
+  <!-- RATINGS START -->
+  <p class="ibm-no-print"><span class="atitle"><a name="iratings">为本文评分</a></span></p>
+  <input id="art-rating" name="ratinga" type="hidden" value="4"><div id="art-rating-module"><p id="submitErr" class="ibm-ind-error" style="display: none;"><strong>错误：提交失败，请重试。</strong></p><p><span id="ratingSectUI"><img alt="平均分 4 星 共 17 个评分" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-4gw.jpg" class="dw-avg-rating"> 平均分 (17个评分)</span></p><div class="ibm-container" id="ratingForm"><div class="ibm-container-body dw-container-ratings"><form class="dw-ratings-form" onsubmit="artRating.submitRating(); return false;"><input type="radio" name="ratingstars" id="rat-1" value="1"><label class="rating-label" id="star1" for="rat-1">1 星</label><img id="rat-1-img" alt="1 星" title="1 星" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-1w.jpg" class="rating-image"><span class="dw-rating-text">1 星</span><br><input type="radio" name="ratingstars" id="rat-2" value="2"><label class="rating-label" id="star2" for="rat-2">2 星</label><img id="rat-2-img" alt="2 星" title="2 星" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-2w.jpg" class="rating-image2"><span class="dw-rating-text">2 星</span><br><input type="radio" name="ratingstars" id="rat-3" value="3"><label class="rating-label" id="star3" for="rat-3">3 星</label><img id="rat-3-img" alt="3 星" title="3 星" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-3w.jpg" class="rating-image2"><span class="dw-rating-text">3 星</span><br><input type="radio" name="ratingstars" id="rat-4" value="4"><label class="rating-label" id="star4" for="rat-4">4 星</label><img id="rat-4-img" alt="4 星" title="4 星" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-4w.jpg" class="rating-image2"><span class="dw-rating-text">4 星</span><br><input type="radio" name="ratingstars" id="rat-5" value="5"><label class="rating-label" id="star5" for="rat-5">5 星</label><img id="rat-5-img" alt="5 星" title="5 星" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stars120x20-5w.jpg" class="rating-image2"><span class="dw-rating-text">5 星</span><div class="ibm-buttons-row"><p class="ibm-first"><input value="提交" type="submit" name="ibm-submit" class="ibm-btn-arrow-pri dw-ratings-submit"></p></div></form></div></div></div>
+  <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+   // widget div id and article id as args
+   window.artRating.init('art-rating-module','art-rating-summary');
+// ]]>
+  </script>
+  <!-- RATINGS END --> 
+  
+  <!-- INLINE_COMMENTS_START -->
+  <p class="ibm-no-print"><span class="atitle"><a name="icomments">评论</a></span></p>
+    <script language="JavaScript" type="text/javascript">
+      // <![CDATA[
+dwc = {};
+dwc.cmts = '条评论';
+dwc.signInPreText = '请';
+dwc.signIn = '登录';
+dwc.or = '或';
+dwc.register = '注册';
+dwc.signInPostText = '';
+dwc.leaveCmt = '后发表评论。';
+dwc.view = '查看';
+dwc.totalCmts = '共有评论';
+dwc.postYourCmt = '添加您的评论';
+dwc.show = '显示：';
+dwc.recentCmts = '最新评论';
+dwc.allCmts = '所有评论';
+dwc.tooLongCmt = '您的评论超过了 1000 字符限制';
+dwc.numCharsLeft = '剩余 <span id="charCount">{1}</span> 字符';
+dwc.reportAbuse = '报告滥用';
+dwc.notifyMsg = '有新评论时提醒我';
+dwc.htmlWarning = '注意：评论中不支持 HTML 语法'; 
+dwc.cmt = '评论：';
+dwc.addCmts = '添加评论';
+dwc.addCmt = '添加评论';
+dwc.doNotErase = '--在下方添加评论--'; 
+dwc.viewOrAddCmts = '查看或添加评论';
+dwc.reportInapprCont = '举报不良信息';
+dwc.reportInapprContLink = 'http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1834';
+dwc.postingCmt = '正在发布评论……';
+dwc.noCmt = '快来添加第一条评论';
+dwc.netwkErr = '在检索评论时出错，请稍后刷新。';
+dwc.addACmt = '添加评论';
+dwc.instructCmt = '标有星号（<span class="ibm-required">*</span>）的是必填项目。';
+dwc.btnPost = '发布';
+dwc.btnPostAnon = '匿名发布';
+dwc.btnClrCmt = '清除评论';
+dwc.btnCancel = '取消';
+dwc.showRecent = '显示最新的 {1} 条评论'; // {1} is the count to be substituted
+dwc.showNext = '显示后 {1} 条评论'; // {1} is the count to be substituted
+dwc.showAllCmts = '显示所有评论';
+dwc.enterCmt = '请输入评论内容。';
+dwc.loginErr = '暂时无法验证您的登录状态，请稍后再试。';
+dwc.postErr = '暂时无法发布您的评论，请稍后再试。';
+dwc.postBy = '由 <strong>{1}</strong>  于 {2} '; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 10;
+dwc.lang = 'zh_CN';
+dwc.viperLang = 'zh';
+// ]]>
+    </script>
+    <div id="threadShow"><div id="cmtTog" style=""><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><p id="cmtHead"><label for="newCmt"><strong>添加评论:</strong></label></p><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect" style="">请 <a onclick="showSignIn();return false;" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">登录</a> 或 <a href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=register&lang=zh_CN&d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F%23icomments">注册</a>  后发表评论。</p><p>注意：评论中不支持 HTML 语法</p><span id="infoCmt"></span><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form"><p><textarea cols="120" rows="5" name="newCmt" id="newCmt" class="dw-inoperable" disabled=""></textarea><br></p><span class="ibm-input-group"><input type="checkbox" value="1" name="comment_notification" id="comment_notification" disabled=""><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">有新评论时提醒我</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount">剩余 <span id="charCount">1000</span> 字符</span><br><br><p></p><p class="ibm-buttons-row"><input type="button" value="发布" jquery1275054459750="11" name="postCmt" id="postCmt" class="ibm-btn-arrow-sec dw-btn-arrow-sec" alt="添加您的评论" disabled=""><br><br></p></form></div></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style=""><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p><span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts">2</span>)</strong></span><span><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" width="100" height="10" alt=""></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts"><label for="howManyComments">显示：</label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论   </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/short-btn.gif" alt="Go"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>据测试，该功能在同时有两个用户上传的时候会导致前面的进度条停止，所以慎用。</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/sfrost">sfrost</a></strong>  于 29 February 2012 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&referingURL=http://www.ibm.com/developerworks/cn/opensource/os-php-v525/&mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E6%8D%AE%E6%B5%8B%E8%AF%95%EF%BC%8C%E8%AF%A5%E5%8A%9F%E8%83%BD%E5%9C%A8%E5%90%8C%E6%97%B6%E6%9C%89%E4%B8%A4%E4%B8%AA%E7%94%A8%E6%88%B7%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%89%8D%E9%9D%A2%E7%9A%84%E8%BF%9B%E5%BA%A6%E6%9D%A1%E5%81%9C%E6%AD%A2%EF%BC%8C%E6%89%80%E4%BB%A5%E6%85%8E%E7%94%A8%E3%80%82%0D%E7%94%B1%20sfrost%20%20%E4%BA%8E%2029%20February%202012%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_newtab">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>研究了一个星期还是不行</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/fakeid">fakeid</a></strong>  于 25 November 2011 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&referingURL=http://www.ibm.com/developerworks/cn/opensource/os-php-v525/&mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E7%A0%94%E7%A9%B6%E4%BA%86%E4%B8%80%E4%B8%AA%E6%98%9F%E6%9C%9F%E8%BF%98%E6%98%AF%E4%B8%8D%E8%A1%8C%0D%E7%94%B1%20fakeid%20%20%E4%BA%8E%2025%20November%202011%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_newtab">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p><span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts2">2</span>)</strong></span><span><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" width="100" height="10" alt=""></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts2"><label for="howManyComments2">显示：</label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论   </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/short-btn.gif" alt="Go"><br></span></p></form></div></div></div>
+  <!-- INLINE_COMMENTS_END -->
+  
+
+  <p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#ibm-pcon">回页首</a></p>
+
+<!-- Overlays -->
+<!-- lk - pull in overlays from ww when required on cn -->
+  </div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=10</div><div class="metavalue">Zone=Open source, Web development</div><div class="metavalue">ArticleID=229466</div><div class="metavalue">ArticleTitle=PHP V5.2 中的新增功能，第 5 部分: 跟踪文件上传进度</div><div class="metavalue">publish-date=06082007</div><div class="metavalue">author1-email=tracy@tracypeterson.com</div><div class="metavalue">author1-email-cc=dwxed@us.ibm.com</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g, '%3C')+'</div>');</script><div class="metavalue">url=http://www.ibm.com/developerworks/cn/opensource/os-php-v525/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<div class="ibm-container"><h2>内容</h2><div class="ibm-container-body"><img alt="" height="1" width="1" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c(1).gif"><ul class="ibm-bullet-list"><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N10067">文本领域</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N1007A">完整说明</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N1008A">设置</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N100D1">可接收文件的帐户</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N10117">捕获已接收的文件</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N1013C">制作进度条</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N101DA">显示进度条的 JavaScript</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N10221">整合</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#N1027D">结束语</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#download">下载</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#resources">参考资料 </a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#author">关于作者</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#icomments">建议</a></li></ul></div></div>
+
+ 
+
+
+<!-- Dig_Deeper -->
+
+<!-- High_Visibility_Offer -->
+
+<!-- Special_Offers -->
+
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer">
+<!-- IBM footer container; disabled -->
+</div>
+
+<div id="ibm-page-tools-dw">
+	<div id="dw-footer-top-row">
+		<ul id="dw-foot-options">
+			<li id="dw-print"><a class="ibm-print-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">打印此页面</a></li>
+		</ul>
+		<ul id="ibm-foot-options-dw">
+			<li id="dw-foot-0" class="dw-foot-0-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">分享此页面</a></li>
+			<li id="dw-foot-1" class="dw-foot-1-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">关注 developerWorks</a></li>
+		</ul>
+	</div>       
+	
+	
+	<!-- TOP ROW SLIDER -->
+    <div id="dw-page-tools-menu">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Share this page -->			
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-4-1">
+                    	<h2>分享此页面：</h2>                            
+						<ul class="ibm-link-list">
+						  <!--<li><a id="dw-foot-0-0" class="dwcn-sina-link"
+						        href="#"
+						        onClick="javascript:location.href='http://hits.sinajs.cn/A1/weiboshare.html?&amp;appkey=&amp;title='+escape(document.title)+'&amp;url='+escape(location.href)'+'&amp;pic=&ralateUid&amp;language=zh_cn;
+						        ">新浪微博</a></li> -->
+						   <li><a id="dw-foot-0-0" class="dwcn-sina-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="javascript:location.href=&#39;http://service.weibo.com/share/share.php?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;url=&#39;+escape(location.href)+&#39;&amp;language=zh_cn&#39;
+						        ; ">新浪微博</a></li> 
+						   <li><a class="dwcn-renren-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="javascript:location.href=&#39;http://share.renren.com/share/buttonshare?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;link=&#39;+escape(location.href);
+						        ">人人网</a></li> 
+						    <li><a class="dwcn-tencent-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="javascript:location.href=&#39;http://v.t.qq.com/share/share.php?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;url=&#39;+escape(location.href);
+						        ">腾讯微博</a></li> 
+						   				
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-4-2">
+						<ul class="ibm-link-list">
+						    <li><a class="dwcn-sohu-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="javascript:location.href=&#39;http://t.sohu.com/third/post.jsp?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;link=&#39;+escape(location.href);
+						        ">搜狐微博</a></li>
+						    
+						    <li><a class="dwcn-netease-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#" onclick="javascript:location.href=&#39;http://t.163.com/article/user/checkLogin.do?info=&#39;+encodeURIComponent(document.title)+ &#39;&#39; +escape(location.href);
+						        ">网易微博</a></li>
+						    <li><a class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F&t=PHP%20V5.2%20%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AC%AC%205%20%E9%83%A8%E5%88%86%3A%20%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6">Facebook</a></li>
+						</ul>
+                </div>
+                    <div class="dw-footer-col-4-3">
+						<ul class="ibm-link-list">
+						 <li><a class="ibm-linkedin-link" href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F&title=PHP%20V5.2%20%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AC%AC%205%20%E9%83%A8%E5%88%86%3A%20%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6">LinkedIn</a></li>   
+						 <li><a class="ibm-twitter-link" href="http://twitter.com/home?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F%20-%20PHP%20V5.2%20%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AC%AC%205%20%E9%83%A8%E5%88%86%3A%20%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6">Twitter</a></li>   
+						 <li><a class="ibm-delicious-link" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F&title=PHP%20V5.2%20%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AC%AC%205%20%E9%83%A8%E5%88%86%3A%20%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6">Delicious</a></li>
+						
+						</ul>
+                    </div>
+                   <div class="dw-footer-col-4-4">
+						<ul class="ibm-link-list">
+						 <li><a class="ibm-digg-link" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-v525%2F&title=PHP%20V5.2%20%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AC%AC%205%20%E9%83%A8%E5%88%86%3A%20%E8%B7%9F%E8%B8%AA%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E8%BF%9B%E5%BA%A6">Digg</a></li>   
+						 <li><a class="ibm-email-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#">发送此页面</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-share"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                  <!-- Follow developerWorks -->
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-1-1 dw-footer-col-1-1-cn">
+                    	<h2>关注 developerWorks 中国网站：</h2>
+						<ul class="ibm-link-list">
+							<!--<li><a id="dw-foot-1-0" class="ibm-twitter-link" href="http://www.twitter.com/dwchina">Twitter</a></li>-->
+						    <li><a id="dw-foot-1-0" class="dwcn-sina-link" href="http://weibo.com/ibmdw/">新浪微博</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-follow-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-v525/#"><img src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/c.gif" alt="关闭 [x]" width="20" height="10"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1">
+			<ul>
+				<!--<li><a href="http://www.ibm.com/developerworks/aboutdw/">About</a></li>-->
+				<li><a href="https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwchina">帮助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/author/">联系编辑</a></li>
+				<li><a href="https://www.ibm.com/developerworks/secure/myideas2.jsp?domain=dwchina&start=true">提交内容</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/sitemap/">网站导航</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/cn/rss/">订阅源</a></li>
+				<li><a href="http://www.ibm.com/vrm/newsletter/10104?S_TACT=105AGX52&S_CMP=dwcntop">在线浏览每周时事通讯</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/community/report?lang=zh">报告滥用</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms?lang=zh">使用条款</a></li>
+				<li><a href="http://www.ibm.com/privacy/cn/zh/">隐私条约</a></li>
+				<li><a href="http://www.ibm.com/ibm/accessibility/cn/">浏览辅助</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4-cn">
+			<ul>
+<!-- lk v17 updated link -->			    
+				<li><a href="http://www.ibm.com/developerworks/cn/academic/">IBM 教育学院教育培养计划</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/gep/">IBM 创业企业全球扶持计划</a></li>
+				<li><a href="http://www.ibm.com/partnerworld/isv/">ISV 资源 (英语)</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-5">
+		</div>
+		<div class="dw-footer-col-6-6">
+		</div>
+	</div>
+	<!-- Language selector no-script -->
+	<noscript>
+	&lt;div id="dw-footer-selectlang"&gt;
+		&lt;h2&gt;&lt;a name="SELECTLANG"&gt;选择语言：&lt;/a&gt;&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/"&gt;English&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/cn/"&gt;中文&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/jp/"&gt;日本語&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/ru/"&gt;Русский&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/br/"&gt;Português (Brasil)&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/ssa/"&gt;Español&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/vn/"&gt;Việt&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	</noscript>
+</div><!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/jquery.cluetip.js"></script>
+<!-- xM Masthead/Footer -->
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/jquery.tools.min.js" type="text/javascript">//</script>
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/jquery.jscroll.js" type="text/javascript">//</script>
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dw_v16.js" type="text/javascript">//</script>
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/flash-detect.js" type="text/javascript">//</script>
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/dwsi.js" type="text/javascript">//</script>
+<script type="text/javascript" language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/showcomments.js">//</script>
+<script language="JavaScript" type="text/javascript">
+	// <![CDATA[
+ jQuery('threadShow').showComments('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+	local: true,
+	showTitle: false,
+	positionBy: 'bottomTop',
+	sticky: true,	
+	mouseOutClose: true,
+	closeText: '<img src="//dw1.s81c.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+	arrows: false,
+	dropShadow: true,
+	cluetipClass: 'dwbasic'
+	});   	
+	
+	rBHash = {};
+	rBHash['viperLang'] = 'zh';
+	rBHash['urlLang'] = 'cn';
+
+	// si
+	initSI();
+	});
+</script>
+<!-- JQuery end -->
+<!-- Overlay js -->
+<script language="JavaScript" src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/overlay.js" type="text/javascript"></script><!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=3&ibmAdoptPhase=667&ibmRole=710&ibmCmaId=229466";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="./PHP V5.2 中的新增功能，第 5 部分  跟踪文件上传进度_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+<div id="cluetip-waitimage" style="position: absolute; z-index: 95; display: none;"></div><div id="cluetip" style="z-index: 96; display: none; position: absolute;"><div style="z-index: 95; opacity: 0.1; top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 92; opacity: 0.1; top: 4px; left: 4px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 91; opacity: 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 6px; position: absolute; background-color: rgb(0, 0, 0);"></div><div id="cluetip-outer" style="position: relative; z-index: 97;"><div id="cluetip-title"></div><div id="cluetip-inner"></div></div><div id="cluetip-extra"></div><div id="cluetip-arrows" class="cluetip-arrows" style="z-index: 97;"></div></div></body></html>

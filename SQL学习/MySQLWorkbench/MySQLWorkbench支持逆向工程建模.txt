@@ -1,0 +1,18 @@
+mysql workbench支持逆向工程建模，具体操作如下：
+
+Menu
+Database->Reverse Engineer...
+弹出Reverse Engineer Database对话框
+
+Connection Options
+->next
+Connection to DBMS
+->next
+Select Schemas
+选择要逆向的数据库
+Select Objects
+->next
+Reverse Engineer
+->Execute
+Results
+->Finish

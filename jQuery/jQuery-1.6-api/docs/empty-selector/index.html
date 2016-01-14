@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">:empty Selector</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/content-filter-selector/" title="View all posts in Content Filter">Content Filter</a></span>
+  
+  				</div>
+</div>
+<div id="empty1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">empty</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery(':empty')</h4>
+<p class="desc"><strong>描述： </strong>选择所有没有子元素的元素（包括文本节点）。</p>
+<div class="longdesc">
+<p>这个和 <code>:parent</code>选择器相反。 </p>
+<p>需要注意的一件重要的事情是<code>:empty</code>(和 <code>:parent</code>)的子元素包括文本节点。</p>
+<p>W3C的建议<code>&lt;p&gt;</code>元素都至少有一个子节点，即使这个子节点是文字（见http://www.w3.org/TR/html401/struct/text.html＃edef-P）。另一方面，其他一些元素是空的（即没有子节点）：例如，&lt;input&gt;, &lt;img&gt;, &lt;br&gt;, and &lt;hr&gt。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Finds all elements that are empty - they don't have child elements or text.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  td { text-align:center; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;table border="1"&gt;
+    &lt;tr&gt;&lt;td&gt;TD #0&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;TD #2&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;TD#5&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;script&gt;$("td:empty").text("Was empty!").css('background', 'rgb(255,220,200)');&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

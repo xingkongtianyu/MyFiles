@@ -1,0 +1,915 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://www.csdn.net/article/2012-08-30/2809407 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link  href="./缓存永远不是性能优化-CSDN.NET_files/favicon.ico"  rel="SHORTCUT ICON">
+
+	
+<title>缓存永远不是性能优化-CSDN.NET </title>
+<meta  name="description"  content="缓存，一个让程序员爱恨交织的东西。它可以加快你的访问速度，但也可能会导致你的敏感信息丢失。">
+<meta  name="keywords"  content="研发实践,性能优化,MySQL,Magento,缓存">
+<meta  name="author"  content="CSDN.NET">
+<meta  name="Copyright"  content="CSDN.NET">
+ 
+<link  href="./缓存永远不是性能优化-CSDN.NET_files/index.css"  type="text/css"  rel="stylesheet">
+<script  charset="utf-8"  async=""  src="./缓存永远不是性能优化-CSDN.NET_files/cc.js"></script><script  type="text/javascript"  async=""  src="./缓存永远不是性能优化-CSDN.NET_files/ga.js"></script><script  src="./缓存永远不是性能优化-CSDN.NET_files/hm.js"></script><script  src="./缓存永远不是性能优化-CSDN.NET_files/jquery-1.9.1.min.js"  type="text/javascript"></script>
+
+<link  href="./缓存永远不是性能优化-CSDN.NET_files/content.css"  rel="stylesheet"  type="text/css">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6275c7f2c7d9617f47b5ea3c72633374";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<link  rel="stylesheet"  type="text/css"  media="all"  href="./缓存永远不是性能优化-CSDN.NET_files/comment.css"><script  id="jQCmtGetCmtScript"  language="javascript"  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/review.php"></script><link  href="./缓存永远不是性能优化-CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  type="text/javascript"  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/main.js"></script><script  type="text/javascript"  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/main(1).js"></script><link  rel="stylesheet"  type="text/css"  href="./缓存永远不是性能优化-CSDN.NET_files/style.css"><link  rel="stylesheet"  type="text/css"  href="./缓存永远不是性能优化-CSDN.NET_files/highlighter.css"><script  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/t.js"></script><script  src="./缓存永远不是性能优化-CSDN.NET_files/logger.js"></script><style>html #hm_t_7245 .hm-t-container,html #hm_t_7245 .hm-t-container * {box-sizing:content-box;margin:0;padding:0;float:none;clear:none;overflow:hidden;white-space:nowrap;word-wrap:normal;border:0;background:none;width:auto;height:auto;max-width:none;min-width:none;max-height:none;min-height:none;border-radius:0;box-shadow:none;transition:none;}html #hm_t_7245 .hm-t-list {position:relative;*zoom:1;}html #hm_t_7245 .hm-t-list-txt {padding:12px 12px 0 0;}html #hm_t_7245 .hm-t-item {display:list-item;text-align:left;text-overflow:ellipsis;float:left;list-style:none!important;}html #hm_t_7245 .hm-t-item-img {margin-top:12px;}html #hm_t_7245 .hm-t-img,html #hm_t_7245 .hm-t-img-title {display:block;margin:auto;}html #hm_t_7245 .hm-t-img {border:1px solid #cedbeb;}html #hm_t_7245 .hm-t-img img {border:none;}html #hm_t_7245 .hm-t-img-title {white-space:normal;margin-top:6px;}html #hm_t_7245 .hm-t-txt-wrapper {padding-left:20px;text-overflow:ellipsis;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAyCAMAAABMDIr8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCNEMwQzIxMzExRjAxMUUzODhDMkE2MzkxMTc1ODQyMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCNEMwQzIxNDExRjAxMUUzODhDMkE2MzkxMTc1ODQyMiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI0QzBDMjExMTFGMDExRTM4OEMyQTYzOTExNzU4NDIyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkI0QzBDMjEyMTFGMDExRTM4OEMyQTYzOTExNzU4NDIyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+qPUs2wAAABtQTFRFDEqCAEF8DUqCwM7dwM3dDkuDDUuDAEB7////w7r9TAAAAAl0Uk5T//////////8AU094EgAAACtJREFUeNpiYAcCBgjBCCQYgSQDBxAML4KZlZWFAehNNhDBwMDCxMQMEGAA7HcF3baHdjUAAAAASUVORK5CYII=) no-repeat;*background-image:url(http://ecma.bdimg.com/holmes/t-list-styles.png);}html #hm_t_7245 .hm-t-footer {position:relative;height:22px;}html #hm_t_7245 .hm-t-footer a {position:absolute;top:0;right:12px;font-family:arial,sans-serif;font-size:12px;color:#aeaeae;text-decoration:none;line-height:22px;}html #hm_t_7245 .hm-t-container {position:relative;border:1px solid #ccc;}html #hm_t_7245 .hm-t-header {padding-left:12px;text-align:left;border-bottom:1px solid #ccc;}html #hm_t_7245 .hm-t-container{background-color:#ffffff;border-color:#FFFFFF;height:302px;width:290px;}html #hm_t_7245 .hm-t-header{background-color:#ffffff;color:#333333;font-family:arial,SimSun,sans-serif;font-size:16px;font-weight:bold;height:33px;line-height:33px;}html #hm_t_7245 .hm-t-img:hover{border-color:#D7D7D7;}html #hm_t_7245 .hm-t-item{list-style:none inside;}html #hm_t_7245 .hm-t-txt,html #hm_t_7245 .hm-t-img-title{color:#333333;font-family:Tahoma;font-size:13px;font-weight:normal;line-height:24px;text-decoration:none;}html #hm_t_7245 .hm-t-txt:active,html #hm_t_7245 .hm-t-img-title:active{color:#c00;text-decoration:none;}html #hm_t_7245 .hm-t-txt:hover,html #hm_t_7245 .hm-t-img-title:hover{color:#c00;text-decoration:none;}</style><style>html #hm_t_7245 .hm-t-txt-wrapper{background-position:12px 99px}</style><style>html #hm_t_7245 .hm-t-item-img{width:Infinity%;*width:Infinity%}html #hm_t_7245 .hm-t-item-txt{width:100%;*width:99.9%}</style><style>html #hm_t_7245 .hm-t-img{width:72px;height:72px}html #hm_t_7245 .hm-t-img-title{width:72px}html #hm_t_7245 .hm-t-list-img{margin:0 145px}</style><style>html #hm_t_7245 .hm-t-img-title{line-height:16px}</style></head>
+<body><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./缓存永远不是性能优化-CSDN.NET_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="bds_more">更多...</a></li></ul><p><a  href="http://www.csdn.net/article/2012-08-30/2809407#"  class="goWebsite">百度分享</a></p></div></div></div>
+<script  src="./缓存永远不是性能优化-CSDN.NET_files/html.js"  type="text/javascript"  id="toolbar-tpl-scriptId"  prod="news"  skin="black"  domain="http://sd.csdn.net"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://sd.csdn.net/"  target="_blank"  class="img news-icon"></a></div>          <div  class="pull-right login-wrap ">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search?ref=toolbar"  method="get"  target="_blank">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display: none;"  class="number"></div>                <div  style="display: none;"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note"  style="left: -215px; top: 20px;">                      <div  class="box"><div  class="notifications notice_list_con curr">  <a  href="javascript:void 0"  class="close1"></a>  <div  class="menu_title">    <span  class="title"><a  href="http://notify.csdn.net/"  target="_blank"  class="go_all">查看所有通知</a></span>  </div>  <div  class="loading"></div>  <div  class="empty">暂没有新通知</div>  <div  class="notice_content"></div></div><div  class="notifications detail_con"  style="display: none">  <div  class="menu_title">    <span  class="title">      <a  class="go_back"  href="javascript:void 0;">返回通知列表</a>      <a  class="notifications_page_none nextnote"  href="javascript:void 0;">下一条</a>      <a  class="notifications_page prvnote"  href="javascript:void 0;">上一条</a>    </span>  </div>  <div  class="notice_content"></div></div><div  class="error"></div></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./缓存永远不是性能优化-CSDN.NET_files/2_zc80330582.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="https://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./缓存永远不是性能优化-CSDN.NET_files/2_zc80330582.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname">zc80330582</a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="http://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/m.js"></script>
+<div  class="wrap">
+	
+	<script  language="javascript">function T(n){document.getElementById("ArticleCnt").style.fontSize=n+"px";}</script>
+	<script  src="./缓存永远不是性能优化-CSDN.NET_files/jquery.autoscroll.js"  type="text/javascript"></script>
+	
+	<script  type="text/javascript">BAIDU_CLB_preloadSlots("421718","421717","421715","421714","421712","445821","421709","119835");</script><script  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/ecom"></script>
+	
+
+</div>
+	
+	<div  id="xcx_tabmenu"  class="nav">
+		<div  id="cx_tabmenu"  class="cx_tabmenu">
+			
+			<div  id="ddimagetabs"  class="lev_1">
+				<ul>
+				<li><a  href="http://news.csdn.net/"  id="sclink1"  target="_blank"   class="">业界</a></li>
+				<li><a  href="http://mobile.csdn.net/"  id="sclink2"  target="_blank"   class="">移动开发</a></li>
+				<li><a  href="http://cloud.csdn.net/"  id="sclink3"  target="_blank"   class="">云计算</a></li>
+				<li><a  href="http://sd.csdn.net/"  id="sclink4"  target="_blank"   class="current">软件研发</a></li>
+				<li><a  href="http://programmer.csdn.net/"  id="sclink6"  target="_blank"  class="">程序员杂志</a></li>
+				<li><a  href="http://geek.csdn.net/"  id="sclink7"  target="_blank"  class="">极客头条</a></li>
+				<li><a  href="http://special.csdn.net/newssubject/index.html"  id="sclink5"  target="_blank"  class="">专题</a></li>
+				
+				</ul>
+			</div>
+			
+			<div  id="tabcontentcontainer"  class="lev_2">
+				<div  class="tabcontent"  id="sc1">
+					<ul>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/cto"  target="_blank">CTO</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E4%BA%A7%E5%93%81"  target="_blank">产品</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%88%9B%E4%B8%9A"  target="_blank">创业</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E8%81%8C%E5%9C%BA"  target="_blank">职场</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E4%BA%BA%E7%89%A9"  target="_blank">人物</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%AF%B9%E8%AF%9Dcto"  target="_blank">对话CTO</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E7%A4%BE%E5%8C%BA%E4%B9%8B%E6%98%9F"  target="_blank">社区之星</a></li>
+										</ul>
+				</div>
+				<div  class="tabcontent"  id="sc2">
+					<ul>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/android"  target="_blank">Android</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/ios"  target="_blank">iOS</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E7%A7%BB%E5%8A%A8%E6%B8%B8%E6%88%8F"  target="_blank">移动游戏</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/html5"  target="_blank">HTML5</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E"  target="_blank">游戏引擎</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%BE%E5%A4%87"  target="_blank">可穿戴设备</a></li>
+										</ul>
+				</div>
+				<div  class="tabcontent"  id="sc3">
+					<ul>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank">大数据</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83"  target="_blank">数据中心</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%9C%8D%E5%8A%A1%E5%99%A8"  target="_blank">服务器</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%AD%98%E5%82%A8"  target="_blank">存储</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E8%99%9A%E6%8B%9F%E5%8C%96"  target="_blank">虚拟化</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/nosql"  target="_blank">NoSQL</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%AE%89%E5%85%A8"  target="_blank">安全</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E4%BA%91%E5%85%88%E9%94%8B"  target="_blank">云先锋</a></li>
+										</ul>
+				</div>
+				<div  class="tabcontent"  id="sc4"  style="display: block;">
+					<ul>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"  target="_blank">编程语言</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0"  target="_blank">开放平台</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/html5"  target="_blank">HTML5</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91"  target="_blank">前端开发</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95"  target="_blank">智能算法</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%9E%B6%E6%9E%84"  target="_blank">架构</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%BC%80%E6%BA%90"  target="_blank">开源</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank">数据库</a></li>
+										</ul>
+				</div>
+				<div  class="tabcontent"  id="sc5">
+					<ul>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E5%B0%81%E9%9D%A2%E7%A7%80"  target="_blank">封面秀</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E7%89%B9%E5%88%AB%E7%AD%96%E5%88%92"  target="_blank">特别策划</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E7%AE%A1%E7%90%86%E5%AE%9E%E8%B7%B5"  target="_blank">管理实践</a></li>
+					 
+					<li><a  href="http://www.csdn.net/article/tag/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"  target="_blank">技术架构</a></li>
+										</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script  type="text/javascript">
+	// The idea borrowed from dynamicDrive.com
+	
+	var initialtab = [1, "sc1"]
+	
+	var previoustab = "";
+	var intv;
+	function expandcontent(cid, aobject) {
+	    stopTimer();
+	    highlighttab(aobject);
+	    if (previoustab != ""){
+	         document.getElementById(previoustab).style.display = "none";
+	    }
+	    document.getElementById(cid).style.display = "block";
+	    previoustab = cid;
+	}
+	
+	function highlighttab(aobject) {
+	    stopTimer();
+	
+	   if (typeof tabobjlinks == "undefined"){
+	         collectddimagetabs();
+	    }
+	   for (i = 0; i < tabobjlinks.length; i++){
+	    	tabobjlinks[i].className = "";   
+	    }
+	    aobject.className = "current";
+	}
+	
+	function collectddimagetabs() {
+	    var tabobj = document.getElementById("ddimagetabs");
+	    tabobjlinks = tabobj.getElementsByTagName("A");
+	}
+	
+	function startTimer() {
+	    intv = setTimeout("expandcontent(initialtab[1], tabobjlinks[initialtab[0]-1])", 2000);
+	}
+	
+	function stopTimer() {
+	    clearTimeout(intv);
+	}
+	
+	$(document).ready(function(){ 
+		collectddimagetabs();
+		var domain = new Array('news.','mobile.','cloud.','sd.','programmer.');
+		for(var i=0;i<domain.length;i++){
+			if(window.location.href.indexOf(domain[i]) > 0){
+				expandcontent('sc'+(i+1), tabobjlinks[i]);
+			}
+		}
+		$('#button_both').click(function(){
+			var key=$('#queries_searchfield_query-new').val();
+			key = $.trim(key);
+			if(key==""){
+				alert("关键字不能为空！");
+			}
+			else{
+				key =  encodeURIComponent(key)
+				var url="http://so.csdn.net/search?sort=created_at&t=news&q="+key;
+				window.location.href=url;
+			}
+			return false;
+		});
+	});
+	
+	</script>
+ 
+<div  class="wrap">
+	
+	
+	
+		<div  class="ad_960">
+		<div  class="ad_190"><script  type="text/javascript">BAIDU_CLB_fillSlot("421714");</script><div  id="BAIDU_DUP_wrapper_421714_0"><iframe  id="baidu_clb_slot_iframe_421714_0"  src="./缓存永远不是性能优化-CSDN.NET_files/缓存永远不是性能优化-CSDN.NET.htm"   width="190"  height="90"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/fixed7o.js"></script></div>
+		<div  class="ad_760"><script  type="text/javascript">BAIDU_CLB_fillSlot("445821");</script><div  id="BAIDU_DUP_wrapper_445821_0"><iframe  id="baidu_clb_slot_iframe_445821_0"  src="./缓存永远不是性能优化-CSDN.NET_files/缓存永远不是性能优化-CSDN.NET.htm"   width="760"  height="90"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div></div>
+	</div>
+		
+	<div  class="brea_nav">
+				<span  class="fr">
+		<a  href="http://news.csdn.net/rss_sd.html"  class="rss"  target="_blank">订阅软件研发RSS</a>					
+		</span><a  href="http://www.csdn.net/">CSDN首页</a><em>&gt;</em>
+		<a  href="http://sd.csdn.net/"  target="_blank">软件研发</a>	</div>
+	
+	<div  class="content">
+		<div  class="left">
+			<div  class="detail">
+				<h1  class="title">缓存永远不是性能优化</h1>
+				<h4>
+					<div  class="tit_bar">
+						发表于<span  class="ago">2012-08-30 17:36</span>|
+						<span  class="view_time">9792次阅读</span>| 
+						来源<span  class="ago">kingletas</span>|
+						<span  class="num_recom"><font  id="remark_count1"  class="cmtcount"  style="font-size:12px;color:#c00;">22</font> 条评论</span>| 
+						作者<span  class="ago">Luis Tineo</span>
+					</div>
+				</h4>
+				<div  class="tag"><a  href="http://www.csdn.net/article/tag/%E7%A0%94%E5%8F%91%E5%AE%9E%E8%B7%B5">研发实践</a><a  href="http://www.csdn.net/article/tag/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">性能优化</a><a  href="http://www.csdn.net/article/tag/mysql">MySQL</a><a  href="http://www.csdn.net/article/tag/magento">Magento</a><a  href="http://www.csdn.net/article/tag/%E7%BC%93%E5%AD%98">缓存</a></div>
+				<div  class="summary">
+					<input  type="hidden"  id="article_description"  name="article_description"  value="缓存，一个让程序员爱恨交织的东西。它可以加快你的访问速度，但也可能会导致你的敏感信息丢失。">
+				<script  type="text/javascript"  charset="utf-8">
+(function(){
+  var _w = 22 , _h = 16;
+  var article_description=$("#article_description").val();
+  var param = {
+    url:location.href,
+    type:'3',
+    count:'', /**是否显示分享数，1显示(可选)*/
+    appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+    title:article_description, /**分享的文字内容(可选，默认为所在页面的title)*/
+    pic:'', /**分享图片的路径(可选)*/
+    ralateUid:'', /**关联用户的UID，分享微博会@该用户(可选)*/
+	language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+    rnd:new Date().valueOf()
+  }
+  var temp = [];
+  for( var p in param ){
+    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+  }
+  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+})()
+</script><iframe  allowtransparency="true"  frameborder="0"  scrolling="no"  src="./缓存永远不是性能优化-CSDN.NET_files/weiboshare.htm"  width="22"  height="16"></iframe><strong>摘要：</strong>缓存，一个让程序员爱恨交织的东西。它可以加快你的访问速度，但也可能会导致你的敏感信息丢失。				</div>
+				<div  class="con news_content">
+				<p>在完美的编程世界中，缓存这个词常常在系统中扮演着差和低效的角色。使用它可能会给系统带来一些从未见过的麻烦，但世界就是这么搞笑，在某些时候，缓存却是必须存在的。真的说爱你很难，恨你也很难！</p>
+<p>还记得用汇编和C语言来编写代码的那段日子，我不得不做一套自己的内存管理系统，这样我编写的代码可以在4K的RAM上运行，虽然这样，仍然是令人称赞的。如今，有许多人喜欢拼凑代码片段然后再进行调用，我曾也是这种黑客里面的一员，但后来我决定要“改过自新”，好好学习编程知识。如今我已经学习许多概念、设计模型，当我回去看以前那种面条式代码时，真心让我反胃。</p>
+<p>在你被这种思想祸害之前，我有非常合理的理由告诉你，缓存与性能优化是不同的。事实上，它是完全相反的——缓存是避免重复工作（这是不一样的自动化）并且也是隐藏错误和阻止服务器重载的一种非常得体的做法。</p>
+<p>下面让我们来回答一些显而易见的问题：为什么不同？这很简单，“<strong>一个欠佳的应用程序缓存仍然是欠佳的，但因为有缓存执行时间将大大减少而效率却保持不变</strong>”。</p>
+<p>性能优化是一门艺术。它通过分析项目中遇到的瓶颈和删除它们来实现，对那些差的代码进行重构。总而言之，性能优化会让你的代码更好！</p>
+<p>虽然缓存不是性能优化，但并不是说缓存就很差劲，我们要一分为二的去看。在对其进行优化之前我们需要理解缓存是什么？用在哪？尤其是应用在黑客和一些购物性的网站。</p>
+<p>下面让我们看看Wikipedia是如何描述缓存的：</p>
+<blockquote  style="border-left: #ddd 4px solid; padding-bottom: 10px; line-height: 25px; margin: 20px 10px 20px 30px; padding-left: 10px; padding-right: 10px; color: #555; padding-top: 10px">
+<p>在计算机系统中，高速缓存是用于减少处理器访问内存所需平均时间的部件。在金字塔式存储体系中它位于自顶向下的第二层，仅次于CPU寄存器。其容量远小于内存，但速度却可以接近处理器的频率。</p>
+<p>当处理器发出内存访问请求时，会先查看缓存内是否有请求数据。如果存在（命中），则不经访问内存直接返回该数据；如果不存在（失效），则要先把内存中的相应数据载入缓存，再将其返回处理器。</p>
+<p>缓存之所以有效，主要是因为程序运行时对内存的访问呈现局部性（Locality）特征。这种局部性既包括空间局部性（Spatial Locality），也包括时间局部性（Temporal Locality）。有效利用这种局部性，缓存可以达到极高的命中率。</p>
+<p>在处理器看来，缓存是一个透明部件。因此，程序员通常无法直接干预对缓存的操作。但是，确实可以根据缓存的特点对程序代码实施特定优化，从而更好地利用缓存。</p>
+</blockquote>
+<p>所以，<strong>未来的请求可以更快？那为什么不让它们快点开始呢？</strong>这是个与应用程序和语言无关的概念，这里没有任何单一的应用程序或语言可以给高速缓存带来提升。</p>
+<p>但这似乎并没有什么意义！下面让我们看几个例子。</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span>$</span><span  class="attribute">sql</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">"SELECT&nbsp;*&nbsp;FROM&nbsp;`database`.`table_name`"</span><span>;&nbsp;</span></span></li></ol></pre>
+<p>你会认为在MySQL中的查询语句、Memcache或者其他一些高速缓存存储会让它更快吗？当然不是，无论怎样，它仅仅是一个在系统中的变量存储，在优化时，缓存这些东西根本不会有任何影响。</p>
+<p>下面让我们以Magento为例。使用Magento EE 1.12配置且使用nginx和Memcache来禁止全页缓存。</p>
+<p>下面SQL语句在生成一个分类页面时使用：</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span>SELECT&nbsp;&nbsp;`e`&nbsp;.&nbsp;*&nbsp;,&nbsp;&nbsp;`cat_index`.`position`&nbsp;AS&nbsp;&nbsp;`cat_index_position`&nbsp;,&nbsp;&nbsp;`price_index`.`price`&nbsp;,&nbsp;&nbsp;`price_index`.`tax_class_id`&nbsp;,&nbsp;&nbsp;`price_index`.`final_price`&nbsp;,&nbsp;IF(&nbsp;price_index.tier_price&nbsp;IS&nbsp;NOT&nbsp;NULL&nbsp;,&nbsp;LEAST(&nbsp;price_index.min_price,&nbsp;price_index.tier_price&nbsp;)&nbsp;,&nbsp;price_index.min_price&nbsp;)&nbsp;AS&nbsp;&nbsp;`minimal_price`&nbsp;,&nbsp;`price_index`.`min_price`&nbsp;,&nbsp;&nbsp;`price_index`.`max_price`&nbsp;,&nbsp;&nbsp;`price_index`.`tier_price`&nbsp; &nbsp;</span></span></li><li><span>FROM&nbsp;&nbsp;`catalog_product_entity`&nbsp;AS&nbsp;&nbsp;`e`&nbsp; &nbsp;</span></li><li  class="alt"><span>INNER&nbsp;JOIN&nbsp;&nbsp;`catalog_category_product_index`&nbsp;AS&nbsp;&nbsp;`cat_index`&nbsp;ON&nbsp;</span><span  class="attribute">cat_index.product_id</span><span>&nbsp;=&nbsp;e.entity_id &nbsp;</span></li><li><span>AND&nbsp;</span><span  class="attribute">cat_index.store_id</span><span>&nbsp;=</span><span  class="attribute-value">1</span><span>&nbsp;</span></li><li  class="alt"><span>AND&nbsp;cat_index.visibility &nbsp;</span></li><li><span>IN&nbsp;(&nbsp;2,&nbsp;4&nbsp;)&nbsp; &nbsp;</span></li><li  class="alt"><span>AND&nbsp;</span><span  class="attribute">cat_index.category_id</span><span>&nbsp;=&nbsp;&nbsp;</span><span  class="attribute-value">'10'</span><span>&nbsp;</span></li><li><span>AND&nbsp;</span><span  class="attribute">cat_index.is_parent</span><span>&nbsp;=</span><span  class="attribute-value">1</span><span>&nbsp;</span></li><li  class="alt"><span>INNER&nbsp;JOIN&nbsp;&nbsp;`catalog_product_index_price`&nbsp;AS&nbsp;&nbsp;`price_index`&nbsp;ON&nbsp;</span><span  class="attribute">price_index.entity_id</span><span>&nbsp;=&nbsp;e.entity_id &nbsp;</span></li><li><span>AND&nbsp;</span><span  class="attribute">price_index.website_id</span><span>&nbsp;=&nbsp;&nbsp;</span><span  class="attribute-value">'1'</span><span>&nbsp;</span></li><li  class="alt"><span>AND&nbsp;</span><span  class="attribute">price_index.customer_group_id</span><span>&nbsp;=</span><span  class="attribute-value">0</span><span>&nbsp;</span></li><li><span>ORDER&nbsp;BY&nbsp;&nbsp;`cat_index`.`position`&nbsp;ASC&nbsp; &nbsp;</span></li><li  class="alt"><span>LIMIT&nbsp;15&nbsp;</span></li></ol></pre>
+<p>显示行0 - 6（共7个，查询花费0.0017秒）</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span>SELECT&nbsp;‘e’.sku,&nbsp;'cat_index'.'position'&nbsp;AS&nbsp;'cat_index_position',&nbsp;'price_index'.'price',&nbsp;'price_index'.'tax_class_id',&nbsp;'price_index'.'final_price',&nbsp;IF(price_index.tier_price&nbsp;IS&nbsp;NOT&nbsp;NULL,&nbsp;LEAST(price_index.min_price,&nbsp;price_index.tier_price),&nbsp;price_index.min_price)&nbsp;AS&nbsp;'minimal_price',&nbsp;'rice_index'.'min_price',&nbsp;'price_index'.'max_price',&nbsp;`price_index`.`tier_price`&nbsp;FROM&nbsp;`catalog_product_entity`&nbsp;AS&nbsp;`e`&nbsp;INNER&nbsp;JOIN&nbsp;`catalog_category_product_index`&nbsp;AS&nbsp;`cat_index`&nbsp;ON&nbsp;</span><span  class="attribute">cat_index.product_id</span><span>=e.entity_id&nbsp;AND&nbsp;</span><span  class="attribute">cat_index.store_id</span><span>=</span><span  class="attribute-value">1</span><span>&nbsp;AND&nbsp;cat_index.visibility&nbsp;IN(2,&nbsp;4)&nbsp;AND&nbsp;</span><span  class="attribute">cat_index.category_id</span><span>=</span><span  class="attribute-value">'10'</span><span>&nbsp;AND&nbsp;</span><span  class="attribute">cat_index.is_parent</span><span>=</span><span  class="attribute-value">1</span><span>&nbsp;INNER&nbsp;JOIN&nbsp;`catalog_product_index_price`&nbsp;AS&nbsp;`price_index`&nbsp;ON&nbsp;</span><span  class="attribute">price_index.entity_id</span><span>&nbsp;=&nbsp;e.entity_id&nbsp;AND&nbsp;</span><span  class="attribute">price_index.website_id</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">'1'</span><span>&nbsp;AND&nbsp;</span><span  class="attribute">price_index.customer_group_id</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">0</span><span>&nbsp;ORDER&nbsp;BY&nbsp;`cat_index`.`position`&nbsp;ASC&nbsp;LIMIT&nbsp;15&nbsp;</span></span></li></ol></pre>
+<p>显示行0 - 6（共7个，查询花费 0.0015秒）</p>
+<p>你有注意到其中的区别吗？该脚本大致使用相同的时间来生成但通过使用索引或定制MySQL可以有很大的提升。</p>
+<p>你看到了吗？性能提升正如你看到的这样简单。下面让我们来另外一个例子：</p>
+<p>如果你打开Mage_Core_Model_Resource_Db_Abstract</p>
+<p>让我们来看看加载方法和实现一些缓存来提升性能：</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span>&nbsp;/** &nbsp;</span></span></li><li><span>*&nbsp;Fetches&nbsp;an&nbsp;object&nbsp;from&nbsp;the&nbsp;cache&nbsp;storage &nbsp;</span></li><li  class="alt"><span>*&nbsp;@param&nbsp;Mage_Core_Model_Abstract&nbsp;$object &nbsp;</span></li><li><span>*&nbsp;@return&nbsp;boolean&nbsp;|&nbsp;object &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;isThisObjectCached(Mage_Core_Model_Abstract&nbsp;$object)&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">key</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">md5</span><span>(json_encode($object)); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">helper</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">Mage</span><span>::helper('performance'); &nbsp;</span></li><li  class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($</span><span  class="attribute">cachedObject</span><span>&nbsp;=&nbsp;$helper-</span><span  class="tag">&gt;</span><span>fetchFromCache($key))&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$cachedObject; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li  class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;false; &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;/** &nbsp;</span></li><li><span>*&nbsp;Saves&nbsp;an&nbsp;object&nbsp;in&nbsp;cache &nbsp;</span></li><li  class="alt"><span>*&nbsp;@param&nbsp;Mage_Core_Model_Abstract&nbsp;$object &nbsp;</span></li><li><span>*&nbsp;@return&nbsp;\Mage_Core_Model_Resource_Db_Abstract &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;protected&nbsp;function&nbsp;saveThisObjectInCache(Mage_Core_Model_Abstract&nbsp;$object)&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">key</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">md5</span><span>(json_encode($object)); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">helper</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">Mage</span><span>::helper('performance'); &nbsp;</span></li><li  class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$helper-</span><span  class="tag">&gt;</span><span>saveObjectInCache($key,&nbsp;$object); &nbsp;</span></li><li  class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this; &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>/** &nbsp;</span></li><li><span>*&nbsp;Load&nbsp;an&nbsp;object &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;* &nbsp;</span></li><li><span>*&nbsp;@param&nbsp;Mage_Core_Model_Abstract&nbsp;$object &nbsp;</span></li><li  class="alt"><span>*&nbsp;@param&nbsp;mixed&nbsp;$value &nbsp;</span></li><li><span>*&nbsp;@param&nbsp;string&nbsp;$field&nbsp;field&nbsp;to&nbsp;load&nbsp;by&nbsp;(defaults&nbsp;to&nbsp;model&nbsp;id) &nbsp;</span></li><li  class="alt"><span>*&nbsp;@return&nbsp;Mage_Core_Model_Resource_Db_Abstract &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;load(Mage_Core_Model_Abstract&nbsp;$object,&nbsp;$value,&nbsp;$</span><span  class="attribute">field</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">null</span><span>)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($</span><span  class="attribute">cachedObject</span><span>&nbsp;=&nbsp;$this-</span><span  class="tag">&gt;</span><span>isThisObjectCached($object))&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">data</span><span>&nbsp;=&nbsp;$cachedObject-</span><span  class="tag">&gt;</span><span>getData(); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($data)&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$object-</span><span  class="tag">&gt;</span><span>setData($data); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(is_null($field))&nbsp;{ &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">field</span><span>&nbsp;=&nbsp;$this-</span><span  class="tag">&gt;</span><span>getIdFieldName(); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li  class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">read</span><span>&nbsp;=&nbsp;$this-</span><span  class="tag">&gt;</span><span>_getReadAdapter(); &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($read&nbsp;&amp;&amp;&nbsp;!is_null($value))&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">select</span><span>&nbsp;=&nbsp;$this-</span><span  class="tag">&gt;</span><span>_getLoadSelect($field,&nbsp;$value,&nbsp;$object); &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$</span><span  class="attribute">data</span><span>&nbsp;=&nbsp;$read-</span><span  class="tag">&gt;</span><span>fetchRow($select); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($data)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$object-</span><span  class="tag">&gt;</span><span>setData($data); &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-</span><span  class="tag">&gt;</span><span>unserializeFields($object); &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-</span><span  class="tag">&gt;</span><span>_afterLoad($object); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-</span><span  class="tag">&gt;</span><span>saveThisObjectInCache($object); &nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;}&nbsp;</span></li></ol></pre>
+<p>点击<a  target="_blank"  href="http://ubuntuone.com/3cBQh1FeErQrmMDjf743mO">这里</a>查看输出结果</p>
+<p>正如你看到的，并没有太多的提高。甚至可以说，有了缓存，性能反而下降啦！</p>
+<p><strong>这到底是什么意思呢？</strong></p>
+<p>这意味着通过添加一个额外的层（缓存），你实际上是在增加总的处理时间，因为现在有额外的检查对象和缓存数据需要读取或保存。</p>
+<p>在这种情况下：Memcache vs. MySQL，对我来说，性能至少不受捕获数据影响。</p>
+<p><strong>你为什么还会对缓存喋喋不休呢？</strong></p>
+<p>这到底是为什么呢？我是一个强烈倡导反向代理和缓存的程序员，不是因为我懒而是因为我是一个性能优化狂热者。每当我想到优化时，我会去增强和重构代码，而不是去隐藏错误或使用那些考虑欠佳的代码。</p>
+<p>建筑与工程有许多共同点。在施工之前，你需要选择合适的材料、现货和会建的人去构建它。因此，如果你构建一个sh&amp;^%$建筑，你希望通过粉刷来隐藏掉那些伪劣的工艺和材质吗？是的，你可能会当一切都没有发生过，等到你被抓住以后，游戏就玩完啦！</p>
+<p><strong>我们能做些什么？</strong></p>
+<p>下面我会提供一些非常好的文章给你参考，至于如何做，这完全取决于你。</p>
+<ul>
+    <li><a  target="_blank"  href="https://developers.google.com/speed/articles/">Google Speed up your site</a></li>
+    <li><a  target="_blank"  href="http://developer.yahoo.com/performance/rules.html">Yahoo best practices</a></li>
+    <li><a  target="_blank"  href="http://stevesouders.com/efws/">Even faster websites</a></li>
+    <li><a  target="_blank"  href="http://www.kingletas.com/2012/08/php-offloading-speeding-up-magento-wit-vala.html">Offloading with another language</a></li>
+    <li><a  target="_blank"  href="http://www.kingletas.com/2012/08/magento-developer-toolbox.html">Use the right tools</a></li>
+</ul>
+<p>你能做的最好事情是在你代码里面应用<strong>“<a  target="_blank"  href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882">童子军规则</a>”</strong>：</p>
+<p>如果不能把代码写的很好，那代码必须要一直保持清洁。我们已经见过许多代码随着时间的推移在腐烂和流失，所以我们必须积极预防这种退化。</p>
+<p>美国童子军有一个简单的规则可以应用到我们的专业里：每次优化都应该让代码更整洁</p>
+<p>英文链接：<a  target="_blank"  href="http://www.kingletas.com/2012/08/caching-performance-optimization.html">kingletas</a></p>
+<p  style="text-align: right">（翻译：张红月 责编：王然）</p>				
+				<p  class="copyright"></p>
+				</div>
+									 <div  class="share"> 	   
+			
+			<div  id="bdshare"  class="bdshare_t bds_tools_32 get-codes-bdshare"  style="float:right;">
+			<a  class="bds_tsina"  title="分享到新浪微博"  href="http://www.csdn.net/article/2012-08-30/2809407#"></a>
+			<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://www.csdn.net/article/2012-08-30/2809407#"></a>
+			<a  class="bds_qzone"  title="分享到QQ空间"  href="http://www.csdn.net/article/2012-08-30/2809407#"></a>
+			</div>
+			<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=6874737"  src="./缓存永远不是性能优化-CSDN.NET_files/bds_s_v2.js"></script>
+			
+			<script  type="text/javascript">
+			var bds_config={"snsKey":{'tsina':'4095860958','tqq':'801285068'}}
+			document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+			</script>
+			
+ 		</div> 
+
+				<div  class="detail">
+				<div  class="digg">
+						<input  type="hidden"  id="digg_id"  value="2809407">
+						<dl  class="support">
+							<dt>顶</dt>
+							<dd>10</dd>
+						</dl>
+						<dl  class="oppose">
+							<dt>踩</dt>
+							<dd>0</dd>
+						</dl>
+				</div>
+			</div>	
+ 	
+				<div  class="ad_300_250"><script  type="text/javascript">BAIDU_CLB_fillSlot("421718");</script><div  id="BAIDU_DUP_wrapper_421718_0"><div  style="display:none">-</div><iframe  id="cproIframe1"  src="./缓存永远不是性能优化-CSDN.NET_files/uijs.htm"  width="468"  height="60"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./缓存永远不是性能优化-CSDN.NET_files/main7o.js"></script></div>
+				<div  class="related">推荐阅读相关主题：
+											<a  href="http://www.csdn.net/article/tag/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"  title="应用程序"  target="_blank">应用程序</a>
+											<a  href="http://www.csdn.net/article/tag/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"  title="内存管理"  target="_blank">内存管理</a>
+											<a  href="http://www.csdn.net/article/tag/%E5%A4%84%E7%90%86%E5%99%A8"  title="处理器"  target="_blank">处理器</a>
+											<a  href="http://www.csdn.net/article/tag/%E7%A8%8B%E5%BA%8F%E5%91%98"  title="程序员"  target="_blank">程序员</a>
+											<a  href="http://www.csdn.net/article/tag/wikipedia"  title="wikipedia"  target="_blank">wikipedia</a>
+											<a  href="http://www.csdn.net/article/tag/%E8%AE%A1%E7%AE%97%E6%9C%BA"  title="计算机"  target="_blank">计算机</a>
+									</div>
+				
+				<div  id="Tab3"  class="relational">
+					<h2  class="tab_1 Menubox">
+						<ul>
+						<li  id="three1"   class="hover">相关文章</li>
+						<li  id="three2" >最新报道</li>
+						</ul>
+					</h2>
+					<div  class="con Contentbox">
+						<div  id="con_three_1"  class="hover">
+							<ul  class="list_1">								
+														<li><a  href="http://www.csdn.net/article/2014-02-10/2818339-TIOBE-Index-for-February-2014"  title="TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10"  target="_blank">TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10</a></li>
+														<li><a  href="http://www.csdn.net/article/2014-02-08/2818336-12-predictions-for-the-future-of-programming"  title="未来编程趋势的12个猜想 命令行永存..."  target="_blank">未来编程趋势的12个猜想 命令行永存...</a></li>
+														<li><a  href="http://www.csdn.net/article/2014-02-08/2818334-Cloud-IBM-Actifo-Completel"  title="IBM发布SmartCloud数据虚拟化服务"  target="_blank">IBM发布SmartCloud数据虚拟化服务</a></li>
+														<li><a  href="http://www.csdn.net/article/2014-02-07/2818321-microsoft-7-questions-for-satya-nadella"  title="七问微软新CEO，你准备好了吗？"  target="_blank">七问微软新CEO，你准备好了吗？</a></li>
+														<li><a  href="http://www.csdn.net/article/2014-02-07/2818322-weather-forecast-api-for-developing-apps"  title="极端气候频现 五款开发天气预报应用的API"  target="_blank">极端气候频现 五款开发天气预报应用的API</a></li>
+														<li><a  href="http://www.csdn.net/article/2014-02-07/2818317-Dungeon-Keeper"  title="EA，你是来拉仇恨的吗？"  target="_blank">EA，你是来拉仇恨的吗？</a></li>
+														</ul>
+						</div>
+						<div  id="con_three_2"  style="display:none">
+							<ul  class="list_1 ">
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-10/2818344-Best-Responsive-Web-Design-Testing-Tools"  title="推荐15款响应式Web设计测试工具"  target="_blank">推荐15款响应式Web设计测试工具</a></li>
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-10/2818351-open-source-5-companies-code-projects"  title="开源世界应该致谢的五家公司 Square、LinkedIn、Google..."  target="_blank">开源世界应该致谢的五家公司 Square、LinkedIn、Google...</a></li>
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-10/2818342-huizhengtech-interview"  title="慧正通软技术副总裁：工作流引擎厂商的生存之道"  target="_blank">慧正通软技术副总裁：工作流引擎厂商的生存之道</a></li>
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-10/2818339-TIOBE-Index-for-February-2014"  title="TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10"  target="_blank">TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10</a></li>
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-08/2818336-12-predictions-for-the-future-of-programming"  title="未来编程趋势的12个猜想 命令行永存..."  target="_blank">未来编程趋势的12个猜想 命令行永存...</a></li>
+							 
+							<li><a  href="http://www.csdn.net/article/2014-02-07/2818322-weather-forecast-api-for-developing-apps"  title="极端气候频现 五款开发天气预报应用的API"  target="_blank">极端气候频现 五款开发天气预报应用的API</a></li>
+													
+							</ul>
+						</div>
+					</div>
+				</div>
+
+					
+
+				
+                
+								
+				<div  id="Tab4"  class="relational">
+					<h2  class="tab_1 Menubox">
+						<ul>
+						<li  id="four1"   class="hover">网友评论有（<span  class="cmtcount">22</span>）</li>
+						</ul>
+					</h2>
+					<div  class="con Contentbox">
+						<div  id="con_four_1"  class="hover">
+							<div  class="comments">
+							
+								<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/review.js"></script>
+								<div  class="blkcomments">
+									<div  id="comment">
+										<span  id="jQCmt_params"  dateline="1346318535"  url="http://sd.csdn.net/a/20120830/2809407.html"  style="display: none;">缓存永远不是性能优化</span> 										<script  language="javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/jQCmt.js"></script><div  id="commentlist"  style="display: block;"><ul  class="commentlist"><li  id="comment_327966"><span  class="u"><a  href="http://my.csdn.net/linustd"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_linustd.jpg"></a></span><span  class="t">linustd 2012-09-03 10:18:50 </span><p>缓存的确不是性能优化。<br><br>我们还是从计算机基础理论寻找缓存的最佳实践吧。<br><br>首要放弃SQl，开发一种内存数据库式样的列表，该内存数据库支持SQL样式的检索，但是不使用SQL，该内存Model就是我们MVC里的Model，内存Model使用适配器同磁盘上的持久化数据库、文件关联。内存Model中只存放热数据，如果内存Model没有找到则通过适配器去查找持久化存储。<br>当然这存在一个延迟验证的问题，因为不可能把持久化存储中的所有依赖关系都存入内存Model。<br>此解决方案，如果硬盘、内存、CPU Cache一样的道理，对程序都是透明的。可惜我们很多牛逼呼呼的网站，整天叫嚣什么memcache
+edias等，使用硬编码在程序里使用缓存，根本就忘记了缓存对程序透明这一基本原则。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(8)</a> <a  id="cmtDig_327966"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(1)</a> <a  id="cmtBry_327966"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(5)</a> <a  id="cmtRpt_327966"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 8条回复..</p><ul  id="ccommentlist_327966"  class="commentlist ccommentlist"><li  id="comment_328077"><span  class="u"><a  href="http://my.csdn.net/netease"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_netease.jpg"></a></span><span>netease 2012-09-03 15:32:02 </span><p>现在关系数据库都支持啊，至少我知道SQL SERVER是可以设置表数据放到内存中的，对程序是完全透明的，不需要修改代码。DBCC PINTABLE ( database_id , table_id ) 就可以</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(1)</a> <a  id="cmtDig_328077"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328077"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328077"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_328165"><span  class="u"><a  href="http://my.csdn.net/linustd"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_linustd.jpg"></a></span><span>linustd 2012-09-03 20:18:56 </span><blockquote><span><em>引用内容</em>netease 2012-09-03 15:32:02</span>现在关系数据库都支持啊，至少我知道SQL SERVER是可以设置表数据放到内存中的，对程序是完全透明的，不需要修改代码。..</blockquote><p  class="ccmsg">哥们，我说的是内存数据库是在你程序的进程里，不是数据库的进程里。<br>我们通常用的实体类，实体类集合，完全可以设计成一种内存数据库，由这种内存数据库自己去同持久化存储打交道，并且适当的缓存热数据，这才是正确程序设计方向。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(3)</a> <a  id="cmtDig_328165"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328165"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328165"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_328173"><span  class="u"><a  href="http://my.csdn.net/linustd"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_linustd.jpg"></a></span><span>linustd 2012-09-03 20:35:49 </span><p>这里的关键是，我们的文件，不管是UNIX和Windows，都是流的概念，也就是二进制无格式。程序设计不管是java/c++/.net，都是使用了一种流的类来读写文件。<br><br>但是我们难道就不能设计一种结构化的文件结构吗？我们设计一种新的文件系统，我们不用流的概念来读写文件，我们类似用关系数据类似的集合、结构化数据结构来读写文件。<br><br>此乃一个可行的研究方向。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(1)</a> <a  id="cmtDig_328173"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328173"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328173"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_328249"><span  class="u"><a  href="http://my.csdn.net/songjiyuan"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_songjiyuan.jpg"></a></span><span>songjiyuan 2012-09-04 09:06:06 </span><blockquote><span><em>引用内容</em>linustd 2012-09-03 20:18:56</span>哥们，我说的是内存数据库是在你程序的进程里，不是数据库的进程里。<br>我们通常用的实体类，实体类集合，完全可以设计..</blockquote><p  class="ccmsg">这样做, 如果是分布式数据一致性怎么保证, 你说的内容仅针对单点而已, memcached等内存数据库的使用场景不在这</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(1)</a> <a  id="cmtDig_328249"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328249"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328249"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_328263"><span  class="u"><a  href="http://my.csdn.net/linustd"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_linustd.jpg"></a></span><span>linustd 2012-09-04 09:20:35 </span><blockquote><span><em>引用内容</em>songjiyuan 2012-09-04 09:06:06</span>这样做, 如果是分布式数据一致性怎么保证, 你说的内容仅针对单点而已, memcached等内存数据库的使用场景不在这..</blockquote><p  class="ccmsg">这和分布式有关系吗？<br>这影响是使用集群了吗？</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328263"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328263"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328263"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_328783"><span  class="u"><a  href="http://my.csdn.net/fryhunter"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_fryhunter.jpg"></a></span><span>fryhunter 2012-09-05 09:44:12 </span><blockquote><span><em>引用内容</em>linustd 2012-09-03 20:18:56</span>哥们，我说的是内存数据库是在你程序的进程里，不是数据库的进程里。<br>我们通常用的实体类，实体类集合，完全可以设计..</blockquote><p  class="ccmsg">你说的是一个思路，但是这个和流并无冲突。所有内存里面数据，实际上都是二进制而已，关键是你如何读取的问题。其实你的实体类，暂且叫数据类型吧，不过就是二进制数据加上读写操作。所以，你提的概念本质上还是二进制流，只是你再增加一层封装。<br>不过实现你要的功能，难点相对而言还是蛮多的，尤其那一句适当的缓存热数据，这个适当是个比较让人头大的问题。<br>但真的封装出你说的功能，相对而言，还是很不错的。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328783"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328783"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328783"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_329905"><span  class="u"><a  href="http://my.csdn.net/zenme"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_zenme.jpg"></a></span><span>zenme 2012-09-08 00:21:44 </span><blockquote><span><em>引用内容</em>linustd 2012-09-03 20:35:49</span>这里的关键是，我们的文件，不管是UNIX和Windows，都是流的概念，也就是二进制无格式。程序设计不管是java/c+..</blockquote><p  class="ccmsg">数据库是怎么来的，就是当文件方式已经不能满足对数据的管理的需求时才提出来的</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_329905"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_329905"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_329905"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li><li  id="comment_331045"><span  class="u"><a  href="http://my.csdn.net/netease"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_netease.jpg"></a></span><span>netease 2012-09-12 20:12:31 </span><blockquote><span><em>引用内容</em>linustd 2012-09-03 20:18:56</span>哥们，我说的是内存数据库是在你程序的进程里，不是数据库的进程里。<br>我们通常用的实体类，实体类集合，完全可以设计..</blockquote><p  class="ccmsg">Linq To Object之类的技术就可以对内存对象的SQL查询，但是海量对象的话，还需要在内存中维护索引，不然效率是个问题。对象数据库（比如db4o）进行一定优化也可以，提前加载对象到内存中，只不过查询语言是OQL。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_331045"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_331045"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_331045"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a> </p></li></ul></li><li  id="comment_328978"><span  class="u"><a  href="http://my.csdn.net/datafansbj"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_datafansbj.jpg"></a></span><span  class="t">datafansbj 2012-09-05 14:51:44 </span><p>胡言乱语，不知在说什么。<br>性能优化的结果是性能的提升，只要能提升，都是优化的方法（当然前提是结果是正确的）。<br>缓存是提升性能的有效方法，怎么又不是性能优化了呢？<br>只能说缓存是性能优化的工具而不是目的。<br>缓存适合频繁操作的场景，并不适合不频繁操作的场景。<br>飞机比火车快，但是不能得出这样的结论：因为飞机比火车快，所以我从北京到天津必须坐飞机以加快速度。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328978"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(3)</a> <a  id="cmtBry_328978"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328978"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328978"  class="commentlist ccommentlist"></ul></li><li  id="comment_328734"><span  class="u"><a  href="http://my.csdn.net/test_lockxxx"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_test_lockxxx.jpg"></a></span><span  class="t">test_lockxxx 2012-09-05 08:44:29 </span><p>硬盘的读写速度如果达到内存的速度，谁还用缓存</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328734"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328734"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328734"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328734"  class="commentlist ccommentlist"></ul></li><li  id="comment_328701"><span  class="u"><a  href="http://my.csdn.net/jiangugv"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_jiangugv.jpg"></a></span><span  class="t">jiangugv 2012-09-05 00:18:01 </span><p>对热点数据用缓存是没错的，读内存再怎么都比读数据库快；同时缓存也带来程序的逻辑困难。<br>对站点的性能优化，缓存只是一个优化点，服务器优化，文件压缩，网络优化都是重点，重要的是找到系统的瓶颈，这个时候就需要进行模拟性能测试才行！</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328701"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328701"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328701"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328701"  class="commentlist ccommentlist"></ul></li><li  id="comment_328683"><span  class="u"><a  href="http://my.csdn.net/jspkey"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_jspkey.jpg"></a></span><span  class="t">jspkey 2012-09-04 23:20:37 </span><p>看问题的角度粒度不同，得出的结论也就不同</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328683"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(1)</a> <a  id="cmtBry_328683"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328683"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328683"  class="commentlist ccommentlist"></ul></li><li  id="comment_328388"><span  class="u"><a  href="http://my.csdn.net/boluo424"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_boluo424.jpg"></a></span><span  class="t">boluo424 2012-09-04 12:16:48 </span><p>这是技术发展大体系下的必然分工，也是运维摆脱苦力劳作，继续往更深技术发展的必然之路。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328388"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328388"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328388"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328388"  class="commentlist ccommentlist"></ul></li><li  id="comment_328386"><span  class="u"><a  href="http://my.csdn.net/boluo424"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_boluo424.jpg"></a></span><span  class="t">boluo424 2012-09-04 12:13:48 </span><p>那啥是性能优化呢？</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328386"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328386"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328386"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328386"  class="commentlist ccommentlist"></ul></li><li  id="comment_328224"><span  class="u"><a  href="http://my.csdn.net/haoshen1987"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_haoshen1987.jpg"></a></span><span  class="t">haoshen1987 2012-09-04 06:55:58 </span><p>缓存的首要条件是要满足局部性原理，而且相关算法和缓存大小的设置对性能影响相当大，是要通过大量统计才能做出合理方案的，小数据量的实验根本不能说明问题。这在计算机基础理论里说的很明白。不能因为在使用缓存时效率没提高就说缓存不能做到性能优化，这只能说明缓存使用不当。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328224"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(4)</a> <a  id="cmtBry_328224"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328224"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328224"  class="commentlist ccommentlist"></ul></li><li  id="comment_328188"><span  class="u"><a  href="http://my.csdn.net/SisMVG"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_SisMVG.jpg"></a></span><span  class="t">SisMVG 2012-09-03 21:54:38 </span><p>数据块大而且连续这个时候用缓存比较好，要是像碎片一样的数据反而会消耗时间</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328188"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328188"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328188"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328188"  class="commentlist ccommentlist"></ul></li><li  id="comment_328010"><span  class="u"><a  href="http://my.csdn.net/tkminigame"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_tkminigame.jpg"></a></span><span  class="t">tkminigame 2012-09-03 11:38:22 </span><p>只能说此cache非彼cache，大家的说的cache都不同，实现方法不同，怎么做比较。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_328010"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_328010"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_328010"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_328010"  class="commentlist ccommentlist"></ul></li><li  id="comment_327946"><span  class="u"><a  href="http://my.csdn.net/guilipan"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_guilipan.jpg"></a></span><span  class="t">guilipan 2012-09-03 10:03:02 </span><p>对缓存应当是利用而不是滥用</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_327946"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(1)</a> <a  id="cmtBry_327946"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_327946"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_327946"  class="commentlist ccommentlist"></ul></li><li  id="comment_327929"><span  class="u"><a  href="http://my.csdn.net/chishaxie"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_chishaxie.jpg"></a></span><span  class="t">chishaxie 2012-09-03 09:29:21 </span><p>缓存对有热点的系统不能加速！？</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_327929"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(0)</a> <a  id="cmtBry_327929"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_327929"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_327929"  class="commentlist ccommentlist"></ul></li><li  id="comment_327921"><span  class="u"><a  href="http://my.csdn.net/Funniest"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/3_Funniest.jpg"></a></span><span  class="t">Funniest 2012-09-03 09:19:56 </span><p>缓存对间歇式系统很合适。</p><p  class="detail"><a  href="http://www.csdn.net/article/2012-08-30/2809407###" >回复(0)</a> <a  id="cmtDig_327921"  href="http://www.csdn.net/article/2012-08-30/2809407###" >支持(1)</a> <a  id="cmtBry_327921"  href="http://www.csdn.net/article/2012-08-30/2809407###" >反对(0)</a> <a  id="cmtRpt_327921"  href="http://www.csdn.net/article/2012-08-30/2809407###" >举报(0)</a>  | 0条回复..</p><ul  id="ccommentlist_327921"  class="commentlist ccommentlist"></ul></li></ul></div><div  id="commentpage"><a  href="http://www.csdn.net/article/2012-08-30/2809407###"  class="gray">第一页</a><a  href="http://www.csdn.net/article/2012-08-30/2809407###"  class="gray">上一页</a><a  href="http://www.csdn.net/article/2012-08-30/2809407###"  class="selc">1</a><a  href="http://www.csdn.net/article/2012-08-30/2809407###"  class="gray">下一页</a><a  href="http://www.csdn.net/article/2012-08-30/2809407###"  class="gray">最末页</a></div><div  id="commentform"  class="commentform"><div  class="commenttitle"><em  id="commentwords"></em><strong><a  name="postcomment"  href="http://www.csdn.net/article/2012-08-30/2809407#postcomment">发表评论</a>/共<span  class="reviewcount">22</span>条评论</strong>..</div><div  id="cmtMsg"></div><form  action="http://comment2.csdn.net/comment.php?ac=comment"  method="post" ><input  type="hidden"  name="ac"  value="comment"><input  type="hidden"  name="ccid"  value="0"><input  type="hidden"  name="fid"  value=""><input  type="hidden"  name="tid"  value=""><input  type="hidden"  name="rid"  value=""><input  type="hidden"  name="url"  value="http://sd.csdn.net/a/20120830/2809407.html"><textarea  name="message"     style="width: 614px;"></textarea><br><input  type="submit"  class="submit"  name="submit"  value="发表评论"><span  id="cLPnl">欢迎你，<a  href="http://hi.csdn.net/zc80330582"  target="_blank">zc80330582</a></span><label  style="cursor:pointer;display:none;"> <input  type="checkbox"  name="anonymous"  checked="checked"  value="1" >匿名评论(无需注册)</label></form><div  class="cmtNotice"><strong>请您注意</strong><br>·自觉遵守：爱国、守法、自律、真实、文明的原则<br>·尊重网上道德，遵守《全国人大常委会关于维护互联网安全的决定》及中华人民共和国其他各项有关法律法规<br>·严禁发表危害国家安全，破坏民族团结、国家宗教政策和社会稳定，含侮辱、诽谤、教唆、淫秽等内容的作品<br>·承担一切因您的行为而直接或间接导致的民事或刑事法律责任<br>·您在CSDN新闻评论发表的作品，CSDN有权在网站内保留、转载、引用或者删除<br>·参与本评论即表明您已经阅读并接受上述条款</div></div><div  id="replycomment"  style="display:none;"><div  class="replyform commentform"><div  class="commenttitle"><em  id="replywords"></em><strong>回复</strong></div><div  id="rplMsg"></div><form  action="http://comment2.csdn.net/comment.php?ac=reply"  method="post" ><input  type="hidden"  name="ac"  value="reply"><input  type="hidden"  name="ccid"  id="rCcid"  value="0"><input  type="hidden"  name="dcid"  id="rDcid"  value="0"><input  type="hidden"  name="fid"  value=""><input  type="hidden"  name="tid"  value=""><input  type="hidden"  name="rid"  value=""><input  type="hidden"  name="url"  value="http://sd.csdn.net/a/20120830/2809407.html"><textarea  name="message"   ></textarea><br><input  type="submit"  class="submit"  name="submit"  value="回复评论"><span  id="cLPnl">欢迎你，<a  href="http://hi.csdn.net/zc80330582"  target="_blank">zc80330582</a></span><label  style="cursor:pointer;display:none;"> <input  type="checkbox"  name="anonymous"  checked="checked"  value="1"  class="rAnonymous" >匿名评论(无需注册)</label></form></div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				
+				</div>
+								
+			</div>
+			
+			
+		</div>
+		
+		<div  class="right">	
+						
+			<div  class="ad_300_250"><script  type="text/javascript">BAIDU_CLB_fillSlot("421715");</script><div  id="BAIDU_DUP_wrapper_421715_0"></div><script  type="text/javascript"><!--
+google_ad_client = "ca-pub-1076724771190722";
+/* 新闻频道内页300&#42;250 */
+google_ad_slot = "4694489333";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe  width="300"  height="250"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins></div>
+			
+			
+			<div  style="border: 1px #ccc solid; font-size:14px; padding:10px; margin-bottom:20px;">
+            	 <ul  style=" float:right; width: 160px; padding:5px;">
+                    <li  style="font-size:16px; font-weight:bold;">CSDN官方微信</li>
+                    <li  style="float:left;">扫描二维码,向CSDN吐槽</li>
+                    <li>微信号：CSDNnews</li>
+                </ul>
+                <img  src="./缓存永远不是性能优化-CSDN.NET_files/28_121116100507_1.jpg"  width="100"  height="100">
+            </div>
+			
+			
+			<div  style="border: 1px #ccc solid; font-size:14px; padding:3px; margin-bottom:20px; font-weight:bold;"><img  style="vertical-align:middle; margin-right:10px;"  src="./缓存永远不是性能优化-CSDN.NET_files/icon_ipad.png"><a  href="http://subject.csdn.net/programmer-ipad/"  target="_blank">程序员杂志for iPad 免费下载 </a></div>
+			
+			<div  class="sitemap"><a  href="http://www.csdn.net/article/lastnews"  target="_blank">每日资讯快速浏览 </a></div>	
+						
+			<div  class="report">
+				<h2  class="tit_2"><p>微博关注</p></h2>
+								<iframe  width="100%"  height="300"  class="share_self"  frameborder="0"  scrolling="no"  src="./缓存永远不是性能优化-CSDN.NET_files/index.htm"></iframe>
+								
+			</div>
+ 	
+			
+			<div  class="rtbrill"  id="digestComment"  style="display: none;"></div>		
+						
+			<div  id="Tab2"  class="hot_weekly">
+				<h2  class="tit_2"><p>相关热门文章</p></h2>
+				<div  class="con Contentbox">
+					<div  id="con_two_2">
+						<ul  class="list_1 ">
+													<li><a  href="http://www.csdn.net/article/2014-02-08/2818336-12-predictions-for-the-future-of-programming"  title="未来编程趋势的12个猜想 命令行永存..."  target="_blank">未来编程趋势的12个猜想 命令行永存...</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-05/2818310-facebook-ops-staffer-manages-20000-servers"  title="Facebook运维内幕曝光：一人管理2万台服务器"  target="_blank">Facebook运维内幕曝光：一人管理2万台服务器</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-07/2818322-weather-forecast-api-for-developing-apps"  title="极端气候频现 五款开发天气预报应用的API"  target="_blank">极端气候频现 五款开发天气预报应用的API</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-07/2818313-Apache-Commons-FileUpload-and-Apache-Tomcat-DoS"  title="文件上传组件导致Apache DoS安全漏洞"  target="_blank">文件上传组件导致Apache DoS安全漏洞</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-10/2818339-TIOBE-Index-for-February-2014"  title="TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10"  target="_blank">TIOBE 2014年2月编程语言排行榜：VB.NET首次进入TOP 10</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-10/2818351-open-source-5-companies-code-projects"  title="开源世界应该致谢的五家公司 Square、LinkedIn、Google..."  target="_blank">开源世界应该致谢的五家公司 Square、LinkedIn、Google...</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-10/2818344-Best-Responsive-Web-Design-Testing-Tools"  title="推荐15款响应式Web设计测试工具"  target="_blank">推荐15款响应式Web设计测试工具</a></li>
+													<li><a  href="http://www.csdn.net/article/2014-02-10/2818342-huizhengtech-interview"  title="慧正通软技术副总裁：工作流引擎厂商的生存之道"  target="_blank">慧正通软技术副总裁：工作流引擎厂商的生存之道</a></li>
+												</ul>
+					</div>
+				</div>
+			</div>
+			  
+			  
+			<div  class="hot_tag">
+				<h2  class="tit_2"><p><a  href="http://www.csdn.net/tag">热门标签</a></p></h2>
+				<ul  class="list_1">
+				 
+									 
+										<li><a  href="http://www.csdn.net/tag/java"  title="Java"  target="_blank">Java</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/vpn"  title="VPN"  target="_blank">VPN</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/android"  title="Android"  target="_blank">Android</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/ios"  title="iOS"  target="_blank">iOS</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/erp"  title="ERP"  target="_blank">ERP</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/ie10"  title="IE10"  target="_blank">IE10</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/eclipse"  title="Eclipse"  target="_blank">Eclipse</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/crm"  title="CRM"  target="_blank">CRM</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/javascript"  title="JavaScript"  target="_blank">JavaScript</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/ubuntu"  title="Ubuntu"  target="_blank">Ubuntu</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/nfc"  title="NFC"  target="_blank">NFC</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/wap"  title="WAP"  target="_blank">WAP</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/jquery"  title="jQuery"  target="_blank">jQuery</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  title="数据库"  target="_blank">数据库</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/bi"  title="BI"  target="_blank">BI</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/html5"  title="HTML5"  target="_blank">HTML5</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/spring"  title="Spring"  target="_blank">Spring</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/apache"  title="Apache"  target="_blank">Apache</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/hadoop"  title="Hadoop"  target="_blank">Hadoop</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/.net"  title=".NET"  target="_blank">.NET</a></li>
+									 
+										<li><a  href="http://www.csdn.net/tag/api"  title="API"  target="_blank">API</a></li>
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+									 
+											
+				</ul>
+			</div>
+			
+			
+			
+			<div  class="box share">
+    			<h2  class="tit_2"><p><a  target="_blank"  href="http://share.csdn.net/">CSDN Share PPT下载</a></p></h2>
+    							
+      			<dl>
+      				
+      	      	    <dt  class="clearfix"><a  target="_blank"  href="http://share.csdn.net/slides/1617"  title="Making Magic with F# Type Providers"><img  src="./缓存永远不是性能优化-CSDN.NET_files/cf1a47a0e50e5d0e398e9f69cad4dcbc_thumb.jpg"></a>
+      	      	    <a  target="_blank"  href="http://share.csdn.net/slides/1617"  title="Making Magic with F# Type Providers">Making Magic with F# Type Providers</a>
+      	      	    </dt>
+                   
+                </dl>              	
+      			
+                				
+      			<dl>
+      				
+      	      	    <dt  class="clearfix"><a  target="_blank"  href="http://share.csdn.net/slides/1608"  title="Spring MVC 3.0实战指南"><img  src="./缓存永远不是性能优化-CSDN.NET_files/5a2f721861ab50db47d43dd5f219463c_thumb.jpg"></a>
+      	      	    <a  target="_blank"  href="http://share.csdn.net/slides/1608"  title="Spring MVC 3.0实战指南">Spring MVC 3.0实战指南</a>
+      	      	    </dt>
+                   
+                </dl>              	
+      			
+                				
+      			<dl>
+      				
+      	      	    <dt  class="clearfix"><a  target="_blank"  href="http://share.csdn.net/slides/1548"  title="指针"><img  src="./缓存永远不是性能优化-CSDN.NET_files/a2c8608adc3834f51156ef4b5dc253c0_thumb.jpg"></a>
+      	      	    <a  target="_blank"  href="http://share.csdn.net/slides/1548"  title="指针">指针</a>
+      	      	    </dt>
+                   
+                </dl>              	
+      			
+                				
+      			<dl>
+      				
+      	      	    <dt  class="clearfix"><a  target="_blank"  href="http://share.csdn.net/slides/1547"  title="编译预处理"><img  src="./缓存永远不是性能优化-CSDN.NET_files/35b8964a40c4bd21c428429cb084aee6_thumb.jpg"></a>
+      	      	    <a  target="_blank"  href="http://share.csdn.net/slides/1547"  title="编译预处理">编译预处理</a>
+      	      	    </dt>
+                   
+                </dl>              	
+      			
+                	
+</div>
+			
+			
+			
+			
+			<div  class="baidu"  style="height: 279px;overflow: hidden;position: relative; padding-top: 20px;">
+				<div  style="background-color: #fff;position: absolute;width: 300px;">
+				<h2  class="tit_2"><p>推荐内容</p></h2>
+				</div>
+				<div  id="hm_t_7245"  style="background: url(http://news.csdn.net/images/baidu_bg.png) no-repeat -5px -2px;padding-left: 9px;margin-top: 30px;"><div  class="hm-t-container"><div  class="hm-t-main">
+<div  class="hm-t-header">
+推荐内容
+</div>
+<ul  class="hm-t-list hm-t-list-txt">
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2009-11-12/273103-214747"  target="_blank"  title="腾讯员工平均月薪2.7万 1/4获52万股票激励"  data-pos="0">
+腾讯员工平均月薪2.7万 1/4获52万股票激励
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-07-19/2816280-lixue"  target="_blank"  title="90后的代码界“女神”李雪：在编程中找到自己的“灵魂”"  data-pos="1">
+90后的代码界“女神”李雪：在编程中找到自己的“灵魂”
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-08-22/2816656-Average-Income-per-Programming-Language"  target="_blank"  title="编程语言收入榜 Java排第三"  data-pos="2">
+编程语言收入榜 Java排第三
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-04-12/2814868-buckley-minomosters"  target="_blank"  title="曾经的IT神童，现在在忙什么？"  data-pos="3">
+曾经的IT神童，现在在忙什么？
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2012-12-10/2812562-Joe-Kaufman-corona"  target="_blank"  title="史上最牛独立开发者：花20美元狂赚100万美元"  data-pos="4">
+史上最牛独立开发者：花20美元狂赚100万美元
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-04-09/2814810-58.com-security"  target="_blank"  title="58同城的“烦恼”——8K月薪招安全工程师引发的入侵"  data-pos="5">
+58同城的“烦恼”——8K月薪招安全工程师引发的入侵
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-08-20/2816612-the-best-of-the-worst-the-dirty-it-jobs-hall-of-shame"  target="_blank"  title="“肮脏的”IT工作排行榜"  data-pos="6">
+“肮脏的”IT工作排行榜
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-12-24/2817902-Google-Go-Compiler"  target="_blank"  title="Google抛弃C语言"  data-pos="7">
+Google抛弃C语言
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2012-05-15/2805584"  target="_blank"  title="三种东西永远不要放到数据库里"  data-pos="8">
+三种东西永远不要放到数据库里
+</a>
+</div>
+</li>
+<li  class="hm-t-item hm-t-item-txt">
+<div  class="hm-t-txt-wrapper">
+<a  class="hm-t-txt"  href="http://www.csdn.net/article/2013-12-10/2817760-5-learntocode-sites"  target="_blank"  title="初学编程者必知的五个网站"  data-pos="9">
+初学编程者必知的五个网站
+</a>
+</div>
+</li>
+</ul>
+<div  class="hm-t-footer"><a  href="http://tuijian.baidu.com/"  target="_blank">百度推荐</a></div>
+</div></div></div>
+			</div> 
+			
+			
+			
+					</div>
+	</div>
+			<div  class="hot_topic">
+		<h1><span  class="title">热门专区</span></h1>
+		<ul>
+						<li><a  href="http://g.csdn.net/5253319"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/IBM PMI02.jpg"  alt=""></a><span  class="title"><a  href="http://g.csdn.net/5253319"  target="_blank">IBM新兴技术大学</a></span></li>
+					<li><a  href="http://subject.csdn.net/win8hackathon/"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/win8160x12002.jpg"  alt=""></a><span  class="title"><a  href="http://subject.csdn.net/win8hackathon/"  target="_blank">win8开发马拉松</a></span></li>
+					<li><a  href="http://g.csdn.net/5261230"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/160x120(1)01.jpg"  alt=""></a><span  class="title"><a  href="http://g.csdn.net/5261230"  target="_blank">高通开发者专区 </a></span></li>
+					<li><a  href="http://g.csdn.net/5261074"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/160x12001.jpg"  alt=""></a><span  class="title"><a  href="http://g.csdn.net/5261074"  target="_blank">IE11有奖调查</a></span></li>
+					<li><a  href="http://hc.csdn.net/"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/amd-2012081603.jpg"  alt=""></a><span  class="title"><a  href="http://hc.csdn.net/"  target="_blank">异构编程专区</a></span></li>
+					</ul>
+	</div>
+		<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/like.js"></script>
+	<script>
+  window.WebSocket = window.WebSocket || window.MozWebSocket;
+  if( window.WebSocket ) {
+    var  wsServer = 'ws://geektest.csdn.net/'; 
+    var websocket = new window.WebSocket(wsServer, 'cmslike');
+
+    websocket.onopen = function (evt) { onOpen(evt) }; 
+    websocket.onclose = function (evt) { onClose(evt) }; 
+    websocket.onmessage = function (evt) { onMessage(evt) }; 
+    websocket.onerror = function (evt) { onError(evt) }; 
+    function onOpen(evt) {
+    } 
+    function onClose(evt) { 
+    } 
+    function onMessage(evt) {
+      var data = JSON.parse(evt.data);
+      var ding = $('.support dd').text();
+      if(ding != '' && data.support > ding){
+        $('.support dd').text(data.support);
+      };
+      var cai = $('.oppose dd').text();
+      if (cai != '' && data.oppose > cai) {
+        $('.oppose dd').text(data.oppose);
+      };
+    } 
+    function onError(evt) { 
+    }
+  }
+		$(document).ready(function(){
+			var digg_id=$("#digg_id").val();
+			$('.digg').like({
+				article_id: digg_id, // 文章id
+				ding_class: 'support', // 顶的class
+				cai_class: 'oppose', // 踩的class
+        domain: 'news.csdn.net',
+				callback: function(data) //处理数据方法
+				{
+          if(data.succ == 1)
+          {
+            $('.support dd').text(data.info.ding);
+            $('.oppose dd').text(data.info.ding);
+          }
+					if(data.succ == -2)
+					{
+						if(confirm(data.msg)){
+							window.location.href = "http://passport.csdn.net/UserLogin.aspx?from=http://news.csdn.net%2Farticle%2F2012-08-30%2F2809407";
+							return false;
+						}
+					}
+					if(data.succ == -1)
+					{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+	</script>
+	<script  type="text/javascript">
+		$(document).ready(function(){ 
+			var href=document.location.href;	
+
+			if(href.split("/")[6] == undefined){
+				$("#click_"+1).addClass("on");
+			}else{
+				var hrefpageno=href.split("/")[6];		
+				$("#click_"+hrefpageno).addClass("on");
+			}	
+
+			new $.AutoScroll({
+				wrap:$('#job_ul'),scrollCount:1,interval:1500
+			});
+		expandcontent('sc4', tabobjlinks[3]);
+			$.getJSON('http://ptcms.csdn.net/article/service/article_count?preview=1&aid=2809407&jsonpcallback=?',function(data){
+				$('.view_time').html(data+'次阅读');
+			});
+
+		});
+		function linkfirst(arcid){
+			$("#linkfirst").attr("href","article.html?arcid="+arcid+"&pageno=1");			
+		}
+		function preclick(arcid){
+			var href=window.location.href;		
+			var hrefpageno=href.split("&")[1];		
+			var pageno=hrefpageno.split("=")[1];
+			var hrefno=pageno-1;
+			if(hrefno <1){
+				hrefno = 1;
+			}
+			$("#preclick").attr("href","article.html?arcid="+arcid+"&pageno="+hrefno);
+		}
+	
+		function nextclick(total,arcid){
+			var href=window.location.href;		
+			var hrefpageno=href.split("&")[1];		
+			var pageno=hrefpageno.split("=")[1];
+			var hrefno=parseInt(pageno)+1;
+			if(hrefno >total){
+				hrefno = total;
+			}
+			$("#nextclick").attr("href","article.html?arcid="+arcid+"&pageno="+hrefno);
+		}
+	
+		function firstclick(arcid){
+			$("#firstclick").attr("href","article.html?arcid="+arcid+"&pageno=1");	
+		}
+		
+		function lastclick(total,arcid){
+			$("#lastclick").attr("href","article.html?arcid="+arcid+"&pageno="+total);
+		}
+		function linktitle(num,arcid){
+			var numid=parseInt(num)+1;
+			$("#linktitle_"+num).attr("href","article.html?arcid="+arcid+"&pageno="+numid);
+		}
+		function pongoad2(val){
+			$("#job_ul").html(val);
+		}
+		var callbackfun="pongoad2";
+		document.write(unescape('%3Cscript src="http://a.pongo.cn/Job/GetAdForCallBack%3Fid%3D2%26UrlAdParam%3D'+encodeURIComponent(location.href)+'%26&CallBack%3D'+callbackfun+'" type="text/javascript"%3E%3C/script%3E'));
+	</script><script  src="./缓存永远不是性能优化-CSDN.NET_files/GetAdForCallBack"  type="text/javascript"></script>
+
+
+	<script>
+	   $(function () {
+	    var wrap = function () {
+	        var elems = document.getElementsByClassName('syntaxhighlighter');
+	        for (var j = 0; j < elems.length; ++j) {
+	            var sh = elems[j];
+	            var gLines = sh.getElementsByClassName('gutter')[0].getElementsByClassName('line');
+	            var cLines = sh.getElementsByClassName('code')[0].getElementsByClassName('line');
+	            var stand = 15;
+	            for (var i = 0; i < gLines.length; ++i) {
+	                var h = $(cLines[i]).height();
+	                if (h != stand) {
+	                    //console.log(i);
+	                    gLines[i].setAttribute('style', 'height: ' + h + 'px !important;');
+	                }
+	            }
+	        }
+	     };
+	    var whenReady = function () {
+	        if ($('.syntaxhighlighter').length === 0) {
+	            setTimeout(whenReady, 0);
+	        } else {
+	            wrap();
+	        }
+	    };
+	    whenReady();
+	});
+	</script>
+
+	<script  type="text/javascript">
+ 	 document.write('<script src="http' + (/^https/.test(location.href) ? 's' : '') + '://csdnimg.cn/public/highlighter/js/highlighter.js?' + (new Date()/300000|0) + '"></'+'script>');
+	</script><script  src="./缓存永远不是性能优化-CSDN.NET_files/highlighter.js"></script>
+	
+	
+	<script  type="text/javascript">BAIDU_CLB_fillSlot("119835");</script><div  id="BAIDU_DUP_wrapper_119835_0"></div>
+  <img  alt="Top_arrow"  id="top_arrow"  class="top_arrow"  src="./缓存永远不是性能优化-CSDN.NET_files/top_arrow.png"  style="display: block; cursor: pointer;">
+	<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/top_arrow.js"></script>
+  
+	
+      <script  type="text/javascript">
+      document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date()/120000).toString(36) + '="></'+'script>');
+      </script><script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./缓存永远不是性能优化-CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">QQ客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="http://bbs.csdn.net/forums/Service"  target="_blank"  class="online">论坛反馈</a> <a  href="mailto:webmaster@csdn.net"  class="email">联系邮箱：webmaster@csdn.net</a> <span  class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./缓存永远不是性能优化-CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px; left: -72px; top: 18px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./缓存永远不是性能优化-CSDN.NET_files/notify.js"></script>
+	
+</div>
+
+<script  type="text/javascript">
+<!--
+/*第一种形式 第二种形式 更换显示样式*/
+function setTab(name,cursel,n){
+	for(i=1;i<=n;i++){
+		var menu=document.getElementById(name+i);
+		var con=document.getElementById("con_"+name+"_"+i);
+		menu.className=i==cursel?"hover":"";
+		con.style.display=i==cursel?"block":"none";
+	}
+}
+//-->
+</script>
+<script  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./缓存永远不是性能优化-CSDN.NET_files/msg.popup.js"></script> 
+
+<script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./缓存永远不是性能优化-CSDN.NET_files/toolbar.js"></script>
+
+
+ 
+
+
+
+</body></html>

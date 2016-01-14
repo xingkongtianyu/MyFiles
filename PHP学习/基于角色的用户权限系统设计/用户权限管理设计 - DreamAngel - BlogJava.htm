@@ -1,0 +1,945 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html -->
+<html><head id="Head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	用户权限管理设计 - DreamAngel - BlogJava
+</title><meta id="metaKeywords" name="keywords" content="用户权限管理设计"><link type="text/css" rel="stylesheet" href="./用户权限管理设计 - DreamAngel - BlogJava_files/common.css"><link id="MainCss" type="text/css" rel="stylesheet" href="./用户权限管理设计 - DreamAngel - BlogJava_files/style.css"><link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://www.blogjava.net/DreamAngel/rss.aspx"><script async="" type="text/javascript" src="./用户权限管理设计 - DreamAngel - BlogJava_files/pubads_impl_31.js"></script><script type="text/javascript" src="./用户权限管理设计 - DreamAngel - BlogJava_files/osd.js"></script></head>
+<body>
+    <form name="Form1" method="post" action="./用户权限管理设计 - DreamAngel - BlogJava_files/用户权限管理设计 - DreamAngel - BlogJava.htm" id="Form1">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="
+__VIEWSTATE" value="">
+</div>
+
+<script type="text/javascript" async="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/ga.js"></script><script async="" type="text/javascript" src="./用户权限管理设计 - DreamAngel - BlogJava_files/gpt.js"></script><script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./用户权限管理设计 - DreamAngel - BlogJava_files/WebResource.axd" type="text/javascript"></script>
+
+<script language="JavaScript">
+									function ctlent(evt,id)
+											{
+												if(evt.ctrlKey && evt.keyCode == 13)
+												{	
+													try
+													{
+														TempSave(id);
+													}
+													catch(ex)
+													{
+													}
+													finally
+													{
+													    __doPostBack('AjaxHolder$PostComment$btnSubmit','')
+													}
+												}
+		
+												}</script>
+												<script language="JavaScript">function SetReplyAuhor(author){document.getElementById('AjaxHolder_PostComment_tbComment').value+="@"+author+"\n";document.getElementById('AjaxHolder_PostComment_tbComment').focus();return false}</script>
+<script src="./用户权限管理设计 - DreamAngel - BlogJava_files/ScriptResource.axd" type="text/javascript"></script>
+<script src="./用户权限管理设计 - DreamAngel - BlogJava_files/ScriptResource(1).axd" type="text/javascript"></script>
+<script src="./用户权限管理设计 - DreamAngel - BlogJava_files/ScriptResource(2).axd" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+        
+
+<div id="header">
+	
+
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.blogjava.net/DreamAngel/">DreamAngel</a><br>
+		如果你希望成功，以恒心为良友，以经验为参谋，以小心为兄弟，以希望为哨兵。
+	</div>
+</div>
+
+</div>
+<div id="mylinks">
+
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.blogjava.net/">BlogJava</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.blogjava.net/DreamAngel/">首页</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_NewPostLink" class="menu" href="http://www.blogjava.net/DreamAngel/admin/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_ContactLink" accesskey="9" class="menu" href="http://www.blogjava.net/DreamAngel/contact.aspx?id=1">联系</a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Syndication" class="menu" href="http://www.blogjava.net/DreamAngel/rss">聚合</a><a id="MyLinks1_XMLLink" href="http://www.blogjava.net/DreamAngel/rss"><img src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml.gif" style="border-width:0px;"></a>&nbsp;&nbsp;&nbsp;
+<a id="MyLinks1_Admin" class="menu" href="http://www.blogjava.net/DreamAngel/admin/EditPosts.aspx">管理</a>
+</div>
+<div id="mytopmenu">
+	
+		
+
+<div class="blogStats">随笔 - 147&nbsp;
+文章 - 47&nbsp;
+trackbacks - 0
+
+</div> 
+	
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			<table id="Calendar1_entryCal" class="Cal" cellspacing="0" cellpadding="0" title="日历" border="0" style="border-width:1px;border-style:solid;border-collapse:collapse;border:0px">
+	<tbody><tr><td colspan="7" style="background-color:Transparent;"><table class="CalTitle" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
+		<tbody><tr><td class="CalNextPrev" style="width:15%;"><a href="javascript:__doPostBack('Calendar1$entryCal','V3408')" style="color:Black" title="转到上一个月">&lt;</a></td><td align="center" style="width:70%;">2009年6月</td><td class="CalNextPrev" align="right" style="width:15%;"><a href="javascript:__doPostBack('Calendar1$entryCal','V3469')" style="color:Black" title="转到下一个月">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center" style="width:14%;">31</td><td align="center" style="width:14%;">1</td><td align="center" style="width:14%;">2</td><td align="center" style="width:14%;">3</td><td align="center" style="width:14%;">4</td><td align="center" style="width:14%;">5</td><td class="CalWeekendDay" align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/06.html"><u>6</u></a></td></tr><tr><td class="CalWeekendDay" align="center" style="width:14%;">7</td><td align="center" style="width:14%;">8</td><td align="center" style="width:14%;">9</td><td align="center" style="width:14%;">10</td><td align="center" style="width:14%;">11</td><td align="center" style="width:14%;">12</td><td class="CalWeekendDay" align="center" style="width:14%;">13</td></tr><tr><td class="CalWeekendDay" align="center" style="width:14%;">14</td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/15.html"><u>15</u></a></td><td align="center" style="width:14%;">16</td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/17.html"><u>17</u></a></td><td align="center" style="width:14%;">18</td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/19.html"><u>19</u></a></td><td class="CalWeekendDay" align="center" style="width:14%;">20</td></tr><tr><td class="CalWeekendDay" align="center" style="width:14%;">21</td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/22.html"><u>22</u></a></td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/23.html"><u>23</u></a></td><td align="center" style="width:14%;">24</td><td align="center" style="width:14%;">25</td><td align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26.html"><u>26</u></a></td><td class="CalWeekendDay" align="center" style="width:14%;">27</td></tr><tr><td class="CalWeekendDay" align="center" style="width:14%;"><a href="http://www.blogjava.net/DreamAngel/archive/2009/06/28.html"><u>28</u></a></td><td align="center" style="width:14%;">29</td><td align="center" style="width:14%;">30</td><td class="CalOtherMonthDay" align="center" style="width:14%;">1</td><td class="CalOtherMonthDay" align="center" style="width:14%;">2</td><td class="CalOtherMonthDay" align="center" style="width:14%;">3</td><td class="CalOtherMonthDay" align="center" style="width:14%;">4</td></tr><tr><td class="CalOtherMonthDay" align="center" style="width:14%;">5</td><td class="CalOtherMonthDay" align="center" style="width:14%;">6</td><td class="CalOtherMonthDay" align="center" style="width:14%;">7</td><td class="CalOtherMonthDay" align="center" style="width:14%;">8</td><td class="CalOtherMonthDay" align="center" style="width:14%;">9</td><td class="CalOtherMonthDay" align="center" style="width:14%;">10</td><td class="CalOtherMonthDay" align="center" style="width:14%;">11</td></tr>
+</tbody></table>
+<br>
+			
+
+<div class="newsItem">
+	我的其它Blog：<br>
+<a href="http://www.cppblog.com/dreamangel/">www.cppblog.com/dreamangel/</a><br>
+<a href="http://blog.csdn.net/fjnu_angel/">blog.csdn.net/fjnu_angel/</a> 
+     
+</div>
+
+			
+<h3>常用链接</h3>
+<ul>
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl01_lnkLinkItem" href="http://www.blogjava.net/DreamAngel/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl02_lnkLinkItem" href="http://www.blogjava.net/DreamAngel/MyComments.html">我的评论</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl03_lnkLinkItem" href="http://www.blogjava.net/DreamAngel/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="SingleColumn1_ctl00_repeaterLinks_ctl04_lnkLinkItem" href="http://www.blogjava.net/DreamAngel/RecentComments.html">最新评论</a></li>
+	</ul>
+<h3>留言簿</h3>
+<ul>
+	<li>
+		<a id="SingleColumn1_ctl01_lnkMessages" href="http://www.blogjava.net/DreamAngel/Contact.aspx?id=1">给我留言</a>
+	</li><li>
+		<a id="SingleColumn1_ctl01_lnkPublicMsgView" href="http://www.blogjava.net/DreamAngel/default.aspx?opt=msg">查看公开留言</a>
+	</li><li>
+		<a id="SingleColumn1_ctl01_lnkPrivateMsgView" href="http://www.blogjava.net/DreamAngel/admin/MyMessages.aspx">查看私人留言</a>
+	</li>
+</ul>
+
+
+
+		<h1 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(147)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/40651.html">ACM(28)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl01_RssLink" title="Subscribe to ACM(28)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/40651.html/rss"><img title="Subscribe to ACM(28)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37496.html">ajax(9)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl02_RssLink" title="Subscribe to ajax(9)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37496.html/rss"><img title="Subscribe to ajax(9)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37988.html">eclipse(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl03_RssLink" title="Subscribe to eclipse(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37988.html/rss"><img title="Subscribe to eclipse(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/42686.html">Game(6)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl04_RssLink" title="Subscribe to Game(6)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/42686.html/rss"><img title="Subscribe to Game(6)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37337.html">Hibernate(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl05_RssLink" title="Subscribe to Hibernate(1)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37337.html/rss"><img title="Subscribe to Hibernate(1)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37302.html">java(20)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl06_RssLink" title="Subscribe to java(20)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37302.html/rss"><img title="Subscribe to java(20)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37237.html">javascript(19)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl07_RssLink" title="Subscribe to javascript(19)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37237.html/rss"><img title="Subscribe to javascript(19)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39631.html">jfreechart(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl08_RssLink" title="Subscribe to jfreechart(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39631.html/rss"><img title="Subscribe to jfreechart(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/42407.html">jfreereport(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl09_RssLink" title="Subscribe to jfreereport(1)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/42407.html/rss"><img title="Subscribe to jfreereport(1)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/24120.html">JSP(17)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl10_RssLink" title="Subscribe to JSP(17)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/24120.html/rss"><img title="Subscribe to JSP(17)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39359.html">linux(4)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl11_RssLink" title="Subscribe to linux(4)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39359.html/rss"><img title="Subscribe to linux(4)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/50092.html">log4j(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl12_RssLink" title="Subscribe to log4j(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/50092.html/rss"><img title="Subscribe to log4j(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/53442.html">Spring(1)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl13_RssLink" title="Subscribe to Spring(1)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/53442.html/rss"><img title="Subscribe to Spring(1)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37382.html">SQL(7)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl14_RssLink" title="Subscribe to SQL(7)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37382.html/rss"><img title="Subscribe to SQL(7)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl15_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37698.html">Struts(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl15_RssLink" title="Subscribe to Struts(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37698.html/rss"><img title="Subscribe to Struts(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl16_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37260.html">Tomcat(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl16_RssLink" title="Subscribe to Tomcat(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37260.html/rss"><img title="Subscribe to Tomcat(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl17_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39630.html">其它(12)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl17_RssLink" title="Subscribe to 其它(12)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/39630.html/rss"><img title="Subscribe to 其它(12)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl18_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/38200.html">正则表达式(3)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl18_RssLink" title="Subscribe to 正则表达式(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/38200.html/rss"><img title="Subscribe to 正则表达式(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl19_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/51676.html">网络管理(2)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl19_RssLink" title="Subscribe to 网络管理(2)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/51676.html/rss"><img title="Subscribe to 网络管理(2)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl20_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37428.html">软件设计(2)</a><a id="SingleColumn1_Categories_CatList_ctl00_LinkList_ctl20_RssLink" title="Subscribe to 软件设计(2)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/37428.html/rss"><img title="Subscribe to 软件设计(2)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(147)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl01_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2013/09.html">2013年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl02_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2013/08.html">2013年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl03_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2013/03.html">2013年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl04_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/08.html">2012年8月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl05_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/07.html">2012年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl06_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/06.html">2012年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl07_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/05.html">2012年5月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl08_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/03.html">2012年3月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl09_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/02.html">2012年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl10_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2012/01.html">2012年1月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl11_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2011/12.html">2011年12月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl12_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2011/11.html">2011年11月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl13_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2011/10.html">2011年10月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl14_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2011/09.html">2011年9月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl15_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2010/05.html">2010年5月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl16_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2010/04.html">2010年4月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl17_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2010/01.html">2010年1月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl18_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/12.html">2009年12月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl19_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/11.html">2009年11月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl20_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/10.html">2009年10月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl21_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/09.html">2009年9月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl22_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/08.html">2009年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl23_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/07.html">2009年7月 (17)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl24_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/06.html">2009年6月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl25_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/05.html">2009年5月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl26_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/04.html">2009年4月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl27_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/03.html">2009年3月 (17)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl28_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/02.html">2009年2月 (16)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl01_LinkList_ctl29_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archive/2009/01.html">2009年1月 (11)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(28)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl01_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/45741.html">foj(3)</a><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl01_RssLink" title="Subscribe to foj(3)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/45741.html/rss"><img title="Subscribe to foj(3)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl02_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41463.html">poj(15)</a><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl02_RssLink" title="Subscribe to poj(15)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41463.html/rss"><img title="Subscribe to poj(15)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl03_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41321.html">spoj(9)</a><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl03_RssLink" title="Subscribe to spoj(9)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41321.html/rss"><img title="Subscribe to spoj(9)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl04_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41429.html">zoj(1)</a><a id="SingleColumn1_Categories_CatList_ctl02_LinkList_ctl04_RssLink" title="Subscribe to zoj(1)" class="listitem" href="http://www.blogjava.net/DreamAngel/category/41429.html/rss"><img title="Subscribe to zoj(1)" src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml(1).gif" style="border-width:0px;"></a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(28)</span></h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl01_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archives/2010/09.html">2010年9月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl02_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archives/2010/07.html">2010年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl03_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archives/2009/09.html">2009年9月 (14)</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl03_LinkList_ctl04_Link" class="listitem" href="http://www.blogjava.net/DreamAngel/archives/2009/08.html">2009年8月 (11)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">喜欢的Blog</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl01_Link" class="listitem" href="http://www.blogjava.net/beansoft">BeanSoft</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl02_Link" class="listitem" href="http://www.blogjava.net/fuhoujun">fuhoujun</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl03_Link" class="listitem" href="http://yoyo.is-programmer.com/">yoyo</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl04_Link" class="listitem" href="http://www.blogjava.net/sitinspring">不朽的飞翔</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl05_Link" class="listitem" href="http://www.blogjava.net/charles">乐在其中</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl06_Link" class="listitem" href="http://www.blogjava.net/1504/">宇天</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl07_Link" class="listitem" href="http://hi.baidu.com/%BA%DA%BF%CD%B7%C0%CF%DF/home">我和hacker有个约会</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl08_Link" class="listitem" href="http://www.blogjava.net/nokiaguy/">银河使者</a></li>
+			
+				<li class="catListItem"> <a id="SingleColumn1_Categories_CatList_ctl04_LinkList_ctl09_Link" class="listitem" href="http://www.blogjava.net/amigoxie/">阿蜜果</a></li>
+			
+				</ul>
+			
+	
+
+
+<script language="JavaScript">
+function SearchGoogle(key,evt,site)
+		{
+			if(evt.keyCode==13 || evt.keyCode==0 || evt.type =='click')
+			{
+				key.focus();
+				var keystr = encodeURIComponent(key.value);
+				url = "http://www.google.com/search?q=";
+				url = url+keystr;
+				url += "&ie=UTF-8&oe=GB2312&hl=zh-CN&domains="+site+"&sitesearch="+site;
+				window.location=url;
+				return false;
+			}
+		}
+</script>
+<h3>搜索</h3>
+<ul>
+	<li>
+		</li><li><input style="WIDTH: 130px" type="text" name="q" id="q">&nbsp;<input type="button" value="搜索" name="sa">
+	</li>
+</ul>
+
+<h3>最新评论
+	<a id="SingleColumn1__2d129a9_RSSHyperlink1" href="http://www.blogjava.net/DreamAngel/CommentsRSS.aspx"><img src="./用户权限管理设计 - DreamAngel - BlogJava_files/xml.gif" style="border-width:0px;"></a></h3>
+<div class="RecentComment">
+	
+			<ul>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__2d129a9_CommentList_ctl01_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/11/01/361312.html#405873">1.&nbsp;re: MyEclipse6.5 注册码生成方法，自己输入用户名</a>
+			</li>
+			<li style="word-break:break-all">
+				真心
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--马骏</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__2d129a9_CommentList_ctl02_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/10/12/361312.html#404904">2.&nbsp;re: MyEclipse6.5 注册码生成方法，自己输入用户名</a>
+			</li>
+			<li style="word-break:break-all">
+				qingdeng
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--qingdeng</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__2d129a9_CommentList_ctl03_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/09/12/284337.html#404006">3.&nbsp;re: 用户权限管理设计</a>
+			</li>
+			<li style="word-break:break-all">
+				@Chuck
+<br>基本是这样的,我也做过权限的,权限是比较复杂的,有外键关联才能突出它的限制,关于删除,可以用级联,房主也说了一些不足之处!
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--LDL</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__2d129a9_CommentList_ctl04_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/09/07/403515.html#403785">4.&nbsp;re: 判断一个月有多少天（正确的方法）</a>
+			</li>
+			<li style="word-break:break-all">
+				谢谢分享~~
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--haimaa</li>
+		
+			<li style="word-break:break-all">
+				<a id="SingleColumn1__2d129a9_CommentList_ctl05_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/09/03/403515.html#403629">5.&nbsp;re: 判断一个月有多少天（正确的方法）</a>
+			</li>
+			<li style="word-break:break-all">
+				还不错的  学习了 
+			</li>
+			<li style="text-align:right;margin-right:4px">
+				--tb</li>
+		
+			</ul>
+		
+</div>
+
+<h3>阅读排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="word-break:break-all">
+		
+			<li>
+				<a id="SingleColumn1__1c471df_TopList_ctl01_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html">1.&nbsp;用户权限管理设计(14253)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__1c471df_TopList_ctl02_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/08/09/290408.html">2.&nbsp;ubuntu下gcc的安装与使用(9715)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__1c471df_TopList_ctl03_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2010/05/26/321953.html">3.&nbsp;关于路由器设置DI-504的401 Unauthorized authorization required(7337)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__1c471df_TopList_ctl04_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/02/14/254641.html">4.&nbsp;OA系统权限管理设计方案(7112)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__1c471df_TopList_ctl05_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/11/23/303380.html">5.&nbsp;Proguard使用教程(5820)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+
+<h3>评论排行榜</h3>
+<div class="RecentComment">
+	
+			<ul style="word-break:break-all">
+		
+			<li>
+				<a id="SingleColumn1__3a20e0c_TopList_ctl01_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/02/14/254641.html">1.&nbsp;OA系统权限管理设计方案(7)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3a20e0c_TopList_ctl02_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html">2.&nbsp;用户权限管理设计(6)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3a20e0c_TopList_ctl03_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/08/31/403515.html">3.&nbsp;判断一个月有多少天（正确的方法）(4)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3a20e0c_TopList_ctl04_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2011/10/14/361312.html">4.&nbsp;MyEclipse6.5 注册码生成方法，自己输入用户名(3)</a>
+			</li>
+		
+			<li>
+				<a id="SingleColumn1__3a20e0c_TopList_ctl05_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/03/16/260026.html">5.&nbsp;泰讯软件数据库笔试题目(SQL Server 2000版)(3)</a>
+			</li>
+		
+			</ul>
+		
+</div>
+</div>		
+	
+</div>
+<div id="centercontent">
+	
+					
+
+<div class="post">
+	<div class="postTitle">
+		<a id="viewpost1_TitleUrl" class="postTitle2" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html">用户权限管理设计</a>
+	</div>
+	<p>用户管理权限设计一直是大家讨论的热点，因为几乎涉及到每一个开发的业务系统。我找了很多很多的资料，大家的核心基本上都是一样的:基于角色管理. 用户，角色，模块，权限的相互组合，就可以形成一个强大的权限管理系统。</p>
+<p>最近在一个项目中设计的一个用户权限的设计，很乐意与大家一起讨论及分享.</p>
+<p>设计思路</p>
+<p>我的设计思路或者说是我想要实现的功能</p>
+<p>1.用户的权限通过角色来控制,一个用户可以拥有多个角色.</p>
+<p>2.用户拥有不同角色时，其权限应该是多个角色相互的补集.</p>
+<p>3.一个角色拥有多个模块</p>
+<p>4.用户的前台菜单显示根据角色所拥有的模块所决定，不同的用户在前端显示的操作菜单是不一样的。</p>
+<p>5.页面中的功能按钮根据模块中所包含的功能所定义，通过模块及角色所拥有的权限进行控制</p>
+<p>6.可看某个模块有哪些用户，哪些对应角色,并对其进行特殊权限设置.</p>
+<p>7.可以针对单个用户进行特殊设置</p>
+<p>我在我的Project中，基本上达到了以上的效果及功能，但在实际过程中发现有些不足之处。因为整个权限设计是基于数据库来设计中，所以数据的读取当数据量大时（我所说的数据量是以万以上来计）可能对性能有一定的影响。但对于一般来说，几千用户之类的我想还是可以承受的。我会在后面说明不足之处。</p>
+<p>数据库设计</p>
+<p>基本设计：</p>
+<p>1.首先,设计数据库.</p>
+<p>数据库的设计其实我估计大家都很熟悉了</p>
+<p>基本表：用户表，角色表，模块表，功能表,管理员表.如果涉及到企业性质的，可能会根据需要加上组织结构表，群组表等其它辅助表</p>
+<p>用户</p>
+<p><img height="251" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/01.jpg" width="567" border="0"></p>
+<p>&nbsp;</p>
+<p>管理员</p>
+<p><img height="210" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/02.jpg" width="567" border="0"></p>
+<p>角色</p>
+<p><img height="109" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/03.jpg" width="331" border="0"></p>
+<p>模块</p>
+<p>(我的模块表考虑了子模块的因素,所以会有深度，父模块ID这两个字段，在后来开发过中，由于思路的转变,IsRootModule,FunctionCode我都没有用到,为了让整个权限系统通变得更通用，我都将其单独设计成了另一个表）</p>
+<p><img height="230" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/04.jpg" width="382" border="0"></p>
+<p>功能表（功能表就是模块对应的功能：增加，删除，修改，详细，列表，浏览，导出，导入之类的）<br>
+<img height="163" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/05.jpg" width="285" border="0"></p>
+<p>业务表：用户-角色表 模块-功能表 角色-模块表</p>
+<p>要实现一个用户多个角色(1 to n),一个角色多个模块(1 to n),一个模块多个功能(1 to n)，那就得加上几个相关的业务表，之前考虑用视图去实现，我个人之见,视图最好只用来读取数据，不要用来进行数据操作.后来证明是不可取的，这里要注意的就是在实际的业务操作中，应该尽量避免重复的数据录入. 这些表都很简单，但却很关键</p>
+<p>用户-角色:<br>
+<img height="185" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/06.jpg" width="592" border="0"></p>
+<p>角色-模块：</p>
+<p><img height="160" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/07.jpg" width="302" border="0"></p>
+<p>模块-功能:</p>
+<p><img height="157" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/09.jpg" width="307" border="0"></p>
+<p>大家可以看到，表结构很简单，字段也很少，设计也差不多。都是将相关联的字段ID取出来做数据存取。</p>
+<p>视图：用户-角色-模块-功能视图<br>
+<img height="54" alt="" src="./用户权限管理设计 - DreamAngel - BlogJava_files/08.jpg" width="209" border="0"></p>
+<p>&nbsp;</p>
+<p>可能大家会觉得很奇怪，为什么这里出现member_role呢。因为我们在数据表中只存取了ID值，而对应的RoleName字段并没有包含其中，这里的视图就是获取关联表中其他所需要的字段数据了。另外两个视图大家看名字应该就知道他的用处了。</p>
+<p>存储过程：各自表的增加，删除，修改，及列表数据. 判断是否存在相同的数据 <br>
+（CUDLIS-Create, Update,Delete,IfExist,Show,List)</p>
+<p>存储过程我就不一一列出了，很简单的，你只要写出下面这些基本上你在开发过程就不会有太多问题了. 注意的是：在相互关联的业务表中，最好能对数据插入进行重复数据判断（用户角色表，模块功能表，角色模块表，尽量避免重复的数据插入）我把大致需要实现的业务列个表给大家参考:</p>
+<p>用户表:(Insert ,Update ,IfExist ,Show, Delete)</p>
+<p>用户角色表:(Insert ,Update,IfExist,Delete,RoleListByUserID,UserListByRoleID)</p>
+<p>角色表:(Insert,Update,IfExist,Show,Delete)</p>
+<p>角色模块表:(Insert,IfExist,Delete,Show,RoleListByModuleID,ModulistByRoleID)</p>
+<p>模块表:(Insert,Update,IfExist,Show,Dlete,ListByRootModuleID,ListByModuleLevel)</p>
+<p>模块功能表:(Insert,Update,Delete,FunctionListByModuleID)</p>
+<p>针对用户直接获取其所有的权限时，应该有个单独的Procedure从视图中Member_Role_Module_Function中获取其对应的数据，这样就可以得到想要的东西了。</p>
+<p>数据库设计部分应该就这样差不多了。我想这应该是通用的。在实际运用过程中，我个人认为应该有一些改进点：</p>
+<p>1.模块与功能部分，可以用字符串的形式将模块对应的功能存在一个数据字段中，这样可能在你的代码编写中可以省下较多的时间并带来更多的便利（主要是可以用split()来代替频繁的数据获取业务）这个我在最初设计中没有想到这点，有点失策.</p>
+<p>2.针对N级模块的权限展现问题，如何让父模块继承子模块的权限这个是我没有考虑到的，不过我想应该可以用IsRootModule这个字段来作文章，可惜我还没想到如何去整这个字段。当子模块很多时，在前端UI展示的时候是否会出现很慢的情况？这个我没有去做测试，带有一定的风险。<br>
+但在前端UI展示我还没想到或实现好的办法，我能想到的应该是像GridViewTree那种不错。</p>
+<p>这个权限设计已经在我的Project中运用，暂时没有发现什么问题，而且为我以后对其它系统集成也很有帮助。至于如何在C#中实现业务，个人认为只要知道数据库如何整的，那C#中的业务实现只是一个取数操作过程。</p>
+
+	<div class="postDesc">posted on 2009-06-26 20:24 <a href="http://www.blogjava.net/DreamAngel/">飞翔天使</a> 阅读(14254) <a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#Post">评论(6)</a> &nbsp;<a href="http://www.blogjava.net/DreamAngel/admin/EditPosts.aspx?postid=284337">编辑</a> &nbsp;<a href="http://www.blogjava.net/DreamAngel/AddToFavorite.aspx?id=284337">收藏</a>  所属分类: <a href="http://www.blogjava.net/DreamAngel/category/37382.html">SQL</a> </div>
+</div>
+<img src="./用户权限管理设计 - DreamAngel - BlogJava_files/284337.html" width="1" height="1">
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('AjaxHolder$scriptmanager1', document.getElementById('Form1'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tAjaxHolder$UpdatePanel1'], [], [], 90);
+//]]>
+</script>
+
+<div id="AjaxHolder_UpdatePanel1">
+	    
+    <a name="pagedcomment"></a>
+
+<br>
+<b>FeedBack:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#390790">#</a>&nbsp;<a name="390790"></a>re: 用户权限管理设计&nbsp;2012-11-05 11:08&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl00_NameLink" href="http://xn--rhqx00c95nv9a/" target="_blank">李瑶</a></div>
+				<div align="left">你好我很好&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=%e6%9d%8e%e7%91%b6" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl00_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl00$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl00_EditLink"></a>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#394349">#</a>&nbsp;<a name="394349"></a>re: 用户权限管理设计&nbsp;2013-01-17 11:26&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl01_NameLink" target="_blank">Mr.hua</a></div>
+				<div align="left">模块，这一块的另一个表是怎么样的？&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=Mr.hua" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl01_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl01$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl01_EditLink"></a>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#399645">#</a>&nbsp;<a name="399645"></a>re: 用户权限管理设计&nbsp;2013-05-23 10:44&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl02_NameLink" target="_blank">zl</a></div>
+				<div align="left">貌似表关联有点多了 操作不是很方便&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=zl" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl02_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl02$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl02_EditLink"></a>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#399646">#</a>&nbsp;<a name="399646"></a>re: 用户权限管理设计&nbsp;2013-05-23 10:45&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl03_NameLink" target="_blank">zl</a></div>
+				<div align="left">貌似表关联有点多了 操作不是很方便<br><br>我自己做的话 会把角色跟功能直接关联&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=zl" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl03_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl03$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl03_EditLink"></a>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#402940">#</a>&nbsp;<a name="402940"></a>re: 用户权限管理设计&nbsp;2013-08-16 17:39&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl04_NameLink" target="_blank">Chuck</a></div>
+				<div align="left">我在想，如果你把关系字段全部放在一个字段里面，如果你要删除其中一个怎么搞啊？&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=Chuck" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl04_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl04$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl04_EditLink"></a>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<div class="feedbacktitle"><a title="permalink: re: 用户权限管理设计" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#404006">#</a>&nbsp;<a name="404006"></a>re: 用户权限管理设计<a name="Post"></a>&nbsp;2013-09-12 18:18&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl05_NameLink" target="_blank">LDL</a></div>
+				<div align="left">@Chuck
+<br>基本是这样的,我也做过权限的,权限是比较复杂的,有外键关联才能突出它的限制,关于删除,可以用级联,房主也说了一些不足之处!&nbsp;&nbsp;<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html#post">回复</a>&nbsp;&nbsp;<a title="查看该作者发表过的评论" href="http://www.blogjava.net/comment?author=LDL" target="_blank">更多评论</a><br><a id="AjaxHolder_Comments_CommentList_ctl05_DeleteLink" href="javascript:__doPostBack('AjaxHolder$Comments$CommentList$ctl05$DeleteLink','')"></a>&nbsp;&nbsp;<a id="AjaxHolder_Comments_CommentList_ctl05_EditLink"></a>
+			</div>
+		</div>
+	
+<style>
+td { font-size: 12px }
+.commentTextBox 
+{ 
+    font-family : Verdana; 
+    font-size: 13px;
+ }
+</style>
+
+<style>.userData { BEHAVIOR: url(#default#userdata) }
+	</style>
+<div class="userData" id="CommentsPersistDiv"></div>
+
+<script type="text/javascript">
+function pageLoad()
+{
+    Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(handleInitializeRequest);
+    //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(handleEndRequest);
+}
+
+function handleInitializeRequest(sender, args)
+{
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    var eid = args.get_postBackElement().id;
+    if (eid.indexOf("DeleteLink")>0) 
+    {
+       args.get_postBackElement().innerHTML = "<font color='red'>正在删除...</font>";         
+    }    
+    else if (eid.indexOf("btnSubmit")>0) 
+    {
+       document.getElementById("AjaxHolder_PostComment_ltSubmitMsg").innerHTML="正在提交...";
+       document.getElementById("AjaxHolder_PostComment_btnSubmit").disabled = true;       
+    }   
+    else if(eid.indexOf("refreshList")>0)
+    {
+        document.getElementById("AjaxHolder_PostComment_refreshList").innerHTML="<font color='red'>正在刷新...</font>";
+    }
+   
+}	
+
+function TempSave(ElementID)
+{
+	try
+	{
+	CommentsPersistDiv.setAttribute("CommentContent",document.getElementById(ElementID).value);
+	CommentsPersistDiv.save("CommentXMLStore");
+	}
+	catch(ex)
+	{
+	}
+	
+}
+function Restore(ElementID)
+{
+	CommentsPersistDiv.load("CommentXMLStore");
+	document.getElementById(ElementID).value=CommentsPersistDiv.getAttribute("CommentContent");
+}	
+			
+			
+</script>
+
+<div id="divRefreshComments" style="text-align:right;margin-right:10px;margin-bottom:5px;font-size:12px"><a href="http://www.blogjava.net/RequireRegister.aspx">新用户注册</a>&nbsp;&nbsp;<a id="AjaxHolder_PostComment_refreshList" href="javascript:__doPostBack('AjaxHolder$PostComment$refreshList','')">刷新评论列表</a>&nbsp;&nbsp;</div>
+<div class="commentform">
+<span id="AjaxHolder_PostComment_ltSubmitMsg" style="color:Red;"></span>
+<br>
+<a name="Feedback"></a>
+	<div id="AjaxHolder_PostComment_divCommnentArea">
+		</div><table cellspacing="1" cellpadding="1" border="0">	
+		<tbody><tr>
+		<td id="AjaxHolder_PostComment_tdOnCommentForm" colspan="3" style="line-height:1.5">
+		<a href="http://q.cnblogs.com/" target="_blank">程序员问答平台，解决您的技术难题</a><br>
+		
+		
+		</td>
+	
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td width="75"></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+			<a href="http://www.cnblogs.com/" target="_blank">博客园</a>&nbsp;  <a href="http://q.cnblogs.com/" target="_blank">博问</a>&nbsp; <a href="http://news.cnblogs.com/" target="_blank">IT新闻</a>&nbsp; <a href="http://job.cnblogs.com/cate-java_programmer/" target="_blank">Java程序员招聘</a>
+			</td>
+		</tr>
+		<tr>
+			<td width="55">标题</td>
+			<td><input name="AjaxHolder$PostComment$tbTitle" type="text" value="re: 用户权限管理设计" id="AjaxHolder_PostComment_tbTitle" class="commenttb" style="width:320"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator1" style="color:Red;visibility:hidden;">请输入标题</span></td>
+		</tr>
+		<tr>
+			<td>姓名</td>
+			<td><input name="AjaxHolder$PostComment$tbName" type="text" id="AjaxHolder_PostComment_tbName" class="commenttb" style="width:320"></td>
+			<td><span id="AjaxHolder_PostComment_RequiredFieldValidator2" style="color:Red;visibility:hidden;">请输入你的姓名</span></td>
+		</tr>
+		<tr>
+			<td>主页</td>
+			<td><input name="AjaxHolder$PostComment$tbUrl" type="text" id="AjaxHolder_PostComment_tbUrl" class="commenttb" style="width:320"></td>
+			<td><font face="宋体"></font></td>
+		</tr>
+		<tr>
+			<td align="left" colspan="3">
+				<table id="AjaxHolder_PostComment_tbCaptchaImage" class="CommentForm" cellspacing="0" cellpadding="0" border="0">
+		<tbody><tr>
+			<td colspan="3">
+							<span id="AjaxHolder_PostComment_Requiredfieldvalidator4" style="color:Red;display:none;">请输入验证码</span>
+							<span id="AjaxHolder_PostComment_lblImage" style="color:Red;font-weight:bold;"></span>
+						</td>
+		</tr>
+		<tr>
+			<td width="78">验证码</td>
+			<td><input name="AjaxHolder$PostComment$CodeNumberTextBox" type="text" id="AjaxHolder_PostComment_CodeNumberTextBox">*&nbsp;&nbsp;<img src="./用户权限管理设计 - DreamAngel - BlogJava_files/JpegImage.aspx"></td>
+			<td align="left"></td>
+		</tr>
+	</tbody></table>
+	
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">内容(请不要发表任何与政治相关的内容)
+				<span id="AjaxHolder_PostComment_RequiredFieldValidator3" style="color:Red;visibility:hidden;">请输入评论内容</span><br>
+				<textarea name="AjaxHolder$PostComment$tbComment" rows="10" cols="50" id="AjaxHolder_PostComment_tbComment" class="commentTextBox" style="Width:480;Height:220"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+		<span id="AjaxHolder_PostComment_Message" style="color:Red;"></span>
+		</td>
+		</tr><tr>
+			<td colspan="3"><input id="AjaxHolder_PostComment_chkRemember" type="checkbox" name="AjaxHolder$PostComment$chkRemember" checked="checked" tabindex="-1"><label for="AjaxHolder_PostComment_chkRemember">Remember Me?</label></td>
+		</tr>
+		<tr>
+			<td height="23"><input type="submit" name="AjaxHolder$PostComment$btnSubmit" value="提交" id="AjaxHolder_PostComment_btnSubmit" class="commentButton">
+				</td>
+			<td colspan="2" height="23">&nbsp;
+				<a id="AjaxHolder_PostComment_lnkLogin" href="http://www.blogjava.net/login.aspx?ReturnURL=http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html&SourceURL=/DreamAngel/archive/2009/06/26/284337.html">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+		</tr>
+		<tr>
+			<td colspan="3"><label class="CtrlEnter">[使用Ctrl+Enter键可以直接提交]</label></td>
+		</tr>
+		
+		
+		<tr>
+			<td colspan="3"></td>
+		</tr>
+			
+		<tr>
+		<td colspan="3">
+		
+<script type="text/javascript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1090369/blogjava_blogpost_bottom', [300, 250], 'div-gpt-ad-1364133350381-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+<div id="div-gpt-ad-1364133350381-0" style="width: 300px; height: 250px;">
+<script type="text/javascript">
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1364133350381-0'); });
+</script>
+<div id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0" name="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div><iframe id="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__hidden__" name="google_ads_iframe_/1090369/blogjava_blogpost_bottom_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;" src="javascript:"<html><body style='background:transparent'></body></html>""></iframe></div>
+<br>
+
+		</td>
+		</tr>
+		<tr>			
+		<td colspan="3">
+		
+		</td>
+		</tr>
+		<tr>
+		<td colspan="3"></td>
+		</tr>
+		<tr>
+			<td colspan="3" height="1">网站导航:<div id="blogsite">
+			<a href="http://www.cnblogs.com/" title="程序员的网上家园">博客园</a>&nbsp;&nbsp;
+			<a href="http://news.cnblogs.com/">IT新闻</a>&nbsp;&nbsp;
+			<a href="http://kb.cnblogs.com/">知识库</a>&nbsp;&nbsp;
+			<a href="http://www.cppblog.com/">C++博客</a>&nbsp;&nbsp;
+			<a href="http://job.cnblogs.com/">程序员招聘</a>&nbsp;&nbsp;
+			<a href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html?opt=admin">管理</a>
+			</div>
+		</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5">
+<div id="divRelativePosts">
+相关文章:
+	
+			<ul style="margin-top:0px;padding-left:0px;">
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl01_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2013/09/21/404271.html">win7下sql2005安装配置常见问题</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl02_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2012/05/11/377920.html">SQL Server中如何取得刚插入的标识值</a>
+			</li>
+		
+			<li style="list-style:none;display:none">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl03_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/06/26/284337.html">用户权限管理设计</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl04_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/05/12/270154.html">sqlserver 数据库区分大小写设置</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl05_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/03/27/262459.html">ODBC配置SQL Server</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl06_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/03/16/260026.html">泰讯软件数据库笔试题目(SQL Server 2000版)</a>
+			</li>
+		
+			<li style="list-style:none;">
+				<a id="AjaxHolder_PostComment_ctl07_RelativePostsList_ctl07_Hyperlink1" href="http://www.blogjava.net/DreamAngel/archive/2009/02/02/252916.html">java.sql.SQLException: [Microsoft][SQLServer 2000 Driver for JDBC]Can't start a cloned connection while in manual transaction mode.解决办法</a>
+			</li>
+		
+			</ul>
+		
+</div>
+</td>
+		</tr>	
+		<tr>
+			<td colspan="3">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="5"></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				</td>
+		</tr>		
+	</tbody></table>	
+</div>
+<div id="AjaxHolder_PostComment_ValidationSummary1" style="color:Red;display:none;">
+
+	</div>
+
+</div>
+
+				
+	
+
+<div class="footer">
+	
+	Copyright ©2013 飞翔天使 Powered by: <a href="http://www.cnblogs.com/" class="footerlink">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/" class="footerlink">沪江博客</a><br>
+</div>
+</div>
+
+
+
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("AjaxHolder_PostComment_ValidationSummary1"));
+var Page_Validators =  new Array(document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2"), document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4"), document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var AjaxHolder_PostComment_RequiredFieldValidator1 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator1"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator1");
+AjaxHolder_PostComment_RequiredFieldValidator1.controltovalidate = "AjaxHolder_PostComment_tbTitle";
+AjaxHolder_PostComment_RequiredFieldValidator1.errormessage = "请输入标题";
+AjaxHolder_PostComment_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator1.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator2 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator2"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator2");
+AjaxHolder_PostComment_RequiredFieldValidator2.controltovalidate = "AjaxHolder_PostComment_tbName";
+AjaxHolder_PostComment_RequiredFieldValidator2.errormessage = "请输入你的姓名";
+AjaxHolder_PostComment_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator2.initialvalue = "";
+var AjaxHolder_PostComment_Requiredfieldvalidator4 = document.all ? document.all["AjaxHolder_PostComment_Requiredfieldvalidator4"] : document.getElementById("AjaxHolder_PostComment_Requiredfieldvalidator4");
+AjaxHolder_PostComment_Requiredfieldvalidator4.controltovalidate = "AjaxHolder_PostComment_CodeNumberTextBox";
+AjaxHolder_PostComment_Requiredfieldvalidator4.errormessage = "请输入验证码";
+AjaxHolder_PostComment_Requiredfieldvalidator4.display = "Dynamic";
+AjaxHolder_PostComment_Requiredfieldvalidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_Requiredfieldvalidator4.initialvalue = "";
+var AjaxHolder_PostComment_RequiredFieldValidator3 = document.all ? document.all["AjaxHolder_PostComment_RequiredFieldValidator3"] : document.getElementById("AjaxHolder_PostComment_RequiredFieldValidator3");
+AjaxHolder_PostComment_RequiredFieldValidator3.controltovalidate = "AjaxHolder_PostComment_tbComment";
+AjaxHolder_PostComment_RequiredFieldValidator3.errormessage = "请输入评论内容";
+AjaxHolder_PostComment_RequiredFieldValidator3.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+AjaxHolder_PostComment_RequiredFieldValidator3.initialvalue = "";
+var AjaxHolder_PostComment_ValidationSummary1 = document.all ? document.all["AjaxHolder_PostComment_ValidationSummary1"] : document.getElementById("AjaxHolder_PostComment_ValidationSummary1");
+AjaxHolder_PostComment_ValidationSummary1.showmessagebox = "True";
+AjaxHolder_PostComment_ValidationSummary1.showsummary = "False";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+document.getElementById('AjaxHolder_PostComment_ValidationSummary1').dispose = function() {
+    Array.remove(Page_ValidationSummaries, document.getElementById('AjaxHolder_PostComment_ValidationSummary1'));
+}
+Sys.Application.initialize();
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator1'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator2'));
+}
+
+document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_Requiredfieldvalidator4'));
+}
+
+document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('AjaxHolder_PostComment_RequiredFieldValidator3'));
+}
+//]]>
+</script>
+
+    <script type="text/javascript" src="./用户权限管理设计 - DreamAngel - BlogJava_files/ShowHidden.js"></script>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-476124-3']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+</div></div></div></div></div></div></form><iframe id="google_osd_static_frame_9411962251178" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>

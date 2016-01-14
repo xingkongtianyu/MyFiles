@@ -1,0 +1,147 @@
+
+PHP设计模式构建类和对象方法之组合模式代码改造
+2010年10月14日  1,971 次浏览 陈华 抢沙发
+
+<?php
+/*
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式构建类和对象方法（组合模式）改造
+ * 组合模式其实就如同大树一样，有树干（基类）、树枝（又称组合对象，继承于基类），树叶（又称局部对象，没有组合对象的组合方法）
+ */
+
+/*废话不想多说，只想用代码演示
+ * 例如：一个国家的军事力量计算，就是由一支支的军队的战斗力组成，军队又由士兵的战斗力组成。假设，要发生一场战争，那么会有很多的军队参与战争，然后在战争的过程中也许会有军队增缓，由于战争需要，也许会有军队撤出。
+ *
+ * 以上的模拟例子中，总军队是树干（基类），支队是树枝（是组合对象），士兵是树叶（局部对象）。
+ * 所有的军队继承于总军队，并且均有计算军队撤退和支缓的功能，而士兵只有战斗力，没有这个功能。
+ * 看演示。
+ * */
+
+/*abstract class Unit {//总军模型
+ abstract function addUnit(Unit $unit);//有军队加入的方法
+ abstract function removeUnit(Unit $unit);//有军队退出的方法
+ abstract function getGongjili();//获取功击能力方法
+}
+
+class Army extends Unit{//军队
+ private $units= array();//保存支队实例
+ 
+ function addUnit(Unit $unit){//增加实例
+  if (in_array($unit,$this->units,true)) return ;
+  $this->units[]=$unit;
+ }
+ 
+ function removeUnit(Unit $unit){//移除相关的实例
+  $units=array();
+  foreach ($this->units as $thisunits){
+   if ($thisunits!==$unit){
+    $units[]=$thisunits;
+   }
+  }
+  $this->units=$units;
+ }
+ 
+ function getGongjili(){//获取功击力
+  $ret=0;
+  foreach ($this->units as $unit){
+   $ret+=$unit->getGongjili();
+  }
+  return $ret;
+ }
+}
+
+class Archer extends Unit{//士兵类
+ function addUnit(Unit $unit){//不能增加军队
+  throw new Exception(get_class($this).”is a archer”);
+ }
+ 
+ function removeUnit(Unit $unit){//不能移除军队
+  throw new Exception(get_class($this).”is a archer”);
+ }
+ 
+ function getGongjili(){
+  return 10;
+ }
+}*/
+
+/*以上的模式中我们会发现，所有的组合对象和局部对象均有addUnit()和removeUnit（）方法，虽然被局部对象引用的时候会抛出异常，但是看着还是不舒服，看下面的改造
+ *
+ * */
+
+abstract class ZongUnit{//总模型
+ function getUnit(){//非组合对象返回空
+  return null;
+ }
+ 
+ abstract function getGongjili();
+}
+
+abstract class Unit extends ZongUnit {
+ private $units=array();//军队集合
+ function getUnit(){//组合对象返回本实例
+  return $this;
+ }
+ 
+ protected function units(){
+  return $this->units;
+ }
+ 
+ function addUnit(ZongUnit $unit){//增加实例
+  if (in_array($unit,$this->units,true)) return ;
+  $this->units[]=$unit;
+ }
+ 
+ function removeUnit(ZongUnit $unit){//移除相关的实例
+  $units=array();
+  foreach ($this->units as $thisunits){
+   if ($thisunits!==$unit){
+    $units[]=$thisunits;
+   }
+  }
+  $this->units=$units;
+ }
+}
+
+class Army extends Unit{//类似于军队
+ function getGongjili(){//获取功击力
+  $ret=0;
+  foreach ($this->units() as $unit){
+   $ret+=$unit->getGongjili();
+  }
+  return $ret;
+ }
+}
+
+class Archer extends ZongUnit{//类似士兵
+ function getGongjili(){
+  return 10;
+ }
+}
+
+class UnitScript{
+ static function getComp(ZongUnit $newunit,ZongUnit $occupyingUnit){
+  if (!is_null($comp=$occupyingUnit->getUnit())){
+   $comp->addUnit($newunit);
+  }else {
+   $comp=new Army();
+   $comp->addUnit($occupyingUnit);
+   $comp->addUnit($newunit);
+  }
+  return $comp;
+  //两个unit参数，第一个是新来者，第二个是占据者，如果第二个是Unit对象，那么第一个Unit对象添加给他，如果不是的话，将创建一个新的Army对象，将两个Unit对象加入到Army对象中并返回
+ }
+}
+
+//++++++++++++++++++++++++++++++第一种方法聚合军队
+$mainArmy=new Army();
+$mainArmy->addUnit(new Archer());
+$subArmy=new Army();
+$subArmy->addUnit(new Archer());
+$subArmy->addUnit(new Archer());
+$mainArmy->addUnit($subArmy);
+echo $mainArmy->getGongjili();
+//+++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++第二种方法
+$comp=UnitScript::getComp(new Archer(),$mainArmy);
+echo $comp->getGongjili();
+
+?> 

@@ -1,0 +1,75 @@
+﻿
+body{background-color:#edeceb;background-repeat:repeat;font-family :"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;}
+.row{max-width:1200px;}
+.column, .columns{padding:0;}
+.box,.widget-projection-widget{background-color: #fff;border-radius: 3px;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);border-bottom: 2px solid #e2e2e9;padding:10px;margin-bottom:20px;}
+.text-error{color:rgb(202, 60, 60);}
+
+.contain-to-grid .top-bar{max-width:1200px;}
+
+.zone-header{margin:10px 0;}
+.zone-header .header{padding:15px;background-color:#fff;margin-bottom:5px;}
+.zone-header .header .share{padding-top:25px;}
+.zone-header .alert-box{line-height:20px;margin:5px 0;}
+.zone-header .alert-box a{display:inline-block;padding:0 8px;color:#fff;}
+
+.zone-content{background-color:#fff;padding:10px 15px;border-radius: 3px;box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);border-bottom: 2px solid #e2e2e9;}
+.projection-page ul,.tagged-posts{margin:0;}
+.projection-page ul li,.tagged-posts li{list-style-type:none;}
+.projection-page ul li article,.tagged-posts li article{border-bottom:1px dashed #ccc;padding:15px 0 20px 0;}
+.projection-page ul li article header h3,.tagged-posts li article header h3{margin-bottom:0;}
+.projection-page ul li article header h3 a,.tagged-posts li article header h3 a{color:#333;}
+.projection-page ul li article header h3 a:hover,.tagged-posts li article header h3 a:hover{color:#008cba;}
+.projection-page ul li article header .metadata,.tagged-posts li article header .metadata{display:table;width:100%;margin-bottom:8px;font-size:12px;line-height:25px;}
+.projection-page ul li article header .metadata .time,
+.projection-page ul li article header .metadata .tags,
+.tagged-posts li article header .metadata .time,
+.tagged-posts li article header .metadata .tags{float:left;padding-right:20px;}
+.projection-page ul li article header .metadata .tags a,.tagged-posts li article header .metadata .tags a{display:inline-block;padding-right:5px;}
+.projection-page ul li article footer,.tagged-posts li article footer{display:table;width:100%;font-size:14px;line-height:25px;}
+.projection-page ul li article footer a.th,.tagged-posts li article footer a.th{float:left;margin-right:10px;}
+.projection-page ul li article footer a.label,.tagged-posts li article footer a.label{color:#fff;}
+ul.pager{display:table;width:100%;margin:30px auto;}
+ul.pager li{float:left;margin:10px 0;list-style-type:none;}
+ul.pager li a,ul.pager li span{display:block;padding:8px 16px;margin:0 5px;}
+ul.pager li span{background-color:#008cba;color:#fff;border-radius:3px;}
+ul.pager li a{color:#999;border-radius:3px;}
+ul.pager li a:hover{background-color:#e6e6e6;color:#999;}
+
+.zone-aside-second{margin-left:20px;}
+.topic{display:table;width:100%;margin:0;}
+.topic li{float:left;width:33.33333%;list-style-type:none;}
+.topic a{display:block;background-color:#008cba;color:#fff;margin:5px;padding:15px 0;text-align:center;}
+.topic a:hover{background-color:#037ea7;transition:background-color 300ms ease-out;}
+.search input,.search button.button{margin:0 0 8px 0;}
+.search-keyword{display:table;width:100%;margin:0;}
+.search-keyword dt,.search-keyword dd{font-weight:normal;font-size:12px;float:left;margin:0 8px 0 0;line-height:25px;}
+.search-keyword dd a{color:#666;}
+.search-keyword dd a:hover{color:#008cba;}
+.project header h4,.links header h4,.widget-projection-widget header h1{border-bottom:1px solid #ddd;padding-bottom:5px;}
+.widget-projection-widget header h1{font-size:1.43rem;}
+.project dl{display:table;width:100%;margin:0;}
+.project dl dt,.project dl dd{float:left;margin-right:14px;font-size:12px;}
+.project dl dt{color:#333;}
+.project p{font-size:14px;margin:0;}
+.links ul.inline-list{margin:0;}
+.links ul.inline-list li{margin:0 10px 0 0;line-height:25px;}
+.links ul.inline-list li a{font-size:12px;}
+.links ul.inline-list li a:hover{color:#333;}
+
+.zone-footer p{font-size:14px;margin-top:15px;}
+
+.article{margin:20px 0;}
+.content-item header h1{text-align:center;font-size:2.31rem;}
+.content-item header .metadata .published{text-align:center;}
+
+#scrollUp {bottom: 20px;right: 20px;height: 38px;width: 38px;background: url("http://www.58img.com/Themes/58IMG2014/Content/top.png") no-repeat;}
+@media only screen and (min-width: 40.063em) {
+    ul.pager{width:80%;}
+}
+@media only screen and (min-width: 64.063em) {
+    ul.pager{width:70%;}
+}
+
+
+

@@ -1,0 +1,114 @@
+跟我一起学写jQuery插件开发方法（附完整实例及下载）
+作者： 字体：[增加 减小] 类型：转载
+jQuery如此流行，各式各样的jQuery插件也是满天飞。你有没有想过把自己的一些常用的JS功能也写成jQuery插件呢？如果你的答案是肯定的，那么来吧！和我一起学写jQuery插件吧！
+很多公司的前端设计开发人员都是女孩子，而这些女孩子很多JavaScript技能都不是很好。而前端开发过程中，JavaScript技能又是必不可少的。所以，如果前端小MM正在为某个JavaScript效果发愁的时候，你潇洒的过去，然后对她说：“嗨，美女，用这个吧。这是我写的一个jQuery插件。”我想基本上你的人生大事就能很快解决。
+先想好做个什么功能
+这是第一步，也是很重要的一步，鉴于咱们都是刚学习写jQuery插件，所以，这个功能一定要简单一些。不要想一口就吃个胖子，咱也吃不了。咱还是捡个瘦的下手吧。但是，这个功能也不能太无聊，如果无聊到几乎没用处，就算做好了也是扔到马桶里，不会持续更新，也便不会持续进步了。
+我最终选择的是：美化表格，让表格的奇偶行颜色不同，然后鼠标移到某行上，某行可以高亮显示。功能简单又实用，不错，不错。呵呵～～
+不急着写，先想想实现原理
+还不急，先想想实现原理。必要的时候，先写出简单的实现的原型。
+我的这个美化表格的例子，实现原理倒是简单，无非就是找到表格的奇偶行，然后添加不同的class，活动行高亮显示也很简单，只要判断mouseover事件，然后添加一个class，mouseout的时候，再去掉这个class即可。
+一个通用的框架
+在动手写自己的jQuery插件之前，自然是先研究一下别人写的插件了。其实写jQuery也基本有一个通用的框架。行，那咱也把这框架照搬过来吧。
+复制代码 代码如下:
+
+(function($){
+$.fn.yourName = function(options){
+//各种属性、参数
+}
+var options = $.extend(defaults, options);
+this.each(function(){
+//插件实现代码
+});
+};
+})(jQuery);
+
+有了这个，咱就可以往里面套东西了。
+名号、参数和属性
+好不容易开始闯荡江湖了，一定要有一个响亮的名号才行，这样走在江湖上，才能够屌，够威风。不信，你听听人家“中国牙防组”！所以，咱这里一定要起个响亮的名号，一定要简单、明了、够权威。所以，决定了，就叫做“tableUI”了！
+参数和属性也很简单，无非就是三个class的名称。就叫做：evenRowClass、oddRowClass和activeRowClass吧。
+所以，上面的框架，咱就把上半身给填上了。
+复制代码 代码如下:
+
+(function($){
+$.fn.tableUI = function(options){
+var defaults = {
+evenRowClass:"evenRow",
+oddRowClass:"oddRow",
+activeRowClass:"activeRow"
+}
+var options = $.extend(defaults, options);
+this.each(function(){
+//实现代码
+});
+};
+})(jQuery);
+
+这里重点说一下这一句：
+复制代码 代码如下:
+
+var options = $.extend(defaults, options);
+
+看上去很屌的一句，其实就是合并多个对象为一个。这里就是，如果你在调用的时候写了新的参数，就用你新的参数，如果没有写，就用默认的参数。想进一步了解的朋友，可以参考jquery的官方文档： http://api.jquery.com/jQuery.extend/
+
+开始下半身吧
+ok，上半身填补完了，咱就可以填补下半身吧。无非就是找到基数行和偶数行（感谢jQuery提供了类似tr:even这种写法，使其及其简单），然后添加上相应的class。然后再给所有的tr，绑定mouseover和mouseout事件即可。下半身代码如下：
+复制代码 代码如下:
+
+(function($){
+$.fn.tableUI = function(options){
+var defaults = {
+evenRowClass:"evenRow",
+oddRowClass:"oddRow",
+activeRowClass:"activeRow"
+}
+var options = $.extend(defaults, options);
+this.each(function(){
+var thisTable=$(this);
+//添加奇偶行颜色
+$(thisTable).find("tr:even").addClass(options.evenRowClass);
+$(thisTable).find("tr:odd").addClass(options.oddRowClass);
+//添加活动行颜色
+$(thisTable).find("tr").bind("mouseover",function(){
+$(this).addClass(options.activeRowClass);
+});
+$(thisTable).find("tr").bind("mouseout",function(){
+$(this).removeClass(options.activeRowClass);
+});
+});
+};
+})(jQuery);
+
+最重要的一步！
+也许有些朋友觉得这样就算是完成了。但是切切相反，我们还有最重要的一步没有完成，那就是一定要在插件上方，写上插件的名称、版本号、完成日期、作者，作者的联系方式、出生日期、三围……等等。因为只有这样才能显的这个插件够专业。
+复制代码 代码如下:
+
+/*
+* tableUI 0.1
+* Copyright (c) 2009 JustinYoung http://justinyoung.cnblogs.com/
+* Date: 2010-03-30
+* 使用tableUI可以方便地将表格提示使用体验。先提供的功能有奇偶行颜色交替，鼠标移上高亮显示
+*/
+(function($){
+$.fn.tableUI = function(options){
+var defaults = {
+evenRowClass:"evenRow",
+oddRowClass:"oddRow",
+activeRowClass:"activeRow"
+}
+var options = $.extend(defaults, options);
+this.each(function(){
+var thisTable=$(this);
+//添加奇偶行颜色
+$(thisTable).find("tr:even").addClass(options.evenRowClass);
+$(thisTable).find("tr:odd").addClass(options.oddRowClass);
+//添加活动行颜色
+$(thisTable).find("tr").bind("mouseover",function(){
+$(this).addClass(options.activeRowClass);
+});
+$(thisTable).find("tr").bind("mouseout",function(){
+$(this).removeClass(options.activeRowClass);
+});
+});
+};
+})(jQuery); 

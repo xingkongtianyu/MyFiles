@@ -1,0 +1,261 @@
+1。avi格式 
+
+代码片断如下： 
+
+＜object id="video" width="400" height="200" border="0" 
+classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"＞ 
+
+＜param name="ShowDisplay" value="0"＞ 
+
+＜param name="ShowControls" value="1"＞ 
+
+＜param name="AutoStart" value="1"＞ 
+
+＜param name="AutoRewind" value="0"＞ 
+
+＜param name="PlayCount" value="0"＞ 
+
+＜param name="Appearance value="0 value="""＞ 
+
+＜param name="BorderStyle value="0 value="""＞ 
+
+＜param name="MovieWindowHeight" value="240"＞ 
+
+＜param name="MovieWindowWidth" value="320"＞ 
+
+＜param name="FileName" value="／Mbar。avi"＞ 
+
+＜embed width="400" height="200" border="0" showdisplay="0" 
+showcontrols="1" autostart="1" autorewind="0" playcount="0" 
+moviewindowheight="240" moviewindowwidth="320" filename="／Mbar。avi" 
+src="Mbar。avi"＞ 
+
+＜／embed＞ 
+
+＜／object＞ 
+
+2。mpg格式 
+
+代码片断如下： 
+
+＜object classid="clsid:05589FA1-C356-11CE-BF01-00AA0055595A" id="ActiveMovie1" 
+width="239" height="250"＞ 
+
+＜param name="Appearance" value="0"＞ 
+
+＜param name="AutoStart" value="-1"＞ 
+
+＜param name="AllowChangeDisplayMode" value="-1"＞ 
+
+＜param name="AllowHideDisplay" value="0"＞ 
+
+＜param name="AllowHideControls" value="-1"＞ 
+
+＜param name="AutoRewind" value="-1"＞ 
+
+＜param name="Balance" value="0"＞ 
+
+＜param name="CurrentPosition" value="0"＞ 
+
+＜param name="DisplayBackColor" value="0"＞ 
+
+＜param name="DisplayForeColor" value="16777215"＞ 
+
+＜param name="DisplayMode" value="0"＞ 
+
+＜param name="Enabled" value="-1"＞ 
+
+＜param name="EnableContextMenu" value="-1"＞ 
+
+＜param name="EnablePositionControls" value="-1"＞ 
+
+＜param name="EnableSelectionControls" value="0"＞ 
+
+＜param name="EnableTracker" value="-1"＞ 
+
+＜param name="Filename" value="／mpeg／halali。mpg" valuetype="ref"＞ 
+
+＜param name="FullScreenMode" value="0"＞ 
+
+＜param name="MovieWindowSize" value="0"＞ 
+
+＜param name="PlayCount" value="1"＞ 
+
+＜param name="Rate" value="1"＞ 
+
+＜param name="SelectionStart" value="-1"＞ 
+
+＜param name="SelectionEnd" value="-1"＞ 
+
+＜param name="ShowControls" value="-1"＞ 
+
+＜param name="ShowDisplay" value="-1"＞ 
+
+＜param name="ShowPositionControls" value="0"＞ 
+
+＜param name="ShowTracker" value="-1"＞ 
+
+＜param name="Volume" value="-480"＞ 
+
+＜／object＞ 
+
+3。smi格式 
+
+代码片断如下： 
+
+＜OBJECT id=RVOCX classid=clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA width=240 
+height=180＞ 
+
+＜param name="_ExtentX" value="6350"＞ 
+
+＜param name="_ExtentY" value="4763"＞ 
+
+＜param name="AUTOSTART" value="-1"＞ 
+
+＜param name="SHUFFLE" value="0"＞ 
+
+＜param name="PREFETCH" value="0"＞ 
+
+＜param name="NOLABELS" value="-1"＞ 
+
+＜param name="SRC" value="rm。rm"＞ 
+
+＜param name="CONTROLS" value="ImageWindow"＞ 
+
+＜param name="CONSOLE" value="console1"＞ 
+
+＜param name="LOOP" value="0"＞ 
+
+＜param name="NUMLOOP" value="0"＞ 
+
+＜param name="CENTER" value="0"＞ 
+
+＜param name="MAINTAINASPECT" value="0"＞ 
+
+＜param name="BACKGROUNDCOLOR" value="＃000000"＞＜embed 
+src="real。smi" type="audio／x-pn-realaudio-plugin" console="Console1" 
+controls="ImageWindow" height="180" width="240" 
+autostart="true"＞＜／OBJECT＞ 
+
+
+4。rm格式 
+
+代码片断如下： 
+
+＜OBJECT ID=video1 CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" 
+HEIGHT=288 WIDTH=352＞ 
+
+＜param name="_ExtentX" value="9313"＞ 
+
+＜param name="_ExtentY" value="7620"＞ 
+
+＜param name="AUTOSTART" value="0"＞ 
+
+＜param name="SHUFFLE" value="0"＞ 
+
+＜param name="PREFETCH" value="0"＞ 
+
+＜param name="NOLABELS" value="0"＞ 
+
+＜param name="SRC" value="rtsp:／／203。＊。＊。35／vod／dawan-a。rm"＞ 
+
+＜param name="CONTROLS" value="ImageWindow"＞ 
+
+＜param name="CONSOLE" value="Clip1"＞ 
+
+＜param name="LOOP" value="0"＞ 
+
+＜param name="NUMLOOP" value="0"＞ 
+
+＜param name="CENTER" value="0"＞ 
+
+＜param name="MAINTAINASPECT" value="0"＞ 
+
+＜param name="BACKGROUNDCOLOR" value="＃000000"＞＜embed 
+SRC type="audio／x-pn-realaudio-plugin" CONSOLE="Clip1" CONTROLS="ImageWindow" 
+HEIGHT="288" WIDTH="352" AUTOSTART="false"＞ 
+
+＜／OBJECT＞ 
+
+5。wmv格式 
+
+代码片断如下： 
+
+＜object id="NSPlay" width=200 height=180 classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" 
+codebase="http:／／activex。microsoft。com／activex／controls／mplayer／en／nsmp2inf。cab＃Version=6，4，5，715" 
+standby="Loading Microsoft Windows Media Player components。。。" type="application／x-oleobject" 
+align="right" hspace="5"＞ 
+
+＜param name="AutoRewind" value=1＞ 
+
+＜param name="FileName" value="／blog／＊＊＊＊＊＊。wmv"＞ 
+
+＜param name="ShowControls" value="1"＞ 
+
+＜param name="ShowPositionControls" value="0"＞ 
+
+＜param name="ShowAudioControls" value="1"＞ 
+
+＜param name="ShowTracker" value="0"＞ 
+
+＜param name="ShowDisplay" value="0"＞ 
+
+＜param name="ShowStatusBar" value="0"＞ 
+
+＜param name="ShowGotoBar" value="0"＞ 
+
+＜param name="ShowCaptioning" value="0"＞ 
+
+＜param name="AutoStart" value=1＞ 
+
+＜param name="Volume" value="-2500"＞ 
+
+＜param name="AnimationAtStart" value="0"＞ 
+
+＜param name="TransparentAtStart" value="0"＞ 
+
+＜param name="AllowChangeDisplaySize" value="0"＞ 
+
+＜param name="AllowScan" value="0"＞ 
+
+＜param name="EnableContextMenu" value="0"＞ 
+
+＜param name="ClickToPlay" value="0"＞ 
+
+＜／object＞ 
+
+
+6。wma格式 
+
+放在 ＜body＞ 里面。下面是部分解释: 
+
+＜object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id="MediaPlayer1" 
+＞ 
+
+＜param name="Filename" value="／blog／1。Wma"＞ ＜！--你文件的位置--＞ 
+
+＜param name="PlayCount" value="1"＞＜！--控制重复次数: “x”为几重复播放几次； 
+x=0，无限循环。--＞ 
+
+＜param name="AutoStart" value="0"＞＜！--控制播放方式: x=1，打开网页自动播放； 
+x=0，按播放键播放。--＞ 
+
+＜param name="ClickToPlay" value="1"＞＜！--控制播放开关: 
+x=1，可鼠标点击控制播放或暂停状态； x=0，禁用此功能。--＞ 
+
+＜param name="DisplaySize" value="0"＞＜！--控制播放画面: 
+x=0，原始大小； x=1，一半大小； x=2，2倍大小。--＞ 
+
+＜param name="EnableFullScreen Controls" value="1"＞＜！--控制切换全屏: 
+x=1，允许切换为全屏； x=0，禁用此功能。--＞ 
+
+＜param name="ShowAudio Controls" value="1"＞＜！--控制音量: 
+x=1，允许调节音量； x=0，禁止音量调节。--＞ 
+
+＜param name="EnableContext Menu" value="1"＞＜！--控制快捷菜单: 
+x=1，允许使用右键菜单； x=0，禁用右键菜单。--＞ 
+
+＜param name="ShowDisplay" value="1"＞＜！--控制版权信息: 
+x=1，显示电影及作者信息；x=0，不显示相关信息--＞ 
+
+＜／object＞

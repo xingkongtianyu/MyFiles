@@ -1,0 +1,675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0060)http://blog.csdn.net/silentbalanceyh/article/details/4349790 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/get_uid.json"></script>
+    <title>PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="　　这两天写一个工作量统计系统，需要使用PHP连接SQL Server 2005，然后集成在MOSS平台里面，头一次访问2005的版本，遇到了一些问题，把这些经验记录下来。本文纯属经验记录，不谈是专家之言，若有什么错误或者不清楚的地方，望来信告知：silentbalanceyh@126.com一环境配置：　　因为我自己机器是Windows 2008 + SQL Server 2008，所以">
+    <script type="text/javascript" async="" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ad.js"></script>
+    <link rel="Stylesheet" type="text/css" href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/silentbalanceyh/rss/list">
+    <link rel="shortcut icon" href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/default.css">
+
+<link href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><script type="text/javascript" charset="utf-8" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/tracking.js"></script><script type="text/javascript" charset="utf-8" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/main.js"></script><script src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/logger.js"></script></head>
+<body><iframe style="display: none;" frameborder="0"></iframe><div id="bdshare_s" style="display: block;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe><div id="bdshare_l" style="display: none;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_baidu bdsc">百度搜藏</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_renren rrw">人人网</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_douban db">豆瓣网</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_thx thx">和讯微博</a></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="bds_more">更多...</a></li></ul><p><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" class="goWebsite">百度分享</a></p></div></div></div>
+    <script src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank" style="color: red;">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1>
+                <a href="http://blog.csdn.net/silentbalanceyh">风中的索莉逖亚</a></h1>
+            <h2>凡事尤其自然，遇了处之泰然，得意之时淡然，失意之时坦然，艰辛曲折必然，历经沧桑悟然。</h2>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+                <li id="btnContents"><a href="http://blog.csdn.net/silentbalanceyh?viewmode=contents"><span>
+                    <img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/silentbalanceyh?viewmode=list"><span>
+                    <img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/silentbalanceyh/rss/list"><span>
+                    <img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "silentbalanceyh";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/silentbalanceyh";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+<a href="https://code.csdn.net/blog/33" target="_blank">
+<font color="blue">博文代码可自动存入CODE啦了！ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/youxin2012/article/details/12872805" target="_blank"><font color="red">WebApp实时开源框架Clouda---认识心得
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/12423189" target="_blank">
+<font color="blue">Tag功能介绍—我们为什么打Tag 
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://newsletter.csdn.net/show_book/show_book_list?type=5" target="_blank">
+<font color="red">订阅CSDN社区周刊，及时了解社区精华内容
+ </font></a>
+
+</div>                    <link href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790">
+        PHP连接SQL Server 2005 和 SQL Server 2008【草案】
+        </a></span>
+    </h3>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/silentbalanceyh/article/category/489897">系统配置</a> 
+        </span>
+    <span class="link_postdate">2009-07-15 11:19</span>
+    <span class="link_view" title="阅读次数">6314人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#report" title="举报">举报</a></span>
+    
+</div>
+<div class="tag2box"><a href="http://www.csdn.net/tag/sql%20server" target="_blank">sql server</a><a href="http://www.csdn.net/tag/php" target="_blank">php</a><a href="http://www.csdn.net/tag/extension" target="_blank">extension</a><a href="http://www.csdn.net/tag/authentication" target="_blank">authentication</a><a href="http://www.csdn.net/tag/windows" target="_blank">windows</a><a href="http://www.csdn.net/tag/encryption" target="_blank">encryption</a></div>
+
+    
+<div id="article_content" class="article_content">
+<p><span style="font-size: x-small;"><span style="font-size: small;">　　这两天写一个工作量统计系统，需要使用<span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">连接</span><span style="font-family: Calibri;">SQL Server 2005</span><span style="font-family: 宋体;">，然后集成在</span><span style="font-family: Calibri;">MOSS</span><span style="font-family: 宋体;">平台里面，头一次访问</span><span style="font-family: Calibri;">2005</span><span style="font-family: 宋体;">的版本，遇到了一些问题，把这些经验记录下来。本文纯属经验记录，不谈是专家之言，若有什么错误或者不清楚的地方，望来信告知：</span><span style="font-family: Calibri;">silentbalanceyh@126.com</span></span></span></p>
+<p><span style="font-size: small;"><strong>一环境配置：</strong></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　因为我自己机器是</span><span style="font-family: Calibri;">Windows 2008 + SQL Server 2008</span><span style="font-family: 宋体;">，所以我在使用的时候连接的是</span><span style="font-family: Calibri;">SQL Server 2008</span><span style="font-family: 宋体;">，后来发现基本功能两个版本区别不大，因为三方驱动都是微软提供的。需要说明的是，在</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">配置文件，即原生的</span><span style="font-family: Calibri;">php.ini</span><span style="font-family: 宋体;">里面需要修改一点东西，我没有尝试过去掉下边的注释是否可以访问</span><span style="font-family: Calibri;">05</span><span style="font-family: 宋体;">和</span><span style="font-family: Calibri;">08</span><span style="font-family: 宋体;">的数据库：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="color: #3366ff;"><span style="font-size: x-small;"><span style="font-size: small;">;extension=php_mssql.dll</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　我查阅了网上很多资料，这个</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">扩展是提供给</span><span style="font-family: Calibri;">SQL Server 2000</span><span style="font-family: 宋体;">用的，</span><span style="font-family: Calibri;">SQL&nbsp; Server 2005</span><span style="font-family: 宋体;">和</span><span style="font-family: Calibri;"> SQL Server 2008</span><span style="font-family: 宋体;">需要到微软官方去下载新的驱动，下载地址如下：</span></span></span></span></p>
+<p><a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=61BF87E0-D031-466B-B09A-6597C21A2E2A&displaylang=en"><span style="color: #3366ff;"><span style="font-size: small;">http://www.microsoft.com/downloads/details.aspx?FamilyId=61BF87E0-D031-466B-B09A-6597C21A2E2A&amp;displaylang=en</span></span></a></p>
+<p><span style="font-size: small;">　　官方文档有描述：</span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　</span><span style="font-style: italic; font-family: Verdana; color: #808080;">In its continued commitment to interoperability, Microsoft has released an updated SQL Server Driver for PHP. The SQL Server Driver for PHP download is available to all SQL Server users at no additional charge. The SQL Server Driver for PHP is a PHP 5 extension that allows for the reading and writing of SQL Server data from within PHP scripts. The extension provides a procedural interface for accessing data in all editions of SQL Server 2005 and SQL Server 2008.</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　根据官方文档的描述，微软提供的</span><span style="font-family: Verdana;">Driver</span><span style="font-family: 宋体;">是同时提供给</span><span style="font-family: Verdana;">SQL Server 2005</span><span style="font-family: 宋体;">和</span><span style="font-family: Verdana;">SQL Server 2008</span><span style="font-family: 宋体;">两个版本使用的。所以整体的环境配置步骤如下：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="color: #339966;"><span style="font-size: small;">1）下载驱动（上边有链接地址）下载过后的驱动包里面的内容如下图：</span></span></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: small;"><span style="color: #339966;"><span style="font-size: small;"><img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/b_13685j017016.jpg" alt="图例" width="205" height="141"></span></span></span></p>
+<p><span style="font-size: small;"><span style="color: #339966;"><span style="font-size: small;">2）拷贝驱动到相应的位置：</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　在</span><span style="font-family: Calibri;">Windows</span><span style="font-family: 宋体;">操作系统上配置过</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">环境的人应该都清楚，配置的时候若需要配置一个</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">的扩展，此扩展需要将相关的</span><span style="font-family: Calibri;">dll</span><span style="font-family: 宋体;">文件全部复制到</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">的扩展目录里面，然后通过修改</span><span style="font-family: Calibri;">php.ini</span><span style="font-family: 宋体;">来实现</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">的扩展，在</span><span style="font-family: Calibri;">php.ini</span><span style="font-family: 宋体;">里面需要指明扩展路径，一般情况是在最末尾添加一行：</span></span></span></span></p>
+<p><span style="color: #3366ff;"><span style="font-size: small;">extension_dir=""</span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　</span><span style="font-family: Calibri;">""</span><span style="font-family: 宋体;">内的内容填写</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">的扩展目录名，约定俗成一般是放在</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">目录下的一个</span><span style="font-family: Calibri;">ext</span><span style="font-family: 宋体;">文件夹内，当然可以将目录配置到任何地方（没有测试过）。把上图解压开的</span><span style="font-family: Calibri;">dll</span><span style="font-family: 宋体;">文件拷贝到</span><span style="font-family: Calibri;">extension_dir</span><span style="font-family: 宋体;">设置的扩展目录里面。</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="color: #339966;"><span style="font-size: small;">3）修改php.ini实现扩展：</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　在</span><span style="font-family: Calibri;">php.ini</span><span style="font-family: 宋体;">的一大堆</span><span style="font-family: Calibri;">;extension=**.dll</span><span style="font-family: 宋体;">格式里面添加两行，此部分位于以下注释下边一般：</span></span></span></span></p>
+<p><span style="color: #808080;"><span style="font-size: small;">; Windows Extensions</span></span></p>
+<p><span style="color: #808080;"><span style="font-size: small;">; Note that ODBC support is built in, so no dll is needed for it.</span></span></p>
+<p><span style="color: #808080;"><span style="font-size: small;">; Note that many DLL files are located in the extensions/ (PHP 4) ext/ (PHP 5)</span></span></p>
+<p><span style="color: #808080;"><span style="font-size: small;">; extension folders as well as the separate PECL DLL download (PHP 5).</span></span></p>
+<p><span style="color: #808080;"><span style="font-size: small;">; Be sure to appropriately set the extension_dir directive.</span></span></p>
+<p><span style="font-size: small;">　　添加的两行内容为：</span></p>
+<p><span style="color: #3366ff;"><span style="font-size: small;">extension=php_sqlsrv_ts.dll</span></span></p>
+<p><span style="color: #3366ff;"><span style="font-size: small;">extension=php_sqlsrv.dll</span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　注意＝号右边是解开过后的扩展的两个驱动的文件名，必须保证此文件在配置好的扩展目录内，而且需要注意此处最初不需要带“</span><span style="font-family: Calibri;">;</span><span style="font-family: 宋体;">”。<span style="color: #ff0000;">【</span></span><span style="color: #ff0000;"><span style="font-family: Calibri;">*</span><span style="font-family: 宋体;">：在</span><span style="font-family: Calibri;">php.ini</span><span style="font-family: 宋体;">文件里面，首部分号的含义代表行注释，如果有分号的时候，服务器在读取配置的时候会略过分号这一行不去读取相关内容，只有没有加分号的行才会被服务器读取。】</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　这里解释一下，两个驱动程序的区别在于，</span><span style="font-family: Calibri;">php_sqlsrv_ts.dll</span><span style="font-family: 宋体;">是线程安全的驱动，如果服务器本身的环境是使用的</span><span style="font-family: Calibri;">php5ts.dll</span><span style="font-family: 宋体;">，就是用这个驱动；</span><span style="font-family: Calibri;">php_sqlsrv.dll</span><span style="font-family: 宋体;">不是线程</span><span style="font-family: Calibri;"> </span><span style="font-family: 宋体;">安全的，这种情况下，服务器运行</span><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">应该加载的是</span><span style="font-family: Calibri;">php5.dll</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="color: #339966;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">4</span><span style="font-family: 宋体;">）测试配置环境：</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　整个过程操作好了过后，写一个</span><span style="font-family: Calibri;">test.php</span><span style="font-family: 宋体;">测试一下配置的相关环境，测试代码如下：</span></span></span></span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">&lt;?php</span></span></p>
+<p><span style="color: #800000;"><span style="font-size: small;">phpinfo();</span></span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">?&gt;</span></span></p>
+<p><span style="font-size: small;">　　若出现以下图片证明环境已经配置好了：</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: small;"><img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/b_14080o017011.jpg" alt="最终测试环境图" width="580" height="200">　　</span></p>
+<p><span style="font-size: small;">　　这里列举一下开发环境，以防出现不同环境有差异的地方：</span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">OS</span><span style="font-family: 宋体;">：</span><span style="font-family: Calibri;">Windows Server 2008&nbsp; x64 Enterprise Edition</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">WebServer</span><span style="font-family: 宋体;">：</span><span style="font-family: Calibri;">Apache 2.2.11</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">Database</span><span style="font-family: 宋体;">：</span><span style="font-family: Calibri;">SQL Server 2008&nbsp; x64 Enterprise Edition</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">PHP</span><span style="font-family: 宋体;">：</span><span style="font-family: Calibri;">5.2.9</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　</span><span style="color: #000000;"><span style="color: #808080;">（*：在配置PHP环境的时候，如果是解压缩的版本，在Windows平台上需要拷贝PHP根目录下所有的DLL文件到Windows的目录里面，需要说明的是：Windows 32位系统的目标目录为：</span><span style="color: #ff0000;">$:/Windows/System32</span>，<span style="color: #808080;">Windows 64位环境的目标目录为：</span><span style="color: #ff0000;">$:/Windows/SysWOW64</span>，<span style="color: #808080;">这里$符号代表安装操作系统的盘符号。而且本文的Driver好像运行的最低PHP版本应该为5.2.6，官方文档里面说的测试版本是使用的PHP5.2.6，至于低版本是否可以运行，我没有测试。）</span></span></span></span></span></p>
+<p><span style="font-size: small;"><strong><span style="font-size: small;">二连接数据库：</span></strong></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">&nbsp;</span><span style="font-family: 宋体;">　　使用过</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">的人应该都清楚，</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">常用的有两种认证方式，一种是本地系统账户认证（</span><span style="font-family: Calibri;">Windows Authentication </span><span style="font-family: 宋体;">），一种是使用用户名和密码（</span><span style="font-family: Calibri;">SQL Server Authentication </span><span style="font-family: 宋体;">），第二种认证方式必须启用</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">的混合模式。</span></span></span></span></p>
+<p><span style="font-size: small;"><strong><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　</span><span style="font-family: Calibri;">1.</span><span style="font-family: Calibri;">Windows Authentication</span><span style="font-family: 宋体;">连接部分代码段：</span></span></span></strong></span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">&lt;?php</span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$serverName</span> = <span style="color: #339966;">"(local)";</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$connectionInfo</span> = <span style="color: #0000ff;">array</span>(<span style="color: #339966;">"Database"</span>=&gt;<span style="color: #339966;">"TestingInfo"</span>,<span style="color: #339966;">"ConnectionPooling"</span>=&gt;<span style="color: #0000ff;">false</span>);</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$conn</span> = sqlsrv_connect( <span style="color: #800000;">$serverName</span>,<span style="color: #800000;">$connectionInfo</span>);</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #0000ff;">if</span>( <span style="color: #800000;">$conn</span> == <span style="color: #0000ff;">false</span>)</span></span></span></p>
+<p><span style="font-size: small;">{</span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;"><span style="color: #0000ff;">&nbsp;&nbsp;&nbsp; echo</span> <span style="color: #339966;">"</span></span><span style="font-family: 宋体; color: #339966;">连接失败！</span><span style="font-family: Calibri;"><span style="color: #339966;">"</span>;</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #0000ff;">&nbsp;&nbsp; die</span>( print_r( sqlsrv_errors(), <span style="color: #0000ff;">true</span>)); </span></span></span></p>
+<p><span style="font-size: small;">}</span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">?&gt;</span></span></p>
+<p><span style="font-size: small;"><strong><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　</span><span style="font-family: Calibri;">2.</span><span style="font-family: Calibri;">SQL Server Authentication</span><span style="font-family: 宋体;">连接部分代码段：</span></span></span></strong></span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">&lt;?php</span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$serverName</span> = <span style="color: #339966;">"(local)";</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$uid</span> = <span style="color: #339966;">"sa";</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$pwd</span> = <span style="color: #339966;">"******"</span>;</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$connectionInfo</span> =&nbsp; <span style="color: #3366ff;">array</span>(<span style="color: #339966;">"UID"</span>=&gt;<span style="color: #800000;">$uid</span>,<span style="color: #339966;">"PWD"</span>=&gt;<span style="color: #800000;">$pwd</span>,<span style="color: #339966;">"Database"</span>=&gt;<span style="color: #339966;">"TestingInfo"</span>);</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #800000;">$conn</span> = sqlsrv_connect( <span style="color: #800000;">$serverName</span>,<span style="color: #800000;">$connectionInfo</span>);</span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #3366ff;">if</span>( <span style="color: #800000;">$conn</span> == <span style="color: #3366ff;">false</span>)</span></span></span></p>
+<p><span style="font-size: small;">{</span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;"><span style="color: #3366ff;">&nbsp;&nbsp;&nbsp; echo</span> <span style="color: #339966;">"</span></span><span style="font-family: 宋体; color: #339966;">连接失败！</span><span style="font-family: Calibri;"><span style="color: #339966;">"</span>;</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #3366ff;">&nbsp;&nbsp; die</span>( print_r( sqlsrv_errors(), <span style="color: #3366ff;">true</span>)); </span></span></span></p>
+<p><span style="font-size: small;">}</span></p>
+<p><span style="color: #ff0000;"><span style="font-size: small;">?&gt;</span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　参考官方提供的英文原文档，针对参数</span><span style="font-family: Calibri; color: #800000;">$connectionInfo</span><span style="font-family: 宋体;">做一个简单说明，因为</span><span style="font-family: Calibri; color: #800000;">$connectionInfo</span><span style="font-family: 宋体;">是一个</span><span style="font-family: Calibri;">Hash</span><span style="font-family: 宋体;">表结构，下边参数格式为：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">Key[<span style="color: #3366ff;">DataType</span>]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: Calibri;">Description(<span style="color: #ff6600;">Default Value</span>)</span><span style="font-family: 宋体;">：键</span><span style="font-family: Calibri;">[</span><span style="font-family: 宋体;">数据类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：描述</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体;">默认值</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">1</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>APP</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">使用的应用程序名称【</span><span style="font-family: Calibri;">*</span><span style="font-family: 宋体;">：我自己不太懂得这个地方的意义，不好意思】</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">没有默认值</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">2</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>ConnectionPooling</strong>[<span style="color: #3366ff;">1</span></span><span style="color: #3366ff;"><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">true</span><span style="font-family: 宋体;">为打开连接池，</span><span style="font-family: Calibri;">0</span><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">为关闭连接池</span></span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">用来设置是否打开</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">的连接池功能</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">默认值为</span><span style="font-family: Calibri;"><span style="color: #ff6600;">true(1</span>))</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">3</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>Database</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">连接的数据库的名称，所有连接提供的数据库名称类似</span><span style="font-family: Calibri;">ASP.NET</span><span style="font-family: 宋体;">里面</span><span style="font-family: Calibri;">web.config</span><span style="font-family: 宋体;">的连接字符串里面的数据库实例名，如果设置了</span><span style="font-family: Calibri;">Database</span><span style="font-family: 宋体;">的连接属性，驱动会默认使用</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">支持的</span><span style="font-family: Calibri;">Transact-SQL</span><span style="font-family: 宋体;">脚本来操作所有提供的数据库实例，包括添加、删除、查询、修改等各种操作</span><span style="font-family: Calibri;">(</span><span style="color: #ff6600;"><span style="font-family: 宋体;">默认为登陆的操作系统里面的数据库，我没有测试过，应该是直接运行程序的</span><span style="font-family: Calibri;">(local))</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">4</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>Encrypt</strong>[<span style="color: #3366ff;">1</span></span><span style="color: #3366ff;"><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">true</span><span style="font-family: 宋体;">为执行加密，</span><span style="font-family: Calibri;">0</span><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">为不执行加密</span></span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">设置是否对传入服务器的</span><span style="font-family: Calibri;">SQL</span><span style="font-family: 宋体;">脚本执行加密操作，当然如果使用加密操作会对系统性能存在一定影响，不过影响不明显</span><span style="font-family: Calibri;">(</span><span style="color: #ff6600;"><span style="font-family: 宋体;">默认为</span><span style="font-family: Calibri;">false(0))</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">5</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>Failover_Partner</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">提供一个服务器镜像，此属性应该是用于主服务器</span><span style="font-family: Calibri;">Down</span><span style="font-family: 宋体;">掉的情况，当主服务器</span><span style="font-family: Calibri;">Down</span><span style="font-family: 宋体;">掉的时候，提供一个备份的数据库和服务器的实例镜像作为备份的服务器处理。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">未设置默认值</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">6</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>LoginTimeout</strong>[<span style="color: #3366ff;">Integer</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">提供连接的超时时间，时间单位为秒。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">未设置</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">7</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>PWD</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">当使用</span><span style="font-family: Calibri;">SQL Server </span><span style="font-family: Calibri;">Authentication</span><span style="font-family: 宋体;">认证方式的时候需要提供该属性，该属性为登陆用户的密码。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">未设置任何值</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">8</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>QuotedId</strong>[<span style="color: #3366ff;">1</span></span><span style="color: #3366ff;"><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">true</span><span style="font-family: 宋体;">就是用</span><span style="font-family: Calibri;">SQL-92</span><span style="font-family: 宋体;">标准，</span><span style="font-family: Calibri;">0</span><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">就是用遗留的标准</span></span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">设置使用</span><span style="font-family: Calibri;">SQL</span><span style="font-family: 宋体;">脚本的标准是使用</span><span style="font-family: Calibri;">SQL-92</span><span style="font-family: 宋体;">标准还是使用遗留的</span><span style="font-family: Calibri;">Transact-SQL</span><span style="font-family: 宋体;">标准。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">默认值为</span><span style="font-family: Calibri;"><span style="color: #ff6600;">true(1</span>))</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">9</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>TraceFile</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">此属性主要为监控数据使用，可用于调试或者维护，它的值为一个路径，</span><span style="font-family: Calibri;">SQL Server</span><span style="font-family: 宋体;">会将所有的数据执行操作写入该路径，至于具体内容是什么，我没有使用过。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">未设置默认值</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">10</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>TraceOn</strong>[<span style="color: #3366ff;">1</span></span><span style="color: #3366ff;"><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">true</span><span style="font-family: 宋体;">打开监控，</span><span style="font-family: Calibri;">0</span><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">关闭监控</span></span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">是否打开</span><span style="font-family: Calibri;">ODBC</span><span style="font-family: 宋体;">连接方式的监控。</span><span style="font-family: Calibri;">(</span><span style="color: #ff6600;"><span style="font-family: 宋体;">默认值</span><span style="font-family: Calibri;">false(0))</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">11</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>TransactionIsolation</strong></span><span style="font-family: Calibri;">[</span><span style="font-family: 宋体; color: #3366ff;">常量值</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">提供数据库的事务级别</span><span style="font-family: Calibri;">(</span><span style="font-family: Calibri; color: #ff6600;">SQLSRV_TXN_READ_COMMITTED</span><span style="font-family: Calibri;">)</span></span></span></span></p>
+<p><span style="font-size: small;">常量值包括</span></p>
+<p><span style="font-size: small;">SQLSRV_TXN_READ_UNCOMMITTED,</span></p>
+<p><span style="font-size: small;">SQLSRV_TXN_READ_COMMITTED,</span></p>
+<p><span style="font-size: small;">SQLSRV_TXN_REPEATABLE_READ,</span></p>
+<p><span style="font-size: small;">SQLSRV_TXN_SNAPSHOT,</span></p>
+<p><span style="font-size: small;">SQLSRV_TXN_SERIALIZABLE</span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">12</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>TrustServerCertificate</strong></span><span style="font-family: Calibri;">[<span style="color: #3366ff;">1</span></span><span style="color: #3366ff;"><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">true</span><span style="font-family: 宋体;">设置为客户端限制，</span><span style="font-family: Calibri;">0</span><span style="font-family: 宋体;">或</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">设置为客户端不限制</span></span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">如果设置为</span><span style="font-family: Calibri;"> true</span><span style="font-family: 宋体;">，则使用</span><span style="font-family: Calibri;"> SSL </span><span style="font-family: 宋体;">对通道进行加密，但不通过证书链对可信度进行验证。如果将</span><span style="font-family: Calibri;">TrustServerCertificate </span><span style="font-family: 宋体;">设置为</span><span style="font-family: Calibri;"> true </span><span style="font-family: 宋体;">并将</span><span style="font-family: Calibri;"> Encrypt </span><span style="font-family: 宋体;">设置为</span><span style="font-family: Calibri;"> false</span><span style="font-family: 宋体;">，则不对通道进行加密。可识别的值为</span><span style="font-family: Calibri;"> true</span><span style="font-family: 宋体;">、</span><span style="font-family: Calibri;">false</span><span style="font-family: 宋体;">、</span><span style="font-family: Calibri;">yes </span><span style="font-family: 宋体;">和</span><span style="font-family: Calibri;"> no</span><span style="font-family: 宋体;">。有关更多信息，请参见</span><span style="font-family: Calibri;"> SQL Server 2005 Books Online</span><span style="font-family: 宋体;">（《</span><span style="font-family: Calibri;">SQL Server 2005 </span><span style="font-family: 宋体;">联机丛书》）中的“</span><span style="font-family: Calibri;">Encryption Hierarchy”</span><span style="font-family: 宋体;">（加密层次结构）和“</span><span style="font-family: Calibri;">Using Encryption Without Validation”</span><span style="font-family: 宋体;">（使用不验证的加密）</span><span style="font-family: 宋体;">。</span><span style="font-family: Calibri;">(</span><span style="color: #ff6600;"><span style="font-family: 宋体;">默认值：</span><span style="font-family: Calibri;">false(0))</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">13</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>UID</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">当使用</span><span style="font-family: Calibri;">SQL Server </span><span style="font-family: Calibri;">Authentication</span><span style="font-family: 宋体;">认证方式的时候需要提供该属性，该属性为登陆用户的用户名。</span><span style="font-family: Calibri;">(</span><span style="color: #ff6600;"><span style="font-family: 宋体;">未设置任何值</span><span style="font-family: Calibri;">)</span></span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="color: #339966;"><span style="font-family: 宋体;">【</span><span style="font-family: Calibri;">14</span><span style="font-family: 宋体;">】</span></span><span style="font-family: Calibri;"><strong>WSID</strong>[<span style="color: #3366ff;">String</span></span><span style="font-family: 宋体; color: #3366ff;">类型</span><span style="font-family: Calibri;">]</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">监控计算机名称，此属性很少用。</span><span style="font-family: Calibri;">(</span><span style="font-family: 宋体; color: #ff6600;">未设置任何值</span><span style="font-family: Calibri;">)</span><span style="font-family: 宋体;">：</span></span></span></span></p>
+<p><span style="font-size: small;"><strong><span style="font-size: small;">总结：</span></strong></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　因为没有时间讲解连接过后的关于</span><span style="font-family: Calibri;">SQL</span><span style="font-family: 宋体;">的基本操作和详细操作，仅仅提供一个实例供参考，望谅解，若有笔误的地方，请指点：</span><span style="font-family: Calibri;">silentbalanceyh@126.com</span><span style="font-family: 宋体;">。还有更加详细的内容请参考驱动下载过后的官方文档，下载驱动过后微软提供了详细的</span><span style="font-family: Calibri;">CHM</span><span style="font-family: 宋体;">官方文档，如何使用驱动都提供了部分例子。</span></span></span></span></p>
+<p><span style="font-size: small;"><span style="font-size: x-small;"><span style="font-size: small;"><span style="font-family: 宋体;">　　——</span><span style="font-family: Calibri;">2009.7.11</span></span></span></span></p>
+</div>
+
+
+
+
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float: right;">
+<a class="bds_qzone" title="分享到QQ空间" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#"></a>
+<a class="bds_tsina" title="分享到新浪微博" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#"></a>
+<a class="bds_tqq" title="分享到腾讯微博" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#"></a>
+<a class="bds_renren" title="分享到人人网" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#"></a>
+<a class="bds_t163" title="分享到网易微博" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#"></a>
+<span class="bds_more">更多</span>
+<a class="shareCount" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" title="累计分享0次">0</a>
+</div>
+
+
+
+
+<div class="article_next_prev">
+            <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/silentbalanceyh/article/details/4022071">C++编程报告——WxWidget环境配置（IDE：CodeBlocks）</a></li>
+            <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/silentbalanceyh/article/details/4440628">Scala初次接触</a></li>
+</div>
+
+
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+    <div id="ad_cen">
+        <script type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/o.js"></script><div id="BAIDU_CLB_SLOT_PS_117306"></div><script charset="utf-8" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ecom"></script><script type="text/javascript">
+/*728*90，博客内页*/
+var cpro_id = "u1405018";
+</script>
+<script src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/c.js" type="text/javascript"></script><script type="text/javascript" charset="utf-8" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ecom(1)"></script><div style="display:none">-</div> <iframe id="cproIframe1" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/snippetcacher.htm" width="728" height="90" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <script type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div id="comment_title" class="panel_head">
+    查看评论<a name="comments"></a></div>
+<div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+<div id="comment_bar">
+</div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fsilentbalanceyh%2Farticle%2Fdetails%2F4349790">[注册]</a></div></div>
+<div class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '4349790';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    <iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 1145px; height: 170px;" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ad(1).htm"></iframe></div>
+    <script type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div id="report_dialog">
+</div>
+<div id="d-top" style="display: block;">
+    <a id="d-top-a" href="http://blog.csdn.net/silentbalanceyh/article/details/4349790#" title="回到顶部">
+        <img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/top.png" alt="TOP"></a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div class="tag_list">
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+        <a title="全部主题" href="http://www.csdn.net/tag" target="_blank">
+            全部主题</a> <a title="数据挖掘" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98" target="_blank">
+                数据挖掘</a> <a title="SOA" href="http://www.csdn.net/tag/soa" target="_blank">
+                    SOA</a> <a title="UML" href="http://www.csdn.net/tag/uml" target="_blank">
+                        UML</a> <a title="开放平台" href="http://www.csdn.net/tag/%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0" target="_blank">
+                            开放平台</a> <a title="HTML5" href="http://www.csdn.net/tag/HTML5" target="_blank">
+                                HTML5</a> <a title="开源" href="http://www.csdn.net/tag/%E5%BC%80%E6%BA%90" target="_blank">
+                                    开源</a> <a title="移动开发" href="http://www.csdn.net/tag/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91" target="_blank">
+                                        移动开发</a> <a title="iOS" href="http://www.csdn.net/tag/iOS" target="_blank">
+                                            iOS</a> <a title="Android" href="http://www.csdn.net/tag/android" target="_blank">Android</a>
+        <a title="移动游戏" href="http://www.csdn.net/tag/%E7%A7%BB%E5%8A%A8%E6%B8%B8%E6%88%8F" target="_blank">
+            移动游戏</a> <a title="Windows Phone" href="http://www.csdn.net/tag/Windows%20Phone" target="_blank">Windows Phone</a> <a title="JavaScript" href="http://www.csdn.net/tag/JavaScript" target="_blank">JavaScript</a> <a title="CSS" href="http://www.csdn.net/Tag/CSS" target="_blank">
+                        CSS</a> <a title="游戏引擎" href="http://www.csdn.net/tag/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E" target="_blank">
+                            游戏引擎</a> <a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank">
+                                云计算</a> <a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank">
+                                    大数据</a> <a title="Hadoop" href="http://www.csdn.net/tag/Hadoop" target="_blank">
+                                        Hadoop</a> <a title="OpenStack" href="http://www.csdn.net/tag/OpenStack" target="_blank">OpenStack</a>
+        <a title="云平台" href="http://www.csdn.net/tag/%E4%BA%91%E5%B9%B3%E5%8F%B0" target="_blank">
+            云平台</a> <a title="PHP" href="http://www.csdn.net/tag/PHP" target="_blank">
+                PHP</a> <a title="MongoDB" href="http://www.csdn.net/tag/MongoDB" target="_blank">MongoDB</a> <a title="JSON" href="http://www.csdn.net/tag/JSON" target="_blank">JSON</a> <a title="Xcode" href="http://www.csdn.net/tag/Xcode" target="_blank">Xcode</a>
+        <a title="Node.js" href="http://www.csdn.net/tag/Node.js" target="_blank">
+            Node.js</a> <a title="前端开发" href="http://www.csdn.net/tag/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91" target="_blank">
+                前端开发</a> <a title="神经网络" href="http://www.csdn.net/tag/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C" target="_blank">
+                    神经网络</a> <a title="安全" href="http://www.csdn.net/tag/%E5%AE%89%E5%85%A8" target="_blank">
+                        安全</a> <a title="Java" href="http://www.csdn.net/tag/Java" target="_blank">
+                            Java</a> <a title=".NET" href="http://www.csdn.net/tag/.NET" target="_blank">
+                                .NET</a> <a title="MySQL" href="http://www.csdn.net/tag/MySQL" target="_blank">
+                                    MySQL</a> <a title="textview" href="http://www.csdn.net/tag/textview" target="_blank">textview</a>
+        <a title="BigTable" href="http://www.csdn.net/tag/BigTable" target="_blank">
+            BigTable</a> <a title="web框架" href="http://www.csdn.net/tag/web%E6%A1%86%E6%9E%B6" target="_blank">web框架</a> <a title="SQL" href="http://www.csdn.net/tag/SQL" target="_blank">SQL</a> <a title="Redis" href="http://www.csdn.net/tag/Redis" target="_blank">Redis</a> <a title="CouchDB" href="http://www.csdn.net/tag/CouchDB" target="_blank">CouchDB</a>
+        <a title="Linux" href="http://www.csdn.net/tag/Linux" target="_blank">
+            Linux</a> <a title="可穿戴计算" href="http://www.csdn.net/tag/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%A1%E7%AE%97" target="_blank">
+                可穿戴计算</a> <a title="NoSQL" href="http://www.csdn.net/tag/NoSQL" target="_blank">
+                    NoSQL</a> <a title="Ruby" href="http://www.csdn.net/tag/Ruby" target="_blank">
+                        Ruby</a> <a title="API" href="http://www.csdn.net/tag/API" target="_blank">
+                            API</a> <a title="GPL" href="http://www.csdn.net/tag/GPL" target="_blank">
+                                GPL</a> <a title="XAML" href="http://www.csdn.net/tag/XAML" target="_blank">
+                                    XAML</a> <a title="ASP.NET" href="http://www.csdn.net/tag/ASP.NET" target="_blank">ASP.NET</a> <a title="前端开发" href="http://www.csdn.net/tag/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91" target="_blank">前端开发</a>
+        <a title="虚拟化" href="http://www.csdn.net/tag/%E8%99%9A%E6%8B%9F%E5%8C%96" target="_blank">
+            虚拟化</a> <a title="框架" href="http://www.csdn.net/tag/%E6%A1%86%E6%9E%B6" target="_blank">
+                框架</a> <a title="机器学习" href="http://www.csdn.net/tag/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0" target="_blank">
+                    机器学习</a> <a title="数据中心" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83" target="_blank">
+                        数据中心</a> <a title="IE10" href="http://www.csdn.net/tag/IE10" target="_blank">
+                            IE10</a> <a title="敏捷" href="http://www.csdn.net/tag/%E6%95%8F%E6%8D%B7" target="_blank">
+                                敏捷</a> <a title="集群" href="http://www.csdn.net/tag/%E9%9B%86%E7%BE%A4" target="_blank">
+                                    集群</a>
+    </div>
+</div>
+
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/silentbalanceyh" target="_blank">
+    <img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/1_silentbalanceyh.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/silentbalanceyh" class="user_name" target="_blank">戒子猪</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="javascript:void(0);" class="letter" title="[发私信]"></a>
+</div>
+<div id="blog_medal">
+<div id="bms_box"></div></div>
+<ul id="blog_rank">
+    <li>访问：<span>116882次</span></li>
+    <li>积分：<span>1647分</span></li>
+    <li>排名：<span>第6413名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>28篇</span></li>
+    <li>转载：<span>1篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>226条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/category/583029">Java系列教程</a><span>(23)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/category/567000">BugList</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/category/579489">Scala系列</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/category/566989">技术摘录</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/category/489897">系统配置</a><span>(3)</span>
+</li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2012/12">2012年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2010/01">2010年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/11">2009年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/10">2009年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/09">2009年09月</a><span>(8)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/08">2009年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/07">2009年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/03">2009年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2009/02">2009年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2008/12">2008年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/silentbalanceyh/article/month/2008/11">2008年11月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head"><span>阅读排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4608272" title="10.Java基础知识【上】">10.Java基础知识【上】</a><span>(13481)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4661230" title="12.Java内存模型">12.Java内存模型</a><span>(10137)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4483600" title="2.Java中的类和对象【第一部分草案】">2.Java中的类和对象【第一部分草案】</a><span>(6885)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4349790" title="PHP连接SQL Server 2005 和 SQL Server 2008【草案】">PHP连接SQL Server 2005 和 SQL Server 2008【草案】</a><span>(6313)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4608360" title="11.Java基础知识【下】">11.Java基础知识【下】</a><span>(5780)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4468368" title="Java引用总结【草案】">Java引用总结【草案】</a><span>(5530)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4587371" title="Java系列教程目录表【四次更新】">Java系列教程目录表【四次更新】</a><span>(5299)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4022071" title="C++编程报告——WxWidget环境配置（IDE：CodeBlocks）">C++编程报告——WxWidget环境配置（IDE：CodeBlocks）</a><span>(5128)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/5252285" title="17.IO、文件、NIO【草案三】">17.IO、文件、NIO【草案三】</a><span>(5080)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4586627" title="9.Java中的集合、枚举、泛型【下】">9.Java中的集合、枚举、泛型【下】</a><span>(4636)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4608272" title="10.Java基础知识【上】">10.Java基础知识【上】</a><span>(52)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4587371" title="Java系列教程目录表【四次更新】">Java系列教程目录表【四次更新】</a><span>(30)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4661230" title="12.Java内存模型">12.Java内存模型</a><span>(24)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4608360" title="11.Java基础知识【下】">11.Java基础知识【下】</a><span>(17)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4549128" title="5.Java中的异常、断言、日志【草稿上】">5.Java中的异常、断言、日志【草稿上】</a><span>(16)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4483600" title="2.Java中的类和对象【第一部分草案】">2.Java中的类和对象【第一部分草案】</a><span>(12)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4468368" title="Java引用总结【草案】">Java引用总结【草案】</a><span>(9)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/5252301" title="18.IO、文件、NIO【草案四】">18.IO、文件、NIO【草案四】</a><span>(8)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4485140" title="3.Java中的类和对象【第二章节草案】">3.Java中的类和对象【第二章节草案】</a><span>(8)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/silentbalanceyh/article/details/4476677" title="1.Java基本数据类型【草案】">1.Java基本数据类型【草案】</a><span>(7)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 194px; height: 236px;" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ad.htm"></iframe></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/4476677#comments">1.Java基本数据类型【草案】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/XieZhenz" class="user_name">XieZhenz</a>:
+上文说道boolean仅仅使用1位来表示。似乎不太准确。请参考http://blog.csdn.ne...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/4791922#comments">14.字符串、格式化、正则表达式【下】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/a13525177343" class="user_name">a13525177343</a>:
+哥们感觉你可以出书了
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/8294269#comments">21.Java序列化【草案三】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/doupei2006" class="user_name">doupei2006</a>:
+博主对序列化研究如此深入，令小生佩服。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/5252285#comments">17.IO、文件、NIO【草案三】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/w8700569" class="user_name">w8700569</a>:
+在BufferedRandomAccessFile中改写的length()方法的this.initf...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/8183849#comments">19.Java序列化【草案一】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/silentbalanceyh" class="user_name">戒子猪</a>:
+@iamjordan:随便转哈，我只是写来记录给自己用的。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/8183849#comments">19.Java序列化【草案一】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/iamjordan" class="user_name">violin</a>:
+正想写一篇关于java序列化的总结，找到楼主的博文后我打消了这个念头。请允许我转载您文中的部分内容到...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/4564902#comments">7.Java中的异常、断言、日志【草稿下，Log4j专题】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zhangguodong12" class="user_name">zhangguodong12</a>:
+很详细啊，顶！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/4468368#comments">Java引用总结【草案】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/moruochujian00" class="user_name">moruochujian00</a>:
+开眼了，谢谢分享。呵呵
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/4608272#comments">10.Java基础知识【上】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/laijingjing" class="user_name">laijingjing</a>:
+“如果不定义public的class，文件名必须和其中至少一个class的名称一致；“这句话是不是错...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/silentbalanceyh/article/details/8183849#comments">19.Java序列化【草案一】</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/shuishiwo5557" class="user_name">shuishiwo5557</a>:
+楼主太牛了  不知楼主目前在何公司就职？有无意愿来上海或杭州？
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div id="pub_footerall" class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes" target="_blank" class="qq">QQ客服</a> <a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a> <a href="http://bbs.csdn.net/forums/Service" target="_blank" class="online">论坛反馈</a> <a href="mailto:webmaster@csdn.net" class="email">联系邮箱：webmaster@csdn.net</a> <span class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>世纪乐知(北京)网络技术有限公司 提供技术支持</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/notify.js"></script>
+    <script type="text/javascript" src="http://pass.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ad-blog.js"></script><script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ad-ms621.js"></script>
+
+<script type="text/javascript" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/count.js"></script><iframe src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/logs.htm" frameborder="0" width="0" height="0"></iframe>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+
+
+<iframe style="width: 1px; height: 1px; position: absolute; visibility: hidden;" src="./PHP连接SQL Server 2005 和 SQL Server 2008【草案】 - 风中的索莉逖亚 - 博客频道 - CSDN.NET_files/ibm-ca-q4-systemx-csdnhomepage-728-90-1113.htm"></iframe></body></html>

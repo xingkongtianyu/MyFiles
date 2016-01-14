@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.parseJSON</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-parseJSON1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.parseJSON( json )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>接受一个标准格式的 JSON 字符串，并返回解析后的 JavaScript 对象。</p>
+<ul class="signatures"><li class="signature" id="jQuery-parseJSON-json">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.1/">1.4.1</a></span>jQuery.parseJSON( json )</h4>
+<p class="arguement"><strong>json</strong>将要解析的 JSON 字符串。</p>
+</li></ul>
+<div class="longdesc">
+<<p>传入格式有误的 JSON 字符串可能导致抛出异常。例如，下面这些 JSON 字符串格式都不对：</p>
+            <ul>
+               <li>
+                  <code>{test: 1}</code> (test 没有使用双引号包裹).</li>
+               <li>
+                  <code>{'test': 1}</code> ('test' 用了单引号而不是双引号包裹).</li>
+            </ul>
+            <p>另外，如果你什么都不传入，或者传入空字符串、null、undefined 等，parseJSON 都会返回 null 。如果浏览器原生实现了 <code>JSON.parse</code>， jQuery 则会使用它来解析字符串。更多关于JSON格式的细节请参考 <a href="http://json.org/">http://json.org/</a> 
+</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">解析一个 JSON 字符串。</span></h4>
+<pre><code class="example">var obj = jQuery.parseJSON('{"name":"John"}');
+alert( obj.name === "John" );</code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

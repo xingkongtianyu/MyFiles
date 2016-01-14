@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.data()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/data/" title="View all posts in Data">Data</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#jQuery-data1">jQuery.data( element, key, value ) </a><ul><li>jQuery.data( element, key, value )
+              </li></ul>
+</li>
+<li>
+<a href="#jQuery-data2">jQuery.data( element, key ) </a><ul>
+<li>jQuery.data( element, key )
+              </li>
+<li>jQuery.data( element )
+              </li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div id="jQuery-data1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.data( element, key, value )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>在匹配远上绑定任意相关数据。</p>
+<ul class="signatures"><li class="signature" id="jQuery-data-element-key-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.3/">1.2.3</a></span>jQuery.data( element, key, value )</h4>
+<p class="arguement"><strong>element</strong>要关联数据的DOM对象</p>
+<p class="arguement"><strong>key</strong>存储的数据名</p>
+<p class="arguement"><strong>value</strong>新数据值</p>
+</li></ul>
+<div class="longdesc">
+<p><strong>注意</strong>这是一个底层的方法，你应该用<code><a href="#p=data">.data()</a></code>代替。 </p>
+<p><code>jQuery.data()</code> 方法允许我们在DOM元素上附加任意类型的数据,避免了循环引用的内存泄漏风险。
+jQuery ensures that the data is removed when DOM elements are removed via jQuery methods, and when the user leaves the page. 我们可以在一个元素上设置不同的值，并获取这些值：</p>
+<pre>jQuery.data(document.body, 'foo', 52);
+		jQuery.data(document.body, 'bar', 'test');</pre>
+</div>
+<h3 id="notes-0">注意:</h3>
+<div class="longdesc"><ul><li>注意这个方法目前并不提供在XML文档上跨平台设置，作为Internet Explorer不允许通过自定义属性附加数据。</li></ul></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Store then retrieve a value from the div element.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+    The values stored were 
+    &lt;span&gt;&lt;/span&gt;
+    and
+    &lt;span&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;script&gt;var div = $("div")[0];
+    jQuery.data(div, "test", { first: 16, last: "pizza!" });
+    $("span:first").text(jQuery.data(div, "test").first);
+    $("span:last").text(jQuery.data(div, "test").last);&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div id="jQuery-data2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.data( element, key )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>返回元素上储存的相应名字的数据，可以用data(name, value)来设定。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-data-element-key">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.3/">1.2.3</a></span>jQuery.data( element, key )</h4>
+<p class="arguement"><strong>element</strong>要关联数据的DOM对象</p>
+<p class="arguement"><strong>key</strong>存储的数据名</p>
+</li>
+<li class="signature" id="jQuery-data-element">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery.data( element )</h4>
+<p class="arguement"><strong>element</strong>要关联数据的DOM对象</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><strong>注意</strong>这是一个底层的方法，你应该用<code><a href="#p=data">.data()</a></code>代替。 </p>
+<p><code>.data()</code>方法允许我们在DOM元素上附加任意类型的数据,避免了循环引用的内存泄漏风险。我们可以在一个元素上设置不同的值，并获取这些值：</p>
+<pre>alert(jQuery.data( document.body, 'foo' ));
+alert(jQuery.data( document.body ));</pre>
+<p>上面几行代码alert  <code>body</code>元素上设置的值。若果没有设置任何值，那么将返回null。</p>
+
+<p>调用没有参数的<code>jQuery.data(element)</code>时将获取一个作为JavaScript对象的所有值。jQuery内部自身使用这个方法来绑定数据，如事件处理器，所以不要以为这只包含数据储存你的代码。</p>
+<p><strong>HTML 5 data- 属性</strong></p>
+<p>直jQuery 1.4.3起， <a href="http://ejohn.org/blog/html-5-data-attributes/">HTML 5 data- 属性</a>
+将自动被引用到jQuery的数据对象中。</p>
+<p>举个例子, 给定下面的HTML:</p>
+<pre>&lt;div data-role="page" data-hidden="true" data-options='{"name":"John"}'&gt;&lt;/div&gt;</pre>
+<p>All of the following jQuery code will work.</p>
+<pre>$("div").data("role") === "page";
+$("div").data("hidden") === true;
+$("div").data("options").name === "John";</pre>
+<p>Note that strings are left intact while JavaScript values are converted to their associated value (this includes booleans, numbers, objects, arrays, and null). The data- attributes are pulled in the first time the data property is accessed and then are no longer accessed or mutated (all data values are then stored internally in jQuery).</p>
+</div>
+<h3 id="notes-0">注意:</h3>
+<div class="longdesc"><ul><li>注意这个方法目前并不提供在XML文档上跨平台设置，作为Internet Explorer不允许通过自定义属性附加数据。</li></ul></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples-1"><div id="example-1-0">
+<h4><span class="desc">Get the data named "blah" stored at for an element.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { margin:5px; background:yellow; }
+button { margin:5px; font-size:14px; }
+p { margin:5px; color:blue; }
+span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;A div&lt;/div&gt;
+&lt;button&gt;Get "blah" from the div&lt;/button&gt;
+&lt;button&gt;Set "blah" to "hello"&lt;/button&gt;
+
+&lt;button&gt;Set "blah" to 86&lt;/button&gt;
+&lt;button&gt;Remove "blah" from the div&lt;/button&gt;
+&lt;p&gt;The "blah" value of this div is &lt;span&gt;?&lt;/span&gt;&lt;/p&gt;
+&lt;script&gt;
+$("button").click(function(e) {
+  var value, div = $("div")[0];
+
+  switch ($("button").index(this)) {
+    case 0 :
+      value = jQuery.data(div, "blah");
+      break;
+    case 1 :
+      jQuery.data(div, "blah", "hello");
+      value = "Stored!";
+      break;
+    case 2 :
+      jQuery.data(div, "blah", 86);
+      value = "Stored!";
+      break;
+    case 3 :
+      jQuery.removeData(div, "blah");
+      value = "Removed!";
+      break;
+  }
+
+  $("span").text("" + value);
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

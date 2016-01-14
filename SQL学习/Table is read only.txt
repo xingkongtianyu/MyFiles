@@ -1,0 +1,3 @@
+今天再我把数据库data 拷贝到linux 下运行程序 ”mysql中Table is read only的解决“  出现这样的问题，查询资料。
+
+运行flush tables后，read only问题解决。

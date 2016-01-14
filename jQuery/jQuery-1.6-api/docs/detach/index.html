@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.detach()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-removal/" title="View all posts in DOM Removal">DOM Removal</a></span>
+  
+  				</div>
+</div>
+<div id="detach1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.detach( [ selector ] )</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>从DOM中去掉所有匹配的元素。</p>
+<ul class="signatures"><li class="signature" id="detach-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.detach( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>一个选择表达式将需要移除的元素从匹配的元素中过滤出来。</p>
+</li></ul>
+<div class="longdesc"><p><code>.detach()</code> 和<code><a href="#p=remove">.remove()</a></code>一样, 
+除了 <code>.detach()</code>保存所有jQuery数据和被移走的元素相关联。当需要移走一个元素，不久又将该元素插入DOM时，这种方法很有用。</p></div>
+<h3>例子</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">删除DOM中所有段落</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { background:yellow; margin:6px 0; } p.off { background: black; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt; 
+  how are 
+  &lt;p&gt;you?&lt;/p&gt;
+  &lt;button&gt;Attach/detach paragraphs&lt;/button&gt;
+&lt;script&gt;
+    $("p").click(function(){
+      $(this).toggleClass("off");
+    });
+    var p;
+    $("button").click(function(){
+      if ( p ) {
+        p.appendTo("body");
+        p = null;
+      } else {
+        p = $("p").detach();
+      }
+    });&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

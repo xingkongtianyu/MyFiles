@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.removeData()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/data/" title="View all posts in Data">Data</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-removeData1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.removeData( element, [ name ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>在元素上移除绑定的数据</p>
+<ul class="signatures"><li class="signature" id="jQuery-removeData-element-name">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.3/">1.2.3</a></span>jQuery.removeData( element, [ name ] )</h4>
+<p class="arguement"><strong>element</strong>要移除数据的DOM对象</p>
+<p class="arguement"><strong>name</strong>要移除的存储数据名.</p>
+</li></ul>
+<div class="longdesc">
+<p><strong>注意</strong>这是一个底层的方法，你应该用<code><a href="#p=removeData">.removeData()</a></code>代替。 </p>
+<p>
+<code>jQuery.removeData()</code>方法允许我们移除用<code>.data()</code>绑定的值。当带name参数调用的时候，<code><a href="#p=jQuery.data">jQuery.data()</a></code>将删除那个特有的值，当不带任何参数的时候，所有的值将被移除。</p>
+
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Set a data store for 2 names then remove one of them.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+		div { margin:2px; color:blue; }
+		span { color:red; }
+		&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;value1 before creation: &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+		&lt;div&gt;value1 after creation: &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+		&lt;div&gt;value1 after removal: &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+		&lt;div&gt;value2 after removal: &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;script&gt;
+var div = $("div")[0];
+$("span:eq(0)").text("" + $("div").data("test1"));
+jQuery.data(div, "test1", "VALUE-1");
+jQuery.data(div, "test2", "VALUE-2");
+$("span:eq(1)").text("" + jQuery.data(div, "test1"));
+jQuery.removeData(div, "test1");
+$("span:eq(2)").text("" + jQuery.data(div, "test1"));
+$("span:eq(3)").text("" + jQuery.data(div, "test2"));&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

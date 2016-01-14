@@ -1,0 +1,9 @@
+//数据
+$id=2
+$data['cname'] = 'aa';
+$data['news_content']['content']="aaaaabbbb";
+
+//$res = $News->relation(true)->where("id=$id")->save($data); //这种方法关联更新失败，出错的sql是：SQL: UPDATE `think_news_content` SET `content`='xxxx123' WHERE news_id='' 
+
+$data['id']=2;
+$res = $News->relation(true)->save($data);//这种方法更新成功

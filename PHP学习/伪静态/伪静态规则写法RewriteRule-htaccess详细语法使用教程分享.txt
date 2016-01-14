@@ -1,0 +1,59 @@
+分析一下 discuz搜索引擎优化 htaccess 里面的重写。
+
+RewriteRule ^forum-([0-9]+)-([0-9]+)\.html$ forumdisplay.php?fid=$1&page=$2
+
+首先加入用户通过 linuxidc.com/forum-2-3.html 访问discuz论坛，那么先通过.htaccess过滤，看看是否需要.htaccess引导一下用户，如果满足列出的一系列RewriteCond的 条件那么就进行重写，
+
+discuz的没有列出RewriteCond 所以应该全部都进行重写。
+所以开始进行转写，
+forum-2-3.html 这个正好符合 列出的
+^forum-([0-9]+)-([0-9]+)\.html$ 
+正则表达式。并且 $1 为 2 ，$2为3 ，
+
+所以代入后面，即 forumdisplay.php?fid=2&page=3 加上前面的RewriteBase 指定的文件目录，那么就带他到制定目录的forumdisplay.php?fid=2&page=3 。
+
+二、常见的.htaccess应用举例（部分例子引自四个例子实战讲解.htaccess文件rewrite规则）
+
+4.1 防止盗链，如果来得要访问jpe jpg bmp png结尾的url 用户不是来自我们的网站，那么让他看一张我们网站的展示图片。
+RewriteEngine OnRewriteCond %{HTTP_REFERER} !^http://(.+.)?mysite.com/ [NC]RewriteCond %{HTTP_REFERER} !^$RewriteRule .*.(jpe?g|gif|bmp|png)$ /images/nohotlink.jpg [L]
+
+4.2 网站升级的时候，只有特定IP才能访问，其他的用户将看到一个升级页面
+RewriteEngine onRewriteCond %{REQUEST_URI} !/upgrade.html$RewriteCond %{REMOTE_HOST} !^24\.121\.202\.30
+
+RewriteRule $ http://www.linuxidc.com/upgrade.html [R=302,L]
+
+4.3把老的域名转向新域名
+# redirect from old domain to new domainRewriteEngine OnRewriteRule ^(.*)$http://www.yourdomain.com/$1[R=301,L]
+
+三、常用示例
+
+RewriteEngine On
+RewriteRule index.html index.php
+
+比如：http://www.yzzmf.com/index.html  -> http://www.yzzmf.com/index.php
+
+RewriteRule ^test([0-9]*).html$ test.php?id=$1
+
+比如：http://www.yzzmf.com/test8.html  -> http://www.yzzmf.com/test.php?id=8
+
+RewriteRule ^cat-([0-9]+)-([0-9]+)\.html$ cat.php?id1=$1&id2=$2
+
+比如：http://www.yzzmf.com/cat-1-3.html -> http://www.yzzmf.com/cat.php?id1=1&id2=3
+
+RewriteRule ^cat-([a-zA-Z0-9\-]*)-([0-9]+)-([0-9]+)\.html$ cat.php?id0=$1&id1=$2&id2=$3
+
+比如：http://www.yzzmf.com/cat-zbc2ac-3-5.html -> http://www.yzzmf.com/cat.php?id0=zbc2ac&id1=3&id2=5
+
+RewriteRule ^cat1-([0-9]+)-([0-9]+)-([0-9]+)\.html$ cat1.php?id1=$1&id2=$2&id3=$3
+
+比如：http://www.yzzmf.com/cat1-4-3-8.html -> http://www.yzzmf.com/cat1.php?id1=4&id2=3&id3=8
+
+RewriteRule ^cat([0-9]*)/$ cat.php?id1=$1
+
+比如：http://www.yzzmf.com/cat5/ -> http://www.yzzmf.com/cat.php?id1=5
+
+RewriteRule ^catm([0-9]*)/([0-9]*)/$ catm.php?id1=$1&id2=$2
+
+比如：http://www.yzzmf.com/catm6/3/ -> http://www.yzzmf.com/catm.php?id1=6&id2=3
+
+希望对大家有所帮助！

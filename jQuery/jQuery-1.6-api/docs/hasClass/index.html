@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.hasClass()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/class-attribute/" title="View all posts in Class Attribute">Class Attribute</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="hasClass1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.hasClass( className )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#Boolean">Boolean</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>检查匹配的元素是否含有某个特定的类。</p>
+<ul class="signatures"><li class="signature" id="hasClass-className">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.hasClass( className )</h4>
+<p class="arguement"><strong>className</strong>要查询的样式名。</p>
+</li></ul>
+<div class="longdesc">
+<p>元素可能会有个的样式名。在HTML中这表现在多个样式名用空格隔开:</p>
+<pre>&lt;div id="mydiv" class="foo bar"&gt;&lt;/div&gt;</pre>
+<p>如果匹配元素上有指定的样式，那么<code>.hasClass()</code> 方法将返回 <code>true</code> ， 即使其他样式也是。 举个例子, 给上文的HTML加上下面的代码将返回 <code>true</code>：</p>
+<pre>$('#mydiv').hasClass('foo')</pre>
+<p>也可以:</p>
+<pre>$('#mydiv').hasClass('bar')</pre>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">在匹配的元素上寻找 'selected' 样式。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { margin: 8px; font-size:16px; }
+  .selected { color:red; }
+  .highlight { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;Hello&lt;/p&gt;
+  &lt;p class="selected"&gt;Goodbye&lt;/p&gt;
+  &lt;div id="result1"&gt;First paragraph has selected class: &lt;/div&gt;
+
+  &lt;div id="result2"&gt;Last paragraph has selected class: &lt;/div&gt;
+  &lt;div id="result3"&gt;Some paragraph has selected class: &lt;/div&gt;
+&lt;script&gt;$("div#result1").append($("p:first").hasClass("selected").toString());
+$("div#result2").append($("p:last").hasClass("selected").toString());
+$("div#result3").append($("p").hasClass("selected").toString());&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,27 @@
+
+phpcms v9发送邮件  
+
+2012-11-16 16:08:24|  分类： php v9 |举报 |字号 订阅
+
+phpcms v9有单独的发邮件模块，我们只要在需要在发送邮件的地方插入如下代码即可:
+
+$subject = 'title';//邮件的标题
+$message = 'content';  //邮件的内容
+$mailto='957894756@qq.com'; //接收邮件的邮箱
+pc_base::load_sys_func('mail');
+sendmail($mailto, $subject, $message);
+
+注：v9后台，设置---》邮箱配置的设置必须正确，只要测试发送成功，插入以上代码也就可以成功发送邮件
+
+
+打了新补丁，网站发送邮件失败
+解决方法如下：
+找到 phpcms\modules\admin\templates\setting.tpl.php 模版
+<td class="y-bg">
+    <input name="setting[mail_auth]" id="mail_auth" value="1" type="radio" <?php echo $mail_auth==1 ? ' checked' : ''?>> <?php echo L('mail_auth_open')?>
+        <input name="setting[mail_auth]" id="mail_auth" value="0" type="radio" <?php echo $mail_auth==0 ? ' checked' : ''?>> <?php echo L('mail_auth_close')?></td>
+
+修改为==》
+<td class="y-bg">
+    <input name="setting[mail_auth]" id="mail_auth" checkbox="mail_auth" value="1" type="radio" <?php echo $mail_auth==1 ? ' checked' : ''?>> <?php echo L('mail_auth_open')?>
+        <input name="setting[mail_auth]" id="mail_auth" checkbox="mail_auth"  value="0" type="radio" <?php echo $mail_auth==0 ? ' checked' : ''?>> <?php echo L('mail_auth_close')?></td>

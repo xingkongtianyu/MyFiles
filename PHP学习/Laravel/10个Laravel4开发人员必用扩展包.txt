@@ -1,0 +1,143 @@
+
+10个Laravel4开发人员必用扩展包
+分类： Web PHP Laravel 2014-07-08 00:04 6535人阅读 评论(1) 收藏 举报
+LaravelPackageframeworkphp
+
+目录(?)[-]
+
+    代码生成器Laravel Generators
+    IDE帮手Laravel IDE Helper
+    Behat
+    Ardent
+    调试栏Laravel Debug Bar
+    Confide
+    Entrust
+    Former
+    HTML压缩器Laravel HTML Minify
+    后台管理Laravel Administrator
+    更多扩展包More Packages
+
+Laravel是一个新的基于最新PHP版本语法，支持IoC等设计模式的快速开发框架。目前最新版本为4.2，推荐安装PHP版本5.5+。
+
+本文列举10个基本软件包，都是开发人员使用Laravel框架来构建WEB应用过程中应该要用到的，无需自己重复构建，如认证、调试、网站优化。
+
+代码生成器（Laravel Generators）
+
+使用简单的命令行就可以自动根据代码模板生成Model/View/Controller代码以及模块（Module）。
+IDE帮手（Laravel IDE Helper）
+
+可以让你的IDE能够支持语法自动补足（accurate complementation）功能。这样可以大大减少查看API文档的次数。
+Behat
+
+简单来说，behat是一个PHP框架可以测试你的Laravel应用。它允许你在你的Laravel应用使用行为驱动开发过程，使得为应用程序编写行为测试更为方便。
+
+如果你所在团队在开发中想遵循BDD的模式，这是非常有用的。
+Ardent
+
+Ardent使得数据检验可以在模型（Model）中完成，而不是放在视图中，这显然可以减少冗余的重复性数据校验。
+调试栏（Laravel Debug Bar）
+
+PHP调试栏项目无疑是一个巨大的成功，你无需到处编写var_dump。Laravel调试栏对该组件作了扩展，包含了路由、视图、事件以及更多信息。
+
+这使得调试变得更加简单、快速，提高你的开发效率。
+Confide
+
+认证模块，包含了登录、注册、退出、密码重置等功能。
+Entrust
+
+完整的RBAC实现（基于角色的权限控制），你只需要定义自己的角色和路径。
+Former
+
+表单处理器，在WEB应用中，表单无处不在，Former让定义表单更加容易，使用你喜欢的CSS框架如Bootstrap或Foundation来绘制。
+HTML压缩器（Laravel HTML Minify）
+
+让你的页面减小大概18%，提升性能必备
+后台管理（Laravel Administrator）
+
+Laravel Administrator帮助开发者快速构建后台管理界面，无需重复构建。
+更多扩展包（More Packages）
+
+    Laravel MongoDB：MongoDB ORM 组件
+    OAuth 4 Laravel：OAuth支持
+    Laravel Breadcrumbs：创建Breadcrumbs界面的简单方法
+    OAuth 2服务器：安全和100%标准兼容的OAuth服务器
+    Laravel dompdf：简单的基于PHP的PDF生成工具
+
+Laravel网站：http://laravel.com/
+
+原文来自：http://www.techbrood.com/?q=Laravel
+
+by iefreer
+
+    上一篇Shodan：黑客的物联网搜索引擎
+    下一篇Android Wear：创建可穿戴应用 - 概述
+
+顶
+    5
+
+踩
+    0
+
+主题推荐
+    开发人员 扩展 web应用 css框架 应用程序 
+
+猜你在找
+    原创PHP程序员的技术成长规划
+    nodejs + express + ejs + mongodb 一个非常简单的前后端开发的实例3
+    DFA算法过滤敏感词替换为
+    Linux下端口复用SO_REUSEADDR与SO_REUSEPORT
+    讨论C++中赋值运算符operator的返回值
+    让jmeter脚本动起来之beanshell
+    PHP开发框架比较
+    与String相关的面试题汇总
+    Arduino 代码机制
+    多线程与fork
+
+准备好了么？ 跳吧             ！更多职位尽在 CSDN JOB
+    C#高级开发人员
+    北京财证通信息技术有限公司
+    |
+    8-15K/月
+    我要跳槽
+    web前端开发人员
+    上海九口袋实业有限公司
+    |
+    5-10K/月
+    我要跳槽
+    招募IT猎头顾问——技术人员转行的新出路
+    上海科锐福克斯人才顾问有限公司
+    |
+    0.5-1K/月
+    我要跳槽
+    .Net开发工程师（对日外包）
+    优碧特软件（西安）有限公司
+    |
+    3-6K/月
+    我要跳槽
+
+查看评论
+
+1楼 thy38 2014-10-09 09:48发表 [回复]
+    不错，好东东！
+
+您还没有登录,请[登录]或[注册]
+* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场
+核心技术类目
+全部主题 Hadoop AWS 移动游戏 Java Android iOS Swift 智能硬件 Docker OpenStack VPN Spark ERP IE10 Eclipse CRM JavaScript 数据库 Ubuntu NFC WAP jQuery BI HTML5 Spring Apache .NET API HTML SDK IIS Fedora XML LBS Unity Splashtop UML components Windows Mobile Rails QEMU KDE Cassandra CloudStack FTC coremail OPhone CouchBase 云计算 iOS6 Rackspace Web App SpringSide Maemo Compuware 大数据 aptech Perl Tornado Ruby Hibernate ThinkPHP HBase Pure Solr Angular Cloud Foundry Redis Scala Django Bootstrap
+
+    个人资料
+
+    [访问我的空间]
+    iefreer
+    3
+        访问：1343817次
+        积分：17758
+        等级：
+        排名：第183名
+        原创：406篇
+        转载：56篇
+        译文：83篇
+        评论：365条
+
+    文章搜索
+

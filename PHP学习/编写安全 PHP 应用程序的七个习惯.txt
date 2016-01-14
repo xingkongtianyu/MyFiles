@@ -1,0 +1,541 @@
+PHP 应用程序中的安全性包括远程安全性和本地安全性。本文将揭示 PHP 开发人员在实现具有这两种安全性的 Web 应用程序时应该养成的习惯。
+在提及安全性问题时，需要注意，除了实际的平台和操作系统安全性问题之外，您还需要确保编写安全的应用程序。在编写 PHP 应用程序时，请应用下面的七个习惯以确保应用程序具有最好的安全性：
+
+验证输入 
+保护文件系统 
+保护数据库 
+保护会话数据 
+保护跨站点脚本（Cross-site scripting，XSS）漏洞 
+检验表单 post 
+针对跨站点请求伪造（Cross-Site Request Forgeries，CSRF）进行保护 
+本部分设定了隐藏，您已回复过了，以下是隐藏的内容
+
+验证输入
+
+在提及安全性问题时，验证数据是您可能采用的最重要的习惯。而在提及输入时，十分简单：不要相信用户。您的用户可能十分优秀，并且大多数用户可能完全按照期望来使用应用程序。但是，只要提供了输入的机会，也就极有可能存在非常糟糕的输入。作为一名应用程序开发人员，您必须阻止应用程序接受错误的输入。仔细考虑用户输入的位置及正确值将使您可以构建一个健壮、安全的应用程序。
+
+虽然后文将介绍文件系统与数据库交互，但是下面列出了适用于各种验证的一般验证提示：
+
+使用白名单中的值 
+始终重新验证有限的选项 
+使用内置转义函数 
+验证正确的数据类型（如数字） 
+白名单中的值（White-listed value）是正确的值，与无效的黑名单值（Black-listed value）相对。两者之间的区别是，通常在进行验证时，可能值的列表或范围小于无效值的列表或范围，其中许多值可能是未知值或意外值。
+
+在进行验证时，记住设计并验证应用程序允许使用的值通常比防止所有未知值更容易。例如，要把字段值限定为所有数字，需要编写一个确保输入全都是数字的例程。不要编写用于搜索非数字值并在找到非数字值时标记为无效的例程。
+
+保护文件系统
+
+2000 年 7 月，一个 Web 站点泄露了保存在 Web 服务器的文件中的客户数据。该 Web 站点的一个访问者使用 URL 查看了包含数据的文件。虽然文件被放错了位置，但是这个例子强调了针对攻击者保护文件系统的重要性。
+
+如果 PHP 应用程序对文件进行了任意处理并且含有用户可以输入的变量数据，请仔细检查用户输入以确保用户无法对文件系统执行任何不恰当的操作。清单 1 显示了下载具有指定名的图像的 PHP 站点示例。
+
+
+清单 1. 下载文件
+[php]                
+<?php
+if ($_POST['submit'] == 'Download') {
+    $file = $_POST['fileName'];
+    header("Content-Type: application/x-octet-stream");
+    header("Content-Transfer-Encoding: binary");
+    header("Content-Disposition: attachment; filename=\"" . $file . "\";" );
+    $fh = fopen($file, 'r');
+    while (! feof($fh))
+    {
+        echo(fread($fh, 1024));
+    }
+    fclose($fh);
+} else {
+    echo("<html><head><");
+        echo("title>Guard your filesystem</title></head>");
+    echo("<body><form id=\"myFrom\" action=\"" . $_SERVER['PHP_SELF'] .
+        "\" method=\"post\">");
+    echo("<div><input type=\"text\" name=\"fileName\" value=\"");
+    echo(isset($_REQUEST['fileName']) ? $_REQUEST['fileName'] : '');
+    echo("\" />");
+    echo("<input type=\"submit\" value=\"Download\" name=\"submit\" /></div>");
+    echo("</form></body></html>");
+}[/php]    
+
+
+
+正如您所见，清单 1 中比较危险的脚本将处理 Web 服务器拥有读取权限的所有文件，包括会话目录中的文件（请参阅 “保护会话数据”），甚至还包括一些系统文件（例如 /etc/passwd）。为了进行演示，这个示例使用了一个可供用户键入文件名的文本框，但是可以在查询字符串中轻松地提供文件名。
+
+同时配置用户输入和文件系统访问权十分危险，因此最好把应用程序设计为使用数据库和隐藏生成的文件名来避免同时配置。但是，这样做并不总是有效。清单 2 提供了验证文件名的示例例程。它将使用正则表达式以确保文件名中仅使用有效字符，并且特别检查圆点字符：..。
+
+
+清单 2. 检查有效的文件名字符
+[php]                    
+function isValidFileName($file) {
+    /* don't allow .. and allow any "word" character \ / */
+    return preg_match('/^(((?:\.)(?!\.))|\w)+$/', $file);
+}[/php]    
+
+保护数据库
+
+2008 年 4 月，美国某个州的狱政局在查询字符串中使用了 SQL 列名，因此泄露了保密数据。这次泄露允许恶意用户选择需要显示的列、提交页面并获得数据。这次泄露显示了用户如何能够以应用程序开发人员无法预料的方法执行输入，并表明了防御 SQL 注入攻击的必要性。
+
+清单 3 显示了运行 SQL 语句的示例脚本。在本例中，SQL 语句是允许相同攻击的动态语句。此表单的所有者可能认为表单是安全的，因为他们已经把列名限定为选择列表。但是，代码疏忽了关于表单欺骗的最后一个习惯 — 代码将选项限定为下拉框并不意味着其他人不能够发布含有所需内容的表单（包括星号 [*]）。
+
+
+清单 3. 执行 SQL 语句
+[php]                
+<html>
+<head>
+<title>SQL Injection Example</title>
+</head>
+<body>
+<form id="myFrom" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+    method="post">
+<div><input type="text" name="account_number"
+    value="<?php echo(isset($_POST['account_number']) ? 
+        $_POST['account_number'] : ''); ?>" />
+<select name="col">
+<option value="account_number">Account Number</option>
+<option value="name">Name</option>
+<option value="address">Address</option>
+</select>
+<input type="submit" value="Save" name="submit" /></div>
+</form>
+<?php
+if ($_POST['submit'] == 'Save') {
+    /* do the form processing */
+    $link = mysql_connect('hostname', 'user', 'password') or 
+        die ('Could not connect' . mysql_error());
+    mysql_select_db('test', $link);
+        
+        $col = $_POST['col'];
+
+    $select = "SELECT " . $col . " FROM account_data WHERE account_number = " 
+        . $_POST['account_number'] . ";" ;
+    echo '<p>' . $select . '</p>';
+
+    $result = mysql_query($select) or die('<p>' . mysql_error() . '</p>');
+
+    echo '<table>';
+    while ($row = mysql_fetch_assoc($result)) {
+        echo '<tr>';
+        echo '<td>' . $row[$col] . '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+
+    mysql_close($link);
+}
+?>
+</body>
+</html>[/php]
+
+
+
+因此，要形成保护数据库的习惯，请尽可能避免使用动态 SQL 代码。如果无法避免动态 SQL 代码，请不要对列直接使用输入。清单 4 显示了除使用静态列外，还可以向帐户编号字段添加简单验证例程以确保输入值不是非数字值。
+
+
+清单 4. 通过验证和 mysql_real_escape_string() 提供保护
+[php]                
+<html>
+<head>
+<title>SQL Injection Example</title>
+</head>
+<body>
+<form id="myFrom" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+    method="post">
+<div><input type="text" name="account_number"
+    value="<?php echo(isset($_POST['account_number']) ? 
+        $_POST['account_number'] : ''); ?>" /> <input type="submit"
+    value="Save" name="submit" /></div>
+</form>
+<?php
+function isValidAccountNumber($number) 
+{
+    return is_numeric($number);
+}
+
+if ($_POST['submit'] == 'Save') {
+
+    /* Remember habit #1--validate your data! */
+    if (isset($_POST['account_number']) &&
+    isValidAccountNumber($_POST['account_number'])) {
+
+        /* do the form processing */
+        $link = mysql_connect('hostname', 'user', 'password') or
+        die ('Could not connect' . mysql_error());
+        mysql_select_db('test', $link);
+
+        $select = sprintf("SELECT account_number, name, address " .
+        " FROM account_data WHERE account_number = %s;",
+        mysql_real_escape_string($_POST['account_number']));
+        echo '<p>' . $select . '</p>';
+
+        $result = mysql_query($select) or die('<p>' . mysql_error() . '</p>');
+
+        echo '<table>';
+        while ($row = mysql_fetch_assoc($result)) {
+            echo '<tr>';
+            echo '<td>' . $row['account_number'] . '</td>';
+            echo '<td>' . $row['name'] . '</td>';
+            echo '<td>' . $row['address'] . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+
+        mysql_close($link);
+    } else {
+        echo "<span style=\"font-color:red\">" .
+    "Please supply a valid account number!</span>";
+
+    }
+}
+?>
+</body>
+</html>[/php]
+
+
+
+本例还展示了 mysql_real_escape_string() 函数的用法。此函数将正确地过滤您的输入，因此它不包括无效字符。如果您一直依赖于 magic_quotes_gpc，那么需要注意它已被弃用并且将在 PHP V6 中删除。从现在开始应避免使用它并在此情况下编写安全的 PHP 应用程序。此外，如果使用的是 ISP，则有可能您的 ISP 没有启用 magic_quotes_gpc。
+
+最后，在改进的示例中，您可以看到该 SQL 语句和输出没有包括动态列选项。使用这种方法，如果把列添加到稍后含有不同信息的表中，则可以输出这些列。如果要使用框架以与数据库结合使用，则您的框架可能已经为您执行了 SQL 验证。确保查阅文档以保证框架的安全性；如果仍然不确定，请进行验证以确保稳妥。即使使用框架进行数据库交互，仍然需要执行其他验证。
+
+保护会话
+
+默认情况下，PHP 中的会话信息将被写入临时目录。考虑清单 5 中的表单，该表单将显示如何存储会话中的用户 ID 和帐户编号。
+
+
+清单 5. 存储会话中的数据
+[php]                
+<?php
+session_start();
+?>
+<html>
+<head>
+<title>Storing session information</title>
+</head>
+<body>
+<?php
+if ($_POST['submit'] == 'Save') {
+    $_SESSION['userName'] = $_POST['userName'];
+    $_SESSION['accountNumber'] = $_POST['accountNumber'];
+}
+?>
+<form id="myFrom" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+    method="post">
+<div><input type="hidden" name="token" value="<?php echo $token; ?>" />
+<input type="text" name="userName"
+    value="<?php echo(isset($_POST['userName']) ? $_POST['userName'] : ''); ?>" />
+<br />
+<input type="text" name="accountNumber"
+    value="<?php echo(isset($_POST['accountNumber']) ? 
+    $_POST['accountNumber'] : ''); ?>" />
+<br />
+<input type="submit" value="Save" name="submit" /></div>
+</form>
+</body>
+</html>[/php]
+
+
+
+清单 6 显示了 /tmp 目录的内容。
+
+
+清单 6. /tmp 目录中的会话文件
+                
+-rw-------  1 _www    wheel       97 Aug 18 20:00 sess_9e4233f2cd7cae35866cd8b61d9fa42b
+
+
+
+正如您所见，在输出时（参见清单 7），会话文件以非常易读的格式包含信息。由于该文件必须可由 Web 服务器用户读写，因此会话文件可能为共享服务器中的所有用户带来严重的问题。除您之外的某个人可以编写脚本来读取这些文件，因此可以尝试从会话中取出值。
+
+
+清单 7. 会话文件的内容
+                
+userName|s:5:"ngood";accountNumber|s:9:"123456789";
+
+
+存储密码
+
+不管是在数据库、会话、文件系统中，还是在任何其他表单中，无论如何密码都决不能存储为纯文本。处理密码的最佳方法是将其加密存储并相互比较加密的密码。虽然如此，在实践中人们仍然把密码存储到纯文本中。只要使用可以发送密码而非重置密码的 Web 站点，就意味着密码是存储在纯文本中或者可以获得用于解密的代码（如果加密的话）。即使是后者，也可以找到并使用解密代码。
+
+
+您可以采取两项操作来保护会话数据。第一是把您放入会话中的所有内容加密。但是正因为加密数据并不意味着绝对安全，因此请慎重采用这种方法作为保护会话的惟一方式。备选方法是把会话数据存储在其他位置中，比方说数据库。您仍然必须确保锁定数据库，但是这种方法将解决两个问题：第一，它将把数据放到比共享文件系统更加安全的位置；第二，它将使您的应用程序可以更轻松地跨越多个 Web 服务器，同时共享会话可以跨越多个主机。
+
+要实现自己的会话持久性，请参阅 PHP 中的 session_set_save_handler() 函数。使用它，您可以将会话信息存储在数据库中，也可以实现一个用于加密和解密所有数据的处理程序。清单 8 提供了实现的函数用法和函数骨架示例。您还可以在 参考资料 小节中查看如何使用数据库。
+
+
+清单 8. session_set_save_handler() 函数示例
+[php]                
+function open($save_path, $session_name)
+{
+    /* custom code */
+    return (true);
+}
+
+function close()
+{
+    /* custom code */
+    return (true);
+}
+
+function read($id)
+{
+    /* custom code */
+    return (true);
+}
+
+function write($id, $sess_data)
+{
+    /* custom code */
+    return (true);
+}
+
+function destroy($id)
+{
+    /* custom code */
+    return (true);
+}
+
+function gc($maxlifetime)
+{
+    /* custom code */
+    return (true);
+}
+
+session_set_save_handler("open", "close", "read", "write", "destroy", "gc");[/php]
+
+针对 XSS 漏洞进行保护
+
+XSS 漏洞代表 2007 年所有归档的 Web 站点的大部分漏洞（请参阅 参考资料）。当用户能够把 HTML 代码注入到您的 Web 页面中时，就是出现了 XSS 漏洞。HTML 代码可以在脚本标记中携带 JavaScript 代码，因而只要提取页面就允许运行 JavaScript。清单 9 中的表单可以表示论坛、维基、社会网络或任何可以输入文本的其他站点。
+
+
+清单 9. 输入文本的表单
+[php]                
+<html>
+<head>
+<title>Your chance to input XSS</title>
+</head>
+<body>
+<form id="myFrom" action="showResults.php" method="post">
+<div><textarea name="myText" rows="4" cols="30"></textarea><br />
+<input type="submit" value="Delete" name="submit" /></div>
+</form>
+</body>
+</html>[/php]
+
+
+
+清单 10 演示了允许 XSS 攻击的表单如何输出结果。
+
+
+清单 10. showResults.php
+[php]                
+<html>
+<head>
+<title>Results demonstrating XSS</title>
+</head>
+<body>
+<?php
+echo("<p>You typed this:</p>");
+echo("<p>");
+echo($_POST['myText']);
+echo("</p>");
+?>
+</body>
+</html>[/php]
+
+
+
+清单 11 提供了一个基本示例，在该示例中将弹出一个新窗口并打开 Google 的主页。如果您的 Web 应用程序不针对 XSS 攻击进行保护，则会造成严重的破坏。例如，某个人可以添加模仿站点样式的链接以达到欺骗（phishing）目的（请参阅 参考资料）。
+
+
+清单 11. 恶意输入文本样例
+[php]                
+<script type="text/javascript">myRef = window.open('http://www.google.com','mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0');</script>[/php]
+
+
+
+要防止受到 XSS 攻击，只要变量的值将被打印到输出中，就需要通过 htmlentities() 函数过滤输入。记住要遵循第一个习惯：在 Web 应用程序的名称、电子邮件地址、电话号码和帐单信息的输入中用白名单中的值验证输入数据。
+
+下面显示了更安全的显示文本输入的页面。
+
+
+清单 12. 更安全的表单
+[php]                
+<html>
+<head>
+<title>Results demonstrating XSS</title>
+</head>
+<body>
+<?php
+echo("<p>You typed this:</p>");
+echo("<p>");
+echo(htmlentities($_POST['myText']));
+echo("</p>");
+?>
+</body>
+</html>[/php]
+
+针对无效 post 进行保护
+
+表单欺骗 是指有人把 post 从某个不恰当的位置发到您的表单中。欺骗表单的最简单方法就是创建一个通过提交至表单来传递所有值的 Web 页面。由于 Web 应用程序是没有状态的，因此没有一种绝对可行的方法可以确保所发布数据来自指定位置。从 IP 地址到主机名，所有内容都是可以欺骗的。清单 13 显示了允许输入信息的典型表单。
+
+
+清单 13. 处理文本的表单
+[php]                
+<html>
+<head>
+<title>Form spoofing example</title>
+</head>
+<body>
+<?php
+if ($_POST['submit'] == 'Save') {
+    echo("<p>I am processing your text: ");
+    echo($_POST['myText']);
+    echo("</p>");
+}
+?>
+</body>
+</html>[/php]
+
+
+
+清单 14 显示了将发布到清单 13 所示表单中的表单。要尝试此操作，您可以把该表单放到 Web 站点中，然后把清单 14 中的代码另存为桌面上的 HTML 文档。在保存表单后，在浏览器中打开该表单。然后可以填写数据并提交表单，从而观察如何处理数据。
+
+
+清单 14. 收集数据的表单
+[php]                
+<html>
+<head>
+<title>Collecting your data</title>
+</head>
+<body>
+<form action="processStuff.php" method="post">
+<select name="answer">
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+<input type="submit" value="Save" name="submit" />
+</form>
+</body>
+</html>[/php]
+
+
+
+表单欺骗的潜在影响是，如果拥有含下拉框、单选按钮、复选框或其他限制输入的表单，则当表单被欺骗时这些限制没有任何意义。考虑清单 15 中的代码，其中包含带有无效数据的表单。
+
+
+清单 15. 带有无效数据的表单
+[php]                
+<html>
+<head>
+<title>Collecting your data</title>
+</head>
+<body>
+<form action="http://path.example.com/processStuff.php" 
+    method="post"><input type="text" name="answer"
+    value="There is no way this is a valid response to a yes/no answer..." />
+<input type="submit" value="Save" name="submit" />
+</form>
+</body>
+</html>[/php]
+
+
+
+思考一下：如果拥有限制用户输入量的下拉框或单选按钮，您可能会认为不用担心验证输入的问题。毕竟，输入表单将确保用户只能输入某些数据，对吧？要限制表单欺骗，需要进行验证以确保发布者的身份是真实的。您可以使用一种一次性使用标记，虽然这种技术仍然不能确保表单绝对安全，但是会使表单欺骗更加困难。由于在每次调用表单时都会更改标记，因此想要成为攻击者就必须获得发送表单的实例，去掉标记，并把它放到假表单中。使用这项技术可以阻止恶意用户构建持久的 Web 表单来向应用程序发布不适当的请求。清单 16 提供了一种表单标记示例。
+
+
+清单 16. 使用一次性表单标记
+[php]                
+<?php
+session_start();
+?>
+<html>
+<head>
+<title>SQL Injection Test</title>
+</head>
+<body>
+<?php
+
+echo 'Session token=' . $_SESSION['token'];
+echo '<br />';
+echo 'Token from form=' . $_POST['token'];
+echo '<br />';
+
+if ($_SESSION['token'] == $_POST['token']) {
+    /* cool, it's all good... create another one */
+
+} else {
+    echo '<h1>Go away!</h1>';
+}
+$token = md5(uniqid(rand(), true)); 
+$_SESSION['token'] = $token; 
+?>
+<form id="myFrom" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+    method="post">
+<div><input type="hidden" name="token" value="<?php echo $token; ?>" />
+<input type="text" name="myText"
+    value="<?php echo(isset($_POST['myText']) ? $_POST['myText'] : ''); ?>" />
+<input type="submit" value="Save" name="submit" /></div>
+</form>
+</body>
+</html>[/php]
+
+针对 CSRF 进行保护
+
+跨站点请求伪造（CSRF 攻击）是利用用户权限执行攻击的结果。在 CSRF 攻击中，您的用户可以轻易地成为预料不到的帮凶。清单 17 提供了执行特定操作的页面示例。此页面将从 cookie 中查找用户登录信息。只要 cookie 有效，Web 页面就会处理请求。
+
+
+清单 17. CSRF 示例
+[php]                
+<img src="http://www.example.com/processSomething?id=123456789" />[/php]
+
+
+
+CSRF 攻击通常是以 <img> 标记的形式出现的，因为浏览器将在不知情的情况下调用该 URL 以获得图像。但是，图像来源可以是根据传入参数进行处理的同一个站点中的页面 URL。当此 <img> 标记与 XSS 攻击结合在一起时 — 在已归档的攻击中最常见 — 用户可以在不知情的情况下轻松地对其凭证执行一些操作 — 因此是伪造的。
+
+为了保护您免受 CSRF 攻击，需要使用在检验表单 post 时使用的一次性标记方法。此外，使用显式的 $_POST 变量而非 $_REQUEST。清单 18 演示了处理相同 Web 页面的糟糕示例 — 无论是通过 GET 请求调用页面还是通过把表单发布到页面中。
+
+
+清单 18. 从 $_REQUEST 中获得数据
+[php]                
+<html>
+<head>
+<title>Processes both posts AND gets</title>
+</head>
+<body>
+<?php
+if ($_REQUEST['submit'] == 'Save') {
+    echo("<p>I am processing your text: ");
+    echo(htmlentities($_REQUEST['text']));
+    echo("</p>");
+}
+?>
+</body>
+</html>[/php]
+
+
+
+清单 19 显示了只使用表单 POST 的干净页面。
+
+
+清单 19. 仅从 $_POST 中获得数据
+[php]                
+<html>
+<head>
+<title>Processes both posts AND gets</title>
+</head>
+<body>
+<?php
+if ($_POST['submit'] == 'Save') {
+    echo("<p>I am processing your text: ");
+    echo(htmlentities($_POST['text']));
+    echo("</p>");
+}
+?>
+</body>
+</html>[/php]
+
+结束语
+
+从这七个习惯开始尝试编写更安全的 PHP Web 应用程序，可以帮助您避免成为恶意攻击的受害者。和许多其他习惯一样，这些习惯最开始可能很难适应，但是随着时间的推移遵循这些习惯会变得越来越自然。
+
+记住第一个习惯是关键：验证输入。在确保输入不包括无效值之后，可以继续保护文件系统、数据库和会话。最后，确保 PHP 代码可以抵抗 XSS 攻击、表单欺骗和 CSRF 攻击。形成这些习惯后可以帮助您抵御一些简单的攻击。

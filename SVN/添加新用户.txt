@@ -1,0 +1,9 @@
+以文件认证方式
+1.
+/usr/local/apache2/bin/htpasswd -c /usr/local/svn/svn_passwdfile newUser //创建访问版本库的账户和存放账户的文件，回车后会提示输入密码两边（我们用gaso123做密码），因为是第一次创建，svn_passwdfile 文件原本不存在所以需要加-c参数，以后创建svn用户就不需要-c参数了，直接引用svn_passwdfile文件即可
+2.
+在配置文件中书写权限
+vi /usr/local/svn/svn_accessfile
+
+
+/usr/local/svn/bin/svnadmin create /app/svn/gasorepo //创建gasorepo版本库

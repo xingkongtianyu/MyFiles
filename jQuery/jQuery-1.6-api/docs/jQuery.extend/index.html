@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.extend()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-extend1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.extend( target, [ object1 ], [ objectN ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>合并两个或更多的对象的内容汇集成到第一个对象。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-extend-target-object1-objectN">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.extend( target, [ object1 ], [ objectN ] )</h4>
+<p class="arguement"><strong>target</strong> 一个对象，如果附加的对象被传递给这个方法将那么它将接收新的属性，如果它是唯一的参数将扩展jQuery的命名空间。</p>
+<p class="arguement"><strong>object1</strong>一个对象，它包含额外的属性合并到第一个参数</p>
+<p class="arguement"><strong>objectN</strong>包含额外的属性合并到第一个参数</p>
+</li>
+<li class="signature" id="jQuery-extend-deep-target-object1-objectN">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.1.4/">1.1.4</a></span>jQuery.extend( [ deep ], target, object1, [ objectN ] )</h4>
+<p class="arguement"><strong>deep</strong>如果是true，合并成为递归（又叫做深拷贝）。</p>
+<p class="arguement"><strong>target</strong>对象扩展。这将接收新的属性。
+</p>
+<p class="arguement"><strong>object1</strong>一个对象，它包含额外的属性合并到第一个参数</p>
+<p class="arguement"><strong>objectN</strong>包含额外的属性合并到第一个参数</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>当我们提供两个或多个对象给<code>$.extend()</code>，对象的所有属性都添加到目标对象。</p>
+<p>如果只有一个参数提供给<code>$.extend()</code>，这意味着目标参数被省略。在这种情况下，jQuery对象本身被默认为目标。这样，我们可以在jQuery的命名空间下添加新的功能。这可用于插件作者希望添加新的方法到jQuery。</p>
+<p>请记住，目标对象（第一个参数）将被修改，也将通过<code>$.extend()</code>返回。然而，如果我们想保留原对象，我们可以通过传递一个空对象作为目标：</p>
+<pre>var object = $.extend({}, object1, object2);</pre>
+<p>通过<code>$.extend()</code>合并执行默认不是递归的;如果第一个对象的属性本身是一个对象或数组，这将是完全用第二个对象相同的key重写一个属性。这些值是不合并。这可以看到在下面的例子通过检查香蕉的值。然而，<code>true</code>为第一个函数参数，对象将被递归合并。</p>
+<p>未定义的属性不会被复制。然而，从对象原型的继承属性<em>将</em>被复制。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Merge two objects, modifying the first.</span>
+</h4>
+<pre><code class="example">
+var object1 = {
+  apple: 0,
+  banana: {weight: 52, price: 100},
+  cherry: 97
+};
+var object2 = {
+  banana: {price: 200},
+  durian: 100
+};
+
+$.extend(object1, object2);
+</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">object1 === {apple: 0, banana: {price: 200}, cherry: 97, durian: 100}</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Merge two objects recursively, modifying the first.</span>
+</h4>
+<pre><code class="example">
+var object1 = {
+  apple: 0,
+  banana: {weight: 52, price: 100},
+  cherry: 97
+};
+var object2 = {
+  banana: {price: 200},
+  lime: 100
+};
+
+$.extend(true, object1, object2);
+</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">object1 === {apple: 0, banana: {weight: 52, price: 200}, cherry: 97, lime: 100}</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Merge settings and options, modifying settings.</span>
+</h4>
+<pre><code class="example">var settings = { validate: false, limit: 5, name: "foo" };
+var options = { validate: true, name: "bar" };
+jQuery.extend(settings, options);</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">settings == { validate: true, limit: 5, name: "bar" }</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Merge defaults and options, without modifying the defaults. This is a common plugin development pattern.</span>
+</h4>
+<pre><code class="example">var empty = {}
+var defaults = { validate: false, limit: 5, name: "foo" };
+var options = { validate: true, name: "bar" };
+var settings = $.extend(empty, defaults, options);</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">settings == { validate: true, limit: 5, name: "bar" }
+empty == { validate: true, limit: 5, name: "bar" }</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

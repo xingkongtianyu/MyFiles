@@ -1,0 +1,38 @@
+Tailored Installation Instructions
+Summary
+Xdebug installed: no
+Server API: Command Line Interface
+Windows: no
+Zend Server: no
+PHP Version: 5.3.28
+Zend API nr: 220090626
+PHP API nr: 20090626
+Debug Build: no
+Thread Safe Build: no
+Configuration File Path: /usr/local/php/etc
+Configuration File: /usr/local/php/etc/php.ini
+Extensions directory: /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626
+Instructions
+
+    Download xdebug-2.2.6.tgz
+    Unpack the downloaded file with tar -xvzf xdebug-2.2.6.tgz
+    Run: cd xdebug-2.2.6
+
+    Run: phpize (See the FAQ if you don't have phpize.
+
+    As part of its output it should show:
+
+    Configuring for:
+    ...
+    Zend Module Api No:      20090626
+    Zend Extension Api No:   220090626
+
+    If it does not, you are using the wrong phpize. Please follow this FAQ entry and skip the next step.
+    Run: ./configure (If you get error. Please try  ./configure --with-php-config=/usr/local/php/bin/php-config
+)
+    Run: make
+    Run: cp modules/xdebug.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626
+    Edit /usr/local/php/etc/php.ini and add the line
+    zend_extension = /usr/local/php/lib/php/extensions/no-debug-non-zts-20090626/xdebug.so
+
+If you like Xdebug, and thinks it saves you time and money, please have a look at the donation page. 

@@ -1,0 +1,81 @@
+Sublime Text 新建文件的模版插件: SublimeTmpl
+
+写了个sublime的模版插件, 项目主页: https://github.com/kairyou/SublimeTmpl
+这样就可以新建文件时使用模版的内容了, 目前添加了html/js/css/php/python/ruby的模版. 不需新建空白文件, 再从其他文件复制内容过来了.
+已增加对Sublime Text3的支持.
+使用:
+
+1. ST菜单, File-New File (SublimeTmpl), 选择列表里的相应菜单, 可直接使用模版新建文件.
+2. 命令, cmd+shift+p, 输入: "tmpl:", 可以找到创建文件的菜单列表.
+3.快捷键, 默认快捷键见下面. 可以自己修改, 方法见"设置"部分.
+默认快捷键:
+
+    ctrl+alt+h html
+    ctrl+alt+j javascript
+    ctrl+alt+c css
+    ctrl+alt+p php
+    ctrl+alt+r ruby
+    ctrl+alt++shift+p python
+
+安装:
+
+方法1. 通过 Package Control
+Package Control / Install Package, 搜索"SublimeTmpl" 或 "tmpl", 安装.
+* [2012/08/01]已经通过Package Control审核
+
+方法2. Github
+打开项目主页, git clone到ST的Packages文件夹(\Data\Packages), 或直接把ZIP格式的下载下来解压到Packages文件夹(文件夹名称必须为:SublimeTmpl).
+设置:
+
+菜单: Preferences / Packages Settings / SublimeTmpl, 可以编辑菜单/快捷键/新语法等等.
+
+如果你想贡献自己的package, 可以参考我这篇文章的介绍:
+http://www.fantxi.com/blog/archives/how-to-submit-a-sublime-package/
+新增特性:
+
+1. 用户自定义模板 (Thanks @Xu Cheng Github)
+自定义模板路径: "Data\Packages\User\SublimeTmpl\templates" 目录, 会优先使用.
+默认模版路径: "Data\Packages\SublimeTmpl\templates" 目录.
+用自己自定义的模板: 推荐把默认模版目录的*.tmpl文件 复制到 自定义模板路径, 再去修改.
+
+2. 模板支持 ${date} 变量
+settings - user里面可以修改${date}默认的输出格式("%Y-%m-%d %H:%M:%S"), 比如改成: "date_format" : "%Y-%m-%d"
+
+3. 模板支持自定义 attr
+settings - user里添加:
+
+    "attr": {
+        "author": "your name" ,
+        "email": "mail@yours.com",
+        "link": "http://yours.com",
+        "hello": "word"
+    }
+
+
+就能在模板中使用 ${author} ${email} ${link} ${hello} 变量
+Thanks @vfasky (Blog)
+
+另外, 关于新增语言的附加说明
+
+1. 新增SublimeTmpl里面没有的语言
+
+首先请看: Packages Settings / SublimeTmpl / Settings - Default 的默认语法设置.
+如果要新增语法, 请选择: SublimeTmpl / Settings - User, 内容格式参考Settings - Default的内容, 比如新增两个语言test和yours:
+
+    {
+           "test": {"syntax": "Packages/test/test.tmLanguage"},
+           "yours": {"syntax": "Packages/Yours/Yours.tmLanguage"}
+    }
+
+上面的"Packages/test/test.tmLanguage"是Packages目录内的syntax路径, 文件必须存在才会有效.
+
+新增开始菜单: 可以在SublimeTmpl / Settings - Menu里, 参照其他语法增加test和yours.
+新增快捷键: 可以编辑:SublimeTmpl / Key Bindings User( 格式参考: SublimeTmpl / Key Bindings Default)
+
+2. 新增Sublime的语言
+
+这个我也没新建过, 可以去Package Control或者github上面找个其他人添加的新语言, 参考参考.
+如果没找到别人写好的, 可以参考如下网址, 自己做:
+http://docs.sublimetext.info/en/latest/extensibility/syntaxdefs.html (官方文档, 利用AAAPackageDev这个插件制作)
+http://manual.macromates.com/en/language_grammars (textmate的doc, 和sublime大部分是相同的)
+https://github.com/LearnBoost/stylus/blob/master/editors/Stylus.tmbundle/Syntaxes/Stylus.tmLanguage (别人写好的语法, 可以和自己新建的对比)

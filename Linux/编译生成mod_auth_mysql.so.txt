@@ -1,0 +1,64 @@
+1 编译生成mod_auth_mysql.so 
+
+要用到的文件： 
+  mod_auth_mysql.c 
+可以通过： 
+http://heanet.dl.sourceforge.net/sourceforge/modauthmysql/mod_auth_mysql-3.0.0.tar.gz 
+进行下载，并放在/home/upload。 
+cd /home/upload 
+tar zxvf  mod_auth_mysql-3.0.0.tar.gz 
+cd  mod_auth_mysql-3.0.0 
+/usr/app/apache2/bin/apxs -c -L "/usr/app/mysql5/lib/mysql" 
+-I "/usr/app/mysql5/include/mysql" 
+-lmysqlclient -lm -lz mod_auth_mysql.c 
+（-I参数用来指定mysql.h文件的路径，-L参数用来指定libmysqlclient.so文件的路径） 
+/usr/app/apache2/bin/apxs -i mod_auth_mysql.la 
+通过以上操作，就在/usr/app/apache2/modules下面生成了mod_auth_mysql.so 
+2 下载htpasswd.sql（创建相应的数据库，已经相应的mysql表） 
+http://www.heuer.org/mod_auth_mysql/ 
+到/home 
+cd /usr/app/mysql5/bin 
+./mysql -u root -ppasswd 
+create database subversion; 
+use subversion; 
+source /home/htpasswd.sql; 
+insert into host_info(id,host,hostgroup) 
+   values ( null, "www.foo.com", 1 ); 
+insert into host_info(id,host,hostgroup) 
+   values ( null, "www.bar.com", 2 ); 
+insert into user_info (id, user_name,user_password, hostgroup) 
+   values (null,"myself", MD5("secret"),1); 
+
+insert into user_info (id, user_name,user_password, hostgroup) 
+   values (null,"myself", MD5("password"),2); 
+
+3 配置subversion的http访问机制 
+cd /usr/app/apache2/conf 
+vi httpd.conf 
+增加： 
+LoadModule auth_mysql_module  modules/mod_auth_mysql.so 
+<Location /svn> 
+DAV svn 
+SVNPath /usr/app/svn_demo 
+AuthType Basic                   #svn的验证方式 
+AuthName subversion              #可以不写 
+AuthMySQLHost localhost          #主机 
+AuthMySQLUser root               #登陆数据库名 
+AuthMySQLPassword passwd         #登陆数据库密码 
+AuthMySQLDB subversion           #数据库名 
+# AuthMySQLPort 3306      
+AuthMySQLUserTable user_info      #验证的表 
+AuthMySQLNameField user_name 
+AuthMySQLPasswordField user_passwd 
+AuthMySQLAuthoritative On 
+AuthMySQLEnable On 
+AuthMySQLPwEncryption md5 
+Require valid-user 
+</Location> 
+
+4 重启apche。在ie中输入: 
+http://localhost/svn 
+就会出现提示输入用户名和密码的对话框 
+输入myself/password或者myself/secret就可以登陆svn。 
+
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.prev()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="prev1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.prev( [ selector ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合。选择性筛选的选择器。</p>
+<ul class="signatures"><li class="signature" id="prev-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.prev( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>一个用于匹配元素的选择器字符串。</p>
+</li></ul>
+<div class="longdesc">
+<p>如果提供的jQuery代表了一组DOM元素，<code>.prev()</code>方法通过这些元素组合传递到方法构造一个新的jQuery对象。</p>
+<p>该方法选择性地接受同一类型选择器表达式，我们可以传递给<code>$()</code>函数。如果选择供应，将被过滤的元素通过测试它们是否匹配。</p>
+<p>考虑一个页上有一个简单的列表：</p>
+<pre>
+&lt;ul&gt;
+   &lt;li&gt;list item 1&lt;/li&gt;
+   &lt;li&gt;list item 2&lt;/li&gt;
+   &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+   &lt;li&gt;list item 4&lt;/li&gt;
+   &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们开始在第三个项目，我们可以找到元素的紧邻的前一个同辈元素：</p>
+<pre>$('li.third-item').prev().css('background-color', 'red');</pre>
+<p>此调用的结果是项目2红色背景。由于我们没有提供一个选择的表达，所有的兄弟姐妹都是对象的一部分。如果我们提供的一个，其中只有四个匹配的项目将包括在内。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Find the very previous sibling of each div.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:40px; height:40px; margin:10px;
+        float:left; border:2px blue solid; 
+        padding:2px; }
+  span { font-size:14px; }
+  p { clear:left; margin:10px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;has child&lt;/span&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div id="start"&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+  &lt;p&gt;&lt;button&gt;Go to Prev&lt;/button&gt;&lt;/p&gt;
+&lt;script&gt;
+    var $curr = $("#start");
+    $curr.css("background", "#f99");
+    $("button").click(function () {
+      $curr = $curr.prev();
+      $("div").css("background", "");
+      $curr.css("background", "#f99");
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">For each paragraph, find the very previous sibling that has a class "selected".</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;span&gt;Hello&lt;/span&gt;&lt;/div&gt;
+
+  &lt;p class="selected"&gt;Hello Again&lt;/p&gt;
+  &lt;p&gt;And Again&lt;/p&gt;
+&lt;script&gt;$("p").prev(".selected").css("background", "yellow");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

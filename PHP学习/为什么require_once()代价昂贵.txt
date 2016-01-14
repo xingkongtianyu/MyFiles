@@ -1,0 +1,22 @@
+为什么require_once()代价昂贵，且include（）与require（）及require_once的区别
+这俩个函数都是包含文件的函数，但是在处理错误会时会有所不同：
+include（） 遇到文件处理失败时，会产生一个警告；而require（）则会显示一个致命错误。也就是说在脚本执行过程中，如果代码中有错误，include（）则会忽略错误并继续执行脚本，而require（）则会停止脚本运行。
+另外，在用这两个函数时要注意它们的位置，因为脚本以从上往下的顺序执行，这一点在有传值的文件中非常重要。一般config文件写在开头，而需要包含的模版部分写在结尾（视情况而定）。
+另外
+在php中使用require_once/include_once虽然方便，但是代价昂贵，据测试数据来看，require_once比require慢3-4倍，所以在php开发中，我们应该尽量使用require/include。
+说一下常用的避免require/include的方法。
+1、使用魔术函数__autoload
+php5可以使用__autoload来避免require，用的好的话，代码里头甚至看不到几个require，真是不错的东西。测试结果表明，使用__autoload之后比 require_once然后再实例化大概要快3倍左右。这个函数最大的用处就是在实例化一个未明确定义的类时去寻找相应的文件并载入（是动态加载哦～）。
+<?php
+function __autoload($class_name) {
+require_once $class_name . '.php';
+}
+
+$obj  = new MyClass1();
+$obj2 = new MyClass2(); 
+?>
+ps：为了减少与其它第三方类库产生冲突的可能，建议不要直接使用__autoload，而是使用spl_autoload_register(PHP 5 >= 5.1.0RC1)。ZEND框架用的就是spl_autoload_register
+2、require前检查
+用class_exists或者function_exists检查一下，确认没有载入过再出手，至少比require_once能快上3倍。php4也可以用上。
+class_exists('MyClass') or requir('/path/MyClass.class.php');
+还有其他的方法来解决这个问题，但我没使用过。如果是用PHP5之后的版本，强烈推荐第一种方式

@@ -1,0 +1,53 @@
+
+PHP设计模式抽象工厂模式的使用方法
+2010年10月7日  2,279 次浏览 陈华 抢沙发
+
+<?php
+/*抽象工厂模式也是工厂模式的一种
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式工厂模式的使用方法
+ * PHP工厂模式不难理解，顾名思义，就是一个加工厂，然后工厂是制造产品的，只要制造产品
+ * 就必须有几个要素：“方法”，“模型”，“工厂车间”。
+ */
+
+/*示例 抽象工厂模式 抽象工厂模式也是工厂模式的一种
+ * */
+abstract class model {//产品模型
+ abstract function getNames();
+}
+
+class zhangsan extends model {//产品实例
+ function getNames(){
+  return “my name is zhengsan”;
+ }
+}
+
+class lisi extends model{//产品实例
+ function getNames(){
+  return “my name is lisi”;
+ }
+}
+
+abstract class gongchangModel {//工厂模型
+    abstract function make($name);
+}
+
+class gongchang extends gongchangModel{//工厂实例
+    function make($name){
+     switch ($name){
+      case “lisi”:
+       return new lisi();
+       break;
+      case “zhangsan”:
+       return new zhangsan();
+       break;
+      default:
+       echo “no name”;
+       break;  
+     }
+    }
+}
+
+$gongchang=new gongchang();//实例化工厂
+$zhangsan=$gongchang->make(“lisi”);//制造产品
+echo $zhangsan->getNames();//产品输出功能
+?> 

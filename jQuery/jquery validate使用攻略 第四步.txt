@@ -1,0 +1,103 @@
+jquery validate使用攻略 第四步
+作者： 字体：[增加 减小] 类型：转载
+自定义错误消息的显示方式
+默认情况下，验证提示信息用label元素来显示, 并且会添加css class, 通过css可以很方便设置出错控件以及错误信息的显示方式。
+
+/* 输入控件验证出错*/
+form input.error { border:solid 1px red;}
+
+/* 验证错误提示信息*/
+form label.error{width: 200px;margin-left: 10px; color: Red;}
+
+如果想自定义显示方式，可以修改jquery.validate的默认显示方式
+
+默认用label显示错误消息，可以通过errorElement属性来修改
+errorElement: 错误消息的html标签
+
+$(".selector").validate
+errorElement: "em"
+})
+
+可以在出错信息外用其他的元素包装一层。
+wrapper: 错误消息的外层封装html标签
+
+$(".selector").validate({
+wrapper: "li"
+})
+
+验证出错的css class默认是error，通过errorClass可以修改
+errorClass: 验证出错时使用的css class
+
+$(".selector").validate({
+errorClass: "invalid"
+})
+
+还自定义验证成功时的动作
+success: 如果值是字符串，会当做一个css类，如果是一个函数，则执行该函数
+
+$(".selector").validate({
+success: "valid"
+})
+
+或者
+
+success: function(label) {
+label.html(" ").addClass("checked");
+}
+
+还可以把错误消息统一到一个容器显示
+errorLabelContainer: 将错误消息统一到一个容器显示
+
+$("#myform").validate({
+errorLabelContainer: "#messageBox"
+})
+
+默认情况下，错误消息是放在验证元素后面的，可以自定义错误消息的显示位置
+
+$(".selector").validate({
+errorPlacement: function(error, element) {
+error.appendTo( element.parent("td").next("td") );
+}
+})
+
+更进一步可以定义一个组，把几个地方的出错信息统一放在一个地方，用error Placement控制把出错信息放在哪里
+groups：定义一个组
+
+$(".selector").validate({
+groups: {
+username: "fname lname"
+},
+errorPlacement: function(error, element) {
+if (element.attr("name") == "fname" || element.attr("name") == "lname" )
+error.insertAfter("#lastname");
+else
+error.insertAfter(element);
+}
+})
+
+高亮显示
+highlight: 高亮显示，默认是添加errorClass
+unhighlight: 和highlight对应，反高亮显示
+
+$(".selector").validate({
+highlight: function(element, errorClass) {
+$(element).addClass(errorClass);
+$(element.form).find("label[for=" + element.id + "]").addClass(errorClass);
+},
+unhighlight: function(element, errorClass) {
+$(element).removeClass(errorClass);
+$(element.form).find("label[for=" + element.id + "]").removeClass(errorClass);
+}
+});
+
+
+或者可以完全自定义错误显示
+showErrors: 得到错误的显示句柄
+
+$(".selector").validate({
+showErrors: function(errorMap, errorList) {
+$("#summary").html("Your form contains " + this.numberOfInvalids()
++ " errors, see details below.");
+this.defaultShowErrors();
+}
+}) 

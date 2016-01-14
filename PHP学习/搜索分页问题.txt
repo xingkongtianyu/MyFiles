@@ -1,0 +1,15 @@
+在搜索框里 填入中文 例如: 人
+首页显示正常 
+从第二页开始 以及 上一页 下一页
+index.php?key=人&page=2
+
+echo $_GET['key']; //值为 "乱码+空格+page=2" 例:"浜?page=2" 
+
+不知道这个问题怎么解决
+麻烦哪位指点一下
+
+
+一般是编码的问题，
+1 建议将key值以session的形式传递。
+2 如果非得以GET方式传递的话，可以考虑将字符串做可逆处理。比如：urlencode/urldecode, base64_decode/base64_encode 
+3 在页面中用header指定charset

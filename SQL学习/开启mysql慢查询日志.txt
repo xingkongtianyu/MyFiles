@@ -1,0 +1,51 @@
+开启mysql慢查询日志
+
+查看配置：
+
+//查看慢查询时间
+show variables like "long_query_time";默认10s
+
+//查看慢查询配置情况
+show status like "%slow_queries%";
+
+//查看慢查询日志路径
+ show variables like "%slow%";
+
+ 
+
+修改配置文件
+
+在my.ini中加上下面两句话
+log-slow-queries = D:\wamp\mysql_slow_query.log
+long_query_time=5
+第一句使用来定义慢查询日志的路径（因为是windows，所以不牵涉权限问题）
+第二句使用来定义查过多少秒的查询算是慢查询，我这里定义的是5秒
+第二步：查看关于慢查询的状态
+执行如下SQL语句来查看mysql慢查询的状态
+show variables like '%slow%';
+执行结果会把是否开启慢查询、慢查询的秒数、慢查询日志等信息打印在屏幕上。
+第三步：执行一次慢查询操作
+其实想要执行一次有实际意义的慢查询比较困难，因为在自己测试的时候，就算查询有20万条数据的海量表，也只需要0.几秒。我们可以通过如下语句代替：
+SELECT SLEEP(10);
+第四步：查看慢查询的数量
+通过如下sql语句，来查看一共执行过几次慢查询：
+show global status like '%slow%';
+
+mysql日志的配置：
+复制代码
+
+注意：这些日文件在mysql重启的时候才会生成
+#记录所有sql语句
+log=E:/mysqllog/mysql.log
+
+#记录数据库启动关闭信息，以及运行过程中产生的错误信息
+log-error=E:/mysqllog/myerror.log
+
+# 记录除select语句之外的所有sql语句到日志中，可以用来恢复数据文件
+log-bin=E:/mysqllog/bin
+
+#记录查询慢的sql语句
+log-slow-queries=E:/mysqllog/slow.log  
+
+#慢查询时间
+long_query_time=0.5

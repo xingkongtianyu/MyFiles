@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title>
+</head>
+<body>
+<div class="entry-content">
+  <div class="entry-title roundTop">
+    <h1 class="jq-clearfix">jQuery.hasData()</h1>
+    <div class="entry-meta jq-clearfix"> Categories: <span class="category"><a   target="_blank" href="http://api.jquery.com/category/data/" title="View all posts in Data">Data</a></span> </div>
+  </div>
+  <div id="jQuery-hasData1" class="entry method">
+    <h2 class="jq-clearfix roundTop section-title"> <span class="name">jQuery.hasData( element )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#Boolean">Boolean</a></span> </h2>
+    <div class="jq-box roundBottom entry-details">
+      <p class="desc"><strong>描述： </strong>确定任何一个元素是否有与之相关的jQuery数据。</p>
+      <ul class="signatures">
+        <li class="signature" id="jQuery-hasData-element">
+          <h4 class="name"> <span class="versionAdded">version added: <a href="/category/version/1.5/">1.5</a></span>jQuery.hasData( element )</h4>
+          <p class="arguement"><strong>element</strong>一个用于进行检查数据的DOM元素。</p>
+        </li>
+      </ul>
+      <div class="longdesc">
+        <p>该<code>jQuery.hasData()</code>方法提供了一种方法来确定一个元素是否有任何数据，他们是使用<a href="/jQuery.data"><code>jQuery.data()</code></a>设置的。如果一个元素没有数据（没有在所有数据对象或数据对象是空的），该方法返回<code>false</code> ;否则返回<code>true</code> 。</p>
+        <p>其主要优点是<code>jQuery.hasData(element)</code>是当前元素不会产生和关联数据对象，如果没有与当前存在。与此相反， <code>jQuery.data(element)</code>总是返回一个数据对象的调用者，如果没有创建一个数据对象以前存在的。 </p>
+      </div>
+      <h3>Example:</h3>
+      <div class="entry-examples" id="entry-examples">
+        <div id="example-0">
+          <h4><span class="desc">元素上设置数据，看到hasData的结果。</span></h4>
+          <pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-1.5.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Results: &lt;/p&gt;
+&lt;script&gt;
+$(function(){
+  var $p = jQuery("p"), p = $p[0];
+  $p.append(jQuery.hasData(p)+" "); /* false */
+  jQuery.data(p, "testing", 123);
+  $p.append(jQuery.hasData(p)+" "); /* true*/
+  jQuery.removeData(p, "testing");
+  $p.append(jQuery.hasData(p)+" "); /* false */
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <h4>Demo:</h4>
+          <div class="demo code-demo">
+            <iframe src="/index-blank.html" width="100%" height="125" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; "></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body>
+</html>

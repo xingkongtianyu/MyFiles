@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.nextAll()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="nextAll1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.nextAll( [ selector ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获得每个匹配元素集合中所有下面的同辈元素，选择性筛选的选择器。</p>
+<ul class="signatures"><li class="signature" id="nextAll-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.nextAll( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于确定到哪个前辈元素时停止匹配。</p>
+</li></ul>
+<div class="longdesc">
+<p>如果提供的jQuery代表了一组DOM元素，<code>.nextAll()</code>方法允许我们找遍所有元素所在的DOM树，构建新的匹配元素的jQuery对象。
+</p>
+<p>该方法选择性地接受同一类型选择表达，我们可以传递给<code>$()</code>函数。如果供应选择器参数，将通过测试它们是否匹配过滤的元素。</p>
+<p>考虑一个页面上一个简单的列表：</p>
+<pre>
+&lt;ul&gt;
+   &lt;li&gt;list item 1&lt;/li&gt;
+   &lt;li&gt;list item 2&lt;/li&gt;
+   &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+   &lt;li&gt;list item 4&lt;/li&gt;
+   &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们从第三个项目开始，我们可以找到它之后的元素：</p>
+<pre>$('li.third-item').nextAll().css('background-color', 'red');</pre>
+<p>调用后的结果是项目4和5变成红色背景。 由于我们没有提供一个选择器表达式，祖先元素都是返回的jQuery对象的一部分。如果我们有提供一个选择的表达式，只有在这些匹配的项目将包括在内。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Locate all the divs after the first and give them a class.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div { width: 80px; height: 80px; background: #abc; 
+        border: 2px solid black; margin: 10px; float: left; }
+  div.after { border-color: red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;first&lt;/div&gt;
+  &lt;div&gt;sibling&lt;div&gt;child&lt;/div&gt;&lt;/div&gt;
+  &lt;div&gt;sibling&lt;/div&gt;
+
+  &lt;div&gt;sibling&lt;/div&gt;
+&lt;script&gt;$("div:first").nextAll().addClass("after");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="150"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Locate all the paragraphs after the second child in the body and give them a class.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div, p { width: 60px; height: 60px; background: #abc;
+           border: 2px solid black; margin: 10px; float: left; }
+  .after { border-color: red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;p&lt;/p&gt;
+
+  &lt;div&gt;div&lt;/div&gt;
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;div&gt;div&lt;/div&gt;
+
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;div&gt;div&lt;/div&gt;
+&lt;script&gt;
+    $(":nth-child(1)").nextAll("p").addClass("after");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="200"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

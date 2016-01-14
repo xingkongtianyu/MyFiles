@@ -1,0 +1,2 @@
+ cp /usr/local/mysql/share/mysql/mysql.server /etc/init.d/mysql
+ service mysql start

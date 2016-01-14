@@ -1,0 +1,2301 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+HR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BLOCKQUOTE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+PRE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LEGEND {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BUTTON {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+INPUT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TEXTAREA {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BODY {
+	FONT: 12px/1.5 arial,ËÎÌå,sans-serif
+}
+BUTTON {
+	FONT: 12px/1.5 arial,ËÎÌå,sans-serif
+}
+INPUT {
+	FONT: 12px/1.5 arial,ËÎÌå,sans-serif
+}
+SELECT {
+	FONT: 12px/1.5 arial,ËÎÌå,sans-serif
+}
+TEXTAREA {
+	FONT: 12px/1.5 arial,ËÎÌå,sans-serif
+}
+H1 {
+	FONT-SIZE: 100%
+}
+H2 {
+	FONT-SIZE: 100%
+}
+H3 {
+	FONT-SIZE: 100%
+}
+H4 {
+	FONT-SIZE: 100%
+}
+H5 {
+	FONT-SIZE: 100%
+}
+H6 {
+	FONT-SIZE: 100%
+}
+ADDRESS {
+	FONT-STYLE: normal
+}
+CITE {
+	FONT-STYLE: normal
+}
+DFN {
+	FONT-STYLE: normal
+}
+EM {
+	FONT-STYLE: normal
+}
+VAR {
+	FONT-STYLE: normal
+}
+CODE {
+	FONT-FAMILY: courier new,courier,monospace
+}
+KBD {
+	FONT-FAMILY: courier new,courier,monospace
+}
+PRE {
+	FONT-FAMILY: courier new,courier,monospace
+}
+SAMP {
+	FONT-FAMILY: courier new,courier,monospace
+}
+SMALL {
+	FONT-SIZE: 12px
+}
+UL {
+	LIST-STYLE-TYPE: none
+}
+OL {
+	LIST-STYLE-TYPE: none
+}
+A {
+	TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+LEGEND {
+	COLOR: #000
+}
+FIELDSET {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+BUTTON {
+	FONT-SIZE: 100%
+}
+INPUT {
+	FONT-SIZE: 100%
+}
+SELECT {
+	FONT-SIZE: 100%
+}
+TEXTAREA {
+	FONT-SIZE: 100%
+}
+TABLE {
+	BORDER-COLLAPSE: collapse; border-spacing: 0
+}
+IMG {
+	ms-interpolation-mode: bicubic
+}
+#page {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#header {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#content {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+#footer {
+	MARGIN-LEFT: auto; MARGIN-RIGHT: auto
+}
+.w950 {
+	WIDTH: 950px
+}
+.w1000 {
+	WIDTH: 1000px
+}
+.col-main {
+	MIN-HEIGHT: 1px; FLOAT: left; WIDTH: 100%
+}
+.col-sub {
+	FLOAT: left
+}
+.col-extra {
+	FLOAT: left
+}
+.layout:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.main-wrap:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.col-sub:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.col-extra:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.layout {
+	ZOOM: 1
+}
+.main-wrap {
+	ZOOM: 1
+}
+.col-sub {
+	ZOOM: 1
+}
+.col-extra {
+	ZOOM: 1
+}
+.grid-m0s245 .main-wrap {
+	MARGIN-RIGHT: 255px
+}
+.grid-m0s245 .col-sub {
+	MARGIN-LEFT: -245px; WIDTH: 245px
+}
+.w745 {
+	WIDTH: 745px
+}
+.w1000 {
+	WIDTH: 1000px
+}
+.hidden {
+	DISPLAY: none
+}
+.invisible {
+	VISIBILITY: hidden
+}
+.clearfix:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.clearfix {
+	ZOOM: 1
+}
+.clear {
+	CLEAR: both; FONT-SIZE: 0px; VISIBILITY: visible; LINE-HEIGHT: 0; HEIGHT: 0px
+}
+.text-wrap {
+	WORD-BREAK: break-all; WORD-WRAP: break-word
+}
+.text-nowrap {
+	WORD-BREAK: keep-all; WHITE-SPACE: nowrap
+}
+.red {
+	COLOR: red
+}
+.slide {
+	BORDER-TOP-WIDTH: 8px; BORDER-LEFT-WIDTH: 8px; FONT-SIZE: 0px; BORDER-BOTTOM-WIDTH: 8px; OVERFLOW: hidden; WIDTH: 0px; LINE-HEIGHT: 0; HEIGHT: 0px; BORDER-RIGHT-WIDTH: 8px
+}
+.s-left {
+	BORDER-LEFT-COLOR: transparent; BORDER-BOTTOM-COLOR: transparent; BORDER-TOP-STYLE: dashed; BORDER-TOP-COLOR: transparent; BORDER-RIGHT-STYLE: solid; BORDER-LEFT-STYLE: dashed; BORDER-RIGHT-COLOR: #ccc; BORDER-BOTTOM-STYLE: dashed
+}
+.s-right {
+	BORDER-LEFT-COLOR: #ccc; BORDER-BOTTOM-COLOR: transparent; BORDER-TOP-STYLE: dashed; BORDER-TOP-COLOR: transparent; BORDER-RIGHT-STYLE: dashed; BORDER-LEFT-STYLE: solid; BORDER-RIGHT-COLOR: transparent; BORDER-BOTTOM-STYLE: dashed
+}
+#pop-shadow {
+	Z-INDEX: 65534; BACKGROUND: #000; FILTER: alpha(opacity=25); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: .25
+}
+#pop-shadow-iframe {
+	FILTER: alpha(opacity=0); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: 0
+}
+#pop-main {
+	Z-INDEX: 65535; LEFT: 300px; WIDTH: 500px; LINE-HEIGHT: 20px; POSITION: absolute; TOP: 200px
+}
+#pop-shadow-bg {
+	Z-INDEX: -1; BACKGROUND: #000; FILTER: alpha(opacity=0); LEFT: 5px; WIDTH: 100%; POSITION: absolute; TOP: 5px; opacity: .25
+}
+#pop-close {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(http://img.baidu.com/hi/img/dialogclose.gif) no-repeat; FLOAT: right; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 0px; MARGIN: 3px 0px 0px; WIDTH: 19px; CURSOR: pointer; PADDING-TOP: 0px; HEIGHT: 19px; BORDER-RIGHT-WIDTH: 0px
+}
+.p-bg {
+	BORDER-RIGHT: #709cd2 1px solid; BORDER-TOP: #709cd2 1px solid; BORDER-LEFT: #709cd2 1px solid; BORDER-BOTTOM: #709cd2 1px solid
+}
+.p-top {
+	BACKGROUND: #709cd2; HEIGHT: 24px
+}
+.p-title {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; COLOR: #fff; LINE-HEIGHT: 24px; PADDING-TOP: 0px; HEIGHT: 24px
+}
+#p-title {
+	moz-user-select: none
+}
+.p-body {
+	PADDING-LEFT: 10px; FONT-SIZE: 14px; BACKGROUND: #fff; ZOOM: 1
+}
+.p-body-inner {
+	PADDING-RIGHT: 10px
+}
+.p-r1 {
+	OVERFLOW: hidden; WIDTH: 10px; HEIGHT: 5px
+}
+.p-r2 {
+	OVERFLOW: hidden; WIDTH: 10px; HEIGHT: 5px
+}
+.p-r3 {
+	OVERFLOW: hidden; WIDTH: 10px; HEIGHT: 5px
+}
+.p-r4 {
+	OVERFLOW: hidden; WIDTH: 10px; HEIGHT: 5px
+}
+.p-r1 {
+	BACKGROUND-POSITION: 0px -62px; FLOAT: left
+}
+.p-r2 {
+	BACKGROUND-POSITION: -10px -62px; FLOAT: right
+}
+.p-r3 {
+	BACKGROUND-POSITION: 0px -67px; FLOAT: left; HEIGHT: 10px
+}
+.p-r4 {
+	BACKGROUND-POSITION: -10px -67px; FLOAT: right; HEIGHT: 10px
+}
+.p-bottom {
+	BACKGROUND: #fff; HEIGHT: 10px
+}
+#pop-iframe-content {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+#pop-text-content {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#usrbar {
+	FONT-SIZE: 12px; Z-INDEX: 10000; RIGHT: 10px; POSITION: absolute; TOP: 8px; TEXT-ALIGN: right
+}
+#usrbar A {
+	COLOR: #00c; TEXT-DECORATION: underline
+}
+.usrbar-split {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+IMG.down-arrow {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BORDER-LEFT: #fff 1px solid; CURSOR: pointer; BORDER-BOTTOM: #fff 1px solid
+}
+IMG.down-arrow-hover {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BACKGROUND: #f7f7f7; BORDER-LEFT: #999 1px solid; CURSOR: pointer; BORDER-BOTTOM: #999 1px solid
+}
+#nav_extra {
+	FONT-SIZE: 12px; Z-INDEX: 65535; WIDTH: 80px; POSITION: absolute; TOP: -2px; TEXT-ALIGN: left
+}
+#nav_extra A {
+	FONT-SIZE: 12px; COLOR: #00c
+}
+#nav_extra .top {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 12px; Z-INDEX: 65531; BACKGROUND: url(http://img.baidu.com/hi/img/mfu/my_ico.gif) #fff no-repeat 60px 3px; BORDER-LEFT: #999 1px solid; WIDTH: 77px; TEXT-INDENT: 5px; LINE-HEIGHT: 13px; PADDING-TOP: 4px; BORDER-BOTTOM: #999 1px; POSITION: absolute; HEIGHT: 16px
+}
+#nav_extra .body {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; Z-INDEX: 65530; BACKGROUND: #fff; BORDER-LEFT: #999 1px solid; WIDTH: 77px; LINE-HEIGHT: 20px; BORDER-BOTTOM: #999 1px solid; POSITION: absolute; TOP: 18px
+}
+#nav_extra .body A {
+	DISPLAY: block; WIDTH: 100%; TEXT-INDENT: 5px; LINE-HEIGHT: 20px; HEIGHT: 20px
+}
+#nav_extra .body A:hover {
+	BACKGROUND: #e4e4e4
+}
+#my_home_container {
+	PADDING-RIGHT: 20px; FONT-WEIGHT: bold; BACKGROUND: url(http://img.baidu.com/hi/img/mfu/my_ico.gif) no-repeat 55px 0px
+}
+IMG {
+	ms-interpolation-mode: bicubic
+}
+.usertitle {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/titles.gif) no-repeat; BORDER-BOTTOM-WIDTH: 0px; WIDTH: 60px; HEIGHT: 16px; BORDER-RIGHT-WIDTH: 0px
+}
+.level2 {
+	BACKGROUND-POSITION: 0px -23px
+}
+.level3 {
+	BACKGROUND-POSITION: 0px -46px
+}
+.level4 {
+	BACKGROUND-POSITION: 0px -68px
+}
+.level5 {
+	BACKGROUND-POSITION: 0px -89px
+}
+.level6 {
+	BACKGROUND-POSITION: 0px -121px
+}
+.level7 {
+	BACKGROUND-POSITION: 0px -144px
+}
+.level8 {
+	BACKGROUND-POSITION: 0px -167px
+}
+.level9 {
+	BACKGROUND-POSITION: 0px -190px
+}
+.level10 {
+	BACKGROUND-POSITION: 0px -214px
+}
+.level11 {
+	BACKGROUND-POSITION: 0px -248px
+}
+.level12 {
+	BACKGROUND-POSITION: 0px -271px
+}
+.level13 {
+	BACKGROUND-POSITION: 0px -294px
+}
+.level14 {
+	BACKGROUND-POSITION: 0px -317px
+}
+.level15 {
+	BACKGROUND-POSITION: 0px -340px; WIDTH: 75px
+}
+A {
+	COLOR: #136ec2; TEXT-DECORATION: underline
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A:visited {
+	COLOR: #136ec2
+}
+#header {
+	MARGIN-TOP: 26px
+}
+#search {
+	MARGIN-BOTTOM: 16px; WIDTH: 780px
+}
+#search A {
+	COLOR: #00c; TEXT-DECORATION: underline
+}
+#logo {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 146px; PADDING-TOP: 3px; ZOOM: 1; POSITION: relative
+}
+#logo IMG {
+	DISPLAY: block
+}
+#logo .logo-xjd {
+	POSITION: absolute; TOP: -20px
+}
+#logo {
+	FLOAT: left
+}
+#search-content {
+	FLOAT: left
+}
+#help {
+	FLOAT: left
+}
+#word {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 3px; MARGIN: 0px 7px 0px 0px; FONT: 16px arial; WIDTH: 358px; PADDING-TOP: 3px
+}
+.search-btn {
+	FONT-SIZE: 14px; MARGIN: 0px 7px 0px 0px; WIDTH: 78px; LINE-HEIGHT: 24px; HEIGHT: 28px
+}
+.nv {
+	MARGIN: 0px 0px 3px
+}
+.nv A {
+	FONT-SIZE: 14px; MARGIN-RIGHT: 13px
+}
+.nv STRONG {
+	FONT-SIZE: 14px; MARGIN-RIGHT: 10px
+}
+#help {
+	MARGIN-TOP: 27px
+}
+#help A {
+	MARGIN-RIGHT: 7px
+}
+#search-simple {
+	PADDING-LEFT: 2px; PADDING-BOTTOM: 11px; HEIGHT: 32px
+}
+#search-simple #search-content {
+	PADDING-TOP: 8px
+}
+#search-simple #logo {
+	PADDING-RIGHT: 9px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 93px; PADDING-TOP: 0px; ZOOM: 1; POSITION: relative
+}
+#search-simple #word {
+	PADDING-RIGHT: 1px; DISPLAY: block; PADDING-LEFT: 1px; FLOAT: left; PADDING-BOTTOM: 1px; MARGIN: 2px 5px 0px 0px; FONT: 14px/18px arial; WIDTH: 210px; PADDING-TOP: 1px
+}
+#search-simple .search-btn {
+	MARGIN: 0px 3px 0px 0px; FONT: 12px/22px å®‹ä½“; WIDTH: 68px; HEIGHT: 25px
+}
+.tangram_sug_wpr {
+	BORDER-RIGHT: #817f82 1px solid; BORDER-TOP: #817f82 1px solid; Z-INDEX: 9999; LEFT: 0px; BORDER-LEFT: #817f82 1px solid; BORDER-BOTTOM: #817f82 1px solid; POSITION: absolute; TOP: 28px
+}
+.tangram_sug_wpr TABLE {
+	BACKGROUND: #fff; WIDTH: 100%; CURSOR: default
+}
+.tangram_sug_wpr TD {
+	FONT: 14px/20px verdana
+}
+.tangram_sug_mo {
+	BACKGROUND: #36c; COLOR: #fff
+}
+.tangram_sug_ml {
+	BACKGROUND: #fff; COLOR: #000
+}
+.tangram_sug_app {
+	BACKGROUND: #fff
+}
+.tangram_sug_pre {
+	BACKGROUND: #fff
+}
+.sug_close {
+	PADDING-RIGHT: 2px; LINE-HEIGHT: 20px; TEXT-ALIGN: right
+}
+.album-view {
+	LINE-HEIGHT: 12px; TEXT-ALIGN: center
+}
+.album-view IFRAME {
+	OVERFLOW: hidden
+}
+.album-view .title {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 0px; COLOR: #000; LINE-HEIGHT: 16px; TEXT-ALIGN: center
+}
+.modify .album-view .title {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 0px; COLOR: #000; LINE-HEIGHT: 16px; TEXT-ALIGN: center
+}
+.album-view .count {
+	FONT-SIZE: 11px; COLOR: #999; WHITE-SPACE: nowrap
+}
+.modity .album-view .count {
+	FONT-SIZE: 11px; COLOR: #999; WHITE-SPACE: nowrap
+}
+.module-data-expend {
+	CLEAR: both; BORDER-TOP: #000 1px solid; BACKGROUND: #eff
+}
+.module-data-expend .mde-item {
+	BORDER-RIGHT: red 1px dashed; PADDING-RIGHT: 6px; DISPLAY: inline-block; PADDING-LEFT: 6px; BACKGROUND: #fff; PADDING-BOTTOM: 0px; WIDTH: 155px; PADDING-TOP: 0px; BORDER-BOTTOM: red 1px dashed; ZOOM: 1; POSITION: relative; HEIGHT: 150px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.module-data-expend .mde-item SPAN.desc {
+	FONT-SIZE: 12px; LEFT: 0px; WIDTH: 154px; COLOR: #000; BOTTOM: 0px; LINE-HEIGHT: 12px; POSITION: absolute; TEXT-ALIGN: center
+}
+.clear {
+	CLEAR: both
+}
+.map-view {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #ddd 1px solid; WIDTH: 310px; LINE-HEIGHT: 12px; PADDING-TOP: 5px; BORDER-BOTTOM: #ddd 1px solid; TEXT-ALIGN: center
+}
+.map-view IFRAME {
+	WIDTH: 310px; HEIGHT: 226px
+}
+.map-view .title {
+	DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 5px 0px 0px; COLOR: #000; LINE-HEIGHT: 16px; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+.modify .map-view .title {
+	DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 5px 0px 0px; COLOR: #000; LINE-HEIGHT: 16px; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+.map-view .declear {
+	DISPLAY: none; FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 0px 0px 2px; COLOR: #999; LINE-HEIGHT: 16px; WHITE-SPACE: nowrap
+}
+.video-view {
+	FLOAT: right; OVERFLOW: hidden; WIDTH: 288px; HEIGHT: 283px
+}
+.video-mis {
+	FLOAT: right; OVERFLOW: hidden; WIDTH: 288px; HEIGHT: 283px
+}
+.video-view IFRAME {
+	WIDTH: 288px; HEIGHT: 283px
+}
+.video-mis IFRAME {
+	WIDTH: 288px; HEIGHT: 283px
+}
+.red {
+	COLOR: red
+}
+#header {
+	MARGIN-TOP: 26px
+}
+#footer {
+	CLEAR: both; MARGIN-TOP: 10px; MARGIN-BOTTOM: 15px; FONT: 12px/1 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+#footer A:link {
+	CLEAR: both; MARGIN-TOP: 10px; MARGIN-BOTTOM: 15px; FONT: 12px/1 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+#footer A:visited {
+	CLEAR: both; MARGIN-TOP: 10px; MARGIN-BOTTOM: 15px; FONT: 12px/1 Arial; COLOR: #77c; WHITE-SPACE: nowrap; TEXT-ALIGN: center
+}
+BODY {
+	BACKGROUND: url(about:blank) fixed
+}
+.fix {
+	ZOOM: 1
+}
+.fix:unknown {
+	CLEAR: both; DISPLAY: block; OVERFLOW: hidden; HEIGHT: 0px; content: 'clear'
+}
+#view #wrap {
+	MARGIN: 0px auto; WIDTH: 1000px
+}
+#view #page {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/nav-bg.gif) #fafafa repeat-x 0px -34px
+}
+#view #content {
+	MARGIN-TOP: 14px
+}
+#view #side {
+	MARGIN-TOP: 34px; BACKGROUND-COLOR: #fafafa
+}
+.col-sub A {
+	TEXT-DECORATION: none
+}
+A:unknown {
+	outline: none
+}
+#path {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/nav-bg.gif) repeat-x; WIDTH: 100%; WHITE-SPACE: nowrap
+}
+#path UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#path UL LI {
+	PADDING-RIGHT: 18px; PADDING-LEFT: 12px; FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: left; PADDING-BOTTOM: 0px; LINE-HEIGHT: 34px; PADDING-TOP: 0px; HEIGHT: 34px
+}
+#path UL LI A {
+	COLOR: #fff; WHITE-SPACE: nowrap; TEXT-DECORATION: none
+}
+#path UL LI A:hover {
+	TEXT-DECORATION: underline
+}
+#lemma-nav-expo {
+	PADDING-LEFT: 18px; BACKGROUND: url(http://img.baidu.com/img/baike/s/expo.gif) no-repeat 10px 0px; WIDTH: 94px; HEIGHT: 27px; TEXT-ALIGN: left
+}
+#lemma-nav-expo A {
+	DISPLAY: block; WIDTH: 60px; POSITION: absolute
+}
+#lemma-nav-ppqw-hot {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img.baidu.com/img/baike/icons/hot.png"); LEFT: 913px; WIDTH: 24px; POSITION: relative; TOP: -38px; HEIGHT: 15px
+}
+.nav-ppqw-hot-wrapper {
+	POSITION: absolute
+}
+.mod-top {
+	MARGIN-BOTTOM: 30px
+}
+.mod-index-top {
+	PADDING-BOTTOM: 10px
+}
+#content .main-shadow {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/c-bg.png); PADDING-BOTTOM: 3px
+}
+#content .content-hd {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/hd-bg.gif) #fff no-repeat right top; BORDER-LEFT: #ddd 1px solid; HEIGHT: 9px
+}
+#content .content-hd-wrap {
+	BORDER-TOP: #ddd 1px solid; MARGIN-RIGHT: 6px
+}
+#content .content-bd {
+	CLEAR: both; BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 30px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 20px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; MARGIN: 4px 3px 0px 0px; BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 16px; BORDER-BOTTOM: #ddd 1px solid
+}
+#content .content-ft {
+	CLEAR: both; BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 30px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 20px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; MARGIN: 4px 3px 0px 0px; BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 16px; BORDER-BOTTOM: #ddd 1px solid
+}
+#content .main-body {
+	MARGIN-TOP: 0px; BORDER-TOP-STYLE: none; ZOOM: 1
+}
+#content .content-ft {
+	FONT-SIZE: 12px
+}
+#view #footer {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fafafa; PADDING-BOTTOM: 20px; MARGIN: 0px; PADDING-TOP: 10px
+}
+.bk-feedback {
+	BORDER-RIGHT: #ddd 1px dashed; BORDER-TOP: #ddd 1px dashed; PADDING-LEFT: 40px; BACKGROUND: url(http://img.baidu.com/img/baike/s/feedback.gif) no-repeat 10px 9px; MARGIN-BOTTOM: 10px; BORDER-LEFT: #ddd 1px dashed; COLOR: #333; LINE-HEIGHT: 30px; BORDER-BOTTOM: #ddd 1px dashed; HEIGHT: 30px
+}
+.bk-feedback A {
+	TEXT-DECORATION: none
+}
+.article {
+	FONT-SIZE: 14px; WORD-BREAK: break-all; WORD-WRAP: break-word
+}
+.text .polysemy-item-cnt {
+	CLEAR: both; LINE-HEIGHT: 24px
+}
+.module-block {
+	BACKGROUND-COLOR: #fafafa
+}
+H1.title {
+	MARGIN-TOP: 5px; FONT-WEIGHT: 500; FONT-SIZE: 30px; MARGIN-BOTTOM: 30px; WIDTH: 480px; LINE-HEIGHT: 1; FONT-FAMILY: "Î¢ÈíÑÅºÚ","ºÚÌå","Verdana"
+}
+H1.sub-title {
+	MARGIN-TOP: 0px; FONT-SIZE: 25px; MARGIN-BOTTOM: 25px
+}
+.editable-lemma {
+	DISPLAY: block; BACKGROUND: url(http://img.baidu.com/img/baike/s/edit_btn.gif) no-repeat; FLOAT: right; OVERFLOW: hidden; WIDTH: 107px; CURSOR: pointer; HEIGHT: 34px
+}
+.dividable-lemma {
+	DISPLAY: block; PADDING-LEFT: 25px; FONT-WEIGHT: bold; BACKGROUND: url(/css/polysemy/sprite.gif) no-repeat -78px -202px; FLOAT: right; WIDTH: 74px; COLOR: #0163af; LINE-HEIGHT: 34px; HEIGHT: 34px; TEXT-DECORATION: none
+}
+.lengtip {
+	COLOR: #999
+}
+.bk-editable-mulit-lemma {
+	MARGIN-TOP: 12px; DISPLAY: block; FONT-SIZE: 12px; FLOAT: right; MARGIN-LEFT: -20px; OVERFLOW: hidden; WIDTH: 125px; COLOR: #666; LINE-HEIGHT: 15px; HEIGHT: 15px
+}
+.bk-editable-mulit-lemma EM {
+	PADDING-RIGHT: 20px; BACKGROUND-POSITION: -45px -144px; DISPLAY: inline; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; ZOOM: 1
+}
+.main-body .onhover {
+	BACKGROUND-POSITION: 0px -37px
+}
+.pic-handle {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; DISPLAY: block; FONT-SIZE: 0px; RIGHT: 4px; BACKGROUND: url(http://img.baidu.com/img/baike/s/zoom.gif) no-repeat 0px 0px; BORDER-LEFT: #fff 1px solid; WIDTH: 14px; BOTTOM: 4px; LINE-HEIGHT: 0; BORDER-BOTTOM: #fff 1px solid; POSITION: absolute; HEIGHT: 14px; TEXT-DECORATION: none
+}
+A.pic-handle:hover {
+	TEXT-DECORATION: none
+}
+.text_pic .pic-handle {
+	BORDER-RIGHT: #f6f6f6 1px solid; BORDER-TOP: #f6f6f6 1px solid; BORDER-LEFT: #f6f6f6 1px solid; BORDER-BOTTOM: #f6f6f6 1px solid
+}
+.pic-hover A.pic-handle {
+	BORDER-RIGHT: #ccc 1px solid; BACKGROUND-POSITION: 0px -14px; BORDER-TOP: #ccc 1px solid; BORDER-LEFT: #ccc 1px solid; BORDER-BOTTOM: #ccc 1px solid
+}
+.pic-hover A.pic-handle {
+	BORDER-LEFT-COLOR: #ccc; BORDER-BOTTOM-COLOR: #ccc; BORDER-TOP-COLOR: #ccc; BORDER-RIGHT-COLOR: #ccc
+}
+.text_edit {
+	DISPLAY: block; FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; MARGIN: 10px 0px 0px; COLOR: #36c
+}
+.text_edit A {
+	DISPLAY: block; PADDING-LEFT: 18px; BACKGROUND: url(http://img.baidu.com/img/baike/s/edit.gif) no-repeat left 50%; WIDTH: 52px; LINE-HEIGHT: 16px; HEIGHT: 15px
+}
+#sidecatalog {
+	POSITION: absolute
+}
+.card-title {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 14px; PADDING-BOTTOM: 4px; MARGIN: 10px 0px; LINE-HEIGHT: 1; PADDING-TOP: 4px; BORDER-BOTTOM: #ccc 2px solid
+}
+.card-summary {
+	FONT-SIZE: 14px; MARGIN-BOTTOM: 25px; LINE-HEIGHT: 25px
+}
+.card-summary .pic {
+	BORDER-RIGHT: #dedfe1 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #dedfe1 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 0px; FLOAT: left; PADDING-BOTTOM: 8px; MARGIN: 2px 15px 0px 0px; BORDER-LEFT: #dedfe1 1px solid; WIDTH: 200px; LINE-HEIGHT: 0; PADDING-TOP: 4px; BORDER-BOTTOM: #dedfe1 1px solid; ZOOM: 1; POSITION: relative; BACKGROUND-COLOR: #fff; TEXT-ALIGN: center
+}
+.card-summary .pic DIV {
+	FONT-SIZE: 12px; MIN-HEIGHT: 18px; LINE-HEIGHT: 18px; MARGIN-RIGHT: 20px; POSITION: relative; TOP: 3px; HEIGHT: 18px; TEXT-ALIGN: center
+}
+.card-info {
+	MARGIN: 0px 0px 15px
+}
+.card-info-inner {
+	OVERFLOW: hidden; WIDTH: 690px; BORDER-BOTTOM: #dedfe1 1px solid
+}
+.card-info TABLE.tableWrap {
+	MARGIN-TOP: -1px; BORDER-COLLAPSE: collapse
+}
+.card-info TD.seperateTd {
+	VERTICAL-ALIGN: top; WIDTH: 347px
+}
+.card-info TD.seperateTd TABLE {
+	BORDER-COLLAPSE: collapse
+}
+.card-info TD.seperateTd TABLE TD {
+	BORDER-TOP: #dedfe1 1px dashed; LINE-HEIGHT: 23px
+}
+DIV.oneHeightDiv {
+	FONT-SIZE: 1px; LINE-HEIGHT: 1px; HEIGHT: 1px
+}
+.card-info TD.cardFirstTd {
+	PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 13px; VERTICAL-ALIGN: top; WIDTH: 100px
+}
+.card-info TD.cardSecondTd {
+	PADDING-RIGHT: 2px; FONT-SIZE: 13px; TEXT-ALIGN: right
+}
+.card-summary .more-link {
+	MARGIN-TOP: 10px; FONT-SIZE: 14px
+}
+.card-summary .more-link UL LI SPAN {
+	PADDING-LEFT: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/s/url.gif) no-repeat left center
+}
+.card-summary .more-link UL LI {
+	OVERFLOW: hidden; WHITE-SPACE: nowrap
+}
+.more-link-noinfo {
+	BORDER-TOP: #dedfe1 1px dashed
+}
+.more-link-info LI {
+	FLOAT: left; WIDTH: 327px
+}
+.more-link-info LI.linkli-left {
+	MARGIN-RIGHT: 35px
+}
+.more-link-info LI.linkli-top {
+	BORDER-TOP: #dedfe1 1px dashed
+}
+.more-link-info LI A {
+	FLOAT: right
+}
+.more-link-info LI SPAN {
+	PADDING-LEFT: 2px; FONT-WEIGHT: bold; FONT-SIZE: 13px; LINE-HEIGHT: 23px
+}
+.lemma-main-content {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 690px
+}
+.lemma-main-content TABLE.editorTable {
+	BORDER-RIGHT: #888 1px solid; BORDER-TOP: #888 1px solid; MARGIN-BOTTOM: 2px; BORDER-LEFT: #888 1px solid; BORDER-BOTTOM: #888 1px solid; BORDER-COLLAPSE: collapse; WORD-WRAP: break-word
+}
+.lemma-main-content TABLE.editorTable TD {
+	BORDER-RIGHT: #888 1px solid; BORDER-TOP: #888 1px solid; BORDER-LEFT: #888 1px solid; BORDER-BOTTOM: #888 1px solid; BORDER-COLLAPSE: collapse
+}
+.lemma-main-content SUP {
+	MARGIN-LEFT: 2px; CURSOR: pointer; COLOR: #36c
+}
+.lemma-main-content .headline-2 {
+	CLEAR: both; FONT-SIZE: 16px; MARGIN: 15px 0px 5px; LINE-HEIGHT: 22px; FONT-FAMILY: Arial
+}
+.lemma-main-content .text_pic {
+	TEXT-ALIGN: center
+}
+.lemma-main-content .text_pic IMG {
+	DISPLAY: block
+}
+.lemma-main-content .text_pic SUP {
+	MARGIN-RIGHT: 15px; FONT-FAMILY: "arial,ËÎÌå,sans-serif"
+}
+.lemma-main-content .text_pic P {
+	PADDING-RIGHT: 10px; DISPLAY: inline; FONT-WEIGHT: normal; FONT-SIZE: 12px; MIN-HEIGHT: 18px; MARGIN: 3px 0px 0px; COLOR: #666; WORD-BREAK: break-all; LINE-HEIGHT: 18px; ZOOM: 1; FONT-STYLE: normal; FONT-FAMILY: "ËÎÌå"; HEIGHT: 18px; WORD-WRAP: break-word
+}
+.lemma-main-content .text_pic P  {
+	FONT-WEIGHT: normal; FONT-STYLE: normal
+}
+.text_pic {
+	WIDTH: 200px
+}
+.lemma-main-content TABLE {
+	FONT-SIZE: 12px; MARGIN: 5px 0px; COLOR: #666; WORD-BREAK: break-all; LINE-HEIGHT: 12px; BORDER-COLLAPSE: collapse; WORD-WRAP: break-word; border-spacing: 0
+}
+.lemma-main-content TD {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; BORDER-LEFT: #ddd 1px solid; LINE-HEIGHT: 22px; PADDING-TOP: 0px; BORDER-BOTTOM: #ddd 1px solid
+}
+.lemma-main-content TH {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; BORDER-LEFT: #ddd 1px solid; LINE-HEIGHT: 22px; PADDING-TOP: 0px; BORDER-BOTTOM: #ddd 1px solid
+}
+.lemma-main-content TH {
+	BORDER-TOP: #bbb 2px solid; FONT-WEIGHT: bold; HEIGHT: 23px; BACKGROUND-COLOR: #f7f7f7; TEXT-ALIGN: center
+}
+.lemma-main-content CAPTION {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; PADDING-BOTTOM: 8px; PADDING-TOP: 8px
+}
+.reinforce {
+	FONT-SIZE: 12px
+}
+.lemma-ext-bottom A {
+	TEXT-DECORATION: underline
+}
+.reinforce A {
+	TEXT-DECORATION: underline
+}
+.lemma-ext-bottom A:hover {
+	TEXT-DECORATION: underline
+}
+.reinforce A:hover {
+	TEXT-DECORATION: underline
+}
+#more-coeditor {
+	TEXT-DECORATION: none
+}
+.reinforce DL {
+	MARGIN-BOTTOM: 30px
+}
+.lemma-ext-bottom DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 1; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px dashed
+}
+.reinforce DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 1; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px dashed
+}
+.lemma-ext-bottom DT {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.reinforce DD {
+	COLOR: #333; WORD-BREAK: break-all; WORD-WRAP: break-word
+}
+.reinforce DT SPAN {
+	FONT-WEIGHT: normal
+}
+.reinforce .add {
+	FONT-WEIGHT: normal; Z-INDEX: 8; RIGHT: 15px; MARGIN: 0px; COLOR: #36c; POSITION: absolute; TOP: 8px
+}
+.ref_more {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/s/arr.gif) no-repeat 28px -17px; FLOAT: right; PADDING-BOTTOM: 0px; MARGIN: 0px; LINE-HEIGHT: 16px; PADDING-TOP: 3px; WHITE-SPACE: nowrap; TEXT-DECORATION: none
+}
+.reference UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+.reference UL LI {
+	MARGIN-TOP: 12px; FONT-SIZE: 12px; WIDTH: 100%
+}
+.reference UL LI A .ref-url-text {
+	TEXT-DECORATION: underline
+}
+.reference UL LI A IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.reference UL LI A.ref-top {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/img/baike/s/up_down.gif) no-repeat -1px -78px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 4px; OVERFLOW: hidden; WIDTH: 12px; PADDING-TOP: 0px; HEIGHT: 12px; TEXT-DECORATION: none
+}
+.reference UL LI A.ref-top:hover {
+	BACKGROUND-POSITION: -43px -79px; TEXT-DECORATION: none
+}
+.ref-bd {
+	MARGIN-LEFT: 26px
+}
+.ref-index {
+	FLOAT: left
+}
+.line-2 {
+	MARGIN-LEFT: 32px
+}
+.line-3 {
+	MARGIN-LEFT: 36px
+}
+.refUrl {
+	PADDING-LEFT: 4px
+}
+.ref-index .r-index {
+	PADDING-LEFT: 4px; FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND: #eee; FLOAT: left; COLOR: #999; LINE-HEIGHT: 16px; HEIGHT: 16px; TEXT-ALIGN: right
+}
+.ref-index .slide {
+	FLOAT: left
+}
+.ref-index .s-right {
+	BORDER-LEFT-COLOR: #eee; BORDER-BOTTOM-COLOR: transparent; BORDER-TOP-COLOR: transparent; BORDER-RIGHT-COLOR: transparent
+}
+.r {
+	FLOAT: right
+}
+.box2 {
+	MARGIN-BOTTOM: 15px; MARGIN-RIGHT: 10px
+}
+.box2 H5 SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; MARGIN: 5px 8px 0px 0px; LINE-HEIGHT: 18px
+}
+.box2-inner .edit_it {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; MARGIN: 5px 8px 0px 0px; LINE-HEIGHT: 18px
+}
+.box2-inner .more_right {
+	FONT-WEIGHT: normal; FLOAT: right; LINE-HEIGHT: 18px
+}
+.box2 H2 {
+	FONT-SIZE: 14px; MARGIN-BOTTOM: 10px; LINE-HEIGHT: 25px; BORDER-BOTTOM: #ddd 1px solid
+}
+.box2 H5 {
+	FONT-SIZE: 14px; MARGIN-BOTTOM: 10px; LINE-HEIGHT: 25px; BORDER-BOTTOM: #ddd 1px solid
+}
+.box2 H5 SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; MARGIN: 5px 8px 0px 0px; LINE-HEIGHT: 18px
+}
+.box2 H2 SPAN {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; MARGIN: 5px 8px 0px 0px; LINE-HEIGHT: 18px
+}
+#mabox .box2-inner {
+	BORDER-RIGHT: #cce0ee 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #cce0ee 1px solid; PADDING-LEFT: 12px; BACKGROUND: #fff; PADDING-BOTTOM: 12px; BORDER-LEFT: #cce0ee 1px solid; PADDING-TOP: 6px; BORDER-BOTTOM: #cce0ee 1px solid
+}
+#mabox .box2-inner A FONT {
+	FONT-SIZE: 12px
+}
+#mabox .box2-inner A {
+	TEXT-DECORATION: underline
+}
+.pr12 {
+	PADDING-RIGHT: 12px
+}
+#onelinespan A {
+	MARGIN-RIGHT: 10px; TEXT-DECORATION: underline
+}
+.f12 {
+	FONT-SIZE: 12px
+}
+.f12 TD {
+	FONT-SIZE: 12px
+}
+.f12 TH {
+	FONT-SIZE: 12px
+}
+.f12 DIV {
+	FONT-SIZE: 12px
+}
+.l24 {
+	LINE-HEIGHT: 24px
+}
+.c-red {
+	COLOR: red
+}
+.c-blue {
+	COLOR: blue
+}
+.c-gray {
+	COLOR: gray
+}
+.fH {
+	FONT-FAMILY: Î¢ÈíÑÅºÚ,ºÚÌå
+}
+.fB {
+	FONT-WEIGHT: bold
+}
+.fU {
+	TEXT-DECORATION: underline
+}
+.f12px {
+	FONT-SIZE: 12px
+}
+.f14px {
+	FONT-SIZE: 14px
+}
+.link-gray:link {
+	COLOR: gray
+}
+.link-gray:visited {
+	COLOR: gray
+}
+.link-gray:hover {
+	COLOR: gray
+}
+.link-gray:active {
+	COLOR: gray
+}
+.link-toggle:link {
+	TEXT-DECORATION: none
+}
+.link-toggle:visited {
+	TEXT-DECORATION: none
+}
+.link-toggle:active {
+	TEXT-DECORATION: none
+}
+.link-toggle:hover {
+	TEXT-DECORATION: underline
+}
+.endLinks {
+	CLEAR: both; FONT-SIZE: 12px; MARGIN: 5px 0px 0px; WIDTH: 350px; LINE-HEIGHT: 20px
+}
+.endLinks A {
+	MARGIN-LEFT: 22px
+}
+.endLinks-share A {
+	MARGIN-LEFT: 22px
+}
+.endLinks-share {
+	FONT-SIZE: 12px; MARGIN: 15px 0px 0px; WIDTH: 350px
+}
+.endLinks-share LI {
+	DISPLAY: inline; FLOAT: left; WIDTH: 150px; LINE-HEIGHT: 20px
+}
+.endLinks LI {
+	DISPLAY: inline; FLOAT: left; WIDTH: 150px; LINE-HEIGHT: 20px
+}
+.share {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; FONT-SIZE: 12px; BACKGROUND: #fafafa; MARGIN-BOTTOM: 30px; BORDER-LEFT: #ddd 1px solid; COLOR: #999; LINE-HEIGHT: 42px; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 42px
+}
+.share-item-title {
+	BORDER-RIGHT: #ddd 1px solid; FLOAT: left; MARGIN: 2px 0px; WIDTH: 120px; HEIGHT: 38px; TEXT-ALIGN: center
+}
+.share-item {
+	FLOAT: left; MARGIN-LEFT: 10px
+}
+.share-item SPAN {
+	FLOAT: left
+}
+.share-item A {
+	FLOAT: left; MARGIN: 14px 8px; WIDTH: 16px; HEIGHT: 16px; TEXT-DECORATION: none
+}
+.cang {
+	DISPLAY: block; PADDING-LEFT: 16px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 0px 0px; MARGIN: 12px 0px 0px 20px; LINE-HEIGHT: 16px; HEIGHT: 16px; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.itieBa {
+	BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 0px -61px
+}
+.tsina {
+	BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 0px -126px
+}
+.tdouban {
+	BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 0px -148px
+}
+.tsohu {
+	BACKGROUND: url(http://s2.cr.itc.cn/img/t/152.png) no-repeat
+}
+.try {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 5px; COLOR: #333; PADDING-TOP: 0px
+}
+.try .edit {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 0px -26px; MARGIN: 0px 5px
+}
+.text {
+	LINE-HEIGHT: 24px
+}
+.text .headline-1 {
+	CLEAR: both; FONT-WEIGHT: bold; FONT-SIZE: 18px; PADDING-BOTTOM: 6px; MARGIN: 0px 0px 10px; LINE-HEIGHT: 24px; BORDER-BOTTOM: #dedfe1 1px solid
+}
+.text H2.first {
+	CLEAR: none
+}
+.text .t_edit1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 0px -22px; FLOAT: right; PADDING-BOTTOM: 2px; MARGIN: 7px 5px 0px 0px; FONT: bold 14px "Arial"; PADDING-TOP: 3px
+}
+.text .t_edit2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 25px; BACKGROUND: url(http://img.baidu.com/img/baike/cardIcon.gif) no-repeat 5px -42px; FLOAT: right; PADDING-BOTTOM: 2px; MARGIN: 8px 5px 0px 0px; FONT: bold 14px "Arial"; PADDING-TOP: 3px
+}
+.text .t_polysemy {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 22px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 0px -27px; FLOAT: right; PADDING-BOTTOM: 2px; MARGIN: 8px 12px 0px 0px; FONT: bold 14px "Arial"; PADDING-TOP: 3px
+}
+.lock {
+	MARGIN-TOP: 8px; FONT-WEIGHT: normal; FONT-SIZE: 14px; FLOAT: right; FONT-STYLE: normal; FONT-FAMILY: arial
+}
+.lock A {
+	PADDING-LEFT: 18px; BACKGROUND: url(http://img.baidu.com/img/baike/lock_edit.gif) no-repeat; MARGIN-RIGHT: 5px; PADDING-TOP: 2px
+}
+.text_pic {
+	BORDER-RIGHT: #e8e8e8 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #e8e8e8 1px solid; PADDING-LEFT: 5px; BACKGROUND: #f6f6f6; PADDING-BOTTOM: 5px; MARGIN: 5px; BORDER-LEFT: #e8e8e8 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #e8e8e8 1px solid
+}
+.text_pic H3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 3px 0px 0px; OVERFLOW: hidden; COLOR: #666; WORD-BREAK: break-all; LINE-HEIGHT: 18px; FONT-STYLE: normal; TEXT-ALIGN: center; WORD-WRAP: break-word
+}
+.text_pic H3  {
+	FONT-WEIGHT: normal; FONT-STYLE: normal
+}
+.text_vote1 {
+	FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/s/vote.gif) no-repeat; WIDTH: 146px; CURSOR: pointer; COLOR: #999; PADDING-TOP: 7px; HEIGHT: 46px; TEXT-ALIGN: center
+}
+.text_vote2 {
+	FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/s/vote.gif) no-repeat; WIDTH: 146px; CURSOR: pointer; COLOR: #999; PADDING-TOP: 7px; HEIGHT: 46px; TEXT-ALIGN: center
+}
+.text_vote1 B {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 65px; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; COLOR: #44a701; PADDING-TOP: 2px; FONT-FAMILY: "Tahoma"; HEIGHT: 20px; TEXT-ALIGN: left
+}
+.text_vote2 B {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 65px; FONT-SIZE: 14px; PADDING-BOTTOM: 0px; COLOR: #44a701; PADDING-TOP: 2px; FONT-FAMILY: "Tahoma"; HEIGHT: 20px; TEXT-ALIGN: left
+}
+.text_vote2 {
+	BACKGROUND-POSITION: 0px -54px; COLOR: #fff
+}
+.text_vote2 B {
+	COLOR: #fff
+}
+.spctrl {
+	FONT-SIZE: 12px; OVERFLOW: hidden; LINE-HEIGHT: 14px; HEIGHT: 14px
+}
+.bpctrl {
+	OVERFLOW: hidden; LINE-HEIGHT: 30px; HEIGHT: 30px
+}
+.end {
+	CLEAR: both; MARGIN: 10px 0px 30px; ZOOM: 1; POSITION: relative
+}
+.declare {
+	FONT-SIZE: 12px; FLOAT: right; MARGIN: 5px 0px; WIDTH: 518px; COLOR: #333; LINE-HEIGHT: 1.6em
+}
+.ref {
+	CLEAR: both; PADDING-RIGHT: 0px; BORDER-TOP: #ccc 1px dashed; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; ZOOM: 1; POSITION: relative
+}
+.no-border {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+#relatedLemmaDown .relative {
+	Z-INDEX: 1
+}
+#relatedLemmaDown .related_edit {
+	PADDING-LEFT: 14px; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/s/co_edit.gif) no-repeat left center; FLOAT: right; LINE-HEIGHT: 14px; HEIGHT: 14px
+}
+#relatedLemmaDown .related_edit A {
+	TEXT-DECORATION: none
+}
+.word_more_con {
+	BORDER-RIGHT: #dedfe1 1px solid; PADDING-RIGHT: 40px; BORDER-TOP: #dedfe1 1px solid; PADDING-LEFT: 10px; Z-INDEX: 5; BACKGROUND: #fff; LEFT: 0px; PADDING-BOTTOM: 6px; BORDER-LEFT: #dedfe1 1px solid; WIDTH: 610px; LINE-HEIGHT: 20px; PADDING-TOP: 6px; BORDER-BOTTOM: #dedfe1 1px solid; POSITION: absolute; TOP: 0px
+}
+#word_more {
+	FONT-SIZE: 12px; Z-INDEX: 6; LEFT: 620px; OVERFLOW: hidden; WIDTH: 40px; CURSOR: pointer; POSITION: absolute; TOP: 0px; HEIGHT: 20px
+}
+.word_more1 DIV {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/up_down.gif) no-repeat; HEIGHT: 20px
+}
+.word_more2 DIV {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/up_down.gif) no-repeat; HEIGHT: 20px
+}
+.word_more1 DIV {
+	BACKGROUND-POSITION: -32px 5px
+}
+.word_more1 DIV.hover {
+	BACKGROUND-POSITION: -32px -26px
+}
+.word_more2 {
+	TOP: 8px
+}
+.word_more2 DIV {
+	BACKGROUND-POSITION: 10px 5px
+}
+.word_more2 .hover {
+	BACKGROUND-POSITION: 10px -26px
+}
+.word_more_con A {
+	MARGIN-RIGHT: 10px; WHITE-SPACE: nowrap
+}
+#co-editors {
+	COLOR: #000
+}
+DIV.onelineonly {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 600px; ZOOM: 1; POSITION: relative; HEIGHT: 20px
+}
+DIV.onelineonly UL {
+	WIDTH: 615px; LIST-STYLE-TYPE: none
+}
+DIV.onelineonly UL LI {
+	FLOAT: left; MARGIN: 0px 5px; LINE-HEIGHT: 22px
+}
+DIV.onelineonly A {
+	FONT-SIZE: 14px; WHITE-SPACE: nowrap
+}
+DIV.onelineonly UL.onelineonlydun LI {
+	MARGIN: 0px
+}
+DIV.materialLib {
+	MARGIN: 12px 15px 5px
+}
+.mp3Material {
+	CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; PADDING-TOP: 0px; HEIGHT: 23px
+}
+.mp3Material SPAN {
+	FLOAT: left; WIDTH: 60px
+}
+.mp3Material UL {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 560px; LIST-STYLE-TYPE: none; HEIGHT: 17px
+}
+.mp3Material UL LI {
+	FLOAT: left; MARGIN: 0px 5px; WHITE-SPACE: nowrap
+}
+.mp3Material A {
+	WHITE-SPACE: nowrap; TEXT-DECORATION: underline
+}
+.moreMaterial {
+	FONT-SIZE: 12px; MARGIN: 0px 0px -5px 5px; OVERFLOW: hidden; WIDTH: 680px; TEXT-ALIGN: right
+}
+.moreMaterial A {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 50px -217px; FLOAT: right; PADDING-BOTTOM: 0px; PADDING-TOP: 3px; TEXT-DECORATION: none
+}
+.singleVideobox {
+	OVERFLOW: hidden
+}
+.singleVideo {
+	PADDING-RIGHT: 16px; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/img/head.gif) no-repeat; FLOAT: left; PADDING-BOTTOM: 6px; MARGIN: 10px 20px 0px 0px; WIDTH: 128px; PADDING-TOP: 13px; POSITION: relative
+}
+.videoTitle {
+	FONT-SIZE: 12px; LINE-HEIGHT: 25px; TEXT-ALIGN: center
+}
+.videoTitleACut {
+	WHITE-SPACE: nowrap
+}
+.pad14 {
+	PADDING-RIGHT: 14px; PADDING-LEFT: 14px; PADDING-BOTTOM: 12px; PADDING-TOP: 6px
+}
+.info {
+	COLOR: #666; LINE-HEIGHT: 22px
+}
+.topuser {
+	COLOR: #666; LINE-HEIGHT: 24px
+}
+.topuser TD {
+	PADDING-TOP: 2px
+}
+.topuser .usertitle {
+	MARGIN-TOP: -1px
+}
+.topuser TH {
+	TEXT-ALIGN: left
+}
+.topuser STRONG {
+	COLOR: black
+}
+.topuser TD A {
+	COLOR: #000
+}
+.topuser TH A:link {
+	TEXT-DECORATION: none
+}
+.topuser TH A:visited {
+	TEXT-DECORATION: none
+}
+.topuser TH A:hover {
+	TEXT-DECORATION: none
+}
+.topuser TH A:active {
+	TEXT-DECORATION: none
+}
+.topuser TR {
+	HEIGHT: 25px
+}
+.topuser .contri-type {
+	LINE-HEIGHT: 25px
+}
+#pro-contributors .usercard-info {
+	COLOR: #f27200; LINE-HEIGHT: 20px
+}
+.more1 {
+	PADDING-RIGHT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat -92px -259px; FLOAT: right; TEXT-DECORATION: none
+}
+.more2 {
+	PADDING-RIGHT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat -92px -259px; FLOAT: right; TEXT-DECORATION: none
+}
+.more2 {
+	BACKGROUND-POSITION: 26px -258px
+}
+.task {
+	MARGIN-BOTTOM: 15px; COLOR: #333
+}
+.task DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.task DD IMG {
+	BORDER-RIGHT: #ccc 1px solid; BORDER-TOP: #ccc 1px solid; BORDER-LEFT: #ccc 1px solid; BORDER-BOTTOM: #ccc 1px solid
+}
+.notice {
+	COLOR: #333
+}
+.notice DD {
+	PADDING-LEFT: 12px; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 2px -99px; LINE-HEIGHT: 22px
+}
+.notice SUP {
+	COLOR: #f00; LINE-HEIGHT: 12px
+}
+.relative {
+	POSITION: relative
+}
+.relatedHelp {
+	PADDING-LEFT: 18px; BACKGROUND: url(http://img.baidu.com/img/baike/ico_bz.gif) no-repeat
+}
+.rel_word LI {
+	PADDING-LEFT: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 2px -326px; LINE-HEIGHT: 20px
+}
+.rel_word LI A.cutWord {
+	WORD-BREAK: break-all; WORD-WRAP: break-word
+}
+.myedit {
+	PADDING-LEFT: 15px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 0px -80px; MARGIN: 0px
+}
+.pcixin {
+	MARGIN-TOP: 3px; COLOR: #a00
+}
+.ptitle {
+	MARGIN-TOP: 3px
+}
+.pexplain {
+	MARGIN-TOP: 3px; MARGIN-LEFT: 20px
+}
+.view-tip-pannel {
+	MARGIN-BOTTOM: 25px
+}
+.view-tip-pannel P {
+	BORDER-RIGHT: #ccc 1px dashed; PADDING-RIGHT: 8px; BORDER-TOP: #ccc 1px dashed; PADDING-LEFT: 8px; FONT-SIZE: 12px; BACKGROUND: #fafafa; FLOAT: left; PADDING-BOTTOM: 0px; OVERFLOW: hidden; BORDER-LEFT: #ccc 1px dashed; LINE-HEIGHT: 36px; PADDING-TOP: 0px; BORDER-BOTTOM: #ccc 1px dashed; HEIGHT: 36px
+}
+.view-tip-pannel SPAN {
+	FONT: bold 14px arial
+}
+.viewtip-icon {
+	MARGIN-TOP: 10px; DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/baike/viewtip-icon.png) no-repeat; FLOAT: left; VERTICAL-ALIGN: baseline; WIDTH: 16px; MARGIN-RIGHT: 2px; HEIGHT: 15px
+}
+.viewtip-synstd {
+	BACKGROUND-POSITION: -4px -3px
+}
+.viewtip-redirect {
+	BACKGROUND-POSITION: -4px -22px
+}
+.text_dir {
+	CLEAR: both; BORDER-RIGHT: #dedfe1 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #dedfe1 1px solid; PADDING-LEFT: 0px; Z-INDEX: 1; BACKGROUND: #fff; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 30px; BORDER-LEFT: #dedfe1 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #dedfe1 1px solid; ZOOM: 1; POSITION: relative
+}
+.text_dir P {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; MARGIN: 0px 4px 10px; LINE-HEIGHT: 30px; BORDER-BOTTOM: #ddd 1px dashed
+}
+.text_dir DL {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 15px; BACKGROUND: #fff; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.text_dir DD {
+	PADDING-LEFT: 16px; BACKGROUND: url(http://img.baidu.com/img/baike/s/list-dot.gif) no-repeat 0px 8px; LINE-HEIGHT: 22px; POSITION: relative
+}
+.text_dir OL {
+	PADDING-RIGHT: 0px; DISPLAY: none; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; TEXT-INDENT: 14px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.catalog-holder {
+	CLEAR: both; FONT-SIZE: 12px; RIGHT: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/s/dir_arr.gif) #fafafa no-repeat 35px -44px; FLOAT: right; OVERFLOW: hidden; WIDTH: 50px; CURSOR: pointer; COLOR: #136ec2; TEXT-INDENT: 10px; LINE-HEIGHT: 20px; ZOOM: 1; POSITION: absolute; HEIGHT: 20px
+}
+.main-body .hover {
+	BACKGROUND-POSITION: 35px -68px
+}
+.up .catalog-holder {
+	BACKGROUND-POSITION: 35px 7px
+}
+.main-body .up .hover {
+	BACKGROUND-POSITION: 35px -15px
+}
+.text_dir .holder1 {
+	PADDING-BOTTOM: 10px
+}
+.text_dir .holder2 {
+	BORDER-RIGHT: #dedfe1 1px solid; BORDER-TOP: #dedfe1 1px; DISPLAY: none; LEFT: -1px; PADDING-BOTTOM: 20px; BORDER-LEFT: #dedfe1 1px solid; BORDER-BOTTOM: #dedfe1 1px solid; POSITION: absolute; TOP: 41px
+}
+.text_dir .temp {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; PADDING-TOP: 0px
+}
+.text_dir .data LI {
+	PADDING-LEFT: 16px; BACKGROUND: url(http://img.baidu.com/img/baike/s/list-dot.gif) #fff no-repeat 0px 10px; ZOOM: 1
+}
+.text_dir OL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 2px -327px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.text_dir .data LI LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 2px -327px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.text_dir A {
+	WHITE-SPACE: nowrap
+}
+DIV.polysemy {
+	PADDING-RIGHT: 0px; BORDER-TOP: #ddd 2px solid; PADDING-LEFT: 35px; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs4.gif) no-repeat 5px 6px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; LINE-HEIGHT: 35px; PADDING-TOP: 0px; BORDER-BOTTOM: #ddd 2px solid; HEIGHT: 36px
+}
+DIV.polysemy A {
+	FONT-SIZE: 14px
+}
+DIV.polysemyContentDiv {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; LINE-HEIGHT: 25px; PADDING-TOP: 15px
+}
+DIV.polysemyContentDiv INPUT {
+	WIDTH: 360px
+}
+SPAN.polysemyExp {
+	FONT-SIZE: 12px; COLOR: #aaa
+}
+SPAN.polysemyRed {
+	FONT-SIZE: 12px; COLOR: #f66
+}
+.authority {
+	CLEAR: both; FONT-SIZE: 12px; MARGIN-BOTTOM: 30px; LINE-HEIGHT: 20px; PADDING-TOP: 12px; ZOOM: 1; WHITE-SPACE: nowrap; POSITION: relative
+}
+.authority A {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #36c; WHITE-SPACE: nowrap
+}
+.authority P {
+	BORDER-RIGHT: #ccc 1px dashed; PADDING-RIGHT: 20px; BORDER-TOP: #ccc 1px dashed; PADDING-LEFT: 40px; FLOAT: left; PADDING-BOTTOM: 6px; BORDER-LEFT: #ccc 1px dashed; PADDING-TOP: 6px; BORDER-BOTTOM: #ccc 1px dashed; WHITE-SPACE: nowrap
+}
+.authorityLogo {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src="http://img.baidu.com/img/baike/authority/authorityLogo.png"); LEFT: 0px; WIDTH: 36px; ZOOM: 1; POSITION: absolute; TOP: 0px; HEIGHT: 47px
+}
+.authImg {
+	OVERFLOW: hidden; WIDTH: 226px; TEXT-ALIGN: left
+}
+.authContent P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 12px 0px 0px; PADDING-TOP: 0px
+}
+.authContent P A {
+	FONT-SIZE: 14px; COLOR: #1852c7; TEXT-DECORATION: none
+}
+.authContent SPAN {
+	LINE-HEIGHT: 20px
+}
+#userInfoDiv {
+	DISPLAY: none
+}
+.box2#userInfoDiv {
+	BORDER-LEFT: #dde7e9 3px solid
+}
+#kedoutuanPic {
+	DISPLAY: none
+}
+#masterPic {
+	DISPLAY: none
+}
+#corePic {
+	DISPLAY: none
+}
+#userMessage {
+	ZOOM: 1
+}
+.userin-split {
+	BORDER-TOP: #a0cce0 1px solid; OVERFLOW: hidden; BORDER-BOTTOM: #fff 1px solid; HEIGHT: 0px
+}
+#userTitleLink {
+	FONT-WEIGHT: bold; VERTICAL-ALIGN: 1px
+}
+.userinfo-pic {
+	BORDER-RIGHT: #e1e1e2 1px solid; BORDER-TOP: #e1e1e2 1px solid; FLOAT: left; BORDER-LEFT: #e1e1e2 1px solid; WIDTH: 68px; MARGIN-RIGHT: 6px; BORDER-BOTTOM: #e1e1e2 1px solid; HEIGHT: 68px
+}
+#userDetail {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 160px; LINE-HEIGHT: 1.4em; PADDING-TOP: 4px; WHITE-SPACE: nowrap
+}
+#userDetail P {
+	MARGIN: 6px 0px
+}
+#userTitle IMG {
+	MARGIN-RIGHT: 5px
+}
+#highVersionLink {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; MARGIN: 0px 3px; VERTICAL-ALIGN: middle; WIDTH: 12px; HEIGHT: 17px
+}
+#goodVersionLink {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; MARGIN: 0px 3px; VERTICAL-ALIGN: middle; WIDTH: 12px; HEIGHT: 17px
+}
+#highVersionLink {
+	BACKGROUND-POSITION: 0px -72px
+}
+#goodVersionLink {
+	BACKGROUND-POSITION: -32px -72px
+}
+#highVersionNum {
+	VERTICAL-ALIGN: -3px
+}
+#goodVersionNum {
+	VERTICAL-ALIGN: -3px
+}
+#userProcessBack {
+	MARGIN-TOP: 5px; FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat 0px -94px; WIDTH: 159px; LINE-HEIGHT: 0; HEIGHT: 13px
+}
+#userProcess {
+	FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat 0px -108px; WIDTH: 3px; LINE-HEIGHT: 0; HEIGHT: 12px
+}
+.userinfo-inner {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 12px; PADDING-BOTTOM: 0px; PADDING-TOP: 8px
+}
+.userinfo-side {
+	MARGIN: -11px 0px 10px -13px; COLOR: #333; LINE-HEIGHT: 22px; ZOOM: 1; POSITION: relative; BACKGROUND-COLOR: #e9f3f6
+}
+.userinfo-side .fl {
+	FLOAT: left
+}
+.userinfo-side .fr {
+	FLOAT: right
+}
+.userinfo-side .dnone {
+	POSITION: absolute; TOP: -9999em
+}
+.userinfo-side A {
+	COLOR: #36c
+}
+.userinfo-side A:hover {
+	TEXT-DECORATION: none
+}
+.userinfo-side .blink {
+	COLOR: #333
+}
+.userinfo-side .blink:hover {
+	COLOR: #36c
+}
+.userinfo-side .impt-word {
+	COLOR: #f70
+}
+.userinfo-side .piece {
+	PADDING-TOP: 10px; BORDER-BOTTOM: #b8d6e6 1px dotted
+}
+.userinfo-side .mr8 {
+	MARGIN-RIGHT: 8px
+}
+.userinfo-side .mr4 {
+	MARGIN-RIGHT: 4px
+}
+.userinfo-side .mb10 {
+	MARGIN-BOTTOM: 10px
+}
+.userinfo-side .mb15 {
+	MARGIN-BOTTOM: 15px
+}
+.userinfo-side .mlr4 {
+	MARGIN: 0px 4px
+}
+.userinfo-side .vm {
+	DISPLAY: inline-block; VERTICAL-ALIGN: middle
+}
+.userinfo-side H3 {
+	MARGIN-BOTTOM: 4px; LINE-HEIGHT: 18px; HEIGHT: 18px
+}
+.userinfo-side H3 .title {
+	FONT-SIZE: 14px; FLOAT: left
+}
+.userinfo-side H3 A {
+	VERTICAL-ALIGN: middle
+}
+.userinfo-side .icon-hotword {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .icon-lemma {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .icon-common-task {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .goto {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .icon-growup-task {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .icon-wealth {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat; WIDTH: 16px; HEIGHT: 16px
+}
+.userinfo-side .goto {
+	BACKGROUND-POSITION: -90px -72px; DISPLAY: inline-block; VERTICAL-ALIGN: 2px; OVERFLOW: hidden; TEXT-INDENT: 3000px
+}
+.userinfo-side .icon-wealth {
+	BACKGROUND-POSITION: -70px -72px; DISPLAY: inline-block
+}
+.userinfo-side .icon-growup-task {
+	BACKGROUND-POSITION: -33px -122px; FLOAT: left
+}
+.userinfo-side .icon-hotword {
+	BACKGROUND-POSITION: 0px -122px; FLOAT: left
+}
+.userinfo-side .icon-lemma {
+	BACKGROUND-POSITION: -17px -122px; FLOAT: left
+}
+.userinfo-side .icon-common-task {
+	BACKGROUND-POSITION: -130px -122px; FLOAT: left
+}
+.hot-word-refresh {
+	BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat 0px -39px; FLOAT: right; WIDTH: 18px; HEIGHT: 19px
+}
+.hot-word-refresh:hover {
+	BACKGROUND-POSITION: -23px -39px
+}
+.userinfo-side .gotouc-wrap {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; TEXT-ALIGN: center
+}
+.userinfo-side .gotouc {
+	DISPLAY: block; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg2011.gif) no-repeat 0px 0px; MARGIN: 0px auto; WIDTH: 127px; TEXT-INDENT: 20px; LINE-HEIGHT: 30px
+}
+#growupTasks .act {
+	FLOAT: right; FONT-FAMILY: ËÎÌå
+}
+#growupTasks .progressbar {
+	MARGIN-TOP: 3px; FLOAT: left; OVERFLOW: hidden; WIDTH: 126px; HEIGHT: 12px
+}
+.tipMain {
+	BORDER-RIGHT: #ffd4ad 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #ffd4ad 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; BORDER-LEFT: #ffd4ad 1px solid; COLOR: #535353; LINE-HEIGHT: 20px; PADDING-TOP: 0px; BORDER-BOTTOM: #ffd4ad 1px solid; BACKGROUND-COLOR: #fff7f0
+}
+.tip {
+	DISPLAY: none; POSITION: absolute
+}
+.reason-tip {
+	LEFT: 100px; WHITE-SPACE: nowrap
+}
+#userTip {
+	LEFT: 30px; WIDTH: 216px; TOP: 81px; HEIGHT: 78px
+}
+#userTipArrow {
+	Z-INDEX: 99; BACKGROUND: url(http://img.baidu.com/img/baike/views/userinfo/userinfo_bg.gif) no-repeat -59px -42px; LEFT: 94px; WIDTH: 16px; POSITION: absolute; TOP: 0px; HEIGHT: 7px
+}
+#userTipMain {
+	WIDTH: 216px; POSITION: absolute; TOP: 6px; HEIGHT: 78px
+}
+#userTipMain P {
+	FONT-SIZE: 12px; MARGIN: 8px
+}
+#hotHelpTip {
+	LEFT: 115px; WIDTH: 166px; LINE-HEIGHT: 15px; TOP: 30px
+}
+#completeTip {
+	LEFT: 40px
+}
+#completeTipMain {
+	min-width: 200px
+}
+#completeTipMain SPAN {
+	COLOR: red
+}
+#sidecatalog {
+	Z-INDEX: 1; HEIGHT: 120px
+}
+#sidecatalog A.gotop {
+	DISPLAY: block; BACKGROUND: url(http://img.baidu.com/img/baike/sidebar2.gif) no-repeat 1px -104px; WIDTH: 28px; HEIGHT: 22px
+}
+#sidecatalog .sidebar {
+	BACKGROUND: url(http://img.baidu.com/img/baike/sidebar2.gif) no-repeat 1px 0px; WIDTH: 28px; CURSOR: pointer; HEIGHT: 104px
+}
+.show#sidebar {
+	BACKGROUND-POSITION: -42px 0px
+}
+#side-catalog-content {
+	BORDER-RIGHT: #a3d0e4 1px solid; BORDER-TOP: #a3d0e4 1px solid; BACKGROUND: #fff; BORDER-LEFT: #a3d0e4 1px solid; WIDTH: 250px; BORDER-BOTTOM: #a3d0e4 1px solid
+}
+#side-lemma-title {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN-LEFT: 10px; LINE-HEIGHT: 30px; HEIGHT: 30px
+}
+#side-catalog-content H1 {
+	PADDING-LEFT: 26px; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/baike/s/cataicon1.png) no-repeat 10px center; OVERFLOW: hidden; LINE-HEIGHT: 22px; HEIGHT: 22px
+}
+#side-catalog-content H2 {
+	PADDING-LEFT: 26px; FONT-WEIGHT: normal; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/baike/s/list-dot.gif) no-repeat 10px 8px; MARGIN-LEFT: 20px; OVERFLOW: hidden; LINE-HEIGHT: 22px; HEIGHT: 22px
+}
+#side-catalog-content H3 {
+	PADDING-LEFT: 26px; FONT-WEIGHT: normal; FONT-SIZE: 14px; BACKGROUND: url(http://img.baidu.com/img/baike/bgs3.gif) no-repeat 16px -323px; MARGIN-LEFT: 30px; OVERFLOW: hidden; LINE-HEIGHT: 22px; HEIGHT: 22px
+}
+#side-catalog-content A {
+	TEXT-DECORATION: none; outline: none
+}
+#side-catalog-content A:hover {
+	TEXT-DECORATION: none
+}
+#side-title-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; OVERFLOW: hidden; PADDING-TOP: 0px; ZOOM: 1; POSITION: relative
+}
+#side-title-list {
+	LEFT: 0px; WIDTH: 250px; POSITION: absolute
+}
+#side-title-panel A {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-WEIGHT: normal; FONT-SIZE: 14px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px
+}
+#side-title-panel .on A {
+	BACKGROUND: #edf5fc
+}
+#side-title-panel .expend A {
+	COLOR: #333
+}
+#side-catalog-up DIV {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/arr.gif) #f4f9fb no-repeat center -133px; MARGIN-BOTTOM: 4px; OVERFLOW: hidden; CURSOR: pointer; HEIGHT: 16px
+}
+#side-catalog-down DIV {
+	BACKGROUND: url(http://img.baidu.com/img/baike/s/arr.gif) #f4f9fb no-repeat center -133px; MARGIN-BOTTOM: 4px; OVERFLOW: hidden; CURSOR: pointer; HEIGHT: 16px
+}
+.disable#side-catalog-down DIV {
+	BACKGROUND: #f4f9fb; CURSOR: default
+}
+.disable#side-catalog-up DIV {
+	BACKGROUND: #f4f9fb; CURSOR: default
+}
+.hover#side-catalog-up DIV {
+	BACKGROUND-POSITION: center -46px
+}
+.hover#side-catalog-down DIV {
+	BACKGROUND-POSITION: center 7px
+}
+#side-catalog-down DIV {
+	BACKGROUND-POSITION: center -89px; MARGIN: 4px 0px 0px
+}
+A.try-edit {
+	PADDING-LEFT: 16px; FONT-WEIGHT: bold; BACKGROUND: url(http://img.baidu.com/img/baike/s/edit.gif) no-repeat 0px 50%; MARGIN-LEFT: 8px
+}
+.technology-def DT {
+	TEXT-ALIGN: right
+}
+.endSeries-title {
+	DISPLAY: none
+}
+.contri-more-tr {
+	BACKGROUND-COLOR: #f4f4f4; TEXT-ALIGN: right
+}
+.contri-img {
+	PADDING-LEFT: 4px; CURSOR: pointer
+}
+.contri-a {
+	COLOR: #666! important; TEXT-DECORATION: underline! important
+}
+.contri-expand {
+	CURSOR: pointer; TEXT-DECORATION: underline
+}
+.contri-span {
+	DISPLAY: inline-block; WIDTH: 12px
+}
+#flash-bg {
+	Z-INDEX: 10000; FILTER: alpha(opacity=30); LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: black; opacity: .3
+}
+.album-div {
+	POSITION: relative
+}
+.album-border1 {
+	BORDER-RIGHT: #b7b7b7 1px solid; BORDER-TOP: #b7b7b7 1px solid; LEFT: 5px; BORDER-LEFT: #b7b7b7 1px solid; BORDER-BOTTOM: #b7b7b7 1px solid; POSITION: absolute; TOP: 11px; BACKGROUND-COLOR: #fff
+}
+.album-border2 {
+	BORDER-RIGHT: #b7b7b7 1px solid; BORDER-TOP: #b7b7b7 1px solid; LEFT: 8px; BORDER-LEFT: #b7b7b7 1px solid; BORDER-BOTTOM: #b7b7b7 1px solid; POSITION: absolute; TOP: 8px; BACKGROUND-COLOR: #fff
+}
+.album-cover {
+	BORDER-RIGHT: #000 2px solid; BORDER-TOP: #000 3px solid; LEFT: 11px; BORDER-LEFT: #000 2px solid; BORDER-BOTTOM: #000 2px solid; POSITION: absolute; TOP: 5px
+}
+.album-overlay {
+	DISPLAY: block; LEFT: 0px; POSITION: absolute; TEXT-DECORATION: none
+}
+.album-overlay:hover {
+	TEXT-DECORATION: none
+}
+.album-logo {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img.baidu.com/img/baike/editor/album_logo.png"); LEFT: 3px; WIDTH: 57px; POSITION: absolute; TOP: 3px; HEIGHT: 57px
+}
+.video-view {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 3px; PADDING-BOTTOM: 0px; BORDER-LEFT: #ddd 1px solid; PADDING-TOP: 3px; BORDER-BOTTOM: #ddd 1px solid; BACKGROUND-COLOR: #fff; TEXT-ALIGN: center
+}
+.video-view .title {
+	FONT-SIZE: 12px; COLOR: #676767; LINE-HEIGHT: 28px; WHITE-SPACE: nowrap; HEIGHT: 28px
+}
+.polysemy-item-cnt H1.title {
+	WIDTH: 100%
+}
+.enc-tip {
+	RIGHT: 40px; VISIBILITY: hidden; WIDTH: 270px; POSITION: absolute; TOP: 40px
+}
+.enc-tip .close {
+	RIGHT: 4px; BACKGROUND: url(http://img.baidu.com/img/baike/encourage/encourage.png) no-repeat 0px -57px; OVERFLOW: hidden; WIDTH: 13px; TEXT-INDENT: 3000px; POSITION: absolute; TOP: 6px; HEIGHT: 13px
+}
+.enc-tip .close:hover {
+	BACKGROUND-POSITION: 0px -44px
+}
+.enc-wrap {
+	BORDER-RIGHT: #bbe0f3 2px; BORDER-TOP: #bbe0f3 2px solid; BORDER-LEFT: #bbe0f3 2px; WIDTH: 100%; BORDER-BOTTOM: #bbe0f3 2px solid; moz-border-radius: 2px; webkit-border-radius: 2px; border-radius: 2px
+}
+.enc-content {
+	BORDER-RIGHT: #bbe0f3 2px solid; PADDING-RIGHT: 6px; PADDING-LEFT: 0px; MIN-HEIGHT: 60px; BACKGROUND: #fdfeff; PADDING-BOTTOM: 0px; MARGIN: 0px -1px; BORDER-LEFT: #bbe0f3 2px solid; PADDING-TOP: 10px; POSITION: relative; HEIGHT: 60px
+}
+.enc-content A {
+	COLOR: #1190d1; TEXT-DECORATION: none
+}
+.enc-content .fl {
+	FLOAT: left
+}
+.enc-content .fr {
+	FLOAT: right; WIDTH: 204px
+}
+.enc-content .fl A {
+	DISPLAY: inline-block; MARGIN: 0px 6px
+}
+.enc-content H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #1190d1; LINE-HEIGHT: 20px; WHITE-SPACE: nowrap; HEIGHT: 20px
+}
+.enc-content .enc-txt {
+	FONT-SIZE: 13px; LINE-HEIGHT: 22px; WORD-WRAP: break-word
+}
+.ctr {
+	WIDTH: 16px; POSITION: absolute; TOP: 0px; HEIGHT: 16px
+}
+.tri {
+	BORDER-RIGHT: transparent 8px dashed; BORDER-TOP: transparent 8px dashed; FONT-SIZE: 0px; OVERFLOW: hidden; BORDER-LEFT: transparent 8px dashed; WIDTH: 0px; BORDER-BOTTOM: #bbe0f3 8px solid; POSITION: absolute; HEIGHT: 0px
+}
+.ctr .out {
+	BORDER-LEFT-COLOR: transparent; BORDER-BOTTOM-COLOR: #bbe0f3; BORDER-TOP-COLOR: transparent; TOP: -16px; BORDER-RIGHT-COLOR: transparent
+}
+.ctr .in {
+	BORDER-LEFT-COLOR: transparent; BORDER-BOTTOM-COLOR: #fff; BORDER-TOP-COLOR: transparent; TOP: -13px; BORDER-RIGHT-COLOR: transparent
+}
+.enc-content .xiaohui {
+	BACKGROUND: url(http://img.baidu.com/img/baike/encourage/encourage.png) no-repeat -18px 0px; FLOAT: right; MARGIN: 0px -26px 0px 0px; WIDTH: 62px; POSITION: relative; HEIGHT: 70px
+}
+.edit-success IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.sprite-bg {
+	BACKGROUND: url(/css/polysemy/sprite-bg.png) repeat-x 0px 0px
+}
+.sprite {
+	BACKGROUND: url(/css/polysemy/sprite.gif) no-repeat 0px 0px
+}
+.inline-block {
+	DISPLAY: inline; VERTICAL-ALIGN: middle; ZOOM: 1
+}
+.b-clearfix:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; LINE-HEIGHT: 0; HEIGHT: 0px; content: " "
+}
+.b-clearfix {
+	ZOOM: 1
+}
+.b-clear {
+	CLEAR: both
+}
+.b-rlt {
+	Z-INDEX: 1; ZOOM: 1; POSITION: relative
+}
+.b-ellipsis {
+	OVERFLOW: hidden; WHITE-SPACE: nowrap; TEXT-OVERFLOW: ellipsis
+}
+.lgt-blue-bdr {
+	BORDER-RIGHT: #7bbbeb 1px solid; BORDER-TOP: #7bbbeb 1px solid; BORDER-LEFT: #7bbbeb 1px solid; BORDER-BOTTOM: #7bbbeb 1px solid
+}
+.slv-bdr {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BORDER-BOTTOM: #ddd 1px solid
+}
+.btn-disabled {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BORDER-BOTTOM: #ddd 1px solid
+}
+.lgt-slv-bdr {
+	BORDER-RIGHT: #eee 1px solid; BORDER-TOP: #eee 1px solid; BORDER-LEFT: #eee 1px solid; BORDER-BOTTOM: #eee 1px solid
+}
+.med-slv-bdr {
+	BORDER-RIGHT: #dbdbdb 1px solid; BORDER-TOP: #dbdbdb 1px solid; BORDER-LEFT: #dbdbdb 1px solid; BORDER-BOTTOM: #dbdbdb 1px solid
+}
+.low-lh {
+	FONT-SIZE: 14px; LINE-HEIGHT: 1.231
+}
+.b-btn-1 {
+	DISPLAY: block; FONT-WEIGHT: normal; FLOAT: left
+}
+.b-btn-1 SPAN {
+	DISPLAY: block; FONT-WEIGHT: normal; FLOAT: left
+}
+.b-btn-1 {
+	BORDER-TOP-WIDTH: 1px; BACKGROUND-POSITION: 0px -47px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; BORDER-RIGHT-WIDTH: 0px; TEXT-DECORATION: none
+}
+.b-btn-1:link {
+	BORDER-TOP-WIDTH: 1px; BACKGROUND-POSITION: 0px -47px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; BORDER-RIGHT-WIDTH: 0px; TEXT-DECORATION: none
+}
+.b-btn-1:visited {
+	BORDER-TOP-WIDTH: 1px; BACKGROUND-POSITION: 0px -47px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; BORDER-RIGHT-WIDTH: 0px; TEXT-DECORATION: none
+}
+.b-btn-1:hover {
+	TEXT-DECORATION: none
+}
+.b-btn-1:active {
+	TEXT-DECORATION: none
+}
+.b-btn-1 SPAN {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BORDER-LEFT-WIDTH: 1px; Z-INDEX: 2; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 2px; MARGIN: 0px -1px; CURSOR: pointer; PADDING-TOP: 2px; POSITION: relative; BORDER-RIGHT-WIDTH: 1px
+}
+.b-btn-1 EM {
+	PADDING-RIGHT: 0px; DISPLAY: inline; PADDING-LEFT: 12px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; ZOOM: 1
+}
+.b-btn-2 {
+	DISPLAY: block; FLOAT: left; BACKGROUND-REPEAT: no-repeat
+}
+.b-btn-2 SPAN {
+	DISPLAY: block; FLOAT: left; BACKGROUND-REPEAT: no-repeat
+}
+.b-btn-2 {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: 0px -158px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+.b-btn-2:link {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: 0px -158px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+.b-btn-2:visited {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: 0px -158px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+.b-btn-2 SPAN {
+	PADDING-RIGHT: 15px; BACKGROUND-POSITION: 100% -158px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.b-ent-toc {
+	MARGIN: 0px 0px 30px
+}
+.expand .b-ent-options {
+	OVERFLOW: hidden; HEIGHT: 72px
+}
+.b-ent-toc-title {
+	BORDER-RIGHT: 0px dashed; PADDING-RIGHT: 0px; BORDER-TOP: 0px dashed; PADDING-LEFT: 0px; FONT-SIZE: 14px; PADDING-BOTTOM: 5px; MARGIN: 5px 10px; BORDER-LEFT: 0px dashed; PADDING-TOP: 0px; BORDER-BOTTOM: 1px dashed
+}
+.b-ent-toc-title DFN {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: -83px -210px; DISPLAY: inline; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; ZOOM: 1
+}
+.thin {
+	FONT-WEIGHT: 400
+}
+.gray {
+	COLOR: gray
+}
+.b-ent-toc-actions {
+	FLOAT: right
+}
+.b-ent-section-action {
+	FLOAT: right
+}
+.b-ent-section H2 {
+	FLOAT: left
+}
+.b-ent-options LI {
+	FLOAT: left
+}
+.b-ent-section .headline-content {
+	FONT-WEIGHT: normal; FONT-SIZE: 19px
+}
+.b-ent-section .headline-index {
+	FONT-WEIGHT: normal; MARGIN-RIGHT: 8px
+}
+.b-ent-options {
+	BACKGROUND: #fff; MARGIN: 0px 10px; OVERFLOW: hidden
+}
+.b-ent-options LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 14px; PADDING-BOTTOM: 4px; OVERFLOW: hidden; WIDTH: 330px; PADDING-TOP: 4px; HEIGHT: 18px
+}
+.b-ent-options A {
+	TEXT-DECORATION: none
+}
+.b-ent-options A:link {
+	TEXT-DECORATION: none
+}
+.b-ent-options A:visited {
+	TEXT-DECORATION: none
+}
+.b-ent-options .expand A {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.b-ent-options .expand A:link {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.b-ent-options .expand A:visited {
+	FONT-WEIGHT: bold; COLOR: #000
+}
+.b-ent-options .expand SPAN {
+	FONT-WEIGHT: bold
+}
+.b-ent-options .expand .sublist-span {
+	DISPLAY: inline
+}
+.b-ent-options .sublist-span {
+	DISPLAY: none
+}
+.b-ent-options .expand A {
+	DISPLAY: none
+}
+.b-ent-options A {
+	DISPLAY: inline
+}
+.b-ent-toc-actions {
+	MARGIN: 3px 0px 0px; ZOOM: 1
+}
+.b-ent-toc-action {
+	FLOAT: left; CURSOR: pointer
+}
+.b-ent-toc-action EM {
+	FLOAT: left; CURSOR: pointer
+}
+.b-ent-toc-action SPAN {
+	FLOAT: left; CURSOR: pointer
+}
+.b-ent-toc-action {
+	FONT-WEIGHT: 400; MARGIN: 0px 5px; TEXT-DECORATION: none
+}
+.b-ent-toc-action EM {
+	WIDTH: 20px; HEIGHT: 16px
+}
+.b-ent-toc-action-add {
+	BACKGROUND-POSITION: -2px -92px
+}
+.b-ent-toc-action-setting {
+	BACKGROUND-POSITION: -23px -92px
+}
+.b-ent-toc-bottom {
+	BORDER-TOP: #fff 10px solid; BACKGROUND: #f9f9f9; CURSOR: pointer; ZOOM: 1; POSITION: relative; HEIGHT: 10px
+}
+.toc-hover {
+	BACKGROUND: #eaeaea
+}
+.b-ent-toc-trigger {
+	FONT-SIZE: 0px; BACKGROUND: url(/css/polysemy/sprite.gif) no-repeat 0px -42px; MARGIN: 0px auto; WIDTH: 16px; CURSOR: pointer; BORDER-TOP-STYLE: none; LINE-HEIGHT: 0; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 10px; BORDER-BOTTOM-STYLE: none
+}
+.expand .b-ent-toc-trigger {
+	BACKGROUND-POSITION: -63px -42px
+}
+.b-ent-section {
+	BORDER-RIGHT: #fff 0px solid; PADDING-RIGHT: 0px; BACKGROUND-POSITION: 0px -107px; BORDER-TOP: #fff 1px solid; PADDING-LEFT: 0px; MARGIN-BOTTOM: 25px; PADDING-BOTTOM: 5px; MARGIN-LEFT: -10px; BORDER-LEFT: #fff 0px solid; WIDTH: 710px; CURSOR: pointer; MARGIN-RIGHT: -20px; PADDING-TOP: 6px; BORDER-BOTTOM: #fff 0px solid; BACKGROUND-COLOR: #f3f3f3
+}
+.sub-anchor {
+	DISPLAY: block; FONT-SIZE: 5px; LINE-HEIGHT: 5px; HEIGHT: 5px; TEXT-DECORATION: none
+}
+.b-h2-3 {
+	FONT-SIZE: 19px; TEXT-INDENT: 10px; FONT-FAMILY: "Î¢ÈíÑÅºÚ","ºÚÌå","Verdana"
+}
+.b-ent-section-action .b-btn-1 {
+	MARGIN: 0px 5px
+}
+.b-ent-section-action .b-ent-section-action-toggle {
+	MARGIN-LEFT: 2px
+}
+.b-ent-section-action-toggle EM {
+	BACKGROUND-POSITION: -63px -40px
+}
+.section-hover EM {
+	BACKGROUND-POSITION: -18px -24px
+}
+.b-ent-section-expand {
+	BORDER-LEFT-COLOR: #ddd; BORDER-BOTTOM-COLOR: #ddd; BORDER-TOP-COLOR: #ddd; BORDER-RIGHT-COLOR: #ddd
+}
+.b-ent-section-expand .b-ent-section-action-toggle EM {
+	BACKGROUND-POSITION: -1px -41px
+}
+.b-ent-section-expand .section-hover EM {
+	BACKGROUND-POSITION: -79px -25px
+}
+.b-ent-section-action-edit EM {
+	BACKGROUND-POSITION: -63px -26px
+}
+.dir-holder {
+	BACKGROUND-POSITION: -38px -28px; DISPLAY: none; FONT-SIZE: 0px; Z-INDEX: 3; LEFT: 30px; WIDTH: 15px; BOTTOM: -8px; LINE-HEIGHT: 8px; POSITION: absolute; HEIGHT: 8px
+}
+.b-ent-section-expand .dir-holder {
+	DISPLAY: block
+}
+.b-h4-3 {
+	FONT-WEIGHT: 700; FONT-SIZE: 14px
+}
+.setting-option {
+	FLOAT: left; WIDTH: 240px
+}
+.b-dialog-content .fldset {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 10px
+}
+.b-h4-3 {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; BORDER-RIGHT-WIDTH: 0px
+}
+.setting-option DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 10px
+}
+.b-heading-list A {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 4px; TEXT-INDENT: 10px; PADDING-TOP: 4px; TEXT-DECORATION: none
+}
+.b-heading-list A:link {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 4px; TEXT-INDENT: 10px; PADDING-TOP: 4px; TEXT-DECORATION: none
+}
+.b-heading-list A:visited {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 4px; TEXT-INDENT: 10px; PADDING-TOP: 4px; TEXT-DECORATION: none
+}
+#actionOptions .b-h4-3 {
+	TEXT-INDENT: 20px
+}
+#actionOptions LI {
+	LEFT: 20px; POSITION: absolute
+}
+.setting-option .step-down {
+	TOP: 40px
+}
+.setting-option .remove-it {
+	BOTTOM: 0px
+}
+.b-heading-list {
+	HEIGHT: 117px
+}
+#actionOptions DD {
+	HEIGHT: 117px
+}
+.b-heading-list LI {
+	DISPLAY: inline
+}
+.b-heading-list .on A {
+	FONT-WEIGHT: 700; BACKGROUND: #fafafa; COLOR: #000
+}
+.fm-ta-1 {
+	WIDTH: 475px; HEIGHT: 54px
+}
+.remark {
+	PADDING-RIGHT: 0px; BACKGROUND-POSITION: -84px -37px; PADDING-LEFT: 18px; PADDING-BOTTOM: 3px; MARGIN: 5px 0px 0px; PADDING-TOP: 3px
+}
+.command A {
+	FLOAT: left; MARGIN: 0px 5px
+}
+.view-setting-dialog .command {
+	PADDING-LEFT: 145px
+}
+.command {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 20px; PADDING-TOP: 20px; TEXT-ALIGN: center
+}
+.command .small {
+	MARGIN-TOP: 10px
+}
+.impt {
+	COLOR: red
+}
+.move-up .b-btn-1 EM {
+	BACKGROUND-POSITION: -14px -117px
+}
+.step-down .b-btn-1 EM {
+	BACKGROUND-POSITION: -27px -117px
+}
+.remove-it .b-btn-1 EM {
+	BACKGROUND-POSITION: -3px -137px
+}
+.small {
+	FONT-SIZE: 12px
+}
+.small:link {
+	FONT-SIZE: 12px
+}
+.small:visited {
+	FONT-SIZE: 12px
+}
+.progress-bar {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/img/baike/usercenter/task/progress-bar.png); OVERFLOW: hidden; LINE-HEIGHT: 13px; HEIGHT: 13px
+}
+.progress-bar .pl {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/img/baike/usercenter/task/progress-bar.png); OVERFLOW: hidden; LINE-HEIGHT: 13px; HEIGHT: 13px
+}
+.progress-bar .pr {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/img/baike/usercenter/task/progress-bar.png); OVERFLOW: hidden; LINE-HEIGHT: 13px; HEIGHT: 13px
+}
+.progress-bar .pb {
+	BACKGROUND-IMAGE: url(http://img.baidu.com/img/baike/usercenter/task/progress-bar.png); OVERFLOW: hidden; LINE-HEIGHT: 13px; HEIGHT: 13px
+}
+.progress-bar .pl {
+	BACKGROUND-POSITION: -126px 0px; WIDTH: 3px
+}
+.progress-bar .pr {
+	BACKGROUND-POSITION: -129px 0px; WIDTH: 3px
+}
+.progress-bar .pb {
+	BACKGROUND-POSITION: 0px -13px; max-width: 120px
+}
+.progress-bar {
+	WIDTH: 126px; POSITION: relative
+}
+.process-inner {
+	LEFT: 0px; POSITION: absolute; TOP: 0px
+}
+.process-inner SPAN {
+	DISPLAY: inline-block
+}
+.process-text {
+	COLOR: #fff; LINE-HEIGHT: 13px; POSITION: relative; TEXT-ALIGN: center
+}
+.message-board-box {
+	RIGHT: 210px; MIN-HEIGHT: 30px; BACKGROUND: red; WIDTH: 150px; POSITION: fixed; TOP: 150px; HEIGHT: 30px
+}
+.btl-indicator {
+	BORDER-RIGHT: #bbe0f3 0px solid; BORDER-TOP: #bbe0f3 2px solid; BORDER-LEFT: #bbe0f3 0px solid; WIDTH: 232px; BORDER-BOTTOM: #bbe0f3 2px solid; POSITION: relative; BACKGROUND-COLOR: white
+}
+#btl-indicator-content {
+	BORDER-RIGHT: #bbe0f3 2px solid; BORDER-TOP: #bbe0f3 0px solid; MARGIN: 0px -1px; OVERFLOW: hidden; BORDER-LEFT: #bbe0f3 2px solid; BORDER-BOTTOM: #bbe0f3 0px solid; ZOOM: 1; POSITION: relative
+}
+#btl-indicator-content UL {
+	PADDING-RIGHT: 16px; PADDING-LEFT: 16px; FONT-SIZE: 12px; PADDING-BOTTOM: 6px; MARGIN: 0px; PADDING-TOP: 10px; FONT-FAMILY: 'ËÎÌå'; LIST-STYLE-TYPE: none
+}
+#btl-indicator-content UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 5px; LINE-HEIGHT: 14px; PADDING-TOP: 0px; POSITION: relative
+}
+#btl-indicator-content UL LI .msg-content {
+	PADDING-LEFT: 7px
+}
+#btl-indicator-content A {
+	COLOR: #1190d1; TEXT-DECORATION: underline
+}
+#btl-indicator-content A:hover {
+	COLOR: #1190d1; TEXT-DECORATION: underline
+}
+.dot {
+	DISPLAY: inline-block; MARGIN: 0px 5px 5px 0px; OVERFLOW: hidden; WIDTH: 3px; POSITION: absolute; TOP: 6px; HEIGHT: 3px; BACKGROUND-COLOR: #bcbcbc
+}
+.red {
+	COLOR: red
+}
+.btl-indicator A.close {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; RIGHT: 5px; OVERFLOW: hidden; WIDTH: 13px; COLOR: #1190d1; FONT-FAMILY: 'ËÎÌå'; POSITION: absolute; TOP: 3px; HEIGHT: 13px; TEXT-DECORATION: none
+}
+.btl-indicator A.close:hover {
+	COLOR: red
+}
+.float-board {
+	RIGHT: 30px; POSITION: absolute; TOP: 30px
+}
+.tip-block {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 0px
+}
+.tip-content {
+	BORDER-RIGHT: #ffd4ad 1px solid; PADDING-RIGHT: 12px; BORDER-TOP: #ffd4ad 1px solid; PADDING-LEFT: 12px; FONT-SIZE: 14px; PADDING-BOTTOM: 9px; BORDER-LEFT: #ffd4ad 1px solid; LINE-HEIGHT: 22px; PADDING-TOP: 9px; BORDER-BOTTOM: #ffd4ad 1px solid; BACKGROUND-COLOR: #fff7f0
+}
+.tip-content-header {
+	DISPLAY: block; MARGIN-BOTTOM: 6px; BORDER-BOTTOM: #9f9f9f 1px dotted; HEIGHT: 25px
+}
+.tip-content-header SPAN {
+	PADDING-LEFT: 5px; FONT-WEIGHT: bold; FLOAT: left
+}
+.tip-content-header A:link {
+	COLOR: #36c
+}
+.tip-content-header A:visited {
+	COLOR: #36c
+}
+.tip-content-header A:hover {
+	COLOR: #36c
+}
+.tip-link-right {
+	DISPLAY: inline; PADDING-LEFT: 17px; BACKGROUND: url(http://img.baidu.com/img/baike/usercenter/bottle/btl-info-icon.png) #fff7f0 no-repeat; FLOAT: right; OVERFLOW: hidden; LINE-HEIGHT: 18px
+}
+.tip-content-msg {
+	DISPLAY: block; WIDTH: auto
+}
+.tip-content-msg .tip-msg-row {
+	MARGIN: 2px 0px; WIDTH: auto; ZOOM: 1
+}
+.tip-content-msg .tip-msg-row:unknown {
+	CLEAR: both; DISPLAY: block; FONT-SIZE: 0px; OVERFLOW: hidden; HEIGHT: 0px; content: 'clear'
+}
+.tip-msg-label {
+	DISPLAY: block; PADDING-LEFT: 20px; FONT-WEIGHT: bold; FLOAT: left; WIDTH: 80px
+}
+.tip-msg {
+	DISPLAY: block; MARGIN-LEFT: 100px; WIDTH: auto; WORD-WRAP: break-word
+}
+.throw-btl-link {
+	PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/img/baike/usercenter/bottle/btl-info-icon.png) no-repeat left -18px; MARGIN-LEFT: 5px
+}
+.throwbtl-link-view {
+	PADDING-LEFT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/baike/usercenter/bottle/btl-info-icon.png) no-repeat left -20px; FLOAT: right; MARGIN-LEFT: 5px; LINE-HEIGHT: 15px
+}
+.lemma-top-link {
+	MARGIN-TOP: 11px; FONT-WEIGHT: normal; FONT-SIZE: 12px; WIDTH: auto; LINE-HEIGHT: 15px; MARGIN-RIGHT: 8px; HEIGHT: 16px; TEXT-DECORATION: underline
+}
+.dividable-lemma {
+	PADDING-LEFT: 17px; BACKGROUND: url(http://img.baidu.com/img/baike/usercenter/bottle/dividable-lemma.png) no-repeat
+}
+.throwbtl-link-head {
+	PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/img/baike/usercenter/bottle/btl-info-icon.png) no-repeat left -20px; MARGIN-RIGHT: 18px
+}
+.lemma-top-link-divider {
+	DISPLAY: none; FLOAT: right; OVERFLOW: hidden; BORDER-LEFT: gray 1px dotted; WIDTH: 0px; HEIGHT: 13px
+}
+.edit-section-throwbtl-link {
+	MARGIN-TOP: 6px; FLOAT: right; MARGIN-RIGHT: 3px
+}

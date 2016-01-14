@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.hover()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#hover1">hover( handlerIn(eventObject), handlerOut(eventObject) ) </a><ul><li>.hover( handlerIn(eventObject), handlerOut(eventObject) )
+              </li></ul>
+</li>
+<li>
+<a href="#hover2">hover( handlerInOut(eventObject) ) </a><ul><li>.hover( handlerInOut(eventObject) )
+              </li></ul>
+</li>
+</ul>
+</fieldset>
+<div id="hover1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.hover( handlerIn(eventObject), handlerOut(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>将二个事件函数绑定到匹配元素上，分别当鼠标指针进入和离开元素时被执行。</p>
+<ul class="signatures"><li class="signature" id="hover-handlerIneventObject-handlerOuteventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.hover( handlerIn(eventObject), handlerOut(eventObject) )</h4>
+<p class="arguement"><strong>handlerIn(eventObject)</strong>当鼠标指针进入元素时触发执行的事件函数</p>
+<p class="arguement"><strong>handlerOut(eventObject)</strong>当鼠标指针离开元素时触发执行的事件函数</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.hover()</code>方法是同时绑定 <code>mouseenter</code>和 <code>.hover()</code>事件。我们可以用它来简单地应用在鼠标在元素上活动行为。</p>
+<p>调用<code>$(selector).hover(handlerIn, handlerOut)</code>是以下写法的简写：</p>
+<pre>$(selector).mouseenter(handlerIn).mouseleave(handlerOut);</pre>
+<p>更多细节参见<code><a href="#p=mouseenter">.mouseenter()</a></code> 和 <code><a href="#p=mouseleave">.mouseleave()</a></code>。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">当鼠标在列表中来回滑动的时候添加特殊的样式， try:</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  ul { margin-left:20px; color:blue; }
+  li { cursor:default; }
+  span { color:red; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;li&gt;Bread&lt;/li&gt;
+    &lt;li class='fade'&gt;Chips&lt;/li&gt;
+
+    &lt;li class='fade'&gt;Socks&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;script&gt;
+$("li").hover(
+  function () {
+    $(this).append($("&lt;span&gt; ***&lt;/span&gt;"));
+  }, 
+  function () {
+    $(this).find("span:last").remove();
+  }
+);
+
+
+
+//li with fade class
+$("li.fade").hover(function(){$(this).fadeOut(100);$(this).fadeIn(500);});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">当鼠标在表格单元格中来回滑动的时候添加特殊的样式， try:</span>
+</h4>
+<pre><code class="example">$("td").hover(
+  function () {
+    $(this).addClass("hover");
+  },
+  function () {
+    $(this).removeClass("hover");
+  }
+);</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">解除绑定上面的例子中使用:</span>
+</h4>
+<pre><code class="example">$("td").unbind('mouseenter mouseleave');</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="hover2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.hover( handlerInOut(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>将一个单独事件函数绑定到匹配元素上，分别当鼠标指针进入和离开元素时被执行。</p>
+<ul class="signatures"><li class="signature" id="hover-handlerInOuteventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.hover( handlerInOut(eventObject) )</h4>
+<p class="arguement"><strong>handlerInOut(eventObject)</strong>当鼠标指针进入或离开元素时触发执行的事件函数</p>
+</li></ul>
+<div class="longdesc">
+<p>当传递个<code>.hover()</code> 方法一个单独的函数的时候，将执行同时绑定 <code>mouseenter</code>和 <code>.hover()</code>事件函数。这允许在处理函数中用户使用jQuery的各种切换方法。</p>
+<p>调用<code>$(selector).hover(handlerInOut)</code>是以下写法的简写：</p>
+<pre>$(selector).bind("mouseenter mouseleave",handlerInOut);</pre>
+<p>更多细节参见<code><a href="#p=mouseenter">.mouseenter()</a></code> 和 <code><a href="#p=mouseleave">.mouseleave()</a></code>。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples-1"><div id="example-1-0">
+<h4><span class="desc">Slide the next sibling LI up or down on hover, and toggle a class.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  ul { margin-left:20px; color:blue; }
+  li { cursor:default; }
+  li.active { background:black;color:white; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Milk&lt;/li&gt;
+    &lt;li&gt;White&lt;/li&gt;
+    &lt;li&gt;Carrots&lt;/li&gt;
+    &lt;li&gt;Orange&lt;/li&gt;
+    &lt;li&gt;Broccoli&lt;/li&gt;
+    &lt;li&gt;Green&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;script&gt;
+$("li")
+.filter(":odd")
+.hide()
+ .end()
+.filter(":even")
+.hover(
+  function () {
+    $(this).toggleClass("active")
+      .next().stop(true, true).slideToggle();
+  }
+);
+
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

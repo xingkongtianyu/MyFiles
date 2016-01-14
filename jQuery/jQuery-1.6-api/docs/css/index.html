@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.css()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#css1">css( propertyName ) </a><ul><li>.css( propertyName )
+	  					</li></ul>
+</li>
+<li>
+<a href="#css2">css( propertyName, value ) </a><ul>
+<li>.css( propertyName, value )
+	  					</li>
+<li>.css( propertyName, function(index, value) )
+	  					</li>
+<li>.css( map )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="css1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.css( propertyName )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素集合中获取第一个元素的样式属性值。</p>
+<ul class="signatures"><li class="signature" id="css-propertyName">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.css( propertyName )</h4>
+<p class="arguement"><strong>propertyName</strong>一个css属性名</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.css()</code>方法是为匹配的元素集合中获取第一个元素的样式属性值简单方法，特别是针对不同的浏览器能访问大多数的性质（在标准浏览器中的<code>getComputedStyle()</code>相当于Internet Explorer中的<code>currentStyle</code> 在 <code>runtimeStyle</code> ）和不同类型的浏览器某几个属性 。举个例子， Internet Explorer的DOM 将<code>float</code> 属性 当作 <code>styleFloat</code>实现，标准浏览器将<code>float</code> 属性 当作<code>cssFloat</code>。 <code>.css()</code> 方法 解决了这些差异，无论我们使用那一项都会返回同样的结果。举个例子了，下文的三行代码中的这个左浮元素将返回<code>left</code> 字符串：</p>
+<ol>
+<li><code>$('div.left').css('float');</code></li>
+					<li><code>$('div.left').css('cssFloat');</code></li>
+					<li><code>$('div.left').css('styleFloat');</code></li>
+				</ol>
+<p>另外,jQuery可以同样解析CSS和用multiple-word（用横杠连接的词，比如：background-color）属性格式化的DOM。举个例子：jquery能解析<code>.css('background-color')</code> 和 <code>.css('backgroundColor')</code>并且返回正确的值。</p>
+<p>简写速写的CSS属性(例如： margin, background, border) 是不支持的，如果你想重新获取已经渲染的margin，可以使用<code>$(elem).css('marginTop')</code> 和 <code>$(elem).css('marginRight')</code>，其他的也是如此。</p>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4>使用点击div的背景颜色</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { width:60px; height:60px; margin:5px; float:left; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;span id="result"&gt;&amp;nbsp;&lt;/span&gt;
+&lt;div style="background-color:blue;"&gt;&lt;/div&gt;
+&lt;div style="background-color:rgb(15,99,30);"&gt;&lt;/div&gt;
+
+&lt;div style="background-color:#123456;"&gt;&lt;/div&gt;
+&lt;div style="background-color:#f11;"&gt;&lt;/div&gt;
+&lt;script&gt;
+$("div").click(function () {
+  var color = $(this).css("background-color");
+  $("#result").html("That div is &lt;span style='color:" +
+                     color + ";'&gt;" + color + "&lt;/span&gt;.");
+});
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div class="entry method" id="css2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.css( propertyName, value )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素设置一个或多个CSS属性。</p>
+<ul class="signatures">
+<li class="signature" id="css-propertyName-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.css( propertyName, value )</h4>
+<p class="arguement"><strong>propertyName</strong>一个CSS属性名</p>
+<p class="arguement"><strong>value</strong>一个CSS属性名的值</p>
+</li>
+<li class="signature" id="css-propertyName-functionindex, value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.css( propertyName, function(index, value) )</h4>
+<p class="arguement"><strong>propertyName</strong>一个CSS属性名</p>
+<p class="arguement"><strong>function(index, value)</strong>一个返回设置值的函数。接收元素的索引位置和元素旧的样式属性值作为参数。</p>
+</li>
+<li class="signature" id="css-map">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.css( map )</h4>
+<p class="arguement"><strong>map</strong>A map of property-value pairs to set.</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>和<code>.attr()</code>方法一样，<code>.css()</code>方法使得设置元素的CSS属性快速而又简单。这个方法可以使用任何一个CSS属性名和用空格隔开的值，或者一个“名/值对”对象(JavaScript 对象符号)作为参数。 </p>
+<p>另外,jQuery可以同样解析CSS和用multiple-word（用横杠连接的词，比如：background-color）属性格式化的DOM。举个例子：jquery能解析<code>.css({'background-color': '#ffe', 'border-left': '5px solid #ccc'})</code> 和 <code>.css({backgroundColor: '#ffe', borderLeft: '5px solid #ccc'})</code>并且返回正确的值（注意这两条语句的单引号和“-”）。值得注意的是用注意用DOM的符号，属性名名两边的引号是可选的，但是如果属性名包含 "-"的话，必须使用引号。</p>
+<p>和<code><a href="#p=attr">.attr()</a></code>一样, <code>.css()</code>允许我们传递一个函数用于传递属性值：</p>
+<pre>$('div.example').css('width', function(index) {
+  return index * 50;
+});</pre>
+<p>这个例子设置匹配元素的宽度递增。</p>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">通过mouseover事件改变一些段落的颜色为红色。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:blue; width:200px; font-size:14px; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+  &lt;p&gt;Just roll the mouse over me.&lt;/p&gt;
+
+  &lt;p&gt;Or me to see a color change.&lt;/p&gt;
+  
+&lt;script&gt;
+  $("p").mouseover(function () {
+    $(this).css("color","red");
+  });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">突出段落中点击文本。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:blue; font-weight:bold; cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;p&gt;
+  Once upon a time there was a man
+  who lived in a pizza parlor. This
+  man just loved pizza and ate it all 
+  the time.  He went on to be the
+  happiest man in the world.  The end.
+&lt;/p&gt;
+&lt;script&gt;
+  var words = $("p:first").text().split(" ");
+  var text = words.join("&lt;/span&gt; &lt;span&gt;");
+  $("p:first").html("&lt;span&gt;" + text + "&lt;/span&gt;");
+  $("span").click(function () {
+    $(this).css("background-color","yellow");
+  });
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>例子： <span class="desc">设置所有段落的文本颜色为红色背景为蓝色：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:green; }
+&lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+  &lt;p&gt;Move the mouse over a paragraph.&lt;/p&gt;
+  &lt;p&gt;Like this one or the one above.&lt;/p&gt;
+
+&lt;script&gt;
+  $("p").hover(function () {
+    $(this).css({'background-color' : 'yellow', 'font-weight' : 'bolder'});
+  }, function () {
+    var cssObj = {
+      'background-color' : '#ddd',
+      'font-weight' : '',
+      'color' : 'rgb(0,40,244)'
+    }
+    $(this).css(cssObj);
+  });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>例子： <span class="desc">当你点击一个div的时候递增他的尺寸</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width: 20px; height: 15px; background-color: #f33; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+  &lt;div&gt;click&lt;/div&gt;
+  &lt;div&gt;click&lt;/div&gt;
+
+&lt;script&gt;
+  $("div").click(function() {
+    $(this).css({
+      width: function(index, value) {
+        return parseFloat(value) * 1.2;
+      }, 
+      height: function(index, value) {
+        return parseFloat(value) * 1.2;
+      }
+
+    });
+  });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

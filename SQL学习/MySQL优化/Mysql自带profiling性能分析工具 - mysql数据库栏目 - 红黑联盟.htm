@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//dtD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/dtD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://www.2cto.com/database/201211/167308.html -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script  charset="utf-8"  async=""  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/cf.js"></script><script  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ex"  async=""></script><script  charset="gbk"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/main.js"  async=""  mod_name="tanxssp-main"></script><script  charset="gbk"  async=""  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/tanxssp.js"></script><script  type="text/javascript"  charset="gbk"  id="tanx-s-mm_36626130_4378362_14630880"  async=""  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ex(1)"></script>
+
+<link  rel="stylesheet"  href="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/article.css"  type="text/css">
+
+<link  href="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/dialog.css"  rel="stylesheet"  type="text/css">
+<title>Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟</title>
+<meta  name="keywords"  content="Mysql,自带,profiling">
+<meta  name="description"  content="Mysql自带profiling性能分析工具1. show variables like &amp;#39;%profiling%&amp;#39;;(查看profiling信息) www.2cto.com 2. set profiling=1;（开启profiling） 3. 执行SQL查询例:select goods_name from...">
+<script  charset="utf-8"  async=""  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/cc.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/jquery.min.js"></script>
+<script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/jquery.sgallery.js"></script>
+<script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/search_common.js"></script>
+<script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/m.js"></script>
+<script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/json.js"></script><link  href="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/logger.js"></script></head><body><div  class=""  style="display: none; position: absolute;"><div  class="aui_outer"><table  class="aui_border"><tbody><tr><td  class="aui_nw"></td><td  class="aui_n"></td><td  class="aui_ne"></td></tr><tr><td  class="aui_w"></td><td  class="aui_c"><div  class="aui_inner"><table  class="aui_dialog"><tbody><tr><td  colspan="2"  class="aui_header"><div  class="aui_titleBar"><div  class="aui_title"  style="cursor: move; display: block;"></div><a  class="aui_close"  href="javascript:/*artDialog*/;"  style="display: block;">×</a></div></td></tr><tr><td  class="aui_icon"  style="display: none;"><div  class="aui_iconBg"  style="background-image: none; background-position: initial initial; background-repeat: initial initial;"></div></td><td  class="aui_main"  style="width: auto; height: auto;"><div  class="aui_content"  style="padding: 20px 25px;"></div></td></tr><tr><td  colspan="2"  class="aui_footer"><div  class="aui_buttons"  style="display: none;"></div></td></tr></tbody></table></div></td><td  class="aui_e"></td></tr><tr><td  class="aui_sw"></td><td  class="aui_s"></td><td  class="aui_se"  style="cursor: se-resize;"></td></tr></tbody></table></div></div><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://www.2cto.com/database/201211/167308.html#"  class="bds_more">更多...</a></li></ul><p><a  href="http://www.2cto.com/database/201211/167308.html#"  class="goWebsite">百度分享</a></p></div></div></div><div  id="BAIDU_DUP_wrapper_745777_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom"></script><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/fixed7o.js"></script>
+<script  language="javascript"  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/dialog.js"></script>
+<script  language="javascript"  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/syntaxhighlighter.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/XRegExp.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shCore.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushBash.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushCpp.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushCSharp.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushCss.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushDelphi.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushDiff.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushGroovy.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushJava.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushJScript.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushPhp.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushPlain.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushPython.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushRuby.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushScala.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushSql.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushVb.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushXml.js"></script><script  type="text/javascript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shBrushPerl.js"></script>
+<link  type="text/css"  rel="stylesheet"  href="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shCore.css">
+<link  type="text/css"  rel="stylesheet"  href="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/shThemeDefault.css">
+<script  type="text/javascript">SyntaxHighlighter.all();</script>
+
+
+
+
+
+<div  class="line_top_box">
+	<dl  class="top_box_left">
+		<dd  class="left_logo"><a  href="http://www.2cto.com/"></a></dd>
+		<dd  class="left_menu_link">
+																<a  class="Channel"  href="http://www.2cto.com/News/">资讯</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/Article/">安全</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://bbs.2cto.com/">论坛</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/Soft/">下载</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://book.2cto.com/">读书</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/kf/">程序开发</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/database/">数据库</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/os/">系统</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/net/">网络</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/ebook/">电子书</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://zz.2cto.com/">站长学院</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/ym/">源码</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/QQ/">QQ</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://space.2cto.com/">专栏</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/px/">考试</a>&nbsp;|&nbsp;
+													<a  class="Channel"  href="http://www.2cto.com/shouce/">手册</a>&nbsp;|&nbsp;
+														</dd>
+	</dl>
+</div>
+<div  class="line_top_lmbox">
+	<dl  class="lmpic"></dl>
+	<dl  class="lmlinkbox"><dd>
+										<a  class="Channel"  href="http://www.2cto.com/database/mssql/">SQL Server</a>|
+							<a  class="Channel"  href="http://www.2cto.com/database/MySQL/">MySQL</a>|
+							<a  class="Channel"  href="http://www.2cto.com/database/Oracle/">Oracle</a>|
+							<a  class="Channel"  href="http://www.2cto.com/database/DB2/">DB2</a>|
+							<a  class="Channel"  href="http://www.2cto.com/database/Sybase/">Sybase</a>|
+							<a  class="Channel"  href="http://www.2cto.com/database/qita/">其他综合</a>|
+								</dd></dl>
+	<dl  class="LoginBox"><dd><script  type="text/javascript">document.write('<iframe src="http://www.2cto.com/index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="150" height="32" frameborder="0" scrolling="no"></iframe>')</script><iframe  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/index(1).htm"  allowtransparency="true"  width="150"  height="32"  frameborder="0"  scrolling="no"></iframe></dd></dl>
+</div>
+<div  class="divline8"></div>
+<div  class="tadv">
+
+<a  target="_blank"  href="http://vip.2cto.com/"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/980-80.gif"  width="980"  height="90"></a>
+
+<script  type="text/javascript">BAIDU_CLB_fillSlot("298612");</script><div  id="BAIDU_DUP_wrapper_298612_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(1)"></script><div  style="padding-top:0px;width:980px;margin:auto;padding-bottom:0px;clear:both;overflow:hidden">
+<a  target="_blank"  href="http://www.baidu.com/cb.php?c=IgF_pyfqrHRLn1TzrfKYTjYk0A7b5HDknW6vPH60uARqnH0dPHb3n0KsULnqnWb3PWDz0ZnquW0LrjfsnjcvrAN9PAR1P0KbIjYkn1bznj61n1RL0ZNzUjdCIZwsrBtEIh-sQWFWIAt8mvqVQLK-pg9dUBq_Ig9Gmy4M0ZFb5HD0mhYqn0KsTWYs0ZNGujYkPHTdPH0L0AqGujYdrH00mv-b5HR3r0KEIv3qPHTs0APzm1Y1nWcvPs"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/xclx.gif"  width="980"  height="60"></a>
+</div> 
+
+<div  style="padding-top:0px;width:980px;margin:auto;padding-bottom:0px;clear:both;overflow:hidden">
+<a  target="_blank"  href="http://www.baidu.com/cb.php?c=IgF_pyfqnHRknWTYnHm0IZ0qnfK9ujYknHc3PWR30Aw-5HDsPHR4rj00TAq15Hc4rjmkn6K15ymsP16Ynj0zPW9-mHw-n1f0uZfqnHn4nW03n1ndPsKdThsqpZwYTjCEQLuGTa3zmLwEQhPEUiq4p0KzujYk0AFV5H00TZcqn0KdpyfqnHRLPHRsPsKEpyfqPHbs0APGujYdrj60ULI85HRLn0KWThnqnWfvP16"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/cjcx.gif"  width="980"  height="60"></a>
+</div>
+
+</div>
+
+
+<div  class="divline8"></div>
+<div  class="it165_box">
+	<div  class="box_left">
+		
+		<dl  class="box_p">
+			<dd  class="pRight"><a  href="http://www.2cto.com/">首页</a><span> &gt; </span><a  href="http://www.2cto.com/database/">数据库</a> &gt; <a  href="http://www.2cto.com/database/MySQL/">MySQL</a> &gt;  正文</dd>
+			<script  type="text/javascript">BAIDU_CLB_fillSlot("703722");</script><div  id="BAIDU_DUP_wrapper_703722_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(2)"></script><form  action="http://so.2cto.com/cse/search"  target="_blank">
+<dd  class="pRSearch">
+<input  name="s"  type="hidden"  value="11831876334997631217">
+<input  type="submit"  value=" "></dd>
+<dd  class="pRKeyWork"><input  id="Keyword"  name="q"  type="text"></dd>
+</form>
+			</dl>
+		<dl  class="box_t"><dd>Mysql自带profiling性能分析工具</dd></dl>
+																										<dl  class="box_INFO">
+			<dd  class="frinfo line_blue">2012-11-10 11:29:35  &nbsp;&nbsp;&nbsp;&nbsp;<a  style="font-weight:bold;padding:5px 0px 5px 20px;background:url(&#39;http://www.2cto.com/statics/images/icon/user_comment.png&#39;) left center no-repeat"  href="http://www.2cto.com/database/201211/167308.html#comment_iframe">我来说两句&nbsp;</a>&nbsp;&nbsp;  &nbsp;&nbsp;  作者：charking</dd>
+			<dd  class="frsize line_blue">
+			<span  id="favorite">
+				<a  href="javascript:;"   class="t6">收藏</a>
+			</span>&nbsp;&nbsp;
+				<a  target="_blank"  href="http://www.2cto.com/index.php?m=member&c=content&a=publish&modid=1&siteid=1"><img  border="0"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/dl.jpg">我要投稿</a>
+			</dd>
+			
+		</dl>
+		<dl  class="box_body"  id="fontzoom"><dd  id="Article">
+		<div><br>
+Mysql自带profiling性能分析工具</div>
+<div>&nbsp;</div>
+<div>1. show variables like '%profiling%';(查看profiling信息) &nbsp;www.2cto.com &nbsp;</div>
+<div><br>
+<img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/20121110113606224.jpg"  style="width: 383px; height: 154px;"><br>
+&nbsp;</div>
+<div>2. set profiling=1;（开启profiling）<span  class="Apple-tab-span"  style="white-space:pre"> </span></div>
+<div><br>
+<img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/20121110113606673.jpg"  style="width: 371px; height: 156px;"><br>
+&nbsp;</div>
+<div>3. 执行SQL查询&nbsp;</div>
+<div>例:select goods_name from ecs_goods where goods_id &lt;5000;</div>
+<div>&nbsp;</div>
+<div>show &nbsp;profiles;<span  class="Apple-tab-span"  style="white-space:pre"> </span></div>
+<div><br>
+<img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/20121110113607190.jpg"  style="width: 630px; height: 157.88508557457212px;"></div>
+<div>&nbsp;</div>
+<div>4. show profile for query 4;</div>
+<div><br>
+<img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/20121110113607499.jpg"  style="width: 365px; height: 442px;"><br>
+&nbsp;</div>
+<div>show profile 的格式如下：</div>
+<div>SHOW PROFILE [type [, type] ... ]</div>
+<div>&nbsp; &nbsp; <span  class="Apple-tab-span"  style="white-space:pre"> </span>[FOR QUERY n]</div>
+<div>&nbsp; &nbsp; <span  class="Apple-tab-span"  style="white-space:pre"> </span>[LIMIT row_count [OFFSET offset]]</div>
+<div>&nbsp;</div>
+<div>type:</div>
+<div>&nbsp; &nbsp; <span  class="Apple-tab-span"  style="white-space:pre"> </span>ALL</div>
+<div>| BLOCK IO</div>
+<div>| CONTEXT SWITCHES</div>
+<div>| CPU</div>
+<div>| IPC</div>
+<div>| MEMORY</div>
+<div>| PAGE FAULTS</div>
+<div>| SOURCE</div>
+<div>| SWAPS<br>
+&nbsp;</div>
+						</dd></dl>
+		<script  type="text/javascript">
+		<!--
+		$(function(){
+		  $('#Article img').LoadImage(true, 630, 560,'http://www.2cto.com/statics/images/s_nopic.gif');    
+		})
+		
+		//-->
+		</script>
+	<div  id="pages"  class="box_body">	</div>
+	<dl  style="width:650px;height:100px;padding-top:10px;float:left;padding-left:10px">
+		<dd><script  type="text/javascript">BAIDU_CLB_fillSlot("771048");</script><div  id="BAIDU_DUP_wrapper_771048_0"><div  style="display:none">-</div><iframe  id="cproIframe1"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uijs(3).htm"  width="640"  height="90"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(3)"></script><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/main7o.js"></script></dd>
+	</dl>
+	<dl  class="box_Nsc">
+		<dd  class="lcopy"><a  class="ckcopy" >点击复制链接 与好友分享!</a><a  class="ckhome"  href="http://www.2cto.com/">回本站首页</a></dd>
+		<script> 
+		function copyToClipBoard(){ 
+		var clipBoardContent=document.title + '\r\n' + document.location; 
+		clipBoardContent+='\r\n'; 
+		window.clipboardData.setData("Text",clipBoardContent); 
+		alert("恭喜您！复制成功"); 
+		} 
+		</script>
+
+		<div  class="Article-Tool">
+                               	  
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"> <span  style="float:left">分享到：</span>
+
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_baidu"  title="分享到百度搜藏"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_kaixin001"  title="分享到开心网"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<a  class="bds_tieba"  title="分享到百度贴吧"  href="http://www.2cto.com/database/201211/167308.html#"></a>
+<span  class="bds_more">更多</span>
+</div>
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=12732"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+var bds_config = {'snsKey':{'tsina':'2386826374','tqq':'5e544a8fdea646c5a5f3967871346eb8'}};
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+                                
+	  </div>
+
+		
+		
+		<dd  class="bbstt">您对本文章有什么意见或着疑问吗？请到<a  href="http://bbs.2cto.com/">论坛讨论</a>您的关注和建议是我们前行的参考和动力&nbsp;&nbsp; </dd>
+	</dl>
+	<dl  class="box_NPre">
+		<dd  class="TLineX"><strong>上一篇：</strong><a  href="http://www.2cto.com/database/201211/167270.html">Mysql存储过程和函数的区别</a></dd>
+		<dd><strong>下一篇：</strong><a  href="http://www.2cto.com/database/201211/167315.html">根据mysql慢日志监控SQL语句执行效率</a></dd>
+	</dl>
+	<dl  class="linetb"></dl>
+	<dl  class="about"><dd>相关文章</dd></dl>
+				<div  class="alistline"><a  href="http://www.2cto.com/database/200410/1079.html"  target="blank">一个Mysql自动备份脚本</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1787.html"  target="blank">MySQL修改密码方法总结</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1788.html"  target="blank">MySQL管理员指南</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1789.html"  target="blank">MySQL(select使用)</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1798.html"  target="blank">Mysql的常用命令</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1799.html"  target="blank">MYSQL完全入门(Windows版)</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1800.html"  target="blank">MySQL数据导入导出方法与工具介绍之三</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1801.html"  target="blank">MySQL数据导入导出方法与工具介绍之二</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1802.html"  target="blank">MySQL数据导入导出方法与工具介绍之一</a></div>
+			<div  class="alistline"><a  href="http://www.2cto.com/database/200411/1803.html"  target="blank">从MySQL得到最大的性能</a></div>
+			<dl  class="linetb"></dl>
+	<dl  style="width:650px;height:70px;padding-top:10px;float:left;padding-left:10px">
+		<dd><script  type="text/javascript">BAIDU_CLB_fillSlot("182716");</script><div  id="BAIDU_DUP_wrapper_182716_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(4)"></script><div  style="display:none">-</div><iframe  id="cproIframe2"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uijs.htm"  width="640"  height="60"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></dd>
+	</dl>
+
+	<dl  style="width:650px;float:left;padding-left:10px">
+		<dd><script  type="text/javascript">BAIDU_CLB_fillSlot("517916");</script><div  id="BAIDU_DUP_wrapper_517916_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(5)"></script><script  type="text/javascript">
+     document.write('<a style="display:none!important" id="tanx-a-mm_36626130_4378362_14630880"></a>');
+     tanx_s = document.createElement("script");
+     tanx_s.type = "text/javascript";
+     tanx_s.charset = "gbk";
+     tanx_s.id = "tanx-s-mm_36626130_4378362_14630880";
+     tanx_s.async = true;
+     tanx_s.src = "http://p.tanx.com/ex?i=mm_36626130_4378362_14630880";
+     tanx_h = document.getElementsByTagName("head")[0];
+     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+</script><ins  style="display:inline-block;padding:0;margin:0;width:640px;height:90px;*zoom:1;*display:inline"  id="tanxssp-outer-conmm_36626130_4378362_14630880"><div  id="tanxssp_con_mm_36626130_4378362_14630880"  style="display:inline-block;position:relative;width:640px;height:90px;*display:inline;*zoom:1"><iframe  id="tanxssp-outer-iframemm_36626130_4378362_14630880"  width="640"  height="90"  style=""  border="0"  frameborder="0"  scrolling="no"  marginwidth="0"  allowtransparency="true"  marginheight="0"></iframe><a  style="display:none !important;"  id="tanx_frameanchor_mm_36626130_4378362_14630880"></a><a  id="iconmm_36626130_4378362_14630880"  title="我也要申请橱窗推广"  target="_blank"  href="http://c.alimama.com/"  style="width:26px;height:17px;right:0px;bottom:0px;display:block;position:absolute;cursor:pointer;z-index:250;">   <span  id="icon_smallmm_36626130_4378362_14630880"  style="float:none;width:26px;display:block;height:17px;background-repeat:no-repeat;background-image: url(&#39;http://gtms02.alicdn.com/tps/i2/T1xfOxFnVfXXaAQWDc-26-17.png&#39;);*background-image:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://img02.taobaocdn.com/tps/i2/T1oY3VXmNbXXXb8qDc-26-18.png&#39;);"></span>   <span  id="icon_bigmm_36626130_4378362_14630880"  style="float:none;width:110px;height:17px;display: none;background-repeat:no-repeat;background-image: url(&#39;http://img03.taobaocdn.com/tps/i3/T1dt7VXiRaXXbd25o5-110-18.png&#39;);*background-image:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://img03.taobaocdn.com/tps/i3/T1dt7VXiRaXXbd25o5-110-18.png&#39;);"></span></a></div></ins><a  style="display:none!important"  id="tanx-a-mm_36626130_4378362_14630880"></a></dd>
+	</dl>
+	<dl  class="linetb"></dl>
+	<dl  class="about"><dd>图文推荐</dd></dl>
+	<div  class="picbox">
+						<dl  class="wbox">
+			<dd  class="npicbox"><a  target="_blank"  href="http://www.2cto.com/database/201311/256429.html"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/thumb_126_90_20131109032409448.jpg"  width="126"  height="90"  border="0"></a></dd>
+			<dd  class="npictext"><a  href="http://www.2cto.com/database/201311/256429.html">MySQL的101个调节和优</a></dd>
+		</dl>
+				<dl  class="wbox">
+			<dd  class="npicbox"><a  target="_blank"  href="http://www.2cto.com/database/201311/255694.html"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/thumb_126_90_20131106013432220.jpeg"  width="126"  height="90"  border="0"></a></dd>
+			<dd  class="npictext"><a  href="http://www.2cto.com/database/201311/255694.html">[MySQL 错误]ERROR </a></dd>
+		</dl>
+				<dl  class="wbox">
+			<dd  class="npicbox"><a  target="_blank"  href="http://www.2cto.com/database/201311/255674.html"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/thumb_126_90_20131106115144763.jpeg"  width="126"  height="90"  border="0"></a></dd>
+			<dd  class="npictext"><a  href="http://www.2cto.com/database/201311/255674.html">MySQL批量SQL插入性能</a></dd>
+		</dl>
+				<dl  class="wbox">
+			<dd  class="npicbox"><a  target="_blank"  href="http://www.2cto.com/database/201311/255347.html"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/thumb_126_90_20131105014504280.png"  width="126"  height="90"  border="0"></a></dd>
+			<dd  class="npictext"><a  href="http://www.2cto.com/database/201311/255347.html">MSSQL中视图的架构绑</a></dd>
+		</dl>
+					</div>
+		<dl  class="linetb"></dl>
+		<div  id="pl"  style="float:left;width:650px;padding:10px 10px 0px 10px;overflow:hidden;background-color:white">
+		<iframe  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uapi.htm"  width="100%"  height="309"  id="comment_iframe"  name="comment_iframe"  frameborder="0"  scrolling="no"></iframe>
+	</div>
+			<dl  style="width:650px;float:left;padding-left:10px">
+		<dd><script  type="text/javascript">BAIDU_CLB_fillSlot("771057");</script><div  id="BAIDU_DUP_wrapper_771057_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(6)"></script><div  style="display:none">-</div><iframe  id="cproIframe3"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uijs(4).htm"  width="640"  height="60"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></dd>
+	</dl>
+	</div>
+	<div  class="box_right">
+		<div  style="float:left;width:300px;background:white;padding-left:10px;height:250px">
+			<a  target="_blank"  href="http://vip.2cto.com/"><img  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/300-250.gif"  width="300"  height="250"></a></div>
+		<div  class="box_right_line"><div  class="xline"></div></div>
+		<div  class="box_right_box">
+			<dl  class="bTitle"><dd   id="indexW"  class="tablinkschecked">排行</dd><dd   id="hotW"  class="tablinkscheck">热门</dd></dl>
+		</div>
+		<div  class="box_right_box">
+			<div  class="paddingbox">
+				<dl  class="index"  id="index">
+					<dd  class="picline"></dd>
+															<dd  class="list">1,554 | <a  target="_blank"  title="Mysql中文乱码问题完美解决方案"  href="http://www.2cto.com/database/201108/101151.html">Mysql中文乱码问题完美解决方案</a></dd>
+										<dd  class="list">652 | <a  target="_blank"  title="mysql TIMESTAMP（时间戳）详解"  href="http://www.2cto.com/database/201205/131759.html">mysql TIMESTAMP（时间戳）详解</a></dd>
+										<dd  class="list">616 | <a  target="_blank"  title="mysql字符串连接函数"  href="http://www.2cto.com/database/201109/103837.html">mysql字符串连接函数</a></dd>
+										<dd  class="list">512 | <a  target="_blank"  title="mysql load data infile的使用"  href="http://www.2cto.com/database/201108/99655.html">mysql load data infile的使用</a></dd>
+										<dd  class="list">500 | <a  target="_blank"  title="mysql 分页查询语句数据库查询"  href="http://www.2cto.com/database/201109/106128.html">mysql 分页查询语句数据库查询</a></dd>
+										<dd  class="list">492 | <a  target="_blank"  title="linux下使用yum安装mysql"  href="http://www.2cto.com/database/201207/141878.html">linux下使用yum安装mysql</a></dd>
+										<dd  class="list">437 | <a  target="_blank"  title="MySql中时间比较的实现"  href="http://www.2cto.com/database/201204/125896.html">MySql中时间比较的实现</a></dd>
+										<dd  class="list">351 | <a  target="_blank"  title="MySQL远程访问权限，允许远程连接的开启"  href="http://www.2cto.com/database/201205/130093.html">MySQL远程访问权限，允许远程连接的开</a></dd>
+														</dl>
+				<dl  class="index"  id="hot"  style="display:none">
+					<dd  class="picline"></dd>
+															<dd  class="list"><a  target="_blank"  title="Mysql中文乱码问题完美解决方案"  href="http://www.2cto.com/database/201108/101151.html">Mysql中文乱码问题完美解决方案</a></dd>
+										<dd  class="list"><a  target="_blank"  title="mysql load data infile的使用"  href="http://www.2cto.com/database/201108/99655.html">mysql load data infile的使用</a></dd>
+										<dd  class="list"><a  target="_blank"  title="mysql TIMESTAMP（时间戳）详解"  href="http://www.2cto.com/database/201205/131759.html">mysql TIMESTAMP（时间戳）详解</a></dd>
+										<dd  class="list"><a  target="_blank"  title="MySql中时间比较的实现"  href="http://www.2cto.com/database/201204/125896.html">MySql中时间比较的实现</a></dd>
+										<dd  class="list"><a  target="_blank"  title="mysql 分页查询语句数据库查询"  href="http://www.2cto.com/database/201109/106128.html">mysql 分页查询语句数据库查询</a></dd>
+										<dd  class="list"><a  target="_blank"  title="linux下使用yum安装mysql"  href="http://www.2cto.com/database/201207/141878.html">linux下使用yum安装mysql</a></dd>
+										<dd  class="list"><a  target="_blank"  title="mysql主从同步部署"  href="http://www.2cto.com/database/201107/98244.html">mysql主从同步部署</a></dd>
+										<dd  class="list"><a  target="_blank"  title="MySQL命令行--导入导出数据库"  href="http://www.2cto.com/database/201204/127742.html">MySQL命令行--导入导出数据库</a></dd>
+														</dl>
+			</div>
+			<script  type="text/javascript">
+			<!--
+				function m_tab(index)
+				{
+					if (index == 1){
+						document.getElementById("indexW").className = "tablinkschecked";
+						document.getElementById("hotW").className = "tablinkscheck";
+						document.getElementById("index").style.display = "block";
+						document.getElementById("hot").style.display = "none";
+					}
+					else{
+						document.getElementById("hotW").className = "tablinkschecked";
+						document.getElementById("indexW").className = "tablinkscheck";
+						document.getElementById("index").style.display = "none";
+						document.getElementById("hot").style.display = "block";
+					}
+				}
+			//-->
+			</script>
+		</div>
+		<div  class="rightlineT"><div  class="rxline"></div></div>
+		<div  style="float:left;width:300px;background:white;padding-left:10px;height:60px">
+				
+			<script  type="text/javascript">BAIDU_CLB_fillSlot("406189");</script><div  id="BAIDU_DUP_wrapper_406189_0"><iframe  id="baidu_clb_slot_iframe_406189_0"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟.htm"   width="300"  height="60"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(7)"></script>
+		</div>
+<div  class="rightlineT"><div  class="rxline"></div></div>
+		<div  style="float:left;width:300px;background:white;padding-left:10px;height:80px">
+				
+			<script  type="text/javascript">BAIDU_CLB_fillSlot("703749");</script><div  id="BAIDU_DUP_wrapper_703749_0"><iframe  id="baidu_clb_slot_iframe_703749_0"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟.htm"   width="300"  height="80"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(8)"></script>
+		</div>
+		<div  class="rightlineNo"></div>
+		<div  class="box_right_box">
+			<dl  class="bTitle borT"><dd  class="newarc"></dd></dl>
+		</div>
+		<div  class="box_right_box">
+			<div  class="paddingbox">
+				<dl  class="index">
+					<iframe  frameborder="0"  name="Iframe1"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/index.htm"  width="100%"  height="200">
+				您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。
+			</iframe>
+				</dl>
+			</div>
+		</div>
+                                <div  class="rightlineT"><div  class="rxline"></div></div>
+
+		<div  style="float:left;width:300px;background:white;padding-left:10px;height:250px"><script  type="text/javascript">BAIDU_CLB_fillSlot("182692");</script><div  id="BAIDU_DUP_wrapper_182692_0"><div  style="display:none">-</div> <iframe  id="cproIframe4"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/snippetcacher.htm"  width="300"  height="250"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(9)"></script> </div>
+		<div  class="box_right_line"><div  class="xline"></div></div>
+		<div  class="box_right_box">
+			<dl  class="bTitle">
+				<dd   id="ArticlesW"  class="tablinkschecked">文章</dd>
+				<dd   id="DownW"  class="tablinkscheck">下载</dd>
+				<dd   id="BookW"  class="tablinkscheck">读书</dd>
+			</dl>
+		</div>
+		<div  class="box_right_box">
+			<div  class="paddingbox">
+				<dl  class="index"  id="Articles">
+					<dd  class="picline"></dd>
+															<dd  class="list">·&nbsp;<a  target="_blank"  title="Win2000下关闭无用端口"  href="http://www.2cto.com/Article/200410/1.html">Win2000下关闭无用端口</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="禁止非法用户登录综合设置 [win9x篇]"  href="http://www.2cto.com/Article/200410/2.html">禁止非法用户登录综合设置 [win9x篇]</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="关上可恶的后门——消除NetBIOS隐患"  href="http://www.2cto.com/Article/200410/3.html">关上可恶的后门——消除NetBIOS隐患</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="网络入侵检测系统"  href="http://www.2cto.com/Article/200410/4.html">网络入侵检测系统</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="潜伏在Windows默认设置中的陷井"  href="http://www.2cto.com/Article/200410/5.html">潜伏在Windows默认设置中的陷井</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="调制解调器的不安全"  href="http://www.2cto.com/Article/200410/6.html">调制解调器的不安全</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="构建Windows 2000服务器的安全防护林"  href="http://www.2cto.com/Article/200410/7.html">构建Windows 2000服务器的安全防护林</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="SQL Server 2000的安全配置"  href="http://www.2cto.com/Article/200410/8.html">SQL Server 2000的安全配置</a></dd>
+														</dl>
+				<dl  class="index"  id="Down"  style="display:none">
+					<dd  class="picline"></dd>
+															<dd  class="list">·&nbsp;<a  target="_blank"  title="Windows优化大师注册机源码"  href="http://www.2cto.com/soft/200409/53.html">Windows优化大师注册机源码</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="Process Viewer 汉化版"  href="http://www.2cto.com/soft/200409/62.html">Process Viewer 汉化版</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="Aspcode动画教程"  href="http://www.2cto.com/soft/200409/79.html">Aspcode动画教程</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="WIN 2000服务器防止ICMP数据包攻击教程"  href="http://www.2cto.com/soft/200409/128.html">WIN 2000服务器防止ICMP数据包攻击教程</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="实现网络隐身的简单方法"  href="http://www.2cto.com/soft/200409/129.html">实现网络隐身的简单方法</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="手工进行克隆帐号"  href="http://www.2cto.com/soft/200409/130.html">手工进行克隆帐号</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="用W32DASM破解网页合并器的密码"  href="http://www.2cto.com/soft/200409/134.html">用W32DASM破解网页合并器的密码</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="注册表操作动画教程"  href="http://www.2cto.com/soft/200409/138.html">注册表操作动画教程</a></dd>
+														</dl>
+				<dl  class="index"  id="Book"  style="display:none">
+					<dd  class="picline"></dd>
+															<dd  class="list">·&nbsp;<a  target="_blank"  title="黑客攻防技术宝典：Web实战篇（第2版）"  href="http://book.2cto.com/201206/20.html">黑客攻防技术宝典：Web实战篇（第2版）</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="超级网管员——网络安全"  href="http://book.2cto.com/201207/43.html">超级网管员——网络安全</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="代码大全（第二版）"  href="http://book.2cto.com/201207/64.html">代码大全（第二版）</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="软件之道:软件开发争议问题剖析"  href="http://book.2cto.com/201207/68.html">软件之道:软件开发争议问题剖析</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="CSS插件工具箱"  href="http://book.2cto.com/201207/78.html">CSS插件工具箱</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="CSS入门经典(第3版)"  href="http://book.2cto.com/201207/139.html">CSS入门经典(第3版)</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="C#并行编程高级教程：精通.NET 4 Parallel Extension"  href="http://book.2cto.com/201207/169.html">C#并行编程高级教程：精通.NET 4 Pa</a></dd>
+										<dd  class="list">·&nbsp;<a  target="_blank"  title="CMMI+敏捷整合开发"  href="http://book.2cto.com/201207/190.html">CMMI+敏捷整合开发</a></dd>
+														</dl>
+			</div>
+			<script  type="text/javascript">
+			<!--
+				function m_tabs(index)
+				{
+					if (index == 1){
+						document.getElementById("ArticlesW").className = "tablinkschecked";
+						document.getElementById("DownW").className = "tablinkscheck";
+						document.getElementById("BookW").className = "tablinkscheck";
+						document.getElementById("Articles").style.display = "block";
+						document.getElementById("Down").style.display = "none";
+						document.getElementById("Book").style.display = "none";
+					}
+					else if (index == 2){
+						document.getElementById("ArticlesW").className = "tablinkscheck";
+						document.getElementById("DownW").className = "tablinkschecked";
+						document.getElementById("BookW").className = "tablinkscheck";
+						document.getElementById("Articles").style.display = "none";
+						document.getElementById("Down").style.display = "block";
+						document.getElementById("Book").style.display = "none";
+					}
+					else{
+						document.getElementById("ArticlesW").className = "tablinkscheck";
+						document.getElementById("DownW").className = "tablinkscheck";
+						document.getElementById("BookW").className = "tablinkschecked";
+						document.getElementById("Articles").style.display = "none";
+						document.getElementById("Down").style.display = "none";
+						document.getElementById("Book").style.display = "block";
+					}
+				}
+			//-->
+			</script>
+		</div>
+		<div  class="rightlineNo"></div>
+		<div  class="box_right_box">
+			<dl  class="bTitle borT"><dd  class="newdown"></dd></dl>
+		</div>
+		<div  class="box_right_box">
+			<div  class="paddingbox">
+				<dl  class="index">
+																				<dd  class="picline"></dd>
+															<dd  class="list">&#9642;&nbsp;<a  target="_blank"  href="http://www.2cto.com/database/201207/141380.html">mysql数据库(基础)笔记</a></dd>
+					</dl>
+			</div>
+			<div  class="xline"></div>
+		</div>
+		<div  class="box_right_line"><div  class="xline"></div></div>
+		<div  style="float:left;width:300px;background:white;padding-left:10px;height:250px">
+			<script  type="text/javascript">BAIDU_CLB_fillSlot("771043");</script><div  id="BAIDU_DUP_wrapper_771043_0"><div  style="display:none">-</div> <iframe  id="cproIframe5"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/snippetcacher(1).htm"  width="300"  height="250"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(10)"></script></div>
+		<div  class="box_right_line"><div  class="xline"></div></div>
+	</div>
+</div>
+
+
+<script  type="text/javascript">
+<!--
+function showLogin(){
+	window.art.dialog({id:'Login',iframe:'http://www.2cto.com/index.php?m=member&c=index&a=login&tupe=mini', title:'快捷登陆', width:'450', height:'310', lock:true}, function(){var d = window.art.dialog({id:'Login'}).data.iframe;var form = d.document.getElementById('dosubmit');form.click();return false;}, function(){window.art.dialog({id:'Login'}).close()});void(0);
+}
+function add_favorite(title) {
+		$.getJSON('http://www.2cto.com/api.php?op=add_favorite&title='+encodeURIComponent(title)+'&url='+encodeURIComponent(location.href)+'&'+Math.random()+'&callback=?', function(data){
+			if(data.status==1)	{
+				$("#favorite").html('收藏成功');
+			} else {
+				alert('请登陆');
+				window.location.href='http://home.2cto.com/?forward='+encodeURIComponent(location.href);
+			}
+		});
+	}
+//-->
+</script>
+<script  language="JavaScript"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/api.php"></script>
+
+<script  type="text/javascript">BAIDU_CLB_fillSlot("137946");</script><div  id="BAIDU_DUP_wrapper_137946_0"></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(11)"></script>
+
+<div  style="width:980px;padding:8px 0px 8px 0px;margin:auto"><script  type="text/javascript">BAIDU_CLB_fillSlot("333829");</script><div  id="BAIDU_DUP_wrapper_333829_0"><iframe  id="baidu_clb_slot_iframe_333829_0"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟.htm"   width="980"  height="60"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  style="border:0; vertical-align:bottom; margin:0; display:block;"></iframe></div><script  charset="utf-8"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/ecom(12)"></script></div>
+
+
+<div  class="foot">
+<p>
+<a  target="_blank"  href="http://www.2cto.com/about">关于我们</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/contact.html">联系我们</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/ads.html">广告服务</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/touzi.html">投资合作</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/Copyright.html">版权申明</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/faq.html">在线帮助</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/map.html">网站地图</a> |
+<a  target="_blank"  href="http://www.2cto.com/about/tg.html">作品发布</a> |
+<a  target="_blank"  href="http://vip.2cto.com/"><span  style="COLOR: red">Vip技术培训</span></a>
+<br>
+<span  class="style4">版权所有: <a  href="http://www.2cto.com/"  target="_blank">红黑联盟</a>--致力于做最好的IT技术学习网站<script  type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1898984a3d796e86ad73ad1f4bc9f240' type='text/javascript'%3E%3C/script%3E"));
+</script><script  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/h.js"  type="text/javascript"></script>    
+</span>
+</p></div><div  id="cproIframe6holder"  style="padding: 0px; display: block; visibility: visible; border: none; background-image: none; float: none; overflow: hidden; position: fixed; z-index: 2147483646; width: 126px; height: 360px; line-height: 360px; right: 10px; top: 150px; background-position: initial initial; background-repeat: initial initial;"><div  style="padding: 0px; display: block; visibility: visible; border: none; background-image: none; float: none; overflow: hidden; width: 100%; height: 100%; background-position: initial initial; background-repeat: initial initial;"><div  style="display:none">-</div> <iframe  id="cproIframe6"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uijs(1).htm"  width="126"  height="360"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><div  style="padding: 0px; display: block; visibility: visible; border: none; background-color: rgb(255, 255, 255); float: none; overflow: hidden; height: 20px; line-height: 20px; position: absolute; text-decoration: none; color: rgb(51, 51, 51); text-align: left; font-size: 14px; font-family: simsun, arial; cursor: pointer; opacity: 0; width: 53px; right: 0px; bottom: 0px; margin-bottom: 61px; margin-right: 5px; background-position: initial initial; background-repeat: initial initial;">&nbsp;</div></div><div  id="cproIframe7holder"  style="padding: 0px; display: block; visibility: visible; border: none; background-image: none; float: none; overflow: hidden; position: fixed; z-index: 2147483646; width: 126px; height: 360px; line-height: 360px; left: 10px; top: 150px; background-position: initial initial; background-repeat: initial initial;"><div  style="padding: 0px; display: block; visibility: visible; border: none; background-image: none; float: none; overflow: hidden; width: 100%; height: 100%; background-position: initial initial; background-repeat: initial initial;"><div  style="display:none">-</div> <iframe  id="cproIframe7"  src="./Mysql自带profiling性能分析工具 - mysql数据库栏目 - 红黑联盟_files/uijs(2).htm"  width="126"  height="360"  align="center,center"  marginwidth="0"  marginheight="0"  scrolling="no"  frameborder="0"  allowtransparency="true"></iframe></div><div  style="padding: 0px; display: block; visibility: visible; border: none; background-color: rgb(255, 255, 255); float: none; overflow: hidden; height: 20px; line-height: 20px; position: absolute; text-decoration: none; color: rgb(51, 51, 51); text-align: left; font-size: 14px; font-family: simsun, arial; cursor: pointer; opacity: 0; width: 53px; right: 0px; bottom: 0px; margin-bottom: 61px; margin-right: 5px; background-position: initial initial; background-repeat: initial initial;">&nbsp;</div></div>
+
+
+</body></html>

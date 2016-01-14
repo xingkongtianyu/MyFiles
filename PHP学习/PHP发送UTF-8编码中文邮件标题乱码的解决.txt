@@ -1,0 +1,19 @@
+PHP发送UTF-8编码中文邮件标题乱码的解决
+　　当我们使用下面的PHP语句发送中文电子邮件的时候，会发现邮件的标题是乱码，而邮件正文却是正确的，如何才能使得邮件标题不是乱码呢？
+
+　　$subject = stripslashes($the_post['Title']);
+　　$headers　= "MIME-Version: 1.0\r\n";
+　　$headers .= "Content-type: text/plain; charset=utf-8\r\n";
+　　$headers .= "Content-Transfer-Encoding: 8bit\r\n";
+　　$message = stripslashes(strip_tags($the_post['Content']));
+　　mail($to, $subject, $message, $headers);
+
+　　先用函数base64_encode() — 使用 MIME base64 对数据进行编码
+　　标题字符串前加编码类型例如： =?UTF-8?B?
+　　标题字符串后加：?=
+
+　　例如：
+
+　　$subject = "=?UTF-8?B?".base64_encode($subject)."?=";
+
+　　将上面一句添加到代码之中，这样，发送的中文邮件标题就不是乱码了。

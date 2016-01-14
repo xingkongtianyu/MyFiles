@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.html()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-insertion/" title="View all posts in DOM Insertion">DOM Insertion</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#html1">html() </a><ul><li>.html()
+	  					</li></ul>
+</li>
+<li>
+<a href="#html2">html( htmlString ) </a><ul>
+<li>.html( htmlString )
+	  					</li>
+<li>.html( function(index, html) )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="html1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.html()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>从匹配的第一个元素中获取HTML内容。</p>
+<ul class="signatures"><li class="signature" id="html"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.html()</h4></li></ul>
+<div class="longdesc">
+<p>这个方法对 XML 文档无效。</p>
+<p>在一个 HTML 文档中, 我们可以使用 <code>.html()</code> 方法来获取任意一个元素的内容。 如果选择器匹配多于一个的元素，那么只有第一个匹配元素的 HTML 内容会被获取。 考虑下面的代码：</p>
+<pre>$('div.demo-container').html();</pre>
+<p>下文的获取的<code>&lt;div&gt;</code>的内容， 必定是在文档中的第一个<code>class="demo-container"</code>的div中获取的：</p>
+<pre>&lt;div class="demo-container"&gt;
+  &lt;div class="demo-box"&gt;Demonstration Box&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>结果如下:</p>
+<pre>&lt;div class="demo-box"&gt;Demonstration Box&lt;/div&gt;</pre>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">点击段落将HTML转化为文本</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { margin:8px; font-size:20px; color:blue; 
+      cursor:pointer; }
+  b { text-decoration:underline; }
+  button { cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;
+
+    &lt;b&gt;Click&lt;/b&gt; to change the &lt;span id="tag"&gt;html&lt;/span&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+
+    to a &lt;span id="text"&gt;text&lt;/span&gt; node.
+  &lt;/p&gt;
+  &lt;p&gt;
+    This &lt;button name="nada"&gt;button&lt;/button&gt; does nothing.
+  &lt;/p&gt;
+&lt;script&gt;
+    $("p").click(function () {
+      var htmlStr = $(this).html();
+      $(this).text(htmlStr);
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div class="entry method" id="html2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.html( htmlString )</span> <span class="returns">返回 <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>设置每一个匹配元素的html内容。</p>
+<ul class="signatures">
+<li class="signature" id="html-htmlString">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.html( htmlString )</h4>
+<p class="arguement"><strong>htmlString</strong>用来设置每个匹配元素的一个HTML 字符串。</p>
+</li>
+<li class="signature" id="html-functionindex, html">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.html( function(index, html) )</h4>
+<p class="arguement"><strong>function(index, html)</strong>用来返回设置HTML内容的一个函数。接收元素的索引位置和元素旧的HTML作为参数。。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p> 这个 <code>.html()</code> 方法对 XML 文档无效. </p>
+<p>我们可以使用 <code>.html()</code> 来设置元素的内容，在这些元素的任何内容完全被新的内容取代。考虑以下的HTML：</p>
+<pre>&lt;div class="demo-container"&gt;
+  &lt;div class="demo-box"&gt;Demonstration Box&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>我们可以像这样设置 <code>&lt;div class="demo-container"&gt;</code>的HTML内容：</p>
+<pre>$('div.demo-container')
+  .html('&lt;p&gt;All new content. &lt;em&gt;You bet!&lt;/em&gt;&lt;/p&gt;');</pre>
+<p>这行代码将替换 <code>&lt;div class="demo-container"&gt;</code>里的所有内容</p>
+<pre>&lt;div class="demo-container"&gt;
+  &lt;p&gt;All new content. &lt;em&gt;You bet!&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
+<p>在 jQuery 1.4中, <code>.html()</code> 方法允许我们通过函数来传递HTML内容。</p>
+<pre>$('div.demo-container').html(function() {
+  var emph = '&lt;em&gt;' + $('p').length + ' paragraphs!&lt;/em&gt;';
+  return '&lt;p&gt;All new content for ' + emph + '&lt;/p&gt;';
+});</pre>
+<p>给定一个拥有6个段落的HTML文档，在这个例子中将设置 <code>&lt;p&gt;All new content for &lt;em&gt;6 paragraphs!&lt;/em&gt;&lt;/p&gt;</code>为<code>&lt;div class="demo-container"&gt;</code>的新HTML内容：</p>
+</div>
+<h3>举例</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">为每个div设置一些内容。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  .red { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;span&gt;Hello&lt;/span&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;$("div").html("&lt;span class='red'&gt;Hello &lt;b&gt;Again&lt;/b&gt;&lt;/span&gt;");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">添加了一些html到每个div，然后立刻做进一步的操作来插入的HTML。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; font-size:18px; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+
+    $("div").html("&lt;b&gt;Wow!&lt;/b&gt; Such excitement...");
+    $("div b").append(document.createTextNode("!!!"))
+              .css("color", "red");
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,55 @@
+
+PHP设计模式原型设计模式
+2010年10月8日  2,041 次浏览 陈华 抢沙发
+
+<?php
+/*
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式工厂模式的使用方法
+ * PHP工厂模式不难理解，顾名思义，就是一个加工厂，然后工厂是制造产品的，只要制造产品
+ * 就必须有几个要素：“方法”，“模型”，“工厂车间”。
+ */
+
+/*示例 原型设计模式 原型设计模式也是工厂模式的一种,依赖与clone关键字复制已存在的具体产品。
+ * */
+
+class pepole{}
+class zhansan extends pepole{}
+class lisi extends pepole{}
+
+class book {}
+class php_book extends book{}
+class asp_book extends book{}
+
+class cd{}
+class sing extends cd{}
+class mtv extends cd{}
+
+class make_class {
+ private $pepole;
+ private $book;
+ private $cd;
+ 
+ function __construct(pepole $pepole,book $book,cd $cd){
+  $this->pepole=$pepole;
+  $this->book=$book;
+  $this->cd=$cd;
+ }
+ 
+ function get_pepole (){
+  return clone $this->pepole;
+ }
+ 
+ function get_book() {
+  return clone $this->book;
+ }
+ 
+ function get_cd(){
+  return clone $this->cd;
+ }
+}
+
+$get_class=new make_class(new zhansan(),new php_book(),new mtv());
+print_r($get_class->get_pepole());
+print_r($get_class->get_book());
+print_r($get_class->get_cd());
+?> 

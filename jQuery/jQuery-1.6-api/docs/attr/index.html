@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.attr()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/general-attributes/" title="View all posts in General Attributes">General Attributes</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#attr1">attr( attributeName ) </a><ul><li>.attr( attributeName )
+	  					</li></ul>
+</li>
+<li>
+<a href="#attr2">attr( attributeName, value ) </a><ul>
+<li>.attr( attributeName, value )
+	  					</li>
+<li>.attr( map )
+	  					</li>
+<li>.attr( attributeName, function(index, attr) )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="attr1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.attr( attributeName )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>取得第一个匹配元素的属性值。</p>
+<ul class="signatures"><li class="signature" id="attr-attributeName">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.attr( attributeName )</h4>
+<p class="arguement"><strong>attributeName</strong>要获取的值的属性名.</p>
+</li></ul>
+<div class="longdesc">
+<p>值得注意的是这个<code>.attr()</code>方法只获取<em>第一个</em>匹配元素的属性值。要获取每个单独的元素的属性值， 我们需要依靠jQuery的 <code>.each()</code>或者<code>.map()</code>方法做一个循环。</p>
+<p><strong>在jQuery 1.6中</strong>,当属性没有被设置时候，<code>.attr()</code>方法将返回<code>undefined</code>。另外，<code>.attr()</code>不应该用在普通的对象，数组，窗口（window）或文件（document）上。若要检索和更改DOM属性请使用<a   target="_blank" href="http://api.jquery.com/prop/">.prop()</a>方法。
+the <code>.attr()</code> method returns <code>undefined</code> for attributes that have not been set. In addition, <code>.attr()</code> should not be used on plain objects, arrays, the window, or the document. To retrieve and change DOM properties, use the <a href="#p=.prop">.prop()</a> method.</p>
+
+<p>使用 jQuery的 <code>.attr()</code> 放到得到了一个元素的属性值主要有两个好处：</p>
+<ol>
+<li>
+<strong>方便</strong>：它可以被称直接jQuery对象访问和链式调用其他jQuery方法。</li>
+        <li>
+<strong>浏览器兼容</strong>：一些属性在浏览器和浏览器之间有不一致的命名。 此外，一些属性的值在不同的浏览器中报道也是不一致的（英文原文： the values of some attributes are reported inconsistently across browsers）， 甚至在同一个浏览器的不同版本中。 <code>.attr()</code> 方法减少了兼容性问题。 </li>
+      </ol>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4>在页面的第一个&lt;em&gt;中找到title属性。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;em { color:blue; font-weight;bold; }
+  div { color:red; }&lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;
+    Once there was a &lt;em title="huge, gigantic"&gt;large&lt;/em&gt; dinosaur...
+  &lt;/p&gt;
+
+  The title of the emphasis is:&lt;div&gt;&lt;/div&gt;
+&lt;script&gt;var title = $("em").attr("title");
+    $("div").text(title);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div class="entry method" id="attr2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.attr( attributeName, value )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>为指定元素设置一个或多个属性。</p>
+<ul class="signatures">
+<li class="signature" id="attr-attributeName-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.attr( attributeName, value )</h4>
+<p class="arguement"><strong>attributeName</strong>要设置值的属性名</p>
+<p class="arguement"><strong>value</strong>我这个属性设置的值</p>
+</li>
+<li class="signature" id="attr-map">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.attr( map )</h4>
+<p class="arguement"><strong>map</strong>一个配对的属性值map</p>
+</li>
+<li class="signature" id="attr-attributeName-functionindex, attr">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.1/">1.1</a></span>.attr( attributeName, function(index, attr) )</h4>
+<p class="arguement"><strong>attributeName</strong>要设置值的属性名.</p>
+<p class="arguement"><strong>function(index, attr)</strong>这个函数返回用来设置的值，<code>this</code> 是当前的元素。接收元素的索引位置和元素旧的样属性值为参数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个 <code>.attr()</code> 方法 是一个设置属性值的方便而且强大的途径—特别是当设置多个属性或使用值来自函数。 让我们考虑下面的图片：</p>
+<pre>&lt;img id="greatphoto" src="brush-seller.jpg" alt="brush seller" /&gt;</pre>
+<h4>设置一个简单的属性</h4>
+<p>我们可以通过<code>.attr()</code>方法非常简单的改变 <code>alt</code> 属性并附上新值：</p>
+<pre>$('#greatphoto').attr('alt', 'Beijing Brush Seller');</pre>
+<p>我们可以用同样的方法 <em>添加</em> 一个属性：</p>
+<pre>$('#greatphoto')
+  .attr('title', 'Photo by Kelly Clark');</pre>
+<h4>一次设置多个属性</h4>
+<p>同时改变<code>alt</code> 属性 和 添加  <code>title</code>属性, 我们可以使用一个&ldquo;名/值&rdquo;形式的对象 (JavaScript object literal)传递给这个方法。 每个 key-value  对象将增加或者修改一个属性：</p>
+<pre>$('#greatphoto').attr({
+  alt: 'Beijing Brush Seller',
+  title: 'photo by Kelly Clark'
+});</pre>
+<p>当设置多个属性,包含属性名的引号是可选的。.</p>
+<p><strong>警告：</strong> 当设置样式名（“class”）属性时，必须使用引号！</p>
+<p><strong>注意</strong>: Internet Explorer不会允许你改变<code>&lt;input&gt;</code>或者<code>&lt;button&gt;</code>元素的<code>type<code>属性。 </p>
+<h4>推算属性值</h4>
+<p>通过使用一个函数来设置属性， 我们可以根基元素的其他属性来计算值。举个例子，我们可以把新的值与现有的值联系在一起：</p>
+<pre>$('#greatphoto').attr('title', function() {
+  return this.alt + ' - photo by Kelly Clark'
+});</pre>
+<p>本文运用一个函数来计算属性的值，当我们修改了多个元素的属性，特别有用。
+</p>
+<p><strong>注意 </strong>如果setter函数没有返回任何数据（即<code>function(index, attr){})</code>，属性的当前值返回值是undefined时，作为一个getter行为。实际上，如果不进行任何更改的setter函数不返回的东西。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子: <span class="desc">为页面中全部的 &lt;img&gt;设置一些属性。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  img { padding:10px; }
+  div { color:red; font-size:24px; }&lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;img /&gt;
+  &lt;img /&gt;
+  &lt;img /&gt;
+
+  &lt;div&gt;&lt;B&gt;Attribute of Ajax&lt;/B&gt;&lt;/div&gt;
+&lt;script&gt;$("img").attr({ 
+          src: "/images/hat.gif",
+          title: "jQuery",
+          alt: "jQuery Logo"
+        });
+    $("div").text($("img").attr("alt"));&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example:使第二个后面的按钮<code class="example demo-code">disabled</code> </h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;button { margin:10px; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button&gt;0th Button&lt;/button&gt;
+  &lt;button&gt;1st Button&lt;/button&gt;
+  &lt;button&gt;2nd Button&lt;/button&gt;
+&lt;script&gt;$("button:gt(1)").attr("disabled","disabled");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example:为页面中的div设置基于位置的id属性。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; }
+  span { color:red; }
+  b { font-weight:bolder; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;Zero-th &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;First &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;Second &lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;script&gt;$("div").attr("id", function (arr) {
+          return "div-id" + arr;
+        })
+        .each(function () {
+          $("span", this).html("(ID = '&lt;b&gt;" + this.id + "&lt;/b&gt;')");
+        });&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>Example: 通过图片的<span class="desc">title属性设置SRC属性。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;img title="hat.gif"/&gt;
+&lt;script&gt;$("img").attr("src", function() { 
+          return "/images/" + this.title; 
+        });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

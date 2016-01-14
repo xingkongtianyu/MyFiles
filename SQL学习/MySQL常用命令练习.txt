@@ -1,0 +1,140 @@
+一 基础
+1.创建数据库
+mysql> create schema if not exists zc888 default character set utf8 collate utf8_general_ci;
+
+mysql> create database zc888 default character set utf8 collate utf8_general_ci;
+2.删除数据库
+drop database zc888;
+
+3.查看数据库编码 并修改为 gb2312
+use zc888;
+mysql> show variables like 'character_set_database';
+
+mysql> alter database zc888  character set gb2312;
+mysql> show variables like 'character_set_database';
+
+4.创建表
+CREATE  TABLE IF NOT EXISTS `phpcms`.`v9_area` (
+  `id` SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '区域ID' ,
+  `areaname` VARCHAR(120) NOT NULL DEFAULT '' COMMENT '区域名称' ,
+  `pid` SMALLINT(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT '区域父ID' ,
+  `onlycode` VARCHAR(22) NOT NULL DEFAULT '' COMMENT '区域编码' ,
+  PRIMARY KEY (`id`) ,
+  INDEX `pid` (`pid` ASC) )
+ENGINE = MyISAM
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci
+COMMENT = '区域表';
+5.查看/修改编码
+show variables like 'character\_set\_%';
+    -- 修改表编码
+     
+    ALTER TABLE  `uc_users_bak` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+
+    -- 修改列编码
+     
+    ALTER TABLE  `uc_users_bak` CHANGE  `nick_name`  `nick_name` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+
+
+
+MySQL 时间戳（Timestamp）函数
+
+	
+1. MySQL 获得当前时间戳函数：current_timestamp, current_timestamp()
+mysql> select current_timestamp, current_timestamp();
+
++---------------------+---------------------+
+| current_timestamp | current_timestamp() |
++---------------------+---------------------+
+| 2008-08-09 23:22:24 | 2008-08-09 23:22:24 |
++---------------------+---------------------+
+
+2. MySQL （Unix 时间戳、日期）转换函数：
+unix_timestamp(),
+unix_timestamp(date),
+from_unixtime(unix_timestamp),
+from_unixtime(unix_timestamp,format)
+
+下面是示例：
+select unix_timestamp(); -- 1218290027
+select unix_timestamp('2008-08-08'); -- 1218124800
+select unix_timestamp('2008-08-08 12:30:00'); -- 1218169800
+
+select from_unixtime(1218290027); -- '2008-08-09 21:53:47'
+select from_unixtime(1218124800); -- '2008-08-08 00:00:00'
+select from_unixtime(1218169800); -- '2008-08-08 12:30:00'
+
+select from_unixtime(1218169800, '%Y %D %M %h:%i:%s %x'); -- '2008 8th August 12:30:00 2008'
+
+3. MySQL 时间戳（timestamp）转换、增、减函数：
+timestamp(date) -- date to timestamp
+timestamp(dt,time) -- dt + time
+timestampadd(unit,interval,datetime_expr) --
+timestampdiff(unit,datetime_expr1,datetime_expr2) --
+
+请看示例部分：
+select timestamp('2008-08-08'); -- 2008-08-08 00:00:00
+select timestamp('2008-08-08 08:00:00', '01:01:01'); -- 2008-08-08 09:01:01
+select timestamp('2008-08-08 08:00:00', '10 01:01:01'); -- 2008-08-18 09:01:01
+
+select timestampadd(day, 1, '2008-08-08 08:00:00'); -- 2008-08-09 08:00:00
+select date_add('2008-08-08 08:00:00', interval 1 day); -- 2008-08-09 08:00:00
+
+MySQL timestampadd() 函数类似于 date_add()。
+select timestampdiff(year,'2002-05-01','2001-01-01'); -- -1
+select timestampdiff(day ,'2002-05-01','2001-01-01'); -- -485
+select timestampdiff(hour,'2008-08-08 12:00:00','2008-08-08 00:00:00'); -- -12
+
+select datediff('2008-08-08 12:00:00', '2008-08-01 00:00:00'); -- 7
+
+MySQL timestampdiff() 函数就比 datediff() 功能强多了，datediff() 只能计算两个日期（date）之间相差的天数。 
+
+同时更新多个字段
+UPDATE categories
+    SET display_order = CASE id
+        WHEN 1 THEN 3
+        WHEN 2 THEN 4
+        WHEN 3 THEN 5
+    END,
+    title = CASE id
+        WHEN 1 THEN 'New Title 1'
+        WHEN 2 THEN 'New Title 2'
+        WHEN 3 THEN 'New Title 3'
+    END
+WHERE id IN (1,2,3)
+
+$display_order = array(
+    1 => 4,
+    2 => 1,
+    3 => 2,
+    4 => 3,
+    5 => 9,
+    6 => 5,
+    7 => 8,
+    8 => 9
+);
+$ids = implode(',', array_keys($display_order));
+$sql = "UPDATE categories SET display_order = CASE id ";
+foreach ($display_order as $id => $ordinal) {
+    $sql .= sprintf("WHEN %d THEN %d ", $id, $ordinal);
+}
+$sql .= "END WHERE id IN ($ids)";
+echo $sql;
+
+1.增加一个字段
+alter table user add COLUMN new1 VARCHAR(20) DEFAULT NULL; //增加一个字段，默认为空
+alter table user add COLUMN new2 VARCHAR(20) NOT NULL;  //增加一个字段，默认不能为空  www.2cto.com  
+ 
+2.删除一个字段
+alter table user DROP COLUMN new2; 　 //删除一个字段
+ 
+3.修改一个字段
+alter table user MODIFY new1 VARCHAR(10); 　//修改一个字段的类型
+ 
+alter table user CHANGE new1 new4 int;　 //修改一个字段的名称，此时一定要重新指定该字段的类型
+
+mysql replace实例说明：
+
+UPDATE tb1 SET f1=REPLACE(f1, 'abc', 'def');
+REPLACE(str,from_str,to_str)
+在字符串 str 中所有出现的字符串 from_str 均被 to_str替换，然后返回这个字符串

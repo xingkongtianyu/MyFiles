@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.remove()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-removal/" title="View all posts in DOM Removal">DOM Removal</a></span>
+  
+  				</div>
+</div>
+<div id="remove1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.remove( [ selector ] )</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>将匹配元素从DOM中删除。</p>
+<ul class="signatures"><li class="signature" id="remove-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.remove( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>一个选择表达死用来过滤匹配的将被移除的元素。</p>
+</li></ul>
+<div class="longdesc">
+<p>和 <code><a href="#p=empty">.empty()</a></code>相似。<code>.remove()</code> 将元素移出DOM。
+当我们想将元素自身移除时我们用 <code>.remove()</code>，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据。</p>
+<p>请看下面的HTML:</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>我们可以移除里面的任何目标元素：</p>
+<pre>$('.hello').remove();</pre>
+<p>结果如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>如果<code>&lt;div class="hello"&gt;</code>元素里面有子元素，他们同样会被移除。于它相关的事件句柄也将被擦除。</p>
+<p>我们也可以添加一个可选参数来过滤匹配的元素。例如，前面的代码可以重写为：</p>
+<pre>$('div').remove('.hello');</pre>
+<p>结果将一样：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">将所有段落从DOM删除：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { background:yellow; margin:6px 0; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt; 
+  how are 
+  &lt;p&gt;you?&lt;/p&gt;
+  &lt;button&gt;Call remove() on paragraphs&lt;/button&gt;
+&lt;script&gt;
+    $("button").click(function () {
+      $("p").remove();
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">将所有包含"Hello"的段落从DOM中删除。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { background:yellow; margin:6px 0; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p class="hello"&gt;Hello&lt;/p&gt;
+  how are 
+  &lt;p&gt;you?&lt;/p&gt;
+
+  &lt;button&gt;Call remove(":contains('Hello')") on paragraphs&lt;/button&gt;
+&lt;script&gt;
+
+    $("button").click(function () {
+      $("p").remove(":contains('Hello')");
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

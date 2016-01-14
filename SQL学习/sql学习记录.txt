@@ -1,0 +1,67 @@
+UPDATE `test`.`b` SET `name` = 'zhaochang',
+`zhiwei` = 'tester' WHERE CONVERT( `b`.`name` USING utf8 ) = 'z' AND CONVERT( `b`.`zhiwei` USING utf8 ) = 't' AND `b`.`shouru` =2500 LIMIT 1 ;
+
+1.删除重复数据
+
+首先先创建一个临时表,然后将author表中无重复的数据拎出来，放进临时表中。
+create temporary table 表名
+select distinct id,name,password 
+from author
+
+然后将author表中的记录全部删除。
+delete from author
+
+最后将临时表中的记录插入author表中
+insert into author (id,name,password)
+select id,name,password 
+from 临时表
+
+2.MYSQL 打算新建一个表(temp) 只复制原表(old)表结构
+create table `temp`  select * from `old` where 1=2
+
+MySQL复制表结构和数据SQL语句 MySQL SQL语句
+
+1.复制表结构及数据到新表
+
+CREATE TABLE 新表
+SELECT * FROM 旧表
+
+2.只复制表结构到新表
+
+CREATE TABLE 新表
+SELECT * FROM 旧表 WHERE 1=2
+即:让WHERE条件不成立.
+方法二:(低版本的mysql不支持，mysql4.0.25 不支持，mysql5已经支持了)    
+CREATE TABLE 新表 
+LIKE 旧表
+
+3.复制旧表的数据到新表(假设两个表结构一样)
+
+INSERT INTO 新表
+SELECT * FROM 旧表
+
+4.复制旧表的数据到新表(假设两个表结构不一样)
+
+
+INSERT INTO 新表(字段1,字段2,.......)
+SELECT 字段1,字段2,...... FROM 旧表
+
+MySQL 添加列，修改列，删除列 ALTER TABLE：添加，修改，删除表的列，约束等表的定义。
+
+查看列：desc 表名; 
+修改表名：alter table t_book rename to bbb; 
+添加列：alter table 表名 add column 列名 varchar(30); 
+删除列：alter table 表名 drop column 列名; 
+修改列名MySQL： alter table bbb change nnnnn hh int; 
+修改列名SQLServer：exec sp_rename't_student.name','nn','column'; 
+修改列名Oracle：lter table bbb rename column nnnnn to hh int; 
+修改列属性：alter table t_book modify name varchar(22); 
+
+Mysql中修改表名：
+
+ALTER TABLE   '旧表名'   RENAME TO   '新表名';
+
+a 表中x列全部+1
+UPDATE a
+SET x = x + 1
+

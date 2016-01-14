@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.toArray()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/miscellaneous/" title="View all posts in Miscellaneous">Miscellaneous</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/miscellaneous/dom-element-methods/" title="View all posts in DOM Element Methods">DOM Element Methods</a></span>
+  
+  				</div>
+</div>
+<div id="toArray1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.toArray()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Array">Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>返回一个包含jQuery对象集合中的所有DOM元素的数组。</p>
+<ul class="signatures"><li class="signature" id="toArray"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.toArray()</h4></li></ul>
+<div class="longdesc">
+<p><code>.toArray()</code> 返回jQuery集合中所有元素：</p>
+<pre>alert($('li').toArray());</pre>
+<p>所有匹配的DOM节点都会包含在一个标准的数组中：</p>
+<p><span class="result">[&lt;li id="foo"&gt;, &lt;li id="bar"&gt;]</span></p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">选择文档中所有的div，并且返回一个DOM元素数组，然后利用浏览器内置的reverse方法反转整个数组。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Reversed - &lt;span&gt;&lt;/span&gt;
+
+  &lt;div&gt;One&lt;/div&gt;
+  &lt;div&gt;Two&lt;/div&gt;
+  &lt;div&gt;Three&lt;/div&gt;
+&lt;script&gt;
+
+    function disp(divs) {
+      var a = [];
+      for (var i = 0; i &lt; divs.length; i++) {
+        a.push(divs[i].innerHTML);
+      }
+      $("span").text(a.join(" "));
+    }
+    
+    disp( $("div").toArray().reverse() );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

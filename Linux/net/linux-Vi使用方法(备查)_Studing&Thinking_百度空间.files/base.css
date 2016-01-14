@@ -1,0 +1,516 @@
+.pop-uic {
+	Z-INDEX: 99999; POSITION: absolute
+}
+.pop-mask {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; Z-INDEX: -1; BACKGROUND: none transparent scroll repeat 0% 0%; LEFT: 4px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; POSITION: absolute; TOP: 4px
+}
+.pop-dialog-table {
+	BORDER-RIGHT: #5c5c5c 6px solid; TABLE-LAYOUT: fixed; BORDER-TOP: #5c5c5c 6px solid; MARGIN: auto; BORDER-LEFT: #5c5c5c 6px solid; BORDER-BOTTOM: #5c5c5c 6px solid; BORDER-COLLAPSE: separate; border-spacing: 0
+}
+.pop-content {
+	BACKGROUND-COLOR: #fff
+}
+.pop-content H2 {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; DISPLAY: block; PADDING-LEFT: 15px; FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN: 0px; BORDER-LEFT: #ddd 1px solid; COLOR: #666; LINE-HEIGHT: 29px; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 29px; BACKGROUND-COLOR: #eee
+}
+.pop-content H2 SPAN {
+	FLOAT: left
+}
+.pop-content H2 SPAN UL {
+	MARGIN-LEFT: -5px
+}
+.pop-content H2 SPAN LI {
+	BORDER-RIGHT: #dcdcdc 1px solid; PADDING-RIGHT: 20px; BORDER-TOP: #dcdcdc 1px solid; PADDING-LEFT: 20px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 3px 5px 0px 0px; BORDER-LEFT: #dcdcdc 1px solid; CURSOR: pointer; LINE-HEIGHT: 25px; PADDING-TOP: 0px; BORDER-BOTTOM: #dcdcdc 0px solid; POSITION: relative; HEIGHT: 25px; BACKGROUND-COLOR: #f8f8f8
+}
+.pop-content H2 SPAN .on {
+	MARGIN-BOTTOM: -1px; HEIGHT: 26px; BACKGROUND-COLOR: #fff
+}
+.pop-content H2 A {
+	BACKGROUND: no-repeat 0px -315px; FLOAT: right; MARGIN: 10px 12px 0px 0px; WIDTH: 8px; HEIGHT: 8px
+}
+.pop-html {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; PADDING-TOP: 20px
+}
+.pop-body {
+	FONT-SIZE: 14px; COLOR: #666
+}
+.pop-body IFRAME {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.pop-buttons {
+	TEXT-ALIGN: center
+}
+.pop-buttons-c {
+	MARGIN-LEFT: auto; WIDTH: 154px; MARGIN-RIGHT: auto; HEIGHT: 50px
+}
+.pop-buttons A {
+	DISPLAY: block; FLOAT: left; WIDTH: 69px; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-DECORATION: none
+}
+.pop-buttons A:hover {
+	DISPLAY: block; FLOAT: left; WIDTH: 69px; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-DECORATION: none
+}
+.pop-buttons A:visited {
+	DISPLAY: block; FLOAT: left; WIDTH: 69px; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-DECORATION: none
+}
+.pop-submit {
+	FONT-SIZE: 12px; BACKGROUND: no-repeat 0px -245px; TEXT-DECORATION: none
+}
+.pop-submit:hover {
+	FONT-SIZE: 12px; BACKGROUND: no-repeat 0px -245px; TEXT-DECORATION: none
+}
+.pop-cancel {
+	FONT-SIZE: 12px; BACKGROUND: no-repeat 0px -280px; MARGIN-LEFT: 8px; TEXT-DECORATION: none
+}
+.pop-cancel:hover {
+	FONT-SIZE: 12px; BACKGROUND: no-repeat 0px -280px; MARGIN-LEFT: 8px; TEXT-DECORATION: none
+}
+.bpopMax {
+	BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpopbg_max.gif) no-repeat; WIDTH: 319px; COLOR: #5b5b5b; HEIGHT: 190px
+}
+.bpopMin {
+	BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpopbg_min.gif) no-repeat; OVERFLOW: hidden; WIDTH: 319px; HEIGHT: 44px
+}
+.ptitle {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 14px; PADDING-BOTTOM: 4px; LINE-HEIGHT: 36px; PADDING-TOP: 4px; POSITION: relative; HEIGHT: 36px
+}
+.ptitle .pinfo {
+	FONT-SIZE: 14px; LINE-HEIGHT: 36px
+}
+.bclose {
+	RIGHT: 20px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/btn_close.gif) no-repeat; WIDTH: 14px; CURSOR: pointer; POSITION: absolute; TOP: 17px; HEIGHT: 13px
+}
+.bmin {
+	RIGHT: 50px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/btn_min.gif) no-repeat 0px 3px; WIDTH: 10px; CURSOR: pointer; POSITION: absolute; TOP: 20px; HEIGHT: 10px
+}
+.bmax {
+	RIGHT: 50px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/btn_max.gif) no-repeat; WIDTH: 11px; CURSOR: pointer; POSITION: absolute; TOP: 20px; HEIGHT: 6px
+}
+.bcontent {
+	FONT-WEIGHT: 600; FONT-SIZE: 14px; MARGIN: 0px 20px; COLOR: #637d00; POSITION: relative
+}
+.yesLogo {
+	PADDING-LEFT: 30px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpop_logo.gif) no-repeat 0px 23px; MARGIN: 20px 0px 10px; LINE-HEIGHT: 70px
+}
+.uPhoto {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 4px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpop_border.gif) no-repeat 0px 5px; FLOAT: right; PADDING-BOTTOM: 0px; WIDTH: 64px; PADDING-TOP: 9px; POSITION: relative; HEIGHT: 69px
+}
+.bbadge {
+	RIGHT: 0px; BACKGROUND: no-repeat 0px 5px; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://img.baidu.com/hi/img/bpop/badge_normal.png',sizingMethod='scale'); WIDTH: 38px; BOTTOM: 0px; POSITION: absolute; HEIGHT: 43px
+}
+.bbottom {
+	FONT-SIZE: 12px; TEXT-ALIGN: center
+}
+.bpopFailMax {
+	BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpopbg_max_fail.gif) no-repeat; WIDTH: 379px; COLOR: #5b5b5b; HEIGHT: 225px
+}
+.bpopFailMin {
+	BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpopbg_min.gif) no-repeat; HEIGHT: 44px
+}
+.bcontent LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/bpopfailitem.gif) no-repeat 0px 11px; PADDING-BOTTOM: 0px; MARGIN: 0px; LINE-HEIGHT: 26px; PADDING-TOP: 0px; HEIGHT: 26px
+}
+.bcontent UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: 300; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 15px 0px; COLOR: #5b5b5b; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+.failOk {
+	RIGHT: 6px; BACKGROUND: url(http://img.baidu.com/hi/img/bpop/ok_btn.gif) no-repeat; WIDTH: 73px; CURSOR: pointer; POSITION: absolute; HEIGHT: 26px
+}
+.failInfo {
+	MARGIN: 30px 0px 0px 20px; TEXT-ALIGN: left
+}
+.fiTitle {
+	FONT-WEIGHT: 600; FONT-SIZE: 14px; LINE-HEIGHT: 22px
+}
+.bt-title {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-title-close {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-content {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-btn-outer {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-btn-inner {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-photo50-inner {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-photopk .bt-vs {
+	BACKGROUND: url(http://img.baidu.com/hi/img/popup/bottom_tip_bgs.jpg) no-repeat
+}
+.bottom-tip {
+	WIDTH: 330px; HEIGHT: 192px; BACKGROUND-COLOR: #fff
+}
+.bt-title {
+	DISPLAY: block; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: white; LINE-HEIGHT: 32px; BACKGROUND-REPEAT: repeat-x; POSITION: relative; HEIGHT: 32px
+}
+.bt-title-close {
+	BACKGROUND-POSITION: 0px -156px; RIGHT: 10px; WIDTH: 14px; POSITION: absolute; TOP: 9px; HEIGHT: 14px
+}
+.bt-body {
+	BORDER-RIGHT: #58a0ec 2px solid; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #58a0ec 2px solid; PADDING-TOP: 1px; HEIGHT: 156px
+}
+.bt-foot {
+	BORDER-RIGHT: #58a0ec 2px solid; BORDER-TOP: medium none; BORDER-LEFT: #58a0ec 2px solid; BORDER-BOTTOM: #58a0ec 2px solid; HEIGHT: 0px
+}
+.bt-content {
+	BACKGROUND-POSITION: 0px -210px; BACKGROUND-REPEAT: repeat-x; POSITION: relative; HEIGHT: 100%
+}
+.bt-btn-outer {
+	PADDING-RIGHT: 18px; BACKGROUND-POSITION: right -62px; DISPLAY: block; FLOAT: left; COLOR: white; LINE-HEIGHT: 30px; MARGIN-RIGHT: 10px; HEIGHT: 30px; TEXT-DECORATION: none
+}
+.bt-btn-inner {
+	BACKGROUND-POSITION: 0px -32px; PADDING-LEFT: 18px; FLOAT: left; CURSOR: pointer; LINE-HEIGHT: 30px; HEIGHT: 30px
+}
+.bt-photo50 {
+	BORDER-RIGHT: #ddd 1px solid; BORDER-TOP: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; WIDTH: 54px; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 54px
+}
+A.bt-btn-outer {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+A.bt-btn-outer:link {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+A.bt-btn-outer:visited {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+A.bt-btn-outer:hover {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+A.bt-btn-outer:active {
+	COLOR: #fff; TEXT-DECORATION: none
+}
+.bt-photo50-inner {
+	BACKGROUND-POSITION: -39px -157px; MARGIN: 2px; WIDTH: 50px; CURSOR: pointer; HEIGHT: 50px
+}
+.bt-buttons {
+	CLEAR: both; PADDING-TOP: 10px; HEIGHT: 30px
+}
+.bt-username {
+	CURSOR: pointer; COLOR: #1462c6
+}
+.bt-style-font14 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 22px; TEXT-ALIGN: left
+}
+.bt-leftphoto {
+	LEFT: 20px; WIDTH: 284px; POSITION: absolute; TOP: 27px; HEIGHT: 118px
+}
+.bt-leftphoto .bt-photoinfo {
+	LEFT: 0px; WIDTH: 76px; POSITION: absolute; TOP: 0px; HEIGHT: 118px
+}
+.bt-leftphoto .bt-photoinfo-name {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px
+}
+.bt-leftphoto .bt-photoinfo-sexage {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px; COLOR: #999
+}
+.bt-leftphoto .bt-photoinfo-addr {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px; COLOR: #999
+}
+.bt-leftphoto .bt-rightinfo {
+	LEFT: 76px; WIDTH: 208px; POSITION: absolute; TOP: 0px; HEIGHT: 118px
+}
+.bt-photopk {
+	LEFT: 15px; WIDTH: 300px; POSITION: absolute; TOP: 18px; HEIGHT: 132px; TEXT-ALIGN: center
+}
+.bt-photopk .bt-photovs {
+	MARGIN: 5px auto 0px; WIDTH: 152px; POSITION: relative; HEIGHT: 56px; TEXT-ALIGN: left
+}
+.bt-photopk .bt-vsleft {
+	POSITION: absolute
+}
+.bt-photopk .bt-vsright {
+	RIGHT: 0px; POSITION: absolute
+}
+.bt-photopk .bt-vs {
+	BACKGROUND-POSITION: -14px -156px; LEFT: 65px; WIDTH: 23px; POSITION: absolute; TOP: 22px; HEIGHT: 14px
+}
+.bt-photopk .bt-buttons {
+	MARGIN: 0px auto; WIDTH: 100px
+}
+.msglist {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; Z-INDEX: 99999; BACKGROUND: url(http://img.baidu.com/hi/img/messageBgNew.gif) no-repeat; BORDER-LEFT: medium none; WIDTH: 233px; PADDING-TOP: 7px; BORDER-BOTTOM: medium none; POSITION: absolute; HEIGHT: 80px; TEXT-ALIGN: left
+}
+.msglist .t_red {
+	FONT-WEIGHT: bold; COLOR: #ff0113
+}
+.msglist .t_ccc {
+	COLOR: #b0b0b0
+}
+.msglist .icon1 {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/msgicon1.gif) no-repeat 0px 8px
+}
+.msglist .icon2 {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/msgicon1.gif) no-repeat 0px -16px
+}
+.msglist .icon3 {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/msgicon1.gif) no-repeat 0px -41px
+}
+.msglist .icon4 {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/msgicon1.gif) no-repeat 0px -65px
+}
+.msglist .icon5 {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/msgicon1.gif) no-repeat 0px -90px
+}
+.msglist DIV {
+	PADDING-LEFT: 18px; FONT-WEIGHT: normal; FONT-SIZE: 12px; MARGIN: 0px 12px; WIDTH: 150px; CURSOR: pointer; LINE-HEIGHT: 24px; HEIGHT: 24px
+}
+.msglist DIV A {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px
+}
+.msglist DIV A:hover {
+	TEXT-DECORATION: none
+}
+.msglist .line {
+	BORDER-TOP: #eee 1px solid; FONT-SIZE: 0px; LINE-HEIGHT: 0; HEIGHT: 0px
+}
+#msgInbox {
+	RIGHT: 3px; WIDTH: 16px! important; POSITION: absolute; TOP: 9px; HEIGHT: 13px
+}
+#msgInbox IMG {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; VERTICAL-ALIGN: top; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+.msglist .no_sound {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/sy.gif) no-repeat 0px -13px
+}
+.msglist .sound {
+	BACKGROUND: url(http://img.baidu.com/hi/spnote/sy.gif) no-repeat 0px 0px
+}
+.msglist #topMsgPlayBtn {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; Z-INDEX: 65001; RIGHT: 28px; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; WIDTH: 14px; PADDING-TOP: 0px; POSITION: absolute; TOP: 7px; HEIGHT: 9px
+}
+.msglist .sound {
+	
+}
+.msglist #topMsgCloseBtn {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; Z-INDEX: 65001; RIGHT: 6px; BACKGROUND: url(http://img.baidu.com/hi/spnote/cl.gif) no-repeat 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 9px; PADDING-TOP: 0px; POSITION: absolute; TOP: 7px; HEIGHT: 9px
+}
+.bt-title {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-title-close {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-content {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bottom-tip {
+	MARGIN-BOTTOM: 10px; WIDTH: 330px; HEIGHT: 210px; BACKGROUND-COLOR: white
+}
+.bottom-tip A:hover {
+	TEXT-DECORATION: none
+}
+.bottom-tip DIV.bt-title {
+	PADDING-RIGHT: 25px; DISPLAY: block; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 14px; OVERFLOW: hidden; COLOR: white; LINE-HEIGHT: 32px; BACKGROUND-REPEAT: repeat-x; POSITION: relative; HEIGHT: 32px
+}
+.bottom-tip .bt-title SPAN {
+	FONT-WEIGHT: bold! important; FONT-SIZE: 14px! important; COLOR: white! important
+}
+.bt-title-close {
+	BACKGROUND-POSITION: 0px -156px; RIGHT: 10px; WIDTH: 14px; CURSOR: pointer; POSITION: absolute; TOP: 9px; HEIGHT: 14px
+}
+.bt-content {
+	BACKGROUND-POSITION: 0px -270px; COLOR: #000; BACKGROUND-REPEAT: repeat-x; POSITION: relative; HEIGHT: 100%; BACKGROUND-COLOR: white
+}
+.bt-body {
+	BORDER-RIGHT: #58a0ec 2px solid; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; BORDER-LEFT: #58a0ec 2px solid; PADDING-TOP: 1px; HEIGHT: 146px
+}
+.bt-foot {
+	BORDER-RIGHT: #58a0ec 2px solid; BORDER-TOP: medium none; PADDING-LEFT: 10px; BORDER-LEFT: #58a0ec 2px solid; LINE-HEIGHT: 30px; BORDER-BOTTOM: #58a0ec 2px solid; POSITION: relative; HEIGHT: 30px; BACKGROUND-COLOR: #f5f5f5
+}
+.bottom-tip DIV.bt-foot {
+	FONT-SIZE: 12px! important
+}
+.bt-foot-check {
+	COLOR: #9a9a9a
+}
+.bt-foot SPAN.bt-foot-check {
+	COLOR: #9a9a9a! important
+}
+.bt-foot SPAN.bt-foot-next {
+	RIGHT: 10px! important; CURSOR: pointer! important; COLOR: #1462c4! important; POSITION: absolute! important; TEXT-DECORATION: underline! important
+}
+.bt-foot-check TABLE {
+	TABLE-LAYOUT: fixed; MARGIN-TOP: 8px
+}
+.bt-foot-check TABLE TR {
+	LINE-HEIGHT: 15px; HEIGHT: 20px
+}
+.bt-foot-check TABLE TR TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: 15px; PADDING-TOP: 0px; BORDER-COLLAPSE: collapse; HEIGHT: 20px; border-spacing: 0
+}
+UNKNOWN {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; FONT-FAMILY: tahoma, arial, ËÎÌו, sans-serif; BORDER-COLLAPSE: collapse; border-spacing: 0
+}
+.bt-btn-outer {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-btn-inner {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-infotip {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-infotip-inner {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-photo50 {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-photopk .bt-vs {
+	BACKGROUND: url(../img/bottom_tip_bgs.jpg) no-repeat
+}
+.bt-btn-outer {
+	PADDING-RIGHT: 18px; BACKGROUND-POSITION: right -62px; DISPLAY: block; FONT-SIZE: 14px; FLOAT: left; COLOR: white; LINE-HEIGHT: 30px; MARGIN-RIGHT: 10px; HEIGHT: 30px; TEXT-DECORATION: none
+}
+DIV.bt-btn-inner {
+	BACKGROUND-POSITION: 0px -32px; PADDING-LEFT: 18px; FONT-SIZE: 14px! important; FLOAT: left; CURSOR: pointer; COLOR: white! important; HEIGHT: 30px
+}
+.bt-btn-gray {
+	BACKGROUND-POSITION: right -240px; COLOR: #666
+}
+.bt-btn-gray DIV.bt-btn-inner {
+	BACKGROUND-POSITION: 0px -210px; COLOR: #666! important
+}
+.bt-infotip {
+	PADDING-RIGHT: 10px; BACKGROUND-POSITION: right -124px; FLOAT: left; OVERFLOW: hidden; HEIGHT: 32px
+}
+.bt-infotip-inner {
+	BACKGROUND-POSITION: 0px -92px; PADDING-LEFT: 10px; FONT-SIZE: 12px; FLOAT: left; OVERFLOW: hidden; LINE-HEIGHT: 40px; HEIGHT: 32px
+}
+.bt-content DIV.bt-infotip-inner {
+	PADDING-LEFT: 10px! important; FONT-SIZE: 12px! important; OVERFLOW: hidden! important; COLOR: black! important; LINE-HEIGHT: 40px! important
+}
+.bt-inputtext {
+	BORDER-RIGHT: #bec7d8 1px solid; BORDER-TOP: #bec7d8 1px solid; BORDER-LEFT: #bec7d8 1px solid; WIDTH: 170px; COLOR: #9a9a9a; LINE-HEIGHT: 22px; BORDER-BOTTOM: #bec7d8 1px solid; HEIGHT: 22px
+}
+.bt-inputtext-info {
+	COLOR: #9a9a9a
+}
+.bt-photo50 {
+	BORDER-RIGHT: #ddd 1px solid; PADDING-RIGHT: 2px; BACKGROUND-POSITION: -38px -156px; BORDER-TOP: #ddd 1px solid; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; BORDER-LEFT: #ddd 1px solid; WIDTH: 50px; PADDING-TOP: 2px; BORDER-BOTTOM: #ddd 1px solid; HEIGHT: 50px
+}
+.bt-buttons {
+	CLEAR: both; PADDING-TOP: 10px; HEIGHT: 30px
+}
+.bt-username {
+	COLOR: #1462c6
+}
+A.bt-username:link {
+	FONT-SIZE: 14px! important; COLOR: #1462c6! important
+}
+A.bt-username:hover {
+	FONT-SIZE: 14px! important; COLOR: #1462c6! important
+}
+A.bt-username:active {
+	FONT-SIZE: 14px! important; COLOR: #1462c6! important
+}
+A.bt-username:visited {
+	FONT-SIZE: 14px! important; COLOR: #1462c6! important
+}
+.bt-style-font14 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 22px
+}
+.bt-content DIV.bt-style-font14 {
+	FONT-SIZE: 14px! important; COLOR: black! important; LINE-HEIGHT: 22px! important; TEXT-ALIGN: left! important
+}
+.bt-style-colorred {
+	COLOR: #fd3400! important
+}
+.bt-default DIV.bt-style-colorred {
+	COLOR: #fd3400! important
+}
+.bt-style-colorgray {
+	COLOR: #666! important; LINE-HEIGHT: 18px! important
+}
+.bt-default LI.bt-style-colorgray {
+	COLOR: #666! important; LINE-HEIGHT: 18px! important
+}
+.bt-default SPAN.bt-style-colorgray {
+	COLOR: #666! important; LINE-HEIGHT: 18px! important
+}
+.bt-style-colorgray STRONG {
+	COLOR: #000
+}
+.bt-default UL.bt-style-ul {
+	LIST-STYLE-POSITION: inside; MARGIN: 0px; LINE-HEIGHT: 18px; PADDING-TOP: 8px; LIST-STYLE-TYPE: disc; webkit-padding-start: 0
+}
+.bt-style-ul LI {
+	TEXT-INDENT: 3px
+}
+.bt-style-icondiv {
+	PADDING-LEFT: 23px; BACKGROUND: url(../img/icon.jpg) no-repeat 0px 3px
+}
+.bt-cp-hidden {
+	DISPLAY: none
+}
+.bt-leftphoto {
+	LEFT: 20px; WIDTH: 284px; POSITION: absolute; TOP: 27px; HEIGHT: 118px
+}
+.bt-leftphoto .bt-photoinfo {
+	LEFT: 0px; WIDTH: 56px; POSITION: absolute; TOP: 0px; HEIGHT: 118px
+}
+.bt-leftphoto .bt-photoinfo-name {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px; OVERFLOW: hidden; WIDTH: 56px; HEIGHT: 15px
+}
+.bt-leftphoto .bt-photoinfo-sexage {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px; OVERFLOW: hidden; WIDTH: 56px; COLOR: #999; HEIGHT: 16px
+}
+.bt-leftphoto .bt-photoinfo-addr {
+	MARGIN-TOP: 4px; MARGIN-LEFT: 3px; OVERFLOW: hidden; WIDTH: 56px; COLOR: #999; HEIGHT: 16px
+}
+.bt-leftphoto .bt-rightinfo {
+	LEFT: 76px; WIDTH: 208px; POSITION: absolute; TOP: 0px; HEIGHT: 118px
+}
+.bt-photopk {
+	LEFT: 15px; WIDTH: 300px; POSITION: absolute; TOP: 18px; HEIGHT: 132px
+}
+.bt-photopk .bt-photovs {
+	MARGIN: 5px auto 0px; WIDTH: 152px; POSITION: relative; HEIGHT: 56px
+}
+.bt-photopk .bt-vsleft {
+	POSITION: absolute
+}
+.bt-photopk .bt-vsright {
+	RIGHT: 0px; POSITION: absolute
+}
+.bt-photopk .bt-vs {
+	BACKGROUND-POSITION: -14px -156px; LEFT: 65px; WIDTH: 23px; POSITION: absolute; TOP: 22px; HEIGHT: 14px
+}
+.bt-photopk .bt-buttons {
+	MARGIN: 0px auto; WIDTH: 106px
+}
+.bt-default {
+	LEFT: 20px; WIDTH: 300px; POSITION: absolute; TOP: 20px; HEIGHT: 125px
+}
+.bt-badgepass {
+	LEFT: 20px; WIDTH: 300px; POSITION: absolute; TOP: 20px; HEIGHT: 125px
+}
+.bt-badgepass .bt-badgenormal {
+	BACKGROUND: none transparent scroll repeat 0% 0%; FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://img.baidu.com/hi/img/bpop/badge_normal.png" ,sizingMethod="crop"); LEFT: 36px; WIDTH: 38px; POSITION: absolute; TOP: 32px; HEIGHT: 38px
+}
+.bt-badgepass .bt-badgeinfo {
+	LEFT: 90px; WIDTH: 215px; POSITION: absolute; TOP: 0px; HEIGHT: 125px
+}
+.bt-badgepass .bt-style-font14 {
+	PADDING-BOTTOM: 8px
+}
+.pop-content H2 A {
+	BACKGROUND-IMAGE: url(../img/popup_sprites_0.png?v=8af63c5b.png)
+}
+.pop-submit {
+	BACKGROUND-IMAGE: url(../img/popup_sprites_0.png?v=8af63c5b.png)
+}
+.pop-submit:hover {
+	BACKGROUND-IMAGE: url(../img/popup_sprites_0.png?v=8af63c5b.png)
+}
+.pop-cancel {
+	BACKGROUND-IMAGE: url(../img/popup_sprites_0.png?v=8af63c5b.png)
+}
+.pop-cancel:hover {
+	BACKGROUND-IMAGE: url(../img/popup_sprites_0.png?v=8af63c5b.png)
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.children()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="children1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.children( [ selector ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获得每个匹配元素集合元素的子元素，选择性筛选的选择器。</p>
+<ul class="signatures"><li class="signature" id="children-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.children( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>一个用于匹配元素的选择器字符串。</p>
+</li></ul>
+<div class="longdesc">
+<p>鉴于一个jQuery对象，表示一个DOM元素的集合，<code>.children()</code>方法允许我们通过在DOM树中对这些元素的直接子元素进行搜索，并且构造一个新的匹配元素的jQuery对象。<code>.find()</code>和<code>.children()</code>方法是相似的，但后者只是针对向下一个级别的DOM树。还要注意的是最喜欢的jQuery方法，<code>.children()</code>不返回文本节点;让<em>所有</em>子元素包括使用文字和注释节点，建议使用<code>.contents()</code>。</p>
+<p>该方法选择性地接受同一类型选择器表达式，我们可以传递给<code>$()</code>函数。如果选择供应，将被过滤的元素通过测试它们是否匹配。</p>
+<p>考虑一个面页中简单的列表：</p>
+<pre>
+&lt;ul class="level-1"&gt;
+  &lt;li class="item-i"&gt;I&lt;/li&gt;
+  &lt;li class="item-ii"&gt;II
+    &lt;ul class="level-2"&gt;
+      &lt;li class="item-a"&gt;A&lt;/li&gt;
+      &lt;li class="item-b"&gt;B
+        &lt;ul class="level-3"&gt;
+          &lt;li class="item-1"&gt;1&lt;/li&gt;
+          &lt;li class="item-2"&gt;2&lt;/li&gt;
+          &lt;li class="item-3"&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-c"&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item-iii"&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们在2级列表开始，我们可以找到它的子元素：</p>
+<pre>$('ul.level-2').children().css('background-color', 'red');</pre>
+<p>此调用的结果是一个落后项目A，B和C红底，由于我们没有提供一个选择的表达，所有的子元素都返回的jQuery对象的一部分。如果我们提供的人，只有三者匹配项目将包括在内。
+</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Find all children of the clicked element.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body { font-size:16px; font-weight:bolder; }
+  div { width:130px; height:82px; margin:10px; float:left;
+        border:1px solid blue; padding:4px; }
+  #container { width:auto; height:105px; margin:0; float:none;
+        border:none; }
+  .hilite { border-color:red; }
+  #results { display:block; color:red; }
+  p { margin:10px; border:1px solid transparent; }
+  span { color:blue; border:1px solid transparent; }
+  input { width:100px; }
+  em { border:1px solid transparent; }
+  a { border:1px solid transparent; }
+  b { border:1px solid transparent; }
+  button { border:1px solid transparent; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="container"&gt;
+
+    &lt;div&gt;
+      &lt;p&gt;This &lt;span&gt;is the &lt;em&gt;way&lt;/em&gt; we&lt;/span&gt; 
+      write &lt;em&gt;the&lt;/em&gt; demo,&lt;/p&gt;
+
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;a href="#"&gt;&lt;b&gt;w&lt;/b&gt;rit&lt;b&gt;e&lt;/b&gt;&lt;/a&gt; the &lt;span&gt;demo,&lt;/span&gt; &lt;button&gt;write 
+      the&lt;/button&gt; demo,
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      This &lt;span&gt;the way we &lt;em&gt;write&lt;/em&gt; the &lt;em&gt;demo&lt;/em&gt; so&lt;/span&gt;
+
+      &lt;input type="text" value="early" /&gt; in
+    &lt;/div&gt;
+    &lt;p&gt;
+      &lt;span&gt;t&lt;/span&gt;he &lt;span&gt;m&lt;/span&gt;orning.
+      &lt;span id="results"&gt;Found &lt;span&gt;0&lt;/span&gt; children in &lt;span&gt;TAG&lt;/span&gt;.&lt;/span&gt;
+
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;script&gt;
+
+    $("#container").click(function (e) {
+      $("*").removeClass("hilite");
+      var $kids = $(e.target).children();
+      var len = $kids.addClass("hilite").length;
+
+      $("#results span:first").text(len);
+      $("#results span:last").text(e.target.tagName);
+
+      e.preventDefault();
+      return false;
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Find all children of each div.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body { font-size:16px; font-weight:bolder; }
+  span { color:blue; }
+  p { margin:5px 0; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello (this is a paragraph)&lt;/p&gt;
+
+  &lt;div&gt;&lt;span&gt;Hello Again (this span is a child of the a div)&lt;/span&gt;&lt;/div&gt;
+  &lt;p&gt;And &lt;span&gt;Again&lt;/span&gt; (in another paragraph)&lt;/p&gt;
+
+  &lt;div&gt;And One Last &lt;span&gt;Time&lt;/span&gt; (most text directly in a div)&lt;/div&gt;
+&lt;script&gt;$("div").children().css("border-bottom", "3px double red");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Find all children with a class "selected" of each div.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  body { font-size:16px; font-weight:bolder; }
+  p { margin:5px 0; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;span&gt;Hello&lt;/span&gt;
+    &lt;p class="selected"&gt;Hello Again&lt;/p&gt;
+    &lt;div class="selected"&gt;And Again&lt;/div&gt;
+
+    &lt;p&gt;And One Last Time&lt;/p&gt;
+  &lt;/div&gt;
+&lt;script&gt;$("div").children(".selected").css("color", "blue");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

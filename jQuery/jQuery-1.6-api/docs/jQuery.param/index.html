@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">jQuery.param()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/miscellaneous/" title="View all posts in Miscellaneous">Miscellaneous</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/miscellaneous/collection-manipulation/" title="View all posts in Collection Manipulation">Collection Manipulation</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/helper-functions/" title="View all posts in Helper Functions">Helper Functions</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="jQuery.param1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.param( obj )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>创建一个序列化的数组或对象，适用于一个URL 地址查询字符串或Ajax请求。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery.param-obj">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>jQuery.param( obj )</h4>
+<p class="arguement"><strong>obj</strong>一个数组或序列化的对象。</p>
+</li>
+<li class="signature" id="jQuery.param-obj-traditional">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery.param( obj, traditional )</h4>
+<p class="arguement"><strong>obj</strong>一个数组或序列化的对象。</p>
+<p class="arguement"><strong>traditional</strong>一个布尔值，指示是否执行了传统的“shallow”的序列化。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个函数 可以将元素的值 转换为 序列化字符串 (更多细节查阅 <a href="#p=serialize/">.serialize()</a> )。</p>
+<p>在 jQuery 1.3中, 这个函数的返回值被用来代替函数作为一个字符串。</p>
+<p>在 jQuery 1.4中,  <code>$.param()</code> 方法 递归对象以至于 适应就好像 PHP 和 Ruby on Rails一样的现代的脚本语言 和 框架。 你可以通过设置 <code>jQuery.ajaxSettings.traditional = true;</code>废除这个全局功能。</p>
+<p>注意: 因为一些框架解析序列化的数字的能力有限， 当通过obj或者数组中包含嵌套在另一个数组传递参数，我们应该谨慎。</p>
+<p>在 jQuery 1.4 HTML5中输入序列话的元素，也是如此。</p>
+<p>我们可以显示一个对象的查询字符串 和一个相应的URI-decoded 版本，如下:</p>
+<pre>var myObject = {
+  a: {
+    one: 1, 
+    two: 2, 
+    three: 3
+  }, 
+  b: [1,2,3]
+};
+var recursiveEncoded = $.param(myObject);
+var recursiveDecoded = decodeURIComponent($.param(myObject));
+
+alert(recursiveEncoded);
+alert(recursiveDecoded);
+</pre>
+<p><code>recursiveEncoded</code> 和 <code>recursiveDecoded</code> 的结果如下：</p>
+<p><span class="output">a%5Bone%5D=1&amp;a%5Btwo%5D=2&amp;a%5Bthree%5D=3&amp;b%5B%5D=1&amp;b%5B%5D=2&amp;b%5B%5D=3</span><br><span class="output">a[one]=1&amp;a[two]=2&amp;a[three]=3&amp;b[]=1&amp;b[]=2&amp;b[]=3</span></p>
+<p>&nbsp;</p>
+<p> 在先前的 jQuery 1.4中检测 <code>$.param()</code>的性能, 我们可以设置 <code>traditional</code> 参数为 <code>true</code>：（英文语文：To emulate the behavior of <code>$.param()</code> prior to jQuery 1.4, we can set the <code>traditional</code> argument to <code>true</code>:）</p>
+<pre>var myObject = {
+  a: {
+    one: 1, 
+    two: 2, 
+    three: 3
+  }, 
+  b: [1,2,3]
+};
+var shallowEncoded = $.param(myObject, true);
+var shallowDecoded = decodeURIComponent(shallowEncoded);
+
+alert(shallowEncoded);
+alert(shallowDecoded);
+</pre>
+<p><code>shallowEncoded</code> 和 <code>shallowDecoded</code> 的结果如下：</p>
+<p><span classrecursiveEncoded="output">a=%5Bobject+Object%5D&amp;b=1&amp;b=2&amp;b=3</span><br><span class="output">a=[object+Object]&amp;b=1&amp;b=2&amp;b=3</span></p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子: <span class="desc">序列化一个 key/value 对象.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { color:red; }&lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="results"&gt;&lt;/div&gt;
+&lt;script&gt;
+
+    var params = { width:1680, height:1050 };
+    var str = jQuery.param(params);
+    $("#results").text(str);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例如: <span class="desc">序列号一些复杂的对象</span>
+</h4>
+<pre><code class="example">
+// &lt;=1.3.2: 
+$.param({ a: [2,3,4] }) // "a=2&amp;a=3&amp;a=4"
+// &gt;=1.4:
+$.param({ a: [2,3,4] }) // "a[]=2&amp;a[]=3&amp;a[]=4"
+
+// &lt;=1.3.2: 
+$.param({ a: { b:1,c:2 }, d: [3,4,{ e:5 }] }) // "a=[object+Object]&amp;d=3&amp;d=4&amp;d=[object+Object]"
+// &gt;=1.4: 
+$.param({ a: { b:1,c:2 }, d: [3,4,{ e:5 }] }) // "a[b]=1&amp;a[c]=2&amp;d[]=3&amp;d[]=4&amp;d[2][e]=5"
+
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

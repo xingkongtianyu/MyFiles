@@ -1,0 +1,70 @@
+先设置该用户只有show database权限
+
+grant select,insert,update,delete on redmine1.* to jira@"%" identified by "jira";
+
+ 
+
+授权命令GRANT 语句的语法如下： 
+GRANT privileges (columns) 
+ON what 
+TO user IDENTIFIEDBY "password" 
+WITH GRANT OPTION 
+对用户授权 
+mysql>grant rights on database.* to user@host identified by "pass"; 
+例1: 
+增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。 
+grant select,insert,update,delete on *.* to test1@"%" Identified by "abc"; 
+ON 子句中*.* 说明符的意思是“所有数据库，所有的表” 
+例2: 
+增加一个用户test2密码为abc, 让他只可以在localhost上登录，并可以对数据库mydb进行查询、插入、修改、删除的操作。 
+grant select,insert,update,delete on mydb.* to test2@localhost identified by "abc"; 
+例子3 
+增加一个用户custom，他能从主机localhost、server.domain和whitehouse.gov连接。他只想要从 localhost存取bankaccount数据库，从whitehouse.gov存取expenses数据库和从所有3台主机存取customer 数据库。他想要从所有3台主机上使用口令stupid。
+
+为了使用GRANT语句设置个用户的权限，运行这些命令： 
+shell> mysql --user=root mysql 
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP 
+ON bankaccount.* TO custom@localhost IDENTIFIED BY 'stupid'; 
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP 
+ON expenses.* TO custom@whitehouse.gov IDENTIFIED BY 'stupid'; 
+mysql> GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP 
+ON customer.* TO custom@'%' IDENTIFIED BY 'stupid'; 
+============================================== 
+权限信息用user、db、host、tables_priv和columns_priv表被存储在mysql数据库中(即在名为mysql的数据库中)。 
+权限 列 Context 
+select Select_priv 表 
+insert Insert_priv 表 
+update Update_priv 表 
+delete Delete_priv 表 
+index Index_priv 表 
+alter Alter_priv 表 
+create Create_priv 数据库、表或索引 
+drop Drop_priv 数据库或表 
+grant Grant_priv 数据库或表 
+references References_priv 数据库或表 
+reload Reload_priv 服务器管理 
+shutdown Shutdown_priv 服务器管理 
+process Process_priv 服务器管理 
+file File_priv 在服务器上的文件存取
+
+ 
+
+1.select、insert、update和delete权限 允许你在一个数据库现有的表上实施操作，是基本权限 
+2.alter权限允许你使用ALTER TABLE 
+3.create和drop权限允许你创建新的数据库和表，或抛弃(删除)现存的数据库和表 如果你将mysql数据库的drop权限授予一个用户，该用户能抛弃存储了MySQL存取权限的数据库！ 
+4.grant权限允许你把你自己拥有的那些权限授给其他的用户。 
+你不能明显地指定一个给定用户应该被拒绝存取。即，你不能明显地匹配一个用户并且然后拒绝连接。你不能指定一个用户有权创建立或抛弃一个数据库中的表，也不能创建或抛弃数据库本身。 可以同时列出许多被授予的单个权限。 
+例如，如果想让用户能读取和修改已有表的内容，但又不允许创建新表或删除表，可按如下授权： 
+GRANT SELECT,INSERT,DELETE,UPDATE ON samp_db.* TO 'user'@'%' IDENTIFIEDBY "pass"
+
+ 
+
+以上是我从别的地方拷贝过来后稍作修改的文字，下面自己写一些需要注意的东西。
+
+为什么使用了Grant all on db.* to user identified by "pass"后，在主机上访问数据库还会出现ERROR 1045 (28000): Access denied for user 'user'@'localhost' (using password: YES) 的错误提示？
+
+解答方法如下：运行命令 Grant all on db.* to 'user'@'localhost' identified by "pass"
+
+原因是：当不加@选项时，效果与加@'%'是一样的，'%'从名义上包括任何主机，（%必须加上引号，不然与@放在一起可能不会被辨认出。）不过有些时候（有些版本）'%'不包括localhost，要单独对@'localhost'进行赋值
+
+ 

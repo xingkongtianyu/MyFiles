@@ -1,0 +1,24 @@
+1.设计测试用例
+2.录制脚本,录制正常的业务流程,如用户admin登录后,进入管理界面,然后再退出;
+3.保存脚本;
+4.增强脚本,先将登录用户名参数化为username,datatable选 本地表;
+5.将登录密码参数化为password,同样的datatable选本地表;
+6.在datatable中创建一个预期值列表status;
+7.按照测试用例的设计,填写用户名username,密码password以及预期值status的参数值;
+8.切换到专家视图,创建相应的变量;
+9.创建一个表示datatable中行号i;
+10.使用for语句,使qtp在测试时能够自动读取每一行的用户名与密码;
+11.插入一个文本输出点,输出系统的实际提示信息,并将该输出值保存datatable中action1的outmsg列;
+12.定义一个读取系统实际提示信息的变量outputvalue;
+13.将系统实际提示信息赋予定义的变量outputvalue;
+14.定义一个变量读取预期的提示信息istatus;
+15.将预期提示信息的值赋予定义的变量istatus;
+16.进行实际提示信息与预期提示信息进行比较,如果一致,则继续执行测试用例,如不一致,给出错误报告;
+17.设置自动获取action1中下一行值继续执行测试;
+18.调试脚本;
+19.如无问题,则执行测试,并分析报告;
+20.报告中有两处错误报告,表明此处存在bug,实际输出值与预期输出值不一致;
+
+reporter.ReportEvent 1 ,"注意前面是逗号"
+datatable.GetSheet("Action1").setnextrow
+Reporter.ReportEvent micfail, "注意", "格式"

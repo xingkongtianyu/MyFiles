@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">jQuery.noConflict()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/core/" title="View all posts in Core">Core</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/miscellaneous/" title="View all posts in Miscellaneous">Miscellaneous</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/miscellaneous/setup-methods/" title="View all posts in Setup Methods">Setup Methods</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="jQuery.noConflict1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.noConflict( [ removeAll ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>放弃jQuery控制的$的变量。</p>
+<ul class="signatures"><li class="signature" id="jQuery.noConflict-removeAll">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.noConflict( [ removeAll ] )</h4>
+<p class="arguement"><strong>removeAll</strong>判断是否从全局范围内去除所有jQuery变量的布尔值(包括jQuery本身)。</p>
+</li></ul>
+<div class="longdesc">
+<p>很多javascript库使用<code> $</code> 作为一个函数或者变量名，正如jquery做的一样。在jQuery下 <code> $</code>只是<code>jQuery</code>的一个别名，所以不使用<code> $</code>所有功能都是有效的。如果我们需要同时使用jQuery和其他javascript库，我们可以使用 <code>$.noConflict()</code>来控制其他库使用<code> $</code> :</p>
+<pre>
+&lt;script type="text/javascript" src="other_lib.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  $.noConflict();
+  // Code that uses other library's $ can follow here.
+&lt;/script&gt;
+</pre>
+<p>这个技巧，在jQuery对象结合.ready()方法的地方依然有效，我们没有必要为通过对.ready()内部调用$而担心冲突(原因：.ready()是一个闭包):</p>
+<pre>
+&lt;script type="text/javascript" src="other_lib.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  $.noConflict();
+  jQuery(document).ready(function($) {
+    // 在这里可以使用jQuery的$。
+  });
+  // 在这里使用其他库的$。
+&lt;/script&gt;
+</pre>
+<p>如果必要的话，我们可以空出jQuery名字，传递<code>true</code>作为一个参数给这个方法。 这不是必须的，如果我们必须这样做的话（举个例子，如果我们在同一个页面上使用多个版本的jQuery库）， 我们必须考虑到大多数插件依靠jQuery存在的变量,这种情况，可能不能正常操作。</p>
+</div>
+<h3>举例</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">将$引用的对象映射回原始的对象。</span>
+</h4>
+<pre><code class="example">jQuery.noConflict();
+// Do something with jQuery
+jQuery("div p").hide();
+// Do something with another library's $()
+$("content").style.display = 'none';</code></pre>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">恢复使用别名$，然后创建并执行一个函数，在这个函数的作用域中仍然将$作为jQuery的别名来使用。在这个函数中，原来的$对象是无效的。这个函数对于大多数不依赖于其他库的插件都十分有效。</span>
+</h4>
+<pre><code class="example">jQuery.noConflict();
+(function($) { 
+  $(function() {
+    // 使用 $ 作为 jQuery 别名的代码
+  });
+})(jQuery);
+// 其他用 $ 作为别名的库的代码</code></pre>
+</div>
+<div id="example-2">
+<h4>例子： <span class="desc">你可以通过jQuery.noConflict() ready约束为一小段代码</span>
+</h4>
+<pre><code class="example">jQuery.noConflict()(function(){
+    // 使用jQuery代码
+}); 
+// 其他用 $ 作为别名的库的代码</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">创建一个新的别名用以在接下来的库中使用jQuery对象。</span>
+</h4>
+<pre><code class="example">var j = jQuery.noConflict();
+// Do something with jQuery
+j("div p").hide();
+// Do something with another library's $()
+$("content").style.display = 'none';</code></pre>
+</div>
+<div id="example-4">
+<h4>例子： <span class="desc">完全将 jQuery 移到一个新的命名空间。</span>
+</h4>
+<pre><code class="example">var dom = {};
+dom.query = jQuery.noConflict(true);</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">// Do something with the new jQuery
+dom.query("div p").hide();
+// Do something with another library's $()
+$("content").style.display = 'none';
+// Do something with another version of jQuery
+jQuery("div &gt; p").hide();</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.length</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/properties/" title="View all posts in Properties">Properties</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/properties/jquery-object-instance-properties/" title="View all posts in Properties of jQuery Object Instances">Properties of jQuery Object Instances</a></span>
+  
+  				</div>
+</div>
+<div id="length1" class="entry property">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">length</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Number">Number</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>在jQuery对象中的元素数。</p>
+<ul class="signatures"><li class="signature" id="length"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>length</h4></li></ul>
+<div class="longdesc"><p>目前匹配的元素数量。.<a href="#p=size">size()</a>方法将返回相同的数字。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Count the divs.  Click to add more.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  body { cursor:pointer; }
+  div { width:50px; height:30px; margin:5px; float:left;
+        background:green; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;$(document.body).click(function () {
+      $(document.body).append($("&lt;div&gt;"));
+      var n = $("div").length;
+      $("span").text("There are " + n + " divs." +
+                     "Click to add more.");
+    }).trigger('click'); // trigger the click to start&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

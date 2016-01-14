@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>JQuery Typing Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-1.5.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.8.9.custom.min.js"></script>
+    <script type="text/javascript">
+    function randomFromTo(from, to){
+        return Math.floor(Math.random() * (to - from + 1) + from);
+    }
+
+    var arrstring = new Array("images", "wallpaper", "photos", "vector",
+    "designer", "wordpress", "jquery", "extjs", "scripting", "blogging", 
+    "search", "tagging", "digital", "javascript", "server", "hosting",
+    "social", "twitter", "graphic", "photoshop", "netbeans", "mysql",
+    "apache", "iphone", "mobile", "android", "framework", "usability",
+    "optimization", "interface", "developer");
+
+
+    var score = 0;
+
+    $(document).ready(function() {
+
+        var children = $("#container").children();
+        var child = $("#container div:first-child");
+
+        var currentEl;
+        var currentElPress;
+
+        var win_width = $(window).width();
+        var text_move_px = 500;
+        var box_left = (win_width / 2) - (text_move_px / 2);
+
+        var playGame;
+        var stop;
+        
+        $(".animatedbox").css("left", box_left+"px");
+
+        $("#btnplay").click(function() {
+
+            if ($(this).text() == "Play") {
+                startPlay();
+                playGame = setInterval(startPlay, 23000);
+                $(this).text("Pause");
+            } else if ($(this).text() == "Pause") {
+                stop = true;
+                if ($("#container").find(".current").length == 0) {
+                  $(this).text("Play");
+                } else {
+                  $(this).text("wait a moment");
+                }
+                clearInterval(playGame);
+            }
+            return false;
+        });
+
+        var con_height = $("#container").height();
+        var con_pos = $("#container").position();
+        var min_top = con_pos.top;
+
+        // 56 = animated box top & bottom padding + font size
+        var max_top = min_top + con_height - 56;
+
+        function startPlay() {
+
+            child = $("#container div:first-child");
+            child.addClass("current");
+            currentEl = $(".current");
+            
+            for (i=0; i<children.length; i++) {
+                var delaytime = i * 3500;
+                setTimeout(function() {
+                    randomIndex = randomFromTo(0, arrstring.length - 1);
+                    randomTop = randomFromTo(min_top, max_top);
+                    child.animate({"top": randomTop+"px"}, 'slow');
+                    child.find(".match").text("");
+                    child.find(".unmatch").text(arrstring[randomIndex]);
+                    child.show();
+                    child.animate({
+                       left: "+="+text_move_px
+                    }, 8000, function() {
+                        currentEl.removeClass("current");
+                        currentEl.fadeOut('fast');
+                        currentEl.animate({
+                            left: box_left+"px"
+                        }, 'fast');
+                        if (currentEl.attr("id") == "last") {
+                            child.addClass("current");
+                            currentEl = $(".current");
+                            if (stop) {
+                               $("#btnplay").text("Play");
+                            }
+                        } else {
+                            currentEl.next().addClass("current");
+                            currentEl = currentEl.next();
+                        }
+                    });
+                    child = child.next();
+                }, delaytime);
+            }            
+        }
+
+        // on ie $(window).keypress() won't  work
+        $(document).keypress(function(event) {
+            currentElPress = $(".current");
+            
+            var matchSpan = currentElPress.find(".match");
+            var unmatchSpan = currentElPress.find(".unmatch");
+            var unmatchText = unmatchSpan.text();
+            var inputChar;
+
+            if ( $.browser.msie || $.browser.opera ) {
+                inputChar = String.fromCharCode(event.which);
+            } else {
+                inputChar = String.fromCharCode(event.charCode);
+            }
+
+            if (inputChar == unmatchText.charAt(0)) {
+                unmatchSpan.text(unmatchText.replace(inputChar, ""));
+                matchSpan.append(inputChar);
+                if (unmatchText.length == 1) {
+                    currentElPress.stop().effect("explode", 500);
+                    currentElPress.animate({
+                        left: box_left+"px"
+                    }, 'fast');
+                    if (currentElPress.attr("id") == "last" && stop) {
+                        $("#btnplay").text("Play");
+                    }
+
+                    currentElPress.removeClass("current");
+                    currentElPress = currentElPress.next();
+                    currentElPress.addClass("current");
+                    currentEl = currentElPress;
+                    score += 50;
+                    $("#score").text(score).effect("highlight", { 
+                        color: '#000000'
+                    }, 1000);
+                } else {
+                    score += 10;
+                    $("#score").text(score);
+                }
+            }
+        });
+    });
+    </script>
+    <style type="text/css">
+    * {
+        font-family: Arial;
+    }
+    #container {
+        background: #333;
+        width: 500px;
+        height: 230px;
+        margin: 0 auto;
+        -webkit-border-radius: 0.7em;
+        -moz-border-radius: 0.7em;
+        border-radius: 0.7em;
+        padding: 20px 0;
+    }
+    .animatedbox {
+        background: #ff0084;
+        position: absolute;
+        padding: 8px 20px 12px 15px;
+        font-size: 36px;
+        color: #ffffff;
+        -webkit-border-radius: 0.5em 2.5em 2.5em 0.5em;
+        -moz-border-radius: 0.5em 2.5em 2.5em 0.5em;
+        border-radius: 0.5em 2.5em 2.5em 0.5em;
+        left: 500px;
+        letter-spacing: 3px;
+        display: none;
+    }
+    .match {
+        color: #000000;
+    }
+    .current {
+        background: #0099cc;
+    }
+    #toolbar {
+        background: #ff0084;
+        -webkit-border-radius: 1.0em;
+        -moz-border-radius: 1.0em;
+        border-radius: 1.0em;
+        width: 500px;
+        padding: 10px 0 10px 0;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    #boxscore {
+        float: left;
+        font-size: 22px;
+        margin-left: 15px;
+        color: #ffffff;
+    }
+    #score {
+        font-weight: bold;
+        font-size: 24px;
+        padding: 0 3px;
+    }
+    #boxcontrol {
+        float: right;
+        margin-right: 15px;
+    }
+    #boxcontrol a {
+        font-size: 22px;
+        color: #ffffff;
+    }
+    .clear {
+        margin-top: 5px;
+        font-size: 11px;
+        font-weight: bold;
+        color: #ffffff;
+        clear: both;
+    }
+    #main {
+        background: #0099cc;
+        margin-top: 0;
+        padding: 2px 0 4px 0;
+        text-align: center;
+    }
+    #main a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        font-family: Arial;
+    }
+    #main a:hover {
+        text-decoration: underline;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+  </head>
+  <body>
+      <div id="main">
+          <a href="http://superdit.com">Superdit.com</a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="http://superdit.com/2011/03/04/jquery-typing-game/">Back To Post</a>
+      </div>
+
+      <div id="toolbar">
+          <div id="boxscore">
+            <span>Score:</span>&nbsp;<span id="score">0</span>
+          </div>
+          <div id="boxcontrol">
+            <a href="" id="btnplay">Play</a>
+          </div>
+          <div class="clear">
+              click "Play" to start the game,
+              type the text in the blue animated box
+          </div>
+      </div>
+      <div id="container">
+          <div class="animatedbox">
+              <span class="match"></span><span class="unmatch"></span>
+          </div>
+
+          <div class="animatedbox">
+              <span class="match"></span><span class="unmatch"></span>
+          </div>
+
+          <div class="animatedbox">
+              <span class="match"></span><span class="unmatch"></span>
+          </div>
+
+          <div class="animatedbox">
+              <span class="match"></span><span class="unmatch"></span>
+          </div>
+
+          <div class="animatedbox" id="last">
+              <span class="match"></span><span class="unmatch"></span>
+          </div>
+      </div>
+  </body>
+</html>

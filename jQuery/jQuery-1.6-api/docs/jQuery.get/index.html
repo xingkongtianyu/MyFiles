@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">jQuery.get()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/shorthand-methods/" title="View all posts in Shorthand Methods">Shorthand Methods</a></span>
+  
+
+          </div>
+
+</div>
+<div id="jQuery-get1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.get( url, [ data ], [ success(data, textStatus, jqXHR) ], [ dataType ] )</span> <span class="returns">返回: <a class="return"   target="_blank" href="http://api.jquery.com/Types/#jqXHR">jqXHR</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>通过服务器HTTP GET请求加载数据。</p>
+<ul class="signatures"><li class="signature" id="jQuery-get-url-data-successdata- textStatus- jqXHR-dataType">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.get( url, [ data ], [ success(data, textStatus, jqXHR) ], [ dataType ] )</h4>
+<p class="arguement"><strong>url</strong>一个包含发送请求的URL字符串</p>
+<p class="arguement"><strong>data</strong>向服务器发送请求的Key/value参数</p>
+<p class="arguement"><strong>success(data, textStatus, jqXHR)</strong>当请求成功后执行的回调函数。</p>
+<p class="arguement"><strong>dataType</strong>从服务器返回的预期的数据类型。默认：智能猜测（xml, json, script, or html）。</p>
+</li></ul>
+<div class="longdesc">
+<p>这是一个缩写的Ajax功能，这相当于：
+</p>
+<pre>$.ajax({
+  url: <em>url</em>,
+  data: <em>data</em>,
+  success: <em>success</em>,
+  dataType: <em>dataType</em>
+});
+</pre>
+<p>成功的回调函数是根据MIME类型的响应，通过返回的数据包括XML根节点, 字符串, JavaScript 文件, 或者 JSON 对象。 它也是通过文本地位的反应。</p>
+<p><strong>在jQuery 1.5</strong>，<code>success</code>回调函数还通过了<a   target="_blank" href="http://api.jquery.com/jQuery.get/#jqxhr-object">“jqXHR”对象</a> （ <strong>在</strong> jQuery <strong>1.4中</strong> ，它是通过<code>XMLHttpRequest</code>对象）。然而，由于JSONP形式和跨域的GET请求不使用<abbr title="XmlHttpRequest的">的XHR，</abbr>，在这些情况下， <code>(j)XHR</code>和<code>textStatus</code>回调参数传递的成功是不确定的。</p>
+<p>大多数实现将指定一个成功的处理程序：
+</p>
+<pre>$.get('ajax/test.html', function(data) {
+  $('.result').html(data);
+  alert('Load was performed.');
+});
+</pre>
+<p>这个例子所请求的全部HTML代码片段插在页面。</p>
+<h4 id="jqxhr-object">jqXHR 对象</h4>
+
+<p><strong>在jQuery 1.5</strong>，所有jQuery的Ajax方法都返回的超集<code>XMLHTTPRequest</code>对象。这个jQuery XHR对象，或“jqXHR，”通过<code>$.get()</code>约定的接口实现返回，给它的所有属性，方法和约定的行为（见<a   target="_blank" href="http://api.jquery.com/category/deferred-object/">Deferred object</a>获取更多信息）。为了方便和一致性，回调名称使用<a href="#p=jQuery.ajax"><code>$.ajax()</code></a>，它提供<code>.error()</code> <code>.success()</code>和<code>.complete()</code>方法。这些方法当<code>$.ajax()</code>请求终止时需要一个函数参数调用，这个函数接收<code>$.ajax()</code>回调函数名相同的参数。</p>
+<p>在jQuery 1.5的约定接口也使jQuery的Ajax方法，其中包括<code>$.get()</code> ，以链多个<code>.success()</code>， <code>.complete()</code>和<code>.error()</code>回调的一个请求，甚至回调后分配这些请求可能已经完成。如果请求已经完成，立即触发回调。</p>
+<pre>// Assign handlers immediately after making the request,
+  // and remember the jqxhr object for this request
+  var jqxhr = $.get("example.php", function() {
+    alert("success");
+  })
+  .success(function() { alert("second success"); })
+  .error(function() { alert("error"); })
+  .complete(function() { alert("complete"); });
+
+  // perform other work here ...
+
+  // Set another completion function for the request above
+  jqxhr.complete(function(){ alert("second complete"); });</pre>
+</div>
+<h3 id="notes-0">其他注意事项：
+</h3>
+<div class="longdesc"><ul>
+<li> 由于浏览器的安全限制，大多数“Ajax”的要求，均采用<a title="维基百科上的同源策略" href="http://en.wikipedia.org/wiki/Same_origin_policy">同一起源的政策</a> ;该请求不能成功地检索来自不同的域，子域或协议的数据。</li>
+<li>如果一个jQuery.get（）请求返回一个错误代码，它会静静的失败，除非脚本调用全局的<a   target="_blank" href="http://api.jquery.com/ajaxError/">.ajaxError（）</a>方法。在jQuery 1.5， 通过jQuery.get()返回的<code>.error()</code>方法的<code>jqXHR</code>对象也可用于处理错误。</li>
+<li>Script和JSONP形式请求不受同源策略的限制。</li>
+</ul></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">请求 test.php 页面, 但是忽略返回结果.</span>
+</h4>
+<pre><code class="example">$.get("test.php");</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">请求 test.php 页面 并且发送url参数(虽然仍然忽视返回的结果)。</span>
+</h4>
+<pre><code class="example">$.get("test.php", { name: "John", time: "2pm" } );</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">传递数组形式data<span class="arguement">参数</span>给服务器 (虽然仍然忽视返回的结果).</span>
+</h4>
+<pre><code class="example">$.get("test.php", { 'choices[]': ["Jon", "Susan"]} );</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Alert 从 test.php请求的数据结果 (HTML 或者 XML,取决于返回的结果).</span>
+</h4>
+<pre><code class="example">$.get("test.php", function(data){
+alert("Data Loaded: " + data);
+});</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">Alert 从 test.cgi请求并且发送url参数的数据结果 (HTML 或者 XML,取决于返回的结果).</span>
+</h4>
+<pre><code class="example">$.get("test.cgi", { name: "John", time: "2pm" },
+   function(data){
+     alert("Data Loaded: " + data);
+   });</code></pre>
+</div>
+<div id="example-5">
+<h4>Example: <span class="desc"> 获取test.php的页面已返回的JSON格式的内容
+ (&lt;?php echo json_encode(array("name"=&gt;"John","time"=&gt;"2pm")); ?&gt;).</span>
+</h4>
+<pre><code class="example">$.get("test.php", { "func": "getNameAndTime" },
+   function(data){
+     alert(data.name); // John
+     console.log(data.time); //  2pm
+   }, "json");</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

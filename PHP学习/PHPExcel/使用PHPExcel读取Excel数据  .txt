@@ -1,0 +1,58 @@
+使用PHPExcel读取Excel数据  
+
+2012-03-28 09:17:16|  分类： php |字号 订阅
+<?php
+header("Content-Type: text/html; charset=utf-8");
+require_once 'db.class.php';
+require_once 'Classes/PHPExcel.php';
+$objPHPExcel = new PHPExcel();
+$filePath = "email.xlsx";
+$arr = array();
+$temparr = array();
+
+$PHPExcel = new PHPExcel();
+$PHPReader = new PHPExcel_Reader_Excel2007();
+$PHPExcel = $PHPReader->load($filePath);
+$currentSheet = $PHPExcel->getSheet(0);
+/*取得一共有多少列*/
+$allColumn = $currentSheet->getHighestColumn();
+/*取得一共有多少行*/
+$allRow = $currentSheet->getHighestRow();
+
+echo $allColumn;
+echo '<hr>';
+echo $allRow;
+echo '<hr>';
+
+for($currentRow = 2;$currentRow<=$allRow;$currentRow++){
+  $temparr['usernum'] =       $currentSheet->getCell('A'.$currentRow)->getValue();
+  $temparr['price'] =         $currentSheet->getCell('B'.$currentRow)->getValue();
+  $temparr['rongliang'] =     $currentSheet->getCell('C'.$currentRow)->getValue();
+  $temparr['fujian'] =        $currentSheet->getCell('D'.$currentRow)->getValue();
+  $temparr['gerenwangpan'] =  $currentSheet->getCell('E'.$currentRow)->getValue();
+  $temparr['chaodafujian'] =  $currentSheet->getCell('F'.$currentRow)->getValue();
+  $temparr['suishenyou'] =    $currentSheet->getCell('G'.$currentRow)->getValue();
+  $temparr['chuanzhen'] =     $currentSheet->getCell('H'.$currentRow)->getValue();
+  $temparr['qiyewangpan'] =   $currentSheet->getCell('I'.$currentRow)->getValue();
+  //$arr[$currentRow-1] = $temparr;
+  $sql = "INSERT INTO `netease_price` (`usernum`, `price`, `rongliang`, `fujian`, `gerenwangpan`, `chaodafujian`,`suishenyou`, `chuanzhen`, `qiyewangpan`) VALUES (
+  '".$temparr['usernum']."',
+  '".$temparr['price']."',
+  '".$temparr['rongliang']."',
+  '".$temparr['fujian']."',
+  '".$temparr['gerenwangpan']."',
+  '".$temparr['chaodafujian']."',
+  '".$temparr['suishenyou']."',
+  '".$temparr['chuanzhen']."',
+  '".$temparr['qiyewangpan']."'
+  )";
+  mysql_query($sql);
+  /*
+  自动读取
+  for($currentColumn='A';$currentColumn<=$allColumn;$currentColumn++){
+   $address = $currentColumn.$currentRow;
+   echo $currentSheet->getCell($address)->getValue()."\t";
+  }
+  echo "<br />";
+  */
+}

@@ -1,0 +1,25 @@
+SVN clean失败解决方法 
+
+ svn执行clean up后出现提示:svn cleanup failed–previous operation has not finished; run cleanup if it was interrupted
+
+svn提交遇到恶心的问题，可能是因为上次cleanup中断后，进入死循环了。
+
+错误如下：
+
+ 
+
+解决方法：清空svn的队列
+
+1.下载sqlite3.exe   
+
+2.找到你项目的.svn文件，查看是否存在wc.db
+
+3.将sqlite3.exe放到.svn的同级目录
+
+4.启动cmd执行sqlite3 .svn/wc.db "select * from work_queue" (以管理员身份启动)
+
+5.看到很多记录，下一步执行delete from work_queue
+
+ 
+
+6.ok了，现在在到项目里面，执行cleanup，完全没问题了，图标状态也已经恢复了。

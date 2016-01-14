@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.text()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-insertion-inside/" title="View all posts in DOM Insertion, Inside">DOM Insertion, Inside</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/general-attributes/" title="View all posts in General Attributes">General Attributes</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#text1">text() </a><ul><li>.text()
+	  					</li></ul>
+</li>
+<li>
+<a href="#text2">text( textString ) </a><ul>
+<li>.text( textString )
+	  					</li>
+<li>.text( function(index, text) )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="text1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.text()</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>得到匹配元素集合中每个元素的文本内容结合,包括他们的后代。</p>
+<ul class="signatures"><li class="signature" id="text"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.text()</h4></li></ul>
+<div class="longdesc">
+<p>和 <code>.html()</code> 方法不同， <code>.text()</code> 在XML 和 HTML 文档中都能使用。 <code>.text()</code> 方法的结果是由所有匹配元素包含的文本内容组合起来的文本 (由于不同的浏览器对HTML分析器的不同，在返回的文本换行和其他空格可能会有所不同。) 考虑下面的HTML：</p>
+<pre>&lt;div class="demo-container"&gt;
+  &lt;div class="demo-box"&gt;Demonstration Box&lt;/div&gt;
+  &lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+  &lt;li&gt;list &lt;strong&gt;item&lt;/strong&gt; 2&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/div&gt;
+</pre>
+<p><code>$('div.demo-container').text()</code> 代码会产生一下结果：</p>
+<p>
+        <code>Demonstration Box list item 1 list item 2</code>
+      </p>
+<p><code>.text()</code> 方法不能使用在 input 元素上。 输入的文本需要使用 <a href="#p=val">.val()</a> 方法。</p>
+<p>在 jQuery 1.4中， <code>.text()</code> 方法返回值是文本和 CDATA 节点，以及元素节点。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4>在一个段落中查找文本（去除了HTML），然后设置最后一个段落的HTML为刚才的那段文本（红色粗体消失）。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:blue; margin:8px; }
+  b { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;&lt;b&gt;Test&lt;/b&gt; Paragraph.&lt;/p&gt;
+
+  &lt;p&gt;&lt;/p&gt;
+&lt;script&gt;
+    var str = $("p:first").text();
+    $("p:last").html(str);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div class="entry method" id="text2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.text( textString )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述:</strong>设置匹配元素集合中每个元素的文本内容为指定的文本内容。</p>
+<ul class="signatures">
+<li class="signature" id="text-textString">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.text( textString )</h4>
+<p class="arguement"><strong>textString</strong>用于设置匹配元素内容的文本</p>
+</li>
+<li class="signature" id="text-functionindex, text">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.text( function(index, text) )</h4>
+<p class="arguement"><strong>function(index, text)</strong>用来返回设置文本内容的一个函数。接收元素的索引位置和元素旧的文本值作为参数。 </p>
+</li>
+</ul>
+<div class="longdesc">
+<p>和 <code>.html()</code> 方法不同， <code>.text()</code> 在XML 和 HTML 文档中都能使用。 </p>
+<p>我们必须意识到这种方法提供了必要的字符串从提供的正确的HTML中脱离出来。这样做， 他调用DOM 方法 <code>.createTextNode()</code>, 一种替代的特殊字符与HTML对应（比如<code>&lt;</code> 替换为 <code>&amp;lt;</code>  )方法。考虑下面的html：</p>
+<pre>&lt;div class="demo-container"&gt;
+  &lt;div class="demo-box"&gt;Demonstration Box&lt;/div&gt;
+  &lt;ul&gt;
+    &lt;li&gt;list item 1&lt;/li&gt;
+    &lt;li&gt;list &lt;strong&gt;item&lt;/strong&gt; 2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+<p><code>$('div.demo-container').text('&lt;p&gt;This is a test.&lt;/p&gt;');代码语句将输出以下</code> DOM :</p>
+<pre>&lt;div class="demo-container"&gt;
+&amp;lt;p&amp;gt;This is a test.&amp;lt;/p&amp;gt;
+&lt;/div&gt;</pre>
+<p>它会出现在渲染的页面上就好像标签被暴露，像这样：</p>
+<pre>&lt;p&gt;This is a test&lt;/p&gt;
+</pre>
+<p><code>.text()</code> 方法不能使用在 input 元素上。 输入的文本需要使用 <a href="#p=val">.val()</a> 方法。</p>
+<p>在 jQuery 1.4中， <code>.text()</code>方法允许我们通过函数来传递文本内容。</p>
+<pre>$('ul li').text(function(index) {
+  return 'item number ' + (index + 1);
+});</pre>
+<p>给定一个拥有3个<code>&lt;li&gt;</code>元素，在这个例子中将输出下面的DOM：</p>
+<pre>&lt;ul&gt;
+  &lt;li&gt;item number 1&lt;/li&gt;
+  &lt;li&gt;item number 2&lt;/li&gt;
+  &lt;li&gt;item number 3&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">在段落中添加文本。</span>注意这个&lt;b&gt;标签将从HTML中脱离出来。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { color:blue; margin:8px; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;Test Paragraph.&lt;/p&gt;
+&lt;script&gt;$("p").text("&lt;b&gt;Some&lt;/b&gt; new text.");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

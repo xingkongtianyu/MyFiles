@@ -1,0 +1,22 @@
+mysql设为linux服务
+
+cp /usr/local/mysql5/share/mysql/mysql.server /etc/init.d/mysqld
+chkconfig --add mysqld
+chkconfig --level 2345 mysqld on
+chown mysql:mysql -R /usr/local/mysql5/
+service mysqld start
+
+apache设为linux服务
+
+cp /usr/local/apache2/bin/apachectl /etc/init.d/httpd
+vi /etc/init.d/httpd
+
+在在#!/bin/sh后面加入下面两行
+#chkconfig:345 85 15
+#description: Start and stops the Apache HTTP Server.
+
+然后
+chmod +x /etc/rc.d/init.d/httpd
+chkconfig --add httpd
+然后可以用setup命令进入服务设置，设置为开机启动
+

@@ -1,0 +1,139 @@
+Jquery中的弹层popup_layer的应用
+
+popup_layer是封装好的Jquery插件，其调用的方式很简单，只需要创建对象就行了，其参数大致如下:
+
+trigger:null,                            //触发的元素id,必填参数
+
+popupBlk:null,                        //弹出内容层元素id,必填参数
+
+closeBtn:null,                        //关闭弹出层的元素id
+
+popupLayerClass:"popupLayer",        //弹出层容器的class名称
+
+eventType:"click",                   //触发事件的类型为Jquery支持的类型
+
+offsets:{x:0,y:0 },                   //弹出层容器位置的调整值    
+
+ useFx:false,                       //是否使用卷帘特效   
+
+        useOverlay:false,                  //是否使用全局遮罩颜色可以修改
+
+usePopupIframe:true,              //是否使用容器遮罩
+
+isresize:true,                     /是否绑定window对象的resize事件
+
+onBeforeStart:function(){}         //自定义事件
+
+下面结合一个复杂点的实例说明一下其简单应用:
+
+JS 代码: 
+
+<script src="jquery.1.3.2.js"></script>
+
+<script src="popup_layer.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+var lihui = new PopupLayer({trigger:"#loginin",popupBlk:"#userlogin",closeBtn:"#close1",useFx:true,popupLayerClass:"show"});
+
+lihui.doEffects = function(way){
+
+if(way == "open"){
+
+this.popupLayer.css({opacity:0.3}).show(400,function(){
+
+this.popupLayer.animate({
+
+left:($(document).width() - this.popupLayer.width())/2,
+
+top:(document.documentElement.clientHeight - this.popupLayer.height())/2 + $(document).scrollTop(),
+
+opacity:0.8
+
+},1000,function(){this.popupLayer.css("opacity",1)}.binding(this));
+
+}.binding(this));
+
+}
+
+else{
+
+this.popupLayer.animate({
+
+left:this.trigger.offset().left,
+
+top:this.trigger.offset().top,
+
+opacity:0.1
+
+},{duration:500,complete:function(){this.popupLayer.css("opacity",1);this.popupLayer.hide()}.binding(this)});
+
+}popup_layer.jspopup_layer.js
+
+};
+
+});
+
+</script>
+
+HTML代码:
+
+  <ul class="login">
+
+     <li><a href="###" id="loginin">登录</a></li>
+
+ <li><a href="###" id="regist">注册</a></li>
+
+   </ul>
+
+  <div id="userlogin">
+
+       <h1>你可以在这里输入弹出层的相关信息<a href="###" id="close1"><img src="styles/images/close.gif"/></a></h1>
+
+   <div class="usermain">
+
+      <ul>
+
+     <li><input type="checkbox" name="lan" value="asp">ASP</li>
+
+ <li><input type="checkbox" name="lan" value="php">PHP</li>
+
+ <li><input type="checkbox" name="lan" value="jsp">JSP</li>
+
+  </ul>
+
+  <p>以上三门语言，你更喜欢哪一门语言啊？你认为最容易学会的又是哪一门语言的啊</p>
+
+  <img src="styles/images/11115641.gif"/><img src="styles/images/0005.gif"/><img src="styles/images/11115641.gif"/><img src="styles/images/0005.gif"/> 
+
+  <img src="styles/images/11115641.gif"/><img src="styles/images/0005.gif"/><img src="styles/images/11115641.gif"/><img src="styles/images/0005.gif"/> 
+
+   </div>
+
+  </div>
+
+CSS代码：
+
+*{padding:0;margin:0}
+
+ul{ list-style:none;}
+
+a{ text-decoration:none;}
+
+ul.login { line-height:180%; width:300px; margin:0 auto;}
+
+ul.login li{ float:left; width:60px; text-align:center;}
+
+#userlogin{width:494px; height:394px; border:3px solid #cccccc;}
+
+#userlogin h1 {height:30px; line-height:30px; font-size:14px; text-indent:15px; border-bottom:1px solid #ececec;}
+
+#userlogin h1 a { float:right; display:block; vertical-align:middle;}
+
+#userlogin .usermain{width:auto; height:358px; padding:2px;}
+
+.show{color:red;}
+
+以上实现的效果是：由登录位置移动到屏幕的正中位值，透明度渐变

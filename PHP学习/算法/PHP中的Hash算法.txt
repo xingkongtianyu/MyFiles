@@ -1,0 +1,91 @@
+Hash Table是PHP的核心,这话一点都不过分.
+PHP的数组,关联数组,对象属性,函数表,符号表,等等都是用HashTable来做为容器的.
+PHP的HashTable采用的拉链法来解决冲突, 这个自不用多说, 我今天主要关注的就是PHP的Hash算法, 和这个算法本身透露出来的一些思想.
+PHP的Hash采用的是目前最为普遍的DJBX33A (Daniel J. Bernstein, Times 33 with Addition), 这个算法被广泛运用与多个软件项目,Apache, Perl和Berkeley DB等. 对于字符串而言这是目前所知道的最好的哈希算法，原因在于该算法的速度非常快，而且分类非常好(冲突小,分布均匀).
+算法的核心思想就是:
+1.         hash(i) = hash(i-1) * 33 + str[i]</SPAN< li>
+在zend_hash.h中,我们可以找到在PHP中的这个算法:
+1.    static inline ulong zend_inline_hash_func(char *arKey, uint nKeyLength)
+2.    {
+3.        register ulong hash = 5381;
+4.   
+5.        /* variant with the hash unrolled eight times */
+6.        for (; nKeyLength >= 8; nKeyLength -=   {
+7.            hash = ((hash << 5) + hash) + *arKey++;
+8.            hash = ((hash << 5) + hash) + *arKey++;
+9.            hash = ((hash << 5) + hash) + *arKey++;
+10.           hash = ((hash << 5) + hash) + *arKey++;
+11.           hash = ((hash << 5) + hash) + *arKey++;
+12.           hash = ((hash << 5) + hash) + *arKey++;
+13.           hash = ((hash << 5) + hash) + *arKey++;
+14.           hash = ((hash << 5) + hash) + *arKey++;
+15.       }
+16.       switch (nKeyLength) {
+17.           case 7: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+18.           case 6: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+19.           case 5: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+20.           case 4: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+21.           case 3: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+22.           case 2: hash = ((hash << 5) + hash) + *arKey++; /* fallthrough... */
+23.           case 1: hash = ((hash << 5) + hash) + *arKey++; break;
+24.           case 0: break;
+25.   EMPTY_SWITCH_DEFAULT_CASE()
+26.       }
+27.       return hash;
+28.   }</SPAN< li>
+相比在Apache和Perl中直接采用的经典Times 33算法:
+1.    hashing function used in Perl 5.005:
+2.      # Return the hashed value of a string: $hash = perlhash("key")
+3.      # (Defined by the PERL_HASH macro in hv.h)
+4.      sub perlhash
+5.      {
+6.          $hash = 0;
+7.          foreach (split //, shift) {
+8.              $hash = $hash*33 + ord($_);
+9.          }
+10.         return $hash;
+11.     }</SPAN< li>
+在PHP的hash算法中, 我们可以看出很处细致的不同.
+首先, 最不一样的就是, PHP中并没有使用直接乘33, 而是采用了:
+1.      hash << 5 + has
+这样当然会比用乘快了.
+然后, 特别要主意的就是使用的unrolled, 我前几天看过一片文章讲Discuz的缓存机制, 其中就有一条说是Discuz会根据帖子的热度不同采用不同的缓存策略, 根据用户习惯,而只缓存帖子的第一页(因为很少有人会翻帖子).
+于此类似的思想, PHP鼓励8位一下的字符索引, 他以8为单位使用unrolled来提高效率, 这不得不说也是个很细节的,很细致的地方.
+另外还有inline, register变量 … 可以看出PHP的开发者在hash的优化上也是煞费苦心
+最后就是, hash的初始值设置成了5381, 相比在Apache中的times算法和Perl中的Hash算法(都采用初始hash为0), 为什么选5381呢? 具体的原因我也不知道, 但是我发现了5381的一些特性:
+1.    Magic Constant 5381:
+2.      1. odd number
+3.      2. prime number
+4.      3. deficient number
+5.      4. 001/010/100/000/101
+看了这些, 我有理由相信这个初始值的选定能提供更好的分类.
+至于说, 为什么是Times 33而不是Times 其他数字, 在PHP Hash算法的注释中也有一些说明, 希望对有兴趣的同学有用:
+1.      DJBX33A (Daniel J. Bernstein, Times 33 with Addition)
+2.   
+3.      This is Daniel J. Bernstein's popular `times 33' hash function as
+4.      posted by him years ago on comp.lang.c. It basically uses a function
+5.      like ``hash(i) = hash(i-1) * 33 + str[i]''. This is one of the best
+6.      known hash functions for strings. Because it is both computed very
+7.      fast and distributes very well.
+8.   
+9.      The magic of number 33, i.e. why it works better than many other
+10.     constants, prime or not, has never been adequately explained by
+11.     anyone. So I try an explanation: if one experimentally tests all
+12.     multipliers between 1 and 256 (as RSE did now) one detects that even
+13.     numbers are not useable at all. The remaining 128 odd numbers
+14.     (except for the number 1) work more or less all equally well. They
+15.     all distribute in an acceptable way and this way fill a hash table
+16.     with an average percent of approx. 86%.
+17.  
+18.     If one compares the Chi^2 values of the variants, the number 33 not
+19.     even has the best value. But the number 33 and a few other equally
+20.     good numbers like 17, 31, 63, 127 and 129 have nevertheless a great
+21.     advantage to the remaining numbers in the large set of possible
+22.     multipliers: their multiply operation can be replaced by a faster
+23.     operation based on just one shift plus either a single addition
+24.     or subtraction operation. And because a hash function has to both
+25.     distribute good _and_ has to be very fast to compute, those few
+26.     numbers should be preferred and seems to be the reason why Daniel J.
+27.     Bernstein also preferred it.
+28.  
+29.     www.2cto.com        -- Ralf S. Engelschall <rse@engelschall.com>

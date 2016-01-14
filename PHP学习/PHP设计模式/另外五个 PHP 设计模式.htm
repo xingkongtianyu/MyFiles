@@ -1,0 +1,1352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0070)http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>另外五个 PHP 设计模式</title>
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+  <meta name="Owner" content="dw@cn.ibm.com">
+  <meta name="DC.Language" scheme="rfc1766" content="zh-CN">
+  <meta name="IBM.Country" content="CN">
+<meta name="Security" content="Public">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003,1004">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<meta name="Abstract" content="PHP V5 的面向对象特性使您能够实现设计模式来改进代码设计。通过这种方式改进代码设计，代码在进行修改时将变得更加易读、更易维护且更加健壮。">
+<meta name="Description" content="PHP V5 的面向对象特性使您能够实现设计模式来改进代码设计。通过这种方式改进代码设计，代码在进行修改时将变得更加易读、更易维护且更加健壮。">
+<meta name="Keywords" content="design patterns, php5, PHP, iterator, state decorator, delegate, open source, Nathan Good, 设计模式, 迭代器, 状态装饰器, 委托, 开放源码, tttosca">
+<meta name="DC.Date" scheme="iso8601" content="2008-04-28">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TT400">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCOSRCN">
+<meta name="DC.Rights" content="© Copyright IBM Corporation 2008">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2008-04-28">
+<meta name="title" content="另外五个 PHP 设计模式">
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="./另外五个 PHP 设计模式_files/all.css" media="all" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/screen-uas.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/screen-fonts.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/handheld.css" media="handheld" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/print.css" media="print" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/overlay.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<!-- dW-specific CSS -->
+<link href="./另外五个 PHP 设计模式_files/dw-screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/dw-local-site.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/dw-screen-comments-ratings-signin.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/jquery.cluetip.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+
+<!-- JPP: LOCAL URL FOR TESTING V16 DEFIANT MASTHEAD/FOOTER -->
+<link href="./另外五个 PHP 设计模式_files/dw-mf2012-01.css" rel="stylesheet" title="www" type="text/css">
+<link href="./另外五个 PHP 设计模式_files/dw-mf-cn.css" rel="stylesheet" title="www" type="text/css">
+<script src="./另外五个 PHP 设计模式_files/ibmcommon.js" type="text/javascript">//</script><link rel="search" type="application/opensearchdescription+xml" href="http://www.ibm.com/search/opensearch/description.xml" title="IBM Search">
+<script src="./另外五个 PHP 设计模式_files/dynamicnav.js" type="text/javascript">//</script>
+<script language="JavaScript" src="./另外五个 PHP 设计模式_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+<script language="JavaScript" type="text/javascript">
+  // <![CDATA[
+
+ dwr = {};
+  dwr.clickhere = '点击评分';
+  dwr.starIntro = ''; 
+  dwr.stars = '星';
+  dwr.star = '星'; 
+  dwr.avgRatingOf = '平均分';
+  dwr.youRated = '您的评分是';
+  dwr.avgRating = '平均分';
+  dwr.basedOnVote = '共 {1} 个评分'; // {1} to be substitue by code
+  dwr.basedOnVotes = '共 {1} 个评分';
+  dwr.leftParen = '（'; 
+  dwr.rightParen = ' ）'; 
+  dwr.space = ' '; 
+  dwr.yourRating = '您的评分';
+dwr.avgRating2 = '总共 {1} 评分的平均分';
+dwr.avgRating3 = '平均分{1} 星';
+dwr.rateThisArticle = '为本文评分';
+dwr.votes = '{1}个评分';
+dwr.vote = '{1}个评分';
+dwr.submitErr = '错误：提交失败，请重试。';
+dwr.noRatingErr = '错误：请选择一个评分并重新提交。';
+dwr.submit = '提交';
+// ]]>
+</script>
+
+<!-- Rating_START -->
+<script language="JavaScript" src="./另外五个 PHP 设计模式_files/showrating.js" type="text/javascript"></script>
+<style type="text/css">
+  .metavalue {
+  display: none;
+  }
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="./另外五个 PHP 设计模式_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="./另外五个 PHP 设计模式_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="./另外五个 PHP 设计模式_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('dwchina');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+  <!-- Include file support -->
+  <script language="JavaScript" type="text/javascript">
+    (function($) {
+    jQuery.extend({
+    getInc: function(u,d){
+    if(u==null)return;
+    jQuery.ajax({
+    type: "GET",
+    url: u,
+    dataType: "text",
+    success: function(t) {
+    jQuery(d).html(t);
+    ibmCommon.initShowHide(jQuery(d).children()[0]);	
+    },
+    async: true
+    });
+    }
+    });
+    })(jQuery);
+  </script>
+<script id="flashdetect" type="text/javascript" src="./另外五个 PHP 设计模式_files/flash-detect.js" charset="UTF-8"></script><script id="mhMenu" type="text/javascript" src="./另外五个 PHP 设计模式_files/cnzh-utf8.js" charset="UTF-8"></script><script id="wiBundle" type="text/javascript" src="./另外五个 PHP 设计模式_files/Controller" charset="UTF-8"></script></head>
+
+<body id="ibm-com">
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-content">跳转到主要内容</a></div>
+<div id="ibm-masthead-dw">
+  
+    <!-- TOP ROW -->    
+    <div id="dw-masthead-top-row">
+    	<ul id="ibm-mast-options-dw" class="cn">
+    		<li id="dw-mast-top-0"> 	
+    			<a class="" href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&lang=zh&d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F" title="">登录 (或注册)</a>
+    		</li>
+    		<li id="dw-mast-top-1" class="dw-mast-top-1-cn">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#SELECTLANG">中文</a><img class="dw-preload" src="./另外五个 PHP 设计模式_files/arrow-down-active.gif" width="8" height="7" alt="">
+    		</li>
+    		<li id="dw-mast-top-2" class="dw-mf-hide">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/photo.do" alt="PHOTO" class="dw-mast-profimg" width="20" height="20"> [userid]</a>
+    		</li>
+    		<li id="dw-mast-top-3">
+    			<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/ibm-smlogo.gif" width="44" height="16" alt="IBM®"></a>
+    		</li>
+    	</ul>
+	</div>
+    
+    <!-- TOP ROW SLIDER -->
+    <div id="ibm-my-menu-dw">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+                <!-- Sign-in -->
+                <div class="dw-mast-columns">                
+					<div class="dw-mast-col-1-1">
+						<div id="dw-mast-sso">
+							<!--<div id="dw-mast-sso-reg">
+								<p class="dw-mast-sso-reg-cn">如果您还没有注册到 IBM 注册系统，我们为给您带来的不便表示道歉，并请您马上注册。 							
+									<a href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh&amp;d='+encodeURIComponent(location.href);})();">现在注册</a>。</p>
+							</div>-->
+							<div id="signin_error_mf" class="no-display"></div>
+							<div id="dw-mast-sso-form">
+								<form id="sForm_mf" action="" method="post" name="sForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-sso-id" class="dw-mast-sso-id-cn">
+										<label for="ibmid_mf">IBM ID：</label>
+										<input id="ibmid_mf" type="text" value="" name="ibmid_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,&#39;mf&#39;);" class="">
+									</div>
+									<div id="dw-mast-sso-pw" class="dw-mast-sso-pw-cn">
+										<label for="pw_mf">密码：</label>
+										<input id="pw_mf" type="password" value="" name="pw_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,&#39;mf&#39;);" class="">
+									</div>
+									<div id="dw-mast-sso-target" class="dw-mast-sso-target-cn">
+										<p class="dw-mf-perm-box">
+											<input id="perm_mf" type="checkbox" name="perm_name_mf"><label for="perm_mf"> 保持登录。</label>
+										</p>
+									</div>
+									<div id="dw-mast-sso-terms">
+										<p class="dw-mast-sso-terms-cn">单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">查看条款和条件</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-cn" name="ibm_submit_name_mf" value="提交" onclick="signin(&#39;mf&#39;);return false;" type="submit">
+									</div>
+								</form>
+							</div>
+							<div id="dw-mast-sso-update">
+								<div id="dw-mast-sso-update-id">
+									<ul>
+										<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.href);})();">需要一个 IBM ID？</a></li>
+										
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a></li>
+									</ul>
+								</div>
+								<div id="dw-mast-sso-update-pw">
+								<ul class="dw-mf-pwupdate">
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a></li>
+									<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></li>
+								</ul>
+									</div>
+							</div>
+							<div id="dw-mast-sso-text">
+								<p>当您初次登录到 developerWorks 时，将会为您创建一份概要信息。<strong>您在 developerWorks 概要信息中选择公开的信息将公开显示给其他人，但您可以随时修改这些信息的显示状态。</strong>您的姓名（除非选择隐藏）和昵称将和您在 developerWorks 发布的内容一同显示。</p>
+								<p class="dw-mf-secure-cn">所有提交的信息确保安全。</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>	
+						</div>
+						
+						<div id="dw-mast-dname" class="dw-mf-hide">
+							<p>当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+							<div id="signin_dname_error_mf" class="no-display"></div>
+							<div id="dw-mast-dname-form">
+								<form id="dForm_mf" action="" method="post" name="dForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-dname-mf">
+										<label for="dname_mf">昵称：</label>
+										<input id="dname_mf" name="dname_name_mf" maxlength="31" size="25" value="" type="text" onkeypress="handleEP(event,this.form,&#39;mf&#39;);">
+									</div>
+									<div id="dw-mast-dname-terms">
+										<p class="dw-mast-dname-terms-cn">单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">查看条款和条件</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn-cn" name="dname_submit_name_mf" value="提交" onclick="signin(&#39;mf&#39;);return false;" type="submit">
+									</div>
+								</form>								
+							</div>
+							<div id="dw-mast-dname-secure">
+								<p class="dw-mf-secure-cn">所有提交的信息确保安全。</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>	
+						</div>
+	
+						<div id="dw-mast-auth" class="dw-mf-hide">
+							<div>
+
+								<h2>My developerWorks:</h2>
+								<ul>
+									<li><a id="dw-mast-top-0-0" href="http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/myProfileView.do?lang=zh">我的概要信息</a></li>
+									<li><a href="http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=zh">我的首页</a></li>
+									<li><a href="http://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/mycommunities?lang=zh">我的群组</a></li>
+								</ul>     
+							</div>
+							<div id="dw-mast-notify" class="dw-mf-hide">
+								<h2>我的通知：</h2>
+								<ul>
+									<li><a id="new_notify" href="http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=zh">{[num_notify] 个新通知}([num_notify] 个新通知)</a></li>
+									<li><a id="new_invite" href="http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/wc.do?action=in&requireAuth=true&widgetId=friends&lang=[lang]">{[num_invite] 个网络请求}([num_invite] 个网络请求)</a></li>  
+								</ul>
+							</div>
+							<div class="dw-mast-more">
+								<ul class="ibm-link-list">
+									<li><a class="dw-more-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="signOut(); return false;"><strong>退出</strong></a></li>
+								</ul>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+								</ul>
+							</div>		
+						</div>
+						
+					</div>
+                	
+                </div>
+                <!-- Site selector --> 
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2>选择语言：</h2>
+						<ul>
+							<li><a id="dw-mast-top-1-0" href="http://www.ibm.com/developerworks/">English</a></li>
+							<li><a href="http://www.ibm.com/developerworks/cn/">中文</a></li>
+							<li><a href="http://www.ibm.com/developerworks/jp/">日本語</a></li>
+						    <li><a href="http://www.ibm.com/developerworks/ru/">Русский</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/ssa/">Español</a></li>
+							<li><a href="http://www.ibm.com/developerworks/vn/">Việt</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-lang"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                <div class="dw-mast-columns"><!-- Authenticated --></div>
+                <!-- IBM -->
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<ul>
+							<li><a id="dw-mast-top-3-0" href="http://www.ibm.com/cn/zh/">IBM 主页</a></li>
+							<li><a href="http://www.ibm.com/solutions/cn/zh/">解决方案</a></li>
+							<li><a href="http://www.ibm.com/software/cn/">软件</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2 dw-mast-ibm">
+						<ul>
+							<li><a href="http://www.ibm.com/support/cn/zh/">支持门户</a></li>
+							<li><a href="http://www.ibm.com/support/documentation/cn/zh/">产品文档</a></li>
+							<li><a href="http://www.ibm.com/redbooks/">Redbooks（英文）</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-ibm-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+						</ul>
+                    </div> 
+				</div>
+			</div>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div id="ibm-universal-nav-dw">
+        <ul id="ibm-unav-links-dw">
+        	<li id="ibm-unav-home-dwlogo">
+        		<a href="http://www.ibm.com/developerworks/cn/"><img src="./另外五个 PHP 设计模式_files/dw-wordmark.gif" width="218" height="32" alt="developerWorks®"></a>
+        	</li>
+        </ul>
+    	<ul id="ibm-menu-links-dw" class="ibm-menu-links-dw-cn">
+    		
+    		<li id="dw-mast-nav-0"><a href="http://www.ibm.com/developerworks/cn/topics">技术主题</a></li>
+    		<li id="dw-mast-nav-1"><a href="http://www.ibm.com/developerworks/cn/downloads/">软件下载</a></li>
+    		<li id="dw-mast-nav-2"><a href="https://www.ibm.com/developerworks/community/?lang=zh">社区</a></li>
+    		<li id="dw-mast-nav-3"><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></li>
+    	</ul>   
+    	<form id="ibm-search-form" action="http://www.ibm.com/search/csass/search/" method="get" name="form1">
+    		<input type="hidden" name="sn" value="dw">
+    		<input type="hidden" name="lang" value="zh">
+    		<input type="hidden" name="cc" value="CN">
+    		<input type="hidden" name="en" value="utf">
+    		<input type="hidden" name="hpp" value="20">
+    		<input type="hidden" name="dws" value="cndw">
+    		<input type="hidden" name="lo" value="zh">
+    		<p>
+    			<label for="q"><img alt="查询:" height="1" width="1" src="./另外五个 PHP 设计模式_files/c.gif"></label>
+    			<input type="text" value="搜索 developerWorks" name="q" maxlength="100" id="q">
+    			<input type="submit" id="ibm-search" class="ibm-btn-search ibm-btn-search-cn" name="Search" value="搜索">
+    		</p>
+    	</form>
+    </div>
+    
+    <!-- BOTTOM ROW SLIDER -->
+    <div id="ibm-common-menu-dw">
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Technical topics category -->
+  
+            	<div class="dw-mast-columns">
+            	<div class="dw-mast-col-5-1">
+            		<h2><a id="dw-mast-nav-0-0" href="http://www.ibm.com/developerworks/cn/topics/">技术主题</a></h2>
+            		
+            		<ul>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/agile/">Agile
+            			    transformation</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/aix/">AIX and UNIX</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/bigdata/">Big data</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/cloud/">Cloud computing</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/ibmi/">IBM i</a></li>
+            			
+            		</ul>     
+            	</div>
+            	<div class="dw-mast-col-5-2">
+            		
+            		<ul>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/data/">Information management</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/java/">Java technology</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/linux/">Linux</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/lotus/">Lotus</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/mobile/">Mobile
+            		        development</a></li>
+           			
+            		</ul>
+            	</div>
+            	<div class="dw-mast-col-5-3">
+            		
+            		<ul>
+          			<li><a href="http://www.ibm.com/developerworks/cn/opensource/">Open source</a></li>
+            		    <li><a href="http://www.ibm.com/developerworks/cn/rational/">Rational</a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/webservices/">SOA and web services</a></li>
+             			<li><a href="http://www.ibm.com/developerworks/cn/web/">Web development</a></li>  
+            			<li><a href="http://www.ibm.com/developerworks/cn/websphere/">WebSphere</a></li>     
+    
+            		</ul>
+            		
+            	</div>
+            	<div class="dw-mast-col-5-4">
+            		<ul>
+           			<li><a href="http://www.ibm.com/developerworks/cn/xml/">XML</a></li>
+            		</ul>        
+            	</div>
+            	<div class="dw-mast-col-5-5">
+            		<ul>
+            			<li><a href="http://www.ibm.com/developerworks/cn/library/"><strong>文档库</strong></a></li>
+            			<li><a href="http://www.ibm.com/developerworks/cn/products/"><strong>产品 A - Z</strong></a></li>				    
+            		</ul>        
+            	</div>
+            	<div class="dw-mast-close">
+            		<ul>
+            			<li><div class="dw-mast-close-tech-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            		</ul>
+            	</div>
+            </div>
+            	<!-- Evaluation software category -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-2-1">
+            			<h2><a id="dw-mast-nav-1-0" href="http://www.ibm.com/developerworks/cn/downloads">软件下载</a></h2>
+            			<ul>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#data">Information management</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#lotus">Lotus</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#rational">Rational</a></li>
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-col-2-2">
+            			<ul>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#tivoli">Tivoli</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/downloads/#websphere">WebSphere</a></li>
+            				
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-eval-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            	<!-- Community category -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-2-1">
+            			<h2><a id="dw-mast-nav-2-0" href="https://www.ibm.com/developerworks/community/?lang=zh">社区</a></h2>
+            			<ul>
+            				<li><a href="https://www.ibm.com/developerworks/community/homepage/?lang=zh">我的首页</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/profiles/home.do?lang=zh">概要信息</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/groups/service/html/allcommunities?lang=zh">群组</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/mydeveloperworks/blogs/?lang=zh">博客</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/bookmarks/html?lang=zh">书签</a></li>  
+            			</ul>     
+            		</div>
+            		<div class="dw-mast-col-2-2">
+            			<ul>
+            				<!--	<li><a href="">Forums</a></li> -->
+            				<li><a href="https://www.ibm.com/developerworks/mydeveloperworks/wikis/home?lang=zh">Wiki</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/files/app?lang=zh">文件</a></li>
+            				<li><a href="https://www.ibm.com/developerworks/community/activities/service/html/mainpage?lang=zh#dashboard,myactivities">活动</a></li>
+            				<!--	<li><a href="">Podcasts</a></li> -->    
+            			</ul>
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-comm-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            	<!-- Events category -->
+            	<div class="dw-mast-columns">
+            		<div class="dw-mast-col-1-1">
+            			<h2><a id="dw-mast-nav-3-0" href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></h2>
+            			<ul>
+            				<li><a href="https://www.ibm.com/developerworks/community/groups/service/html/communityview?communityUuid=6d7f9e5d-5f89-4767-a006-a81b8d186370&lang=zh">技术讲座</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/cn/swi/">多媒体课堂</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/find/webcasts/">网络广播（英文）</a></li>
+            				<li><a href="http://www.ibm.com/developerworks/find/events/">查找活动（技术讲座，网络广播，会议等）（英文）</a></li> 
+            			</ul>            
+            		</div>
+            		<div class="dw-mast-close">
+            			<ul>
+            				<li><div class="dw-mast-close-event-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10" border="0"></a></div></li>
+            			</ul>
+            		</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+	
+</div>
+<div id="fdiv" class="ibm-access"><embed type="application/x-shockwave-flash" src="https://www.ibm.com/developerworks/js/dw-mf/connect.swf" width="1" height="1" id="sflash" name="sflash" quality="high" menu="false" wmode="window" movie="https://www.ibm.com/developerworks/js/dw-mf/connect.swf" swliveconnect="true" allowscriptaccess="always"></div>
+<!-- MASTHEAD_END --><!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+      <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li class="ibm-first"><a href="http://www.ibm.com/developerworks/cn/">developerWorks 中国</a></li><li><a href="http://www.ibm.com/developerworks/cn/opensource/">Open source</a></li><li><a href="http://www.ibm.com/developerworks/cn/views/opensource/libraryview.jsp">文档库</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>另外五个 PHP 设计模式</h1><p><em>两年前，我们介绍了五个设计模式 —— 本文将介绍另外五个加速 PHP 应用程序开发的设计模式</em></p>
+</div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a class="dwauthor" rel="#authortip1" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#author1">Nathan A. Good</a>, 高级信息工程师, 顾问</div><div id="authortip1" class="dwauthor-onload-state ibm-no-print" style="display: none; ">Nathan A. Good 居住在明尼苏达州的双子城。在不编写软件时，他喜欢组装 PC 和服务器、阅读和撰写技术文章，鼓励他的所有朋友转用开源软件。如果他不呆在电脑旁（他自己承认，这种情况并不多见），他会与家人共渡、前往教堂或去看电影。</div>
+<p></p>
+  <p><strong>简介：</strong>&nbsp;PHP V5 的面向对象特性使您能够实现设计模式来改进代码设计。通过这种方式改进代码设计，代码在进行修改时将变得更加易读、更易维护且更加健壮。</p>
+
+ 
+</div>
+
+<div class="ibm-column ibm-second">
+
+<p class="leading"><b>发布日期：</b>&nbsp;2008 年 4 月 28 日
+  
+<br><b>级别：</b>&nbsp;中级
+    
+
+<br><strong>访问情况 ：</strong>&nbsp;7231 次浏览
+  <br><strong>评论：</strong>&nbsp;<span id="nCmts">1&nbsp;(<a class="dw-view-comment" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#icomments">查看</a>&nbsp;|&nbsp;<a onclick="showSignIn();return false;" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">添加评论</a> - 登录)</span>
+  <!-- Rating_Area_Begin -->
+  </p><div id="art-rating-summary"><img alt="平均分 4 星 共 9 个评分" src="./另外五个 PHP 设计模式_files/stars120x20-4b.jpg" class="dw-avg-rating"> 平均分 (9个评分)<br><a class="dw-view-comment" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#iratings">为本文评分</a></div>
+  <!-- Rating_Area_End -->
+  <br>
+<p></p>
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area_And_Overlays_Begin -->
+
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+<p>
+
+                <em>设计模式</em> 一书介绍了很多此类概念。当时，我还在学习面向对象 (OO)，因此我发现那本书中有许多概念都很难领会。但是，随着越来越熟悉 OO 概念 —— 尤其是接口和继承的使用 —— 我开始看到设计模式中的实际价值。作为一名应用程序开发人员，即使从不了解任何模式或者如何及何时使用这些模式，对您的职业生涯也没有什么大的影响。但是，我发现了解这些模式以及 developerWorks 文章 “五种常见 PHP 设计模式” 中介绍的那些模式的优秀知识后（请参阅 <a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#resources">参考资料</a>），您可以完成两件事情：</p>
+            <dl>
+                <dt><b>
+                    <strong>启用高带宽会话</strong>
+                </b></dt>
+                <dd>如果了解设计模式，您将能够更快地构建可靠的 OO 应用程序。但当整个开发团队知道各种模式时，您可以突然拥有非常高的带宽会话。您不再需要讨论将到处使用的所有类。相反，您可以与其他人谈论模式。“我要在这里引用一个单例（singleton），然后使用迭代器遍历对象集合，然后……” 比遍历构成这些模式的类、方法和接口快很多。单是通信效率一项就值得花时间以团队的形式通过会话来研究模式。</dd>
+            </dl>
+            <dl>
+                <dt><b>
+                    <strong>减少痛苦的教训</strong>
+                </b></dt>
+                <dd>每个设计模式都描述了一种经过验证的解决常见问题的方法。因此，您无需担心设计是不是正确的，只要您已经选择了提供所需优点的模式。</dd>
+            </dl>
+            <p><a name="N1007C"><span class="smalltitle">缺陷</span></a></p>
+            <p>有句谚语说得好：“当您手中拿着一把锤子时，所有事物看上去都像钉子”。当您认为自己找到一个优秀模式时，您可能会尝试到处使用它，即使在不应当使用它的位置。记住您必须考虑正在学习的模式的使用目的，不要为了使用模式而把这些模式强行应用到应用程序的各个部分中。</p>
+            <p>本文将介绍可用于改进 PHP 代码的五个模式。每个模式都将介绍一个特定场景。可以在 <a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#download">下载</a> 部分中获得这些模式的 PHP 代码。</p>
+            <p><a name="N1008C"><span class="smalltitle">要求</span></a></p>
+            <p>要发挥本文的最大功效并使用示例，需要在计算机中安装以下软件：</p>
+            <ul>
+                <li>PHP V5 或更高版本（本文是使用 PHP V5.2.4 撰写的）</li>
+                <li>压缩程序，例如 WinZIP（用于压缩可下载的代码归档）</li>
+            </ul>
+            <p>
+                <strong>注：</strong>虽然您也可以使用纯文本编辑器，但是我发现拥有语法高亮显示和语法纠错功能的编辑器真的很有帮助。本文中的示例是使用 Eclipse PHP Development Tools (PDT) 编写的。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N100A5"><span class="atitle">适配器模式</span></a></p>
+            <p>在需要将一类对象转换成另一类对象时，请使用适配器模式。通常，开发人员通过一系列赋值代码来处理此过程，如清单 1 所示。适配器模式是整理此类代码并在其他位置重用所有赋值代码的优秀方法。此外，它还将隐藏赋值代码，如果同时还要设定格式，这样可以极大地简化工作。</p>
+            <br><a name="list1"><b>清单 1. 使用代码在对象之间赋值</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+class AddressDisplay
+{
+    private $addressType;
+    private $addressText;
+
+    public function setAddressType($addressType)
+    {
+        $this-&gt;addressType = $addressType;
+    }
+
+    public function getAddressType()
+    {
+        return $this-&gt;addressType;
+    }
+
+    public function setAddressText($addressText)
+    {
+        $this-&gt;addressText = $addressText;
+    }
+
+    public function getAddressText()
+    {
+        return $this-&gt;addressText;
+    }
+}
+
+class EmailAddress
+{
+    private $emailAddress;
+    
+    public function getEmailAddress()
+    {
+        return $this-&gt;emailAddress;
+    }
+    
+    public function setEmailAddress($address)
+    {
+        $this-&gt;emailAddress = $address;
+    }
+}
+
+$emailAddress = new EmailAddress();
+/* Populate the EmailAddress object */
+$address = new AddressDisplay();
+<strong>/* Here's the assignment code, where I'm assigning values 
+  from one object to another... */</strong>
+$address-&gt;setAddressType("email");
+$address-&gt;setAddressText($emailAddress-&gt;getEmailAddress());
+</pre></td></tr></tbody></table><br>
+            <p>此示例将使用 <code>AddressDisplay</code> 对象把地址显示给用户。<code>AddressDisplay</code> 对象有两部分：地址类型和一个格式化的地址字符串。</p>
+            <p>在实现模式（参见清单 2）后，PHP 脚本将不再需要担心如何把 <code>EmailAddress</code> 对象转换成 <code>AddressDisplay</code> 对象。那是件好事，尤其是在 <code>AddressDisplay</code> 对象发生更改时或者控制如何把 <code>EmailAddress</code> 对象转换成 <code>AddressDisplay</code> 对象的规则发生更改时。记住，以模块化风格设计代码的主要优点之一就是，在业务领域发生一些更改时或者需要向软件中添加新功能时尽可能少的使用更改。即使在执行普通任务（例如把一个对象的属性值赋给另一个对象）时，也请考虑使用此模式。</p>
+            <br><a name="list2"><b>清单 2. 使用适配器模式</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+class EmailAddressDisplayAdapter extends AddressDisplay
+{
+    public function __construct($emailAddr)
+    {
+        $this-&gt;setAddressType("email");
+        $this-&gt;setAddressText($emailAddr-&gt;getEmailAddress());
+    }
+}	
+
+$email = new EmailAddress();
+$email-&gt;setEmailAddress("user@example.com");
+
+$address = new EmailAddressDisplayAdapter($email);
+
+echo($address-&gt;getAddressType() . "\n") ;
+echo($address-&gt;getAddressText());
+</pre></td></tr></tbody></table><br>
+            <p>图 1 显示了适配器模式的类图。</p>
+            
+                <br><a name="fig1"><b>图 1. 适配器模式的类图</b></a><br>
+                <img alt="适配器模式的类图" height="182" src="./另外五个 PHP 设计模式_files/adapter.gif" width="414">
+            <br>
+            <br>
+            <p><a name="N100FB"><span class="smalltitle">替代方法</span></a></p>
+            <p>编写适配器的替代方法 —— 并且是推荐方法 —— 是实现一个接口来修改行为，而不是扩展对象。这是一种非常干净的、创建适配器的方法并且没有扩展对象的缺点。使用接口的缺点之一是需要把实现添加到适配器类中，如图 2 所示：</p>
+            
+                <br><a name="fig2"><b>图 2. 适配器模式（使用接口）</b></a><br>
+                <img alt="适配器模式（使用接口）" height="187" src="./另外五个 PHP 设计模式_files/adapter-alt.gif" width="414">
+            <br>
+            <br>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N10116"><span class="atitle">迭代器模式</span></a></p>
+            <p>迭代器模式将提供一种通过对象集合或对象数组封装迭代的方法。如果需要遍历集合中不同类型的对象，则使用这种模式尤为便利。</p>
+            <p>查看上面清单 1 中的电子邮件和物理地址示例。在添加迭代器模式之前，如果要遍历个人地址，则可能要遍历物理地址并显示这些地址，然后遍历个人电子邮件地址并显示这些地址，然后遍历个人 IM 地址并显示这些地址。非常复杂的遍历！</p>
+            <p>相反，通过实现迭代器，您只需要调用 <code>while($itr-&gt;hasNext())</code> 并处理下一个条目 <code>$itr-&gt;next()</code> 返回。清单 3 中显示了一个迭代器示例。迭代器功能强大，因为您可以添加要遍历的新类型条目，并且无需更改遍历条目的代码。例如，在 <code>Person</code> 示例中，可以添加 IM 地址数组；只需更新迭代器，无需更改遍历地址的任何代码。</p>
+            <br><a name="list3"><b>清单 3. 使用迭代器模式遍历对象</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+class PersonAddressIterator implements AddressIterator
+{
+    private $emailAddresses;
+    private $physicalAddresses;
+    private $position;
+    
+    public function __construct($emailAddresses)
+    {
+        $this-&gt;emailAddresses = $emailAddresses;
+        $this-&gt;position = 0;
+    }
+    
+    public function hasNext()
+    {
+        if ($this-&gt;position &gt;= count($this-&gt;emailAddresses) || 
+            $this-&gt;emailAddresses[$this-&gt;position] == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public function next()
+    {
+        $item = $this-&gt;emailAddresses[$this-&gt;position];
+        $this-&gt;position = $this-&gt;position + 1;
+        return $item;
+    }
+    
+}
+</pre></td></tr></tbody></table><br>
+            <p>如果把 <code>Person</code> 对象修改为返回 <code>AddressIterator</code> 接口的实现，则在将实现扩展为遍历附加对象时无需修改使用迭代器的应用程序代码。您可以使用一个混合迭代器，它封装了遍历清单 3 中列出的每种地址的迭代器。本文提供了此类应用示例（请参阅 <a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#download">下载</a>）。</p>
+            <p>图 3 显示了迭代器模式的类图。</p>
+            
+                <br><a name="fig3"><b>图 3. 迭代器模式的类图</b></a><br>
+                <img alt="迭代器模式的类图" height="141" src="./另外五个 PHP 设计模式_files/iterator.gif" width="160">
+            <br>
+            <br>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1015E"><span class="atitle">装饰器 (decorator) 模式</span></a></p>
+
+            <p>考虑清单 4 中的代码样例。这段代码的目的是要把许多功能添加到 Build Your Own Car 站点的汽车中。每个汽车模型都有更多功能及相关价格。如果只针对两个模型，使用 <code>if then</code> 语句添加这些功能十分平常。但是，如果出现了新模型，则必须返回查看代码并确保语句对新模型工作正常。</p>
+            <br><a name="list4"><b>清单 4. 使用装饰器模式添加功能</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+require('classes.php');
+
+$auto = new Automobile();
+
+$model = new BaseAutomobileModel();
+
+$model = new SportAutomobileModel($model);
+
+$model = new TouringAutomobileModel($model);
+
+$auto-&gt;setModel($model);
+
+$auto-&gt;printDescription();
+</pre></td></tr></tbody></table><br>
+            <p>进入装饰器模式，该模式允许您通过一个优秀整洁的类将此功能添加到 <code>AutomobileModel</code>。每个类仅仅关注其价格、选项以及添加到基本模型的方式。</p>
+            <p>图 4 显示了装饰器模式的类图。</p>
+            
+                <br><a name="fig4"><b>图 4. 装饰器模式的类图</b></a><br>
+                <img alt="装饰器模式的类图" height="284" src="./另外五个 PHP 设计模式_files/decorator.gif" width="390">
+            <br>
+            <br>
+            <p>装饰器模式的优点是可以轻松地同时跟踪库的多个装饰器。</p>
+            <p>如果您拥有流对象的使用经验，则一定使用过装饰器。大多数流结构（例如输出流）都是接受基本输入流的装饰器，然后通过添加附加功能来装饰它 —— 例如从文件输入流、从缓冲区输入流，等等。</p>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N10196"><span class="atitle">委托模式</span></a></p>
+            <p>委托模式将提供一种基于各种条件委托行为的方法。考虑清单 5 中的代码。这段代码包含几个条件。根据条件，代码将选择相应类型的对象来处理请求。</p>
+            <br><a name="list5"><b>清单 5. 使用条件语句来发送送货请求</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+pkg = new Package("Heavy Package");
+$pkg-&gt;setWeight(100);
+
+if ($pkg-&gt;getWeight() &gt; 99)
+{
+	echo( "Shipping " . $pkg-&gt;getDescription() . " by rail.");
+} else {
+	echo("Shipping " . $pkg-&gt;getDescription() . " by truck");
+}
+</pre></td></tr></tbody></table><br>
+            <p>使用委托模式，对象将内在化（internalize）此发送过程，方法为在调用如清单 6 中的 <code>useRail()</code> 之类的方法时设置对相应对象的内部引用。如果处理各个包的条件发生更改或者使用新的送货类型时，则使用此模式尤为便利。</p>
+            <br><a name="list6"><b>清单 6. 使用委托模式来发送送货请求</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+require_once('classes.php');
+
+$pkg = new Package("Heavy Package");
+$pkg-&gt;setWeight(100);
+
+$shipper = new ShippingDelegate();
+
+if ($pkg-&gt;getWeight() &gt; 99)
+{
+	$shipper-&gt;useRail();
+}
+
+$shipper-&gt;deliver($pkg);
+</pre></td></tr></tbody></table><br>
+            <p>委托将通过调用 <code>useRail()</code> 或 <code>useTruck()</code> 方法来切换处理工作的类，从而提供动态更改行为的优点。</p>
+            <p>图 5 显示了委托模式的类图。</p>
+            
+                <br><a name="fig5"><b>图 5. 委托模式的类图</b></a><br>
+                <img alt="委托模式的类图" height="194" src="./另外五个 PHP 设计模式_files/delegate.gif" width="382">
+            <br>
+            <br>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N101D9"><span class="atitle">状态模式</span></a></p>
+            <p>状态模式类似于命令模式，但是意图截然不同。考虑下面的代码。</p>
+            <br><a name="list7"><b>清单 7. 使用代码来构建机器人</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+class Robot 
+{
+
+	private $state;
+
+	public function powerUp()
+	{
+		if (strcmp($state, "poweredUp") == 0)
+		{
+			echo("Already powered up...\n");
+			/* Implementation... */
+		} else if ( strcmp($state, "powereddown") == 0) {
+			echo("Powering up now...\n");
+			/* Implementation... */
+		}
+	}
+
+	public function powerDown()
+	{
+		if (strcmp($state, "poweredUp") == 0)
+		{
+			echo("Powering down now...\n");
+			/* Implementation... */
+		} else if ( strcmp($state, "powereddown") == 0) {
+			echo("Already powered down...\n");
+			/* Implementation... */
+		}
+	}
+
+	/* etc... */
+
+}
+</pre></td></tr></tbody></table><br>
+            <p>在此清单中，PHP 代码表示变成一辆汽车的强大机器人的操作系统。机器人可以启动、关闭、由汽车变成机器人以及由机器人变成汽车。代码现已就绪，但是您会看到如果任何规则发生更改或者添加另一个状态则会变得十分复杂。</p>
+            <p>现在查看清单 8，其中提供了相同的逻辑处理机器人的状态，但是这一次把逻辑放入状态模式。清单 8 中的代码完成的工作与初始代码相同，但是用于处理状态的逻辑已经被放入每个状态的一个对象中。为了演示使用设计模式的优点，假定不久以后，这些机器人发现它们不应在处于机器人模式时关闭。实际上，如果它们关闭，它们必须先切换到汽车模式。如果它们已经处于汽车模式下，则机器人将关闭。使用状态模式，对代码的更改十分微小。</p>
+            <br><a name="list8"><b>清单 8. 使用状态模式处理机器人的状态</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+$robot = new Robot();
+echo("\n");
+$robot-&gt;powerUp();
+echo("\n");
+$robot-&gt;turnIntoRobot();
+echo("\n");
+$robot-&gt;turnIntoRobot(); /* This one will just give me a message */
+echo("\n");
+$robot-&gt;turnIntoVehicle();
+echo("\n");
+</pre></td></tr></tbody></table><br>
+            <br><a name="list9"><b>清单 9. 对一个状态对象的微小更改</b></a><br><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+class NormalRobotState implements RobotState
+{
+    private $robot;
+
+    public function __construct($robot)
+    {
+        $this-&gt;robot = $robot;
+    }
+
+    public function powerUp()
+    {
+        /* implementation... */
+    }
+    public function powerDown()  
+    {
+        <strong>/* First, turn into a vehicle */
+        $this-&gt;robot-&gt;setState(new VehicleRobotState($this-&gt;robot));
+        $this-&gt;robot-&gt;powerDown();</strong>
+    }
+    
+    public function turnIntoVehicle()  
+    {
+        /* implementation... */
+    }
+    
+    public function turnIntoRobot() 
+    {
+        /* implementation... */
+    }
+}
+</pre></td></tr></tbody></table><br>
+            <p>图 6 中一个不太明显的地方就是状态模式中的每个对象都有对上下文对象（机器人）的引用，因此每个对象都可以把状态提升到相应的状态。</p>
+            
+                <br><a name="fig6"><b>图 6. 状态模式的类图</b></a><br>
+                <img alt="状态模式的类图" height="271" src="./另外五个 PHP 设计模式_files/state.gif" width="476">
+            <br>
+            <br>
+            <div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><a name="N1021D"><span class="atitle">结束语</span></a></p>
+            
+            
+            
+            
+            <p>在 PHP 代码中使用设计模式可以使代码更容易阅读、更易维护。通过使用已经建立的模式，您将从通用的设计结构中获益，从而允许团队的其他开发人员了解代码的意图。它还使您可以从其他设计者完成的工作中获益，因此无需从失败的设计理念中吸取教训。</p>
+        <!-- CMA ID: 304705 --> <!-- Site ID: 10 --> <!-- XSLT stylesheet used to transform this file:  dw-article-6.0-beta.xsl -->
+<br><div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon" class="ibm-anchor-up-link">回页首</a></p><p><span class="atitle"><a name="download">下载</a></span></p><table width="100%" class="ibm-data-table" cellspacing="0" cellpadding="0" border="0"><tbody><tr><th scope="col">描述</th><th scope="col">名字</th><th scope="col">大小</th><th scope="col">下载方法</th></tr><tr><td class="tb-row" scope="row">样例代码</td><td nowrap="nowrap">os-php-designpatterns_morepatterns.zip</td><td nowrap="nowrap">4KB</td><td nowrap="nowrap"><a class="fbox" href="http://www.ibm.com/developerworks/apps/download/index.jsp?contentid=304705&filename=os-php-designpatterns_morepatterns.zip&method=http&locale=zh_CN">HTTP</a></td></tr></tbody></table><p><a href="http://www.ibm.com/developerworks/cn/whichmethod.html" class="ibm-forward-link">关于下载方法的信息</a></p><br>
+<p><a name="resources"><span class="atitle">参考资料 </span></a></p><p><b>学习</b></p><ul><li> 您可以参阅本文在 developerWorks 全球站点上的 <a href="http://www.ibm.com/developerworks/opensource/library/os-php-designpatterns/?S_TACT=105AGX52&S_CMP=cn-a-os" target="_blank">英文原文</a>。<br><br></li><li>阅读 Jack Herrington 撰写的关于设计模式的文章：“<a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/">五种常见的 PHP 设计模式</a>”。<br><br></li><li>阅读 Eric Freeman 撰写的关于设计模式的书籍 <a href="http://safari5.bvdep.com/0596007124">
+                    <em>Head First Design Patterns</em>
+                </a>（O'Reilly，2004），该书简单易懂。<br><br></li><li>阅读 “Gang of Four” 的第一版 <a href="http://www.amazon.com/gp/product/0201633612">
+                    <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>
+                </a>（Addison-Wesley Professional Computing Series，1994）。<br><br></li><li>阅读关于 <a href="http://en.wikipedia.org/wiki/Design_pattern_(computer_science)">设计模式</a> 的维基百科条目，其中包含指向更多模式和资源的链接。<br><br></li><li>
+                <a href="http://www.php.net/">PHP.net</a> 是 PHP 开发者的重要资源。<br><br></li><li>查阅 “<a href="http://www.ibm.com/developerworks/library/os-php-read" onmouseover="linkQueryAppend(this)">PHP 推荐读物列表</a>”。<br><br></li><li> 浏览 developerWorks 上的全部<a href="http://www.ibm.com/developerworks/cn/views/opensource/articles.jsp?view_by=search&search_by=php">PHP 文章</a>和 <a href="http://www.ibm.com/developerworks/cn/views/opensource/tutorials.jsp?view_by=search&search_by=php">PHP 免费教程</a>。<br><br></li><li>查看 IBM developerWorks 的 <a href="http://www.ibm.com/developerworks/cn/opensource/top-projects/php.html">PHP 项目资源</a> 以扩展 PHP 技巧。<br><br></li><li>收听针对软件开发人员的有趣访谈和讨论，一定要访问 <a href="http://www.ibm.com/developerworks/podcast/" onmouseover="linkQueryAppend(this)">developerWorks podcast</a>。<br><br></li><li>要将数据库与 PHP 结合使用？查看 <a href="http://www-306.ibm.com/software/data/info/zendcore/">Zend Core for IBM</a>，它是一个无缝的、可以立即使用、易于安装、支持 IBM DB2 V9 的 PHP 开发和生产环境。<br><br></li><li>随时关注 developerWorks 的 <a href="http://www.ibm.com/developerworks/offers/techbriefings/" onmouseover="linkQueryAppend(this)">技术事件和网络广播</a>。<br><br></li><li>查阅最近将在全球举办的面向 IBM 开放源码开发人员的研讨会、交易展览、网络广播和其他 <a href="http://www.ibm.com/developerworks/views/opensource/events.jsp" onmouseover="linkQueryAppend(this)">活动</a>。<br><br></li><li>访问 developerWorks <a href="http://www.ibm.com/developerworks/cn/opensource">开放源码专区</a>，获得丰富的 how-to 信息、工具和项目更新，帮助您用开放源码技术进行开发，并与 IBM 产品结合使用。<br><br></li><li>查看免费的 <a href="http://www.ibm.com/developerworks/offers/lp/demos/" onmouseover="linkQueryAppend(this)">developerWorks On demand demo</a> 观看并了解 IBM 及开源技术和产品功能。<br><br></li></ul><p><b>获得产品和技术</b></p><ul><li>使用 <a href="http://www.ibm.com/developerworks/downloads/" onmouseover="linkQueryAppend(this)">IBM 试用软件</a> 改进您的下一个开发项目，这些软件可以通过下载或从 DVD 中获得。<br><br></li><li>下载 <a href="http://www.ibm.com/developerworks/downloads/" onmouseover="linkQueryAppend(this)">IBM 产品评估版</a>，并开始使用 DB2®、Lotus®、Rational®、Tivoli® 和 WebSphere® 的应用程序开发工具和中间件产品。<br><br></li></ul><p><b>讨论</b></p><ul><li>参与 <a href="http://www.ibm.com/developerworks/blogs" onmouseover="linkQueryAppend(this)">developerWorks blog</a> 并加入 developerWorks 社区。<br><br></li><li>加入 developerWorks <a href="http://www.ibm.com/developerworks/forums/dw_forum.jsp?forum=992&cat=51" onmouseover="linkQueryAppend(this)">PHP Forum: Developing PHP applications with IBM Information Management products (DB2, IDS)</a>。<br><br></li></ul>
+<p><a name="author"><span class="atitle">关于作者</span></a></p><div class="ibm-container ibm-portrait-module ibm-alternate-two"><div class="ibm-container-body"><p><a name="author1"></a>Nathan A. Good 居住在明尼苏达州的双子城。在不编写软件时，他喜欢组装 PC 和服务器、阅读和撰写技术文章，鼓励他的所有朋友转用开源软件。如果他不呆在电脑旁（他自己承认，这种情况并不多见），他会与家人共渡、前往教堂或去看电影。</p></div></div>
+<!-- MAIN_COLUMN_CONTENT_END -->
+  <!-- OVERLAYS_START -->
+  <!-- Report_Abuse_Start -->
+  <div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlay">
+    <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">关闭 [x]</a></p></div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <a class="ibm-access" name="reportabuseoverlay">关于报告滥用的帮助</a>   
+        <div class="ibm-title"><h1>报告滥用</h1></div>
+        <div class="ibm-container ibm-alternate">
+          <p><strong>谢谢!</strong>  此内容已经标识给管理员注意。</p>
+          <div class="ibm-overlay-rule"><hr></div>
+          <div class="ibm-buttons-row">
+            <input type="button" onclick="ibmCommon.Overlays.hide(&#39;reportabuseoverlay&#39;);return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="关闭">
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Report_Abuse_Error_Start -->
+  <div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlayerror">
+    <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">关闭 [x]</a></p></div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <a class="ibm-access" name="reportabuseoverlayerror">关于报告滥用的帮助</a>   
+        <div class="ibm-title"><h1>报告滥用</h1></div>
+        <div class="ibm-container ibm-alternate">
+          <p class="ibm-ind-error"><strong>报告滥用提交失败。  请稍后重试。</strong></p>
+          <div class="ibm-overlay-rule"><hr></div>
+          <div class="ibm-buttons-row">
+            <input type="button" onclick="ibmCommon.Overlays.hide(&#39;reportabuseoverlayerror&#39;);return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="关闭">
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Sign in OVERLAY STARTS HERE --> 
+  <div class="ibm-common-overlay" id="signin_overlay">
+    <div class="ibm-head">
+      <p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="clearForm();">关闭 [x]</a></p>
+    </div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <div class="ibm-title ibm-subtitle">
+          <h1>developerWorks：登录</h1>
+          <div id="ibm-overlay-error-signin" class="no-display"></div>
+        </div>
+        
+        <div class="ibm-container ibm-alternate ibm-buttons-last">
+          <div class="ibm-container-body">
+
+            <form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+              <p><label for="ibmid">IBM ID：</label><span><input name="ibm-id" id="ibmid" size="25" value="" class="required" type="text" onkeypress="handleEP(event,this.form);">
+                <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=zh_CN&amp;d=&#39;+encodeURIComponent(location.href);})();">需要一个 IBM ID？</a>
+                <br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=zh_CN">忘记 IBM ID？</a></span>   
+              </p> 
+              <p><label for="password">密码：</label><span><input name="password" id="password" size="25" value="" class="required" type="password" onkeypress="handleEP(event,this.form);"><br>
+                <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=forgot&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(getAuthUrl())+&#39;%3Fm%3Dloginpage%26lang%3Dzh_CN%26d%3D&#39;+encodeURIComponent(location.href);})();">忘记密码？</a><br>
+                <a class="ibm-forward-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="(function () {window.location=&#39;https://www.ibm.com/account/profile?page=chpw&amp;lang=zh_CN&amp;appname=ibm&amp;required=null&amp;d=&#39;+encodeURIComponent(location.href);})();">更改您的密码</a></span></p> 
+
+              <p class="dw-perm-box">
+                <span><input id="perm" type="checkbox" name="perm_name"><label for="perm"> 保持登录。</label></span>
+              </p>
+
+              <p>单击提交则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">使用条款</a></p>
+              <div class="ibm-buttons-row">
+                <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+                  <input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide(&#39;signin_overlay&#39;);return false;"></p>
+              </div>
+            </form>
+            <div class="ibm-overlay-rule"><hr></div>
+            <p>当您初次登录到 developerWorks 时，将会为您创建一份概要信息。<strong>您在 developerWorks 概要信息中选择公开的信息将公开显示给其他人，但您可以随时修改这些信息的显示状态。</strong>您的姓名（除非选择隐藏）和昵称将和您在 developerWorks 发布的内容一同显示。</p>
+            <div class="dw-overlay-legal"><p>所有提交的信息确保安全。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Sign in OVERLAY ENDS HERE --> 
+  
+  
+  <!-- Display name OVERLAY STARTS HERE --> 
+  <div class="ibm-common-overlay" id="displayname_overlay">
+    <div class="ibm-head">
+      <p><a class="ibm-common-overlay-close" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="clearForm();">关闭 [x]</a></p>
+    </div>
+    <div class="ibm-body">
+      <div class="ibm-main">
+        <div class="ibm-title ibm-subtitle">
+          <h1>请选择您的昵称：</h1>
+          <div id="ibm-overlay-error-dname" class="no-display"></div>
+        </div>
+        <div class="ibm-container ibm-alternate ibm-buttons-last">
+          <div class="ibm-container-body">
+            <p class="ibm-overlay-intro">当您初次登录到 developerWorks 时，将会为您创建一份概要信息，您需要指定一个昵称。您的昵称将和您在 developerWorks 发布的内容显示在一起。</p><p><strong>昵称长度在 3 至 31 个字符之间</strong>。 您的昵称在 developerWorks 社区中必须是唯一的，并且出于隐私保护的原因，不能是您的电子邮件地址。</p>
+            <form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+              <p><label for="displayname">昵称：</label><span><input name="displayname" id="displayname" size="25" value="" type="text" onkeypress="handleEP(event,this.form);"></span><span class="ibm-form-note">（长度在 3 至 31 个字符之间）</span>
+              </p>
+              
+              <div class="ibm-overlay-rule"><hr>
+              </div>
+              <p>单击<strong>提交</strong>则表示您同意developerWorks 的条款和条件。 <a href="http://www.ibm.com/developerworks/mydeveloperworks/terms?lang=zh">使用条款</a>.</p>
+              <div class="ibm-buttons-row">
+                <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="提交" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+                  <input value="取消" type="button" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide(&#39;displayname_overlay&#39;);return false;"></p>
+              </div>
+            </form>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="dw-overlay-legal"><p>所有提交的信息确保安全。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ibm-footer"></div>
+  </div>
+  <!-- Display name OVERLAY ENDS HERE -->
+  <!-- OVERLAYS_END -->
+  <!-- RATINGS START -->
+  <p class="ibm-no-print"><span class="atitle"><a name="iratings">为本文评分</a></span></p>
+  <input id="art-rating" name="ratinga" type="hidden" value="4"><div id="art-rating-module"><p id="submitErr" class="ibm-ind-error" style="display: none;"><strong>错误：提交失败，请重试。</strong></p><p><span id="ratingSectUI"><img alt="平均分 4 星 共 9 个评分" src="./另外五个 PHP 设计模式_files/stars120x20-4gw.jpg" class="dw-avg-rating"> 平均分 (9个评分)</span></p><div class="ibm-container" id="ratingForm"><div class="ibm-container-body dw-container-ratings"><form class="dw-ratings-form" onsubmit="artRating.submitRating(); return false;"><input type="radio" name="ratingstars" id="rat-1" value="1"><label class="rating-label" id="star1" for="rat-1">1 星</label><img id="rat-1-img" alt="1 星" title="1 星" src="./另外五个 PHP 设计模式_files/stars120x20-1w.jpg" class="rating-image"><span class="dw-rating-text">1 星</span><br><input type="radio" name="ratingstars" id="rat-2" value="2"><label class="rating-label" id="star2" for="rat-2">2 星</label><img id="rat-2-img" alt="2 星" title="2 星" src="./另外五个 PHP 设计模式_files/stars120x20-2w.jpg" class="rating-image2"><span class="dw-rating-text">2 星</span><br><input type="radio" name="ratingstars" id="rat-3" value="3"><label class="rating-label" id="star3" for="rat-3">3 星</label><img id="rat-3-img" alt="3 星" title="3 星" src="./另外五个 PHP 设计模式_files/stars120x20-3w.jpg" class="rating-image2"><span class="dw-rating-text">3 星</span><br><input type="radio" name="ratingstars" id="rat-4" value="4"><label class="rating-label" id="star4" for="rat-4">4 星</label><img id="rat-4-img" alt="4 星" title="4 星" src="./另外五个 PHP 设计模式_files/stars120x20-4w.jpg" class="rating-image2"><span class="dw-rating-text">4 星</span><br><input type="radio" name="ratingstars" id="rat-5" value="5"><label class="rating-label" id="star5" for="rat-5">5 星</label><img id="rat-5-img" alt="5 星" title="5 星" src="./另外五个 PHP 设计模式_files/stars120x20-5w.jpg" class="rating-image2"><span class="dw-rating-text">5 星</span><div class="ibm-buttons-row"><p class="ibm-first"><input value="提交" type="submit" name="ibm-submit" class="ibm-btn-arrow-pri dw-ratings-submit"></p></div></form></div></div></div>
+  <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+   // widget div id and article id as args
+   window.artRating.init('art-rating-module','art-rating-summary');
+// ]]>
+  </script>
+  <!-- RATINGS END --> 
+  
+  <!-- INLINE_COMMENTS_START -->
+  <p class="ibm-no-print"><span class="atitle"><a name="icomments">评论</a></span></p>
+    <script language="JavaScript" type="text/javascript">
+      // <![CDATA[
+dwc = {};
+dwc.cmts = '条评论';
+dwc.signInPreText = '请';
+dwc.signIn = '登录';
+dwc.or = '或';
+dwc.register = '注册';
+dwc.signInPostText = '';
+dwc.leaveCmt = '后发表评论。';
+dwc.view = '查看';
+dwc.totalCmts = '共有评论';
+dwc.postYourCmt = '添加您的评论';
+dwc.show = '显示：';
+dwc.recentCmts = '最新评论';
+dwc.allCmts = '所有评论';
+dwc.tooLongCmt = '您的评论超过了 1000 字符限制';
+dwc.numCharsLeft = '剩余 <span id="charCount">{1}</span> 字符';
+dwc.reportAbuse = '报告滥用';
+dwc.notifyMsg = '有新评论时提醒我';
+dwc.htmlWarning = '注意：评论中不支持 HTML 语法'; 
+dwc.cmt = '评论：';
+dwc.addCmts = '添加评论';
+dwc.addCmt = '添加评论';
+dwc.doNotErase = '--在下方添加评论--'; 
+dwc.viewOrAddCmts = '查看或添加评论';
+dwc.reportInapprCont = '举报不良信息';
+dwc.reportInapprContLink = 'http://www.ibm.com/developerworks/forums/forum.jspa?forumID=1834';
+dwc.postingCmt = '正在发布评论……';
+dwc.noCmt = '快来添加第一条评论';
+dwc.netwkErr = '在检索评论时出错，请稍后刷新。';
+dwc.addACmt = '添加评论';
+dwc.instructCmt = '标有星号（<span class="ibm-required">*</span>）的是必填项目。';
+dwc.btnPost = '发布';
+dwc.btnPostAnon = '匿名发布';
+dwc.btnClrCmt = '清除评论';
+dwc.btnCancel = '取消';
+dwc.showRecent = '显示最新的 {1} 条评论'; // {1} is the count to be substituted
+dwc.showNext = '显示后 {1} 条评论'; // {1} is the count to be substituted
+dwc.showAllCmts = '显示所有评论';
+dwc.enterCmt = '请输入评论内容。';
+dwc.loginErr = '暂时无法验证您的登录状态，请稍后再试。';
+dwc.postErr = '暂时无法发布您的评论，请稍后再试。';
+dwc.postBy = '由 <strong>{1}</strong>  于 {2} '; // {1} is the author to be substituted; {2} is the date
+dwc.siteId = 10;
+dwc.lang = 'zh_CN';
+dwc.viperLang = 'zh';
+// ]]>
+    </script>
+    <div id="threadShow"><div id="cmtTog" style=""><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><p id="cmtHead"><label for="newCmt"><strong>添加评论:</strong></label></p><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect" style="">请 <a onclick="showSignIn();return false;" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">登录</a> 或 <a href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=register&lang=zh_CN&d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F%23icomments">注册</a>  后发表评论。</p><p>注意：评论中不支持 HTML 语法</p><span id="infoCmt"></span><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form"><p><textarea cols="120" rows="5" name="newCmt" id="newCmt" class="dw-inoperable" disabled=""></textarea><br></p><span class="ibm-input-group"><input type="checkbox" value="1" name="comment_notification" id="comment_notification" disabled=""><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">有新评论时提醒我</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount">剩余 <span id="charCount">1000</span> 字符</span><br><br><p></p><p class="ibm-buttons-row"><input type="button" value="发布" jquery1275054459750="11" name="postCmt" id="postCmt" class="ibm-btn-arrow-sec dw-btn-arrow-sec" alt="添加您的评论" disabled=""><br><br></p></form></div></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style=""><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p><span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts">1</span>)</strong></span><span><img src="./另外五个 PHP 设计模式_files/c.gif" width="100" height="10" alt=""></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts"><label for="howManyComments">显示：</label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论   </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./另外五个 PHP 设计模式_files/short-btn.gif" alt="Go"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>写的通俗易懂，不错</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">由 <strong><a href="http://www.ibm.com/developerworks/forums/profile.jspa?userID=428764">nswe</a></strong>  于 2011年07月17日发布 </p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=zh&referingURL=http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/&mymessage=%E8%AF%84%E8%AE%BA%EF%BC%9A%20%E5%86%99%E7%9A%84%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%EF%BC%8C%E4%B8%8D%E9%94%99%0D%E7%94%B1%20nswe%20%20%E4%BA%8E%202011%E5%B9%B407%E6%9C%8817%E6%97%A5%E5%8F%91%E5%B8%83%20%0D%0D--%E5%9C%A8%E4%B8%8B%E6%96%B9%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA--" target="_newtab">报告滥用</a></p><div class="dw-clear-both"></div></div></div></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p><span class="dw-comment-totals-label"><strong>共有评论 (<span id="numCmts2">1</span>)</strong></span><span><img src="./另外五个 PHP 设计模式_files/c.gif" width="100" height="10" alt=""></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts2"><label for="howManyComments2">显示：</label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">最新评论   </option></select><input type="image" class="ibm-btn-go" name="ibm-go" value="Go" src="./另外五个 PHP 设计模式_files/short-btn.gif" alt="Go"><br></span></p></form></div></div></div>
+  <!-- INLINE_COMMENTS_END -->
+  
+
+  <p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#ibm-pcon">回页首</a></p>
+
+<!-- Overlays -->
+<!-- lk - pull in overlays from ww when required on cn -->
+  </div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=10</div><div class="metavalue">Zone=Open source</div><div class="metavalue">ArticleID=304705</div><div class="metavalue">ArticleTitle=另外五个 PHP 设计模式</div><div class="metavalue">publish-date=04282008</div><div class="metavalue">author1-email=mail@nathanagood.com</div><div class="metavalue">author1-email-cc=cappel@us.ibm.com</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g, '%3C')+'</div>');</script><div class="metavalue">url=http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<div class="ibm-container"><h2>内容</h2><div class="ibm-container-body"><img alt="" height="1" width="1" src="./另外五个 PHP 设计模式_files/c(1).gif"><ul class="ibm-bullet-list"><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N100A5">适配器模式</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N10116">迭代器模式</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N1015E">装饰器 (decorator) 模式</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N10196">委托模式</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N101D9">状态模式</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#N1021D">结束语</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#download">下载</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#resources">参考资料 </a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#author">关于作者</a></li><li><a class="ibm-feature-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#icomments">建议</a></li></ul></div></div>
+
+ 
+
+
+<!-- Dig_Deeper -->
+
+<!-- High_Visibility_Offer -->
+
+<!-- Special_Offers -->
+
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer">
+<!-- IBM footer container; disabled -->
+</div>
+
+<div id="ibm-page-tools-dw">
+	<div id="dw-footer-top-row">
+		<ul id="dw-foot-options">
+			<li id="dw-print"><a class="ibm-print-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">打印此页面</a></li>
+		</ul>
+		<ul id="ibm-foot-options-dw">
+			<li id="dw-foot-0" class="dw-foot-0-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">分享此页面</a></li>
+			<li id="dw-foot-1" class="dw-foot-1-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">关注 developerWorks</a></li>
+		</ul>
+	</div>       
+	
+	
+	<!-- TOP ROW SLIDER -->
+    <div id="dw-page-tools-menu">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Share this page -->			
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-4-1">
+                    	<h2>分享此页面：</h2>                            
+						<ul class="ibm-link-list">
+						  <!--<li><a id="dw-foot-0-0" class="dwcn-sina-link"
+						        href="#"
+						        onClick="javascript:location.href='http://hits.sinajs.cn/A1/weiboshare.html?&amp;appkey=&amp;title='+escape(document.title)+'&amp;url='+escape(location.href)'+'&amp;pic=&ralateUid&amp;language=zh_cn;
+						        ">新浪微博</a></li> -->
+						   <li><a id="dw-foot-0-0" class="dwcn-sina-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="javascript:location.href=&#39;http://service.weibo.com/share/share.php?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;url=&#39;+escape(location.href)+&#39;&amp;language=zh_cn&#39;
+						        ; ">新浪微博</a></li> 
+						   <li><a class="dwcn-renren-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="javascript:location.href=&#39;http://share.renren.com/share/buttonshare?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;link=&#39;+escape(location.href);
+						        ">人人网</a></li> 
+						    <li><a class="dwcn-tencent-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="javascript:location.href=&#39;http://v.t.qq.com/share/share.php?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;url=&#39;+escape(location.href);
+						        ">腾讯微博</a></li> 
+						   				
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-4-2">
+						<ul class="ibm-link-list">
+						    <li><a class="dwcn-sohu-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="javascript:location.href=&#39;http://t.sohu.com/third/post.jsp?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;link=&#39;+escape(location.href);
+						        ">搜狐微博</a></li>
+						    
+						    <li><a class="dwcn-netease-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#" onclick="javascript:location.href=&#39;http://t.163.com/article/user/checkLogin.do?info=&#39;+encodeURIComponent(document.title)+ &#39;&#39; +escape(location.href);
+						        ">网易微博</a></li>
+						    <li><a class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F&t=%E5%8F%A6%E5%A4%96%E4%BA%94%E4%B8%AA%20PHP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">Facebook</a></li>
+						</ul>
+                </div>
+                    <div class="dw-footer-col-4-3">
+						<ul class="ibm-link-list">
+						 <li><a class="ibm-linkedin-link" href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F&title=%E5%8F%A6%E5%A4%96%E4%BA%94%E4%B8%AA%20PHP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">LinkedIn</a></li>   
+						 <li><a class="ibm-twitter-link" href="http://twitter.com/home?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F%20-%20%E5%8F%A6%E5%A4%96%E4%BA%94%E4%B8%AA%20PHP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">Twitter</a></li>   
+						 <li><a class="ibm-delicious-link" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F&title=%E5%8F%A6%E5%A4%96%E4%BA%94%E4%B8%AA%20PHP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">Delicious</a></li>
+						
+						</ul>
+                    </div>
+                   <div class="dw-footer-col-4-4">
+						<ul class="ibm-link-list">
+						 <li><a class="ibm-digg-link" href="http://digg.com/submit?phase=2&url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fopensource%2Fos-php-designpatterns%2F&title=%E5%8F%A6%E5%A4%96%E4%BA%94%E4%B8%AA%20PHP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">Digg</a></li>   
+						 <li><a class="ibm-email-link" href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#">发送此页面</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-share"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                  <!-- Follow developerWorks -->
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-1-1 dw-footer-col-1-1-cn">
+                    	<h2>关注 developerWorks 中国网站：</h2>
+						<ul class="ibm-link-list">
+							<!--<li><a id="dw-foot-1-0" class="ibm-twitter-link" href="http://www.twitter.com/dwchina">Twitter</a></li>-->
+						    <li><a id="dw-foot-1-0" class="dwcn-sina-link" href="http://weibo.com/ibmdw/">新浪微博</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-follow-cn"><a href="http://www.ibm.com/developerworks/cn/opensource/os-php-designpatterns/#"><img src="./另外五个 PHP 设计模式_files/c.gif" alt="关闭 [x]" width="20" height="10"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1">
+			<ul>
+				<!--<li><a href="http://www.ibm.com/developerworks/aboutdw/">About</a></li>-->
+				<li><a href="https://www.ibm.com/developerworks/secure/feedback.jsp?domain=dwchina">帮助</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/author/">联系编辑</a></li>
+				<li><a href="https://www.ibm.com/developerworks/secure/myideas2.jsp?domain=dwchina&start=true">提交内容</a></li>
+				<li><a href="http://www.ibm.com/developerworks/cn/sitemap/">网站导航</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/cn/rss/">订阅源</a></li>
+				<li><a href="http://www.ibm.com/vrm/newsletter/10104?S_TACT=105AGX52&S_CMP=dwcntop">在线浏览每周时事通讯</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/community/report?lang=zh">报告滥用</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms?lang=zh">使用条款</a></li>
+				<li><a href="http://www.ibm.com/privacy/cn/zh/">隐私条约</a></li>
+				<li><a href="http://www.ibm.com/ibm/accessibility/cn/">浏览辅助</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4-cn">
+			<ul>
+				<li><a href="http://www-900.ibm.com/cn/ai/">IBM 教育学院教育培养计划</a></li>
+				<li><a href="http://www.ibm.com/partnerworld/isv/">ISV 资源 (英语)</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-5">
+		</div>
+		<div class="dw-footer-col-6-6">
+		</div>
+	</div>
+	<!-- Language selector no-script -->
+	<noscript>
+	&lt;div id="dw-footer-selectlang"&gt;
+		&lt;h2&gt;&lt;a name="SELECTLANG"&gt;选择语言：&lt;/a&gt;&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/"&gt;English&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/cn/"&gt;中文&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/jp/"&gt;日本語&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/ru/"&gt;Русский&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/br/"&gt;Português (Brasil)&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/ssa/"&gt;Español&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="http://www.ibm.com/developerworks/vn/"&gt;Việt&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+	</noscript>
+</div><!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/jquery.cluetip.js"></script>
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/ui.core-1.7.1.js"></script>
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/ui.slider-1.7.1.js"></script>
+
+<!-- xM Masthead/Footer -->
+<script src="./另外五个 PHP 设计模式_files/jquery.tools.min.js" type="text/javascript">//</script>
+<script src="./另外五个 PHP 设计模式_files/jquery.jscroll.js" type="text/javascript">//</script>
+<script src="./另外五个 PHP 设计模式_files/dw_v16.js" type="text/javascript">//</script>
+<script src="./另外五个 PHP 设计模式_files/flash-detect(1).js" type="text/javascript">//</script>
+<script src="./另外五个 PHP 设计模式_files/dwsi.js" type="text/javascript">//</script>
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/dwjquerytags.js"></script>
+<script type="text/javascript" language="JavaScript" src="./另外五个 PHP 设计模式_files/showcomments.js">//</script>
+<script language="JavaScript" type="text/javascript">
+	// <![CDATA[
+ jQuery('threadShow').showComments('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+	local: true,
+	showTitle: false,
+	positionBy: 'bottomTop',
+	sticky: true,	
+	mouseOutClose: true,
+	closeText: '<img src="//dw1.s81c.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+	arrows: false,
+	dropShadow: true,
+	cluetipClass: 'dwbasic'
+	});   	
+	//tagging
+	login="false";
+	userid="";
+	whichTags = "init";
+	pCont = "";
+	mCont = "";
+	signInMCont = "";
+	accessCont = "";
+	pValue = 0;
+	mValue = 0;
+	
+	rBHash = null;
+	rBHash = new Object();
+	rBHash['viperLang'] = 'zh';
+	rBHash['urlLang'] = 'cn';
+	rBHash['tagThisWinTitle'] = '添加标签';
+	rBHash['pTags1'] = '热门标签';		
+	rBHash['pTags2'] = '热门标签结束';
+	rBHash['mTags1'] = '我的标签';
+	rBHash['mTags2'] = '我的标签结束';
+	rBHash['alt1'] = '正在加载内容';
+	rBHash['noATags'] = '没有可用的标签';
+	rBHash['signIn1'] = '请';
+	rBHash['signIn2'] = '登录';
+	rBHash['signIn3'] = '以访问';
+	rBHash['signIn4'] = '我的标签';
+	rBHash['signIn5'] = '要访问我的标签，请';
+	rBHash['signIn6'] = '登录';
+	rBHash['signIn7'] = '查看热门标签';
+	rBHash['dnameSuffix'] = '';
+
+	zoneHash = new Object();
+	zoneHash['aix'] = 'AIX and UNIX';
+	zoneHash['ibmi'] = 'IBM i zone';
+	zoneHash['data'] = 'Information Management';
+	zoneHash['lotus'] = 'Lotus';
+	zoneHash['rational'] = 'Rational';
+	//zoneHash['tivoli'] = 'Tivoli zone';
+	zoneHash['websphere'] = 'WebSphere';
+	zoneHash['architecture'] = 'Technical library';
+	//zoneHash['autonomic'] = 'Technical library';
+	zoneHash['java'] = 'Java technology';
+	zoneHash['cloud'] = 'Cloud computing';
+	//zoneHash['industry'] = 'Technical library';
+	zoneHash['library'] = '文档库';
+	zoneHash['linux'] = 'Linux';
+	zoneHash['opensource'] = 'Open source';
+	//zoneHash['power'] = 'Technical library';
+	zoneHash['webservices'] = 'SOA and web services';
+	zoneHash['web'] = 'Web development';
+	zoneHash['xml'] = 'XML';
+	//zoneHash['wireless'] = 'Technical library';
+	jQuery.checkRB();
+	jQuery.getPopularTags("/developerworks/dwtags/dwjquerytabtags?lang=" + rBHash['viperLang'] + "&base=" + jQuery.getNormalizedZoneUrl(location.href));
+	jQuery.getUserTags();
+	if(jQuery.isTutorial(location.href) == "true") {
+	jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['viperLang'] + "&format=maverick&cType=tutorials&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+	}
+	else {
+	jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['viperLang'] + "&format=maverick&cType=articles&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+	
+	}
+	// si
+	initSI();
+	});
+</script>
+<!-- JQuery end -->
+<!-- Overlay js -->
+<script language="JavaScript" src="./另外五个 PHP 设计模式_files/overlay.js" type="text/javascript"></script><!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=3&ibmAdoptPhase=648&ibmRole=36&ibmCmaId=304705";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="./另外五个 PHP 设计模式_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+
+<div id="cluetip-waitimage" style="position: absolute; z-index: 95; display: none; "></div><div id="cluetip" style="z-index: 96; display: none; position: absolute; "><div style="z-index: 95; opacity: 0.1; top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 0); "></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; position: absolute; background-color: rgb(0, 0, 0); "></div><div style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: absolute; background-color: rgb(0, 0, 0); "></div><div style="z-index: 92; opacity: 0.1; top: 4px; left: 4px; position: absolute; background-color: rgb(0, 0, 0); "></div><div style="z-index: 91; opacity: 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 0, 0); "></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 6px; position: absolute; background-color: rgb(0, 0, 0); "></div><div id="cluetip-outer" style="position: relative; z-index: 97; "><div id="cluetip-title"></div><div id="cluetip-inner"></div></div><div id="cluetip-extra"></div><div id="cluetip-arrows" class="cluetip-arrows" style="z-index: 97; "></div></div></body></html>

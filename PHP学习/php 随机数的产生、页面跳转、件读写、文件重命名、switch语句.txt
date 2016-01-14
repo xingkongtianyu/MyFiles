@@ -1,0 +1,84 @@
+
+<?php 
+$num = rand(1,5); 
+witch($num){ 
+case 1: 
+$fp1=fopen("f1.dat",'r'); 
+$oname = fgets($fp1); 
+$nname = date("YmdHis"); 
+
+rename($oname,$nname); 
+fclose($fp1); 
+unlink("f1.dat"); 
+$fp1=fopen("f1.dat",'w'); 
+fwrite($fp1,$nname); 
+fclose($fp1); 
+
+header("Location: ".$nname."/1.html"); 
+exit; 
+break; 
+case 2: 
+$fp2=fopen("f2.dat",'r'); 
+$oname = fgets($fp2); 
+
+$nname = date("YmdHis"); 
+rename($oname,$nname); 
+fclose($fp2); 
+unlink("f2.dat"); 
+$fp2=fopen("f2.dat",'w'); 
+fwrite 
+($fp2,$nname); 
+fclose($fp2); 
+header("Location: ".$nname."/2.html"); 
+exit; 
+break; 
+case 3: 
+$fp3=fopen 
+("f3.dat",'r'); 
+$oname = fgets($fp3); 
+$nname = date("YmdHis"); 
+rename($oname,$nname); 
+fclose($fp3); 
+unlink 
+("f3.dat"); 
+$fp3=fopen("f3.dat",'w'); 
+fwrite($fp3,$nname); 
+fclose($fp3); 
+header("Location: ".$nname."/3.html"); 
+
+exit; 
+break; 
+case 4: 
+$fp4=fopen("f4.dat",'r'); 
+$oname = fgets($fp4); 
+$nname = date("YmdHis"); 
+rename 
+($oname,$nname); 
+fclose($fp4); 
+unlink("f4.dat"); 
+$fp4=fopen("f4.dat",'w'); 
+fwrite($fp4,$nname); 
+fclose($fp4); 
+
+header("Location: ".$nname."/4.html"); 
+exit; 
+break; 
+case 5: 
+$fp5=fopen("f5.dat",'r'); 
+$oname = fgets($fp5); 
+
+$nname = date("YmdHis"); 
+rename($oname,$nname); 
+fclose($fp5); 
+unlink("f5.dat"); 
+$fp5=fopen("f5.dat",'w'); 
+fwrite 
+($fp5,$nname); 
+fclose($fp5); 
+header("Location: ".$nname."/5.html"); 
+exit; 
+break; 
+default: 
+break; 
+} 
+?>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.error()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/browser-events/" title="View all posts in Browser Events">Browser Events</a></span>
+  
+  				</div>
+</div>
+<div id="error1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.error( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>绑定一个事件处理器到“错误”JavaScript事件上。</p>
+<ul class="signatures">
+<li class="signature" id="error-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.error( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每当事件触发时执行的函数。</p>
+</li>
+<li class="signature" id="error-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.error( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每当事件触发时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个方法是 <code>.bind('error', handler)</code> 的快捷方式。</p>
+<p><code>error</code>事件被发送到元素，比如一张图片，通过文件引用，由浏览器加载。如果没有正确装入，这个事件就会被调用。</p>
+<p>例子，考虑一个简单的图像页面：</p>
+<pre>&lt;img src="missing.png" alt="Book" id="book" /&gt;</pre>
+<p>事件处理器可以绑定到图像上：</p>
+<pre>$('#book').error(function() {
+  alert('Handler for .error() called.')
+});
+</pre>
+<p>如果图像无法加载（例如，因为不存在目前所提供的URL），警告显示：</p>
+<p><span class="output">Handler for .error() called.</span></p>
+<blockquote>
+<p>当页面保存到本地的时候此事件可能无法正确触发。由于<code>error</code>依赖于正常的HTTP状态码，如果URL使用<code>file:</code>协议，它通常不会被触发。</p>
+</blockquote>
+<p>注意：一个jQuery的error事件处理器不应该附加到window对象上。当一个脚本错误的时候，浏览器就会触发窗口的错误事件。无论如何，窗口错误事件接收不同的参数，并有不同的返回值比传统的事件处理器的要求。
+</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">To hide JavaScript errors from the user, you can try:</span>
+</h4>
+<pre><code class="example">$(window).error(function(){
+  return true;
+});</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To hide the "broken image" icons for your IE users, you can try:</span>
+</h4>
+<pre><code class="example">$("img").error(function(){
+  $(this).hide();
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,80 @@
+另外 强烈推荐一本书《linux命令、编辑器与shell编程》去淘宝搜索 
+
+在帖吧最左下角 有一个精品区 大家有空多去逛逛 里面有很多帖子 而且分了类  
+
+http://redking.blog.51cto.com/27212/111134 RHCE课程笔记 
+
+http://www.linuxvedio.cn/thread-13-1-1.html 零起点学习Linux系列培训视频 
+
+http://www.linuxvedio.cn/thread-85-1-1.html 自由飞翔Linux系列教程 
+
+http://tieba.baidu.com/f?kz=540771386 Linux内核裁剪的具体步骤 
+
+http://linux.chinaunix.net/bbs/viewthread.php?tid=982867 新手入门 
+
+http://tieba.baidu.com/f?kz=525452066 制作U盘引导盘 
+
+http://www.2beanet.com/bbs/forumdisplay.php?fid=4 一个论坛 
+
+http://www.trixbox.com.cn/viewthread.php?tid=1221&extra=page%3D1 linux安装配置攻略 包括驱动 
+
+http://www.sunenze.com/enzebbs/index.asp?boardid=13 一个linux论坛 
+
+http://linuxvedio.5d6d.com/ 强烈推荐大家去这个论坛看看，有1000个LINUX视频教程免费下载和在线观看，很值得一看的论坛！！ 
+
+http://bbs.topsage.com/dispbbs_117_150681_1.html 视频教程  
+
+http://club.topsage.com/thread-225988-1-2.html RHEL 4经典视频教程 
+
+http://code.google.com/p/ubuntu-china/ Google Code上超级齐全的linux书籍 
+
+http://hi.baidu.com/tttws/blog/item/ad0e1d7a58700aea2e73b386.html Fedora10下载  
+
+http://www.soyo123.com/cool-shell-scripts/index2.html shell编程  
+
+http://www.sunenze.com/jc/linuxcom.htm 很强的一个在线教程，推荐大家收录。  
+
+http://www.sunenze.com/jc/linux/ linux命令大全：推荐中（在线教程）  
+
+http://getsongbird.com songbird的官方网站 （英文） 
+
+
+ 
+2009-3-31 11:06 回复  
+ 
+linuxvedio 
+0位粉丝 
+ 49楼
+
+
+http://www.cplusplus.com/doc/tutorial/ c++ language tutorial （英文） 
+
+http://www.vectorsite.net/indextt.html CyberTechniques--讲脚本，编程和电子设计的，入门级 （英文） 
+
+http://tieba.baidu.com/f?kz=516618319 linux系统编码 
+
+http://tieba.baidu.com/f?kz=150434359 linux目录基本列表 
+
+http://tieba.baidu.com/f?kz=516216003 如何在各种linux/unix发行版本下进入单用户模式 
+
+http://tieba.baidu.com/f?kz=196009253 linux一句话问答 
+
+http://tieba.baidu.com/f?kz=286894270 Linux操作系统命令操作小知识 
+
+http://tieba.baidu.com/f?kz=12899981 Linux init详解 
+
+http://tieba.baidu.com/f?kz=244595497 [原创]浅析LINUX下的后门技术 
+
+http://tieba.baidu.com/f?kz=233156238 小心了！每天用电脑超过4小时的进来看看！！ 
+
+http://tieba.baidu.com/f?kz=236492047 改变身份，su与sudo总结 
+
+http://tieba.baidu.com/f?kz=235905330 解决双系统（WIN＋LINUX)屏幕偏移的问题 7楼重点 
+
+http://blog.sina.com.cn/harleychen 一个不错的博客 
+
+http://tieba.baidu.com/f?kz=326475656 linux学习网站 
+
+http://tieba.baidu.com/f?kz=521697126 实用Linux C编程资料下载
+
+ 

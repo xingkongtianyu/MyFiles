@@ -1,0 +1,15 @@
+
+
+
+ul.yiiPager{line-height:100%; display:inline;}
+ul.yiiPager li{display:inline; margin:0 3px;}
+ul.yiiPager .page{width:15px; height:20px; line-height:20px;}
+ul.yiiPager .page a{display:inline-block;font-weight:bold; width:15px; height:20px; line-height:20px; border:1px solid #fff; color:#413e3e;}
+ul.yiiPager .page a{border:1px solid #f3f7f9;}
+ul.yiiPager .page a:hover{border:1px solid #d9d9d9; text-decoration:none; background:#fff;}
+ul.yiiPager .selected a{border:1px solid #d9d9d9; background:#fff;}
+ul.yiiPager .selected a{border:1px solid #d9d9d9; background:#fff;}
+ul.yiiPager .hidden a{color:#888888;}
+ul.yiiPager .first, ul.yiiPager .last{display:none; width:0px; height:0px;}
+ul.yiiPager .previous a, ul.yiiPager .next a{background:url("http://blog.chinaunix.net/image/default/17.png") no-repeat; width:61px; height:21px; text-indent:-9999px; vertical-align:4px; *vertical-align:-4px; display:inline-block;}
+ul.yiiPager .next a{background:url("http://blog.chinaunix.net/image/default/18.png") no-repeat;}

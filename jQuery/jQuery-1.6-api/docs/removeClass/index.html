@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.removeClass()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/class-attribute/" title="View all posts in Class Attribute">Class Attribute</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="removeClass1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.removeClass( [ className ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>移除每个匹配元素的一个，多个或全部样式。</p>
+<ul class="signatures">
+<li class="signature" id="removeClass-className">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.removeClass( [ className ] )</h4>
+<p class="arguement"><strong>className</strong>为每个匹配元素移除的样式属性名。</p>
+</li>
+<li class="signature" id="removeClass-functionindex, class">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.removeClass( function(index, class) )</h4>
+<p class="arguement"><strong>function(index, class)</strong>这个函数返回一个或更多用空格隔开的被移除样式名。接收元素的索引位置和元素旧的样式名作为参数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果一个样式类名作为一个参数,只有这样式类为匹配的元素集合中被删除 。 如果没有样式名作为参数，那么所有的样式类将被移除。</p>
+<p>从所有匹配的每个元素中同时移除多个用空格隔开的样式类 ，像这样:</p>
+<pre>$('p').removeClass('myClass yourClass')
+</pre>
+<p>这个方法通常和 <code>.addClass()</code> 一起使用用来切换元素的样式, 像这样：</p>
+<pre>$('p').removeClass('myClass noClass').addClass('yourClass');
+</pre>
+<p>这里从所有段落删除 <code>myClass</code> 和 <code>noClass</code> 样式类, 然后 <code>yourClass</code> 样式被添加。</p>
+<p>用其他样式类替换现有的样式类，我们可以使是有 <code>.attr('class', 'newClass')</code> 替换.</p>
+<p>在 jQuery 1.4中， <code>.removeClass()</code> 方法允许我们通过函数来传递删除样式名。</p>
+<pre>$('li:last').removeClass(function() {
+          return $(this).prev().attr('class');
+        });</pre>
+<p>这个例子从最后一个 <code>&lt;li&gt;</code> 中移除来自倒数第二的样式名。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子:从匹配的元素中移除“blue”样式类。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { margin: 4px; font-size:16px; font-weight:bolder; }
+  .blue { color:blue; }
+  .under { text-decoration:underline; }
+  .highlight { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p class="blue under"&gt;Hello&lt;/p&gt;
+  &lt;p class="blue under highlight"&gt;and&lt;/p&gt;
+  &lt;p class="blue under"&gt;then&lt;/p&gt;
+
+  &lt;p class="blue under"&gt;Goodbye&lt;/p&gt;
+&lt;script&gt;$("p:even").removeClass("blue");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子:从匹配的元素中移除“blue”和“under”样式类。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { margin: 4px; font-size:16px; font-weight:bolder; }
+  .blue { color:blue; }
+  .under { text-decoration:underline; }
+  .highlight { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p class="blue under"&gt;Hello&lt;/p&gt;
+
+  &lt;p class="blue under highlight"&gt;and&lt;/p&gt;
+  &lt;p class="blue under"&gt;then&lt;/p&gt;
+  &lt;p class="blue under"&gt;Goodbye&lt;/p&gt;
+&lt;script&gt;$("p:odd").removeClass("blue under");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>例子:从匹配的元素中移除所有样式类。</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { margin: 4px; font-size:16px; font-weight:bolder; }
+  .blue { color:blue; }
+  .under { text-decoration:underline; }
+  .highlight { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p class="blue under"&gt;Hello&lt;/p&gt;
+  &lt;p class="blue under highlight"&gt;and&lt;/p&gt;
+  &lt;p class="blue under"&gt;then&lt;/p&gt;
+
+  &lt;p class="blue under"&gt;Goodbye&lt;/p&gt;
+&lt;script&gt;$("p:eq(1)").removeClass();&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

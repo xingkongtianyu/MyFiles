@@ -1,0 +1,97 @@
+jquery.validate使用攻略 第三部
+作者： 字体：[增加 减小] 类型：转载
+自定义jquery-validate的验证行为
+1: 自定义表单提交
+
+设置submitHandler来自定义表单提交动作
+
+$(".selector").validate({
+submitHandler: function(form) { alert("验证通过"); }
+});
+
+如果需要提交表单，可以调用
+form.submit(); 或者$(form).ajaxSubmit();
+
+2: 调试模式
+
+将debug设置为true，表单不会提交，只进行检查，方便调试
+
+$(".selector").validate({
+debug: true
+})
+
+3: 设置validate的默认值
+
+使用setDefaults可以设置validate的默认值，比如默认所有表单验证都是在debug模式下进行
+
+$.validator.setDefaults({
+debug: true
+})
+
+4: 某些元素不验证
+
+设置ignore属性可以忽略某些元素不验证
+
+$(".selector").validate({
+ignore: "ignore"
+})
+
+5: 验证时机
+
+jquery.validate可以很方便的设置在什么时候触发验证动作
+
+onsubmit: 提交时是否验证
+
+$(".selector").validate({
+onsubmit: false
+})
+
+onfocusout: 失去焦点时验证(checkboxes/radio除外)
+
+$(".selector").validate({
+onfocusout: false
+})
+
+onkeyup: 在keyup时验证
+
+$(".selector").validate({
+onkeyup: false
+})
+
+onclick: 在checkboxes、radio点击时验证.
+
+$(".selector").validate({
+onclick: false
+})
+
+6: 重写验证规则和验证提示信息
+
+//重写max的的验证提示信息
+$.validator.messages.max = jQuery.format("Your totals musn't exceed {0}!");
+
+//重写equal方法
+$.validator.methods.equal = function(value, element, param) {
+return value == param;
+};
+
+7: focusInvalid 是否把焦点聚焦在最后一个动作或者最近的一次出错上
+
+$(".selector").validate({
+focusInvalid: false
+})
+
+8: focusCleanup
+
+如果该属性设置为True, 那么控件获得焦点时，移除出错的class定义，隐藏错误信息，避免和 focusInvalid.一起用。
+
+$(".selector").validate({
+focusCleanup: true
+})
+
+9: meta
+
+设置meta来封装验证规则
+
+$(".selector").validate({
+meta: "validate",
+}) 

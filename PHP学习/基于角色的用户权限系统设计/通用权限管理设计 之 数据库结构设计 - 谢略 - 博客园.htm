@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-cn"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>通用权限管理设计 之 数据库结构设计 - 谢略 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-gray.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/leoxie2011/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/leoxie2011/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/leoxie2011/wlwmanifest.xml">
+<script src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'leoxie2011', cb_enable_mathjax=false;</script>
+<script src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<link href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/StyleSheet.css" rel="stylesheet" type="text/css">
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="banner"><div id="bnr_pic">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/leoxie2011/">leo's Space</a><br>
+	</div>
+	<div class="headerDis"></div>
+</div>
+</div></div>
+<div id="main">
+	<!-- left starts -->
+	<div id="left">
+	<div id="left_border">
+		<div id="mystats">
+			<br>
+				
+<!--done-->
+<div class="blogStats">
+随笔- 25&nbsp;
+文章- 6&nbsp;
+评论- 1074&nbsp;
+
+</div>
+			
+		</div>
+		<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/leoxie2011/">首页</a>&nbsp;&nbsp;<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;<a id="MyLinks1_NewArticleLink" class="menu" href="http://www.cnblogs.com/EnterMyBlog.aspx?NewArticle=1">新文章</a>&nbsp;&nbsp;<a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5">联系</a>&nbsp;&nbsp;<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a>&nbsp;&nbsp;<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/leoxie2011/rss">订阅</a>&nbsp;<a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/leoxie2011/rss"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/xml.gif" alt="订阅"></a></div>
+		<div id="topics">
+			
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">通用权限管理设计 之 数据库结构设计</a>
+	</div>
+	<div id="cnblogs_post_body"><h2><strong>一，前言&nbsp;</strong></h2>
+<p>权限管理系统的应用者应该有三种不同性质上的使用，</p>
+<p>A,使用权限</p>
+<p>B,分配权限</p>
+<p>C,授权权限&nbsp;</p>
+<p>本文只从《使用权限》和《分配权限》这两种应用层面分析，暂时不考虑《授权权限》这种。</p>
+<h2><span class="Apple-style-span" style="font-size: 28px; font-weight: bold; ">二，初步分析</span></h2>
+<h3><span style="color: red; ">用户和角色&nbsp;</span></h3>
+<p><span class="Apple-style-span" style="font-family: 宋体; ">说到权限管理，首先应该想到，当然要设计一个用户表，一个权限表。这样就决定了一个人有什么样的权限。</span></p>
+<div>
+<p><span style="font-family:宋体;">做着做着就会发现这样设计太过繁琐，如果公司里面所有员工都有这样的权限呢，每一个人都要配置？那是一件很痛苦的事情。因此再添加一个角色表，把某些人归为一类，然后再把权限分配给角色。角色属下的用户也就拥有了权限。</span></p>
+<p><font class="Apple-style-span" face="宋体">用户、角色之间的关系是</font><span style="color: red; ">一个用户可以对应多个角色，一个角色可以对应多个用户。多对多关系。</span></p>
+<p>所以需要一个中间表，相信大家都很熟悉，自然不会有疑问。</p>
+<h4><span style="color: red; ">应用场景&nbsp;</span></h4>
+<p>有了用户和角色以后，就需要设计应用场景，比如一个应用程序有几大模块（系统模块、项目管理模块、销售模块），</p>
+<p>类似这样的模块就是一种应用场景，常见的还有 菜单 、 操作 等等。</p>
+<p>假设现在我们设计好了，应用场景包括 模块、菜单、和操作，那么应该有以下六种关系</p>
+<div>
+<div>
+<ol>
+     <li style="color: red; "><span style="color: red; ">一个用户可以对应多个模块，一个模块可以对应多个用户。多对多关系。</span></li>
+     <li style="color: red; "><span style="color: red; ">一个用户可以对应多个菜单，一个菜单可以对应多个用户。多对多关系。</span></li>
+     <li style="color: red; "><span style="color: red; ">一个用户可以对应多个操作，一个操作可以对应多个用户。多对多关系。</span></li>
+     <li style="color: red; "><span style="color: red; ">一个角色可以对应多个模块，一个模块可以对应多个角色。多对多关系。&nbsp;</span></li>
+     <li style="color: red; "><span style="color: red; ">一个角色可以对应多个菜单，一个菜单可以对应多个角色。多对多关系。 &nbsp;</span></li>
+     <li style="color: red; "><span style="color: red; ">一个角色可以对应多个操作，一个操作可以对应多个角色。多对多关系。</span></li>
+</ol>
+</div>
+</div>
+<p>于是建立六张表来维护这六种关系。</p>
+<p>这样设计看起来没什么问题。是的，如果没有加入新的关系的话，这样是已经可以满足大部分的需求了。可是如果就是如果，新的关系（需求）往往会加入到系统进来。这个时候就需要再建立一个新的表。系统的复杂度也随着增加。</p>
+<p>可以看出，这样的设计有几个问题：</p>
+<p>
+</p><ol>
+     <li style="color: #ff0000; "><span class="Apple-style-span" style="color: #ff0000; ">数据表设计太复杂</span></li>
+     <li style="color: #ff0000; "><span class="Apple-style-span" style="color: #ff0000; ">应对系统方案过于固定</span></li></ol><div><h2><span style="font-size: 28px; font-weight: bold; ">三，把问题简单化</span></h2></div>
+<p>&nbsp;</p>
+<p>&nbsp;<span class="Apple-style-span" style="font-family: 宋体; ">不同的应用场合，你可能会想出不同的需求，提了一个新的需求以后，可能会发现原来的设计没方法实现了，于是还要添加一个新的表。这也是上面所提到的问题。</span>&nbsp;</p><div>  <p>&nbsp;<span class="Apple-style-span" style="font-family: 宋体; ">其实不必想得那么复杂，权限可以简单描述为：</span></p>  <p><span style="font-family:宋体; color:red">某某主体 在 某某领域 有 某某权限&nbsp;</span></p>  <p style="margin-left:18.0pt;text-indent:-18.0pt;"><span style="color:red">1，主体</span><span style="font-family:宋体;color:red">可以是用户，可以是角色，也可以是一个部门</span></p>  <p style="margin-left:18.0pt;text-indent:-18.0pt;"><span style="color:red">2，&nbsp;</span><span style="font-family:宋体;color:red">领域可以是一个模块，可以是一个页面，也可以是页面上的按钮</span></p>  <p style="margin-left:18.0pt;text-indent:-18.0pt;"><span style="color:red">3，&nbsp;</span><span style="font-family:宋体;color:red">权限可以是“可见”，可以是“只读”，也可以是“可用</span><span style="color:red">”(</span><span style="font-family:宋体; color:red">如按钮可以点击</span><span style="color:red">)</span></p><p>其实就是Who、What、How的问题</p><p><br></p>  <p><span style="font-family:宋体;">因此上面所提到的六张表其实可以设计一张表：</span></p>  <p><font class="Apple-style-span" face="宋体"><br></font></p><p>&nbsp;<img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/pri.jpg" alt="" height="139" width="608"></p><p>&nbsp;</p><h2>四，实例说明</h2><p>&nbsp;</p>  <p><span style="font-family:宋体;">下面用一个例子做设计说明。“用户、角色在页面上的是使用权限”</span></p>  <p><span style="font-family:宋体;">详细设计：</span></p>  <p>1<span style="font-family:宋体;">，把菜单的配置放在数据库上，每一个菜单对于一个唯一的编码</span>MenuNo<span style="font-family:宋体;">，每一个“叶节点”的菜单项对于一个页面(url)。</span></p>  <p>2<span style="font-family:宋体;">，把按钮的配置放在数据库上</span><span style="font-family:宋体;">，并归属于一个菜单项上（其实就是挂在某一个页面上）。应该一个页面可能会有几个按钮组，比如说有两个列表，这两个列表都需要有“增加、修改、删除”。所以需要增加一个</span>按钮分组的<span style="font-family:宋体;">字段来区分。</span></p><p>3,
+把菜单权限分配给用户/角色，PrivilegeMaster为"User"或"Role",PrivilegeMasterValue为UserID或
+RoleID,PrivilegeAccess为“Menu",PrivilegeAccessValue为
+MenuNo,PrivilegeOperation为"enabled"</p><p>4,把按钮权限分配给用户/角
+色，PrivilegeMaster为"User"或"Role",PrivilegeMasterValue为UserID或
+RoleID,PrivilegeAccess为“Button",PrivilegeAccessValue为
+BtnID,PrivilegeOperation为"enabled"</p><p>5,如果需要禁止单个用户的权限，PrivilegeOperation&nbsp;设置为"disabled"。</p><p>如果不清楚的可以看下图：</p><p><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/003.png" alt="" border="0" height="445" width="687">&nbsp;</p><p>&nbsp;数据库设计：</p><p><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/002.png" alt="" border="0" height="622" width="729">&nbsp;</p></div>
+<p>&nbsp;</p><div><h2>四，结语</h2></div><p>说了这么多，其实我推荐的只是Privilege的表设计。这个表是who、what、how问题原型的设计。不仅扩展性、灵活性都很好，而且将复杂的权限管理系统浓缩成一句话。</p><p>&nbsp;而PrivilegeOperation不仅仅只是使用和禁止两种，包括分配权限、授权权限，都可以用这个字段定义。只是这无疑加大了应用程序的设计难度，但是对于表设计可以不做出任何的修改就可以完成，可以看出其灵活性。&nbsp;</p><p>&nbsp;</p>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/leoxie2011/category/232317.html">01.ASP.NET</a>, <a href="http://www.cnblogs.com/leoxie2011/category/300273.html">03.权限管理</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/leoxie2011/tag/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1/">权限管理设计</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2050626,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/leoxie2011/" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u109724.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/leoxie2011/">谢略</a><br>
+<a href="http://home.cnblogs.com/u/leoxie2011/followees">关注 - 26</a><br>
+<a href="http://home.cnblogs.com/u/leoxie2011/followers">粉丝 - 873</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2050626,'Digg')">
+        <span class="diggnum" id="digg_count">57</span>
+    </div>
+	<div class="buryit" onclick="votePost(2050626,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/07/2039729.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/07/2039729.html" title="发布于2011-05-07 13:24">jQuery LigerUI V1.01(包括API和全部源码) 发布</a><br><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/28/2061406.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/28/2061406.html" title="发布于2011-05-28 23:29">jQuery liger ui ligerGrid 打造通用的分页排序查询表格(提供下载)</a><br></div>
+</div>
+
+
+	<div class="postDesc"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/speech.gif" align="absmiddle">&nbsp;posted on <span id="post-date">2011-05-19 00:37</span> <a href="http://www.cnblogs.com/leoxie2011/">谢略</a> 阅读(<span id="post_view_count">76406</span>) 评论(<span id="post_comment_count">101</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2050626" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2050626);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=65588,cb_entryId=2050626,cb_blogApp=currentBlogApp,cb_blogUserGuid='45d7011f-fa00-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2011/5/19 0:37:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="#%21comments" onclick="commentManager.renderComments(2,50);return false;">&lt; Prev</a><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">1</a><a href="#%21comments" onclick="commentManager.renderComments(2,50);return false;">2</a><span class="current">3</span></div></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3323749" class="layer">#101楼</a><a name="3323749" id="comment_anchor_3323749"></a><span id="comment-maxId" style="display:none;">3323749</span><span id="comment-maxDate" style="display:none;">2015/12/9 16:28:47</span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3323749" class="feedbackmanagelink" href="http://home.cnblogs.com/u/845035/" target="_blank">润~~润</a> <a href="http://msg.cnblogs.com/send/%E6%B6%A6%7E%7E%E6%B6%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2015-12-09 16:28</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3323749" class="blog_comment_body">sys_application是什么表啊？？？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3323749,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3323749,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="#%21comments" onclick="commentManager.renderComments(2,50);return false;">&lt; Prev</a><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">1</a><a href="#%21comments" onclick="commentManager.renderComments(2,50);return false;">2</a><span class="current">3</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jpush.cn/" target="_blank">【推荐】极光推送30多万开发者的选择，SDK接入量超过30亿了，你还没注册？</a><br><a href="http://click.aliyun.com/m/3037/" target="_blank">【精品】高性能阿里云服务器+SSD云盘，支撑I/O密集型核心业务、极高数据可靠性</a><br></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/spreadjs/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20151030141724685-1469547474.png" alt="" title="" height="250" width="300"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/535276/" target="_blank">如何防止在网络上被“人肉”出来？</a><br> ·  <a href="http://news.cnblogs.com/n/535275/" target="_blank">亲历：我在创业大街这一年</a><br> ·  <a href="http://news.cnblogs.com/n/535274/" target="_blank">Docker容器明文密码问题解决之道</a><br> ·  <a href="http://news.cnblogs.com/n/535273/" target="_blank">钱宝应用市场即将登陆新三板</a><br> ·  <a href="http://news.cnblogs.com/n/535272/" target="_blank">15岁美籍华裔自制追踪设备防止爷爷走丢</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://jiuye.jikexueyuan.com/train/android?hmsr=cnb_jiuye_android_1217" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20151217171328162-2066192838.jpg" alt="jiuye_android_1217" title="jiuye_android_1217" height="60" width="468"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/534420/" target="_blank">Linux概念架构的理解</a><br> ·  <a href="http://kb.cnblogs.com/page/527814/" target="_blank">从涂鸦到发布——理解API的设计过程</a><br> ·  <a href="http://kb.cnblogs.com/page/531834/" target="_blank">好的架构是进化来的，不是设计来的</a><br> ·  <a href="http://kb.cnblogs.com/page/532236/" target="_blank">被误解的MVC和被神化的MVVM</a><br> ·  <a href="http://kb.cnblogs.com/page/530046/" target="_blank">再谈设计和编码</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+});
+</script>
+</div>
+
+		</div>
+	</div>
+	</div>
+	<!-- left ends -->
+	<!-- right starts -->
+	<div id="right">
+		<!-- 右侧工具部分 -->
+		<div id="right_content">
+	
+			
+<!--done-->
+<h1 class="listtitle" style="padding-top:14px;padding-left:42px;">公告</h1>
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/leoxie2011/">谢略</a><br>园龄：<a href="http://home.cnblogs.com/u/leoxie2011/" title="入园时间：2010-01-14">5年11个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/leoxie2011/followers/">873</a><br>关注：<a href="http://home.cnblogs.com/u/leoxie2011/followees/">26</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('45d7011f-fa00-df11-ba8f-001cf0cd104b')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+	
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="Calendar" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2011/04/01');return false;">&lt;</a></td><td align="center">2011年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2011/06/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/07.html"><u>7</u></a></td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19.html"><u>19</u></a></td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/28.html"><u>28</u></a></td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+				<div id="leftcontentcontainer">
+					<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/leoxie2011/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/leoxie2011/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/leoxie2011/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/leoxie2011/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/leoxie2011/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/leoxie2011/tag/LigerUI/">LigerUI</a>(18)</li><li><a href="http://www.cnblogs.com/leoxie2011/tag/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1/">权限管理设计</a>(3)</li><li><a href="http://www.cnblogs.com/leoxie2011/tag/ASP.NET%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">ASP.NET自定义控件</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/232317.html">01.ASP.NET(2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/291637.html">02.LigerUI(22)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/300273.html">03.权限管理(3)</a>
+				</div>
+			
+				</div>
+			
+	
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2014/03.html">2014年3月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/08.html">2013年8月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/05.html">2013年5月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/03.html">2013年3月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/03.html">2012年3月 (5)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/02.html">2012年2月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/01.html">2012年1月 (3)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/11.html">2011年11月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/05.html">2011年5月 (3)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/04.html">2011年4月 (7)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2010/08.html">2010年8月 (1)</a>
+				</div>
+			
+				</div>
+			
+	
+		<h1 class="catListTitle">文章分类</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/259031.html">Asp.NET 自定义控件</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/230444.html">C#</a>
+				</div>
+			
+				</div>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html#3323749">1. Re:通用权限管理设计 之 数据库结构设计</a></li>
+    <li class="recent_comment_body">sys_application是什么表啊？？？</li>
+    <li class="recent_comment_author">--润~~润</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html#3307180">2. Re:通用权限管理设计 之 数据库结构设计</a></li>
+    <li class="recent_comment_body">楼主能把6张数据表发来看看吗？谢谢。1490069368@qq.com</li>
+    <li class="recent_comment_author">--wzmzang</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/p/3606408.html#3299821">3. Re:jQuery LigerUI V1.2.3 (包括API和全部源码) 发布</a></li>
+    <li class="recent_comment_body">楼主能给grid里单元格编辑器的类型加一种多行文本框吗？现在文本的类型只有text，没法往单元格里加换行的段落或一些格式的内容来进行编辑，拜托啦</li>
+    <li class="recent_comment_author">--Caroline1006</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html#3297100">4. Re:分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)</a></li>
+    <li class="recent_comment_body">虽然日期过去了很久了，不知道楼主能不能看到，但是还是求楼主发一份源码谢谢了！479146715@qq.com</li>
+    <li class="recent_comment_author">--学渣成学霸</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/p/3606408.html#3286591">5. Re:jQuery LigerUI V1.2.3 (包括API和全部源码) 发布</a></li>
+    <li class="recent_comment_body">弹出窗口功能的载入目标DIV功能错误很多，下拉框和日期选择控件都有问题。</li>
+    <li class="recent_comment_author">--cooloksu</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">1. 通用权限管理设计 之 数据库结构设计(76405)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">2. 通用权限管理设计 之 数据权限(65937)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">3. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(63866)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/17/2324485.html">4. jQuery LigerUI 使用教程表格篇(1)(44176)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/16/2324106.html">5. jQuery LigerUI 使用教程入门篇(44099)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">1. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(196)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">2. 通用权限管理设计 之 数据库结构设计(101)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2013/05/12/ligeruiv120.html">3. jQuery LigerUI V1.2.0 (包括API和全部源码) 发布(89)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">4. 通用权限管理设计 之 数据权限(77)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/16/2324106.html">5. jQuery LigerUI 使用教程入门篇(58)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">1. 通用权限管理设计 之 数据权限(61)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">2. 通用权限管理设计 之 数据库结构设计(57)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">3. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(44)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2013/05/12/ligeruiv120.html">4. jQuery LigerUI V1.2.0 (包括API和全部源码) 发布(37)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/04/24/2026241.html">5. jQuery LigerUI V1.0(包括API和全部源码) 发布(24)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+				</div>
+			
+		</div>
+		<!-- //右侧工具部分 -->
+	</div>
+	<!-- right ends -->
+	<div class="clear"></div>
+</div>
+<div id="footer">
+<!--done-->
+Copyright ©2015 谢略</div>
+
+
+
+</body></html>

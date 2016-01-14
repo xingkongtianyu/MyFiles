@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.delay()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/custom-effects/" title="View all posts in Custom">Custom</a></span>
+  
+  				</div>
+</div>
+<div id="delay1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.delay( duration, [ queueName ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>设置一个延时来推迟执行队列中之后的项目。</p>
+<ul class="signatures"><li class="signature" id="delay-duration-queueName">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.delay( duration, [ queueName ] )</h4>
+<p class="arguement"><strong>duration</strong>一个用于设定队列推迟执行的时间，以毫秒为单位的整数。</p>
+<p class="arguement"><strong>queueName</strong>一个作为队列名的字符串。默认是动画队列 <code>fx</code> 。</p>
+</li></ul>
+<div class="longdesc">
+<p>在jQuery1.4中性增加的，<code>.delay()</code>方法允许我们将队列中的函数延时执行。它既可以推迟动画队列中函数的执行，也可以用于自定义队列 </p>
+<p>延时时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。</p>
+<p>使用标准效果列队，举个例子，我们可以设置800毫秒的延时在 <code>&lt;div id="foo"&gt;</code> 的 <code>.slideUp()</code> 和 <code>.fadeIn()</code> 动画之间:</p>
+<pre>$('#foo').slideUp(300).delay(800).fadeIn(400);</pre>
+<p>当这句语句执行的时候，这个元素会以300毫秒的卷起动画，然后在400毫秒淡入动画前暂停800毫秒。</p>
+<p><strong>jQuery.delay() 用来在jQuery动画效果和类似队列中是最好的。但不是替代 JavaScript 原生的 <a href="https://developer.mozilla.org/en/DOM/window.setTimeout">setTimeout</a> 函数，后者更适用于通常情况。</strong></p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Animate the hiding and showing of two divs, delaying the first before showing it.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { width: 60px; height: 60px; float: left; }
+.first { background-color: #3f3; }
+.second { background-color: #33f;}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;p&gt;&lt;button&gt;Run&lt;/button&gt;&lt;/p&gt;
+&lt;div class="first"&gt;&lt;/div&gt;
+&lt;div class="second"&gt;&lt;/div&gt;
+	
+&lt;script&gt;
+    $("button").click(function() {
+      $("div.first").slideUp(300).delay(800).fadeIn(400);
+      $("div.second").slideUp(300).fadeIn(400);
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

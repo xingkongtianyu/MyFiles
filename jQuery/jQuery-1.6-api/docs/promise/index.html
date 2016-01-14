@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">.promise()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/deferred-object/" title="View all posts in Deferred Object">Deferred Object</a></span>
+  
+
+          </div>
+
+</div>
+<div id="promise1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.promise( [ type ], [ target ] )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#Promise">Promise</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong> 返回一个 Promise 对象用来观察当某种类型的所有行动绑定到集合，排队与否还是已经完成。  </p>
+<ul class="signatures"><li class="signature" id="promise-type-target">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.promise( [ type ], [ target ] )</h4>
+<p class="arguement"><strong>type</strong> 需要待观察队列类型。</p>
+<p class="arguement"><strong>target</strong>附有promise 方法的Object</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.promise()</code>方法返回一个动态生成的Promise对象用来观察当某种类型的所有行动绑定到集合，排队与否还是已经完成。</p>
+<p> 默认情况下， <code>type</code>是<code>"fx"</code> ，这意味着当选定的元素已完成所有动画是返回的Promise是解决的。</p>
+<p> 解决上下文和唯一的参数是哪个集合到<code>.promise()</code>被调用。 </p>
+<p> 如果<code>target</code>是提供，<code>.promise()</code>将附加到它的方法，然后返回这个对象，而不是创建一个新的。这对在已经存在的对象上附加Promise的行为非常有用。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">一个集合上使用promise，而没有动画解决的promise：</span>
+</h4>
+<pre class="prettyprint"><code class="example">
+var div = $( "&lt;div /&gt;" );
+
+div.promise().done(function( arg1 ) {
+  // will fire right away and alert "true"
+  alert( this === div &amp;&amp; arg1 === div );
+});
+</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Resolve the returned Promise when all animations have ended (including those initiated in the animation callback or added later on):</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div {
+  height: 50px; width: 50px;
+  float: left; margin-right: 10px;
+  display: none; background-color: #090;
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;button&gt;Go&lt;/button&gt;
+&lt;p&gt;Ready...&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+
+&lt;script&gt;
+$("button").bind( "click", function() {
+  $("p").append( "Started...");
+  
+  $("div").each(function( i ) {
+    $( this ).fadeIn().fadeOut( 1000 * (i+1) );
+  });
+
+  $( "div" ).promise().done(function() {
+    $( "p" ).append( " Finished! " );
+  });
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Resolve the returned Promise using a $.when() statement (the .promise() method makes it possible to do this with jQuery collections):</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div {
+  height: 50px; width: 50px;
+  float: left; margin-right: 10px;
+  display: none; background-color: #090;
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;button&gt;Go&lt;/button&gt;
+&lt;p&gt;Ready...&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+
+&lt;script&gt;
+var effect = function() {
+  return $("div").fadeIn(800).delay(1200).fadeOut();
+};
+
+$("button").bind( "click", function() {
+  $("p").append( " Started... ");
+
+  $.when( effect() ).done(function() {
+    $("p").append(" Finished! ");
+  });
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

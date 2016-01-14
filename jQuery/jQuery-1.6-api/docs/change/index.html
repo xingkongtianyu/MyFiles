@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.change()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/form-events/" title="View all posts in Form Events">Form Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span>
+  
+  				</div>
+</div>
+<div id="change1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.change( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "change" 事件绑定一个处理函数，或者触发元素上的 "change" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="change-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.change( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="change-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.change( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="change"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.change()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('change', handler)</code> 的快捷方式，第二种用法是 <code>.bind('change')</code> 的快捷方式。</p>
+<p>一个元素的值改变的时候将触发<code>change</code>事件。此事件仅限于<code>&lt;input&gt;</code>元素，<code>&lt;textarea&gt;</code>框和<code>&lt;select&gt;</code>元素。对于选择框，复选框和单选按钮，当用户用鼠标作出选择，该事件立即触发，但对于其他类型元素，该事件触发将推迟到元素失去焦点。</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;form&gt;
+  &lt;input class="target" type="text" value="Field 1" /&gt;
+  &lt;select class="target"&gt;
+    &lt;option value="option1" selected="selected"&gt;Option 1&lt;/option&gt;
+    &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p>事件处理函数可以绑定到文本输入和选择框：</p>
+<pre>$('.target').change(function() {
+  alert('Handler for .change() called.');
+});</pre>
+<p>现在，当下拉菜单中第二个选项被选择，警报显示。如果我们改变了在这一领域的文本，然后点击警报也会显示。如果该域的内容没有变化失去焦点，该事件不会被触发。点击另一个元素时，我们可以手动触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('.target').change();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span>也提醒消息。该信息将显示两次，因为表单元素都绑定了<code>change</code>事件处的理函数。</p>
+<p>在jQuery 1.4中 <code>change</code>事件是冒泡的，在Internet Explorer和其他浏览器中运行是一样的。.</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Attaches a change event to the select that gets the text for each selected option and writes them in the div.  It then triggers the event for the initial text draw.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;select name="sweets" multiple="multiple"&gt;
+    &lt;option&gt;Chocolate&lt;/option&gt;
+    &lt;option selected="selected"&gt;Candy&lt;/option&gt;
+
+    &lt;option&gt;Taffy&lt;/option&gt;
+    &lt;option selected="selected"&gt;Caramel&lt;/option&gt;
+    &lt;option&gt;Fudge&lt;/option&gt;
+    &lt;option&gt;Cookie&lt;/option&gt;
+
+  &lt;/select&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+    $("select").change(function () {
+          var str = "";
+          $("select option:selected").each(function () {
+                str += $(this).text() + " ";
+              });
+          $("div").text(str);
+        })
+        .change();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To add a validity test to all text input elements:</span>
+</h4>
+<pre><code class="example">$("input[type='text']").change( function() {
+  // check input ($(this).val()) for validity here
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

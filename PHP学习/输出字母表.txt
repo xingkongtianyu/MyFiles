@@ -1,0 +1,21 @@
+$a=ord("a");
+$z=ord("z");
+
+$i=$a; 
+var_dump($i);
+$string="";
+
+while($i<=$z) 
+{
+  
+
+ $i++;
+var_dump($i);
+$string .= chr($i); 
+}
+
+echo "<br />";
+var_dump($string);
+输出 
+string(26) "bcdefghijklmnopqrstuvwxyz{" 
+求助大括号是怎么回事，如何修改？？

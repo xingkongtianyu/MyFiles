@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.replaceWith()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-replacement/" title="View all posts in DOM Replacement">DOM Replacement</a></span>
+  
+  				</div>
+</div>
+<div id="replaceWith1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.replaceWith( newContent )</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>用提供的内容替换所有匹配的元素。</p>
+<ul class="signatures">
+<li class="signature" id="replaceWith-newContent">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.replaceWith( newContent )</h4>
+<p class="arguement"><strong>newContent</strong>用来插入的内容，可能是HTML字符串，DOM元素，或者jQuery对象。</p>
+</li>
+<li class="signature" id="replaceWith-function">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.replaceWith( function )</h4>
+<p class="arguement"><strong>function</strong>返回THML字符串，用来替换的内容。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.replaceWith()</code>可以从DOM中移除内容，然后在这个地方插入新的内容。请看下面的例子：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner first"&gt;Hello&lt;/div&gt;
+  &lt;div class="inner second"&gt;And&lt;/div&gt;
+  &lt;div class="inner third"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>我们可以用指定的HTML替换第二个 inner <code>&lt;div&gt;</code> ：</p>
+<pre>$('.second').replaceWith('&lt;h2&gt;New heading&lt;/h2&gt;');</pre>
+<p>结果如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner first"&gt;Hello&lt;/div&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+  &lt;div class="inner third"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>同样我们也可以一次性替换或有inner<code>&lt;div&gt;</code>:</p>
+<pre>$('.inner').replaceWith('&lt;h2&gt;New heading&lt;/h2&gt;');</pre>
+<p>结果如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+&lt;/div&gt;</pre>
+<p>或者我们可以选择一个元素把它当做替换的内容：</p>
+<pre>$('.third').replaceWith($('.first'));</pre>
+<p>结果如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner second"&gt;And&lt;/div&gt;
+  &lt;div class="inner first"&gt;Hello&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>从这个例子中，我们可以看出用选中的元素替换目标是移动而不是复制。</p>
+<p><code>.replaceWith()</code>方法，和大部分其他jQuery方法一样，返回jQuery对象，所以可以喝其他方法链接使用，但是需要注意的是：返回的jQuery对象是和被移走的元素相关联，而不是新插入的元素。/p>
+<p>在jQuery 1.4中 <code>.replaceWith()</code>, <code>.before()</code>, 和<code>.after()</code>都对分离的DOM元素有效。请看下面的例子：</p>
+<pre>$("&lt;div&gt;").replaceWith("&lt;p&gt;&lt;/p&gt;");</pre>
+<p><code>.replaceWith()</code>返回一个包含div的jQuery对象。</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>例子：<span class="desc">点击按钮，用包含同样文字的div替换按钮：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  button { display:block; margin:3px; color:red; width:200px; }
+  div { color:red; border:2px solid blue; width:200px; 
+        margin:3px; text-align:center; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;First&lt;/button&gt;
+  &lt;button&gt;Second&lt;/button&gt;
+
+  &lt;button&gt;Third&lt;/button&gt;
+&lt;script&gt;
+
+    $("button").click(function () {
+      $(this).replaceWith("&lt;div&gt;" + $(this).text() + "&lt;/div&gt;");
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子：<span class="desc">用粗体字替换所有段落。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+  &lt;p&gt;cruel&lt;/p&gt;
+
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("p").replaceWith("&lt;b&gt;Paragraph. &lt;/b&gt;");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>例子：<span class="desc">用空的div替换所有段落。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { border:2px solid blue; margin:3px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("p").replaceWith(document.createElement("div"));&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>例子：<span class="desc">点击，用DOM中现存的div元素替换每个段落。注意是移动而不是复制。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { border:2px solid blue; color:red; margin:3px; }
+  p { border:2px solid red; color:blue; margin:3px; cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+
+  &lt;div&gt;Replaced!&lt;/div&gt;
+&lt;script&gt;
+    $("p").click(function () {
+      $(this).replaceWith($("div"));
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

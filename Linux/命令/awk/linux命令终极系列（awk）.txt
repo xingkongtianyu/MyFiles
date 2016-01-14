@@ -1,0 +1,355 @@
+linux命令终极系列（awk） 
+一.awk功能特点
+     awk是一个非常重要的命令或者认为是一种语言。因为他可以做数学运算，流程控制语句，流控制，还有样式装入的功能。反正是非常强大。awk是三位创建者编写的。把awk定义为：样式扫描处理语言。
+   awk吸收了C语言很多的特点，所以与C语言有点类拟。
+
+二.awk的调用方式
+    awk提供了适应不同需要的多种方案，它们是：
+  1.awk命令行
+         像普通的unix命令一样使用awk,当然可以在你的命令行中使用awk设计语言。而且还可以在shell脚本中引用awk命令或awk程序脚本。
+   2.使用-f选项调用awk程序。
+        awk可以将一段awk程序脚本写入到一个文本文件，然后使用-f选项来指定执行这个awk语言脚本。
+  3.利用命令解释器调用awk程序
+        利用unix支持的命令解释功能。可以将一段awk程序写入到文本文件，然后在它的第一行加上：
+      #!/bin/awk -f
+   并chmod u+x权限。这样以后，你就可以用以下命令格式来调用了。
+   $awk 脚本文件名  待处理的文件
+
+三.awk语法
+  1.与其他的unix命令一样，它的语法如下：
+    awk [ -F re] [parameter...] ['prog'] [-f progfile][in_file...] 
+   参数说明：
+     -F re,指定某字符为分隔符
+    parameter:该参数帮助不同的变量赋值
+    'prog': awk的程序语句段。这个语句段必须用'与'括起来。以防被shell给解释掉了。它的标准形式如下：
+         'pattern {action}'
+    其中pattern参数可以是grep正则表达式中的任何一个，它可以使用语法/re/再加上一些样式匹配技巧构成，也可以使用","分开两样式以选择某个范围。。 action参数总是被大括号包围，它由一系统awk语句组成，各语句之间用";"分隔。awk解释它们，并在pattern给定的样式匹配的记录上执行其操作。与shell类似，你也可以使用“#”作为注释符，它使“#”到行尾的内容成为注释，在解释执行时，它们将被忽略。你可以省略pattern和 action之一，但不能两者同时省略，当省略pattern时没有样式匹配，表示对所有行（记录）均执行操作，省略action时执行缺省的操作——在标准输出上显示。
+
+-f profile:允许awk调用并执行progfile指定程序文件。progfile是一个文本文件，他必须符合awk的语法(注意不是shell文件)。
+
+ in_file :awk的输入文件，可以有多个。注意：awk不会修改输入文件。如果没有指定输入文件，那么默认为标准输入（屏幕）
+
+四. awk的记录，字段与内置变量
+　1. 记录与字段
+在 awk中，缺省的情况下总是将文本文件中的一行视为一个记录，而将一行中的某一部分作为记录中的一个字段。为了操作这些不同的字段，awk借用shell 的方法，用$1,$2,$3...这样的方式来顺序地表示行（记录）中的不同字段。特殊地，awk用$0表示整个行（记录）。不同的字段之间是用称作分隔符的字符分隔开的。系统默认的分隔符是空格。awk允许在命令行中用-F re的形式来改变这个分隔符。事实上，awk用一个内置的变量FS来记忆这个分隔符
+
+  2. 内置变量
+　　awk中有好几个这样的内置变量，例如，记录分隔符变量RS、当前工作的记录数NR等等。
+
+  示例：显示文件本文件testAwk中第3行到第6行，以字符%分隔的第一个字段，第三个字段：
+　awk -F % 'NR==3,NR==6 {printf $1  $3}' testAwk
+   
+  示例：杀死系统中所有top进程
+    ps -ef|grep " top" |grep -v "grep"|awk '{printf $2}'|xargs kill -9
+    或
+    kill -9 `ps -ef|grep " top" |grep -v "grep"|awk '{printf $2}'`
+
+五. awk的内置函数
+  １.  以上示例了printf函数，它与Ｃ语言相似，如下，显示testAwk文件中行号与第1个字段：
+  $awk '{printf"%03d%s\n",NR,$1}' testAwk
+  2. 显示文本文件mydoc匹配（含有）字符串"sun"的所有行
+   $awk '/sun/{print}' mydoc 
+  3.由于显示整个记录（全行）是awk的缺省动作，因此可以省略action项
+   $awk '/sun/' mydoc 
+
+  4.示第一个匹配Sun或sun的行与第一个匹配Moon或moon的行之间的行，并显示到标准输出上：
+    $awk '/[Ss]un/,/[Mm]oon/ {print}' myfile 
+
+  5.下面的示例显示了内置变量和内置函数length（）的使用：
+   $awk 'length($0)>80 {print NR}' myfile 
+
+  6.UNIX中的用户进行安全性检查，方法是考察/etc下的passwd文件，检查其中的passwd字段（第二字段）是否为"*"，如不为"*"，则表示该用户没有设置密码，显示出这些用户名（第一字段）。我们可以用如下语句实现： 
+   #awk -F: '$2=="" {printf("%s no password!\n",$1' /etc/passwd
+   在这个示例中，passwd文件的字段分隔符是“：”，因此，必须用-F：来更改默认的字段分隔符，这个示例中也涉及到了内置函数printf的使用
+ 
+ 六. awk的变量
+   awk提供两种变量:
+   (1) 内置变量
+　　在引用时，不需要加$
+   (2) 自定义变量
+       awk中引用自定义变量必须在它前面加上标志符"$"。awk根据其在awk中第一次出现的形式和上下文确定其具体的数据类型。当变量类型不确定时，awk默认其为字符串类型。这里有一个技巧：如果你要让你的awk程序知道你所使用的变量的明确类型，你应当在在程序中给它赋初值。
+ 
+七.运算与判断
+    awk 支持多种运算，这些运算与C语言提供的几本相同：如+、-、*、/、%等等，同时，awk也支持C语言中类似++、--、+=、-=、=+、=-之类的功能，这给熟悉C语言的使用者编写awk程序带来了极大的方便。作为对运算功能的一种扩展，awk还提供了一系列内置的运算函数（如log、sqr、 cos、sin等等）和一些用于对字符串进行操作（运算）的函数（如length、substr等等）。这些函数的引用大大的提高了awk的运算功能。 
+
+作为对条件转移指令的一部分，关系判断是每种程序设计语言都具备的功能，awk也不例外。awk中允许进行多种测试，如常用的==（等于）、！=（不等于）、>（大于）、<（小于）、>=（大于等于）、>=（小于等于）等等，同时，作为样式匹配，还提供了~（匹配于）和！~（不匹配于）判断。 
+
+作为对测试的一种扩充，awk也支持用逻辑运算符:!(非)、&&（与）、||（或）和括号（）进行多重判断，这大大增强了awk的功能。本文的附录中列出了awk所允许的运算、判断以及操作符的优先级。 
+
+ 八. awk的流程控制 
+  1. BEGIN和END: 
+     任何在BEGIN之后列出的操作（在{}内）将在awk开始扫描输入之前执行，而END之后列出的操作将在扫描完全部的输入之后执行。因此，通常使用BEGIN来显示变量和预置（初始化）变量，使用END来输出最终结果。
+   例：累计销售文件xs中的销售金额（假设销售金额在记录的第三字段）： 
+
+$awk 
+>'BEGIN { FS=":";print "统计销售金额";total=0} 
+>{print $3;total=total+$3;} 
+>END {printf "销售金额总计：%.2f",total}' sx 
+（注：>是shell提供的第二提示符，如要在shell程序awk语句和awk语言中换行，则需在行尾加反斜杠\） 
+
+在这里，BEGIN预置了内部变量FS（字段分隔符）和自定义变量total,同时在扫描之前显示出输出行头。而END则在扫描完成后打印出总合计。 
+
+  2. 流程控制语句 
+  (1) if .. else
+  if...else语句
+    格式： 
+if(表达式) 
+语句1 
+else 
+语句2 
+  
+   if(表达式1） 
+{if(表达式2） 
+语句1 
+else 
+语句2 
+} 
+语句3 
+else {if(表达式3) 
+语句4 
+else 
+语句5 
+} 
+语句6 
+  (2) while语句 
+    格式为: 
+
+while(表达式) 
+语句 
+  (3)do-while语句 
+格式为: 
+do 
+{ 
+语句 
+}while(条件判断语句）
+
+   (4) for语句
+    for(初始表达式;终止条件;步长表达式) 
+{语句} 
+
+在 awk的 while、do-while和for语句中允许使用break,continue语句来控制流程走向，也允许使用exit这样的语句来退出。break 中断当前正在执行的循环并跳到循环外执行下一条语句。continue从当前位置跳到循环开始处执行。对于exit的执行有两种情况：当exit语句不在 END中时，任何操作中的exit命令表现得如同到了文件尾，所有模式或操作执行将停止，END模式中的操作被执行。而出现在END中的exit将导致程序终止。 
+
+九.awk中的自定义函数
+  原始的awk并不提供函数功能，只有在nawk或较新的awk版本中才可以增加函数
+awk函数的定义方法如下： 
+
+function 函数名(参数表){ 
+函数体 
+} 
+在gawk中允许将function省略为func，但其它版本的awk不允许。在 awk中调用函数比较简单，其方法与C语言相似，但awk比C语言更为灵活，它不执行参数有效性检查。换句话说，在你调用函数时，可以列出比函数预计（函数定义中规定）的多或少的参数，多余的参数会被awk所忽略，而不足的参数，awk将它们置为缺省值0或空字符串，具体置为何值，将取决于参数的使用方式。在函数中使用形如：return 返回值 格式的语句。
+例：下面的例子演示了函数的使用。在这个示例中，定义了一个名为print_header的函数，该函数调用了两个参数FileName和 PageNum，FileName参数传给函数当前使用的文件名，PageNum参数是当前页的页号。这个函数的功能是打印（显示）出当前文件的文件名，和当前页的页号。完成这个功能后，这个函数将返回下一页的页号。 
+nawk 
+>'BEGIN{pageno=1;file=FILENAME 
+>pageno=print_header(file，pageno)；#调用函数print_header 
+>printf("当前页页号是：%d\n",pageno); 
+>} 
+>#定义函数print_header 
+>function print_header(FileName,PageNum){ 
+>printf("%s %d\n",FileName,PageNum); >PageNum++;return PageNUm; 
+>} 
+>}' myfile 
+执行这个程序将显示如下内容： 
+myfile 1 
+当前页页号是：2 
+
+ 十.awk高级输入输出 
+1.读取下一条记录： 
+awk的next语句导致awk读取下一个记录并完成模式匹配，然后立即执行相应的操作。通常它用匹配的模式执行操作中的代码。next导致这个记录的任何额外匹配模式被忽略。 
+
+2.简单地读取一条记录 
+awk 的 getline语句用于简单地读取一条记录。如果用户有一个数据记录类似两个物理记录，那么getline将尤其有用。它完成一般字段的分离(设置字段变量$0 FNR NF NR)。如果成功则返回1，失败则返回0（到达文件尾）。如果需简单地读取一个文件，则可以编写以下代码： 
+例：示例getline的使用 
+{while(getline==1) 
+{ 
+#process the inputted fields 
+} 
+} 
+也可以使getline保存输入数据在一个字段中，而不是通过使用getline variable的形式处理一般字段。当使用这种方式时，NF被置成0，FNR和NR被增值。 
+用户也可以使用getline<"filename"方式从一个给定的文件中输入数据，而不是从命令行所列内容输入数据。此时，getline将完成一般字段分离（设置字段变量$0和NF)。如果文件不存在，返回-1,成功，返回1,返回0表示失败。用户可以从给定文件中读取数据到一个变量中，也可以用stdin(标准输入设备）或一个包含这个文件名的变量代替filename。值得注意的是当使用这种方式时不修改FNR和NR。 
+
+另一种使用getline语句的方法是从UNIX命令接受输入，例如下面的例子: 
+例：示例从UNIX命令接受输入 
+{while("who -u"|getline) 
+{ 
+#process each line from the who command 
+} 
+} 
+
+当然，也可以使用如下形式: 
+"command" | getline variable 
+
+3.关闭文件: 
+awk中允许在程序中关闭一个输入或输出文件，方法是使用awk的close语句。 
+close("filename") 
+filename可以是getline打开的文件（也可以是stdin,包含文件名的变量或者getline使用的确切命令）。或一个输出文件（可以是stdout，包含文件名的变量或使用管道的确切命令）。 
+
+4.输出到一个文件: 
+awk中允许用如下方式将结果输出到一个文件： 
+printf("hello word!\n")>"datafile" 
+或 
+printf("hello word!\n")>>"datafile" 
+
+5.输出到一个命令 
+awk中允许用如下方式将结果输出到一个命令： 
+printf("hello word!\n")|"sort-t','" 
+
+十一.awk与shell script混合编程
+因为awk可以作为一个shell命令使用，因此awk能与shell批处理程序很好的融合在一起，这给实现awk与shell程序的混合编程提供了可能。实现混合编程的关键是awk与shell script之间的对话，换言之，就是awk与shell script之间的信息交流:awk从shell script中获取所需的信息（通常是变量的值）、在awk中执行shell命令行、shell script将命令执行的结果送给awk处理以及shell script读取awk的执行结果等等。 
+
+1.awk读取Shell script程序变量 
+在awk中我们可以通过“'$变量名'”的方式读取sell scrpit程序中的变量。 
+例：在下面的示例中，我们将读取sell scrpit程序中的变量Name，该变量存放的是文本myfile的撰写者，awk将打印出这个人名。 
+$cat writename 
+: 
+# @(#) 
+# 
+. 
+. 
+. 
+Name="张三" nawk 'BEGIN {name="'Name'";\ printf("\t%s\t撰写者%s\n",FILENAME,name");}\ 
+{...}END{...}' myfile 
+. 
+. 
+. 
+
+2.将shell命令的执行结果送给awk处理 
+作为信息传送的一种方法，我们可以将一条shell命令的结果通过管道线（|）传递给awk处理： 
+例：示例awk处理shell命令的执行结果 
+$who -u | awk '{printf("%s正在执行%s\n",$2,$1)}' 
+该命令将打印出注册终端正在执行的程序名。 
+
+3.shell script程序读awk的执行结果 
+为了实现shell script程序读取awk执行的结果，我们可以采取一些特殊的方法，例如我们可以用变量名=`awk语句`的形式将awk执行的结果存放入一个 shell script变量。当然也可以用管道线的方法将awk执行结果传递给shell script程序处理。 
+例：作为传送消息的机制之一，UNIX提供了一个向其所有用户传送消息的命令wall（意思是write to all写给所有用户），该命令允许向所有工作中的用户（终端）发送消息。为此，我们可以通过一段shell批处理程序wall.shell来模拟这一程序（事实上比较老的版本中wall就是一段shell批处理程序： 
+
+$cat wall.shell 
+: 
+# @(#) wall.shell:发送消息给每个已注册终端 
+# 
+cat >/tmp/$$ 
+#用户录入消息文本 who -u | awk '{print $2}' | while read tty 
+do 
+cat /tmp/$$>$tty 
+done 
+在这个程序里，awk接受who -u命令的执行结果，该命令打印出所有已注册终端的信息，其中第二个字段是已注册终端的设备名，因此用awk命令析出该设备名，然后用while read tty语句循环读出这些文件名到变量（shell script变量）tty中，作为信息传送的终结地址。 
+
+4.在awk中执行shell命令行----嵌入函数system() 
+system()是一个不适合字符或数字类型的嵌入函数，该函数的功能是处理作为参数传递给它的字符串。system对这个参数的处理就是将其作为命令处理，也就是说将其当作命令行一样加以执行。这使得用户在自己的awk程序需要时可以灵活地执行命令或脚本。 
+例：下面的程序将使用system嵌入函数打印用户编制好的报表文件，这个文件存放在名为myreport.txt的文件中。为简约起见，我们只列出了其END部分： 
+. 
+. 
+. 
+END {close("myreport.txt");system("lp myreport.txt");} 
+在这个示例中，我们首先使用close语句关闭了文件myreport.txt文件，然后使用system嵌入函数将myreport.txt送入打印机打印。 
+
+十二附录： 
+
+1.awk的常规表达式元字符 
+\ 换码序列 
+^ 在字符串的开头开始匹配 
+$ 在字符串的结尾开始匹配 
+. 与任何单个字符串匹配 
+[ABC] 与[]内的任一字符匹配 
+[A-Ca-c] 与A-C及a-c范围内的字符匹配（按字母表顺序） 
+[^ABC] 与除[]内的所有字符以外的任一字符匹配 
+Desk|Chair 与Desk和Chair中的任一个匹配 
+[ABC][DEF] 关联。与A、B、C中的任一字符匹配，且其后要跟D、E、F中的任一个字符。 
+* 与A、B或C中任一个出现0次或多次的字符相匹配 
++ 与A、B或C中任何一个出现1次或多次的字符相匹配 
+？ 与一个空串或A、B或C在任何一个字符相匹配 
+（Blue|Black）berry 合并常规表达式，与Blueberry或Blackberry相匹配 
+
+2.awk算术运算符 
+运算符 用途 
+------------------ 
+x^y x的y次幂 
+x**y 同上 
+x%y 计算x/y的余数（求模） 
+x+y x加y 
+x-y x减y 
+x*y x乘y 
+x/y x除y 
+-y 负y(y的开关符号);也称一目减 
+++y y加1后使用y(前置加） 
+y++ 使用y值后加1（后缀加） 
+--y y减1后使用y(前置减） 
+y-- 使用后y减1(后缀减） 
+x=y 将y的值赋给x 
+x+=y 将x+y的值赋给x 
+x-=y 将x-y的值赋给x 
+x*=y 将x*y的值赋给x 
+x/=y 将x/y的值赋给x x%=y 将x%y的值赋给x 
+x^=y 将x^y的值赋给x 
+x**=y 将x**y的值赋给x 
+
+3.awk允许的测试： 
+操作符 含义 
+x==y x等于y 
+x!=y x不等于y 
+x>y x大于y 
+x>=y x大于或等于y 
+x<y x小于y 
+x<=y x小于或等于y? 
+x~re x匹配正则表达式re? 
+x!~re x不匹配正则表达式re? 
+
+4.awk的操作符(按优先级升序排列) 
+= 、+=、 -=、 *= 、/= 、 %= 
+|| 
+&& 
+> >= < <= == != ~ !~ 
+xy (字符串连结，'x''y'变成"xy"） 
++ - 
+* / % 
+++ -- 
+
+5.awk内置变量（预定义变量） 
+说明：表中v项表示第一个支持变量的工具（下同）：A=awk，N=nawk,P=POSIX awk,G=gawk 
+V 变量 含义 缺省值 
+-------------------------------------------------------- 
+N ARGC 命令行参数个数 
+G ARGIND 当前被处理文件的ARGV标志符 
+N ARGV 命令行参数数组 
+G CONVFMT 数字转换格式 %.6g 
+P ENVIRON UNIX环境变量 
+N ERRNO UNIX系统错误消息 
+G FIELDWIDTHS 输入字段宽度的空白分隔字符串 
+A FILENAME 当前输入文件的名字 
+P FNR 当前记录数 
+A FS 输入字段分隔符 空格 
+G IGNORECASE 控制大小写敏感0（大小写敏感） 
+A NF 当前记录中的字段个数 
+A NR 已经读出的记录数 
+A OFMT 数字的输出格式 %.6g 
+A OFS 输出字段分隔符 空格 
+A ORS 输出的记录分隔符 新行 
+A RS 输入的记录他隔符 新行 
+N RSTART 被匹配函数匹配的字符串首 
+N RLENGTH 被匹配函数匹配的字符串长度 
+N SUBSEP 下标分隔符 "\034" 
+
+6.awk的内置函数 
+V 函数 用途或返回值 
+------------------------------------------------ 
+N gsub(reg,string,target) 每次常规表达式reg匹配时替换target中的string 
+N index(search,string) 返回string中search串的位置 
+A length(string) 求串string中的字符个数 
+N match(string,reg) 返回常规表达式reg匹配的string中的位置 
+N printf(format,variable) 格式化输出，按format提供的格式输出变量variable。 
+N split(string,store,delim) 根据分界符delim,分解string为store的数组元素 
+N sprintf(format,variable) 返回一个包含基于format的格式化数据，variables是要放到串中的数据 
+G strftime(format,timestamp) 返回一个基于format的日期或者时间串，timestmp是systime()函数返回的时间 
+N sub(reg,string,target) 第一次当常规表达式reg匹配，替换target串中的字符串 
+A substr(string,position,len) 返回一个以position开始len个字符的子串 
+P totower(string) 返回string中对应的小写字符 
+P toupper(string) 返回string中对应的大写字符 
+A atan(x,y) x的余切(弧度) 
+N cos(x) x的余弦(弧度) 
+A exp(x) e的x幂 
+A int(x) x的整数部分 
+A log(x) x的自然对数值 
+N rand() 0-1之间的随机数 
+N sin(x) x的正弦(弧度) 
+A sqrt(x) x的平方根 
+A srand(x) 初始化随机数发生器。如果忽略x，则使用system() 
+G system() 返回自1970年1月1日以来经过的时间（按秒计算） 

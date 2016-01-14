@@ -1,0 +1,44 @@
+php实现伪静态的方法
+感谢 ccyou 的投递 时间：2011-02-07 来源：　
+mod_rewrite是Apache的一个非常强大的功能，它可以实现伪静态页面。下面我详细说说它的使用方法
+1.检测Apache是否支持mod_rewrite
+通过php提供的phpinfo()函数查看环境配置，通过Ctrl+F查找到“Loaded Modules”，其中列出了所有apache2handler已经开启的模块，如果里面包括“mod_rewrite”，则已经支持，不再需要继续设置。
+如果没有开启“mod_rewrite”，则打开目录 您的apache安装目录“/apache/conf/” 下的 httpd.conf 文件，通过Ctrl+F查找到“LoadModule rewrite_module”，将前面的”#”号删除即可。
+如果没有查找到，则到“LoadModule” 区域，在最后一行加入“LoadModule rewrite_module ,modules/mod_rewrite.so”（必选独占一行），然后重启apache服务器即可。
+2.让apache服务器支持.htaccess
+如何让自己的本地APACHE服务器支持”.htaccess”呢?其实只要简单修改一下apache的httpd.conf设置就可以让 APACHE支 持.htaccess了。打开httpd.conf文件(在那里? APACHE目录的CONF目录里面),
+用文本编辑器打开后,查找
+Options FollowSymLinks
+AllowOverride None
+改为
+Options FollowSymLinks
+AllowOverride All
+就可以了。
+3.建立.htaccess 文件
+有1种最简单的方法建立.htaccess文件：
+用记事本 打开，点击文件–另存为，在文件名窗口输入”.htaccess”，注意是整个绿色部分，
+也就是包含英文引号，然后点击保存就行了。
+4.rewrite规则学习
+我们新建一个.htaccess文件之后，就在里面写入以下内容：
+RewriteEngine on #rewriteengine为重写引擎开关on为开启off为关闭
+RewriteRule ([0-9]{1,})$index.php?id=$1
+我讲解一下RewriteRule：RewriteRule是重写规则，支持正则表达式的，上面的([0-9]{1,})是指由数
+字组成的，$是结束标志，说明是以数字结束！
+好吧，现在我们可以实现伪静态页面了，写下一下的规则：
+RewriteEngine on
+RewriteRule ([a-zA-Z]{1,})-([0-9]{1,}).html$index.php?action=$1&id=$2
+([a-zA-Z]{1,})-([0-9]{1,}).html$是规则，index.php?action=$1&id=$2是要替换的格式，$1代表第
+一个括号匹配的值，$2代表第二个，如此类推！！
+我们写一个处理的PHP脚本：
+index.php
+PHP代码
+echo ‘你的Action是：’ . $_GET['action'];
+echo ‘
+’;
+echo ‘你的ID是：’ . $_GET['id'];
+?>
+好了，我们现在在浏览器中输入：
+localhost/page-18.html
+输出的是：
+你的Action是：page
+你的ID是：18

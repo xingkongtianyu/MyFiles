@@ -1,0 +1,103 @@
+@charset "utf-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { padding: 0; margin: 0; } 
+body { background:url("http://www.nowamagic.net/images/kuma-house.gif") 0 0 repeat #fff; color:#5F7A77; font-family:Verdana,宋体; font-size:12px; } 
+
+a:link, a:visited, a:active { color:blue; font-size: 12px; font-family:Verdana, 宋体; font-weight: normal; text-decoration: none; }
+a:hover { color:red; text-decoration:underline; }
+a.titlelnk:link, a.titlelnk:active, a.titlelnk:visited { color: #105CB6;font-size: 14px;font-family:Arial;font-weight: bold;  text-decoration: none; }
+a.titlelnk:hover { color: Red; text-decoration:underline; }
+
+.gen3 { margin-top:12px; }
+.gen3 p { text-indent:2em; line-height:150%; }
+.gen3 div { margin:8px 0 8px 0; }
+.gen3 h4 { text-indent:24px; color:#105CB6; font-size:14px; font-family:Arial,宋体; font-weight:bold; margin-top:8px; }
+.gen3_nav{background:url("http://www.nowamagic.net/images/mer_bg.png") no-repeat; height:26px; line-height:26px; background-position:0 -5px; text-indent:2em; }
+.contentNew { font-family:Verdana,宋体; font-size: 12px; text-indent:24px; line-height:150%; }
+
+p { font-family:Verdana,宋体; font-size: 12px; padding:6px 0px 4px 0px;} 
+h1 { font-family:微软雅黑, Arial; color:black; font-size: 22px; padding:6px 0px 5px 0px; margin-top:10px; font-weight:normal; }
+h4 { padding:8px 0px 5px 0px;} 
+h2, h3, table, tr, td, q { font-family:Verdana,宋体; font-size: 12px; } 
+
+#article { padding:0 0 0 2em; }
+#article ul{ margin:0; } 
+#article li { font-family:Verdana,宋体; font-size: 12px; line-height:150%; }
+.article { padding:0 0 0 2em; }
+.article ul{ margin:0; margin:6px 0; } 
+.article li { font-family:Verdana,宋体; font-size: 12px; line-height:150%; padding:2px 0; }
+
+.fandq { padding:0 0 0 2em; }
+.fandq li { font-family:Verdana,宋体; font-size: 12px; line-height:150%; }
+
+.underline4 { background:transparent url("http://www.nowamagic.net/includes/images/o_underline_4.gif") repeat-x scroll 120% 100%; padding:0 3px 3px; text-decoration:none; }
+
+.clear { clear: both; } 
+
+#background { margin:10px 0px 0px 0px; position: relative; width: 960px; border: 1px solid gray; left: 50%; margin-left: -480px; background-color: white; padding: 0; }
+#top { position: relative; }
+.leftfower { position: absolute; left: 0px; z-index: 99; top: 0px; }
+.rightfower { position: absolute; right: 0px; z-index: 99; top: 0px; }
+#header { position: relative; }
+.headerword { margin:60px 0 0 28px; }
+#navigation { position: relative; width: 730px; float: left; left: 5px; }
+#search { width: 220px; position: relative; float: right; }
+#mainContent { position: relative; width: 720px; float: left; clear: both; left: 5px; color: #121C46; margin:5px 0px 0px 0px; padding: 3px 6px 3px 5px; }
+#additionalContent { position: relative; width: 215px; float: right; }
+.white { color:white; }
+#bottom { position: relative; clear: both;}
+#siteInfo { position: relative; font-family:Verdana,宋体; font-size: 12px; padding: 0; }
+.ball_footer{ position:absolute; left:0px; top:25px;}
+
+.pages { font-family:Arial, 宋体; font-size:12px; margin:10px 0 0 0; }
+.pages li { display:inline; float: left; padding:0px 5px; height:21px; color:#666; line-height:21px; margin-right: 0.5em; border: 1px solid #E0E0E0; background:#FFF;}
+.pages li span { color:#0044DD; background:#FFF;}
+.pages li.page_a { padding:0; border:0; }
+.pages li.page_a a { float: left; display: block; padding:0px 5px; color:#0044DD; border: 1px solid #E0E0E0; }
+.pages li.page_a a:hover { display: block; color:red; border: 1px solid #A0A0A0; }
+.pages li.pages_input { padding:0; border: 1px solid #A0A0A0; }
+.pages li.pages_input input { width:18px; font-size:14px; border:0px; padding:0px 3px; margin:0px 3px; text-align:center; }
+.pages .on { padding:0px 5px; color: red; font-weight:bold; }
+.pages .page_clear { clear:both; }
+
+pre { width:650px; margin: 5px 0 5px 0; padding: 10px; border: 0; border: 1px dotted #785; background: #f5f5f5; font-family: "Courier New",monospace; font-size: 12px; }
+pre code { font-family: "Courier New",monospace; color:#0000ff; }
+
+#adition { margin:0; padding:0 0 0 20px; }  
+#adition li {  font-family:Verdana,宋体; font-size: 12px; line-height:160%; list-style-image:url("http://www.nowamagic.net/images/sidebarLi.gif"); margin:0; }      
+#adition ul{ margin:0; }    
+.adition { margin:0; padding:0 0 0 20px; }  
+.adition li {  font-family:Verdana,宋体; font-size: 12px; line-height:160%; list-style-image:url("http://www.nowamagic.net/images/sidebarLi.gif"); margin:0; }      
+.adition ul{ margin:0; }    
+.category { margin:0; padding:0 0 0 20px; }  
+.category li {  font-family:Verdana,宋体; font-size: 12px; line-height:160%; list-style-image:url("http://www.nowamagic.net/images/favorite.gif"); margin:0; }      
+.category ul{ margin:0; }    
+
+#navigationMenu { background:#FFF; border-bottom:1px solid #A6A6A6; display:inline; }
+#menus { display:inline-block; *display:inline; zoom:1; }
+#menus li { display:inline; list-style:none; }
+#licontent{ font-family:宋体; font-size:12px; }
+#menus li a { background:transparent url("http://www.nowamagic.net/images/menu.gif") no-repeat; display:block; color:#382E1F; height:31px; line-height:31px; padding:0 20px; margin-left:-10px; text-decoration:none; font-size:11px; float:left; z-index:1; display:inline; }
+#menus li a:hover, 
+#menus li a.current { background-position:0 -31px; }
+#menus li.current_page_item a, 
+#menus li.current-cat a { background-position:0 -62px; }
+#menus li a.home { background-position:0 -93px; width:45px; padding:0; margin-left:0; text-indent:-999em; }
+#menus li a.home:hover { background-position:0 -124px; }
+#menus li.current_page_item a.home { background-position:0 -155px;}
+#menus li a.lastmenu:hover { background-position:0 0; cursor:default;}
+#searchbox { background: url("http://www.nowamagic.net/images/searchbox.gif") no-repeat; width:213px; height:21px; display:block; float:left; margin-top:4px; margin-right:10px !important;
+ margin-right:5px; padding:3px 2px; }
+#searchbox .textfield { background:none; border:0px; width:185px; float:left; margin-right:2px; padding-left:2px; }
+#searchbox .button { background:none; border:0px; width:18px; height:18px; cursor:pointer; float:left; margin-top:1px; }
+#searchbox .searchtip { color:#999; }
+
+#menus li ul { display:none; background:#F4F5F7; border:solid #A6A6A6; border-width:1px 1px 0; line-height:0; position:absolute; z-index:1; }
+#menus li li { float:none; margin:0; padding:0; list-style:none; }
+#menus li li a { float:none; padding:7px 18px 7px 10px; text-decoration:none; border-bottom:1px solid #DDD; margin:0; background-image:none; height:auto; line-height:145%; color:#999; display:block; width:175px;}
+#menus li li a.last { border-color:#A6A6A6; }
+#menus li li a:hover, 
+#menus li li a.current { background-color:#EDEFF0; color:#382E1F; }
+#menus li li a.subtitle, 
+#menus li li a.subtitle:hover { background-image:url("http://www.nowamagic.net/images/arrow.gif"); background-position:right; background-repeat:no-repeat; }
+
+.fixed, .clear { clear:both;}

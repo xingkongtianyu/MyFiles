@@ -1,0 +1,97 @@
+
+
+必须至少具备如下技能：
+1） 能够理很好理解MVC构架的原理(虽然DZ不是MVC架构的)
+2） 扎实的PHP基础，熟悉结构化程序，OOP程序的写法及应用
+3）熟悉MYSQL就用，掌握SQL语言，懂SQL优化者更佳
+4） 熟悉使用Discuz!的各项功能
+
+一） Discuz!的文件系统目录
+注：想搞DZ开发，就得弄懂DZ中每个文件的功能。
+a) Admin：后台管理功能模块
+b) Api：DZ系统与其它系统之间接口程序
+c) Archiver：DZ中，用以搜索引擎优化的无图版
+d) Attachments：DZ中 ,用户上传附件的存放目录
+e) Customavatars：DZ中，用户自定义头像的目录
+f) Forumdata：DZ缓存数据的存放目录
+g) Images：DZ模板中的图片存放目录
+h) Include：DZ常用函数库，基本功能模块目录
+i) Ipdata：DZ统计IP来路用的数据
+j) Plugins：DZ插件信息的存放目录
+k) Templates：DZ模板文件的存放目录
+l) Wap：DZ无线，Wap程序处理目录
+
+二） 必须记熟Discuz!数据库设计的每个表的功能，每个表中每个字段的功能。
+
+关于DZ数据库设计文档，请参阅DZ相关的项目
+
+三） Discuz!的流程控制
+
+a) 后台流程控：DZ后台所有的功能，均需要注册到admincp.php文件，每个功能都至少有一个或一个以上的Action(动作)，在admincp.php中，可以定义Action的执行权限，分别为：“admin==1”管理员，或“admin==2 admin==3”超级版主和版主，每个Action对应一个脚本文件，脚本文件的命名为action.inc.php(*.inc.php)，并存放在admin目录下，如执行：admincp.php?action=dodo，相当于执行admin目录下的dodo.inc.php文件
+
+b) 前台流程控制：前台的流程控制比较简单：流程是自由的，如：
+
+首页：index.php
+会员注册：register.php；
+会员登录：logging.php
+发贴程序：post.php
+会员信息：member.php
+论坛内容：forumdisplay.php
+查看贴子：viewthread.php
+  …大部分功能，此处不一一列出…
+
+c) DZ根目下的config.inc.php属于整个DZ系统的配置文件
+
+四） Discuz!的数据处理过程
+
+a) DZ对mysql的数据库操作处理全部封装在dbstuff(db_mysql.class.php)类中
+b) 所在的外部数据均通过“daddslashes()”初步过滤，然后再过滤，再根据需要处理
+
+五） Discuz!的显示控制(网站多样式风格输出)
+a)
+显示层就是大家通常所看到的网站风格了。DZ中每套风络分别在templates及images下对应一个风格文件的存放目录。网站风格的制作，请参阅详细的DZ风格制作文档
+b)
+DZ网站风格文件处理的原理：其实很简单，DZ使用template.func.php中的parse_template()以PHP正则运算把htm模文件中的模板标签，转换成了PHP代码，并根据styleid保存在forumdata/templates下，这个有点像Smarty中的技术。
+
+六） DZ中的语言处理
+a)
+前台及后台中、英语言的实现，均是把语句定义成了语变量，然后在模板输入，语句变量的赋值，均放在模板目录中的*.lang.php文件中，DZ在生成网站风格时就加载了这相应的语言包。
+七） DZ如何处理用户信息(存取、计算、更新过程)
+新手要做二次开发，都必须掌握这数组中，每个数组元素的意义。
+
+a) DZ的基本信息，如用户信息，Session信息存在如下变量中：
+
+a). $_DCACHE
+b). $_COOKIE
+c). $_DCOOKIE
+d). $_DSESSION
+e). $_DPLUGIN
+
+b) 可以通过print_r($GLOBALS)，打印全部变量
+
+八） DZ中缓存处理机制
+a)
+DZ中缓存处理过程都放在“cache.func.php”中，DZ的缓存处理比较简单，其原理是把一个数组转换成了PHP代码，并保存在缓存目录下，大家可打开缓存文件查看便知。
+b)
+使用方法：如果在新开的功能中，需要缓存某部分数据，基本上就是：
+1）定义并注册缓存名字。
+2）从数据读取相应的数据。
+3）数据在写入缓存前作相应处理。
+4）最后写入缓存。
+具体操作，可以看文件中的代码，做相应的修改即可
+
+九） DZ中模板处理机制
+a) DZ独创的模板处理技术，类似于Smarty中的模板处理，只是具体算法，过程不同，Smarty是一种重型模板引擎方案。其原理都是把模板中的变量转换成相应的PHP代码，这个过程实际是模访JAVA中的一次编译，多处运行。
+
+十） DZ中权限处理机制
+a) 对于DZ中前台的每相action都有$discuz_action定义，DZ根据用户所在的用户组来判定用户是否具有相应操作$discuz_action的权限。至于后台的权限权验证，则更简单了，依据“admin==1”来确定的
+
+十一） DZ中如何实现URL静态化
+
+a) DZ中的静态有两法，只要懂ReWrite规划的朋友，一看就知。
+
+十二） DZ独创的HTML编辑器，如何截取并使用，如果进行Discuz!代和Html代码的转换
+a)
+这也算是DZ比较牛的一项技术了，在早期版中，因DZ编辑器的不足，使得很多用户放弃了DZ。
+
+实现原理：通过JS把用的一些操作转换成了DZ的bbcode代码。这样子提交了安全性，将带有bbcode代码的内容存入数据，在用户打开页页时，又把bbcode代码转换成html代码

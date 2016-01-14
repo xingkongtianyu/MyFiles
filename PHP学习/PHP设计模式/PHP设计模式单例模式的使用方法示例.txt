@@ -1,0 +1,43 @@
+
+PHP设计模式单例模式的使用方法示例
+2010年09月28日  2,266 次浏览 陈华 抢沙发
+
+<?php
+/*
+ * WEB开发笔记 www.chhua.com 每日练习 PHP设计模式单例模式的使用方法
+ */
+
+class Preferences {//建一个不能在外部创建实例的类，因为构造方法是私有
+ private $props=array();//私有的属性数组
+ private static $instance;//私有的属性
+ 
+ private function __construct(){ }//这样的构造方法决定了这个类不能在外部实例化
+ 
+ public static function getInstance(){//静态的创建自身的实例并返回对象的方法
+  if (empty(self::$instance)){
+   self::$instance=new Preferences();//静态的创建自身的实例并返回对象
+  }
+  return self::$instance;//静态的创建自身的实例并返回对象
+ }
+ 
+ public function setProps($key,$val){//普通公用方法
+  $this->props[$key]=$val;
+ }
+ 
+ public function getProps($key){//普通会用方法
+  return $this->props[$key];
+ }
+}
+$pref=Preferences::getInstance();
+$pref->setProps(“site”,”www.chhua.com“);
+unset($pref);//移除引用
+
+$pref2=Preferences::getInstance();
+echo $pref2->getProps(“site”);/*输出依然是“www.chhua.com” 为什么 ？
+原因很简单,在实例化第一个对象的时候，通过$pref->setProps(“site”,”www.chhua.com“);语句设置了 Preferences 类的 $props 数组，然后获取第二个对象的时候，”if (empty(self::$instance))”这个语句进行了判断，如果存在该属性，就把这个属性赋值给新对象。相关语句是：self::$instance=new Preferences();当$pref2=Preferences::getInstance();的时候，因为已经被实例化过一次，所以self::$instance是存在的。返回的是有属性值的对象，所以这个值会依然存在。
+
+通过以上的分析，单例模式的特征如下：
+如果A对象和B对象全是Preferences类的实例，那么，A对象可以设置Preferences的一个属性，而B 对象不用设置就可以调用这个属性的值，这种方法可以从某种程度上变成了一个特殊的全局变量模式，然而又避免了全局变量在程序的设计过程中所带来的类似冲突这样的不必要的麻烦
+*/
+
+?> 

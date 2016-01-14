@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.58img.com/web/99 -->
+<html  lang="en-US"  class="dyn detail-web contents js no-touch svg inlinesvg svgclippaths no-ie8compat"  style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta  charset="utf-8">
+    <meta  name="viewport"  content="width=device-width, initial-scale=1.0">
+    <title>Web前端资源网 - 分享CSS Sprites技术及其优化</title>
+    <link  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/prettify.css"  rel="stylesheet"  type="text/css">
+<link  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/foundation.min.css"  rel="stylesheet"  type="text/css">
+<link  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/58img2014.css"  rel="stylesheet"  type="text/css">
+<script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/modernizr.js"  type="text/javascript"></script>
+<meta  content="Orchard"  name="generator">
+<link  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/58IMG.ico"  rel="shortcut icon"  type="image/x-icon">
+
+<link  rel="alternate"  type="application/rss+xml"  title="猜你喜欢"  href="http://www.58img.com/rss?projection=750">
+
+    <script>(function (d) { d.className = "dyn" + d.className.substring(6, d.className.length); })(document.documentElement);</script>
+<script  type="text/javascript"  async=""  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/embed.js"></script><meta  class="foundation-mq-small"><meta  class="foundation-mq-medium"><meta  class="foundation-mq-large"><meta  class="foundation-mq-xlarge"><meta  class="foundation-mq-xxlarge"><style></style><meta  class="foundation-mq-topbar"><script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/share.js"></script><link  rel="stylesheet"  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/share_style0_32.css"><script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/alfie.js"  async=""  charset="UTF-8"></script><link  rel="stylesheet"  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/share_popup.css"><link  rel="stylesheet"  href="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/select_share.css"></head>
+<body  class="f-topbar-fixed"  style="">
+    
+    
+<div  class="zone zone-navigation">
+<article  class="widget-navigation widget-menu-widget widget">
+    
+<div  class="contain-to-grid fixed">
+    <nav  class="top-bar"  data-topbar="">
+        <ul  class="title-area">
+            <li  class="name"><h1><a  href="http://www.58img.com/">WEB前端资源网</a></h1></li>
+            <li  class="toggle-topbar menu-icon"><a  href="http://www.58img.com/web/99#"><span>Menu</span></a></li>
+        </ul>
+        
+    <section  class="top-bar-section">
+            <ul>
+                
+<li  class="first"><a  href="http://www.58img.com/">首页</a>
+</li>
+<li><a  href="http://www.58img.com/web">Web</a>
+</li>
+<li><a  href="http://www.58img.com/design">设计</a>
+</li>
+<li><a  href="http://www.58img.com/jquery">jQuery</a>
+</li>
+<li><a  href="http://www.58img.com/yui">YUI</a>
+</li>
+<li><a  href="http://www.58img.com/framework">前端框架</a>
+</li>
+<li><a  href="http://www.58img.com/orchard">Orchard</a>
+</li>
+<li><a  href="http://www.58img.com/nopcommerce">Nopcommerce</a>
+</li>
+<li  class="last">
+
+    <a  href="http://www.58img.com/about">前端志</a> 
+</li>;
+            </ul>
+            <ul  class="right hide-for-medium hide-for-small">
+                <li  class="has-form"><a  href="http://www.58img.com/web/99#"  class="button"  data-reveal-id="firstModal">Foundation前端框架</a></li>
+            </ul>
+        </section></nav>
+</div>
+</article></div>
+<div  class="zone zone-header"><div  class="row header">
+    <div  class="large-8 medium-12 small-12 columns">
+        <div  class="google">
+            <script  async=""  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/adsbygoogle.js"></script>
+            
+            <ins  class="adsbygoogle"  style="display:inline-block;width:728px;height:90px"  data-ad-client="ca-pub-7563510220087670"  data-ad-slot="6322343681"  data-adsbygoogle-status="done"><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <div  class="large-4 hide-for-medium hide-for-small columns">
+        <div  class="share">
+            <div  class="bdsharebuttonbox bdshare-button-style0-32"  data-bd-bind="1388023660878"><a  class="bds_more"  href="http://www.58img.com/web/99#"  data-cmd="more"></a><a  title="分享到QQ空间"  class="bds_qzone"  href="http://www.58img.com/web/99#"  data-cmd="qzone"></a><a  title="分享到新浪微博"  class="bds_tsina"  href="http://www.58img.com/web/99#"  data-cmd="tsina"></a><a  title="分享到腾讯微博"  class="bds_tqq"  href="http://www.58img.com/web/99#"  data-cmd="tqq"></a><a  title="分享到人人网"  class="bds_renren"  href="http://www.58img.com/web/99#"  data-cmd="renren"></a><a  title="分享到网易微博"  class="bds_t163"  href="http://www.58img.com/web/99#"  data-cmd="t163"></a><a  title="分享到豆瓣网"  class="bds_douban"  href="http://www.58img.com/web/99#"  data-cmd="douban"></a><a  title="分享到花瓣"  class="bds_huaban"  href="http://www.58img.com/web/99#"  data-cmd="huaban"></a><a  title="分享到微信"  class="bds_weixin"  href="http://www.58img.com/web/99#"  data-cmd="weixin"></a><a  title="分享到复制网址"  class="bds_copy"  href="http://www.58img.com/web/99#"  data-cmd="copy"></a></div>
+        </div>
+    </div>
+</div>
+<div  class="row hide-for-small">
+    <div  class="alert-box warning radius"  data-alert="">
+        做为一名前端人员，您有责任且有义务消除IE10以下的版本！让用户升级浏览器拥有完美的浏览体验，与国际接轨，同时让更多的前端人员不再苦逼！<br>
+        本站将不再支持IE9以下的版本！（推荐安装<a  data-tooltip=""  target="_blank"  href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie"  class="has-tip"  title="IE 11快速、流畅、为触控而生.硬件加速功能充分发挥硬件潜能，使网站加载速度更快，浏览更流畅。">IE 11</a>，
+        <a  data-tooltip=""  class="has-tip"  target="_blank"  href="http://www.google.cn/intl/zh-CN/chrome/browser/"  title="Google Chrome 浏览器在简约的外观设计下，蕴含了尖端的技术，让网络浏览变得更快捷、更安全且更简便。">Chrome 31</a>,
+        <a  data-tooltip=""  target="_blank"  href="http://www.firefox.com.cn/"  class="has-tip"  title="新版 Firefox 火狐浏览器，拥有最快、最安全的上网体验!">Firefox 27</a>）
+        <a  href="http://www.58img.com/web/99#"  class="close">×</a>
+    </div>
+</div></div>
+<div  class="row">
+    <div  class="large-8 medium-12 small-12 columns">
+<div  class="zone zone-content">
+<article  class="web content-item">
+    <header>
+        
+
+<h1>分享CSS Sprites技术及其优化</h1>
+            <div  class="metadata">
+                <div  class="published">Oct 9 2013 4:56 PM</div>
+            </div>
+    </header>
+    <article  class="article">
+    <p>CSS Sprites 技术对于广大的前端工程师来说应该是一点也不陌生。这个被国内开发者昵称为CSS精灵 CSS雪碧的家伙到底解决了什么问题，我们又怎样合理使用这个技术呢？下面让我们详细的聊聊。</p>
+<p>在大家还在拨号上网的“远古时期”，由于网速的限制，页面开发者都喜欢把网页里面的图片字节数控制的非常小，往往在一个图片文件夹里散落着n多的小 碎图。随着网络技术的发展，网速的提升，大家越来越重视页面的加载速度，页面效率问题，过去的那些小图便成为了前端开发者的眼中钉，因为每加载一张图片都 会产生一次浏览器请求数，发起的请求数越多那么页面加载的速度也越慢。还有当页面加载时，图片一个个的零星显示，鼠标经过时候背景闪白等也都是我们不能忍 受的。于是乎将页面中的背景图整合到一起，利用“background-image”，“background- repeat”，“background-position”的组合进行背景定位的技术被广泛使用与了页面构建中，这就是CSS Sprites。当然CSS Sprites技术也存在着维护不便，内存占用大等等的缺点。</p>
+<p>好了，如果我只说这些，那么这篇文章就有点太水了。前面那些只是对CSS Sprites技术的一个普及。作为一个开发者我们应该对它有一个更全面的认识，挖掘深度内容，这样才能有利于我们效率开发，团队协作。</p>
+<h4>头疼的多人拼图游戏</h4>
+<p>使用CSS Sprites，就好像玩拼图游戏一样。一张白画布，那么多图怎么放到里面去才会完美？这是个让人纠结的事。而且在实际在工作场景中，我们面临着项目开发 时间紧张，UI设计图要分期提供，多人协同开发一个项目等等问题。这些问题非常容易让我们在大项目中迷失，造成CSS拼图混乱，维护及其困难的情况。</p>
+<p>定好规则，其实拼图也挺好玩的</p>
+<h4>先期的准备工作</h4>
+<p>应对一个项目后期维护成本大的问题，我们最好的解决方案就是在开始前制定一系列的规范来限制问题的产品。好的开始是成功的一半。对于CSS Sprites，在项目开始前，我们要充分认识一个产品，同UI设计师做好良好的沟通，对我们未来组成我们Sprites图的各个元素有个大体的概念，比 如我们的背景拼图可能包括什么。</p>
+<h3>一个好的Sprite画布是必须的</h3>
+<p>网页设计里面，Grid系统是必不可少的，好的Grid能解决我们很多排版问题。Grid系统同样适用于CSS Sprites。我们需要创建好一个优秀的画板，剩下的工作就是将元素合理的置于画板中了。</p>
+<p>这张是我准备的一张CSS Sprites画布，我们将在这个PSD里面组合项目中的图片。</p>
+<p>这张画布是由20px*20px像素的格子组成。这个格子基本上由项目决定的，当我们同UI设计师沟通了解这个项目最多的为16px*16px 图标时。我们就可以采用这种Grid尺寸为画布了。</p>
+<p><img  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/20121114225601.png"  height="262"  width="488"  data-bd-imgshare-binded="1"></p>
+<h4>Sprites画布有了，接下来就是对图标进行分组了</h4>
+<p>对于信息的归纳总结、分类是一个有意思的事情。就拿图标来说，我们就可以根据图标功能，尺寸等等作为信息维度进行归纳。其实无论怎么归纳，都是可以的，只是记得我们以一个方向作为标准就可以了。</p>
+<p>下图是根据微博站外某组件完成的CSS Sprites</p>
+<p><img  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/20121114225602.png"  height="262"  width="488"  data-bd-imgshare-binded="1"></p>
+<p>根据设计，我们了解在这个页面，需要将图片元素根据功能分为4个维度，即微博品牌展示元素、提交按钮、操作类小按钮、提示类ICON。于是我将画布 X轴坐标方向每5个格（其实完全可以10个格或者更多）划分为一个区域，每个这样一个区域的Y轴方向不再划分区域，这样做的目的是为了以后增加图标的扩展 性。于是我们可以非常快速得到一个图标的坐标了。比如不可用的灰色的分享按钮 X坐标=5*20px=100px Y坐标=7*20px=140px; 那么我们就取得了这个图标的位置即background-position: -100px -140px。如果抽象成为公式的话，我们设置一个单元格的宽度为变量n。X坐标值Gx,Y坐标值Gy。那么画布中的元素css背景即 为：background-position:-Gx*npx –Gy*npx 了。</p>
+<h4>现在图有了，怎么取图也是关键</h4>
+<p>因为图片尽可能的被整合到一张拼图，所以我们需要在页面使用图片的位置使用空标签定位的方式将拼图所需展现的部分展示到页面中。</p>
+<pre  class="brush: css; first-line: 1; tab-size: 4; toolbar: false; ">&lt;span class=”iconA”&gt;&lt;/span&gt;
+.iconA { display:inline-block; height:16px; width:16px; background:url(icons.png) -20px -20px no-repeat }</pre>
+<p></p>
+<h4>项目出现二期需求了，需要增加图标？</h4>
+<p>需求总是不能控制，我们要尽可能的为未来增加图片做好打算。在刚才的例子的项目里后期产品需要增加图标，于是：</p>
+<p><img  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/20121114225603.png"  height="262"  width="488"  data-bd-imgshare-binded="1"></p>
+<p></p>
+<p>我们可以继续在对应的图区内增加对应的图标。但是这个例子同样暴露了一个缺陷，如果新增一个按钮区域大于5n(100px)，我们的图区不足以承 载。这时候我们可以同产品，设计师沟通协调，商议是否可以取消过大的按钮设计。如果需求一定，那我们只能沿着X轴方向继续扩展画布。不过，我们也需要注意 无限的放大一张画布，同样会造成对页面效率的影响。</p>
+<p>及时的制定好规范，记录好修改日志</p>
+<p>可能在项目的初期，我们还来不及制定合图的具体规范，在项目中我们会遇到各种各样的问题。及时的总结，维护整张CSS拼图，在拼图的PSD或者PNG（使用Fireworks）做好注释，方便他人开发。拼合好的图片提交到svn时也写明log内容，这样便日后查询。</p>
+<p><img  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/20121114225604.png"  height="201"  width="577"  data-bd-imgshare-binded="1"></p>
+<h4>我们最终的目的</h4>
+<p>其实CSS Sprites经过了那么多年的演变，前端开发者不断的优化，都是为了提升页面效率，提升团队开发效率，减少开发维护成本而努力。配合最近非常流行的将 CSS动态语言化（如SASS LESS等），增加入变量， 继承， 运算， 函数等。CSS Sprites会变的更好玩，会减少更多的开发维护成本。甚至我们在“面向对象”的模块开发方式中，还可以使用一个类的的同一个backgroud- position：（x y）值，在不同的页面通过引用不同的图片（background属性）实现将一个页面内图片请求量进一步减少的目的。随着高级浏览器的普及我们还可以多使 用CSS3属性，减少渐变背景图的使用，将纯色ICON制作成字体取代拼图等我们能更大程度上减少图片的使用量。这篇文章只是抛砖引玉。实际上还有很多关 于CSS Sprites的方法，还有众多的拼图生成工具。</p>
+<p>说了那么多，我们如果在日常的开发中，只要我们多注意总结，敢于创新，敢于制定规范，那么再小的事也能干的很漂亮，对于CSS Sprites的优化就是这么一个例子，你说不是么？</p>
+</article>
+
+
+
+    <div  class="tags">
+        Tags:
+<a  href="http://www.58img.com/Tags/css3">css3</a>    </div>
+<div  class="comment">
+    <div  id="disqus_thread"><iframe  id="dsq-2"  data-disqus-uid="2"  allowtransparency="true"  frameborder="0"  role="complementary"  width="100%"  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/saved_resource.htm"  style="width: 100% !important; border: none !important; overflow: hidden !important; height: 620px !important;"  scrolling="no"  horizontalscrolling="no"  verticalscrolling="no"></iframe></div>
+    <script  type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '58img'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+    
+</div>
+
+</article></div>    </div> 
+    
+    <div  class="large-4 hide-for-medium hide-for-small columns">
+<div  class="zone zone-aside-second"><div  class="box">
+    <ul  class="topic">
+        <li><a  href="http://www.58img.com/Tags/PSD%E7%B4%A0%E6%9D%90">PSD素材</a></li>
+        <li><a  href="http://www.58img.com/Tags/jQuery%E6%8F%92%E4%BB%B6">jQuery插件</a></li>
+        <li><a  href="http://www.58img.com/Tags/%E7%BD%91%E9%A1%B5%E6%A8%A1%E6%9D%BF">网页模板</a></li>
+        <li><a  href="http://www.58img.com/Tags/Bootstrap">Bootstrap</a></li>
+        <li><a  href="http://www.58img.com/web%E5%B7%A5%E5%85%B7">web工具</a></li>
+        <li><a  href="http://www.58img.com/%E8%AE%BE%E8%AE%A1%E8%B6%8B%E5%8A%BF">设计趋势</a></li>
+        <li><a  href="http://www.aspxcs.net/">Web代码酷</a></li>
+        <li><a  href="http://www.58img.com/Tags/html5">HTML5</a></li>
+        <li><a  href="http://www.58img.com/Tags/css3">CSS3</a></li>
+    </ul>
+</div>
+<article  class="widget-aside-second widget-search-form widget">
+    
+<div  class="box">
+<form  action="http://www.58img.com/Search"  class="search row collapse"  method="get">        <div  class="large-9 columns">
+            <input  id="q"  name="q"  type="text"  value="">
+        </div>
+        <div  class="large-3 columns">
+            <button  type="submit"  class="button postfix">站内搜索</button>
+        </div>
+</form>    <dl  class="search-keyword">
+        <dt>热搜关键词：</dt>
+        <dd><a  href="http://www.58img.com/web/99#">web前端</a></dd>
+        <dd><a  href="http://www.58img.com/web/99#">响应式</a></dd>
+        <dd><a  href="http://www.58img.com/web/99#">CSS3属性</a></dd>
+    </dl>
+</div>
+</article><div  class="box">
+    <div  class="text-center">
+        <a  href="http://www.58img.com/web/99#"  data-reveal-id="firstModal"><img  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/foundation5.jpg"  data-bd-imgshare-binded="1"></a>
+    </div>
+</div>
+<div  class="box">
+    <div  class="project">
+        <header>
+            <h4>国内外优秀项目推荐</h4>
+        </header>
+        <dl>
+            <dt>开源.NET CMS</dt>
+            <dd><a  href="http://www.orchardproject.net/"  target="_blank">Orchard</a></dd>
+            <dd><a  href="http://www.dotnetnuke.com/"  target="_blank">DNN</a></dd>
+            <dd><a  href="http://umbraco.com/"  target="_blank">Umbraco</a></dd>
+        </dl>
+        <dl>
+            <dt>开源PHP CMS</dt>
+            <dd><a  href="http://drupal.org/"  target="_blank">Drupal</a></dd>
+            <dd><a  href="http://www.joomla.org/"  target="_blank">Joomla</a></dd>
+        </dl>
+        <dl>
+            <dt>开源.NET SHOP</dt>
+            <dd><a  href="http://www.nopcommerce.com/"  target="_blank"  title="Nopcommerce">Nop</a></dd>
+            <dd><a  href="http://www.aspxcommerce.com/"  target="_blank">Aspxcommerce</a></dd>
+        </dl>
+        <dl>
+            <dt>开源PHP SHOP</dt>
+            <dd><a  href="http://www.magentocommerce.com/"  target="_blank">Magento</a></dd>
+            <dd><a  href="http://www.opencart.com/"  target="_blank">OpenCart</a></dd>
+        </dl>
+        <dl>
+            <dt>开源博客</dt>
+            <dd><a  href="http://cn.wordpress.org/"  target="_blank">WordPress</a></dd>
+            <dd><a  href="http://www.dotnetblogengine.net/"  target="_blank">blogengine</a></dd>
+        </dl>
+        <dl>
+            <dt>开源论坛</dt>
+            <dd><a  href="http://www.discuz.net/"  target="_blank">Discuz! X</a></dd>
+            <dd><a  href="http://www.phpwind.net/"  target="_blank">Phpwind</a></dd>
+            <dd><a  href="https://www.phpbb.com/"  target="_blank">phpBB</a></dd>
+        </dl>
+        <dl>
+            <dt>JS库</dt>
+            <dd><a  href="http://jquery.com/"  target="_blank">jQuery</a></dd>
+            <dd><a  href="http://yuilibrary.com/"  target="_blank">YUI3</a></dd>
+            <dd><a  href="http://knockoutjs.com/"  target="_blank">Knockout</a></dd>
+            <dd><a  href="http://docs.kissyui.com/"  target="_blank">KISSY </a></dd>
+        </dl>
+        <dl>
+            <dt>前端框架</dt>
+            <dd><a  href="http://purecss.io/"  target="_blank">Pure</a></dd>
+            <dd><a  href="http://getbootstrap.com/"  target="_blank">Bootstrap</a></dd>
+            <dd><a  href="http://foundation.zurb.com/"  target="_blank">Foundation</a></dd>
+        </dl>
+        <dl>
+            <dt>UI框架</dt>
+            <dd><a  href="http://jqueryui.com/"  target="_blank">jQuery UI</a></dd>
+            <dd><a  href="http://jquerytools.org/"  target="_blank">jQuery Tools</a></dd>
+            <dd><a  href="http://wijmo.com/"  target="_blank">Wijmo</a></dd>
+        </dl>
+        <dl>
+            <dt>CDN服务</dt>
+            <dd><a  href="https://developers.google.com/speed/libraries/?hl=zh-CN"  target="_blank">Google</a></dd>
+            <dd><a  href="http://www.asp.net/ajaxlibrary/cdn.ashx"  target="_blank">微软</a></dd>
+            <dd><a  href="http://sae.sina.com.cn/?m=devcenter&catId=147"  target="_blank">新浪</a></dd>
+        </dl>
+        <dl>
+            <dt>项目托管平台</dt>
+            <dd><a  href="http://www.codeplex.com/"  target="_blank">CodePlex</a></dd>
+            <dd><a  href="https://github.com/"  target="_blank">GitHub</a></dd>
+        </dl>
+        <h6  class="text-error">更多优秀开源项目欢迎大家与我们交流讨论。</h6>
+        <p>
+            前端交流QQ一群：233808496<br>
+            前端交流QQ二群：233808513<br>
+            Orchard/Nop交流群：187502451
+        </p>
+    </div>
+</div>
+<article  class="widget-aside-second widget-projection-widget widget">
+    <header>
+        <h1>猜你喜欢</h1>
+        
+    </header>
+    <ul><li  class="first"><div><span><a  href="http://www.58img.com/design/327">一个简洁时尚的PSD登陆表单素材</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/framework/693">最先进的响应式前端框架——Foundation 5发布！</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/framework/335">Bootstrap tabs选项卡的实现运用实例</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/web/171">Bootstrap中tooltip的使用介绍</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/web/516">详解CSS3圆角border-radius</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/558">网页界面设计创新式布局与体验交互</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/388">一套完整的Metro深绿色UI素材PSD源文件</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/web/477">Google 真的变了吗？</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/framework/34">Bootstrap——优秀的开源前端框架简介</a></span></div>
+</li>
+<li  class="last"><div><span><a  href="http://www.58img.com/jquery/36">jQuery UI 1.9.1 发布</a></span></div>
+</li>
+</ul>
+
+</article><div  class="box">
+    <iframe  width="100%"  height="550"  class="share_self"  frameborder="0"  scrolling="no"  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/index.htm"></iframe>
+</div>
+<div  class="box">
+    <div  class="links">
+        <header>
+            <h4>友情链接</h4>
+        </header>
+        <ul  class="inline-list">
+            <li><a  href="http://quick.58img.com/"  target="_blank">Quick前端框架</a></li>
+            <li><a  href="http://www.aspxcs.net/"  target="_blank">WEB代码酷</a></li>
+            <li><a  href="http://www.ruiwant.com/"  target="_blank">锐想Magento</a></li>
+            <li><a  href="http://www.raincy.org/"  target="_blank">烟台网站建设</a></li>
+            <li><a  href="http://www.orchardch.com/"  target="_blank">Orchard中文社区</a></li>
+            <li><a  href="http://www.kuaipao8.com/"  target="_blank">web技术分享</a></li>
+            <li><a  href="http://www.yarnforweb.com/"  target="_blank">大象院儿</a></li>
+            <li><a  href="http://bbs.jeasyuicn.com/"  target="_blank">jQuery Easyui 中文社区</a></li>
+
+        </ul>
+    </div>
+</div>
+<div  class="box">
+    <script  async=""  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/adsbygoogle.js"></script>
+    
+    <ins  class="adsbygoogle"  style="display:inline-block;width:300px;height:250px"  data-ad-client="ca-pub-7563510220087670"  data-ad-slot="7141731321"  data-adsbygoogle-status="done"><ins  style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins  id="aswift_1_anchor"  style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe  width="300"  height="250"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_1"  name="aswift_1"  style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div></div>    </div>
+    
+</div>
+<div  class="row">
+<div  class="zone zone-footer"><p  class="text-center">
+    本站由<a  href="http://www.orchardproject.net/"  target="_blank">Orchard 1.7.2</a>开源项目驱动&nbsp;&nbsp;&nbsp;&nbsp;
+    <script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/stat.php"  language="JavaScript"></script><script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=4679065"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/pic.gif"  data-bd-imgshare-binded="1"></a>
+    ICP备案：滇ICP备12001764号-1&nbsp;&nbsp;&nbsp;&nbsp;业务合作联系QQ：373638128&nbsp;&nbsp;&nbsp;&nbsp;
+    Email:navy1015@126.com&nbsp;&nbsp;&nbsp;&nbsp;本站主题制作:<a  href="http://www.58img.com/web/99#">風塵</a>
+</p>
+<div  id="firstModal"  class="reveal-modal medium"  data-reveal="">
+    <h2>Foundation 5</h2>
+    <p>Foundation 5——世界领先的响应式WEB前端框架，用于构建基于任何设备上的 Web 应用。提供多种 Web 上的 UI 组件，如表单、按钮、Tabs 等等。</p>
+    <p>WEB前端资源网将于2014年1月1日发布中文文档及使用示例！</p>
+    <p><a  href="http://foundation.zurb.com/"  target="_blank"  class="button">Foundation 5官方网站</a></p>
+</div>
+</div></div>
+
+    <script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/prettify-min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/jquery-2.0.3.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/foundation.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/jquery.scrollUp.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 分享CSS Sprites技术及其优化_files/58img.js"  type="text/javascript"></script>
+    <script>prettyPrint();</script>
+
+<script  type="text/javascript">
+window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "32" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "t163", "douban", "huaban", "weixin", "copy"], "viewText": "", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "t163", "douban", "huaban", "weixin", "copy"] } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
+
+
+<a  id="scrollUp"  href="http://www.58img.com/web/99#top"  title=""  style="position: fixed; z-index: 2147483647;"></a><iframe  frameborder="0"  id="bdSharePopup_selectshare1388023660884bg"  class="bdselect_share_bg"  style="top: 392px; left: 74px; display: none; width: 300px; height: 180px;"></iframe><div  id="bdSharePopup_selectshare1388023660884box"  style="top: 392px; left: 74px; display: none; width: 300px;"  share-type="selectshare"  class="bdselect_share_box"  data-bd-bind="1388023660884"><div  class="selectshare-mod-triangle"><div  class="triangle-border"></div><div  class="triangle-inset"></div></div><div  class="bdselect_share_head"  style="width: 300px;"><span>分享到</span><a  class="bdselect_share_dialog_close"></a></div><div  class="bdselect_share_content"><ul  class="bdselect_share_list bdshare-button-style0-32"><div  class="bdselect_share_partners"><a  href="http://www.58img.com/web/99#"  class="bds_qzone"  data-cmd="qzone"></a><a  href="http://www.58img.com/web/99#"  class="bds_tsina"  data-cmd="tsina"></a><a  href="http://www.58img.com/web/99#"  class="bds_tqq"  data-cmd="tqq"></a><a  href="http://www.58img.com/web/99#"  class="bds_renren"  data-cmd="renren"></a><a  href="http://www.58img.com/web/99#"  class="bds_t163"  data-cmd="t163"></a><a  href="http://www.58img.com/web/99#"  class="bds_douban"  data-cmd="douban"></a><a  href="http://www.58img.com/web/99#"  class="bds_huaban"  data-cmd="huaban"></a><a  href="http://www.58img.com/web/99#"  class="bds_weixin"  data-cmd="weixin"></a><a  href="http://www.58img.com/web/99#"  class="bds_copy"  data-cmd="copy"></a></div><a  href="http://www.58img.com/web/99#"  class="bds_more"  data-cmd="more"></a></ul></div></div><div  id="bdimgshare_1388023660890"  class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-16 sr-bdimgshare-black"  style="height: 36px; line-height: 26px; font-size: 12px; display: none;"  data-bd-bind="1388023660890"><div  class="bdimgshare-bg"></div><div  class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-16"><label  class="bdimgshare-lbl">图片分享</label><a  href="http://www.58img.com/web/99#"   class="bds_qzone"  data-cmd="qzone"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_tsina"  data-cmd="tsina"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_tqq"  data-cmd="tqq"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_renren"  data-cmd="renren"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_t163"  data-cmd="t163"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_douban"  data-cmd="douban"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_huaban"  data-cmd="huaban"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_weixin"  data-cmd="weixin"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_copy"  data-cmd="copy"  hidefocus=""></a><a  href="http://www.58img.com/web/99#"   class="bds_more"  data-cmd="more"  hidefocus=""></a></div></div></body></html>

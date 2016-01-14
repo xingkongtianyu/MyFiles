@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title>
+</head>
+<body>
+<div class="entry-content">
+  <div class="entry-title roundTop">
+    <h1 class="jq-clearfix">jQuery.getJSON()</h1>
+    <div class="entry-meta jq-clearfix"> Categories: <span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/shorthand-methods/" title="View all posts in Shorthand Methods">Shorthand Methods</a></span> </div>
+  </div>
+  <div id="jQuery-getJSON1" class="entry method">
+    <h2 class="jq-clearfix roundTop section-title"> <span class="name">jQuery.getJSON( url, [ data ], [ success(data, textStatus, jqXHR) ] )</span> <span class="returns">返回: <a class="return"   target="_blank" href="http://api.jquery.com/Types/#jqXHR">jqXHR</a></span> </h2>
+    <div class="jq-box roundBottom entry-details">
+      <p class="desc"><strong>描述:</strong>通过 HTTP GET 请求从服务器载入 JSON 数据。</p>
+      <ul class="signatures">
+        <li class="signature" id="jQuery-getJSON-url-data-successdata- textStatus- jqXHR">
+          <h4 class="name"> <span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.getJSON( url, [ data ], [ success(data, textStatus, jqXHR) ] )</h4>
+          <p class="arguement"><strong>url</strong>一个包含发送请求的URL字符串</p>
+          <p class="arguement"><strong>data</strong>向服务器发送请求的Key/value参数</p>
+          <p class="arguement"><strong>success(data, textStatus, jqXHR)</strong>当请求成功后执行的回调函数。</p>
+        </li>
+      </ul>
+      <div class="longdesc">
+        <p>这是一个快速的AJax处理函数，相当于:</p>
+        <pre>$.ajax({
+  url: <em>url</em>,
+  dataType: 'json',
+  data: <em>data</em>,
+  success: <em>callback</em>
+});
+</pre>
+        <p>数据发送到服务器是作为一个附加到查询字符串的URL。如果该值的<code>data</code>参数是一个对象，它会转换为一个字符串和URL编码，然后才追加到URL。</p>
+        <p>大多数实现将指定一个成功的处理程序： </p>
+        <pre>$.getJSON('ajax/test.json', function(data) {
+  var items = [];
+
+  $.each(data, function(key, val) {
+    items.push('&lt;li id="' + key + '"&gt;' + val + '&lt;/li&gt;');
+  });
+
+  $('&lt;ul/&gt;', {
+    'class': 'my-new-list',
+    html: items.join('')
+  }).appendTo('body');
+});
+</pre>
+        <p>这个例子，当然遵循JSON文件的结构：</p>
+        <pre>{
+  "one": "Singular sensation",
+  "two": "Beady little eyes",
+  "three": "Little birds pitch by my doorstep"
+}
+</pre>
+        <p>使用这种结构，这个例子遍历请求的数据，建立了一个无序列表，并追加到“body”。</p>
+        <p>在<code>success</code>回调是通过返回的数据，通常是一个JavaScript对象或数组所定义的JSON结构和解析使用<a href="#p=jQuery.parseJSON"><code>$.parseJSON()</code></a>方法。它也通过了响应文本状态。</p>
+        <p><strong>在jQuery 1.5，</strong>，在<code>success</code>回调函数接收一个<a   target="_blank" href="http://api.jquery.com/jQuery.get/#jqxhr-object">“jqXHR”对象</a> （ 在<strong>jQuery 1.4</strong>中 ，它收到<code>XMLHttpRequest</code>对象）。然而，由于JSONP形式和跨域的GET请求不使用<abbr title="XmlHttpRequest的">的XHR</abbr>，在这些情况下， <code>jqXHR</code>和<code>textStatus</code>回调参数传递的成功是不确定的。</p>
+        <blockquote>
+          <p><strong>重要的：</strong> 在jQuery 1.4，如果JSON文件包含一个语法错误，该请求通常会静静的失败。避免频繁手工编辑JSON数据就是这个原因。JSON是一种与语法规则比JavaScript的对象文字符号更加严格的数据交换格式。例如，所有在JSON字符串表示，无论是属性或值，必须用双引号括起来。例如，所有在JSON字符串表示，无论是属性或值，必须用双引号括起来。为了将JSON格式的细节上，看到<a href="http://json.org/">http://json.org/</a> 。</p>
+        </blockquote>
+        <h4 id="jsonp">JSONP</h4>
+        <p>如果URL包含字符串“回调=？”（或类似的，由服务器端API定义），请求被视为JSONP形式代替。见的讨论<code>jsonp</code>的数据类型<a   target="_blank" href="http://api.jquery.com/jQuery.ajax/"><code>$.ajax()</code></a>的更多细节。</p>
+        <h4 id="jqxhr-object">jqXHR 对象</h4>所有jQuery的Ajax方法都返回超集<code>XMLHTTPRequest</code>对象。这个jQuery XHR对象，或“jqXHR”
+
+<p><strong>在jQuery 1.5</strong>，所有jQuery的Ajax方法都返回的超集<code>XMLHTTPRequest</code>对象。这个jQuery XHR对象，或“jqXHR，”通过<code>$.getJSON()</code>约定的接口实现返回，给它的所有属性，方法和约定的行为（见<a   target="_blank" href="http://api.jquery.com/category/deferred-object/">Deferred object</a>获取更多信息）。为了方便和一致性，回调名称使用<a href="#p=jQuery.ajax"><code>$.ajax()</code></a>，它提供<code>.error()</code> <code>.success()</code>和<code>.complete()</code>方法。这些方法当<code>$.ajax()</code>请求终止时需要一个函数参数调用，这个函数接收<code>$.ajax()</code>回调函数名相同的参数。</p>
+        <p>在jQuery 1.5的约定接口也使jQuery的Ajax方法，其中包括<code>$.getJSON()</code> ，以链多个<code>.success()</code>， <code>.complete()</code>和<code>.error()</code>回调的一个请求，甚至回调后分配这些请求可能已经完成。如果请求已经完成，立即触发回调。</p>
+        <pre>// Assign handlers immediately after making the request,
+// and remember the jqxhr object for this request
+var jqxhr = $.getJSON("example.json", function() {
+  alert("success");
+})
+.success(function() { alert("second success"); })
+.error(function() { alert("error"); })
+.complete(function() { alert("complete"); });
+
+// perform other work here ...
+
+// Set another completion function for the request above
+jqxhr.complete(function(){ alert("second complete"); });</pre>
+      </div>
+      <h3 id="notes-0">其他注意事项：</h3>
+      <div class="longdesc">
+        <ul>
+          <li> 由于浏览器的安全限制，大多数“Ajax”的要求，均采用<a title="维基百科上的同源策略" href="http://en.wikipedia.org/wiki/Same_origin_policy">同一起源的政策</a> ;该请求不能成功地检索来自不同的域，子域或协议的数据。</li>
+          <li>Script和JSONP形式请求不受同源策略的限制。</li>
+        </ul>
+      </div>
+      <h3>Examples:</h3>
+      <div class="entry-examples" id="entry-examples">
+        <div id="example-0">
+          <h4>Example: <span class="desc">从 Flickr JSONP API中加载最近的四张标签为猫的图片：</span> </h4>
+          <pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;img{ height: 100px; float: left; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-1.5.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="images"&gt;
+
+&lt;/div&gt;
+&lt;script&gt;
+$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+  {
+    tags: "cat",
+    tagmode: "any",
+    format: "json"
+  },
+  function(data) {
+    $.each(data.items, function(i,item){
+      $("&lt;img/&gt;").attr("src", item.media.m).appendTo("#images");
+      if ( i == 3 ) return false;
+    });
+  });&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <h4>Demo:</h4>
+          <div class="demo code-demo">
+            <iframe src="/index-blank.html" width="100%" height="125" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; "></iframe>
+          </div>
+        </div>
+        <div id="example-1">
+          <h4>Example: <span class="desc">通过<span class="desc">test.js</span>加载这个JSON数据，并使用返回的JSON数据中的 name值：</span> </h4>
+          <pre><code class="example">$.getJSON("test.js", function(json) {
+   alert("JSON Data: " + json.users[3].name);
+ });</code></pre>
+        </div>
+        <div id="example-2">
+          <h4>Example: <span class="desc">通过额外的<span class="desc"><span class="arguement">Key/value参数</span>从test.js</span>加载这个JSON数据<span class="desc">,并使用返回的JSON数据中的 name值：</span> </h4>
+          <pre><code class="example">$.getJSON("test.js", { name: "John", time: "2pm" }, function(json) {
+    alert("JSON Data: " + json.users[3].name);
+    });</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body>
+</html>

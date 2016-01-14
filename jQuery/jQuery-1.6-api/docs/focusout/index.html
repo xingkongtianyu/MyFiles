@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.focusout()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/keyboard-events/" title="View all posts in Keyboard Events">Keyboard Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+<div id="focusout1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.focusout( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>将一个事件函数绑定到"focusout" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="focusout-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.focusout( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="focusout-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.focusout( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个方法是 <code>.bind('focusout', handler)</code> 的快捷方式。</p>
+            <p><code>focusout</code> 事件会在元素（或者其内部的任何元素）失去焦点焦点时触发。这跟 <a href="#p=blur">blur</a> 事件的显著区别在于，它可以在父元素上检测子元素失去焦点的情况(换而言之，它支持事件冒泡)。</p>
+            <p>这个事件通常会跟 <a href="#p=focusin">focusin</a> 事件一起使用。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Watch for a loss of focus to occur inside paragraphs and note the difference between the focusout count and the blur count.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+.inputs { float: left; margin-right: 1em; }
+.inputs p { margin-top: 0; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;div class="inputs"&gt;
+  &lt;p&gt;
+    &lt;input type="text" /&gt;&lt;br /&gt;
+    &lt;input type="text" /&gt; 
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;input type="password" /&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="fo"&gt;focusout fire&lt;/div&gt;
+&lt;div id="b"&gt;blur fire&lt;/div&gt;
+
+&lt;script&gt;
+var fo = 0, b = 0;
+$("p").focusout(function() {
+  fo++;
+  $("#fo")
+    .text("focusout fired: " + fo + "x");
+}).blur(function() {
+  b++;
+  $("#b")
+    .text("blur fired: " + b + "x");
+  
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

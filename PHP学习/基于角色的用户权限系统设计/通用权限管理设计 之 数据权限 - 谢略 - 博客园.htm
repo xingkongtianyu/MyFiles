@@ -1,0 +1,857 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-cn"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>通用权限管理设计 之 数据权限 - 谢略 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-gray.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/leoxie2011/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/leoxie2011/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/leoxie2011/wlwmanifest.xml">
+<script src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/encoder.js" type="text/javascript"></script><script src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'leoxie2011', cb_enable_mathjax=false;</script>
+<script src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<link href="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/StyleSheet.css" rel="stylesheet" type="text/css">
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="banner"><div id="bnr_pic">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/leoxie2011/">leo's Space</a><br>
+	</div>
+	<div class="headerDis"></div>
+</div>
+</div></div>
+<div id="main">
+	<!-- left starts -->
+	<div id="left">
+	<div id="left_border">
+		<div id="mystats">
+			<br>
+				
+<!--done-->
+<div class="blogStats">
+随笔- 25&nbsp;
+文章- 6&nbsp;
+评论- 1074&nbsp;
+
+</div>
+			
+		</div>
+		<div id="mylinks">
+<!--done-->
+<a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;<a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/leoxie2011/">首页</a>&nbsp;&nbsp;<a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;<a id="MyLinks1_NewArticleLink" class="menu" href="http://www.cnblogs.com/EnterMyBlog.aspx?NewArticle=1">新文章</a>&nbsp;&nbsp;<a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5">联系</a>&nbsp;&nbsp;<a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a>&nbsp;&nbsp;<a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/leoxie2011/rss">订阅</a>&nbsp;<a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/leoxie2011/rss"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/xml.gif" alt="订阅"></a></div>
+		<div id="topics">
+			
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">通用权限管理设计 之 数据权限</a>
+	</div>
+	<div id="cnblogs_post_body"><div class="category">
+<h3><strong>阅读目录</strong></h3>
+<ul>
+<li><a href="#label1">前言</a></li>
+<li><a href="#label2">初步分析</a></li>
+<li><a href="#label3">通用查询机制</a></li>
+<li><a href="#label4">数据权限规则</a></li>
+<li><a href="#label5">实际应用</a></li>
+<li><a href="#label6">结语</a></li>
+</ul>
+</div>
+<p><a name="label1"></a></p>
+<h2>前言</h2>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">前一篇文章《<a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">通用权限管理设计 之 数据库设计方案</a>》介绍了【主体】- 【领域】 - 【权限】( who、what、how问题原型 ) 的设计思想</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">本文将对这种设计思想作进一步的扩展，介绍数据权限的设计方案。</span></p>
+<p><span style="font-size: 13px;">权限控制可以理解，分为这几种 ：</span></p>
+<p><span style="font-size: 13px;"><span style="color: #ff0000;">【功能权限】：</span>能做什么的问题，如增加产品。</span><br><span style="font-size: 13px;"><span style="color: #ff0000;">【数据权限】：</span>能看到哪些数据的问题，如查看本人的所有订单。<br><span style="color: #ff0000;">【字段权限】：</span>能看到哪些信息的问题，如供应商账户，看不到角色、 部门等信息。</span></p>
+<p><span style="font-size: 13px;">上面提到的那种设计就是【功能权限】，这种设计有一定的局限性，对于主体，只能明确地指定。对于不明确的，在这里可能就没办法处理。比如下面这几种情况：</span></p>
+<blockquote>
+<p><span style="font-size: 13px;">数据仅当前部门及上级可见</span><br><span style="font-size: 13px;">数据仅当前用户(本人)可见</span></p>
+</blockquote>
+<p><span style="font-size: 13px;">类似这样的就需要用到上面提的数据权限。</span></p>
+<p><span style="font-size: 13px; color: #ff0000;">上一篇文章我用一个表五个字段完成了【功能权限】的设计思路</span><br><span style="font-size: 13px; color: #ff0000;">本文我将介绍如何利用一个表两个字段完成这个【数据权限】的设计思路</span></p>
+<p><a name="label2"></a></p>
+<h2>初步分析</h2>
+<p><span style="font-size: 13px;">【数据权限】是在【功能权限】的基础上面进一步的扩展，比如可以查看订单属于【功能权限】的范围，但是可以查看哪些订单就是【数据权限】的工作了。</span></p>
+<blockquote>
+<p><span style="font-size: 13px;">在设计中，我们规定好如果没有设置了数据权限规则，那么视为允许查看全部的数据。</span></p>
+<p><span style="font-size: 13px;"><strong>几个概念</strong><br><span>【资源】：数据权限的控制对象，业务系统中的各种资源。比如订单单据、销售单等。属于上面提到的【领域】中的一种</span><br><span>【主体】：用户、部门、角色等。<br>【条件规则】：用于检索数据的条件定义<br>【数据规则】：用于【数据权限】的条件规则&nbsp;</span></span></p>
+</blockquote>
+<p>&nbsp;<br><span style="font-size: 13px;"><strong><span data-mce-="">应用场景</span></strong></span><br><span style="font-size: 13px;" data-mce-="">1，订单，可以由本人查看&nbsp;</span><br><span style="font-size: 13px;" data-mce-="">2，销售单，可以由本人或上级领导查看&nbsp;</span><br><span style="font-size: 13px;" data-mce-="">3，销售单，销售人员可以查看自己的，销售经理只查看 销售金额大于100,000的。</span></p>
+<p><span style="font-size: 13px;">我们能想到直接的方法，在访问数据的入口加入SQL Where条件来实现，组织sql语句：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #800000; font-weight: bold;">1</span>，<span style="color: #0000ff;">where</span> UserID <span style="color: #808080;">=</span> {CurrentUserID}<br><span style="color: #800000; font-weight: bold;">2</span>，<span style="color: #0000ff;">where</span> UserID <span style="color: #808080;">=</span> {CurrentUserID}  <span style="color: #808080;">or</span> {CurrentUserID} <span style="color: #808080;">in</span> (领导)<br><span style="color: #800000; font-weight: bold;">3</span>，<span style="color: #0000ff;">where</span> UserID <span style="color: #808080;">=</span> {CurrentUserID}  <span style="color: #808080;">or</span> ({CurrentUserID} <span style="color: #808080;">in</span> (销售经理)  <span style="color: #808080;">and</span> 销售金额 <span style="color: #808080;">&gt;</span> <span style="color: #800000; font-weight: bold;">100000</span>)</pre>
+</div>
+<blockquote>
+<p><span style="font-size: 13px;"><span style="font-size: 13px;">这些一个一个的"条件"，本文简单理解为一个【数据规则】，通常会与原来我们前台的业务过滤条件合并再检索出数据。<br></span></span></p>
+</blockquote>
+<p><span style="font-size: 13px;"><span style="font-size: 13px;">这是一种最直接的实现方式，在【资源】上面加一个【数据规则】（比如上面的三点）。这样设计就是</span></span></p>
+<p><span style="font-size: 13px;"><span style="font-size: 13px;"><span style="color: #ff0000;">　　【资源】 - 【数据规则】</span></span></span></p>
+<p><span style="font-size: 13px;"><span style="font-size: 13px;">我又觉得不同的人应该对应不同的规则，那么也可以理解为，一个用户对应不同的角色，每一个角色有不一样的【数据规则】，那么设计就变成</span></span></p>
+<p><span style="font-size: 13px; color: #ff0000;"><span style="font-size: 13px;">　　【资源】 - 【主体】 - 【数据规则】</span></span></p>
+<p><span style="font-size: 13px;">根据提供者的不同，准备不同的权限应对策略。</span></p>
+<p><span style="font-size: 13px;">这里可以简单地介绍一下，</span><span style="font-size: 13px;">这个方案至少需要2张表，一个是 &nbsp;【资源，主体，规则关系表】、一个是【数据规则表】</span></p>
+<blockquote>
+<p>关系表不能直接保存角色，因为你不确定什么时候业务需要按照【部门】或者【分公司】来定义数据规则</p>
+<p>于是可以用 &nbsp;Master、MasterKey &nbsp;类似这样的两个字段来确定一个【主体】</p>
+</blockquote>
+<p><span style="font-size: 13px;">用XML方式的话是这样配置的(放在数据库也类似)：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">settings</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rule </span><span style="color: #ff0000;">view</span><span style="color: #0000ff;">="订单"</span><span style="color: #ff0000;"> role</span><span style="color: #0000ff;">="销售人员"</span><span style="color: #0000ff;">&gt;</span><br>      销售员 = {CurrentUserID}<br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">rule</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rule </span><span style="color: #ff0000;">view</span><span style="color: #0000ff;">="订单"</span><span style="color: #ff0000;"> role</span><span style="color: #0000ff;">="总销售经理"</span><span style="color: #0000ff;">&gt;</span><br>     销售金额 &gt; 100000<br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">rule</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rule </span><span style="color: #ff0000;">view</span><span style="color: #0000ff;">="订单"</span><span style="color: #ff0000;"> role</span><span style="color: #0000ff;">="区域销售经理"</span><span style="color: #0000ff;">&gt;</span><br>    销售金额 &gt; 100000  and 区域 = {当前用户所属区域}<br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">rule</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">settings</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 13px;">对于这种方式有兴趣的朋友也可以试一下，两种方式的【数据规则】是一样的，但是</span><span style="font-size: 13px;">本文没有采用第二种设计方式，因为它多了一层处理逻辑，我以为应该设计越简单越好，</span><span style="font-size: 13px;">就采用第一种方式：</span></p>
+<p><span style="font-size: 13px; color: #ff0000;">　　【资源】 - 【数据规则】</span></p>
+<p><span style="font-size: 13px;">当然，上面是用SQL的方式来确定条件规则的，我们当然不会这么做。SQL虽然灵活，但是我们很难去维护，也不知道SQL在我们的界面UI上面如何体现。难不成直接用一个文本框来显示。这样对应一个开发人员来说不是问题，可是对应系统管理员，很容易出问题。<span style="color: #ff0000;">所以我们需要有另一方式来确定这一规则，并最终可以转换成我们的SQL语句。</span></span></p>
+<p><span style="font-size: 13px;"><span style="color: #ff0000;">我们的设计关键在于如何规范好这些【数据规则】</span>&nbsp;，这个规则必须是对前端友好的，而且是对后台友好的，JSON显然是很好的方式。</span></p>
+<blockquote>
+<p>&nbsp;规则说明：</p>
+<p>1，数据权限规则总是：｛属性 条件 允许值｝</p>
+<p>2，数据权限规则可以合并。比如 （ {当前用户 属于 销售人员} and {订单销售员 等于 &nbsp;当前用户} ) &nbsp; Or {当前用户 &nbsp;属于 销售经理}</p>
+<p><span style="color: #ff0000;">3，最终我们会用JSON格式</span></p>
+</blockquote>
+<p><span style="font-size: 13px;">在检索数据时会先判断有没有注册了某某【资源】的【条件规则】，如果有，那么加载这个【条件规则】并合并到我们前台的【搜索条件】（你的业务界面应该有一个搜索框吧）</span></p>
+<p><span style="font-size: 13px;">&nbsp;如下图定义了客户信息的搜索框，我们搜索客户ID包括AN，我们组织成的规则将会是：</span></p>
+<blockquote>
+<p>{"rules":[{"field":"CustomerID","op":"like","value":"AN","type":"string"}],"op":"and"}</p>
+</blockquote>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031801322986.png" alt=""></p>
+<p><span style="font-size: 13px;">为了更好地理解【数据规则】，这里介绍一下【通用查询机制】&nbsp;</span></p>
+<h2><span style="font-size: 13px;"><a name="label3"></a>【通用查询机制】</span></h2>
+<p><span style="font-size: 13px;">权限控制总离不开一些条件的限制(比如查看当前部门的单据)，如果没有完善的通用查询规则机制，那么在做权限条件过滤的时候你会觉得很别扭。这里介绍一个通用查询方案，然后再介绍如何实现【数据规则】。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">早些时候我写过一篇关于ligerGrid结合.net设计通用处理类的文章《<a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/28/2061406.html"> jQuery liger ui ligerGrid 打造通用的分页排序查询表格(提供下载)</a> 》。里面提到的过滤信息是直接的SQL语句。这是不可靠，而且不安全的。</span><br><span style="font-size: 13px;">在前端传输给后台的过滤信息不应该是直接的SQL，而应该是一组过滤规则。在ligerui V1.1.8 已经加入了一个条件过滤器插件，这个插件组成的规则数据才是我受推荐的：</span><br><span style="font-size: 13px;">比如如下</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="font-size: x-small;"><span data-mce-="">{"rules":</span><br><span data-mce-="">[</span><br><span data-mce-="">{"field":"OrderDate","op":"less","value":"2012-01-01"},</span><br><span data-mce-="">{"field":"CustomerID","op":"equal","value":"VINET"}</span><br><span data-mce-="">]</span><br><span data-mce-="">,"op":"and"}</span><br></span></p>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="font-size: x-small;"><span data-mce-="">规则描述：</span><br><span data-mce-="">查找顾客VINET所有订单时间小于2011-01-01的单据</span></span></p>
+</blockquote>
+<p><br><span style="font-size: 13px;">这样的数据是安全的，而且是通用的(你甚至可以再加一个OR子查询)。无论是在前端还是后台，无论你使用什么样的组件，都可以很好地利用。</span></p>
+<p><span style="font-size: 13px;">通用后台的翻译，就可以生成这样SQL的参数：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">Text</span>:<br>(<span style="color: #ff0000;">[</span><span style="color: #ff0000;">OrderDate</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">&lt;</span> <span style="color: #008000;">@p1</span> <span style="color: #808080;">and</span> <span style="color: #ff0000;">[</span><span style="color: #ff0000;">CustomerID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p2</span>)<br>Parameters:<br>p1:<span style="color: #800000; font-weight: bold;">2012</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><br>p2:VINET</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">下面来点复杂的：查找 顾客VINET或者TOMSP，所有订单时间小于2011-01-01的单据</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="font-size: x-small;"><span data-mce-="">{</span><br><span data-mce-="">"rules":[{"field":"OrderDate","op":"less","value":"2012-01-01"}],</span><br><span data-mce-="">"groups":[</span><br><span data-mce-="">{"rules":[{"field":"CustomerID","op":"equal","value":"VINET"}, {"field":"CustomerID","op":"equal","value":"TOMSP"}],"op":"or"}</span><br><span data-mce-="">],</span><br><span data-mce-="">"op":"and"</span><br><span data-mce-="">}</span><br></span></p>
+</blockquote>
+<p>&nbsp;<span style="font-size: 13px;">翻译结果：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">Text</span>:(<span style="color: #ff0000;">[</span><span style="color: #ff0000;">OrderDate</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">&lt;</span> <span style="color: #008000;">@p1</span> <span style="color: #808080;">and</span> (<span style="color: #ff0000;">[</span><span style="color: #ff0000;">CustomerID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p2</span> <span style="color: #808080;">or</span> <span style="color: #ff0000;">[</span><span style="color: #ff0000;">CustomerID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p3</span>))<br>Parameters:<br>p1:<span style="color: #800000; font-weight: bold;">2012</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><br>p2:VINET<br>p3:TOMSP</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;"><span style="color: #ff0000;">这个过滤规则分为三个部分：【分组】、【规则】(字段、值、操作符)、【操作符】(and or)</span>，而自身就是一个分组。</span><br><span style="font-size: 13px;">这种简单的结构就可以满足全部的情况。</span></p>
+<p><span style="font-size: 13px;">当然，上面提到的这些条件都是在前台定义(可能是用户在搜索框自己输入的)的，而在后台，我们可能会定义一下【隐藏条件】，比如说 【员工只能查看自己的】，要怎么做呢，其实很简单，只需要在后台接收到这个过滤条件(前台toJSON，后台解析JSON)以后，再加上一个过滤规则(隐藏条件)：</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p><span style="font-size: x-small;">{field:'EmployeeID',op:'equal',value:5}<br></span></p>
+</blockquote>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">可以将原来的过滤规则当做一个分组加入进行：</span></p>
+<p>&nbsp;</p>
+<blockquote>
+<p>&nbsp;</p>
+<p><span data-mce-="">{op:'and',groups:[</span></p>
+<p>&nbsp;</p>
+<p><span data-mce-="">{"rules":[{"field":"OrderDate","op":"less","value":"2012-01-01"}],</span><br><span data-mce-="">"groups":[</span><br><span data-mce-="">{"rules":[{"field":"CustomerID","op":"equal","value":"VINET"},{"field":"CustomerID","op":"equal","value":"TOMSP"}],"op":"or"}</span><br><span data-mce-="">],"op":"and"}</span></p>
+<p>&nbsp;</p>
+<p><span data-mce-="">],rules:[{field:'EmployeeID',op:'equal',value:5}]</span><br><span data-mce-="">}</span></p>
+<p><span style="font-size: x-small;"><br></span></p>
+</blockquote>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">翻译如下：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">Text</span>:<br>(<span style="color: #ff0000;">[</span><span style="color: #ff0000;">EmployeeID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p1</span> <span style="color: #808080;">and</span> (<span style="color: #ff0000;">[</span><span style="color: #ff0000;">OrderDate</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">&lt;</span> <span style="color: #008000;">@p2</span> <span style="color: #808080;">and</span> (<span style="color: #ff0000;">[</span><span style="color: #ff0000;">CustomerID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p3</span> <span style="color: #808080;">or</span> <span style="color: #ff0000;">[</span><span style="color: #ff0000;">CustomerID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p4</span>)))<br>Parameters:<br>p1:<span style="color: #800000; font-weight: bold;">5</span><br>p2:<span style="color: #800000; font-weight: bold;">2012</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">01</span><br>p3:VINET<br>p4:TOMSP</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 13px;"><br><br></span></p>
+<p>&nbsp;<span style="font-size: 13px;">这样的【条件规则】才是我们想要的，不仅在前端可以很好地解析，</span><span style="font-size: 13px;">也可以在后台进行处理。在后台我们会定义跟这种数据结构对应的类，那么再定义一个翻译成SQL的类：</span></p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031812364735.png" alt=""></p>
+<p><span style="font-size: 13px;"><br></span></p>
+<h2><a name="label4"></a>数据权限规则</h2>
+<p><span style="font-size: 13px;">说了这些，可以开始介绍如何实现【数据规则】了：</span></p>
+<p><span style="font-size: 13px;">上面提到的【隐藏条件】，就是我介绍的【数据规则】</span><br><span style="font-size: 13px;">试想一些，这样 前台的过滤规则，再加上我们之间定义好的 【数据权限】控制 过滤条件。不就达到目的了吗。</span><br><span style="font-size: 13px;">先看看我们在数据库里保存的这些【数据规则】：</span></p>
+<p><img style="border: 1px solid #aaa; padding: 12px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031801472149.png" alt=""></p>
+<p>&nbsp;看不明白？那来个清楚一点的：</p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031801500593.png" alt=""></p>
+<blockquote>
+<p><span style="font-size: x-small;">规则描述</span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">订单：【订单管理员和演示角色可以查看所有的】，【订单查看员】只能查看自己的</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">产品：【基础信息录入员和演示角色可以查看所有的】，【供应商】只能查看自己的</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentEmployeeID}表示当前的员工。</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">实质上，我们还可以根据当前用户信息定义需要的参数，比如：</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentUserID} 当前用户Id ，对应表【CF_User】</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentRoleID} 当前角色Id ，对应表 【CF_Role】&nbsp;</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentDeptID} 当前用户部门Id，对应表【CF_Department】</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentEmployeeID} 当前用户员工Id，对应表【Employees】(CF_User.EmployeeID)</span></span></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">{CurrentSupplierID} 当前用户供应商Id，对应表【Suppliers】(CF_User.SupplierID)</span></span></p>
+</blockquote>
+<p>&nbsp;在数据库中我们直接保存这些用户参数，在“翻译”规则成为SQL时，会替换掉：</p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031802035751.png" alt=""></p>
+<p><span style="font-size: 13px;">比如查看订单，我们得到的SQL，可能是这样的：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">Text</span>:     <span style="color: #0000ff;">SELECT</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">FROM</span> (<span style="color: #0000ff;">SELECT</span> <span style="color: #0000ff;">TOP</span> <span style="color: #800000; font-weight: bold;">20</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">FROM</span> (<span style="color: #0000ff;">SELECT</span> <span style="color: #0000ff;">TOP</span> <span style="color: #800000; font-weight: bold;">40</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">FROM</span> <span style="color: #ff0000;">[</span><span style="color: #ff0000;">Orders</span><span style="color: #ff0000;">]</span> <span style="color: #0000ff;">WHERE</span> ( <span style="color: #800000; font-weight: bold;">1</span><span style="color: #808080;">=</span><span style="color: #800000; font-weight: bold;">1</span>  <span style="color: #808080;">and</span> ((<span style="color: #008000;">@p1</span> <span style="color: #808080;">in</span> (<span style="color: #008000;">@p2</span>,<span style="color: #008000;">@p3</span>)) <span style="color: #808080;">or</span> (<span style="color: #008000;">@p4</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p5</span> <span style="color: #808080;">and</span> <span style="color: #ff0000;">[</span><span style="color: #ff0000;">EmployeeID</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #008000;">@p6</span>))) <span style="color: #0000ff;">ORDER</span> <span style="color: #0000ff;">BY</span> OrderID <span style="color: #0000ff;">ASC</span>) <span style="color: #0000ff;">AS</span> tmptableinner <span style="color: #0000ff;">ORDER</span> <span style="color: #0000ff;">BY</span> OrderID <span style="color: #0000ff;">DESC</span>) <span style="color: #0000ff;">AS</span> tmptableouter <span style="color: #0000ff;">ORDER</span> <span style="color: #0000ff;">BY</span> OrderID <span style="color: #0000ff;">ASC</span>     <br>Parameters:<br><span style="color: #008000;">@p1</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">7</span><br><span style="color: #008000;">@p2</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">2</span><br><span style="color: #008000;">@p3</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">6</span><br><span style="color: #008000;">@p4</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">7</span><br><span style="color: #008000;">@p5</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">7</span><br><span style="color: #008000;">@p6</span><span style="color: #ff0000;">[</span><span style="color: #ff0000;">Int32</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> <span style="color: #800000; font-weight: bold;">1</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<blockquote>
+<p><span style="font-size: 13px;"><span style="font-size: 13px;">{CurrentRuleID} 替换为 7</span></span></p>
+<p><span style="font-size: x-small;">{CurrentEmployeeID} 替换为1</span></p>
+</blockquote>
+<p>&nbsp;<span style="font-size: 13px;">下图是我们设计【数据权限】的界面，可以选择所有的字段，包括几个用户信息：</span></p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031812561685.png" alt=""></p>
+<p><span style="font-size: 13px;">这些字段不仅仅只是在文本框中输入值，那么可以自定义数据来源：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #ff00ff;">var</span> fieldEditors <span style="color: #808080;">=</span> {};<br>fieldEditors<span style="color: #ff0000;">[</span><span style="color: #ff0000;">'Orders'</span><span style="color: #ff0000;">]</span> <span style="color: #808080;">=</span> {<br>    <span style="color: #ff0000;">'</span><span style="color: #ff0000;">ShipCity</span><span style="color: #ff0000;">'</span>: { type: <span style="color: #ff0000;">'</span><span style="color: #ff0000;">combobox</span><span style="color: #ff0000;">'</span>, <br>        options: {<br>            width: <span style="color: #800000; font-weight: bold;">200</span>,<br>            url: "..<span style="color: #808080;">/</span>handler<span style="color: #808080;">/</span><span style="color: #0000ff;">select</span>.ashx?<span style="color: #0000ff;">view</span><span style="color: #808080;">=</span>Orders<span style="color: #808080;">&amp;</span>idfield<span style="color: #808080;">=</span>ShipCity<span style="color: #808080;">&amp;</span>textfield<span style="color: #808080;">=</span>ShipCity<span style="color: #808080;">&amp;</span><span style="color: #0000ff;">distinct</span><span style="color: #808080;">=</span>true"<br>        }<br>    }<br>};</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 13px;">效果界面：</span></p>
+<p>&nbsp;</p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031814031163.png" alt=""></p>
+<p><span style="font-size: 13px;"><br></span></p>
+<h2><a name="label5"></a>实际应用</h2>
+<p><span style="font-size: 13px;">既然是数据权限控制，如果有一个统一的数据接收入口，我们倒是可以利用这个入口做一些工作。</span></p>
+<p><span style="font-size: 13px;">比如【<a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">ligerRM权限管理系统</a>】统一使用 grid.ashx 这个数据处理程序作为列表数据的接收入口。</span></p>
+<p><span style="font-size: 13px;">有了统一的接口，方便做权限的控制，使用过 ligerGrid Javascript表格，或者类似插件的朋友，应该比较清楚服务器的交互原理。 </span><br><span style="font-size: 13px;">在grid.ashx中，我们会通过 </span><br><span style="font-size: 13px; color: #ff0000;">【视图/表名 】、 【排序信息】、【分页信息】、【过滤信息】</span><br><span style="font-size: 13px;">这几个指标来获取指定的数据。</span></p>
+<p><br><span style="font-size: 13px;">而在实际的业务中，可能会引入权限的控制。比如某某【资源】，只能由当前用户自身才能查看，或者只能由当前用户部门及上级部门才能查看。对于这些控制，我们采用对这些可能做权限控制的【资源】注册一组【条件规则】的方式来进行。</span></p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031802114223.png" alt=""></p>
+<p><span style="font-size: x-small;"><span style="font-size: x-small;">&nbsp;我们将找到view定义好的【数据权限规则】，然后和用户在前台搜索框输入的【搜索规则】合并：</span></span></p>
+<p><img style="border: 1px solid #aaa; padding: 6px;" src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/2012031802144047.png" alt=""></p>
+<p><span style="font-size: 13px;">上面的代码就是数据条件合并的例子，这样便得到了我们最终需要的 过滤规则。</span></p>
+<p><a name="label6"></a></p>
+<h2>结语</h2>
+<p>本文提出了数据权限的一种实现思路，只是本人在做一个web应用时构思的方案，谈不上规范，欢迎提出你的建议意见。</p>
+<p>可以在<a href="http://case.ligerui.com/">http://case.ligerui.com</a>体验实际的应用效果。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/leoxie2011/category/300273.html">03.权限管理</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/leoxie2011/tag/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1/">权限管理设计</a></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2408542,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/leoxie2011/" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u109724.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/leoxie2011/">谢略</a><br>
+<a href="http://home.cnblogs.com/u/leoxie2011/followees">关注 - 26</a><br>
+<a href="http://home.cnblogs.com/u/leoxie2011/followers">粉丝 - 873</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2408542,'Digg')">
+        <span class="diggnum" id="digg_count">61</span>
+    </div>
+	<div class="buryit" onclick="votePost(2408542,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html" title="发布于2012-03-18 21:49">分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)</a><br><a href="http://www.cnblogs.com/leoxie2011/archive/2013/03/29/2988007.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/leoxie2011/archive/2013/03/29/2988007.html" title="发布于2013-03-29 01:21">ligerui 提交反馈</a><br></div>
+</div>
+
+
+	<div class="postDesc"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/speech.gif" align="absmiddle">&nbsp;posted on <span id="post-date">2012-03-20 21:04</span> <a href="http://www.cnblogs.com/leoxie2011/">谢略</a> 阅读(<span id="post_view_count">65948</span>) 评论(<span id="post_comment_count">77</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2408542" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2408542);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=65588,cb_entryId=2408542,cb_blogApp=currentBlogApp,cb_blogUserGuid='45d7011f-fa00-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2012/3/20 21:04:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2340035" class="layer">#51楼</a><a name="2340035" id="comment_anchor_2340035"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2340035" class="feedbackmanagelink" href="http://www.cnblogs.com/msopengl/" target="_blank">jemmy Liu</a> <a href="http://msg.cnblogs.com/send/jemmy%20Liu" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-03-26 13:38</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2340035" class="blog_comment_body">你和吉日哪个是山寨版的？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2340035,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2340035,'Bury',this)">反对(0)</a></div><span id="comment_2340035_avatar" style="display:none;">http://pic.cnblogs.com/face/u283643.jpg?id=02121041</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2340384" class="layer">#52楼</a><a name="2340384" id="comment_anchor_2340384"></a>[<span class="louzhu">楼主</span>]</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2340384" class="feedbackmanagelink" href="http://www.cnblogs.com/leoxie2011/" target="_blank">谢略</a> <a href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-03-26 19:39</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2340384" class="blog_comment_body"><a href="#2340035" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2340035);">@</a>jemmy Liu<br>那么巧有思路方案是一样的吗？有的话发出来吧，我也学习一下！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2340384,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2340384,'Bury',this)">反对(0)</a></div><span id="comment_2340384_avatar" style="display:none;">http://pic.cnblogs.com/face/u109724.jpg?id=02191852</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2358523" class="layer">#53楼</a><a name="2358523" id="comment_anchor_2358523"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2358523" class="feedbackmanagelink" href="http://www.cnblogs.com/ahqianjin/" target="_blank">钱进</a> <a href="http://msg.cnblogs.com/send/%E9%92%B1%E8%BF%9B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-04-18 15:59</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2358523" class="blog_comment_body">楼主，这一权限系列还会继续写吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2358523,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2358523,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2359501" class="layer">#54楼</a><a name="2359501" id="comment_anchor_2359501"></a>[<span class="louzhu">楼主</span>]</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2359501" class="feedbackmanagelink" href="http://www.cnblogs.com/leoxie2011/" target="_blank">谢略</a> <a href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-04-19 16:06</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2359501" class="blog_comment_body"><a href="#2358523" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2358523);">@</a>钱进<br>也不能说是系列。我也就是写了两篇 权限系统 设计的心得文章而已</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2359501,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2359501,'Bury',this)">反对(0)</a></div><span id="comment_2359501_avatar" style="display:none;">http://pic.cnblogs.com/face/u109724.jpg?id=02191852</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2367740" class="layer">#55楼</a><a name="2367740" id="comment_anchor_2367740"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2367740" class="feedbackmanagelink" href="http://www.cnblogs.com/zhixx/" target="_blank">zhi++</a> <a href="http://msg.cnblogs.com/send/zhi%2B%2B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-05-02 12:01</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2367740" class="blog_comment_body">模仿sap的吧，<br>但做的很简单，配置也很麻烦，<br>估计客户很难用，<br>不过可以交给实施人员去配，<br><br>最主要的一个问题，你这个做法不现实，<br>我们很多查询，是用复杂的存储过程来写的，<br>你这个规则怎么嵌到存储过程中去，才是我们关心的，<br>增加一个条件，这很简单，<br>但要嵌到存储过程中去，就非常难了，</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2367740,'Digg',this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2367740,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2367909" class="layer">#56楼</a><a name="2367909" id="comment_anchor_2367909"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2367909" class="feedbackmanagelink" href="http://www.cnblogs.com/xlgwr/" target="_blank">xlgwr</a> <a href="http://msg.cnblogs.com/send/xlgwr" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-05-02 15:33</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2367909" class="blog_comment_body">权限控制,把用户界面,多语言.也加进去,就更完美了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2367909,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2367909,'Bury',this)">反对(0)</a></div><span id="comment_2367909_avatar" style="display:none;">http://pic.cnblogs.com/face/127234/20130313092102.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2382461" class="layer">#57楼</a><a name="2382461" id="comment_anchor_2382461"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2382461" class="feedbackmanagelink" href="http://www.cnblogs.com/lfzx_1227/" target="_blank">E2Home</a> <a href="http://msg.cnblogs.com/send/E2Home" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-05-22 11:24</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2382461" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="#2336027" title="查看引用原文">引用</a></legend>lugreen：<br>分享很彻底、楼主很强大。<br>楼主在上面示例中的查询中查询了一个表。当查询需要多表关联，并且每个表都带有别名时，数据规则的条件中的字段名可能也需要带别名。 请问楼主，是否有过这方面的考虑。</fieldset><br>用视图来解决多表关联胡问题！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2382461,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2382461,'Bury',this)">反对(1)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2396613" class="layer">#58楼</a><a name="2396613" id="comment_anchor_2396613"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2396613" class="feedbackmanagelink" href="http://www.cnblogs.com/zhixx/" target="_blank">zhi++</a> <a href="http://msg.cnblogs.com/send/zhi%2B%2B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-06-09 08:43</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2396613" class="blog_comment_body"><a href="#2382461" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2382461);">@</a>E2Home<br>视图不行啊，用视图，就不能用索引搜索了，<br>就算加视图索引，效率也是很低下的，<br><br>而且我们很多统计，用视图都无法实现，必须用存储过程</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2396613,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2396613,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2468828" class="layer">#59楼</a><a name="2468828" id="comment_anchor_2468828"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2468828" class="feedbackmanagelink" href="http://www.cnblogs.com/nickel/" target="_blank">nickel</a> <a href="http://msg.cnblogs.com/send/nickel" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-09-10 16:41</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2468828" class="blog_comment_body">不错，<br><br>角色B只允许查看产品单价大于C1的产品A1并且的订单的时候如何满足需求？<br>也就是订单的数据权限必须满足产品的某个字段值匹配条件的时候，不同的主体之间控制数据权限；</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2468828,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2468828,'Bury',this)">反对(0)</a></div><span id="comment_2468828_avatar" style="display:none;">http://pic.cnblogs.com/face/u56802.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2530137" class="layer">#60楼</a><a name="2530137" id="comment_anchor_2530137"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2530137" class="feedbackmanagelink" href="http://home.cnblogs.com/u/99967/" target="_blank">轩春</a> <a href="http://msg.cnblogs.com/send/%E8%BD%A9%E6%98%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-11-12 17:26</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2530137" class="blog_comment_body">感谢分享.但我想问一下关于实例项目的Model实体层，是使用什么工具生成，有现有的工具吗？方便的话，能否给我发一个。邮箱：chenyangc258@126.com</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2530137,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2530137,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2565315" class="layer">#61楼</a><a name="2565315" id="comment_anchor_2565315"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2565315" class="feedbackmanagelink" href="http://www.cnblogs.com/aaronguo/" target="_blank">Aaronguo</a> <a href="http://msg.cnblogs.com/send/Aaronguo" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2012-11-28 18:17</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2565315" class="blog_comment_body">不错  学习了...针对权限的处理提供了一个新的思路..</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2565315,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2565315,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2593784" class="layer">#62楼</a><a name="2593784" id="comment_anchor_2593784"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2593784" class="feedbackmanagelink" href="http://www.cnblogs.com/yequancheng/" target="_blank">雨泉</a> <a href="http://msg.cnblogs.com/send/%E9%9B%A8%E6%B3%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-01-06 16:11</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2593784" class="blog_comment_body">思路新，很好，学习中。。。<br>感谢分享！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2593784,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2593784,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2606705" class="layer">#63楼</a><a name="2606705" id="comment_anchor_2606705"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2606705" class="feedbackmanagelink" href="http://home.cnblogs.com/u/492386/" target="_blank">_smile守护</a> <a href="http://msg.cnblogs.com/send/_smile%E5%AE%88%E6%8A%A4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-01-24 14:07</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2606705" class="blog_comment_body">(function()<br>	    {<br>	        $('#rr1,#rr2,#rr3').ligerDrag(); <br>	        $('#rr1,#rr2,#rr3').ligerResizable();<br>	    });<br>这两句话执行的时候 为什么提示我 缺少对象？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2606705,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2606705,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2614863" class="layer">#64楼</a><a name="2614863" id="comment_anchor_2614863"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2614863" class="feedbackmanagelink" href="http://www.cnblogs.com/sdmajun/" target="_blank">MC_ma</a> <a href="http://msg.cnblogs.com/send/MC_ma" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-02-05 22:30</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2614863" class="blog_comment_body">请问在c/s模式下这种方式也可以用吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2614863,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2614863,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2635585" class="layer">#65楼</a><a name="2635585" id="comment_anchor_2635585"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2635585" class="feedbackmanagelink" href="http://home.cnblogs.com/u/265057/" target="_blank">丢葡萄的人</a> <a href="http://msg.cnblogs.com/send/%E4%B8%A2%E8%91%A1%E8%90%84%E7%9A%84%E4%BA%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-03-15 14:40</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2635585" class="blog_comment_body">很不错，顶一个，有关于字段权限控制的文章么？楼主~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2635585,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2635585,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2635590" class="layer">#66楼</a><a name="2635590" id="comment_anchor_2635590"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2635590" class="feedbackmanagelink" href="http://home.cnblogs.com/u/265057/" target="_blank">丢葡萄的人</a> <a href="http://msg.cnblogs.com/send/%E4%B8%A2%E8%91%A1%E8%90%84%E7%9A%84%E4%BA%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-03-15 14:43</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2635590" class="blog_comment_body">还有一事不明，这种数据权限的管理中，选择的字段的下拉框的数据，楼主是怎么得到的，是获取数据库的字段加上固定的（当前用户，当前角色，当前部门那些）几个么？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2635590,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2635590,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2645960" class="layer">#67楼</a><a name="2645960" id="comment_anchor_2645960"></a>[<span class="louzhu">楼主</span>]</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2645960" class="feedbackmanagelink" href="http://www.cnblogs.com/leoxie2011/" target="_blank">谢略</a> <a href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-03-29 20:42</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2645960" class="blog_comment_body"><a href="#2635585" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2635585);">@</a>丢葡萄的人<br>有空写篇^</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2645960,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2645960,'Bury',this)">反对(0)</a></div><span id="comment_2645960_avatar" style="display:none;">http://pic.cnblogs.com/face/u109724.jpg?id=02191852</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2645961" class="layer">#68楼</a><a name="2645961" id="comment_anchor_2645961"></a>[<span class="louzhu">楼主</span>]</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2645961" class="feedbackmanagelink" href="http://www.cnblogs.com/leoxie2011/" target="_blank">谢略</a> <a href="http://msg.cnblogs.com/send/%E8%B0%A2%E7%95%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-03-29 20:43</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2645961" class="blog_comment_body"><a href="#2635590" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2635590);">@</a>丢葡萄的人<br>是的，配置即可</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2645961,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2645961,'Bury',this)">反对(0)</a></div><span id="comment_2645961_avatar" style="display:none;">http://pic.cnblogs.com/face/u109724.jpg?id=02191852</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2654300" class="layer">#69楼</a><a name="2654300" id="comment_anchor_2654300"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2654300" class="feedbackmanagelink" href="http://www.cnblogs.com/liubiaocai/" target="_blank">刘标才</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%A0%87%E6%89%8D" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-04-10 17:19</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2654300" class="blog_comment_body">LZ的思路不错，个人建议把拼接sql那部分抽象出来，因为不是所有系统都是用sql拼接的，比如有用NH的，用EF的，那你的权限就不能用了（或者说很难把），而且权限应该考虑给第三方系统二次开发，所以最好设计成可以植入的形式，比如：<br>添加主体，规则、资源，由权限系统完成，然后第三方系统实现把规则转换成sql(NH，EF代码)的接口，最好植入到第三方系统，具体怎么植入可以用aop拦截需要设置权限的方法，然后对返回值或者参数根据权限进行修改</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2654300,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2654300,'Bury',this)">反对(0)</a></div><span id="comment_2654300_avatar" style="display:none;">http://pic.cnblogs.com/face/u36499.jpg?id=30171922</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2684536" class="layer">#70楼</a><a name="2684536" id="comment_anchor_2684536"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2684536" class="feedbackmanagelink" href="http://home.cnblogs.com/u/522068/" target="_blank">李龙平</a> <a href="http://msg.cnblogs.com/send/%E6%9D%8E%E9%BE%99%E5%B9%B3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-05-19 22:30</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2684536" class="blog_comment_body">源码在哪下呀  或者发一份给我谢谢 我邮箱2569697660@qq.com</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2684536,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2684536,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#2843708" class="layer">#71楼</a><a name="2843708" id="comment_anchor_2843708"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_2843708" class="feedbackmanagelink" href="http://www.cnblogs.com/kinggod/" target="_blank">博客园董事长</a> <a href="http://msg.cnblogs.com/send/%E5%8D%9A%E5%AE%A2%E5%9B%AD%E8%91%A3%E4%BA%8B%E9%95%BF" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2013-12-24 19:00</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2843708" class="blog_comment_body"><a href="#2340035" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2340035);">@</a>jemmy Liu<br>楼主是开源的 吉日开源嘛？ 抄袭也只能说是别人抄袭楼主的！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2843708,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2843708,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3020760" class="layer">#72楼</a><a name="3020760" id="comment_anchor_3020760"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3020760" class="feedbackmanagelink" href="http://www.cnblogs.com/codisan/" target="_blank">Codisan</a> <a href="http://msg.cnblogs.com/send/Codisan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2014-09-01 14:48</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3020760" class="blog_comment_body">看了好多这样的文章了，最终的结果都要拼SQL，这是所有我见过拼SQL权限中，最棒的。但是我的疑问是，还有没有别的办法实现？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3020760,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3020760,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3093208" class="layer">#73楼</a><a name="3093208" id="comment_anchor_3093208"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3093208" class="feedbackmanagelink" href="http://www.cnblogs.com/lipanpan/" target="_blank">造梦者2013</a> <a href="http://msg.cnblogs.com/send/%E9%80%A0%E6%A2%A6%E8%80%852013" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2014-12-24 18:09</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3093208" class="blog_comment_body">见过类似思路，但楼主说的很细，还是让我学到了很多。首先感谢lz的分享。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3093208,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3093208,'Bury',this)">反对(0)</a></div><span id="comment_3093208_avatar" style="display:none;">http://pic.cnblogs.com/face/533971/20130530105101.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3110668" class="layer">#74楼</a><a name="3110668" id="comment_anchor_3110668"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3110668" class="feedbackmanagelink" href="http://home.cnblogs.com/u/194796/" target="_blank">jake.hua</a> <a href="http://msg.cnblogs.com/send/jake.hua" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2015-01-20 15:05</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3110668" class="blog_comment_body">大侠，求一份代码 343773458@qq.com</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3110668,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3110668,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3144339" class="layer">#75楼</a><a name="3144339" id="comment_anchor_3144339"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3144339" class="feedbackmanagelink" href="http://home.cnblogs.com/u/733138/" target="_blank">cqityz</a> <a href="http://msg.cnblogs.com/send/cqityz" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2015-03-19 13:48</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3144339" class="blog_comment_body">你好，老师，针对数据权限的问题，我想请教你一下。如果可以给我一份源码吧，最好是带数据库表结构设计的。不甚感激。谢谢了。邮箱：27683733@qq.com。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3144339,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3144339,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3145599" class="layer">#76楼</a><a name="3145599" id="comment_anchor_3145599"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3145599" class="feedbackmanagelink" href="http://home.cnblogs.com/u/733836/" target="_blank">hmyx</a> <a href="http://msg.cnblogs.com/send/hmyx" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2015-03-20 22:01</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3145599" class="blog_comment_body">您好能把这个数据权限的实现源码发一份给我吗？我想看看前台页面怎么实现，谢谢！邮箱747388092@qq.com</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3145599,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3145599,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					<span style="color:#006699"><a href="#3177284" class="layer">#77楼</a><a name="3177284" id="comment_anchor_3177284"></a><span id="comment-maxId" style="display:none;">3177284</span><span id="comment-maxDate" style="display:none;">2015/5/6 15:09:20</span></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<div style="padding-left:30px;"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/arrow.gif" align="absmiddle">&nbsp;<a id="a_comment_author_3177284" class="feedbackmanagelink" href="http://home.cnblogs.com/u/603593/" target="_blank">Jason1988</a> <a href="http://msg.cnblogs.com/send/Jason1988" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><font style="color:gray;font-size:10px;font-weight:normal;"> |  <span class="comment_date">2015-05-06 15:09</span></font>
+				</div>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3177284" class="blog_comment_body">求一份代码，我的邮箱517306304@qq.com ；谢楼主分享！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3177284,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3177284,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="#%21comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jpush.cn/" target="_blank">【推荐】极光推送30多万开发者的选择，SDK接入量超过30亿了，你还没注册？</a><br><a href="http://click.aliyun.com/m/3037/" target="_blank">【精品】高性能阿里云服务器+SSD云盘，支撑I/O密集型核心业务、极高数据可靠性</a><br></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20151030141346279-2034275742.gif" alt="" title="" height="250" width="300"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/535279/" target="_blank">蘑菇街四岁了，但女性垂直电商却风光不再</a><br> ·  <a href="http://news.cnblogs.com/n/535277/" target="_blank">2015年运营湾区日报学到的10条经验教训</a><br> ·  <a href="http://news.cnblogs.com/n/535276/" target="_blank">如何防止在网络上被“人肉”出来？</a><br> ·  <a href="http://news.cnblogs.com/n/535275/" target="_blank">亲历：我在创业大街这一年</a><br> ·  <a href="http://news.cnblogs.com/n/535274/" target="_blank">Docker容器明文密码问题解决之道</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://jiuye.jikexueyuan.com/train/javaweb?hmsr=cnb_jiuye_javaweb_1217" target="_blank"><img src="%E9%80%9A%E7%94%A8%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%20%E4%B9%8B%20%E6%95%B0%E6%8D%AE%E6%9D%83%E9%99%90%20-%20%E8%B0%A2%E7%95%A5%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20151217171338318-1790451897.jpg" alt="javaweb_1217" title="javaweb_1217" height="60" width="468"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/535278/" target="_blank">软件开发的核心</a><br> ·  <a href="http://kb.cnblogs.com/page/534420/" target="_blank">Linux概念架构的理解</a><br> ·  <a href="http://kb.cnblogs.com/page/527814/" target="_blank">从涂鸦到发布——理解API的设计过程</a><br> ·  <a href="http://kb.cnblogs.com/page/531834/" target="_blank">好的架构是进化来的，不是设计来的</a><br> ·  <a href="http://kb.cnblogs.com/page/532236/" target="_blank">被误解的MVC和被神化的MVVM</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+});
+</script>
+</div>
+
+		</div>
+	</div>
+	</div>
+	<!-- left ends -->
+	<!-- right starts -->
+	<div id="right">
+		<!-- 右侧工具部分 -->
+		<div id="right_content">
+	
+			
+<!--done-->
+<h1 class="listtitle" style="padding-top:14px;padding-left:42px;">公告</h1>
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/leoxie2011/">谢略</a><br>园龄：<a href="http://home.cnblogs.com/u/leoxie2011/" title="入园时间：2010-01-14">5年11个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/leoxie2011/followers/">873</a><br>关注：<a href="http://home.cnblogs.com/u/leoxie2011/followees/">26</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('45d7011f-fa00-df11-ba8f-001cf0cd104b')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+	
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="Calendar" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2012/02/01');return false;">&lt;</a></td><td align="center">2012年3月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2012/04/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/06.html"><u>6</u></a></td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18.html"><u>18</u></a></td><td align="center">19</td><td align="center"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20.html"><u>20</u></a></td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+				<div id="leftcontentcontainer">
+					<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/leoxie2011/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/leoxie2011/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/leoxie2011/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/leoxie2011/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/leoxie2011/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/leoxie2011/tag/LigerUI/">LigerUI</a>(18)</li><li><a href="http://www.cnblogs.com/leoxie2011/tag/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1/">权限管理设计</a>(3)</li><li><a href="http://www.cnblogs.com/leoxie2011/tag/ASP.NET%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">ASP.NET自定义控件</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/232317.html">01.ASP.NET(2)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/291637.html">02.LigerUI(22)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/300273.html">03.权限管理(3)</a>
+				</div>
+			
+				</div>
+			
+	
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2014/03.html">2014年3月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/08.html">2013年8月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/05.html">2013年5月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2013/03.html">2013年3月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/03.html">2012年3月 (5)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/02.html">2012年2月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2012/01.html">2012年1月 (3)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/11.html">2011年11月 (1)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/05.html">2011年5月 (3)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2011/04.html">2011年4月 (7)</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/leoxie2011/archive/2010/08.html">2010年8月 (1)</a>
+				</div>
+			
+				</div>
+			
+	
+		<h1 class="catListTitle">文章分类</h1>
+		
+				<div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/259031.html">Asp.NET 自定义控件</a>
+				</div>
+			
+				<div class="catList">
+				 <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.cnblogs.com/leoxie2011/category/230444.html">C#</a>
+				</div>
+			
+				</div>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html#3323749">1. Re:通用权限管理设计 之 数据库结构设计</a></li>
+    <li class="recent_comment_body">sys_application是什么表啊？？？</li>
+    <li class="recent_comment_author">--润~~润</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html#3307180">2. Re:通用权限管理设计 之 数据库结构设计</a></li>
+    <li class="recent_comment_body">楼主能把6张数据表发来看看吗？谢谢。1490069368@qq.com</li>
+    <li class="recent_comment_author">--wzmzang</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/p/3606408.html#3299821">3. Re:jQuery LigerUI V1.2.3 (包括API和全部源码) 发布</a></li>
+    <li class="recent_comment_body">楼主能给grid里单元格编辑器的类型加一种多行文本框吗？现在文本的类型只有text，没法往单元格里加换行的段落或一些格式的内容来进行编辑，拜托啦</li>
+    <li class="recent_comment_author">--Caroline1006</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html#3297100">4. Re:分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)</a></li>
+    <li class="recent_comment_body">虽然日期过去了很久了，不知道楼主能不能看到，但是还是求楼主发一份源码谢谢了！479146715@qq.com</li>
+    <li class="recent_comment_author">--学渣成学霸</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/leoxie2011/p/3606408.html#3286591">5. Re:jQuery LigerUI V1.2.3 (包括API和全部源码) 发布</a></li>
+    <li class="recent_comment_body">弹出窗口功能的载入目标DIV功能错误很多，下拉框和日期选择控件都有问题。</li>
+    <li class="recent_comment_author">--cooloksu</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">1. 通用权限管理设计 之 数据库结构设计(76412)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">2. 通用权限管理设计 之 数据权限(65948)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">3. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(63867)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/17/2324485.html">4. jQuery LigerUI 使用教程表格篇(1)(44180)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/16/2324106.html">5. jQuery LigerUI 使用教程入门篇(44104)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">1. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(196)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">2. 通用权限管理设计 之 数据库结构设计(101)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2013/05/12/ligeruiv120.html">3. jQuery LigerUI V1.2.0 (包括API和全部源码) 发布(89)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">4. 通用权限管理设计 之 数据权限(77)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/01/16/2324106.html">5. jQuery LigerUI 使用教程入门篇(58)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/20/2408542.html">1. 通用权限管理设计 之 数据权限(61)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/05/19/2050626.html">2. 通用权限管理设计 之 数据库结构设计(57)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2012/03/18/2400367.html">3. 分享一个基于ligerui的系统应用案例ligerRM V2(权限管理系统)(提供下载)(44)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2013/05/12/ligeruiv120.html">4. jQuery LigerUI V1.2.0 (包括API和全部源码) 发布(37)</a></li><li><a href="http://www.cnblogs.com/leoxie2011/archive/2011/04/24/2026241.html">5. jQuery LigerUI V1.0(包括API和全部源码) 发布(24)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+				</div>
+			
+		</div>
+		<!-- //右侧工具部分 -->
+	</div>
+	<!-- right ends -->
+	<div class="clear"></div>
+</div>
+<div id="footer">
+<!--done-->
+Copyright ©2015 谢略</div>
+
+
+
+</body></html>

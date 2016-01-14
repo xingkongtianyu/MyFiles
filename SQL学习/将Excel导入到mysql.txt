@@ -1,0 +1,33 @@
+将Excel导入到mysql
+
+
+方法很多，不过建议你先看看mysql的开发文档，里面写的很详细的，如果你懒得看，可以看下面的 
+1.有个软件PHP Excel Parser Pro v4.2可以，你可以在这里下载：http://down.chinaz.com/s/9459.asp 
+
+2.可将Excel存成csv格式。然后通过phpmyadmin倒入mysql 
+3.先导入Access中,再弄到MySQL中,或者自己写程序读出excel中数据然后存入mysql中 
+4.还有一个比较笨的手工方法，就是先利用excel生成sql语句，然后再到mysql中运行，这种方法适用于excel表格导入到各类sql数据库： 
+
+一、假设你的表格有A、B、C三列数据，希望导入到你的数据库中表格table，对应的字段分别是col1、col2、col3 
+
+二、在你的表格中增加一列，利用excel的公式自动生成sql语句，具体方法如下： 
+
+1、增加一列（假设是D列） 
+
+2、在第一行的D列，就是D1中输入公式： 
+=CONCATENATE("insert into table (col1,col2,col3) values ('",A1,"','",B1,"','",C1,"');") 
+
+3、此时D1已经生成了如下的sql语句： 
+insert into table (col1,col2,col3) values ('a','11','33'); 
+
+4、将D1的公式复制到所有行的D列（就是用鼠标点住D1单元格的右下角一直拖拽下去啦） 
+
+5、此时D列已经生成了所有的sql语句 
+
+6、把D列复制到一个纯文本文件中，假设为sql.txt 
+
+三、把sql.txt放到数据库中运行即可，你可以用命令行导入，也可以用phpadmin运行。 
+
+
+
+本文来自CSDN博客，转载请标明出处：http://blog.csdn.net/yuelengxin/archive/2006/03/27/640557.aspx

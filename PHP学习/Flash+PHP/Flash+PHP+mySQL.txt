@@ -1,0 +1,83 @@
+Flash+PHP+mySQL
+Flash的部分与ASP的部分一样, 只是把当中的后台文件名更改一下
+ 
+
+
+function loadData() {
+loader = new LoadVars();
+loader.load("server.php?time="+new Date().getTime()); //向ASP取得资料的连接, 这里我不使用Math.random是因为这样有个缺点
+loader.onLoad = function(success) {
+if (success) {
+display.htmlText = loader.Result; //loader.Result是ASP传递回来的资料
+} };
+} submit.onRelease = function() { //当按钮按下放开的时候
+if (name.text.length == 0) { //这里是判断输入框是否为空
+Selection.setFocus(name); //把光标设定在指定的输入框
+} else if (msg.text.length == 0) { //同上
+Selection.setFocus(msg);
+} else {
+status.text = ""; //这个动态文本你们可以自己设定
+sender = new LoadVars();
+sender.onLoad = function(success) {
+if (success) {
+if (sender.Result == "Success" ) { //传递回来的讯息为Success时
+status.text = "记录成功...";
+name.text = msg.text=""; //清空输入栏位
+loadData(); //重新刷新资料
+} else {
+status.text = "记录失败, 请再次尝试...";
+} delete sender; //养成习惯把LoadVars变量删除以释放内存空间
+} };
+sender.load("server.php?action=save&name="+name.text+"&msg="+msg.text, sender, "POST" );//和sendAndLoad的功用一样, 传送出变量并等待资料传回, 传回的资料会在onLoad中截取
+} };
+loadData(); //在一开始载入资料库中的资料
+
+ 
+PHP部分 :
+ 
+
+
+<?php
+$DBhost = "localhost"; // 服务器的DNS名
+$DBuser = "root"; // 用户名
+$DBpass = ""; // 用户密码
+$DBName = "super-tomato"; //资料库名字
+$table = "guestbook"; // 资料库中资料表的名字
+ 
+$DBConn = mysql_connect($DBhost,$DBuser,$DBpass) or die("無法連接資料庫 : " . mysql_error()); //开始连接mysql
+mysql_select_db($DBName, $DBConn) or die("無法連接資料庫: " . mysql_error()); //选择mysql資料库并连接
+if($action == "save" ) { //当Flash的action变量为save时
+$sql = "INSERT INTO ".$table."(Name, Message) VALUES ('".$name."', '".$msg."')"; // 把资料写入资料表内
+$insert = mysql_query($sql, $DBConn) or die("無法連接資料庫: " . mysql_error());
+if($insert) { //资料写入成功
+echo "&Result=Success"; 
+} else {
+echo "&Result=Fail";
+} } else {
+$sql = "SELECT * FROM ".$table; //取得资料表中所有的资料
+$query = mysql_query($sql, $DBConn) or die("無法選取資料 : " . mysql_error());
+while ($array = mysql_fetch_array($query)) { //循环取得每一笔资料
+$strName = mysql_result($query, $i, "Name" );
+$strMsg = mysql_result($query, $i, "Message" );
+$record .= $strName." : ".$strMsg."<br>"; //把资料储存在变量当中
+$i++;
+} echo "&Result=".$record."<br><b>Finish</b>"; //传递变量中的资料到Flash
+}
+mysql_close(); //结束资料库连接
+?>
+
+ 
+******** PHP 连接 Microsoft Access 的方法 **********
+ 
+
+
+<?
+$db = "./Database.mdb";
+ 
+$conn = new COM("ADODB.Connection" ); //在PHP使用COM来连接
+// 两种方法都可以连接选一种即可
+$conn->Open("Provider=Microsoft.Jet.OLEDB.4.0; Data Source=$db" );
+//$conn->Open("DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=$db" );
+$sql = "SELECT * FROM guestbook";
+$rs = $conn->Execute($sql);
+?>

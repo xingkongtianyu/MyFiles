@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">.is()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/filtering/" title="View all posts in Filtering">Filtering</a></span>
+  
+
+          </div>
+
+</div>
+<div id="is1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.is( selector )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#Boolean">Boolean</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>检查当前匹配的元素集合匹配一个选择器，DOM元素，或者jQuery对象，如果这些元素至少一个匹配给定的参数，那么返回true。</p>
+<ul class="signatures">
+<li class="signature" id="is-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.is( selector )</h4>
+<p class="arguement"><strong>selector</strong>用来匹配元素的一个字符串，其中包含一个选择表达式。</p>
+</li>
+<li class="signature" id="is-functionindex">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.is( function(index) )</h4>
+<p class="arguement"><strong>function(index)</strong>一个函数用来作为测试元素的集合。它接受一个参数， <code>index</code>，这是元素在jQuery集合的索引。在函数， <code>this</code>指的是当前的DOM元素。 </p>
+</li>
+<li class="signature" id="is-jQuery object">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.is( jQuery object )</h4>
+<p class="arguement"><strong>jQuery object</strong>现有的jQuery对象，以匹配当前的元素。</p>
+</li>
+<li class="signature" id="is-element">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.is( element )</h4>
+<p class="arguement"><strong>element</strong>一个用于匹配元素的DOM元素。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>不像其他过滤和遍历方法，<code>.is()</code>并不创建一个新的jQuery对象。相反，它可以让我们测试，而无需修改一个jQuery对象的内容。这通常是在事件处理程序，如回调，非常有用。</p>
+<p>假设我们有其包含两个项目的子元素列表：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;list &lt;strong&gt;item 1&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;span&gt;list item 2&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>我们可以在&lt;ul&gt; element上附加一个单击处理程序，然后限制的代码只有当列表项目本身时触发，并不是它的孩子之一，被点击：</p>
+<pre>$("ul:).click(function(event) {
+  var $target = $(event.target);
+  if ( $target.is("li") ) {
+    $target.css("background-color", "red");
+  }
+});</pre>
+<p>现在，当在用户点击三个项目中的第一个项目中的单词或任何地方，点击列中的项目将得到一个红色背景。但是，当用户点击 item 1 中的第一项，或第二项的任何地方，什么都不会发生,因为在这些情况下，事件目标的将分别是<code>&lt;strong&gt;</code> 或者 <code>&lt;span&gt;</code>。</p>
+<h4>使用函数</h4>
+<p>第二个形式方法相关函数表达上，而不是一个选择器。对于每个元素，如果函数返回<code>true</code> ， <code>.is()</code>返回<code>true</code>也。例如，给出一个较为涉及的HTML片段：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;list&lt;/strong&gt; item 1 - one strong tag&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;list&lt;/strong&gt; item &lt;strong&gt;2&lt;/strong&gt; -
+    two &lt;span&gt;strong tags&lt;/span&gt;&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>
+点击元素在<code>&lt;li&gt;</code>在那个时候，您可以将每一个<code>&lt;li&gt;</code>单击处理程序计算结果<code>&lt;strong&gt;</code>的数量，像这样：</p>
+<pre>
+$("li").click(function() {
+  var $li = $(this),
+    isWithTwo = $li.is(function() {
+      return $('strong', this).length === 2;
+    });
+  if ( isWithTwo ) {
+    $li.css("background-color", "green");
+  } else {
+    $li.css("background-color", "red");
+  }
+});
+</pre>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">显示的 is（）可用于在一个事件处理程序的几种方法。
+Shows a few ways is() can be used inside an event handler.</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:60px; height:60px; margin:5px; float:left;
+      border:4px outset; background:green; text-align:center; 
+      font-weight:bolder; cursor:pointer; }
+  .blue { background:blue; }
+  .red { background:red; }
+  span { color:white; font-size:16px; }
+  p { color:red; font-weight:bolder; background:yellow; 
+      margin:3px; clear:left; display:none; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;div class="blue"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div class="red"&gt;&lt;/div&gt;
+
+&lt;div&gt;&lt;br/&gt;&lt;span&gt;Peter&lt;/span&gt;&lt;/div&gt;
+&lt;div class="blue"&gt;&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;script&gt;
+  $("div").one('click', function () {
+    if ($(this).is(":first-child")) {
+      $("p").text("It's the first div.");
+    } else if ($(this).is(".blue,.red")) {
+      $("p").text("It's a blue or red div.");
+    } else if ($(this).is(":contains('Peter')")) {
+      $("p").text("It's Peter!");
+    } else {
+      $("p").html("It's nothing &lt;em&gt;special&lt;/em&gt;.");
+    }
+    $("p").hide().slideDown("slow");
+    $(this).css({"border-style": "inset", cursor:"default"});
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">返回true，因为input的父级是一个表单的元素。</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { color:red; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;&lt;input type="checkbox" /&gt;&lt;/form&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+  var isFormParent = $("input[type='checkbox']").parent().is("form");
+  $("div").text("isFormParent = " + isFormParent);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">返回false，因为input的父级是一个P元素。</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { color:red; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;&lt;p&gt;&lt;input type="checkbox" /&gt;&lt;/p&gt;&lt;/form&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+  var isFormParent = $("input[type='checkbox']").parent().is("form");
+  $("div").text("isFormParent = " + isFormParent);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">针对检查列表元素交替现有的集合。 Blue, alternating list elements slide up while others turn red.</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;li { cursor:pointer; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;ul id="browsers"&gt;
+  &lt;li&gt;Chrome&lt;/li&gt;
+  &lt;li&gt;Safari&lt;/li&gt;
+  &lt;li&gt;Firefox&lt;/li&gt;
+  &lt;li&gt;Opera&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  var $alt = $("#browsers li:nth-child(2n)").css("background", "#00FFFF");
+  $('li').click(function() {
+    var $li = $(this);
+    if ( $li.is( $alt ) ) {
+      $li.slideUp();
+    } else {
+      $li.css("background", "red");
+    }
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">另一种方式来实现上面的例子中使用的元素而不是一个jQuery对象。An alternate way to achieve the above example using an element rather than a jQuery object. Checks against an existing collection of alternating list elements. Blue, alternating list elements slide up while others turn red.</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;li { cursor:pointer; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;ul id="browsers"&gt;
+  &lt;li&gt;Chrome&lt;/li&gt;
+  &lt;li&gt;Safari&lt;/li&gt;
+  &lt;li&gt;Firefox&lt;/li&gt;
+  &lt;li&gt;Opera&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  var $alt = $("#browsers li:nth-child(2n)").css("background", "#00FFFF");
+  $('li').click(function() {
+    if ( $alt.is( this ) ) {
+      $(this).slideUp();
+    } else {
+      $(this).css("background", "red");
+    }
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

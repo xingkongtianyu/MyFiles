@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">deferred.pipe()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/deferred-object/" title="View all posts in Deferred Object">Deferred Object</a></span>
+  
+
+          </div>
+
+</div>
+<div id="deferred-pipe1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">deferred.pipe( [ doneFilter ], [ failFilter ] )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#Promise">Promise</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong> 筛选器和/或链Deferreds的实用程序方法。   </p>
+<ul class="signatures"><li class="signature" id="deferred-pipe-doneFilter-failFilter">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>deferred.pipe( [ doneFilter ], [ failFilter ] )</h4>
+<p class="arguement"><strong>doneFilter</strong>
+        可选函数，当递延得到解决时调用。
+      </p>
+<p class="arguement"><strong>failFilter</strong>
+        可选函数，当递延得被拒绝时调用。
+      </p>
+</li></ul>
+<div class="longdesc"><p>
+<code>deferred.pipe()</code>方法返回一个新的promise，该过滤器通过一个函数有关的递延状态和价值。该<code>doneFilter</code>和<code>failFilter</code>原递延过滤功能的解决/拒绝的状态和价值。这些过滤器函数可以返回一个新的值被传递给管道承诺的<code>done()</code>或<code>fail()</code>的回调，或者他们可以返回另一个观察对象（推迟，承诺等），将通过它的解决/拒绝状态和价值，以保证管道的回调。如果使用的是过滤功能<code>null</code> ，或不指定，则管道的承诺将得到解决或原驳回值具有相同。</p></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">过滤解决值:</span>
+</h4>
+<pre class="prettyprint"><code class="example">
+var defer = $.Deferred(),
+    filtered = defer.pipe(function( value ) {
+      return value * 2;
+    });
+
+defer.resolve( 5 );
+filtered.done(function( value ) {
+  alert( "Value is ( 2*5 = ) 10: " + value );
+});
+</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">过滤器拒值:</span>
+</h4>
+<pre class="prettyprint"><code class="example">
+var defer = $.Deferred(),
+    filtered = defer.pipe( null, function( value ) {
+      return value * 3;
+    });
+
+defer.reject( 6 );
+filtered.fail(function( value ) {
+  alert( "Value is ( 3*6 = ) 18: " + value );
+});
+</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">链任务:</span>
+</h4>
+<pre class="prettyprint"><code class="example">
+var request = $.ajax( url, { dataType: "json" } ),
+    chained = request.pipe(function( data ) {
+      return $.ajax( url2, { data: { user: data.userId } } );
+    });
+
+chained.done(function( data ) {
+  // data retrieved from url2 as provided by the first request
+});
+
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

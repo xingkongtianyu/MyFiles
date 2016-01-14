@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.support</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/properties/" title="View all posts in Properties">Properties</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/properties/global-jquery-object-properties/" title="View all posts in Properties of the Global jQuery Object">Properties of the Global jQuery Object</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-support1" class="entry property">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.support</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Object">Object</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>一组属性，它们代表了不同的浏览器功能或缺陷的存在的集合。</p>
+<ul class="signatures"><li class="signature" id="jQuery-support"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>jQuery.support</h4></li></ul>
+<div class="longdesc">
+<p>这是一个很好的做法，执行<strong>功能检测</strong> ,
+而不是使用<code>$.browser</code>来检测在当前用户代理（user agent）和改变页面显示在此基础上运行的浏览器。这意味着，前执行的代码依赖浏览器功能，我们测试，以确保功能正常运作。为了使这个过程更简单，jQuery的执行，使许多这样的测试结果为属性提供了我们作为<code>jQuery.support</code>对象。</p>
+<p>所有这些支持的属性值都通过特性检测（和不使用任何浏览器的形式）。</p>
+<blockquote>
+    <p>以下是解释如何使用少的资源特征检测工作：</p>
+    <ul>
+<li><a href="http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting">http://peter.michaux.ca/articles/feature-detection-state-of-the-art-browser-scripting</a></li>
+      <li><a href="http://www.jibbering.com/faq/faq_notes/not_browser_detect.html">http://www.jibbering.com/faq/faq_notes/not_browser_detect.html</a></li>
+      <li><a href="http://yura.thinkweb2.com/cft/">http://yura.thinkweb2.com/cft/</a></li>
+    </ul>
+</blockquote>
+<p>虽然jQuery包含了一些属性，开发者可以随意添加自己的需要决定的。许多<code>jQuery.support</code>性能相当低，所以他们对插件和jQyery核心和非常有用，而不是一般日常的日常开发。由于这些测试需要jQuery的内部，他们必须在<em>每一</em>页上都进行加载;出于这个原因这个列表也很简短，仅限于由jQuery本身所需的功能。</p>
+<p>在这些测试包括<code>jQuery.support</code>如下：
+</p>
+<ul>
+<li>
+<code>ajax</code> 等于为true，如果浏览器能够创建一个<code>XMLHttpRequest</code>对象。</li>
+<li>
+<code>boxModel</code>:等于为true。如果页面是根据<a   target="_blank" href="http://www.w3.org/TR/REC-CSS2/box.html">W3C的CSS盒模型</a>渲染 （IE 6和7的怪异模式下为false）.直到文件准备就绪，此属性为空。
+</li>
+<li>
+<code>changeBubbles</code>:等于为true。如果改变事件向上冒泡的DOM树，根据所要求的
+<a   target="_blank" href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-htmlevents">W3C的DOM事件模型</a> 。 （目前在IE返回false和jQuery模拟气泡）。</li>
+<li>
+<code>checkClone</code> 等于为true，如果在浏览器正确地克隆单选按钮或复选框的选中状态文档片段。</li>
+<li>
+<code>checkOn</code> 等于为true，如果CheckBox的值默认为“on”时未指定任何值。</li>
+<li>
+<code>cors</code> 等于为true，如果浏览器可以创建一个<code>XMLHttpRequest</code>对象，如果该<code>XMLHttpRequest</code>对象有一个<code>withCredentials</code>属性。要启用跨域请求的环境中不支持cors yet但尚未允许跨域 <abbr title="XMLHttpRequest">XHR</abbr>请求 （Windows小工具等），设置<code>$.support.cors = true;</code>。
+<a   target="_blank" href="http://www.w3.org/TR/cors/">CORS WD</a>
+</li>
+<li>
+<code>cssFloat</code>:等于为true。如果该属性名称包含CSS float的值是.cssFloat，定义在<a   target="_blank" href="http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSS2Properties-cssFloat">CSS的规格</a> 。（这是目前在IE中返回false，它使用styleFloat代替）。</li>
+
+<li>
+<code>hrefNormalized</code>:等于为true。如果<code>.getAttribute()</code>方法检索<code>href</code>元素合格的URL属性不变，而不是归到一个完全合格的URL。（目前在IE中返回false，URL的规范化
+）。
+
+  <div><a   target="_blank" href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-666EE0F9">DOM l3 spec</a></div>
+</li>
+<li>
+<code>htmlSerialize</code>: 等于为true。如果浏览器能够序列化/插入<code><link></code>元素使用<code>.innerHTML</code>元素属性。（目前在IE中会返回false）。 <div><a   target="_blank" href="http://www.w3.org/TR/2008/WD-html5-20080610/serializing.html#html-fragment">HTML5 wd</a></div>
+</li>
+<li>
+<code>leadingWhitespace</code>:等于为true。如果浏览器插入与内容完全按照所提供的.innerHTML，具体地说，
+特别是，如果前面的空白字符将被保留。（目前在IE 6-8中会返回false） <div><a   target="_blank" href="http://www.w3.org/TR/2008/WD-html5-20080610/dom.html#innerhtml0">HTML5 wd</a></div>
+</li>
+<li>
+<code>noCloneChecked</code>等于为true，如果克隆的DOM元素的复制的状态<code>.checked</code>的expando。（这在IE中会返回false）。 （在jQuery 1.5.1新增）</li>
+<li>
+<code>noCloneEvent</code>: 等于为true，如果克隆的DOM元素的事件处理程序是没有创建（即，如果在源元素的事件处理程序不克隆）。 （这是在IE中会返回false）。<div><a   target="_blank" href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Registration-interfaces-h3">DOM l2 spec</a></div>
+</li>
+
+<li>
+<code>opacity</code>: 等于为true，如果浏览器能正确地解释透明度的样式属性。 （目前在IE中返回false，因为他用alpha滤镜代替）。 <div><a   target="_blank" href="http://www.w3.org/TR/css3-color/#transparency">CSS3 spec</a></div>
+</li>
+<li>
+<code>optDisabled</code> 等于为true，如果在禁用选项元素选择元素不会自动标记为禁用。<div><a href="http://dev.w3.org/html5/spec/the-button-element.html#attr-option-disabled">HTML5 WD</a></div>
+</li>
+<li>
+<li>
+<code>optSelected</code> 等于true，如果一个<code>&lt;option&gt;</code>元素，默认选择的有一个工作中的<code>selected</code>属性。 <div><a href="http://dev.w3.org/html5/spec/the-button-element.html#attr-option-selected">HTML5 WD</a></div>
+</li>
+<code>scriptEval</code>: 等于true，如果内嵌脚本执行时自动计算并插入到文档中使用标准的DOM操作方法一样，想这样的<code>appendChild()</code>和<code>createTextNode()</code>。（目前在IE中返回false，它使用<code>.text</code>插入可执行的脚本）。 
+<div><strong>注：在此之前到jQuery 1.5.1</strong>,<code>scriptEval()</code>方法是静态的<code>scriptEval</code>属性。到一个方法的改变允许测试，直至第一次使用，以防止内容安全政策内嵌脚本侵犯推迟。
+</div>
+
+<div><a   target="_blank" href="http://www.w3.org/TR/2008/WD-html5-20080610/tabular.html#script">HTML5 WD</a></div>
+</li>
+
+
+<li>
+<code>style</code>: 等于true，如果一个元素的内联样式都可以通过DOM访问属性访问style，通过DOM级别2规范的要求。在这种情况下， <code>.getAttribute('style')</code>可以检索该值，在IE浏览器， <code>.cssText</code>是用于此目的。 <div><a   target="_blank" href="http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-ElementCSSInlineStyle">DOM l2 Style spec</a></div>
+</li>
+<li>
+<code>submitBubbles</code>: 等于为true，如果该事件提交了所需的冒泡作为DOM树， <a   target="_blank" href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-htmlevents">W3C的DOM事件模型</a> 。（目前在IE返回false和jQuery模拟气泡）。</li>
+<li>
+<code>tbody</code>: 等于true，如果一个空<code>&lt;table&gt;</code>元素可以存在没有<code>&lt;tbody&gt;</code>元素。根据HTML规范，这个子元素是可选的，因此，属性应该是真实的完全兼容的浏览器。如果false，我们必须考虑的浏览器中注入<code>&lt;tbody&gt;</code>标签的可能性。目前在IE返回false,它会自动<code>tbody</code>如果它不是在目前的字符串分配<code>innerHTML</code> ）。 <div><a href="http://dev.w3.org/html5/spec/Overview.html#the-table-element">HTML5 spec</a></div>
+</li>
+</ul>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Returns the box model for the iframe.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:blue; margin:20px; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+  &lt;/p&gt;
+&lt;script&gt;
+
+    $("p").html("This frame uses the W3C box model: &lt;span&gt;" +
+                jQuery.support.boxModel + "&lt;/span&gt;");
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Returns false if the page is in QuirksMode in Internet Explorer</span>
+</h4>
+<pre><code class="example">jQuery.support.boxModel</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">false</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

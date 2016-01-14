@@ -1,0 +1,813 @@
+﻿
+
+
+body {
+	font-size: 12px;
+	font-family: Tahoma, Arial;
+	background-color: #dbe3e7;
+	margin: 0px;
+	padding: 0px;
+	text-align:center;
+}
+
+table {
+	font-family: Tahoma, Arial;
+	color: #000000;
+	font-size: 12px;
+}
+td{
+	word-break: break-all;
+}
+
+a {
+	text-decoration: none;
+	color: #4f6371;
+}
+a:hover {
+	text-decoration: none;
+	color:#63B4CD;
+}
+
+hr {
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #63B4CD;
+}
+
+acronym {
+	text-decoration: none;
+	border-bottom: 1px dotted #63B4CD;
+	cursor: help;
+}
+
+form {
+	display: inline;
+}
+input {
+	font-family: Tahoma, Arial; 
+	font-size: 12px; 
+}
+
+input.text {
+	height: 20px;
+	padding: 1px;
+	border: 1px solid #9bbbc8;
+	color: #337099; 
+	background-color: #FBFCFD;
+}
+
+input.button {
+	height: 20px;
+	border: 1px solid #000000;
+	border-top: 1px solid #9ec4d5;
+	border-left: 1px solid #9ec4d5;
+	color: #ffffff; 
+	background-color: #3f6271;
+	padding-bottom:3px;
+	padding-left:6px;
+	padding-right:6px;
+}
+
+textarea { 
+    width:80%;
+	border: 1px solid #9bbbc8;
+	background-color: #FBFCFD;
+	font-family: Tahoma, Arial; 
+	font-size: 12px; 
+	color: #337099; 
+}
+
+select { 
+	font-family: Tahoma, Arial; 
+	font-size: 12px;  
+	color: #337099; 
+	background-color: #FBFCFD;
+	border: 1px solid #9bbbc8;
+}
+
+#wrapper {
+	margin:0px;
+	width: 100%;
+	
+	text-align: left;
+}
+#innerWrapper {
+	width: 100%;
+	margin:0px;
+}
+#header {
+	background: url("http://blog.s135.com/attachment/logo.jpg") repeat-x;
+	background-color:#4d8394;
+	height:193px;
+}
+#innerHeader {
+    width: 100%;
+	margin:0px;
+	height:193px;
+}
+#blogLog {;
+}
+
+
+.blog-header {
+	padding: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+h1 {
+	visibility: hidden;
+	padding: 0px;
+	padding-top:0px;
+	margin-top: 0px;
+	margin-left: 385px;
+	margin-bottom: 8px;
+	color: #444A06;
+	font-size: 24px;
+	font-weight: bold;
+}
+h1 a {
+	color: #444A06;
+	text-decoration: none;
+}
+
+.blog-desc {
+	visibility: hidden;
+	color: #7AA228;
+	margin-top: 0px;
+	margin-left: 400px;
+}
+.blogLogo {
+}
+
+
+#menu {
+    margin: 0px;
+	margin-top:116px;
+	padding:0px;
+	height: 25px;
+}
+#menu ul{
+	margin: 0px;
+	padding: 0px;;
+}
+#menu li{
+	list-style: none;
+	width: 80px;
+	height: 23px;
+	float: right;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	border: 1px solid #8c8c8c;
+	border-top: 1px solid #c4c4c4;
+	border-right: 1px solid #8c8c8c;
+	border-left: 1px solid #ebebeb;
+	background-color:#dbe3e7;
+	background: url("http://blog.s135.com/template/RuiPai/images/menu_a.gif") repeat-x;
+}
+#menu a{
+    margin: 0px;
+    padding:0px;
+	padding-top: 5px;
+	display: block;
+	color: #244b59;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+#menu a:hover {
+    height: 16px;
+	color: #244b59;
+	background: url("http://blog.s135.com/template/RuiPai/images/menu_hover.gif") repeat-x;
+	border: 1px solid #fff;
+	
+}
+
+#mainWrapper{
+   clear:both;
+   margin-left: 8px;
+   margin-right: 2px;
+}
+
+*+html #mainWrapper{
+  margin-top:5px;
+}
+
+
+.sidebar {
+    margin-left:-3px;
+	padding-top: 4px;
+	padding-left: 0px;
+	float: left;
+	width: 215px;
+}
+.sidebar-hide {
+	display: none;
+	float: left;
+}
+#innerSidebar {
+	padding: 3px;
+}
+
+.content {
+	float: right;
+	width: 100%;
+	margin-left: -220px;
+}
+.content-wide {
+	width: auto;
+	margin-left: -220px;
+}
+.content-only {
+	width: 100%;
+	margin-left: -1220px;
+}
+#innerContent {
+	margin-left: 220px;
+	overflow: visible;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+
+.clear{
+	border-top:1px solid transparent !important;
+	margin-top:-1px !important;
+	border-top:0;
+	margin-top:0;
+	clear:both;
+	visibility:hidden;
+}
+
+.panel{
+	padding:0px;
+	margin-bottom:8px;
+	border: 1px solid #bad1da;
+}
+.panel h5 {
+	text-align: left;
+	color: #344e59;
+	font-size: 12px;
+	font-weight: bold;
+	padding:2px;
+	padding-bottom: 4px;
+	padding-left:10px;
+	margin:0px;
+	border: 1px solid #ffffff;
+	background: url("http://blog.s135.com/template/RuiPai/images/panel_header.gif") repeat-x;
+	cursor: pointer;
+	cursor: hand;
+}
+.panel-content{
+    border: 1px solid #ffffff;
+	background: url("http://blog.s135.com/template/RuiPai/images/bg.gif") repeat-x;
+	background-color: #fbfcfd; 
+	width:200px;
+	margin:0px;
+	padding-left:5px;
+	padding-top:3px;
+	padding-bottom:3px;
+	line-height:15px;
+	color:#6d94a5;
+	border-top: 0px;
+}
+.panel-content ul{
+	padding: 1px;
+	margin: 0px;
+	margin-left: 0px;
+}
+.panel-content li{
+	padding: 0px;
+	margin: 0px;
+	color: #6d94a5;
+	list-style:none;
+}
+.panel-content li{
+	padding: 0px;
+	background: url("http://blog.s135.com/template/RuiPai/images/list.gif");
+	background-repeat: no-repeat;
+	text-indent: 15px;
+}
+
+.panel-content ul ul li{
+	padding: 0px;
+}
+.panel-content a:hover {
+	color: #a7a9cad;
+}
+
+#loginForm {
+	width: 95%;
+}
+
+#calendar {
+  width: 98%; 
+  margin-top:1px;
+  border: 1px solid #6999a3;
+  background: #FFFFFF;
+}
+#calendar a{
+  color: #ffffff;
+}
+.calendar-top {
+  text-align: center;
+  padding:2px;
+  background:#7cb6c0;
+}
+.calendar-year,
+.calendar-month {
+  font-weight: bold;
+  color: #ffffff;
+}
+.calendar-weekdays {
+  color: #000000;
+  font-size:12px;
+  text-align: center;
+  width: 14%;
+  padding:2px;
+  background: #d1e4e6;
+}
+.calendar-weekday-cell {
+  color: #FFF;
+  font-size:12px;
+  text-align: center;
+  width: 14%;
+  padding:2px;
+  font-weight: bold;
+  background: #000000;
+}
+.calendar-main {
+  background: #FFFFFF;
+}
+.calendar-day,
+.calendar-day-blank,
+.calendar-saturday,
+.calendar-sunday,
+.calendar-today{
+  text-align: center;
+  width: 14%;
+  padding:2px;
+}
+.calendar-saturday, .calendar-sunday,.calendar-saturday a, .calendar-sunday a{
+  color: #000000;  
+  
+}
+.calendar-saturday a, .calendar-sunday a{
+	font-weight:bold;
+	text-decoration: underline;
+	color: #6d94a5;
+}
+.calendar-today { 
+  color: #fff;
+  background: #73a3ac;
+  font-weight:bold;
+}
+.calendar-day {
+  background: #daeced;
+}
+.calendar-day a {
+  color: #7e9faf; 
+  font-weight:bold;
+  text-decoration: underline;
+}
+.calendar-today a {
+  color: #fff;
+  font-weight:bold;
+  text-decoration: underline;
+}
+.calendar-today a:hover, .calendar-day a:hover, .calendar-saturday a:hover, .calendar-sunday a:hover {
+  color: #7e9faf;
+  border: 1px solid #568088;
+}
+
+.search-field { 
+  width: 185px;
+  margin-bottom: 5px;
+  border: 1px solid #6999a3;
+}
+
+.announce{
+	clear: both;
+	border: 1px solid #d5a9b8;
+	background: url("http://blog.s135.com/template/RuiPai/images/announce_bg.gif") repeat-x;
+	background-color: #fdfafa; 
+	margin-top: 8px;
+	margin-bottom: 8px;
+	_height: 0.1%;  
+}
+.announce-content{
+    border: 1px solid #ffffff;
+	word-wrap: break-all;
+	padding: 10px; color: #9f0100; 
+}
+
+#footer {
+	clear: both;
+	height: auto;
+	width: 100%;
+	margin-left: 0 auto;
+	padding: 0px;
+	padding-top:5px;
+}
+#footer a{
+color: #FFF;
+}
+#innerFooter {
+    border-top: 2px solid #7b959e;
+   	background: #627682;
+	padding: 10px;
+	padding-bottom: 20px;
+	font-size: 12px;
+	text-align: center;	
+	color: #fff;
+}
+
+.article-top {
+	padding: 4px;
+	margin-bottom: 15px;
+}
+.article-top a:hover {
+    padding-top:5px;
+	color: #657072;
+}
+.article-bottom {
+	padding: 5px;
+	margin-top: 15px;
+}
+
+.pages {
+	color: #6d94a5;
+	font-weight:bold;
+}
+.pages a{
+	color: #6d94a5;
+}
+.pagelink-current {
+	font-weight: bold;
+}
+
+.listbox {
+    padding-top: 5px;
+	padding-bottom: 5px;
+}
+.listbox-table {
+   width: 99%;
+}
+.listbox-header {
+	border-top: 1px solid #fff;
+    border-bottom: 1px solid #537382;
+	border-right: 1px solid #8c8c8c;
+	border-left: 1px solid #ebebeb;
+	background: url("http://blog.s135.com/template/RuiPai/images/top_bg.gif") repeat-x;
+	background-color: #6d94a5;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	height: 25px;
+
+}
+.listbox-entry {
+	word-wrap: break-all;
+	color: #4c9bb0;
+	border-bottom: 1px solid #8FAEC0;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #8FAEC0;
+	background: url("http://blog.s135.com/template/RuiPai/images/listbox_bg.gif") repeat-x;
+	background-color: #eaeff0;
+    border-top: 2px solid #fff;
+	padding-left:6px;
+}
+.listbox-entry a{
+	word-wrap: break-all;
+}
+
+.prev-article{ float: left; }
+.next-article{ float: right; }
+
+.textbox{
+	margin-bottom: 8px;
+    border: 1px solid #bad1da;
+	background: url("http://blog.s135.com/template/RuiPai/images/textbox_top.gif") repeat-x;
+	background-color: #eaeff0;
+}
+.textbox-title{
+	word-wrap: break-all;
+	border-left: 1px solid #ffffff;
+	font-size: 14px;
+	padding-top: 2px;
+	height: 42px;
+}
+.textbox-title h4{
+	margin-left: 1px;
+	color: #ffffff;
+	padding-left: 5px;
+	font-size: 12px;
+	display: inline;
+}
+.textbox-title h4 a {
+	color: #ffffff;
+	text: expression(target="_blank");
+}
+.textbox-title h4 a:hover{
+    color: #e4edee;
+	text: expression(target="_blank");    
+}
+.textbox-label{
+    padding-bottom:3px;
+	padding-top: 8px;
+	padding-left: 5px;
+	color: #6d94a5;
+	font-size: 12px;
+}
+.textbox-fontsize{
+    margin-top:20px;
+	color: #000000;
+	float: right;
+	text-align: right;
+	padding: 3px;
+	font-size: 12px;
+}
+.textbox-fontsize a{
+	color: #979797;
+}
+.textbox-content{
+	word-wrap: break-word;
+	padding: 10px;
+	
+}
+.tags {
+	padding-top: 1px;
+	padding-bottom: 3px;
+	font-size: 11px;
+	color: #4c9bb0;
+	text-align:left;
+	padding-left: 17px;
+	background-color: #eaeff0;
+	border-bottom: 1px solid #bad1da;
+}
+.textbox-bottom{
+    padding:0px;
+	padding-top:3px;
+	padding-right:3px;
+	padding-bottom:4px;
+	font-size: 12px;
+	color: #63B4CD;
+	text-align:right;
+	background: url("http://blog.s135.com/template/RuiPai/images/textbox_bg.gif") repeat-x;
+	background-color: #eaeff0;
+	border-top: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-bottom : 1px solid #ffffff;
+}
+.textbox-bottom a {
+	color: #63B4CD;
+}
+.textbox-bottom a:hover {
+	color: #2066AC;
+}
+.textbox-adminbar {
+	padding: 0px;
+	padding-right:3px;
+	padding-bottom: 4px;
+	font-size: 12px;
+	color: #63B4CD;
+	text-align:right;
+	border: 1px solid #d5a9b8;
+	border-top: 1px solid #ffffff;
+	background: url("http://blog.s135.com/template/RuiPai/images/announce_bg.gif") repeat-x;
+	background-color: #fdfafa;
+}
+.textbox-tburl {
+	padding-top: 3px;
+	font-size: 11px;
+	color: #63B4CD;
+	text-align:left;
+	padding-left: 15px;
+}
+
+.comment-wrapper{
+width:100%;
+}
+
+
+.comment-top{
+	padding:5px;
+	padding-top: 0px;
+	margin: 5px;
+	color: #3F67A5;
+	text-align: right;
+}
+.comment-pages{
+	padding:5px;
+	margin: 5px;
+	color: #3F67A5;
+}
+
+.commentbox{
+	word-wrap: break-word;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: url("http://blog.s135.com/template/RuiPai/images/textbox_bg.gif") repeat-x;
+	background-color: #eaeff0;
+	border: 1px solid #bad1da;
+    width:100%;
+}
+.commentbox-title{
+	padding: 5px;
+	border-top: 1px solid #ffffff;
+}
+.commentbox-label{
+	display: inline;
+	color: #337099;
+	font-size: 12px;
+}
+.commentbox-content{
+	padding: 3px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #ffffff;
+	padding-left: 15px;
+}
+
+.trackbackbox{
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: url("http://blog.s135.com/template/RuiPai/images/bg.gif") repeat-x;
+	background-color: #ffffff;
+	border: 1px solid #bad1da;
+}
+.trackbackbox-title{
+	padding: 5px;
+	border-top: 1px solid #ffffff;
+}
+.trackbackbox-label{
+	display: inline;
+	color: #337099;
+	font-size: 11px;
+}
+.trackbackbox-content{
+	padding: 3px;
+	padding-bottom: 14px;
+	padding-left: 15px;
+}
+.trackbackbox a{
+	color: #000000;
+}
+
+#commentForm {
+	width: 99%;
+}
+
+.messagebox{
+ width: 500px;
+ margin-top: 120px;
+ border: 1px solid #bad1da; 
+ border-top: 0px; 
+ text-align: center; 
+ background-color: #eaeff0;
+ border: 1px solid #bad1da;
+}
+.messagebox-title{
+ height:18px;
+ padding:5px;
+ padding-left: 8px;
+ padding-top:8px;
+ background: url("http://blog.s135.com/template/RuiPai/images/top_bg.gif") repeat-x;
+ background-color: #6d94a5;
+ border-top: 1px solid #ffffff;
+ border-left: 1px solid #ffffff;
+ border-right: 1px solid #ffffff;
+ color: #ffffff;
+ font-weight: bold; 
+}
+.messagebox-content{
+ color: #4c9bb0; 
+ padding: 10px; 
+ padding-bottom: 20px; 
+ text-align: left;
+ background: url("http://blog.s135.com/template/RuiPai/images/textbox_bg.gif") repeat-x;
+ background-color: #eaeff0;
+ border-top: 2px solid #ffffff;
+ border-left: 1px solid #ffffff;
+ border-right: 1px solid #ffffff;
+ border-bottom: 1px solid #bad1da;
+}
+.messagebox-bottom{
+ border: 1px solid #ffffff;
+ color: #4c9bb0; 
+ padding: 5px;
+ background: url("http://blog.s135.com/template/RuiPai/images/textbox_bg.gif") repeat-x;
+ background-color: #eaeff0;
+}
+
+.formbox{}
+.formbox-comment{
+	margin-top: 10px;
+	border: 1px solid #ffffff;
+	background: url("http://blog.s135.com/template/RuiPai/images/bg.gif") repeat-x 0px 25px;
+	background-color: #fbfcfd; 
+	border: 1px solid #bad1da;
+}
+.formbox-title,
+.formbox-comment-title{
+	color: #344e59;
+	font-weight: bold;
+	border: 1px solid #ffffff;
+	background: url("http://blog.s135.com/template/RuiPai/images/panel_header.gif") repeat-x;
+	padding-left:15px;
+}
+.formbox-rowheader {
+	padding: 5px;
+	font-weight: bold;
+}
+.formbox-content {
+	padding: 5px;
+}
+
+.panel-smilies {
+	text-align: center;
+	border: 1px solid #bad1da;
+	background: url("http://blog.s135.com/template/RuiPai/images/textbox_bg.gif") repeat-x;
+    background-color: #eaeff0;
+	padding-bottom:8px;
+}
+.panel-smilies-title {
+    border-top: 1px solid #ffffff;
+	color: #4c9bb0;
+	text-align: left;
+	padding-left:5px;
+}
+.panel-smilies-content {
+	padding: 5px;
+	line-height: 120%;
+}
+
+
+.code {
+	word-wrap: break-all;
+	border-left: 3px dashed #4c9bb0;
+	background-color: #EBEBEB;
+	color: #000000;
+	margin: 5px;
+	padding: 10px;
+}
+.quote {
+	border-left: 0px dashed #D6C094;
+	margin: 10px;
+    margin-bottom:0px;
+	border: 1px dashed #00a0c6;
+}
+.quote-title {
+	background-color: #edf4f6;
+	border-bottom: 1px dashed #00a0c6 !important;
+	border-bottom: 1px dotted #00a0c6;
+	padding: 5px;
+	font-weight: bold;
+	color: #4c9bb0;
+}
+.quote-title img {
+	padding-right: 3px;
+}
+.quote-content {
+	word-wrap: break-all;
+	color: #000000;
+	padding: 10px; 
+	background-color: #ffffff;
+	border: 1px dashed #edf4f6;
+	border-top: 0px;
+}
+
+.linkover {
+	margin-bottom: 50px;
+	height: auto;
+	clear: both;
+}
+.linkbody {
+	margin-top: 5px;
+	width: 100%;
+	clear: both;
+}
+.linkimg {
+
+	float: left;
+	text-align: right;
+	margin-right: 4px;
+	margin-top: 18px;
+}
+.linktxt {
+	float: left;
+	margin-top: 18px;
+}
+.linktitle a {
+    background: url("http://blog.s135.com/template/RuiPai/images/home.gif") no-repeat -5px 12px;
+	font-weight: bold;
+	padding-left:19px;
+	padding-top:14px;
+}
+.linkgroup {
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 5px;
+	color: #4c9bb0;
+	
+}

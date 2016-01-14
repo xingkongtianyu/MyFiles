@@ -1,0 +1,53 @@
+记得在fedora7 中按照mysql 的安装文档一步步来就行，可在fedora 8 中却出现了问题，经多方查找原因终于解决，庆祝一下。
+　　我下载的是目前最新的版本mysql-5.0.45-linux-i686.tar.gz
+　　安装过程：
+    su 到root 权限。
+　　#tar -zvxf mysql-5.0.45-linux-i686.tar.gz
+　　#mv mysql-5.0.45/ /usr/local/mysql
+　　#cd /usr/local/mysql
+　　#groupadd mysql
+　　#useradd -g mysql mysql 
+　　#chown -R mysql .
+　　#chgrp -R mysql .
+　　#scripts/mysql_install_db --user=mysql
+　　#chown -R root .
+　　#chown -R mysql data
+　　#bin/mysqld_safe --user=mysql &
+　　按照官方文档说这就应该能启动了，可是报错如下：
+　　
+   
+nohup: ignoring input and redirecting stderr to stdoutStarting mysqld daemon with databases from /var/lib/mysqlSTOPPING server from pid file /var/run/mysqld/mysqld.pid071112 00:22:06  mysqld ended
+查看日志：
+＃less /var/log/mysqld.log
+其中有一段如下：
+071112  0:22:06 [ERROR] /usr/local/mysql/bin/mysqld: Can’t create/write to file ’/var/run/mysqld/mysqld.pid’ (Errcode: 2)071112  0:22:06 [ERROR] Can’t start server: can’t create PID file: No such file or directory071112 00:22:06  mysqld ended
+#cd /var/run/
+#ls
+mysqld目录不存在
+#mkdir /var/run/mysqld
+#cd /var/run/mysqld
+创建文件mysqld.pid
+#touch mysqld.pid
+#cd..
+#chown -R mysql mysqld .
+#cd /usr/local/mysql/
+#bin/mysqld_safe --user=mysql &
+nohup: ignoring input and redirecting stderr to stdoutStarting mysqld daemon with databases from /var/lib/mysql
+能正常启动
+#bin/mysqladmin -u root password root
+又出错
+[root@localhost mysql]# bin/mysqladmin -u root password rootbin/mysqladmin: connect to server at ’localhost’ failederror: ’Can’t connect to local MySQL server through socket ’/tmp/mysql.sock’ (2)’Check that mysqld is running and that the socket: ’/tmp/mysql.sock’ exists![root@localhost mysql]# bin/mysql -u root -pEnter password:ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ’/tmp/mysql.sock’ (2)
+分析：是/tmp/mysql.sock 不存在
+# cd /var/lib/mysql/
+ibdata1      ib_logfile0  ib_logfile1  mysql/       mysql.sock   test/
+由于mysql 默认的mysql.sock 是在/var/lib/mysql/mysql.sock,
+创建符号连接：
+# ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
+# bin/mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or ＼g.Your MySQL connection id is 1Server version: 5.0.45 MySQL Community Server (GPL)Type ’help;’ or ’＼h’ for help. Type ’＼c’ to clear the buffer.mysql>
+修改root 密码
+#cd /usr/local/mysql/
+#bin/mysqladmin -u root -p password yourpassword
+一切ok.
+一切ok...
+                

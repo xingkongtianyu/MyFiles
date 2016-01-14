@@ -1,0 +1,276 @@
+视频下载地址：
+
+http://pan.baidu.com/s/1pCItZ#dir/path=%2F%E6%88%91%E7%9A%84%E8%A7%86%E9%A2%91%2F%E5%9C%A8%E7%BA%BF%E8%AF%BE
+
+
+1.MySQL基准测试
+
+Mysqlreport
+
+2.服务器性能优化
+
+Show status
+
+Show processlist
+
+Set profile=1;
+
+Show profiles;
+
+3.Schema与数据类型优化
+
+a.更小的通常更好
+
+          i. 尽量使用可以正确存储数据的最小数据类型
+
+          ii. 更小的数据类型速度更快
+
+          iii. 占用更少的硬盘、内存和CPU缓存
+
+b.整型操作代价低于字符串
+
+c.尽量避免NULL
+
+          i.通常情况下，最好指定列的类型为NOT NULL
+
+1.可为NULL列使得索引更加复杂
+
+2.可为NULL列会使用更多的存储空间
+
+3.可为NULL列被索引的时候，每个索引记录需要一个额外的字节
+
+4.例外：
+
+a) 在INNODB表引擎上存储NULL列效率更高
+
+b) MyISAM效率低一些
+
+d.数据类型：
+
+          i.整型
+
+1.TINYINT
+
+a)8位
+
+2.SMALLINT
+
+a)16位
+
+3.MEDIUINT
+
+a)24位
+
+4.INT
+
+a)32位
+
+5.BIGINT
+
+a)64位
+
+         ii.Unsigned和signed效率一致，存储空间一致
+
+         iii.浮点类型
+
+1.Float
+
+2.Double
+
+3.Decimal
+
+4.效率：
+
+a)CPU支持原生的浮点数运算，所以浮点数运算较快
+
+b)浮点类型比Decimal数据类型使用存储空间更小
+
+c)我们可以把小数变成整数然后存给整型
+
+         iv.字符串类型
+
+1.VARCHAR
+
+a)VARCHAR使用1或者2个额外记录字符串的长度（255字节以内1个，否则2个）
+
+b)例如：
+
+                             i.Varchar（10）需要11个字节的存储空间
+
+                             ii.Varchar（1000）需要1002个字节的存储空间
+
+                             iii.以下情况最适合使用varchar：
+
+1.列的最大长度比平均长度大很多
+
+2.列的更新少，碎片不是问题
+
+3.使用了像UTF-8这样复杂的字符集
+
+2.CHAR
+
+a)Char比varchar更好，不容易产生碎片
+
+b)Char的效率也高于varchar
+
+3.Binary
+
+4.Varbinary
+
+a)二进制存储
+
+b)存的是字节码
+
+5.BLOB
+
+a)二进制
+
+6.TEXT
+
+a)字符串
+
+          v.使用枚举代替字符串类型
+
+1.ENUM
+
+a)枚举实际存的是整型
+
+b)避免将数字存入到枚举当中
+
+c)枚举是按照枚举内部存储的整型来进行排序的，而不是字符串
+
+d)可以使用order by file(e,’a’,’b’,’c’)这样就会按照字母排序
+
+e)建议在创建字段的时候就按照顺序排序
+
+f)缩小表空间
+
+           vi.时间类型
+
+1.DATETIME
+
+2.TIMESTAMP
+
+a)空间小
+
+b)默认为NOT NULL
+
+4. 创建高性能的索引
+
+a)索引的优点
+
+             i. 索引大大减少了服务器需要扫描的数据量
+
+             ii.索引可以帮助服务器避免排序和临时表
+
+             iii.索引可以随机显示变为顺序显示
+
+b)高性能的索引策略
+
+             i.独立的列
+
+1.独立的列
+
+a)例如：
+
+                             i.Where age+1=5
+
+2.多列索引
+
+3.索引合并策略
+
+a)当服务器对多个索引做相交的操作时（AND），我们需要创建一个合并的符合索引
+
+b)对多个字段设置条件和排序，使用复合索引
+
+c)进行排序
+
+4.复合索引
+
+a)Key(key1,key2,key3)
+
+                             i.可以使用
+
+1.Where key1=1
+
+2.Where key1=1 and key2=2
+
+3.Where key1=1 and key2=2 and
+key3=3
+
+4.Where key1=1 and key3=3 and
+key2=2
+
+5.Where key3=3 and key2=2 and
+key1=1
+
+6.Where key1=1 order by key1
+
+7.Where key1=1 order by key2
+
+8.Where key1=1 and key2=2 order
+by key3
+
+                             ii.不可以使用
+
+1.跳过key1
+
+2.跳过key2直接使用key3
+
+3.跳过key1，key2，直接使用key3
+
+4.使用范围查询
+
+           ii.何时使用索引
+
+1.         对一个字段使用> >= < <= is null between and
+
+2.         不以通配符开始的like查询
+
+3.         普通联合查询从另一张表提取行
+
+4.         找出指定索引的max()和min()
+
+5.         使用group by和order by(innodb)
+
+6.         使用查询固定列
+
+7.         复合索引使用order by（按照顺序排序）
+
+           iii.何时不适用索引
+
+1.         查询大范围的值
+
+2.         Myisam使用order by
+
+3.         不是使用复合索引的前缀字段部分
+
+4.         以通配符开始的like
+
+5.         搜索一个索引在另一个索引上进行order by
+
+6.         对于一个字符串以整型的形式进行搜索
+
+7.         使用or和in条件
+
+5. 查询性能优化
+
+a)开启查询缓存
+
+            i.query_cache_type
+
+1.临时关闭缓存
+
+a)SQL_NO_CACHE
+
+b)避免使用嵌套查询(使用join来替代)
+
+c)反范式化的表设计
+
+d)减少表锁定等待
+
+e)慢查询
+
+           i.Log_query_slow
+
+           ii. long_query_time

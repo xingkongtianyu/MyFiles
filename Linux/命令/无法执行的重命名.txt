@@ -1,0 +1,38 @@
+1、删除所有的 .bak 后缀：
+rename 's/\.bak$//' *.bak
+
+2.加.zip后缀
+rename 's/$/.zip/' *
+
+3、把 .jpe 文件后缀修改为 .jpg：
+rename 's/\.jpe$/\.jpg/' *.jpe
+
+4、把所有文件的文件名改为小写：
+rename 'y/A-Z/a-z/' *
+
+5.在文件名头部加上hello
+rename 's/^/hello/' *
+
+6.去除文件名中的空格（将空格替换为‘_’）
+rename 's/[]+/-/g' *
+
+7.去除文件名中的特有字段（比如AR）
+rename 's/AR+//g' *
+
+8、将 abcd.jpg 重命名为 abcd_efg.jpg：
+for var in *.jpg; do mv "$var" "${var%.jpg}_efg.jpg"; done
+
+9、将 abcd_efg.jpg 重命名为 abcd_lmn.jpg：
+for var in *.jpg; do mv "$var" "${var%_efg.jpg}_lmn.jpg"; done
+
+10、把文件名中所有小写字母改为大写字母：
+for var in `ls`; do mv -f "$var" `echo "$var" |tr a-z A-Z`; done
+
+11、把格式 *_?.jpg 的文件改为 *_0?.jpg：
+for var in `ls *_?.jpg`; do mv "$var" `echo "$var" |awk -F '_' '{print $1 "_0" $2}'`; done
+
+12、把文件名的前三个字母变为 vzomik：
+for var in `ls`; do mv -f "$var" `echo "$var" |sed 's/^.../vzomik/'`; done
+
+13、把文件名的后四个字母变为 vzomik：
+for var in `ls`; do mv -f "$var" `echo "$var" |sed 's/....$/vzomik/'`; done

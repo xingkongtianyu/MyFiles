@@ -1,0 +1,85 @@
+.fpages {
+    height: 21px;
+    line-height: 21px;
+MARGIN:3PX AUTO;
+}
+.thisclass{
+    background:#558393;
+    display: inline;
+    margin: 0 3px 0 0;
+    padding: 0 5px;
+    text-decoration: none;
+   color:#FFFFFF;
+   FONT-WEIGHT:550;
+}
+.fpages li {
+    float: left;
+    font-family: Tahoma;
+    list-style-type: none;
+    margin-right: 5px;
+}
+.fpages a:link {
+    border: 1px solid #DDDDDD;
+    color: #558393;
+    display: inline;
+    margin: 0 3px 0 0;
+    padding: 2px 5px;
+    text-decoration: none;
+}
+.fpages a:visited {
+    display: inline;
+    margin: 0 3px 0 0;
+    padding: 2px 5px;
+    text-decoration: none;
+    border: 1px solid #DDDDDD;
+  color: #558393;
+}
+.fpages a:hover {
+    background:#558393;
+    display: inline;
+    margin: 0 3px 0 0;
+    padding: 2px 5px;
+    text-decoration: none;
+COLOR:#FFFFFF;
+}
+.fpages .click {
+    color: #A63584;
+    display: inline;
+    margin: 0 3px 0 0;
+    padding: 2px 5px;
+}
+.fpages select {
+}
+
+.fpages table {
+    height: 25px;
+    line-height: 25px;
+}
+.dede_pages {
+    background: none repeat scroll 0 0 #FAFAFA;
+    clear: both;
+    height: 33px;
+    margin-top: 16px;
+    overflow: hidden;
+}
+.dede_pages ul {
+    float: left;
+    padding: 6px 0 0 16px;
+}
+.dede_pages ul li {
+    float: left;
+    font-family: Tahoma;
+    line-height: 17px;
+    margin-right: 6px;
+}
+.dede_pages ul li a {
+    color: #666666;
+    float: left;
+    padding: 2px 4px;
+}
+.dede_pages ul li a:hover {
+    color: #669900;
+    padding: 2px 4px 1px;
+    text-decoration: none;
+}
+

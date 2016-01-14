@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.mousedown()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+<div id="mousedown1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.mousedown( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "mousedown" 事件绑定一个处理函数，或者触发元素上的 "mousedown" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="mousedown-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.mousedown( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="mousedown-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.mousedown( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="mousedown"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.mousedown()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('mousedown', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('mousedown')</code> 的快捷方式。</p>
+<p>当鼠标指针在元素上和按下鼠标键，<code>mousedown</code>事件被发送到这个元素。任何HTML元素都可以收到此事件。</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;div id="target"&gt;
+  Click here
+&lt;/div&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p class="image"><img src="/images/0042_05_01.png" alt=""></p>
+<p>这个事件可以绑定到任何 <code>&lt;div&gt;</code>元素:</p>
+<pre>$('#target').mousedown(function() {
+  alert('Handler for .mousedown() called.');
+});</pre>
+<p>现在，如果我们点击这个元素，警报显示：</p>
+<p><span class="output">Handler for .mousedown() called.</span></p>
+<p>当不同的元素被点击时我们也可以触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').mousedown();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span>同样警报显示。
+</p>
+<p>任何鼠标按钮被点击时<code>mousedown</code>事件就会被发送。作用于特定的按钮，我们可以使用事件对象的<code>which</code>属性。并非所有浏览器都支持这个属性（IE浏览器使用按钮代替），但是使用jQuery标准化的属性，它可以安全使用在任何浏览器。点击鼠标左键<code>which</code>的值是1，点击鼠标中键<code>which</code>的值是2，点击鼠标右键<code>which</code>的值是。</p>
+<p>此事件主要用于确保主要按钮是用来开始拖动操作;如果忽视，当用户尝试使用上下文菜单，可能会出现奇怪的结果。而中间和右边按钮可检测到这些属性，这是不可靠的。在Opera和Safari中，例如，点击鼠标右键默认情况下不察觉。</p>
+<p>如果在用户点击一个元素，并且拖动鼠标离开这个元素，并释放鼠标键，这仍然是算作<code>mousedown</code>事件。在大多数的用户界面，这个动作的顺序被视为一个“取消”的按键，所以通常最好使用<code>click</code>事件，除非我们知道<code>mousedown</code>事件针对一个特定情况较好。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">当MouseUp和MouseDown事件触发时，显示文本时。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Press mouse and release here.&lt;/p&gt;
+
+&lt;script&gt;
+    $("p").mouseup(function(){
+      $(this).append('&lt;span style="color:#F00;"&gt;Mouse up.&lt;/span&gt;');
+    }).mousedown(function(){
+      $(this).append('&lt;span style="color:#00F;"&gt;Mouse down.&lt;/span&gt;');
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

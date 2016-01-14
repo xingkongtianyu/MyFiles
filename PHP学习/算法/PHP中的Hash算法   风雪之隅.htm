@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://www.laruence.com/2009/07/23/994.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="风雪之隅" name="application-name">
+
+<meta content="name=PHP源码分析;action-uri=/php-internal;icon-uri=/favicon.ico" name="msapplication-task">
+<meta content="name=PHP应用;action-uri=/php;icon-uri=/favicon.ico" name="msapplication-task">
+<meta content="name=JS和CSS;action-uri=/jscss;icon-uri=/favicon.ico" name="msapplication-task">
+<meta content="name=作者随笔;action-uri=/notes;icon-uri=/favicon.ico" name="msapplication-task">
+<meta content="name=版权声明;action-uri=/licence;icon-uri=/favicon.ico" name="msapplication-task">
+<title>PHP中的Hash算法 | 风雪之隅</title>
+<link rel="stylesheet" href="./PHP中的Hash算法   风雪之隅_files/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="./PHP中的Hash算法   风雪之隅_files/style.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="./PHP中的Hash算法   风雪之隅_files/print.css" type="text/css" media="print">
+<!--[if IE]><link rel="stylesheet" href="http://www.laruence.com/wp-content/themes/googlechrome/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+<!--[if lte IE 6]>
+<style>
+.span-16 {width:610px;}
+#profile {overflow: visible;}
+#meme {position:absolute;}
+</style>
+<![endif]-->
+<link rel="pingback" href="http://www.laruence.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="风雪之隅 » Feed" href="http://www.laruence.com/feed">
+<link rel="alternate" type="application/rss+xml" title="风雪之隅 » Comments Feed" href="http://www.laruence.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="风雪之隅 » PHP中的Hash算法 Comments Feed" href="http://www.laruence.com/2009/07/23/994.html/feed">
+<link rel="stylesheet" id="subscribe_me-css" href="./PHP中的Hash算法   风雪之隅_files/styles.css" type="text/css" media="all">
+<script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/l10n.js"></script>
+<script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/jquery.js"></script>
+<script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.laruence.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.laruence.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="风雪之隅" href="http://www.laruence.com/">
+<link rel="start" title="VIM中文乱码解决方案" href="http://www.laruence.com/2007/10/03/5.html">
+<link rel="prev" title="使用gettext来支持PHP的多语言" href="http://www.laruence.com/2009/07/19/1003.html">
+<link rel="next" title="深入理解PHP原理之错误抑制与内嵌HTML" href="http://www.laruence.com/2009/07/27/1020.html">
+<meta name="generator" content="WordPress 3.1.2">
+<link rel="shortlink" href="http://www.laruence.com/?p=994">
+
+<!-- All in One SEO Pack 1.6.13.2 by Michael Torbert of Semper Fi Web Design[871,920] -->
+<meta name="description" content="Hash Table是PHP的核心,这话一点都不过分. PHP的数组,关联数组,对象属性,函数表,符号表,等等都是用HashTable来做为容器的. PHP的HashTable采用的拉链法来解决冲突, 这个自不用多说, 我今天主要关注的就是PHP的Hash算法, 和这个算法本身透露出来的一些思想.">
+<meta name="keywords" content="djb algorithm,hash,hash算法,php,times 33">
+<link rel="canonical" href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm">
+<!-- /all in one seo pack -->
+<script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_main.js"></script><link type="text/css" rel="stylesheet" href="./PHP中的Hash算法   风雪之隅_files/sh_ir_black.css">	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<link href="./PHP中的Hash算法   风雪之隅_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./PHP中的Hash算法   风雪之隅_files/logger.js"></script></head>
+<body class="single single-post postid-994 single-format-standard"><iframe style="display: none; " frameborder="0"></iframe><div id="bdshare_s"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe><div id="bdshare_l" style="display: none; "><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_baidu bdsc">百度搜藏</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_renren rrw">人人网</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_hi bdkj">百度空间</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_douban db">豆瓣网</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_qq qqsc">QQ收藏</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_thx thx">和讯微博</a></li><li><a href="http://www.laruence.com/2009/07/23/994.html#" class="bds_more">更多...</a></li></ul><p><a href="http://www.laruence.com/2009/07/23/994.html#" class="goWebsite">百度分享</a></p></div></div></div>
+<div class="wrapper">
+<div class="container">
+  
+	<div class="headermenu span-24">
+        <ul>
+		<li class="first" id="firstcurrent"><a href="http://www.laruence.com/" title="Home">Home</a></li>
+			        <li>
+            <a href="http://www.laruence.com/php-internal" title="PHP源码分析">PHP源码分析</a></li>
+
+			        <li>
+            <a href="http://www.laruence.com/php" title="PHP应用">PHP应用</a></li>
+
+			        <li>
+            <a href="http://www.laruence.com/jscss" title="JS/CSS">JS/CSS</a></li>
+
+			        <li>
+            <a href="http://www.laruence.com/notes" title="随笔">随笔</a></li>
+
+			        <li>
+            <a href="http://www.laruence.com/guestbook" title="留言">留言</a></li>
+
+			        <li class="last">
+            <a href="http://www.laruence.com/licence" title="博客声明">博客声明</a></li>
+
+		        </ul>
+	</div>
+  
+    <div class="header span-24">
+        <div class="alignright" style="width:310px">
+			<div id="searchbox">
+            <form method="get" id="searchform" action="http://www.laruence.com/">
+			<input type="text" name="s" id="s" class="search_input" value="">
+			<input type="image" src="./PHP中的Hash算法   风雪之隅_files/transparent.gif" id="searchsubmit">
+			</form>
+            </div>
+	        <a class="menubookmark" href="http://www.addthis.com/bookmark.php" title="Bookmark and Share"></a>
+            <a class="menufeed" href="http://www.laruence.com/feed" title="Subscribe Feed"></a>
+        </div>
+        <a class="menuhome" href="http://www.laruence.com/" title="Home"></a>&nbsp;
+		<span class="blogtitle"><a href="http://www.laruence.com/" title="Home">风雪之隅</a></span>
+	</div>
+    
+    <div class="msgbartop span-24"><img src="./PHP中的Hash算法   风雪之隅_files/msgbartop.gif" alt="msgbartop"></div>
+    <div class="msgbar span-24">
+		PHP语言, PHP扩展, Zend引擎相关的研究,技术,新闻分享 – 左手代码 右手诗    </div>
+    <div class="msgbarbottom span-24"><img src="./PHP中的Hash算法   风雪之隅_files/msgbarbottom.gif" alt="msgbarbottom"></div>
+    
+    <div class="content span-16">
+           			<div class="post-994 post type-post status-publish format-standard hentry category-php-internal category-notes tag-djb-algorithm tag-hash tag-hash tag-php tag-times-33" id="post-994">
+                <h1>23 Jul 09 <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" rel="bookmark" title="Permanent Link to PHP中的Hash算法">PHP中的Hash算法</a> <g:plusone size="small" href="http://www.laruence.com/2009/07/23/994.html"></g:plusone></h1>       
+                <div class="copyright">
+<ul>
+<li>作者: <a href="http://www.laruence.com/">Laruence</a>(<a href="http://www.twitter.com/laruence" target="meme" title="Twitter"><img src="./PHP中的Hash算法   风雪之隅_files/ico-twitter.png"></a> <a href="http://t.sina.com/laruence" target="meme" title="新浪微博"><img src="./PHP中的Hash算法   风雪之隅_files/ico-sina.png"></a> <a href="http://fusion.google.com/add?feedurl=http://www.laruence.com/feed" target="meme" title="Google阅读器"><img src="./PHP中的Hash算法   风雪之隅_files/ico-google.png"></a> <a href="mailto:laruence@yahoo.com.cn" target="meme" title="邮件"><img src="./PHP中的Hash算法   风雪之隅_files/ico-mail.png"></a>)</li>
+<li>本文地址: <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" title="Permanet Link to PHP中的Hash算法">http://www.laruence.com/2009/07/23/994.html</a></li>
+
+<li>转载请注明出处 </li>
+</ul></div>
+<p>
+	Hash Table是PHP的核心,这话一点都不过分.</p>
+<p>	PHP的数组,关联数组,对象属性,函数表,符号表,等等都是用HashTable来做为容器的.</p>
+<p>	PHP的HashTable采用的拉链法来解决冲突, 这个自不用多说, 我今天主要关注的就是PHP的Hash算法, 和这个算法本身透露出来的一些思想.</p>
+<p>	PHP的Hash采用的是目前最为普遍的DJBX33A (Daniel J. Bernstein, Times 33 with Addition), 这个算法被广泛运用与多个软件项目,Apache, Perl和Berkeley DB等. 对于字符串而言这是目前所知道的最好的哈希算法，原因在于该算法的速度非常快，而且分类非常好(冲突小,分布均匀).</p>
+<p>	算法的核心思想就是:</p>
+<pre name="code" class="sh_cpp sh_sourceCode" linenum="off"><ol><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_function">hash</span><span class="sh_symbol">(</span>i<span class="sh_symbol">)</span> <span class="sh_symbol">=</span> <span class="sh_function">hash</span><span class="sh_symbol">(</span>i<span class="sh_number">-1</span><span class="sh_symbol">)</span> <span class="sh_symbol">*</span> <span class="sh_number">33</span> <span class="sh_symbol">+</span> str<span class="sh_symbol">[</span>i<span class="sh_symbol">]</span></li></ol></pre>
+<p>在zend_hash.h中,我们可以找到在PHP中的这个算法:</p>
+<pre name="code" class="sh_cpp sh_sourceCode" linenum="off"><ol><li><span class="sh_keyword">static</span> <span class="sh_keyword">inline</span> <span class="sh_usertype">ulong</span><span class="sh_normal"> </span><span class="sh_function">zend_inline_hash_func</span><span class="sh_symbol">(</span><span class="sh_type">char</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">,</span> <span class="sh_usertype">uint</span><span class="sh_normal"> </span>nKeyLength<span class="sh_symbol">)</span></li><li><span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">register</span> <span class="sh_usertype">ulong</span><span class="sh_normal"> </span>hash <span class="sh_symbol">=</span> <span class="sh_number">5381</span><span class="sh_symbol">;</span></li><li>&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_comment">/* variant with the hash unrolled eight times */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">for</span> <span class="sh_symbol">(;</span> nKeyLength <span class="sh_symbol">&gt;=</span> <span class="sh_number">8</span><span class="sh_symbol">;</span> nKeyLength <span class="sh_symbol">-=</span> <img src="./PHP中的Hash算法   风雪之隅_files/icon_cool.gif" alt="8)" class="wp-smiley"> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">switch</span> <span class="sh_symbol">(</span>nKeyLength<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">7</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">6</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">5</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">4</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">3</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">2</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_comment">/* fallthrough... */</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">1</span><span class="sh_symbol">:</span> hash <span class="sh_symbol">=</span> <span class="sh_symbol">((</span>hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span><span class="sh_symbol">)</span> <span class="sh_symbol">+</span> hash<span class="sh_symbol">)</span> <span class="sh_symbol">+</span> <span class="sh_symbol">*</span>arKey<span class="sh_symbol">++;</span> <span class="sh_keyword">break</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">case</span> <span class="sh_number">0</span><span class="sh_symbol">:</span> <span class="sh_keyword">break</span><span class="sh_symbol">;</span></li><li><span class="sh_function">EMPTY_SWITCH_DEFAULT_CASE</span><span class="sh_symbol">()</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> hash<span class="sh_symbol">;</span></li><li><span class="sh_cbracket">}</span></li></ol></pre>
+<p>相比在Apache和Perl中直接采用的经典Times 33算法:</p>
+<pre name="code" class="sh_perl sh_sourceCode" linenum="off"><ol><li>hashing function used in Perl <span class="sh_number">5.005</span><span class="sh_symbol">:</span></li><li>&nbsp;&nbsp;<span class="sh_comment"># Return the hashed value of a string: $hash = perlhash("key")</span></li><li>&nbsp;&nbsp;<span class="sh_comment"># (Defined by the PERL_HASH macro in hv.h)</span></li><li>&nbsp;&nbsp;<span class="sh_keyword">sub</span> perlhash</li><li>&nbsp;&nbsp;<span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$hash</span> <span class="sh_symbol">=</span> <span class="sh_number">0</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">foreach</span> <span class="sh_symbol">(</span><span class="sh_keyword">split</span> <span class="sh_string">//</span><span class="sh_symbol">,</span> <span class="sh_keyword">shift</span><span class="sh_symbol">)</span> <span class="sh_cbracket">{</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_variable">$hash</span> <span class="sh_symbol">=</span> <span class="sh_variable">$hash</span><span class="sh_symbol">*</span><span class="sh_number">33</span> <span class="sh_symbol">+</span> <span class="sh_keyword">ord</span><span class="sh_symbol">(</span><span class="sh_variable">$_</span><span class="sh_symbol">);</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_cbracket">}</span></li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">return</span> <span class="sh_variable">$hash</span><span class="sh_symbol">;</span></li><li>&nbsp;&nbsp;<span class="sh_cbracket">}</span></li></ol></pre>
+<p>在PHP的hash算法中, 我们可以看出很处细致的不同.</p>
+<p>首先, 最不一样的就是, PHP中并没有使用直接乘33, 而是采用了:</p>
+<pre name="code" class="sh_cpp sh_sourceCode" linenum="off"><ol><li>&nbsp;&nbsp;hash <span class="sh_symbol">&lt;&lt;</span> <span class="sh_number">5</span> <span class="sh_symbol">+</span> hash</li></ol></pre>
+<p>这样当然会比用乘快了.</p>
+<p>然后, 特别要主意的就是使用的unrolled, 我前几天看过一片文章讲Discuz的缓存机制, 其中就有一条说是Discuz会根据帖子的热度不同采用不同的缓存策略, 根据用户习惯,而只缓存帖子的第一页(因为很少有人会翻帖子).</p>
+<p>于此类似的思想, PHP鼓励8位一下的字符索引, 他以8为单位使用unrolled来提高效率, 这不得不说也是个很细节的,很细致的地方.</p>
+<p>另外还有inline, register变量 … 可以看出PHP的开发者在hash的优化上也是煞费苦心</p>
+<p>最后就是, hash的初始值设置成了5381, 相比在Apache中的times算法和Perl中的Hash算法(都采用初始hash为0), 为什么选5381呢? 具体的原因我也不知道, 但是我发现了5381的一些特性:</p>
+<pre name="code" class="sh_shell" linenum="off"><ol><li>Magic Constant 5381:</li><li>&nbsp;&nbsp;1. odd number</li><li>&nbsp;&nbsp;2. prime number</li><li>&nbsp;&nbsp;3. deficient number</li><li>&nbsp;&nbsp;4. 001/010/100/000/101 b</li></ol></pre>
+<p>看了这些, 我有理由相信这个初始值的选定能提供更好的分类.</p>
+<p>至于说, 为什么是Times 33而不是Times 其他数字, 在PHP Hash算法的注释中也有一些说明, 希望对有兴趣的同学有用:</p>
+<pre name="code" class="sh_shell" linenum="off"><ol><li>&nbsp;&nbsp;DJBX33A (Daniel J. Bernstein, Times 33 with Addition)</li><li>&nbsp;</li><li>&nbsp;&nbsp;This is Daniel J. Bernstein's popular `times 33' hash function as</li><li>&nbsp;&nbsp;posted by him years ago on comp.lang.c. It basically uses a function</li><li>&nbsp;&nbsp;like ``hash(i) = hash(i-1) * 33 + str[i]''. This is one of the best</li><li>&nbsp;&nbsp;known hash functions for strings. Because it is both computed very</li><li>&nbsp;&nbsp;fast and distributes very well.</li><li>&nbsp;</li><li>&nbsp;&nbsp;The magic of number 33, i.e. why it works better than many other</li><li>&nbsp;&nbsp;constants, prime or not, has never been adequately explained by</li><li>&nbsp;&nbsp;anyone. So I try an explanation: if one experimentally tests all</li><li>&nbsp;&nbsp;multipliers between 1 and 256 (as RSE did now) one detects that even</li><li>&nbsp;&nbsp;numbers are not useable at all. The remaining 128 odd numbers</li><li>&nbsp;&nbsp;(except for the number 1) work more or less all equally well. They</li><li>&nbsp;&nbsp;all distribute in an acceptable way and this way fill a hash table</li><li>&nbsp;&nbsp;with an average percent of approx. 86%.</li><li>&nbsp;</li><li>&nbsp;&nbsp;If one compares the Chi^2 values of the variants, the number 33 not</li><li>&nbsp;&nbsp;even has the best value. But the number 33 and a few other equally</li><li>&nbsp;&nbsp;good numbers like 17, 31, 63, 127 and 129 have nevertheless a great</li><li>&nbsp;&nbsp;advantage to the remaining numbers in the large set of possible</li><li>&nbsp;&nbsp;multipliers: their multiply operation can be replaced by a faster</li><li>&nbsp;&nbsp;operation based on just one shift plus either a single addition</li><li>&nbsp;&nbsp;or subtraction operation. And because a hash function has to both</li><li>&nbsp;&nbsp;distribute good _and_ has to be very fast to compute, those few</li><li>&nbsp;&nbsp;numbers should be preferred and seems to be the reason why Daniel J.</li><li>&nbsp;&nbsp;Bernstein also preferred it.</li><li>&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-- Ralf S. Engelschall &lt;rse@engelschall.com&gt;</li></ol></pre>
+<p></p>
+<p><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_cpp.js"></script><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_cpp.js"></script><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_perl.js"></script><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_cpp.js"></script><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_shell.js"></script><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/sh_shell.js"></script></p>
+<br><div style="float:left"><!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+        <span class="bds_more">分享到：</span>
+        <a class="bds_qzone" title="分享到QQ空间" href="http://www.laruence.com/2009/07/23/994.html#"></a>
+        <a class="bds_tsina" title="分享到新浪微博" href="http://www.laruence.com/2009/07/23/994.html#"></a>
+        <a class="bds_tqq" title="分享到腾讯微博" href="http://www.laruence.com/2009/07/23/994.html#"></a>
+        <a class="bds_renren" title="分享到人人网" href="http://www.laruence.com/2009/07/23/994.html#"></a>
+		<a class="shareCount" href="http://www.laruence.com/2009/07/23/994.html#" title="累计分享0次">0</a>
+    </div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=375788" src="./PHP中的Hash算法   风雪之隅_files/bds_s_v2.js"></script>
+<script type="text/javascript" id="bdshell_js" src="./PHP中的Hash算法   风雪之隅_files/shell_v2.js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END --></div><br><br><br><h2 class="related_post_title">Related Posts:</h2><ul class="related_post"><li><a href="http://www.laruence.com/2011/12/30/2435.html" title="PHP数组的Hash冲突实例">PHP数组的Hash冲突实例</a></li><li><a href="http://www.laruence.com/2012/09/16/2791.html" title="Yaf and Phalcon, which is faster?">Yaf and Phalcon, which is faster?</a></li><li><a href="http://www.laruence.com/2012/09/15/2779.html" title="Yar – 并行的RPC框架(Concurrent RPC framework)">Yar – 并行的RPC框架(Concurrent RPC framework)</a></li><li><a href="http://www.laruence.com/2012/09/12/2765.html" title="再一次, 不要使用(include/require)_once">再一次, 不要使用(include/require)_once</a></li><li><a href="http://www.laruence.com/2012/08/31/2742.html" title="关于Yaf的一些说明">关于Yaf的一些说明</a></li><li><a href="http://www.laruence.com/2012/08/30/2738.html" title="PHP5.5或将引入Generators">PHP5.5或将引入Generators</a></li><li><a href="http://www.laruence.com/2012/08/30/2731.html" title="PHP &amp; “Data” URL scheme">PHP &amp; “Data” URL scheme</a></li><li><a href="http://www.laruence.com/2012/08/16/2709.html" title="PHP的新特性finally">PHP的新特性finally</a></li><li><a href="http://www.laruence.com/2012/08/16/2701.html" title="关于PHP的编译和执行分离">关于PHP的编译和执行分离</a></li><li><a href="http://www.laruence.com/2012/08/06/2681.html" title="关于语言的选择-选易用的">关于语言的选择-选易用的</a></li></ul>                                                <p>Tags: <a href="http://www.laruence.com/tag/djb-algorithm" rel="tag">djb algorithm</a>, <a href="http://www.laruence.com/tag/hash" rel="tag">hash</a>, <a href="http://www.laruence.com/tag/hash%e7%ae%97%e6%b3%95" rel="tag">hash算法</a>, <a href="http://www.laruence.com/tag/php" rel="tag">PHP</a>, <a href="http://www.laruence.com/tag/times-33" rel="tag">times 33</a></p>                                <div style="clear:both;"></div>
+                <div class="postmeta">Filed in <a href="http://www.laruence.com/category/php-internal" title="View all posts in PHP源码分析" rel="category tag">PHP源码分析</a>, <a href="http://www.laruence.com/category/notes" title="View all posts in 随笔" rel="category tag">随笔</a> </div>
+			</div>                
+
+            <div class="navigation">
+                <div class="alignleft">« <a href="http://www.laruence.com/2009/07/19/1003.html" rel="prev">使用gettext来支持PHP的多语言</a></div>
+                <div class="alignright"><a href="http://www.laruence.com/2009/07/27/1020.html" rel="next">深入理解PHP原理之错误抑制与内嵌HTML</a> »</div>
+            </div>
+
+			
+<!-- You can start editing here. Mark for searching comment -->
+
+	<h3 id="comments">18 Responses to “PHP中的Hash算法”</h3>
+
+	<!-- Comment page numbers -->
+		<!-- End comment page numbers -->
+
+	<ol class="commentlist" style="list-style-type: none;">
+
+	
+		<li class="alt" id="comment-6206">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="210.13.118.*">Anonymous</span> | <small class="commentmetadata">05 Mar 2012 17:07 </small>
+			
+			<p>能把代码里的那个笑脸给修正下吗</p>
+		</li>
+
+	
+	
+		<li id="comment-5684">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/20ef51e74212f2acb26b829b21ce6823" class="avatar avatar-32 photo" height="32" width="32">			<span title="220.181.50.*">GaRY</span> | <small class="commentmetadata">30 Dec 2011 16:52 </small>
+			
+			<p><a href="http://www.phpweblog.net/GaRY/archive/2006/08/15/PHP_Variable_Zend_Hash_Calculater.html" rel="nofollow">http://www.phpweblog.net/GaRY/archive/2006/08/15/PHP_Variable_Zend_Hash_Calculater.html</a></p>
+<p>n年前写的php hash计算器。当时为了测试另一个zend_hash_del_key_or_index_vulnerability漏洞写的<br>
+和这一次的漏洞还是有共同之处的</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-5677">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="220.181.136.*"><a href="http://www.laruence.com/2011/12/30/2435.html" rel="external nofollow" class="url">PHP数组的Hash冲突实例 | 风雪之隅</a></span> | <small class="commentmetadata">30 Dec 2011 14:31 </small>
+			
+			<p>[...] 如果键值是字符串的话, 就稍微比较麻烦一些了, 但是PHP的Hash算法是开源的, 已知的, [...]</p>
+		</li>
+
+	
+	
+		<li id="comment-4847">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="220.181.136.*"><a href="http://warpigallen.sinaapp.com/?p=67" rel="external nofollow" class="url">warpig's blog » 【转】PHP中的Hash算法</a></span> | <small class="commentmetadata">07 Sep 2011 19:26 </small>
+			
+			<p>[...] 本文地址: <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" rel="nofollow">http://www.laruence.com/2009/07/23/994.html</a> [...]</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-4546">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="112.121.186.*"><a href="http://www.309ss.com/powerful-and-efficient-php-array.html" rel="external nofollow" class="url">强大高效的PHP数组 | 炮灰`Blog</a></span> | <small class="commentmetadata">02 Jul 2011 23:28 </small>
+			
+			<p>[...] <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" rel="nofollow">http://www.laruence.com/2009/07/23/994.html</a> [...]</p>
+		</li>
+
+	
+	
+		<li id="comment-4023">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/6e99da784faafc375d7f5e1441ac4e56" class="avatar avatar-32 photo" height="32" width="32">			<span title="61.135.165.*">Sapphire</span> | <small class="commentmetadata">25 Mar 2011 16:57 </small>
+			
+			<p>for (; nKeyLength &gt;= 8; nKeyLength -= 8 )  {<br>
+鸟哥这里修正一下啦</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-3616">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="202.165.178.*"><a href="http://www.wjmboss.cn/?p=964" rel="external nofollow" class="url">深入理解PHP之数组(遍历顺序) | Jim的blog</a></span> | <small class="commentmetadata">13 Jan 2011 15:23 </small>
+			
+			<p>[...] PHP的HASH算法, 基于此, [...]</p>
+		</li>
+
+	
+	
+		<li id="comment-3339">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/776d1314b7c5ca31bf1634c6a258252c" class="avatar avatar-32 photo" height="32" width="32">			<span title="117.88.181.*">竹纤维家纺</span> | <small class="commentmetadata">27 Oct 2010 16:54 </small>
+			
+			<p>现代都市生活忙碌而紧张,一个<a href="http://www.zlytex.com/" rel="nofollow">竹纤维家纺</a>温暖的家能带给每个人最放松的休闲时光，如果说 的发展顺应人们热爱健康、<br>
+<a href="http://www.laruence.com/2009/07/23/www.shendayumei.cn" rel="nofollow">巴黎诗碧曼</a>注重环保的迫切需求;就是这样的一个品牌,看好 ,源于它 ,其推出的<a href="http://www.zlytex.com/" rel="nofollow">竹纤维品牌</a>家纺产品绝对是符合市场消费需求的产品,<a href="http://www.laruence.com/2009/07/23/www.shendayumei.cn" rel="nofollow">深大玉妹</a>符合追求健康时尚产品和生活品味的人们所要求的。2.<a href="http://www.fyjtjc.com/" rel="nofollow">自动割管机</a>机械设备防寒过冬所需各种油料的储备工作,<a href="http://www.fyjtjc.com/" rel="nofollow">自动割料机</a>及时更换各类机械发动机的润滑油和防冻液,检查调整蓄电池电解液的比重等;<a href="http://www.heyuanjx.com.cn/daishi.html" rel="nofollow">带式过滤机</a>对轨道车等进行彻底检查,严格按照要求做好<a href="http://www.heyuanjx.com.cn/daishi.html" rel="nofollow">橡胶带式过滤机</a>制动试验,确保制动性能良好。</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-3003">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/dea6455b17bd01f94dba03b2dd9e5c04" class="avatar avatar-32 photo" height="32" width="32">			<span title="91.201.66.*"><a href="http://www.bestfinance-blog.com/" rel="external nofollow" class="url">MURRAY28ZELMA</a></span> | <small class="commentmetadata">28 Jul 2010 10:46 </small>
+			
+			<p>Houses and cars are quite expensive and not everyone is able to buy it. However, <a href="http://bestfinance-blog.com/" rel="nofollow">loans</a> was created to support people in such cases.</p>
+		</li>
+
+	
+	
+		<li id="comment-2567">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="122.226.223.*"><a href="http://www.yaronspace.cn/blog/index.php/archives/604" rel="external nofollow" class="url">yaron's space » PHP中的Hash算法[转载]</a></span> | <small class="commentmetadata">14 May 2010 11:40 </small>
+			
+			<p>[...] <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" rel="nofollow">http://www.laruence.com/2009/07/23/994.html</a>   [...]</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-2486">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="202.142.24.*"><a href="http://ziranxi.com/blog/201003-php-49.html" rel="external nofollow" class="url">自然系 » Blog Archive » 经典的hash算法：times33</a></span> | <small class="commentmetadata">28 Mar 2010 03:31 </small>
+			
+			<p>[...] <a href="./PHP中的Hash算法   风雪之隅_files/PHP中的Hash算法   风雪之隅.htm" rel="nofollow">http://www.laruence.com/2009/07/23/994.html</a> php中的hash算法 [...]</p>
+		</li>
+
+	
+	
+		<li id="comment-2284">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/9bec370f57f1e2c387d0fbbedfdd9c5b" class="avatar avatar-32 photo" height="32" width="32">			<span title="119.145.100.*"><a href="http://blog.csdn.net/yycai" rel="external nofollow" class="url">小蔡</a></span> | <small class="commentmetadata">24 Oct 2009 17:57 </small>
+			
+			<p>使用hash方式组织数组，有没有比较过当数组元素个数多大的时候会比较大的影响效率呀？</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-2255">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="72.52.124.*">lovecs0079</span> | <small class="commentmetadata">05 Oct 2009 20:26 </small>
+			
+			<p>请问这个函数可以直接在PHP中调用吗？</p>
+		</li>
+
+	
+	
+		<li id="comment-2161">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="222.49.117.*"><a href="http://www.laruence.com/2009/08/23/1065.html" rel="external nofollow" class="url">深入理解PHP之数组(遍历顺序) | 风雪之隅</a></span> | <small class="commentmetadata">23 Aug 2009 11:06 </small>
+			
+			<p>[...] PHP的HASH算法, 基于此, [...]</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-2056">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ad516503a11cd5ca435acc9bb6523536" class="avatar avatar-32 photo avatar-default" height="32" width="32">			<span title="121.15.134.*">panjinww</span> | <small class="commentmetadata">29 Jul 2009 09:14 </small>
+			
+			<p>受教了</p>
+		</li>
+
+	
+	
+		<li id="comment-1963">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/ec4f8b4ad7a79424fe84adfa9c2ae453" class="avatar avatar-32 photo" height="32" width="32">			<span title="222.42.114.*">sychen</span> | <small class="commentmetadata">24 Jul 2009 14:11 </small>
+			
+			<p>博主对PHP的研究，很深层！</p>
+		</li>
+
+	
+	
+		<li class="alt" id="comment-1956">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/1069e488bedd1507ae86a217e5e4d3bd" class="avatar avatar-32 photo" height="32" width="32">			<span title="221.219.117.*"><a href="http://www.laruence.com/" rel="external nofollow" class="url">雪候鸟</a></span> | <small class="commentmetadata">23 Jul 2009 23:12 </small>
+			
+			<p>@xi2008wang 哦~~,对的.</p>
+		</li>
+
+	
+	
+		<li id="comment-1955">
+	        <img alt="" src="./PHP中的Hash算法   风雪之隅_files/457ddcc7bbe653d02dd5964e53251d0e" class="avatar avatar-32 photo" height="32" width="32">			<span title="125.112.59.*">xi2008wang</span> | <small class="commentmetadata">23 Jul 2009 23:01 </small>
+			
+			<p>就是54chen的《Discuz! BBS缓存整体方案》，呵呵</p>
+		</li>
+
+	
+	
+	</ol>
+
+<!-- Comment page numbers -->
+<!-- End comment page numbers -->
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://www.laruence.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>Name </small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>Mail (will not be published) </small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+<input type="hidden" name="comment_post_ID" value="994">
+</p>
+
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="417667d6aa"></p>
+</form>
+
+
+
+		
+				
+			<div style="clear:both"></div>
+			<div class="navigation">
+			</div>
+    </div>
+      
+	    <div class="sidebar span-8 last">
+		<div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>  </h3>			<div class="textwidget"><!--<div id="meme">
+            <a href="http://www.twitter.com/laruence" target="meme" title="Twitter"><img src="/images/ico-twitter.png" /></a>
+            <a href="http://t.sina.com/laruence" target="meme" title="新浪微博"><img src="/images/ico-sina.png" /></a>
+            <a href="http://fusion.google.com/add?feedurl=http://www.laruence.com/feed" target="meme" title="Google阅读器"><img src="/images/ico-google.png" /></a>
+            <a href="mailto:laruence@yahoo.com.cn" target="meme" title="邮件"><img src="/images/ico-mail.png" /></a>
+</div>
+-->
+<div class="weibo" id="meme"><iframe width="136" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="./PHP中的Hash算法   风雪之隅_files/followbutton.htm"></iframe></div>
+<div id="profile">
+   <img class="avatar" src="./PHP中的Hash算法   风雪之隅_files/gavatar.png" height="50" width="50">
+   <span class="name">Laruence</span>
+   <p class="intro">
+      <a href="http://www.php.net/" target="_blank" style="color:#000">PHP</a>开发组成员, <a href="http://pecl.php.net/" style="color:#000" target="_blank">PECL</a>开发者. Yaf, Taint等Pecl扩展作者.
+   </p>
+</div>
+</div>
+		</div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div><div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>Advanced Random Posts</h3><ul class="advanced-random-posts"><li><a href="http://www.laruence.com/2008/08/11/147.html" title="深入浅出PHP(Exploring PHP)">深入浅出PHP(Exploring PHP)</a></li>
+<li><a href="http://www.laruence.com/2009/11/16/1147.html" title="分割GBK中文遭遇乱码的解决">分割GBK中文遭遇乱码的解决</a></li>
+<li><a href="http://www.laruence.com/2009/09/14/1081.html" title="CSS让你的IE浏览器崩溃(Crash your IE)">CSS让你的IE浏览器崩溃(Crash your IE)</a></li>
+<li><a href="http://www.laruence.com/2012/04/01/2571.html" title="PHP对程序员的要求更高">PHP对程序员的要求更高</a></li>
+<li><a href="http://www.laruence.com/2008/06/18/221.html" title="深入理解PHP原理之Opcodes">深入理解PHP原理之Opcodes</a></li>
+</ul></div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div><div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>Recent Comments</h3><ul id="recentcomments"><li class="recentcomments">imsuper on <a href="http://www.laruence.com/2011/09/23/2171.html/comment-page-1#comment-16346">我对PHP5.4的一个改进</a></li><li class="recentcomments"><a href="http://www.qiumeili.com/" rel="external nofollow" class="url">qiumeili</a> on <a href="http://www.laruence.com/2010/03/26/1365.html/comment-page-1#comment-16345">使用SoapHeader实现Soap请求验证</a></li><li class="recentcomments"><a href="http://www.ziu.me/zhishi/13618.html" rel="external nofollow" class="url">PHP静态调用非静态方法 « 成人免费资源三级分享网站</a> on <a href="http://www.laruence.com/2012/06/14/2628.html/comment-page-1#comment-16312">PHP的Calling Scope</a></li><li class="recentcomments">刘悦 on <a href="http://www.laruence.com/2012/10/16/2831.html/comment-page-1#comment-16001">PDOStatement::bindParam的一个陷阱</a></li><li class="recentcomments"><a href="http://www.wukezhan.com/2012/11/things-about-the-php-pdo-prepared-statements/" rel="external nofollow" class="url">PHP PDO prepared statement 一则 | 指间世界</a> on <a href="http://www.laruence.com/2012/10/16/2831.html/comment-page-1#comment-15945">PDOStatement::bindParam的一个陷阱</a></li><li class="recentcomments"><a href="http://www.anzhuodiy.com/" rel="external nofollow" class="url">安卓DIY</a> on <a href="http://www.laruence.com/2012/08/31/2742.html/comment-page-1#comment-15837">关于Yaf的一些说明</a></li><li class="recentcomments"><a href="http://sampeng.org/" rel="external nofollow" class="url">Sam</a> on <a href="http://www.laruence.com/2012/08/31/2742.html/comment-page-1#comment-15836">关于Yaf的一些说明</a></li><li class="recentcomments"><a href="http://www.ckv5.com/2012/11/15/%e5%a6%82%e4%bd%95%e8%ae%be%e7%bd%ae%e4%b8%80%e4%b8%aa%e4%b8%a5%e6%a0%bc30%e5%88%86%e9%92%9f%e8%bf%87%e6%9c%9f%e7%9a%84session/" rel="external nofollow" class="url">如何设置一个严格30分钟过期的Session | Buddy Laboratory</a> on <a href="http://www.laruence.com/2012/01/10/2469.html/comment-page-1#comment-15799">如何设置一个严格30分钟过期的Session</a></li><li class="recentcomments"><a href="http://www.ckv5.com/2012/11/15/%e5%a6%82%e4%bd%95%e8%ae%be%e7%bd%ae%e4%b8%80%e4%b8%aa%e4%b8%a5%e6%a0%bc30%e5%88%86%e9%92%9f%e8%bf%87%e6%9c%9f%e7%9a%84session/" rel="external nofollow" class="url">如何设置一个严格30分钟过期的Session | Buddy Laboratory</a> on <a href="http://www.laruence.com/2011/03/29/1949.html/comment-page-1#comment-15798">深入理解PHP原理之Session Gc的一个小概率Notice</a></li><li class="recentcomments"><a href="http://pangee.me/" rel="external nofollow" class="url">pangee</a> on <a href="http://www.laruence.com/2008/08/12/164.html/comment-page-1#comment-15733">深入理解PHP原理之函数(Introspecting PHP Function)</a></li></ul></div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div>	        <div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox">							<h3>Tags</h3>						<!-- SWFObject embed by Geoff Stearns geoff@deconcept.com http://blog.deconcept.com/swfobject/ --><script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/swfobject.js"></script><div id="wpcumuluswidgetcontent7856834"><embed type="application/x-shockwave-flash" src="http://www.laruence.com/wp-content/plugins/wp-cumulus/tagcloud.swf?r=8050293" width="260" height="260" id="tagcloudflash" name="tagcloudflash" bgcolor="#ffffff" quality="high" wmode="transparent" allowscriptaccess="always" flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=both&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fapache%27+class%3D%27tag-link-42%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3EApache%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fapc%27+class%3D%27tag-link-223%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Eapc%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fbug%27+class%3D%27tag-link-75%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3Ebug%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fc%27+class%3D%27tag-link-23%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EC%2B%2B%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcharset%27+class%3D%27tag-link-48%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Echarset%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcookie%27+class%3D%27tag-link-21%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3ECOOKIE%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcore%27+class%3D%27tag-link-224%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3Ecore%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fc%25e5%2586%2599php%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-116%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Ec%E5%86%99PHP%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fdebug%27+class%3D%27tag-link-53%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Edebug%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fengine%27+class%3D%27tag-link-57%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eengine%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fextension%27+class%3D%27tag-link-18%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3EExtension%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fforeach%27+class%3D%27tag-link-101%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eforeach%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fget%27+class%3D%27tag-link-19%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3EGET%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fie%27+class%3D%27tag-link-36%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EIE%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fiterator%27+class%3D%27tag-link-93%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eiterator%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjavascript%27+class%3D%27tag-link-9%27+title%3D%2714+topics%27+style%3D%27font-size%3A+14.0122699387pt%3B%27%3Ejavascript%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjs%27+class%3D%27tag-link-130%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ejs%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjson%27+class%3D%27tag-link-79%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ejson%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fmodule%27+class%3D%27tag-link-43%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3EModule%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fmysql%27+class%3D%27tag-link-13%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Emysql%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fnamespace%27+class%3D%27tag-link-85%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Enamespace%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fnginx%27+class%3D%27tag-link-187%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Enginx%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%27+class%3D%27tag-link-17%27+title%3D%27129+topics%27+style%3D%27font-size%3A+22pt%3B%27%3EPHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp5-4%27+class%3D%27tag-link-440%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ephp5.4%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp5-4%25e6%2596%25b0%25e7%2589%25b9%25e6%2580%25a7%27+class%3D%27tag-link-470%27+title%3D%2713+topics%27+style%3D%27font-size%3A+13.754601227pt%3B%27%3EPHP5.4%E6%96%B0%E7%89%B9%E6%80%A7%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp-extension%27+class%3D%27tag-link-344%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3EPHP+extension%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e5%258e%259f%25e7%2590%2586%27+class%3D%27tag-link-107%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Ephp%E5%8E%9F%E7%90%86%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e5%25ba%2594%25e7%2594%25a8%27+class%3D%27tag-link-98%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EPHP%E5%BA%94%E7%94%A8%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-345%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EPHP%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%25ba%2590%25e7%25a0%2581%27+class%3D%27tag-link-94%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Ephp%E6%BA%90%E7%A0%81%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%25ba%2590%25e7%25a0%2581%25e5%2588%2586%25e6%259e%2590%27+class%3D%27tag-link-160%27+title%3D%279+topics%27+style%3D%27font-size%3A+12.4662576687pt%3B%27%3Ephp%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fsapi%27+class%3D%27tag-link-60%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3ESAPI%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fsession%27+class%3D%27tag-link-164%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3Esession%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Futf8%27+class%3D%27tag-link-7%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eutf8%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fvariable%27+class%3D%27tag-link-72%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Evariable%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fvim%27+class%3D%27tag-link-5%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Evim%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fyaf%27+class%3D%27tag-link-343%27+title%3D%2711+topics%27+style%3D%27font-size%3A+13.1533742331pt%3B%27%3EYaf%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fzendphp%27+class%3D%27tag-link-58%27+title%3D%2712+topics%27+style%3D%27font-size%3A+13.4110429448pt%3B%27%3EZend%2FPHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e4%25b9%25b1%25e7%25a0%2581%27+class%3D%27tag-link-6%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3E%E4%B9%B1%E7%A0%81%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e5%258e%259f%25e7%2590%2586%27+class%3D%27tag-link-205%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E5%8E%9F%E7%90%86%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e5%25bc%2580%25e5%258f%2591php%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-114%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E5%BC%80%E5%8F%91php%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2580%25a7%25e8%2583%25bd%27+class%3D%27tag-link-210%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E6%80%A7%E8%83%BD%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2589%25a9%25e5%25b1%2595php%27+class%3D%27tag-link-115%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3E%E6%89%A9%E5%B1%95PHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2589%25a9%25e5%25b1%2595%25e5%25bc%2580%25e5%258f%2591%27+class%3D%27tag-link-444%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3E%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%25ad%25a3%25e5%2588%2599%27+class%3D%27tag-link-191%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E6%AD%A3%E5%88%99%3C%2Fa%3E%3C%2Ftags%3E&amp;categories=%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fgnuc%22+title%3D%22View+all+posts+filed+under+GNU+C%2FC%2B%2B%22%3EGNU+C%2FC%2B%2B%3C%2Fa%3E+%285%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fjscss%22+title%3D%22View+all+posts+filed+under+Js%2FCSS%22%3EJs%2FCSS%3C%2Fa%3E+%2824%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fos%22+title%3D%22View+all+posts+filed+under+Linux%2FUnix%22%3ELinux%2FUnix%3C%2Fa%3E+%2815%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fmysqlpostgresql%22+title%3D%22View+all+posts+filed+under+MySQL%2FPostgreSQL%22%3EMySQL%2FPostgreSQL%3C%2Fa%3E+%287%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphpext%22+title%3D%22View+all+posts+filed+under+PHP+Extension%22%3EPHP+Extension%3C%2Fa%3E+%2817%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphp-usage%22+title%3D%22View+all+posts+filed+under+PHP%E5%BA%94%E7%94%A8%22%3EPHP%E5%BA%94%E7%94%A8%3C%2Fa%3E+%28158%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphp-internal%22+title%3D%22PHP%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%2C+Zend%E5%86%85%E6%A0%B8%E8%A7%A3%E6%9E%90%22%3EPHP%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%3C%2Fa%3E+%2877%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2F%25e8%25bd%25ac%25e8%25bd%25bd%22+title%3D%22View+all+posts+filed+under+%E8%BD%AC%E8%BD%BD%22%3E%E8%BD%AC%E8%BD%BD%3C%2Fa%3E+%2830%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fnotes%22+title%3D%22View+all+posts+filed+under+%E9%9A%8F%E7%AC%94%22%3E%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%2879%29%3Cbr+%2F%3E%0A"></div><script type="text/javascript">var widget_so6264968 = new SWFObject("http://www.laruence.com/wp-content/plugins/wp-cumulus/tagcloud.swf?r=8050293", "tagcloudflash", "260", "260", "9", "#ffffff");widget_so6264968.addParam("wmode", "transparent");widget_so6264968.addParam("allowScriptAccess", "always");widget_so6264968.addVariable("tcolor", "0x333333");widget_so6264968.addVariable("tcolor2", "0x333333");widget_so6264968.addVariable("hicolor", "0x000000");widget_so6264968.addVariable("tspeed", "100");widget_so6264968.addVariable("distr", "true");widget_so6264968.addVariable("mode", "both");widget_so6264968.addVariable("tagcloud", "%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fapache%27+class%3D%27tag-link-42%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3EApache%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fapc%27+class%3D%27tag-link-223%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Eapc%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fbug%27+class%3D%27tag-link-75%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3Ebug%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fc%27+class%3D%27tag-link-23%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EC%2B%2B%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcharset%27+class%3D%27tag-link-48%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Echarset%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcookie%27+class%3D%27tag-link-21%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3ECOOKIE%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fcore%27+class%3D%27tag-link-224%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3Ecore%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fc%25e5%2586%2599php%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-116%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Ec%E5%86%99PHP%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fdebug%27+class%3D%27tag-link-53%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Edebug%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fengine%27+class%3D%27tag-link-57%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eengine%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fextension%27+class%3D%27tag-link-18%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3EExtension%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fforeach%27+class%3D%27tag-link-101%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eforeach%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fget%27+class%3D%27tag-link-19%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3EGET%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fie%27+class%3D%27tag-link-36%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EIE%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fiterator%27+class%3D%27tag-link-93%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eiterator%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjavascript%27+class%3D%27tag-link-9%27+title%3D%2714+topics%27+style%3D%27font-size%3A+14.0122699387pt%3B%27%3Ejavascript%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjs%27+class%3D%27tag-link-130%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ejs%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fjson%27+class%3D%27tag-link-79%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ejson%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fmodule%27+class%3D%27tag-link-43%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3EModule%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fmysql%27+class%3D%27tag-link-13%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Emysql%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fnamespace%27+class%3D%27tag-link-85%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Enamespace%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fnginx%27+class%3D%27tag-link-187%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Enginx%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%27+class%3D%27tag-link-17%27+title%3D%27129+topics%27+style%3D%27font-size%3A+22pt%3B%27%3EPHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp5-4%27+class%3D%27tag-link-440%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Ephp5.4%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp5-4%25e6%2596%25b0%25e7%2589%25b9%25e6%2580%25a7%27+class%3D%27tag-link-470%27+title%3D%2713+topics%27+style%3D%27font-size%3A+13.754601227pt%3B%27%3EPHP5.4%E6%96%B0%E7%89%B9%E6%80%A7%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp-extension%27+class%3D%27tag-link-344%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3EPHP+extension%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e5%258e%259f%25e7%2590%2586%27+class%3D%27tag-link-107%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Ephp%E5%8E%9F%E7%90%86%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e5%25ba%2594%25e7%2594%25a8%27+class%3D%27tag-link-98%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EPHP%E5%BA%94%E7%94%A8%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-345%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3EPHP%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%25ba%2590%25e7%25a0%2581%27+class%3D%27tag-link-94%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3Ephp%E6%BA%90%E7%A0%81%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fphp%25e6%25ba%2590%25e7%25a0%2581%25e5%2588%2586%25e6%259e%2590%27+class%3D%27tag-link-160%27+title%3D%279+topics%27+style%3D%27font-size%3A+12.4662576687pt%3B%27%3Ephp%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fsapi%27+class%3D%27tag-link-60%27+title%3D%274+topics%27+style%3D%27font-size%3A+9.88957055215pt%3B%27%3ESAPI%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fsession%27+class%3D%27tag-link-164%27+title%3D%275+topics%27+style%3D%27font-size%3A+10.5766871166pt%3B%27%3Esession%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Futf8%27+class%3D%27tag-link-7%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Eutf8%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fvariable%27+class%3D%27tag-link-72%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3Evariable%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fvim%27+class%3D%27tag-link-5%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3Evim%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fyaf%27+class%3D%27tag-link-343%27+title%3D%2711+topics%27+style%3D%27font-size%3A+13.1533742331pt%3B%27%3EYaf%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2Fzendphp%27+class%3D%27tag-link-58%27+title%3D%2712+topics%27+style%3D%27font-size%3A+13.4110429448pt%3B%27%3EZend%2FPHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e4%25b9%25b1%25e7%25a0%2581%27+class%3D%27tag-link-6%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3E%E4%B9%B1%E7%A0%81%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e5%258e%259f%25e7%2590%2586%27+class%3D%27tag-link-205%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E5%8E%9F%E7%90%86%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e5%25bc%2580%25e5%258f%2591php%25e6%2589%25a9%25e5%25b1%2595%27+class%3D%27tag-link-114%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E5%BC%80%E5%8F%91php%E6%89%A9%E5%B1%95%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2580%25a7%25e8%2583%25bd%27+class%3D%27tag-link-210%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E6%80%A7%E8%83%BD%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2589%25a9%25e5%25b1%2595php%27+class%3D%27tag-link-115%27+title%3D%272+topics%27+style%3D%27font-size%3A+8pt%3B%27%3E%E6%89%A9%E5%B1%95PHP%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%2589%25a9%25e5%25b1%2595%25e5%25bc%2580%25e5%258f%2591%27+class%3D%27tag-link-444%27+title%3D%276+topics%27+style%3D%27font-size%3A+11.1779141104pt%3B%27%3E%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%3C%2Fa%3E%0A%3Ca+href%3D%27http%3A%2F%2Fwww.laruence.com%2Ftag%2F%25e6%25ad%25a3%25e5%2588%2599%27+class%3D%27tag-link-191%27+title%3D%273+topics%27+style%3D%27font-size%3A+9.03067484663pt%3B%27%3E%E6%AD%A3%E5%88%99%3C%2Fa%3E%3C%2Ftags%3E");widget_so6264968.addVariable("categories", "%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fgnuc%22+title%3D%22View+all+posts+filed+under+GNU+C%2FC%2B%2B%22%3EGNU+C%2FC%2B%2B%3C%2Fa%3E+%285%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fjscss%22+title%3D%22View+all+posts+filed+under+Js%2FCSS%22%3EJs%2FCSS%3C%2Fa%3E+%2824%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fos%22+title%3D%22View+all+posts+filed+under+Linux%2FUnix%22%3ELinux%2FUnix%3C%2Fa%3E+%2815%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fmysqlpostgresql%22+title%3D%22View+all+posts+filed+under+MySQL%2FPostgreSQL%22%3EMySQL%2FPostgreSQL%3C%2Fa%3E+%287%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphpext%22+title%3D%22View+all+posts+filed+under+PHP+Extension%22%3EPHP+Extension%3C%2Fa%3E+%2817%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphp-usage%22+title%3D%22View+all+posts+filed+under+PHP%E5%BA%94%E7%94%A8%22%3EPHP%E5%BA%94%E7%94%A8%3C%2Fa%3E+%28158%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fphp-internal%22+title%3D%22PHP%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%2C+Zend%E5%86%85%E6%A0%B8%E8%A7%A3%E6%9E%90%22%3EPHP%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%3C%2Fa%3E+%2877%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2F%25e8%25bd%25ac%25e8%25bd%25bd%22+title%3D%22View+all+posts+filed+under+%E8%BD%AC%E8%BD%BD%22%3E%E8%BD%AC%E8%BD%BD%3C%2Fa%3E+%2830%29%3Cbr+%2F%3E%0A%09%3Ca+href%3D%22http%3A%2F%2Fwww.laruence.com%2Fcategory%2Fnotes%22+title%3D%22View+all+posts+filed+under+%E9%9A%8F%E7%AC%94%22%3E%E9%9A%8F%E7%AC%94%3C%2Fa%3E+%2879%29%3Cbr+%2F%3E%0A");widget_so6264968.write("wpcumuluswidgetcontent7856834");</script>	        </div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div>		<div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>Projects</h3>			<div class="textwidget"> <a href="http://projects.laruence.com/yaf/" target="_blank" rel="me">Yaf(用PHP扩展实现的PHP框架)</a><br> 
+
+<a href="http://projects.laruence.com/plua" target="_blank" rel="me">Plua(Lua for PHP)</a><br> 
+
+ <a href="http://code.google.com/p/mpass/" target="_blank" rel="me">Mpass(PHP多进程Socket解决方案)</a><br> 
+
+ <a href="http://code.google.com/p/btwitter/" target="_blank">bTwitter(Twitter Bash客户端)</a><br> 
+ 
+ <a href="http://projects.laruence.com/opcode-dumper/" target="_blank">PHP Opcode Dumper</a><br> 
+ 
+ <a href="http://code.google.com/p/infosstoreplatform/" target="_blank">Info Store Platform</a><br> 
+ 
+ <a href="http://code.google.com/p/evejsloader/" target="_blank">Eve JsLoader</a><br>
+
+<a href="http://code.google.com/p/pallas/" target="_blank">Pallas PHP CMS</a><br> </div>
+		</div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div><div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>friends</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.80sec.com/" title="安全界牛人">80Sec</a></li>
+<li><a href="http://www.54chen.com/" target="_blank">cc0cc</a></li>
+<li><a href="http://www.cnxct.com/">CFC4N</a></li>
+<li><a href="http://demon.at/">Demon</a></li>
+<li><a href="http://hi.baidu.com/erik168" target="_blank">Errorrik</a></li>
+<li><a href="http://glemir.xplore.cn/" target="_blank">glemir’s</a></li>
+<li><a href="http://blog.iterse.com/" target="_blank">Iterse's BLOG</a></li>
+<li><a href="http://www.skiyo.cn/" target="_blank">Jessica</a></li>
+<li><a href="http://blog.zoeey.org/">moxie</a></li>
+<li><a href="http://pplxh.cublog.cn/">pplxh</a></li>
+<li><a href="http://www.rainx.cn/" rel="friend" target="_blank">rainX</a></li>
+<li><a href="http://blog.libssh2.org/" rel="contact" target="_blank">Sara Golemon</a></li>
+<li><a href="http://www.chenbin.net/" target="_blank">siko</a></li>
+<li><a href="http://stauren.net/" title="js牛人" target="_blank">stauren</a></li>
+<li><a href="http://www.blankyao.cn/" rel="friend" target="_blank">Think in code</a></li>
+<li><a href="http://icyriver.net/" title="卫斯理" target="_blank">冰的河</a></li>
+<li><a href="http://liuqingyan.blogspot.com/" target="_blank">刘青炎</a></li>
+<li><a href="http://www.zhouxblog.com/" target="_blank">周翔’s blog</a></li>
+<li><a href="http://onemouse.cn/" title="小冬瓜" target="_blank">天韵之星</a></li>
+<li><a href="http://keyvalue.net/">思考的Pyt</a></li>
+<li><a href="http://www.yanbin.org/" rel="contact" target="_blank">抚琴居</a></li>
+<li><a href="http://xiezhenye.com/" target="_blank">神仙</a></li>
+<li><a href="http://blog.csdn.net/heiyeshuwu" rel="friend" target="_blank">黑夜路人</a></li>
+
+	</ul>
+</div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div>
+<div class="sidebarboxtop"><img src="./PHP中的Hash算法   风雪之隅_files/sidebartop.gif" alt="sidebartop"></div><div class="sidebarbox"><h3>Visitor ClustrMaps</h3>			<div class="textwidget"><a href="http://www4.clustrmaps.com/counter/maps.php?url=http://www.laruence.com" id="clustrMapsLink"><img src="./PHP中的Hash算法   风雪之隅_files/index2.php" style="border:0px;" alt="Locations of visitors to this page" title="Locations of visitors to this page" id="clustrMapsImg" onerror="this.onerror=null; this.src=&#39;http://www2.clustrmaps.com/images/clustrmaps-back-soon.jpg&#39;; document.getElementById(&#39;clustrMapsLink&#39;).href=&#39;http://www2.clustrmaps.com&#39;;">
+</a></div>
+		</div><div class="sidebarboxbottom"><img src="./PHP中的Hash算法   风雪之隅_files/sidebarbottom.gif" alt="sidebarbottom"></div>    </div>
+</div> <!-- container -->
+<div class="footerpush"></div>
+</div> <!--wrapper -->
+<div class="footer">
+	<div class="footercontent">
+	© <a href="http://www.laruence.com/" title="Home">风雪之隅</a>/ <a href="http://www.php.net/" target="_blank"><img src="./PHP中的Hash算法   风雪之隅_files/php_logo.png"></a>/ <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备09034578号</a>/ Theme By <a href="http://ericulous.com/2008/09/09/wp-theme-google-chrome" title="Smashing Wordpress Themes">Smashing</a>/ <span class="dia">由<a href="http://sae.sina.com.cn/" target="_blank"><img src="./PHP中的Hash算法   风雪之隅_files/117X12px.gif" title="Powered by Sina App Engine"></a>提供稳定空间及带宽保障&nbsp;</span> </div>
+ </div>
+    
+
+<script type="text/javascript" src="./PHP中的Hash算法   风雪之隅_files/scripts.js"></script>
+
+<script type="text/javascript">
+
+syntaxHilite();
+
+function syntaxHilite() {
+	var tab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	var codes = document.getElementsByTagName("pre");
+
+	sh_highlightDocument();
+
+	for(var i = 0; i < codes.length; i++) {
+		if(codes[i].getAttribute("name") != "code") {
+			continue;
+		}
+
+		var orig = codes[i].innerHTML;
+		var nextline = "";
+		var output = "";
+		var lineBeginning = true;
+
+		for(var j = 0; j < orig.length; j++) {
+			var nextChar = orig.charAt(j);
+
+			if(nextChar == '\r' || nextChar == '\n' || (j + 1) == orig.length ) {
+				if(nextChar == '\r' && (j + 1) <= orig.length && orig.charAt(j + 1) == '\n') {
+					j++;
+				}
+
+				if(nextline.length < 1) {
+					nextline = "&nbsp;";
+				}
+
+				output += '<li>' + nextline + '</li>';
+				nextline = "";
+				lineBeginning = true;
+			} else {
+				if(nextChar == '\t') {
+					nextline += tab;
+				}
+				else if(nextChar == ' ' && lineBeginning == true) {
+					nextline += "&nbsp;";
+				} else {
+					lineBeginning = false;
+					nextline += nextChar;
+				}
+			}
+		}
+
+		output = "<ol>" + output + '</ol>';
+		codes[i].innerHTML = output;
+	}
+}
+
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript" src="http://js.tongji.linezing.com/728491/tongji.js"></script><noscript>&lt;a href="http://www.linezing.com"&gt;&lt;img src="http://img.tongji.linezing.com/728491/tongji.gif"/&gt;&lt;/a&gt;</noscript>
+
+
+<img src="./PHP中的Hash算法   风雪之隅_files/profile.png" style="display: none; position: fixed; left: 498px; top: 316.5px; "></body></html>

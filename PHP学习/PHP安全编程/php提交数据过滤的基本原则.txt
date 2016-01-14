@@ -1,0 +1,273 @@
+　　1、php提交数据过滤的基本原则
+
+　　1)提交变量进数据库时，我们必须使用addslashes()进行过滤，像我们的注入问题，一个addslashes()也就搞定了。其实在涉及到变量取值时，intval()函数对字符串的过滤也是个不错的选择。
+
+　　2)在php.ini中开启magic_quotes_gpc和magic_quotes_runtime。magic_quotes_gpc可以把get,post,cookie里的引号变为斜杠。magic_quotes_runtime对于进出数据库的数据可以起到格式话的作用。其实，早在以前注入很疯狂时，这个参数就很流行了。
+
+　　3)在使用系统函数时，必须使用escapeshellarg(),escapeshellcmd()参数去过滤，这样你也就可以放心的使用系统函数。
+
+　　4)对于跨站，strip_tags(),htmlspecialchars()两个参数都不错，对于用户提交的的带有html和php的标记都将进行转换。比如尖括号"<"就将转化为 "<"这样无害的字符。
+ 代码如下 	 
+$new = htmlspecialchars("<a href='test'>Test</a>", ENT_QUOTES);
+strip_tags($text,);
+
+　　5)对于相关函数的过滤，就像先前的include(),unlink,fopen()等等，只要你把你所要执行操作的变量指定好或者对相关字符过滤严密，我想这样也就无懈可击了。
+
+　　2、PHP简单的数据过滤
+
+　　1)入库: trim($str),addslashes($str)
+
+　　2)出库: stripslashes($str)
+
+　　3)显示: htmlspecialchars(nl2br($str))
+
+　　看下面的例子以便进一步讨论dispatch.php脚本:
+ 代码如下 	 
+
+<?php
+
+/* 全局安全处理 */
+
+switch ($_GET['task'])
+{
+case 'print_form':
+include '/inc/presentation/form.inc';
+break;
+
+case 'process_form':
+$form_valid = false;
+include '/inc/logic/process.inc';
+if ($form_valid)
+{
+include '/inc/presentation/end.inc';
+}
+else
+{
+include '/inc/presentation/form.inc';
+}
+break;
+
+default:
+include '/inc/presentation/index.inc';
+break;
+}
+
+?>
+
+　　如果这是唯一的可公开访问到的 PHP 脚本，则可以确信的一点是这个程序的设计可以确保在最开始的全局安全处理无法被绕过。同时也让开发者容易看到特定任务的控制流程。例如，不需要浏览整个代码就可以容易的知道：当$form_valid为true时，end.inc是唯一显示给用户的;由于它在process.inc被包含之前，并刚刚初始化为false，可以确定的是process.inc的内部逻辑会将设置它为true;否则表单将再次显示(可能会显示相关的错误信息)。
+
+　　注意
+
+　　如果你使用目录定向文件，如index.php(代替dispatch.php)，你可以像这样使用 URL 地址：http://example.org/?task=print_form。
+
+　　你还可以使用 ApacheForceType重定向或者mod_rewrite来调整 URL 地址：http://example.org/app/print-form。
+
+　　包含方法
+
+　　另外一种方式是使用单独一个模块，这个模块负责所有的安全处理。这个模块被包含在所有公开的 PHP 脚本的最前端(或者非常靠前的部分)。参考下面的脚本security.inc
+ 代码如下 	 
+
+<?php
+
+switch ($_POST['form'])
+{
+case 'login':
+$allowed = array();
+$allowed[] = 'form';
+$allowed[] = 'username';
+$allowed[] = 'password';
+
+$sent = array_keys($_POST);
+
+if ($allowed == $sent)
+{
+include '/inc/logic/process.inc';
+}
+
+break;
+}
+
+?>
+
+　　在本例中，每个提交过来的表单都认为应当含有form这个唯一验证值，并且security.inc独立处理表单中0需要过滤的数据。实现这个要求的 HTML 表单如下所示：
+ 代码如下 	 
+<form action="/receive.php" method="POST">
+<input type="hidden" name="form" value="login" />
+<p>Username:
+<input type="text" name="username" /></p>
+<p>Password:
+<input type="password" name="password" /></p>
+<input type="submit" />
+</form>
+
+　　叫做$allowed的数组用来检验哪个表单变量是允许的， 这个列表在表单被处理前应当是一致的。流程控制决定要执行什么，而process.inc是真正过滤后的数据到达的地方。
+
+　　注意
+
+　　确保security.inc总是被包含在每个脚本的最开始的位置比较好的方法是使用auto_prepend_file设置。
+
+　　过滤的例子
+
+　　建立白名单对于数据过滤是非常重要的。由于不可能对每一种可能遇到的表单数据都给出例子，部分例子可以帮助你对此有一个大体的了解。
+
+　　下面的代码对邮件地址进行了验证：
+ 代码如下 	 
+
+<?php
+
+$clean = array();
+
+$email_pattern = '/^[^@s<&>]+@([-a-z0-9]+.)+[a-z]{2,}$/i';
+
+if (preg_match($email_pattern, $_POST['email']))
+{
+$clean['email'] = $_POST['email'];
+}
+
+?>
+
+　　下面的代码确保了$_POST['color']的内容是red，green，或者blue：
+ 代码如下 	 
+
+<?php
+
+$clean = array();
+
+switch ($_POST['color'])
+{
+case 'red':
+case 'green':
+case 'blue':
+$clean['color'] = $_POST['color'];
+break;
+}
+
+?>
+
+　　下面的代码确保$_POST['num']是一个整数(integer)：
+ 代码如下 	 
+
+<?php
+
+$clean = array();
+
+if ($_POST['num'] == strval(intval($_POST['num'])))
+{
+$clean['num'] = $_POST['num'];
+}
+
+?>
+
+　　下面的代码确保$_POST['num']是一个浮点数(float)：
+ 代码如下 	 
+
+<?php
+
+$clean = array();
+
+if ($_POST['num'] == strval(floatval($_POST['num'])))
+{
+$clean['num'] = $_POST['num'];
+}
+
+?>
+
+　　名字转换
+
+　　之前每个例子都使用了数组$clean。对于开发人员判断数据是否有潜在的威胁这是一个很好的习惯。 永远不要在对数据验证后还将其保存在$_POST或者$_GET中，作为开发人员对超级全局数组中保存的数据总是应当保持充分的怀疑。
+
+　　需要补充的是，使用$clean可以帮助思考还有什么没有被过滤，这更类似一个白名单的作用。可以提升安全的等级。
+
+　　如果仅仅将验证过的数据保存在$clean，在数据验证上仅存的风险是你所引用的数组元素不存在，而不是未过滤的危险数据。
+
+　　时机
+
+　　一旦 PHP 脚本开始执行，则意味着 HTTP 请求已经全部结束。此时，用户便没有机会向脚本发送数据。因此，没有数据可以被输入到脚本中(甚至register_globals被开启的情况下)。这就是为什么初始化变量是非常好的习惯。
+
+　　防注入
+ 代码如下 	 
+
+<?PHP 
+//PHP整站防注入程序，需要在公共文件中require_once本文件 
+//判断magic_quotes_gpc状态 
+if (@get_magic_quotes_gpc ()) { 
+$_GET = sec ( $_GET ); 
+$_POST = sec ( $_POST ); 
+$_COOKIE = sec ( $_COOKIE ); 
+$_FILES = sec ( $_FILES ); 
+} 
+$_SERVER = sec ( $_SERVER ); 
+function sec(&$array) { 
+//如果是数组，遍历数组，递归调用 
+if (is_array ( $array )) { 
+foreach ( $array as $k => $v ) { 
+$array [$k] = sec ( $v ); 
+} 
+} else if (is_string ( $array )) { 
+//使用addslashes函数来处理 
+$array = addslashes ( $array ); 
+} else if (is_numeric ( $array )) { 
+$array = intval ( $array ); 
+} 
+return $array; 
+} 
+//整型过滤函数 
+function num_check($id) { 
+if (! $id) { 
+die ( '参数不能为空！' ); 
+} //是否为空的判断 
+else if (inject_check ( $id )) { 
+die ( '非法参数' ); 
+} //注入判断 
+else if (! is_numetic ( $id )) { 
+die ( '非法参数' ); 
+} 
+//数字判断 
+$id = intval ( $id ); 
+//整型化 
+return $id; 
+} 
+//字符过滤函数 
+function str_check($str) { 
+if (inject_check ( $str )) { 
+die ( '非法参数' ); 
+} 
+//注入判断 
+$str = htmlspecialchars ( $str ); 
+//转换html 
+return $str; 
+} 
+function search_check($str) { 
+$str = str_replace ( "_", "_", $str ); 
+//把"_"过滤掉 
+$str = str_replace ( "%", "%", $str ); 
+//把"%"过滤掉 
+$str = htmlspecialchars ( $str ); 
+//转换html 
+return $str; 
+} 
+//表单过滤函数 
+function post_check($str, $min, $max) { 
+if (isset ( $min ) && strlen ( $str ) < $min) { 
+die ( '最少$min字节' ); 
+} else if (isset ( $max ) && strlen ( $str ) > $max) { 
+die ( '最多$max字节' ); 
+} 
+return stripslashes_array ( $str ); 
+} 
+//防注入函数 
+function inject_check($sql_str) { 
+return eregi ( 'select|inert|update|delete|'|/*|*|../|./|UNION|into|load_file|outfile', $sql_str ); 
+// www.111cn.net 进行过滤，防注入 
+} 
+function stripslashes_array(&$array) { 
+if (is_array ( $array )) { 
+foreach ( $array as $k => $v ) { 
+$array [$k] = stripslashes_array ( $v ); 
+} 2014/3/17
+} else if (is_string ( $array )) { 
+$array = stripslashes ( $array ); 
+} 
+return $array; 
+} 
+?>

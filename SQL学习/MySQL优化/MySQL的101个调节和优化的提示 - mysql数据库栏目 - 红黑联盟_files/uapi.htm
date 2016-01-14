@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0152)http://www.2cto.com/uapi.php?tid=256429&catid=275&title=TXlTUUy1xDEwMbj2tfe92rrN08W7r7XEzOHKvg==&forward=http://www.2cto.com/database/201311/256429.html -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta  http-equiv="X-UA-Compatible"  content="IE=7">
+<link  href="reset.css"  rel="stylesheet"  type="text/css">
+<link  href="default_blue.css"  rel="stylesheet"  type="text/css">
+<script  language="javascript"  type="text/javascript"  src="jquery.min.js"></script>
+<script  language="javascript"  type="text/javascript"  src="jquery.sgallery.js"></script>
+<style> 
+body{background:none;}
+.style1 {
+	border-collapse: collapse;
+	border-left:1px #C3D4E7 solid;
+	border-top:1px #C3D4E7 solid;
+	border-right:1px #C3D4E7 solid
+}
+</style>
+</head>
+<body >
+<div  id="bodyheight">
+<div  style="padding:0px 0px 10px 0px;overflow:hidden;clear:both">
+	
+<table  style="width: 100%"  class="style1">
+<tbody><tr>
+<td  width="100"  align="center"  valign="top"  style="padding:10px 0px 10px 0px;border-bottom:1px #C3D4E7 solid; font-weight: 700;background:#F1F5FA"  colspan="2">评论列表</td>
+</tr>
+
+</tbody></table>
+	
+</div>
+
+<form  action="http://www.2cto.com/uapi.php?act=save&tid=256429&catid=275&title=TXlTUUy1xDEwMbj2tfe92rrN08W7r7XEzOHKvg=="  method="post"   name="myf">
+      <div  class="comment-form">
+      	<h5><strong>我来说两句</strong><span  class="fn rt blue"></span></h5>
+        <div  class="posn">
+</div>
+        <textarea  rows="8"  cols="80"  name="content"></textarea><br>
+		        <div  class="btn"><input  name="doPost"  type="submit"  value="发表评论"></div>
+		&nbsp;&nbsp;红黑网友(游客)&nbsp;&nbsp;  <a  href="javascript:"   target="_top">登陆</a>&nbsp;&nbsp;<a  href="http://home.2cto.com/index.php/index/regedit"  target="_blank">注册</a>     </div>  
+</form>   
+<div  class="bk10"></div>
+<script  type="text/javascript"> 
+function on_submit() {
+	var username = '';
+	if (username = ''){
+		alert('请登陆后发表评论');
+		return false;
+	}else if(document.myf.content.value==""){
+		alert('评论内容不能为空');
+		return false;
+	} else {
+		iframe_height(200);
+		return true;
+	}
+}
+function iframe_height(height) {
+	if (!height) {
+		var height = document.getElementById('bodyheight').scrollHeight;
+	}
+	$('#top_src').attr('src', "http://www.2cto.com/js.html?"+height+'|'+0);
+}
+function Login(){
+	var url='http://home.2cto.com/?forward='+encodeURIComponent(parent.document.location.href);
+	window.open(url,target='blank');
+}
+ 
+ 
+</script>
+</div>
+<iframe  width="0"  id="top_src"  height="0"  src="js.htm"></iframe>
+
+
+</body></html>

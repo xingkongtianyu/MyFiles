@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">deferred.fail()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/deferred-object/" title="View all posts in Deferred Object">Deferred Object</a></span>
+  
+
+          </div>
+
+</div>
+<div id="deferred-fail1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">deferred.fail( failCallbacks )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#Deferred">Deferred</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong> 添加处理程序被调用时，延迟对象将被拒绝。</p>
+<ul class="signatures"><li class="signature" id="deferred-fail-failCallbacks">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.5/">1.5</a></span>deferred.fail( failCallbacks )</h4>
+<p class="arguement"><strong>failCallbacks</strong>
+             一个函数或函数数组，当延迟拒绝时调用。
+           </p>
+</li></ul>
+<div class="longdesc"><p>该参数可以是一个函数或一个函数的数组。当延迟拒绝时，failCallbacks被调用。回调执行是依照他们添加的顺序。一旦<code>deferred.fail()</code>返回延迟对象，延迟对象的其它方法也可以链接到了这里，包括增加<code>deferred.fail()</code>方法。
+
+当延迟拒绝，doneCallbacks执行使用参数提供给<a href="#p=deferred.reject"><code>deferred.reject()</code>或<a href="#p=deferred.rejectWith"><code>deferred.rejectWith()</code></a>方法依照添加的顺序调用。有关详细信息，请参阅文件<a href="/category/deferred-object/">Deferred object</a> 。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">一旦jQuery.get方法返回一个jqXHR对象，这是从一个递延所得，可以附加的成功和失败回调使用deferrred.done（）和deferred.fail（）方法。</span></h4>
+<pre><code class="example">
+$.get("test.php")
+  .done(function(){ alert("$.get succeeded"); })
+  .fail(function(){ alert("$.get failed!"); });
+</code></pre>
+</div></div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

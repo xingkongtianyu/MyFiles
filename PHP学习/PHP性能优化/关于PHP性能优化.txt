@@ -1,0 +1,73 @@
+关于PHP性能优化(转)
+
+1、升级硬件的一般规则：对于 PHP 脚本而言，主要的瓶颈是 CPU ，对于静态页面而言，瓶颈是内存和网络。一台 400 Mhz 的普通奔腾机器所下载的静态页面就能让 T3 专线（45Mbps）饱和。 
+
+2、Apache 处理 PHP 脚本的速度要比静态页面慢 2-10 倍，因此尽量采用多的静态页面，少的脚本。
+
+3、PHP 脚本如果不做缓冲，每次调用都需要编译，因此，安装一个 PHP 缓冲产品能提升 25-100% 的性能。
+
+4、把基于文件的会话切换到基于共享内存的会话。编译 PHP 时采用 --with-mm 选项，在 php.ini 中设置 setsession.save_handler=mm 。这个简单的修改能让会话管理时间缩短一半。
+
+5、另外一项缓冲技术是把不常修改的 PHP 页面采用 HTML 缓冲输出。
+
+6、如果你采用了 Linux 系统，建议升级内核到 2.6.0以上（现在最新版本为2.6.10）并开启抢占式内核支持，因为静态页面由内核服务。
+
+7、采用最新版本的 Apache ，并把 PHP 编译其中，或者采用 DSO 模式，尽量不要采用 CGI 方式。
+
+8、采用输出缓冲（请参考ob_start），如果你的代码有很多的 print 和 echo 语句，能提速 5-15% 。
+
+9、不要在 Web 服务器上运行 X-Windows ，关掉没有必要运行的进程，如果已经安装了X-windows，请使用 init 3退出。
+
+10、如果能够用文本就不要用图像，尽量减小图片的尺寸。
+
+11、分散负载，把数据库服务器放到另外的机器上去。采用另外低端的机器服务图片和 HTML 页面，如果所有的静态页面在另外一台服务器上处理，可以设置 httpd.conf 中的 KeepAlives 为 off ，来减少断开连接的时间。
+
+12、采用 hdparm 来优化磁盘，一般能提升 IDE 磁盘读写性能 200%，但是对 SCSI 硬盘没有效果。
+
+13、修改 httpd.conf ： 
+# 关闭 DNS lookups，PHP 脚本只拿 IP 地址
+HostnameLookups off 
+
+# 关闭 htaccess 检测
+
+AllowOverride none 
+
+
+
+打开 FollowSymLinks ，关闭 SymLinksIfOwnerMatch 以防 lstat() 系统调用：
+Options FollowSymLinks 
+#Options SymLinksIfOwnerMatch
+下面还有很多关于 httpd.conf 参数的调整。
+
+14、Kurt 简洁而完整的 Apache Tuning Tips。
+
+15、如果喜欢从修改 Apache 源码入手，可以安装 lingerd。在页面产生和发送后，每个 Apache 进程都会浪费一段时光在客户连接上，Lingerd 能接管这项工作，让 Apache 迅速服务下一个客户请求。
+
+16、如果网络拥挤，CPU 资源不够用，采用 PHP 的 HTML 压缩功能：
+output_handler = ob_gzhandler
+PHP 4.0.4 及以前的用户请不要使用，因为存在内存泄漏问题。
+
+17、修改 httpd.conf 中的 SendBufferSize 为你最大的页面文件的大小。加大内核的 TCP/IP 写缓冲大小。
+
+18、另外一篇文章：Tuning Apache Web Servers for Speed，一篇 97 年的很古老的文章。
+
+19、采用数据库的持久连接时，不要把 MaxRequestsPerChild 设置得太大。
+
+20、Caching Tutorial for Web Authors and Webmasters 教你怎样实现浏览器缓冲。
+
+21、如果你足够勇敢的话，还可以采用 Silicon Graphics 的 Accelerated Apache 补丁。这个工程能使 Apache 1.3 快 10 倍，使 Apache 2.0 快 4 倍。
+
+22、来自Professional Apache的技巧。
+
+23、官方的Performance Tuning 文档，很好的资料，但是十分繁琐。
+
+24、编译 PHP 时，建议采用如下的参数：
+--enable-inline-optimization --disable-debug 
+
+25、安装mod_gzip(apache1.3)或者mod_deflate(apache2.0)等页面压缩软件减轻服务器拥堵。同时尽可能优化你的HTML文件和PHP文件。
+
+26、优化 Linux ，more Linux 以及Solaris。
+
+27、如果系统瓶颈在MYSQL的数据操作上，可以考虑将Mysql拆分成多个端口甚至多个服务器并适当优化my.cnf ,这比使用单个端口速度提高不少。
+
+26、以上所有的方法都是针对单机而言的，如果你觉得系统还是不够快，可以采用集群，负载均衡，缓冲技术。采用 Squid 作为缓冲，配置 Squid 的方法。

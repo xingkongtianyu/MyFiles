@@ -1,0 +1,68 @@
+
+centos下svn配置  
+
+2013-12-11 14:00:36|  分类： SVN |举报 |字号 订阅
+
+1，安装系统时安装好svn服务器
+
+2，创建目录/home/svn/
+
+3，创建代码仓库：svnadmin create /home/svn/tool
+
+4，进入/home/svn/tool/conf目录，其中有三个文件：
+
+-rw-r--r-- 1 root root 1125 Jun 26 18:35 authz
+-rw-r--r-- 1 root root  322 Jun 26 18:34 passwd
+-rw-r--r-- 1 root root 2370 Jun 26 18:33 svnserve.conf
+
+5，在文件svnserve.conf的[general]中加入下列几行：
+
+anon-access = none
+auth-access = write
+password-db = passwd
+authz-db = authz
+realm = tool
+
+6，在文件passwd的[users]中增加一个用户：
+
+hgc = 123456
+
+7，在文件authz的[groups]中增加一个用户组：
+
+tool_users = hgc
+
+8，在文件authz尾部增加用户组tool_users对代码仓库tool的访问权限：
+
+[tool:/]
+@tool_users = rw
+
+注意：tool:后面的/表示指定对整个tool仓库的访问权限，也可以指定对其中的子目录的访问权限，例如：[tool:/dir1/]
+
+9，在文件/etc/init.d/svnserve头部加入OPTIONS="-r /home/svn/"，指定svn服务根目录（各个仓库就是在这个目录中创建的）
+
+10，防火墙配置：允许指定ip段访问3690端口，执行etc/init.d/iptables save保存到配置文件/etc/sysconfig/iptables中
+
+11，/etc/init.d/svnserve restart重启svn服务（系统重启有效的话需要执行/sbin/chkconfig --level 345 svnserve on）
+
+12，在windows上通过svn client访问tool代码仓库，地址为：svn://centos-ip/tool/，用户名为：hgc，密码为123456
+
+注意：整理的用户密码是静态写死的，管理员配置好后下发给使用者，使用者无法动态修改。
+
+补充：提交代码时强制写注释
+
+#在hooks目录下建一个pre-commit文件，内容如下，然后设置执行权限
+
+#!/bin/sh
+
+REPOS="$1"
+TXN="$2"
+# Make sure that the log message contains some text.
+SVNLOOK=/usr/bin/svnlook
+LOGMSG=`$SVNLOOK log -t "$TXN" "$REPOS" | grep "[a-zA-Z0-9]" | wc -c` 
+if [ "$LOGMSG" -lt 5 ];#要求注释不能少于5个字符（数字和字母），您可自定义 
+then 
+   echo -e "\nLog message cann't be empty! you must input more than 5 characters as comment!." 1>&2 
+   exit 1 
+fi
+# All checks passed, so allow the commit.
+exit 0

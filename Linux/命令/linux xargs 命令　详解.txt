@@ -1,0 +1,102 @@
+linux xargs 命令　详解
+作者:net527   标签：IT数码2010-11-26 22:55 星期五 晴
+　　xargs [ -p ] [ -t ] [ -e [ EOFString ] ] [ -E EOFString ] [ -i [
+　　ReplaceString ] ] [ -I ReplaceString ] [ -l [ Number ] ] [ -L Number ] [ -n
+　　Number [ -x ] ] [ -s Size ] [ Command [ Argument ... ] ]
+　　注： 不要在小写的符号 和参数之间安排空格。
+　　
+　　
+　　刻画
+　　天生的下令行长度是 Command 和每个作为字符串对待的 Argument，包孕用于每个字符串的空字节收场标记，巨细（以字节打定）的总和。xargs
+　　下令限定下令行的长度。当布局的下令行运行时，组合的 Argument 和环境 列表不能高出 ARG_MAX 字节。在这一约束里，假如不指定 -n 或 -s
+　　符号 ，缺省下令行长度至少是 LINE_MAX 指定的值。
+　　符号
+　　
+　　-e[EOFString]放弃的符号 。请应用 -E 符号 。
+　　将 EOFString 参数用作逻辑 EOF 字符串。假如不指定 -e 或 -E 符号 ，则采用 下划线（_）为逻 辑 EOF 字符串。假如不指定
+　　EOFString 参数，逻辑 EOF 字符串手段 被禁用且下划线被照字面寄义应用。xargs 下令读取标准 输入直到到达 EOF 或指定的字符串。
+　　
+　　-E EOFString指定逻辑 EOF 字符串以变更 缺省的下划线（_）。 xargs 下令读取标准 输入直到到达 EOF 或指定的字符串。
+　　
+　　-i[ReplaceString]放弃的符号 。请应用 -I（大写 i）符号 。
+　　假如没有指定 ReplaceString 参数，应用字符串 "{}"。
+　　注：-I（大写 i）和 -i 符号 是相互架空的；末了指定的符号 奏效。
+　　-I ReplaceString（大写 i）。插入标准 输入的每一行用 Command 参数的自变量，把它插入出现的每个 ReplaceString
+　　的 Argument 中。ReplaceStrings 不能在高出 5 个自变量中应用。在每个标准 输入行起头的空字 符被漠视 。每个 Argument
+　　能包孕一个或多个 ReplaceStrings，但不能大于 255 字节。-I 符号 同样打开 -x 符号 。
+　　注：-I（大写 i）和 -i 符号 是相互架空的；末了指定的符号 奏效。
+　　-l[Number]（小写的 L）。放弃的符号 。请应用 -L 符号 。
+　　假如没有指定 Number 参数，应用缺省值 1。-l 符号 同样打开 -x 符号 。
+　　注： -L、-I（小写的 L）和 -n 符号 是相互架空的；末了指定的符号 奏效。
+　　-L Number用从标准 输入读取的非空参数行的指定的数量 运行 Command 下令。假如生涯少于指定的 Number，Command
+　　参数的末了调用可以有少数几个参数行。一行以第一个换行字符收场，除非行的末了一个字符是 一个空格或制表符。后续的空格表示一连至下一个非空行。
+　　注： -L、-I（小写的 L）和 -n 符号 是相互架空的；末了指定的符号 奏效。
+　　-n Number运行 Command 参数，且应用尽也许多的标准 输入自变量，直到 Number 参数指定的最大值。 xargs
+　　下令应用很少的自变量，假如：
+　　假如被积累的下令行长度高出 了由 -s Size 符号 指定的字节。
+　　末了的迭代有少于 Number（但黑白零）的自变量生涯。
+　　注： -L、-I（小写的 L）和 -n 符号 是相互架空的；末了指定的符号 奏效。
+　　-p扣问 是否运行 Command 参数。它表现布局的下令行，后跟一个 ?...（问号和省略号）提醒。输入确定 的、特定于语言环境 的相应以运行
+　　Command 参数。任何其余相应都市引起 xargs 下令跳过谁人特定的参数调用。每个调用都将扣问 您。
+　　-p 符号 同样打开 -t 符号 。
+　　-s Size设置布局的 Command 行的最大总巨细。Size 参数必需是正整数。假如满意以下条件，则应用很 少的自变量：
+　　自变量的总数越过 -n 符号 指定的自变量数。
+　　总行数越过 -L 或 -I（小写 L）符号 指定的行数。
+　　累加至在 Size 参数指定的字节数之前到达 EOF。
+　　
+　　-t启用跟踪行动并在运行之前将布局的 Command 行回送到标准 过错。
+　　-x假如有任何 Command 行大于 -s Size 符号 指定的字节数，收场运行 xargs 下令。假如指定 -I （大写 i）或 -l（小写
+　　L）符号 ，则打开 -x 符号 。假如没有指定 -i、-I（大写 i）、-l（小写 L）、-L 或 -n 符号 ， 则 Command 行的总长度必需在
+　　-s Size 符号 指定的限定内。
+　　
+　　出口状况
+　　该下令返回下列出口值：
+　　0全部 Command 参数的调用都返回出口状况 0。
+　　1-125不能组装满意指定哀求 的下令行，一个或多个 Command 参数的调用返回一个非零出口状况，或发生一些其余的过错。
+　　126Command 已找到但不能被调用。
+　　127找不到 Command。
+　　
+　　假如不能组装满意指定哀求 的下令行，则不能调用这个下令，下令的调用被一个信号住手，或一个下令调用以出口状况 255 退出。xargs
+　　下令将写一条诊断动静并退出而不处理赏罚 任何生涯的输入。
+　　示例
+　　要对名称在一个文件中列出的文件应用下令，输入：
+　　xargs lint -a 　　main.c readit.c
+　　gettoken.c
+　　putobj.cxargs 下令就布局并运行下面的下令：
+　　lint -a main.c readit.c gettoken.c putobj.c假如 cfiles 文件包孕比列出在单一外壳措施下令行上的文件名更多的文件名（最多 LINE_MAX），xargs 下令会用列出的文件名运行 lint
+　　下令。然后它应用余下的文件名布局并运行另一个 lint 下令。按照在 cfiles 文件中列出的文件名，下令看起来也许类似于如下所示的内容：
+　　lint -a main.c readit.c gettoken.c . . .
+　　lint -a getisx.c getprp.c getpid.c . . .
+　　lint -a fltadd.c fltmult.c fltdiv.c . . .这一下令序列同用全部的文件名运行 lint 下令一次不完备 一样。lint 下令反省文件之间的交错引用。然而，在这个示例中，它不能在 main.c 和
+　　fltadd.c 文件之间，或恣意两个在分开的下令行上列出的两个文件之间举办反省。
+　　由于这个缘故起因 ，仅当全部的文件名都在一行上列出时，才也许运行下令。要将这个指定到 xargs下令，通过输入以下下令应用 -x 符号 ：
+　　
+　　xargs -x lint -a 　　假如在文件 cfiles 中的全部文件名没有在一个下令行上列出，xargs 下令表现一条过错动静。
+　　要布局包孕肯定 数量 文件名的下令，输入：
+　　xargs -t -n 2 diff <　　starting chap1 concepts chap2 writing
+　　chap3
+　　EOF
+　　这一下令序列布局并运行每个包孕两个文件名的 diff 下令（-n 2）：
+　　diff starting chap1
+　　diff concepts chap2
+　　diff writing chap3-t 符号 使 xargs 下令在运行每个下令之前表现该下令，以是能看到正在发生的变乱。<　　document，它把在最后行之前输入的文本用尴尬刁难 xargs 下令的标准 输入。
+　　要把文件名插入下令行的中央，输入：
+　　ls | xargs -t -I {} mv {} {}.old
+　　这一下令序列通过在每个名字最后添加 .old 来重定名在当前目次里的全部文件。-I 符号 见告 xargs 下令插入有｛｝（花括号）出现的 ls
+　　目次列表的每一行。假如当前目次包孕文件 chap1、chap2 和 chap3，这会布局下面的下令：
+　　mv chap1 chap1.old
+　　mv chap2 chap2.old
+　　mv chap3 chap3.old要对独立选择的文件运行下令，输入：
+　　ls | xargs -p -n 1 ar r lib.a
+　　这一下令序列允许选择文件以添加到 lib.a 库。-p 符号 见告 xargs 下令去表现每一个它布局的 ar下令并扣问 是否想运行它。输入 y
+　　来运行下令。假如不想运行这个下令按恣意其余键。
+　　会表现一些类似于下面的内容：
+　　ar r lib.a chap1 ?...
+　　ar r lib.a chap2 ?...
+　　ar r lib.a chap3 ?...
+　　
+　　要布局包孕特定命量自变量的下令并将那些自变量插入一个下令行的中央，输入：
+　　ls | xargs -n6 | xargs -I{} echo {} - some files in the directory假如当前目次包孕从 chap1 到 chap10 的文件，布局的输出将会是下列内容：
+　　chap1 chap2 chap3 chap4 chap5 chap6 - some files in the directory
+　　chap7 chap8 chap9 chap10 - some file in the directory文件
+　　/usr/bin/xargs包孕 xargs 下令。[/

@@ -1,0 +1,2 @@
+清除生产环境缓存
+app/console cache:clear —env=prod  

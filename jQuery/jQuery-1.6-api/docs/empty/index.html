@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.empty()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-removal/" title="View all posts in DOM Removal">DOM Removal</a></span>
+  
+  				</div>
+</div>
+<div id="empty1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.empty()</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述</strong>从DOM中移除所有节点的子节点。</p>
+<ul class="signatures"><li class="signature" id="empty"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.empty()</h4></li></ul>
+<div class="longdesc">
+<p>这个方法不仅移除子元素（和其他下级元素），同样移除元素里的文本。因为，根据说明，元素里德任何文本字符串都被看做是该元素的子节点。请看下面的HTML：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>我们可以移除里面的任何元素</p>
+<pre>$('.hello').empty();</pre>
+<p>结果文本 <code>Hello</code>被删除：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="hello"&gt;&lt;/div&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>如果 <code>&lt;div class="hello"&gt;</code>里面包含嵌套元素，他们也会被移走。</p>
+<p>为了避免内存泄漏，jQuery先移除子元素的数据和事件处理函数，然后移除子元素。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">移除段落中的所有子节点包括文本</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+  Hello, &lt;span&gt;Person&lt;/span&gt; &lt;a href="javascript:;"&gt;and person&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;button&gt;Call empty() on above paragraph&lt;/button&gt;
+&lt;script&gt;
+  $("button").click(function () {
+    $("p").empty();
+  });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

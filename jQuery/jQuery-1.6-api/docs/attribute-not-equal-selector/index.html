@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">Attribute Not Equal Selector [name!=value]</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/attribute-selectors/" title="View all posts in Attribute">Attribute</a></span>
+  
+  				</div>
+</div>
+<div id="attributeNotEqual1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">attributeNotEqual</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery('[attribute!=value]')</h4>
+<ul class="signatures"><li><dl class="arguments">
+<dt>attribute</dt>
+<dd>一个属性名.</dd>
+<dt>value</dt>
+<dd>一个属性值，引号是可选的</dd>
+</dl></li></ul>
+<p class="desc"><strong>描述： </strong>选择不存在指定属性，或者指定的属性值不等于给定值的元素。</p>
+<div class="longdesc"><p>这个选择器等同于 <code>:not([attr=value])</code>.</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Finds all inputs that don't have the name 'newsletter' and appends text to the span next to it.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;
+
+    &lt;input type="radio" name="newsletter" value="Hot Fuzz" /&gt;
+    &lt;span&gt;name is newsletter&lt;/span&gt;
+
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input type="radio" value="Cold Fusion" /&gt;
+    &lt;span&gt;no name&lt;/span&gt;
+
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;input type="radio" name="accept" value="Evil Plans" /&gt;
+
+    &lt;span&gt;name is accept&lt;/span&gt;
+  &lt;/div&gt;
+&lt;script&gt;$("input[name!=newsletter]").next().append("&lt;b&gt;; not newsletter&lt;/b&gt;");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

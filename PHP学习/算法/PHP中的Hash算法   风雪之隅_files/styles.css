@@ -1,0 +1,94 @@
+.subscribe_me_services .center_feed_button {
+	text-align: center;
+}
+
+.subscribe_me_services .float_feed_button {
+	float: right;
+	margin-left: 10px;
+	margin-right: 5px;
+	margin-bottom: .1em;
+}
+
+.subscribe_me_extra a {
+	display: block;
+	padding-left: 18px;
+	padding-right: 6px;
+	margin-top: .1em;
+	margin-bottom: .1em;
+	float: left;
+	background-repeat: no-repeat;
+	white-space: nowrap;
+	width: 144px;
+	line-height: 20px !important;
+	height: 20px !important;
+	overflow: hidden;
+	color: #11d !important;
+	background-image: url(../icons/icons.gif) !important;
+}
+
+.subscribe_me_extra a:hover {
+	color: #b11 !important;
+}
+
+.subscribe_me_extra a.help {
+	width: auto;
+}
+
+.subscribe_me_spacer {
+	clear: both;
+}
+
+.subscribe_me_extra {
+	position: absolute;
+	background: #fff;
+	color: #000;
+	border: solid 1px #999;
+	padding: 5px 5px;
+	margin-left: -1px;
+	width: 360px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.subscribe_me .help {
+	background-position: 0px 0px;
+}
+
+.subscribe_me .rss_feed {
+	background-position: 0px -20px;
+}
+
+.subscribe_me .bloglines {
+	background-position: 0px -40px;
+}
+
+.subscribe_me .google {
+	background-position: 0px -60px;
+}
+
+.subscribe_me .live {
+	background-position: 0px -80px;
+}
+
+.subscribe_me .netvibes {
+	background-position: 0px -100px;
+}
+
+.subscribe_me .newsgator {
+	background-position: 0px -120px;
+}
+
+.subscribe_me .yahoo {
+	background-position: 0px -140px;
+}
+
+.subscribe_me .media_container {
+	clear: none;
+}
+
+.subscribe_me .media {
+	text-align: left;
+	margin-left: 0px;
+}

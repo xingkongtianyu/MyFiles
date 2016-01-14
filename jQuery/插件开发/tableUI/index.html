@@ -1,0 +1,230 @@
+<!DOCTYPE html public "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Keywords" content="YES!B/S!,web标准,杨正祎,博客园,实例代码" />
+	<meta name="Description" content="这是一个简单YES!B/S!文章示例页面,来自杨正祎的博客,http://justinyoung.cnblogs.com/" />
+	<title>通用后台框架</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.tableui.js"></script>
+	<script type="text/javascript">
+	$().ready(function(){
+		$(".table_solid").tableUI();
+	})
+	</script>
+</head>
+<body>
+
+<div id="wrapper">
+	<div id="header">
+		<div id="top_info">
+		<h1 class="fl">竹马美女管理系统后台</h1>
+		<div class="fr">
+			<strong class="red" id="import_notice">重要信息通知区域</strong>
+			<span>欢迎你，<span>都市竹马</span> | <a href="http://justinyoung.cnblogs.com/" title="">退出</a></span>
+		</div>
+		<div class="clear"></div>
+		</div><!--end: top_info -->
+
+		<div id="menu">
+			<div class="tabArea fullwidth">
+				<ul class="tabList">
+					<li><a href="http://justinyoung.cnblogs.com/">后台首页</a></li>
+					<li><a href="http://justinyoung.cnblogs.com/">情人管理页</a></li>
+					<li><a class="current" href="http://justinyoung.cnblogs.com/">女友管理页</a></li>
+					<li><a href="http://justinyoung.cnblogs.com/">老婆管理页</a></li>
+				</ul>
+			<div class="clear"></div>
+			</div>
+			<div id="menu_level2"> 
+				<ul id="menu_level2_list">
+					<li><a class="current" href="http://justinyoung.cnblogs.com/">女友三围管理</a></li>
+					<li><a href="http://justinyoung.cnblogs.com/">女友安全期管理</a></li>
+					<li><a href="http://justinyoung.cnblogs.com/">女友分手费管理</a></li>
+				</ul>			
+			</div>
+		</div><!--end: menu -->
+	</div><!--end: header -->
+
+	<div id="container">
+		<div class="block"> 
+			<div class="fl"> 
+				<button>新建女友</button>
+			</div>
+			<div class="fr" id="search"> 
+			<input type="text" id="txtSearch" />
+			<input type="button" id="btnSearch" value="搜索" />
+			</div>
+			<div class="clear"></div>
+		</div><!--end: block -->
+
+		<div class="block"> 
+		<table class="fullwidth table_solid">
+		<tr>
+			<th>女友姓名</th>
+			<th width="185px" >女友三围</th>
+			<th width="85px" class="txt_c">安全期</th>
+			<th width="185px">标签</th>
+			<th width="175px">操作</th>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+		<tr>
+			<td>女友某某某<a href="http://justinyoung.cnblogs.com/" title="查看详情"><img src="images/btn_detail.gif" alt="查看详情"   align="absmiddle"/></a></td>
+			<td class="txt_c bold"><span class="color1">98</span>-<span class="color2">68</span>-<span class="color3">98</span> <a href="http://justinyoung.cnblogs.com/" title="查看报表"><img src="images/btn_report.gif" alt="查看报表"  align="absmiddle" /></a></td>
+			<td class="txt_c">每月3号—10号</td>
+			<td><a href="http://justinyoung.cnblogs.com/">成熟型</a>,<a href="http://justinyoung.cnblogs.com/">白皙皮肤</a>,<a href="http://justinyoung.cnblogs.com/">皮鞭癖</a></td>
+			<td>
+				<a class="fl btn1" href="http://justinyoung.cnblogs.com/">预订房间</a>
+				<a class="fl btn2" href="http://justinyoung.cnblogs.com/">编辑</a>
+				<a class="fr btn3" href="http://justinyoung.cnblogs.com/">&nbsp;</a>
+			</td>
+		</tr>
+
+		</table>
+		</div><!--end: block -->
+
+		<div class="block"> 
+		<div class="fl"> 
+		<button >显示全部记录</button><span class="gray">（默认显示最新操作的12条记录。共：999条记录）</span>
+		</div>
+		<div class="fr"> 
+		<div class="page_list"><span class="current">1</span><a href="/new/page2/">2</a><a href="/new/page3/">3</a><a href="/new/page4/">4</a><a href="/new/page5/">5</a><a href="/new/page6/">6</a><a href="/new/page7/">7</a><a href="/new/page8/">8</a><a href="/new/page9/">9</a><a href="/new/page10/">10</a><a href="/new/page11/">11</a><a href="/new/page12/">12</a>...<a href="/new/page479/">479</a><a href="/new/page2/"> Next  &gt;</a></div>
+
+		</div>
+		<div class="clear"></div>
+		</div>
+
+
+
+	</div><!--end: container -->
+
+	<div id="footer">
+		<div id="friendLink">
+		</div><!--end: friendLink -->
+	</div><!--end: footer -->
+</div><!--end: wrapper -->
+
+</body>
+</html>

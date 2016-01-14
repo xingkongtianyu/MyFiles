@@ -1,0 +1,37 @@
+/*********************************
+ *1.统计谁在线。
+ *2.后台显示有多少个客户在线 并且在什么页面关闭了网站
+ *3.2009-10-15
+ ********************************/
+function whos_online()
+{
+//    $full_name;
+    if(isset($_SESSION["user_names"]))
+    {
+        $wo_full_name=$_SESSION["user_names"];
+    }else
+    {
+      $wo_full_name="Guest";
+    }
+    $wo_ip_address = getenv('REMOTE_ADDR'); //获取ip地址
+    $wo_last_page_url = getenv('REQUEST_URI'); //获得操作路径
+    $current_time = time();
+    $xx_mins_ago = ($current_time - 900); //获得15分钟前的日期
+    $sessionID=getsession();
+    $sql_delete_whos_online="delete from whos_online where time_last_click<'$xx_mins_ago'";
+    mysql_query($sql_delete_whos_online) or die("whos_online delete error"); //删除900秒前的数据
+    $sql_count_whos_online="select * from whos_online where session_id='$sessionID'";
+    $result_count_whos_online=mysql_query($sql_count_whos_online) or die("whos_online select error");
+    if($result_count_whos_online and mysql_num_rows($result_count_whos_online)>0)
+    {
+        $sql_update_whos_online="update whos_online set full_name='$wo_full_name',ip_address='$wo_ip_address',time_last_click='$current_time',time_last_url='$wo_last_page_url' where session_id='$sessionID'";
+        mysql_query($sql_update_whos_online) or die("whos_online update error");
+    }
+    else//跟新数据
+    {
+        $sql_insert_whos_online="insert into whos_online(full_name,session_id,ip_address,time_entry,time_last_click,time_last_url)" .
+                " values('$wo_full_name','$sessionID','$wo_ip_address','$current_time','$current_time','$wo_last_page_url')";
+        mysql_query($sql_insert_whos_online) or die("whos_online insert error");
+    }
+}
+echo whos_online(); //判断谁在线

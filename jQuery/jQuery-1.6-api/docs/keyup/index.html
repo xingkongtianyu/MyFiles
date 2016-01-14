@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.keyup()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/keyboard-events/" title="View all posts in Keyboard Events">Keyboard Events</a></span>
+  
+  				</div>
+</div>
+<div id="keyup1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.keyup( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "keyup" 事件绑定一个处理函数，或者触发元素上的 "keyup" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="keyup-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.keyup( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="keyup-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.keyup( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="keyup"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.keyup()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('keyup', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('keyup')</code> 的快捷方式。</p>
+<p>当用户在一个元素上释放按键的时候，<code>keydown</code>事件就会发送给这个元素。它可以绑定到任何元素，但该事件只是发送到具有焦点的元素上。在不同浏览器之间聚焦元素可以有很多，但是表单元素总是能获取焦点，所以对于此事件类型表单元素是最合适的。</p>
+<p>举个例子，看下面的代码</p>
+<pre>&lt;form&gt;
+  &lt;input id="target" type="text" value="Hello there" /&gt;
+&lt;/form&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p>这个事件处理程序可以绑定到input field：</p>
+<pre>$('#target').keyup(function() {
+  alert('Handler for .keyup() called.');
+});
+</pre>
+<p>现在当光标插入点位于表单域并一个键被按下并且释放时，警告将被显示：</p>
+<p><span class="output">Handler for .keyup() called.</span></p>
+<p>当不同的元素被点击时我们也可以触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').keyup();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span>同样警报显示。</p>
+<p>如果需要任何按键被捕获（例如，要实现网页全局上的快捷键），附加此事件到<code>document</code>对象是非常有用的。由于事件冒泡，所有的按键将使他们DOM方式注册到<code>document</code>对象上，除非明确停止。</p>
+<p>要确定哪个键被按下，我们可以检测传递给处理函数的<a   target="_blank" href="http://api.jquery.com/category/events/event-object/">event 对象</a>。而浏览器使用不同的属性来存储这些信息，jQuery的规范了<code>.which</code>属性，以便我们能够可靠地使用它来检索关键代码。此代码对应一个键盘上的按键，包括想箭头这种特殊键的代码，为捕获实际输入文本， <code>.keypress()</code>可能是一个更好的选择。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Show the event object for the keyup handler when a key is released in the input.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+fieldset { margin-bottom: 1em; }
+input { display: block; margin-bottom: .25em; }
+#print-output {
+  width: 100%;
+}
+.print-output-line {
+  white-space: pre;
+  padding: 5px;
+  font-family: monaco, monospace;
+  font-size: .7em;
+}
+
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;label for="target"&gt;Type Something:&lt;/label&gt;
+    &lt;input id="target" type="text" /&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;button id="other"&gt;
+  Trigger the handler
+&lt;/button&gt;
+&lt;script type="text/javascript" src="/scripts/events.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+var xTriggered = 0;
+$('#target').keyup(function(event) {
+  if (event.keyCode == '13') {
+     event.preventDefault();
+   }
+   xTriggered++;
+   var msg = 'Handler for .keyup() called ' + xTriggered + ' time(s).';
+  $.print(msg, 'html');
+  $.print(event);
+});
+
+$('#other').click(function() {
+  $('#target').keyup();
+});&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="460"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

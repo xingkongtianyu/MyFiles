@@ -1,0 +1,54 @@
+传统的23种模式(没有区分简单工厂与抽象工厂)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925933.html php设计模式 Interpreter(解释器模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925932.html php设计模式 Factory(工厂模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925929.html php设计模式 Facade(外观模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925924.html php设计模式 Decorator(装饰模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925922.html php设计模式 Builder(建造者模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925921.html php设计模式 Adapter(适配器模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/17/2083241.html php设计模式 Template (模板模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/16/2082252.html php设计模式 Command(命令模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/15/2081789.html php设计模式 Singleton(单例模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/14/2080208.html php设计模式 Observer(观察者模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/11/2078046.html php设计模式 Strategy(策略模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/27/2091681.html php设计模式 Visitor (访问者模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/26/2090959.html php设计模式 Memento (备忘录模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/25/2090439.html php设计模式 Prototype (原型模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/24/2089406.html php设计模式 Mediator (中介者模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/23/2088502.html php设计模式 FlyWeight (享元模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/22/2087696.html php设计模式 Chain Of Responsibility (职责链模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/21/2086439.html php设计模式 Bridge (桥接模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/21/2085605.html php设计模式 Proxy (代理模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/21/2085604.html php设计模式 State (状态模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/20/2085536.html php设计模式 Composite (组合模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/06/29/2093796.html php设计模式 Interator (迭代器模式)
+
+
+下面来自<<php设计模式>>
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925923.html php设计模式 DAO(数据访问对象模式)
+
+http://www.cnblogs.com/bluefrog/archive/2011/01/04/1925926.html php设计模式 Delegation(委托模式)
+
+ 

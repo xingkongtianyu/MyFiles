@@ -1,0 +1,56 @@
+
+PHP设计模式——策略模式
+2010年12月3日  2,113 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——策略模式
+
+策略模式在设计模式中非常重要，可能是现代面向对象设计中最重要的模式。
+它用来创建可插入，可替换，可重用的组件。
+为了完整简单的说明策略模式，下面的代码演示一个非常简单的例子。
+
+代码演示：例子的实现是实现一个获取HTML代码的类，
+类的结构，分为二部分，一部分是获取HTML，一部分是获取相关内容，
+
+	
+
+<?php
+class HtmlDom{
+	private $strObj;//内容对象
+	public function __construct($strObj){
+		$this->strObj=$strObj;
+	}
+	public function getHtml(){
+		return "<html><body>".$this->strObj->getContent()."</body></html>";
+	}
+}
+ 
+interface HtmlContent {//内容对象接口
+	public function getContent();
+}
+ 
+class Hellworld implements HtmlContent{
+	private $world;//内容
+	public function __construct($world){
+		$this->world=$world;
+	}
+	public function getContent(){
+		return "Hello ".$this->world."!";
+	}
+}
+ 
+$html=new HtmlDom(new Hellworld("www.chhua.com"));
+echo $html->getHtml();//输出 www.chhua.com
+ 
+?>
+
+以上是策略模式的一个小小的实例，虽然这个例子微不足道，但这种设计模式在更为复杂的情况下支非常有用
+
+ 优点：
+　1、 简化了单元测试，因为每个算法都有自己的类，可以通过自己的接口单独测试。
+　2、 避免程序中使用多重条件转移语句，使系统更灵活，并易于扩展。
+  3、 遵守大部分GRASP原则和常用设计原则，高内聚、低偶合。
+
+ 缺点：
+　1、 因为每个具体策略类都会产生一个新类，所以会增加系统需要维护的类的数量。
+  2、 在基本的策略模式中，选择所用具体实现的职责由客户端对象承担，并转给策略模式的Context对象。
+ （这本身没有解除客户端需要选择判断的压力，而策略模式与简单工厂模式结合后，选择具体实现的职责也可以由Context来承担，这就最大化的减轻了客户端的压力。）

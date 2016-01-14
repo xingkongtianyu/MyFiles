@@ -1,0 +1,332 @@
+* {word-wrap: break-word;}
+p {
+	padding: 0;
+}
+
+
+
+.Bold {
+	font-weight: bold;
+}
+
+.Title {
+	font-weight: bold;
+	font-size: 18px;
+	color: #c30;
+}
+
+.codeHead {
+	font-weight: bold;
+	font-size: 12px;
+	padding: 5px;
+	padding-left: 15px;
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+}
+
+.code {
+	border: 1px solid #ddd;
+	width: 98%;
+	overflow: auto;
+	margin: 0 0 1.1em;
+	padding: 0;
+	word-break: break-all;
+	Letter-spacing: 0.1px;
+	background: #fff;
+	font: 12px 'Consolas', Monospace;
+}
+
+.codeheads {
+	background:none repeat scroll 0 0 #F2F2F2;
+	border-bottom:1px solid #DDDDDD;
+	font-size:12px;
+	line-height:25px;
+	font-weight:bold;
+	height:25px;
+	padding: 0 ;
+	width: 98%;
+}
+.codeheads p{
+    padding-left:30px;
+}
+
+.codeText {
+	border: 1px solid #ddd;
+	width: 98%;
+	overflow: auto;
+	margin: 0 0 1.1em;
+	padding: 0;
+	word-break: break-all;
+	Letter-spacing: 0.1px;
+	background: #fff;
+	font: 12px 'Consolas', Monospace;
+}
+
+.codeText ol {
+	margin: 0 1px 0 1px;
+	color: #5C5C5C;
+	background:none repeat scroll 0 0 #FFFFFF;
+	background: #fff;
+	Line-height:1.3;
+}
+
+.codeText ol li {
+	padding-left: 10px;
+	background: #FFF;
+}
+
+.codeText ol li.alt {
+	background: #FFF;
+}
+
+.codeText ol li span {
+	color: #000;
+}
+
+.codeText .comment,.codeText .comments {
+	color: #008200;
+}
+
+.codeText .string {
+	color: blue;
+}
+
+.codeText .keyword {
+	color: #069;
+	font-weight: bold;
+}
+
+.codeText .preprocessor {
+	color: gray;
+}
+
+.dp-c .comment {
+	color: green;
+}
+
+.dp-c .string {
+	color: blue;
+}
+
+.dp-c .preprocessor {
+	color: gray;
+}
+
+.dp-c .keyword {
+	color: blue;
+}
+
+.dp-c .vars {
+	color: #d00;
+}
+
+.dp-vb .comment {
+	color: green;
+}
+
+.dp-vb .string {
+	color: blue;
+}
+
+.dp-vb .preprocessor {
+	color: gray;
+}
+
+.dp-vb .keyword {
+	color: blue;
+}
+
+.dp-sql .comment {
+	color: green;
+}
+
+.dp-sql .string {
+	color: red;
+}
+
+.dp-sql .keyword {
+	color: #7f0055;
+}
+
+.dp-sql .func {
+	color: #ff1493;
+}
+
+.dp-sql .op {
+	color: blue;
+}
+
+.dp-xml .cdata {
+	color: #ff1493;
+}
+
+.dp-xml .comments {
+	color: green;
+}
+
+.dp-xml .tag {
+	font-weight: bold;
+	color: blue;
+}
+
+.dp-xml .tag-name {
+	color: #7f0055;
+	font-weight: bold;
+}
+
+.dp-xml .attribute {
+	color: red;
+}
+
+.dp-xml .attribute-value {
+	color: blue;
+}
+
+.dp-delphi .comment {
+	color: #008200;
+	font-style: italic;
+}
+
+.dp-delphi .string {
+	color: blue;
+}
+
+.dp-delphi .number {
+	color: blue;
+}
+
+.dp-delphi .directive {
+	color: #008284;
+}
+
+.dp-delphi .keyword {
+	font-weight: bold;
+	color: navy;
+}
+
+.dp-delphi .vars {
+	color: #000;
+}
+
+.dp-py .comment {
+	color: green;
+}
+
+.dp-py .string {
+	color: red;
+}
+
+.dp-py .docstring {
+	color: green;
+}
+
+.dp-py .keyword {
+	color: blue;
+	font-weight: bold;
+}
+
+.dp-py .builtins {
+	color: #ff1493;
+}
+
+.dp-py .magicmethods {
+	color: #808080;
+}
+
+.dp-py .exceptions {
+	color: brown;
+}
+
+.dp-py .types {
+	color: brown;
+	font-style: italic;
+}
+
+.dp-py .commonlibs {
+	color: #8A2BE2;
+	font-style: italic;
+}
+
+.dp-rb .comment {
+	color: #c00;
+}
+
+.dp-rb .string {
+	color: #f0c;
+}
+
+.dp-rb .symbol {
+	color: #02b902;
+}
+
+.dp-rb .keyword {
+	color: #069;
+}
+
+.dp-rb .variable {
+	color: #6cf;
+}
+
+.dp-css .comment {
+	color: green;
+}
+
+.dp-css .string {
+	color: red;
+}
+
+.dp-css .keyword {
+	color: blue;
+}
+
+.dp-css .colors {
+	color: darkred;
+}
+
+.dp-css .vars {
+	color: #d00;
+}
+
+.dp-j .comment {
+	color: #3f7f5f;
+}
+
+.dp-j .string {
+	color: #2a00ff;
+}
+
+.dp-j .keyword {
+	color: #7f0055;
+	font-weight: bold;
+}
+
+.dp-j .annotation {
+	color: #646464;
+}
+
+.dp-j .number {
+	color: #C00000;
+}
+
+.dp-cpp .comment {
+	color: #e00;
+}
+
+.dp-cpp .string {
+	color: red;
+}
+
+.dp-cpp .preprocessor {
+	color: #CD00CD;
+	font-weight: bold;
+}
+
+.dp-cpp .keyword {
+	color: #5697D9;
+	font-weight: bold;
+}
+
+.dp-cpp .datatypes {
+	color: #2E8B57;
+	font-weight: bold;
+}

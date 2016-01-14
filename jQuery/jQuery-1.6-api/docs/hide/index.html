@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.hide()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/basics/" title="View all posts in Basics">Basics</a></span>
+  
+  				</div>
+</div>
+<div id="hide1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.hide(  )</span> <span class="returns">Returns: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>Description: </strong>隐藏匹配的元素。</p>
+<ul class="signatures">
+<li class="signature" id="hide"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.hide()</h4></li>
+<li class="signature" id="hide-duration-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.hide( duration, [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="hide-duration-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.hide( [ duration ], [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>easing</strong>一个字符串，指示该函数使用缓和的过渡。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果没有参数，<code>.hide()</code>方法是最简单的方法来隐藏一个元素：</p>
+<pre>$('.target').hide();
+</pre>
+<p>匹配的元素将被立即隐藏，没有动画。这大致相当于调用<code>.css('display', 'none')</code>，但<code>display</code>属性值保存在jQuery的数据缓存中，所以<code>display</code>可以方便以后可以恢复到其初始值。如果一个元素的<code>display</code>属性值为<code>inline</code>，然后是隐藏和显示，这个元素将再次显示<code>inline</code>。</p>
+<p>当提供一个持续时间参数，<code>.hide()</code>成为一个动画方法。<code>.hide()</code>方法将为匹配元素的宽度，高度，以及不透明度，同时进行动画。一旦透明度达到0，<code>display</code>样式属性将被设置为<code>none</code>，这个元素将不再在页面中影响布局。</p>
+<p>持续时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。</p>
+<p>如果提供回调函数参数，回调函数会在动画完成的时候调用。这个对于将不同的动画串联在一起按顺序排列是非常有用的。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是每执行一次回调匹配的元素，而不是作为一个整体的动画一次。
+</p>
+<p>我们可以给任何元素做动画，比如一个简单的图片：</p>
+<pre>&lt;div id="clickme"&gt;
+  Click here
+&lt;/div&gt;
+&lt;img id="book" src="book.png" alt="" width="100" height="123" /&gt;
+With the element initially shown, we can hide it slowly:
+$('#clickme').click(function() {
+  $('#book').hide('slow', function() {
+    alert('Animation complete.');
+  });
+});</pre>
+<p class="image four-across"> 
+  <img src="/images/0042_06_05.png" alt=""><img src="/images/0042_06_06.png" alt=""><img src="/images/0042_06_07.png" alt=""><img src="/images/0042_06_08.png" alt=""></p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>举例： <span class="desc">点击链接隐藏所有段落。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+  &lt;a href="#"&gt;Click to hide me too&lt;/a&gt;
+  &lt;p&gt;Here is another paragraph&lt;/p&gt;
+&lt;script&gt;
+
+    $("p").hide();
+    $("a").click(function () {
+      $(this).hide();
+      return true;
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>举例： <span class="desc">缓慢的隐藏所有显示的段落，600毫秒内完成的动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:#dad; font-weight:bold; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Hide 'em&lt;/button&gt;
+
+  &lt;p&gt;Hiya&lt;/p&gt;
+  &lt;p&gt;Such interesting text, eh?&lt;/p&gt;
+&lt;script&gt;
+    $("button").click(function () {
+      $("p").hide("slow");
+    });    
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>举例： <span class="desc">Animates all spans (words in this case) to hide fastly, completing each animation within 200 milliseconds. Once each animation is done, it starts the next one.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { background:#def3ca; padding:3px; float:left; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="hidr"&gt;Hide&lt;/button&gt;
+  &lt;button id="showr"&gt;Show&lt;/button&gt;
+  &lt;div&gt;
+
+    &lt;span&gt;Once&lt;/span&gt; &lt;span&gt;upon&lt;/span&gt; &lt;span&gt;a&lt;/span&gt; 
+    &lt;span&gt;time&lt;/span&gt; &lt;span&gt;there&lt;/span&gt; &lt;span&gt;were&lt;/span&gt; 
+    &lt;span&gt;three&lt;/span&gt; &lt;span&gt;programmers...&lt;/span&gt;
+
+  &lt;/div&gt;
+&lt;script&gt;
+    $("#hidr").click(function () {
+      $("span:last-child").hide("fast", function () {
+        // use callee so don't have to name the function
+        $(this).prev().hide("fast", arguments.callee); 
+      });
+    });
+    $("#showr").click(function () {
+      $("span").show(2000);
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Hides the divs when clicked over 2 seconds, then removes the div element when its hidden.  Try clicking on more than one box at a time.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { background:#ece023; width:30px; 
+        height:40px; margin:2px; float:left; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+    for (var i = 0; i &lt; 5; i++) {
+      $("&lt;div&gt;").appendTo(document.body);
+    }
+    $("div").click(function () {
+      $(this).hide(2000, function () {
+        $(this).remove();
+      });
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

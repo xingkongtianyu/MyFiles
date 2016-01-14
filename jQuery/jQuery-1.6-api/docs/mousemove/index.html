@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.mousemove()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+<div id="mousemove1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.mousemove( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "mousemove" 事件绑定一个处理函数，或者触发元素上的 "mousemove" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="mousemove-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.mousemove( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="mousemove-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.mousemove( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="mousemove"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.mousemove()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('mouseleave', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('mouseleave')</code> 的快捷方式。</p>
+<p>当鼠标指针在元素内移动时，<code>mousemove</code>事件就会被发送到这个元素，任何HTML元素都可以接受此事件。</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;div id="target"&gt;
+  Move here
+&lt;/div&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;
+&lt;div id="log"&gt;&lt;/div&gt;</pre>
+<p class="image"><img src="/images/0042_05_10.png" alt=""></p>
+<p>这个事件可以绑定到目标元素:</p>
+<pre>$('#target').mousemove(function(event) {
+  var msg = 'Handler for .mousemove() called at ' + event.pageX + ', ' + event.pageY;
+  $('#log').append('&lt;div&gt; + msg + '&lt;/div&gt;');
+});</pre>
+<p>现在当鼠标指针在目标元素中移动时，以下信息将被添加到&lt;div id="log"&gt;：</p>
+<p>
+<span class="output">Handler for .mousemove() called at (399, 48)</span><br><span class="output">Handler for .mousemove() called at (398, 46)</span><br><span class="output">Handler for .mousemove() called at (397, 44)</span><br><span class="output">Handler for .mousemove() called at (396, 42)</span><br></p>
+<p>当不同的元素被点击时我们也可以触发这个事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').mousemove();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span>同样添加这些信息：</p>
+<p><span class="output">Handler for .mousemove() called at (undefined, undefined)</span></p>
+<p>当足迹鼠标移动，我们通常需要知道实际的鼠标指针的位置。事件对象传递给处理器包含了一些有关鼠标的坐标。比如<code>.clientX</code>, <code>.offsetX</code>, 和 <code>.pageX</code>属性是有效的，但对他们的支持不同浏览器。幸运的是，jQuery的规范了<code>.pageX</code>和<code>.pageY</code>属性，以便他们能够在所有浏览器上使用。这些属性提供了鼠标指针位置相对于页面的左上角的X和Y坐标，例如上面例子的输出。</p>
+<p>我们必须记住， <code>mousemove</code>事件是当鼠标指针移动时触发的，即使是一个像素。这意味着数百个事件在短时间内产生。如果处理器做任何重大的处理，或者如果该事件存在多个处理函数，这可能造成浏览器的严重的性能问题。因此，优化<code>mousemove</code>处理程序尽可能，这一点很重要，和当他们不再需要时尽快解除绑定。</p>
+<p>一个常见的模式是在<code>mousedown</code>处理器内部绑定<code>mousemove</code>处理器，并在一个相应<code>mouseup</code>处理器取消绑定它。如果实施这一系列事件，记得<code>mouseup</code>事件可能会被发送到不同的HTML元素比<code>mousemove</code>事件。考虑到这一点，在<code>mouseup</code>处理程序通常应绑定到一个在DOM树层级高的元素上，比如<code>&lt;body&gt;</code>。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Show the mouse coordinates when the mouse is moved over the yellow div.  Coordinates are relative to the window, which in this case is the iframe.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { width:220px; height:170px; margin;10px; margin-right:50px;
+        background:yellow; border:2px groove; float:right; }
+  p { margin:0; margin-left:10px; color:red; width:220px;
+      height:120px; padding-top:70px;
+      float:left; font-size:14px; }
+  span { display:block; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;   
+    Try scrolling too.
+    &lt;span&gt;Move the mouse over the div.&lt;/span&gt;
+    &lt;span&gt;&amp;nbsp;&lt;/span&gt;
+  &lt;/p&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+    $("div").mousemove(function(e){
+      var pageCoords = "( " + e.pageX + ", " + e.pageY + " )";
+      var clientCoords = "( " + e.clientX + ", " + e.clientY + " )";
+      $("span:first").text("( e.pageX, e.pageY ) - " + pageCoords);
+      $("span:last").text("( e.clientX, e.clientY ) - " + clientCoords);
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo" rel="300"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

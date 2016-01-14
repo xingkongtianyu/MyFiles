@@ -1,0 +1,991 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0054)http://blog.csdn.net/pkueecser/article/details/9532387 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Mysql性能优化 - GrantGu@PKU专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta  name="description"  content="MySQL性能优化的最佳20+条经验http://database.ctocio.com.cn/460/12182460.shtml 今天，数据库的操作越来越成为整个应用的性能瓶颈了，这点对于Web应用尤其明显。关于数据库的性能，这并不只是DBA才需要担心的事，而这更是我们程序员需要去关注的事情。当我们去设计数据库表结构，对操作数据库时(尤其是查表时的SQL语句)，我们都需要注意数据操">
+    <script  type="text/javascript"  async=""  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/jquery.js"  type="text/javascript"></script>
+    <script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        
+       
+        <link  rel="stylesheet"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/index.css">
+        
+
+    <link  rel="Stylesheet"  type="text/css"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link  id="RSSLink"  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://blog.csdn.net/scut1135/rss/list">
+    <link  rel="shortcut icon"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link  type="text/css"  rel="stylesheet"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+<link  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  type="text/javascript"  charset="utf-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/main.js"></script><script  type="text/javascript"  charset="utf-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/main(1).js"></script><link  rel="stylesheet"  type="text/css"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/style(1).css"><script  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/logger.js"></script></head>
+<body><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  class="goWebsite">百度分享</a></p></div></div></div>
+    
+   
+      
+    <script  id="toolbar-tpl-scriptId"  fixed="true"  prod="blog"  skin="black"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/html.js"  type="text/javascript"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://blog.csdn.net/"  target="_blank"  class="img blog-icon"></a></div>          <div  class="pull-right login-wrap ">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search?ref=toolbar"  method="get"  target="_blank">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display:none"  class="number"></div>                <div  style="display:none"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note"  style="display: none;">                      <div  class="box"><div  class="notifications notice_list_con curr">  <a  href="javascript:void 0"  class="close1"></a>  <div  class="menu_title">    <span  class="title"><a  href="http://notify.csdn.net/"  target="_blank"  class="go_all">查看所有通知</a></span>  </div>  <div  class="loading"></div>  <div  class="empty">暂没有新通知</div>  <div  class="notice_content"></div></div><div  class="notifications detail_con"  style="display: none">  <div  class="menu_title">    <span  class="title">      <a  class="go_back"  href="javascript:void 0;">返回通知列表</a>      <a  class="notifications_page_none nextnote"  href="javascript:void 0;">下一条</a>      <a  class="notifications_page prvnote"  href="javascript:void 0;">上一条</a>    </span>  </div>  <div  class="notice_content"></div></div><div  class="error"></div></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="https://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname">zc80330582</a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="http://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+    <div  id="container">
+        <div  id="header">
+    <div  class="header">
+        <div  id="blog_title">
+            <h1>
+                <a  href="http://blog.csdn.net/pkueecser">GrantGu@PKU专栏</a></h1>
+            <h2></h2>
+            <div  class="clear">
+            </div>
+        </div>
+        <div  class="clear">
+        </div>
+    </div>
+</div>
+<div  id="navigator">
+    <div  class="navigator_bg">
+    </div>
+    <div  class="navigator">
+        <ul>
+                <li  id="btnContents"><a  href="http://blog.csdn.net/pkueecser?viewmode=contents"><span >
+                    <img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li  id="btnView"><a  href="http://blog.csdn.net/pkueecser?viewmode=list"><span >
+                    <img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li  id="btnRss"><a  href="http://blog.csdn.net/pkueecser/rss/list"><span >
+                    <img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script  type="text/javascript">
+    var username = "scut1135";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/pkueecser";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "zc80330582";
+</script>
+
+        <div  id="body">
+            <div  id="main">
+                <div  class="main">
+<div  class="notice tracking-ad"  data-mod="popu_3"> 
+
+
+<a  href="http://bbs.csdn.net/topics/390693540"  target="_blank"><font  color="red">2014年1月微软MVP当选名单揭晓！
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<a  href="http://blog.csdn.net/blogdevteam/article/details/17356319"  target="_blank">
+<font  color="red">“我的2013”年度征文获奖名单已公布
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a  href="http://www.csdn.net/article/2014-01-22/2818223"  target="_blank">
+<font  color="red">专访宋海涛：我们在做一款比Google Glass更酷的设备 </font></a>
+
+
+</div>                    <link  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/comment1.css"  type="text/css"  rel="stylesheet">
+<link  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/style1.css"  type="text/css"  rel="stylesheet">
+<div  id="article_details"  class="details">
+    <div  class="article_title">
+    <span  class="ico ico_type_Original"></span>
+    <h3>
+        <span  class="link_title"><a  href="http://blog.csdn.net/pkueecser/article/details/9532387">
+        Mysql性能优化
+        </a></span>
+    </h3>
+</div>
+
+    <div  class="article_manage">
+        <span  class="link_categories">
+        分类：
+            <a  href="http://blog.csdn.net/scut1135/article/category/762263">网站设计</a> 
+        </span>
+    <span  class="link_postdate">2013-07-27 21:36</span>
+    <span  class="link_view"  title="阅读次数">168人阅读</span>
+    <span  class="link_comments"  title="评论次数"><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#comments" >评论</a>(0)</span>
+    <span  class="link_collect"><a  href="javascript:void(0);"   title="收藏">收藏</a></span>
+    <span  class="link_report"><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#report"   title="举报">举报</a></span>
+    
+</div>
+
+    
+<div  id="article_content"  class="article_content">
+
+<p>&nbsp;</p>
+<p>MySQL性能优化的最佳20+条经验</p>
+<p><a  target="_blank"  href="http://database.ctocio.com.cn/460/12182460.shtml">http://database.ctocio.com.cn/460/12182460.shtml</a></p>
+<p>&nbsp;</p>
+<p>今天，数据库的操作越来越成为整个应用的性能瓶颈了，这点对于Web应用尤其明显。关于数据库的性能，这并不只是DBA才需要担心的事，而这更是我们程序员需要去关注的事情。当我们去设计数据库表结构，对操作数据库时(尤其是查表时的SQL语句)，我们都需要注意数据操作的性能。这里，我们不会讲过多的SQL语句的优化，而只是针对MySQL这一Web应用最多的数据库。希望下面的这些优化技巧对你有用。</p>
+<p>　　<strong>1. 为查询缓存优化你的查询</strong></p>
+<p>　　大多数的MySQL服务器都开启了查询缓存。这是提高性最有效的方法之一，而且这是被MySQL的数据库引擎处理的。当有很多相同的查询被执行了多次的时候，这些查询结果会被放到一个缓存中，这样，后续的相同的查询就不用操作表而直接访问缓存结果了。</p>
+<p>　　这里最主要的问题是，对于程序员来说，这个事情是很容易被忽略的。因为，我们某些查询语句会让MySQL不使用缓存。请看下面的示例：</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 1 // 查询缓存不开启 <br>
+　　2 $r = mysql_query("SELECT username FROM user WHERE signup_date &gt;= CURDATE()");<br>
+　　3 <br>
+　　4 // 开启查询缓存 <br>
+　　5 $today = date("Y-m-d"); <br>
+　　6 $r = mysql_query("SELECT username FROM user WHERE signup_date &gt;= "$today"");</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　　上面两条SQL语句的差别就是 CURDATE() ，MySQL的查询缓存对这个函数不起作用。所以，像 NOW() 和 RAND() 或是其它的诸如此类的SQL函数都不会开启查询缓存，因为这些函数的返回是会不定的易变的。所以，你所需要的就是用一个变量来代替MySQL的函数，从而开启缓存。</p>
+<p>　　<strong>2. EXPLAIN 你的 SELECT 查询</strong></p>
+<p>　　使用 EXPLAIN 关键字可以让你知道MySQL是如何处理你的SQL语句的。这可以帮你分析你的查询语句或是表结构的性能瓶颈。</p>
+<p>　　EXPLAIN 的查询结果还会告诉你你的索引主键被如何利用的，你的数据表是如何被搜索和排序的……等等，等等。</p>
+<p>挑一个你的SELECT语句(推荐挑选那个最复杂的，有多表联接的)，把关键字EXPLAIN加到前面。你可以使用phpmyadmin来做这个事。然后，你会看到一张表格。下面的这个示例中，我们忘记加上了group_id索引，并且有表联接：</p>
+<p  align="center"><img  width="500"  height="224"  alt="MySQL性能优化的最佳20+条经验"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/li4LchX0Qei0o.png"  style="width:auto"></p>
+<p>　　当我们为 group_id 字段加上索引后：</p>
+<p  align="center"><img  width="500"  height="262"  alt="MySQL性能优化的最佳20+条经验"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/liDK2jjfrOT02.png"  style="width:auto"></p>
+<p>　　我们可以看到，前一个结果显示搜索了 7883 行，而后一个只是搜索了两个表的 9 和 16 行。查看rows列可以让我们找到潜在的性能问题。</p>
+<p><strong>3. 当只要一行数据时使用 LIMIT 1</strong></p>
+<p>　　当你查询表的有些时候，你已经知道结果只会有一条结果，但因为你可能需要去fetch游标，或是你也许会去检查返回的记录数。</p>
+<p>　　在这种情况下，加上 LIMIT 1 可以增加性能。这样一样，MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查少下一条符合记录的数据。</p>
+<p>　　下面的示例，只是为了找一下是否有“中国”的用户，很明显，后面的会比前面的更有效率。(请注意，第一条中是Select *，第二条是Select 1)</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 01 // 没有效率的： <br>
+　　02 $r = mysql_query("SELECT * FROM user WHERE country = "China""); <br>
+　　03 if (mysql_num_rows($r) &gt; 0) { <br>
+　　04 // ... <br>
+　　05 } <br>
+　　06 <br>
+　　07 // 有效率的： <br>
+　　08 $r = mysql_query("SELECT 1 FROM user WHERE country = "China" LIMIT 1"); <br>
+　　09 if (mysql_num_rows($r) &gt; 0) { <br>
+　　10 // ... <br>
+　　11 }</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　<strong>　4. 为搜索字段建索引</strong></p>
+<p>　　索引并不一定就是给主键或是唯一的字段。如果在你的表中，有某个字段你总要会经常用来做搜索，那么，请为其建立索引吧。</p>
+<p  align="center"><img  width="500"  height="194"  alt="MySQL性能优化的最佳20+条经验"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/liux3QA7HVic.png"  style="width:auto"></p>
+<p>　　从上图你可以看到那个搜索字串 “last_name LIKE ‘a%’”，一个是建了索引，一个是没有索引，性能差了4倍左右。</p>
+<p>　　另外，你应该也需要知道什么样的搜索是不能使用正常的索引的。例如，当你需要在一篇大的文章中搜索一个词时，如： “WHERE post_content LIKE ‘%apple%’”，索引可能是没有意义的。你可能需要使用MySQL全文索引 或是自己做一个索引(比如说：搜索关键词或是Tag什么的)</p>
+<p>　<strong>　5. 在Join表的时候使用相当类型的例，并将其索引</strong></p>
+<p>　　如果你的应用程序有很多 JOIN 查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制。</p>
+<p>　　而且，这些被用来Join的字段，应该是相同的类型的。例如：如果你要把 DECIMAL 字段和一个 INT 字段Join在一起，MySQL就无法使用它们的索引。对于那些STRING类型，还需要有相同的字符集才行。(两个表的字符集有可能不一样)</p>
+<p>　　查看源代码打印帮助 </p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 1 // 在state中查找company <br>
+　　2 $r = mysql_query("SELECT company_name FROM users <br>
+　　3 LEFT JOIN companies ON (users.state = companies.state) <br>
+　　4 WHERE users.id = $user_id"); <br>
+　　5 <br>
+　　6 // 两个 state 字段应该是被建过索引的，而且应该是相当的类型，相同的字符集。 <br>
+　　6. 千万不要 ORDER BY RAND()</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　　想打乱返回的数据行？随机挑一个数据？真不知道谁发明了这种用法，但很多新手很喜欢这样用。但你确不了解这样做有多么可怕的性能问题。</p>
+<p>&nbsp;</p>
+<p>如果你真的想把返回的数据行打乱了，你有N种方法可以达到这个目的。这样使用只让你的数据库的性能呈指数级的下降。这里的问题是：MySQL会不得不去执行RAND()函数(很耗CPU时间)，而且这是为了每一行记录去记行，然后再对其排序。就算是你用了Limit 1也无济于事(因为要排序)</p>
+<p>　　下面的示例是随机挑一条记录</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 1 // 千万不要这样做： <br>
+　　2 $r = mysql_query("SELECT username FROM user ORDER BY RAND() LIMIT 1"); <br>
+　　3 <br>
+　　4 // 这要会更好： <br>
+　　5 $r = mysql_query("SELECT count(*) FROM user"); <br>
+　　6 $d = mysql_fetch_row($r); <br>
+　　7 $rand = mt_rand(0,$d[0] - 1); <br>
+　　8 <br>
+　　9 $r = mysql_query("SELECT username FROM user LIMIT $rand, 1");</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　<strong>　7. 避免 SELECT *</strong></p>
+<p>　　从数据库里读出越多的数据，那么查询就会变得越慢。并且，如果你的数据库服务器和WEB服务器是两台独立的服务器的话，这还会增加网络传输的负载。</p>
+<p>　　所以，你应该养成一个需要什么就取什么的好的习惯。</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 1 // 不推荐 <br>
+　　2 $r = mysql_query("SELECT * FROM user WHERE user_id = 1"); <br>
+　　3 $d = mysql_fetch_assoc($r); <br>
+　　4 echo "Welcome "; <br>
+　　5 <br>
+　　6 // 推荐 <br>
+　　7 $r = mysql_query("SELECT username FROM user WHERE user_id = 1"); <br>
+　　8 $d = mysql_fetch_assoc($r); <br>
+　　9 echo "Welcome ";</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　　<strong>8. 永远为每张表设置一个ID</strong></p>
+<p>　　我们应该为数据库里的每张表都设置一个ID做为其主键，而且最好的是一个INT型的(推荐使用UNSIGNED)，并设置上自动增加的AUTO_INCREMENT标志。</p>
+<p>　　就算是你 users 表有一个主键叫 “email”的字段，你也别让它成为主键。使用 VARCHAR 类型来当主键会使用得性能下降。另外，在你的程序中，你应该使用表的ID来构造你的数据结构。</p>
+<p>　　而且，在MySQL数据引擎下，还有一些操作需要使用主键，在这些情况下，主键的性能和设置变得非常重要，比如，集群，分区……</p>
+<p>　　在这里，只有一个情况是例外，那就是“关联表”的“外键”，也就是说，这个表的主键，通过若干个别的表的主键构成。我们把这个情况叫做“外键”。比如：有一个“学生表”有学生的ID，有一个“课程表”有课程ID，那么，“成绩表”就是“关联表”了，其关联了学生表和课程表，在成绩表中，学生ID和课程ID叫“外键”其共同组成主键。</p>
+<p>　　<strong>9. 使用 ENUM 而不是 VARCHAR</strong></p>
+<p>　　ENUM 类型是非常快和紧凑的。在实际上，其保存的是 TINYINT，但其外表上显示为字符串。这样一来，用这个字段来做一些选项列表变得相当的完美。</p>
+<p>　　如果你有一个字段，比如“性别”，“国家”，“民族”，“状态”或“部门”，你知道这些字段的取值是有限而且固定的，那么，你应该使用 ENUM 而不是 VARCHAR。</p>
+<p>　　MySQL也有一个“建议”(见第十条)告诉你怎么去重新组织你的表结构。当你有一个 VARCHAR 字段时，这个建议会告诉你把其改成 ENUM 类型。使用 PROCEDURE ANALYSE() 你可以得到相关的建议。</p>
+<p><strong>10. 从 PROCEDURE ANALYSE() 取得建议</strong></p>
+<p>　　PROCEDURE ANALYSE() 会让 MySQL 帮你去分析你的字段和其实际的数据，并会给你一些有用的建议。只有表中有实际的数据，这些建议才会变得有用，因为要做一些大的决定是需要有数据作为基础的。</p>
+<p>　　例如，如果你创建了一个 INT 字段作为你的主键，然而并没有太多的数据，那么，PROCEDURE ANALYSE()会建议你把这个字段的类型改成 MEDIUMINT 。或是你使用了一个 VARCHAR 字段，因为数据不多，你可能会得到一个让你把它改成 ENUM 的建议。这些建议，都是可能因为数据不够多，所以决策做得就不够准。</p>
+<p>　　在phpmyadmin里，你可以在查看表时，点击 “Propose table structure” 来查看这些建议</p>
+<p  align="center"><img  width="422"  height="251"  alt="MySQL性能优化的最佳20+条经验"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/liKYKdnkMQK2E.png"  style="width:auto"></p>
+<p>　　一定要注意，这些只是建议，只有当你的表里的数据越来越多时，这些建议才会变得准确。一定要记住，你才是最终做决定的人。</p>
+<p>　　<strong>11. 尽可能的使用 NOT NULL</strong></p>
+<p>　　除非你有一个很特别的原因去使用 NULL 值，你应该总是让你的字段保持 NOT NULL。这看起来好像有点争议，请往下看。</p>
+<p>　　首先，问问你自己“Empty”和“NULL”有多大的区别(如果是INT，那就是0和NULL)？如果你觉得它们之间没有什么区别，那么你就不要使用NULL。(你知道吗？在 Oracle 里，NULL 和 Empty 的字符串是一样的!)</p>
+<p>　　不要以为 NULL 不需要空间，其需要额外的空间，并且，在你进行比较的时候，你的程序会更复杂。 当然，这里并不是说你就不能使用NULL了，现实情况是很复杂的，依然会有些情况下，你需要使用NULL值。</p>
+<p>　　下面摘自MySQL自己的文档：</p>
+<p>　　“NULL columns require additional space in the row to record whether their values are NULL. For MyISAM tables, each NULL column takes one bit extra, rounded up to the nearest byte.”</p>
+<p>　　<strong>12. Prepared Statements</strong></p>
+<p>　　Prepared Statements很像存储过程，是一种运行在后台的SQL语句集合，我们可以从使用 prepared statements 获得很多好处，无论是性能问题还是安全问题。</p>
+<p>Prepared Statements 可以检查一些你绑定好的变量，这样可以保护你的程序不会受到“SQL注入式”攻击。当然，你也可以手动地检查你的这些变量，然而，手动的检查容易出问题，而且很经常会被程序员忘了。当我们使用一些framework或是ORM的时候，这样的问题会好一些。</p>
+<p>　　在性能方面，当一个相同的查询被使用多次的时候，这会为你带来可观的性能优势。你可以给这些Prepared Statements定义一些参数，而MySQL只会解析一次。</p>
+<p>　　虽然最新版本的MySQL在传输Prepared Statements是使用二进制形势，所以这会使得网络传输非常有效率。</p>
+<p>　　当然，也有一些情况下，我们需要避免使用Prepared Statements，因为其不支持查询缓存。但据说版本5.1后支持了</p>
+<p>&nbsp;</p>
+<p>在PHP中要使用prepared statements，你可以查看其使用手册：mysqli 扩展 或是使用数据库抽象层，如： PDO.</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 01 // 创建 prepared statement <br>
+　　02 if ($stmt = $mysqli-&gt;prepare("SELECT username FROM user WHERE state=?")) { <br>
+　　03 <br>
+　　04 // 绑定参数 <br>
+　　05 $stmt-&gt;bind_param("s", $state); <br>
+　　06 <br>
+　　07 // 执行 <br>
+　　08 $stmt-&gt;execute(); <br>
+　　09 <br>
+　　10 // 绑定结果 <br>
+　　11 $stmt-&gt;bind_result($username); <br>
+　　12 <br>
+　　13 // 移动游标 <br>
+　　14 $stmt-&gt;fetch(); <br>
+　　15 <br>
+　　16 printf("%s is from %s ", $username, $state); <br>
+　　17 <br>
+　　18 $stmt-&gt;close(); <br>
+　　19 }</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>　<strong>　13. 无缓冲的查询</strong></p>
+<p>　　正常的情况下，当你在当你在你的脚本中执行一个SQL语句的时候，你的程序会停在那里直到没这个SQL语句返回，然后你的程序再往下继续执行。你可以使用无缓冲查询来改变这个行为。</p>
+<p>　　关于这个事情，在PHP的文档中有一个非常不错的说明： mysql_unbuffered_query() 函数：</p>
+<p>　　“mysql_unbuffered_query() sends the SQL query query to MySQL without automatically fetching and buffering the result rows as mysql_query() does. This saves a considerable amount of memory with SQL queries that produce large result sets, and you can start
+ working on the result set immediately after the first row has been retrieved as you don’t have to wait until the complete SQL query has been performed.”</p>
+<p>　　上面那句话翻译过来是说，mysql_unbuffered_query() 发送一个SQL语句到MySQL而并不像mysql_query()一样去自动fethch和缓存结果。这会相当节约很多可观的内存，尤其是那些会产生大量结果的查询语句，并且，你不需要等到所有的结果都返回，只需要第一行数据返回的时候，你就可以开始马上开始工作于查询结果了。</p>
+<p>　　然而，这会有一些限制。因为你要么把所有行都读走，或是你要在进行下一次的查询前调用 mysql_free_result() 清除结果。而且， mysql_num_rows() 或 mysql_data_seek() 将无法使用。所以，是否使用无缓冲的查询你需要仔细考虑。</p>
+<p>　　<strong>14. 把IP地址存成 UNSIGNED INT</strong></p>
+<p>　　很多程序员都会创建一个 VARCHAR(15) 字段来存放字符串形式的IP而不是整形的IP。如果你用整形来存放，只需要4个字节，并且你可以有定长的字段。而且，这会为你带来查询上的优势，尤其是当你需要使用这样的WHERE条件：IP between ip1 and ip2。</p>
+<p>　　我们必需要使用UNSIGNED INT，因为 IP地址会使用整个32位的无符号整形。</p>
+<p>　　而你的查询，你可以使用 INET_ATON() 来把一个字符串IP转成一个整形，并使用 INET_NTOA() 把一个整形转成一个字符串IP。在PHP中，也有这样的函数 ip2long() 和 long2ip()。</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+1 $r = "UPDATE users SET ip = INET_ATON("") WHERE user_id = $user_id";</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>15. 固定长度的表会更快</strong></p>
+<p>　　如果表中的所有字段都是“固定长度”的，整个表会被认为是 “static” 或 “fixed-length”。 例如，表中没有如下类型的字段： VARCHAR，TEXT，BLOB。只要你包括了其中一个这些字段，那么这个表就不是“固定长度静态表”了，这样，MySQL 引擎会用另一种方法来处理。</p>
+<p>　　固定长度的表会提高性能，因为MySQL搜寻得会更快一些，因为这些固定的长度是很容易计算下一个数据的偏移量的，所以读取的自然也会很快。而如果字段不是定长的，那么，每一次要找下一条的话，需要程序找到主键。</p>
+<p>　　并且，固定长度的表也更容易被缓存和重建。不过，唯一的副作用是，固定长度的字段会浪费一些空间，因为定长的字段无论你用不用，他都是要分配那么多的空间。</p>
+<p>　　使用“垂直分割”技术(见下一条)，你可以分割你的表成为两个一个是定长的，一个则是不定长的。</p>
+<p><strong>16. 垂直分割</strong></p>
+<p>　　“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，从而达到优化的目的。(以前，在银行做过项目，见过一张表有100多个字段，很恐怖)</p>
+<p>　　示例一：在Users表中有一个字段是家庭地址，这个字段是可选字段，相比起，而且你在数据库操作的时候除了个人信息外，你并不需要经常读取或是改写这个字段。那么，为什么不把他放到另外一张表中呢？ 这样会让你的表有更好的性能，大家想想是不是，大量的时候，我对于用户表来说，只有用户ID，用户名，口令，用户角色等会被经常使用。小一点的表总是会有好的性能。</p>
+<p>　　示例二： 你有一个叫 “last_login” 的字段，它会在每次用户登录时被更新。但是，每次更新时会导致该表的查询缓存被清空。所以，你可以把这个字段放到另一个表中，这样就不会影响你对用户ID，用户名，用户角色的不停地读取了，因为查询缓存会帮你增加很多性能。</p>
+<p>　　另外，你需要注意的是，这些被分出去的字段所形成的表，你不会经常性地去Join他们，不然的话，这样的性能会比不分割时还要差，而且，会是极数级的下降。</p>
+<p>　<strong>　17. 拆分大的 DELETE 或 INSERT 语句</strong></p>
+<p>　　如果你需要在一个在线的网站上去执行一个大的 DELETE 或 INSERT 查询，你需要非常小心，要避免你的操作让你的整个网站停止相应。因为这两个操作是会锁表的，表一锁住了，别的操作都进不来了。</p>
+<p>　　Apache 会有很多的子进程或线程。所以，其工作起来相当有效率，而我们的服务器也不希望有太多的子进程，线程和数据库链接，这是极大的占服务器资源的事情，尤其是内存。</p>
+<p>　　如果你把你的表锁上一段时间，比如30秒钟，那么对于一个有很高访问量的站点来说，这30秒所积累的访问进程/线程，数据库链接，打开的文件数，可能不仅仅会让你泊WEB服务Crash，还可能会让你的整台服务器马上掛了。</p>
+<p>　　所以，如果你有一个大的处理，你定你一定把其拆分，使用 LIMIT 条件是一个好的方法。下面是一个示例：</p>
+<p>　　查看源代码打印帮助</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+&nbsp;&nbsp;&nbsp; 01 while (1) { <br>
+　　02 //每次只做1000条 <br>
+　　03 mysql_query("DELETE FROM logs WHERE log_date &lt;= "2009-11-01" LIMIT 1000"); <br>
+　　04 if (mysql_affected_rows() == 0) { <br>
+　　05 // 没得可删了，退出! <br>
+　　06 break; <br>
+　　07 } <br>
+　　08 // 每次都要休息一会儿 <br>
+　　09 usleep(50000); <br>
+　　10 }</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>18. 越小的列会越快</strong></p>
+<p>　　对于大多数的数据库引擎来说，硬盘操作可能是最重大的瓶颈。所以，把你的数据变得紧凑会对这种情况非常有帮助，因为这减少了对硬盘的访问。</p>
+<p>　　参看 MySQL 的文档 Storage Requirements 查看所有的数据类型。</p>
+<p>　　如果一个表只会有几列罢了(比如说字典表，配置表)，那么，我们就没有理由使用 INT 来做主键，使用 MEDIUMINT, SMALLINT 或是更小的 TINYINT 会更经济一些。如果你不需要记录时间，使用 DATE 要比 DATETIME 好得多。</p>
+<p>　　当然，你也需要留够足够的扩展空间，不然，你日后来干这个事，你会死的很难看，参看Slashdot的例子(2009年11月06日)，一个简单的ALTER TABLE语句花了3个多小时，因为里面有一千六百万条数据。</p>
+<p>　　<strong>19. 选择正确的存储引擎</strong></p>
+<p>　　在 MySQL 中有两个存储引擎 MyISAM 和 InnoDB，每个引擎都有利有弊。酷壳以前文章《MySQL: InnoDB 还是 MyISAM?》讨论和这个事情。</p>
+<p>　　MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。</p>
+<p>　　InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。</p>
+<p>　　下面是MySQL的手册</p>
+<p></p>
+<p>&nbsp;</p>
+<table  width="95%"  align="center"  border="0"  cellspacing="0"  cellpadding="6"  style="border:1px dotted rgb(204,204,204); table-layout:fixed">
+<tbody>
+<tr>
+<td  bgcolor="#fdfddf"  style=""><span  style="background-color:rgb(253,253,223)"><span  style="color:#9900"><strong>以下是代码片段：</strong></span><br>
+</span>&nbsp;&nbsp;&nbsp; target=”_blank”MyISAM Storage Engine <br>
+　　InnoDB Storage Engine</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p></p>
+<p></p>
+<p>　　<strong>20. 使用一个对象关系映射器(Object Relational Mapper)</strong></p>
+<p>　　使用 ORM (Object Relational Mapper)，你能够获得可靠的性能增涨。一个ORM可以做的所有事情，也能被手动的编写出来。但是，这需要一个高级专家。</p>
+<p>　　ORM 的最重要的是“Lazy Loading”，也就是说，只有在需要的去取值的时候才会去真正的去做。但你也需要小心这种机制的副作用，因为这很有可能会因为要去创建很多很多小的查询反而会降低性能。</p>
+<p>　　ORM 还可以把你的SQL语句打包成一个事务，这会比单独执行他们快得多得多。</p>
+<p>　　目前，个人最喜欢的PHP的ORM是：Doctrine。</p>
+<p>　　<strong>21. 小心“永久链接”</strong></p>
+<p>　　“永久链接”的目的是用来减少重新创建MySQL链接的次数。当一个链接被创建了，它会永远处在连接的状态，就算是数据库操作已经结束了。而且，自从我们的Apache开始重用它的子进程后——也就是说，下一次的HTTP请求会重用Apache的子进程，并重用相同的 MySQL 链接。</p>
+<p>　　PHP手册：mysql_pconnect()</p>
+<p>　　在理论上来说，这听起来非常的不错。但是从个人经验(也是大多数人的)上来说，这个功能制造出来的麻烦事更多。因为，你只有有限的链接数，内存问题，文件句柄数，等等。</p>
+<p>　　而且，Apache 运行在极端并行的环境中，会创建很多很多的了进程。这就是为什么这种“永久链接”的机制工作地不好的原因。在你决定要使用“永久链接”之前，你需要好好地考虑一下你的整个系统的架构。</p>
+<p>&nbsp;</p>
+<p></p>
+<h1  style="margin:0px; padding:18px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:18px; line-height:50px">
+Mysql处理海量数据架构设计及优化</h1>
+<br>
+<p></p>
+<p></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<span  style="padding:0px; margin:0px">前言</span><br  style="padding:0px; margin:0px">
+Mysql处理海量数据的优化可以从一下四个方面入手。<br  style="padding:0px; margin:0px">
+业务优化： 业务分流，Sql语句优化<br  style="padding:0px; margin:0px">
+架构优化： 分表分库，读写分离，数据缓存<br  style="padding:0px; margin:0px">
+硬件优化： 硬件配置<br  style="padding:0px; margin:0px">
+数据库优化： 引擎选择，逻辑改造，索引<br  style="padding:0px; margin:0px">
+上面每一个块都有很多内容，目前也有很多成熟的解决方案。<br  style="padding:0px; margin:0px">
+本篇文章主要从架构层面讲解Mysql处理海量数据。也是比较基本的内容，偏向理论。<br  style="padding:0px; margin:0px">
+适用数据级别：百万级<br  style="padding:0px; margin:0px">
+Mysql处理海量数据架构优化三大方法：分表分库，读写分离，数据缓存</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px">一，分表分库</span></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+概念：分表分库就是根据某些条件把大数据分割成多个块，把每个块存放在不同的数据库（数据表中）。该方法是提高性能的最有效的方法。<br  style="padding:0px; margin:0px">
+1，根据业务拆分（垂直拆分）<br  style="padding:0px; margin:0px">
+模拟情景：做一个系统，该系统包括 资讯，博客，论坛<br  style="padding:0px; margin:0px">
+那么可以这样分库。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/1_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px; width:620px; height:340px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+问题：后来论坛数据猛增，访问压力开始变大。<br  style="padding:0px; margin:0px">
+解决：把存放论坛数据的数据库进行分库。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/2_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px; width:620px; height:620px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+问题：后来论坛帖子数量继续增长。访问吃力<br  style="padding:0px; margin:0px">
+解决：继续将存放帖子的数据库进行拆分。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px">2，水平拆分</span></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+把帖子数据拆分成12个数据库，把每3个数据存放到一台数据库服务器中。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/4_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+问题：单个数据库db1中单表数据量过大。<br  style="padding:0px; margin:0px">
+解决：db1中进行分表。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/5_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px; width:620px; height:420px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<span  style="padding:0px; margin:0px">概念：</span><br  style="padding:0px; margin:0px">
+垂直拆分：垂直才分也叫行拆分（Row Splitting），就是把组成一行的多个列分开放到不同的数据库（数据表）中，这些表具有不同的结构。垂直分表就是“业务拆分”。<br  style="padding:0px; margin:0px">
+水平拆分：水平拆分就是把一个表分成多个表，每个表的结构一样，但是储存的数据不一样。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<span  style="padding:0px; margin:0px"><br  style="padding:0px; margin:0px">
+二，读写分离<br  style="padding:0px; margin:0px">
+</span></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+看看上面的例子中最后的结果。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/6_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px; width:620px; height:660px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+下面对存放帖子的数据库服务器Server2_1_1进行读写分离。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/7_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+Mysql的读写分离是通过Mysql代理实现的，Mysql代理是介于Mysql客户端和Mysql服务器之间的简单程序，用来分析或者传输他们之间的通讯，最大的优点就是：读写分离。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<span  style="padding:0px; margin:0px"><br  style="padding:0px; margin:0px">
+三，数据缓存<br  style="padding:0px; margin:0px">
+</span></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+到现在论坛已经可以很好地支持海量数据的存储了。但是我们发现系统的资讯模块有访问吃力。我们在资讯模块添加缓存服务器。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<img  alt=""  src="http://static.7ta.cn/7ta/UserFiles/alex/images/8_thumb.png"  style="margin:10px; padding:0px; list-style:none; border:1px solid rgb(255,255,255); vertical-align:middle; float:right; max-width:600px"></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+访客首先访问缓存服务器，因为缓存服务器的数据都是在内存当中所以速度会很快，如果缓存中找不到数据再去Server1中查找数据，并且把数据缓存到缓存服务器中。</p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<span  style="padding:0px; margin:0px"><br  style="padding:0px; margin:0px">
+总结：<br  style="padding:0px; margin:0px">
+</span></p>
+<p  style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; list-style:none; border:none; font-family:Verdana,Arial,Tahoma,宋体,Helvetica,sans-serif; font-size:13px; line-height:25px">
+<br  style="padding:0px; margin:0px">
+该文章是本人对Mysql数据库在处理海量数据时的架构思路。本人觉得在处理百万级量的数据，上述的架构绰绰有余，够用了。在大的数据量，千万级，十亿级，很多大的公司都有很好的解决方案。参考一下。<br  style="padding:0px; margin:0px">
+本文地址：http://www.qindamoni.com/1275</p>
+<br>
+<p><br>
+</p>
+<p><span  id="doc-tittle-5"><a  target="_blank"  href="http://wenku.baidu.com/view/45214e84bceb19e8b8f6baff.html">大<wbr>型<wbr>项<wbr>目<wbr>M<wbr>y<wbr>S<wbr>Q<wbr>L<wbr>性<wbr>能<wbr>优<wbr>化<wbr>实<wbr>例</a></span></p>
+
+</div>
+
+
+
+
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"  style="float: right;">
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"></a>
+<a  class="bds_t163"  title="分享到网易微博"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"></a>
+<span  class="bds_more">更多</span>
+<a  class="shareCount"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  title="累计分享0次">0</a>
+</div>
+
+
+
+
+<div  class="article_next_prev">
+            <li  class="prev_article"><span>上一篇：</span><a  href="http://blog.csdn.net/pkueecser/article/details/9531275" >mysql+memcached</a></li>
+            <li  class="next_article"><span>下一篇：</span><a  href="http://blog.csdn.net/pkueecser/article/details/9536181" >Mysql慢查询优化</a></li>
+</div>
+
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=1536434"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+    <div  id="ad_cen">
+        <script  type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/o.js"></script><div  id="BAIDU_DUP_wrapper_117306_0"></div><script  charset="utf-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ecom"></script><script  charset="utf-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/fixed7o.js"></script><script  type="text/javascript"><!--
+google_ad_client = "ca-pub-1076724771190722";
+/* blog正文下方728x90 */
+google_ad_slot = "4497271841";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    </div>
+    <script  type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div  id="comment_title"  class="panel_head">
+    查看评论<a  name="comments"></a></div>
+<div  id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div  class="clear"></div></div>
+<div  id="comment_bar">
+</div>
+<div  id="comment_form"><a  name="commentbox"></a><a  name="reply"></a><a  name="quote"></a><form  action="http://blog.csdn.net/scut1135/comment/submit?id=9532387"  method="post" ><div  class="commentform"><div  class="panel_head">发表评论</div><ul><li  class="left">用 户 名：</li><li  class="right">zc80330582</li></ul><ul><li  class="left">评论内容：</li><li  class="right"  style="position:relative;"><div  id="ubbtools"><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#insertcode"  code="code"><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/code.gif"  border="0"  alt="插入代码"  title="插入代码"></a></div><div  id="lang_list"  style="position: absolute; top: 28px; left: 0px; display: none;"><a  class="long_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#html">HTML/XML</a><a  class="long_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#objc">objective-c</a><a  class="zhong_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#delphi">Delphi</a><a  class="zhong_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#ruby">Ruby</a><a  href="http://blog.csdn.net/pkueecser/article/details/9532387#php">PHP</a><a  class="duan_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#csharp">C#</a><a  style=" border-right: none;"  class="duan_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#cpp">C++</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#javascript">JavaScript</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#vb">Visual Basic</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#python">Python</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#java">Java</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#css">CSS</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#sql">SQL</a><a  style="border:none;"  class="duan_name"  href="http://blog.csdn.net/pkueecser/article/details/9532387#plain">其它</a></div><textarea  class="comment_content"  name="comment_content"  id="comment_content"  style="width: 400px; height: 200px;"></textarea></li></ul><ul><input  type="hidden"  id="comment_replyId"  name="comment_replyId"><input  type="hidden"  id="comment_userId"  name="comment_userId"  value="521203"><input  type="hidden"  id="commentId"  name="commentId"  value=""><input  type="submit"  class="comment_btn"  value="提交">&nbsp;&nbsp;<span  id="tip_comment"  style="color: Red; display: none;"></span></ul></div></form></div>
+<div  class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a  name="reply"></a><a  name="quote"></a></div>
+<script  type="text/javascript">
+    var fileName = '9532387';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div  id="ad_bot">
+    <iframe  id="ad_frm_0"  frameborder="0"  scrolling="no"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ad(1).htm"  style="border-width: 0px; overflow: hidden; width: 984px; height: 170px;"></iframe></div>
+    <script  type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div  id="report_dialog">
+</div>
+<div  id="d-top"  style="">
+    <a  id="d-top-a"  href="http://blog.csdn.net/pkueecser/article/details/9532387#"  title="回到顶部" >
+        <img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/top.png"  alt="TOP"></a>
+</div>
+<script  type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style  type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div  class="tag_list">
+    <h5>
+        <a  href="http://www.csdn.net/tag/"  target="_blank">核心技术类目</a></h5>
+    <div  class="classify">
+<a  title="全部主题"  href="http://www.csdn.net/tag"  target="_blank" >全部主题</a>
+<a  title="Java"  href="http://www.csdn.net/tag/Java"  target="_blank" >Java</a>
+<a  title="VPN"  href="http://www.csdn.net/tag/vpn"  target="_blank" >VPN</a>
+<a  title="Android"  href="http://www.csdn.net/tag/android"  target="_blank" >Android</a>
+<a  title="iOS"  href="http://www.csdn.net/tag/ios"  target="_blank" >iOS</a>
+<a  title="ERP"  href="http://www.csdn.net/tag/erp"  target="_blank" >ERP</a>
+<a  title="IE10"  href="http://www.csdn.net/tag/ie10"  target="_blank" >IE10</a>
+<a  title="Eclipse"  href="http://www.csdn.net/tag/eclipse"  target="_blank" >Eclipse</a>
+<a  title="CRM"  href="http://www.csdn.net/tag/crm"  target="_blank" >CRM</a>
+<a  title="JavaScript"  href="http://www.csdn.net/tag/javascript"  target="_blank" >JavaScript</a>
+<a  title="Ubuntu"  href="http://www.csdn.net/tag/ubuntu"  target="_blank" >Ubuntu</a>
+<a  title="NFC"  href="http://www.csdn.net/tag/nfc"  target="_blank" >NFC</a>
+<a  title="WAP"  href="http://www.csdn.net/tag/wap"  target="_blank" >WAP</a>
+<a  title="jQuery"  href="http://www.csdn.net/tag/jquery"  target="_blank" >jQuery</a>
+<a  title="数据库"  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank" >数据库</a>
+<a  title="BI"  href="http://www.csdn.net/tag/bi"  target="_blank" >BI</a>
+<a  title="HTML5"  href="http://www.csdn.net/tag/html5"  target="_blank" >HTML5</a>
+<a  title="Spring"  href="http://www.csdn.net/tag/spring"  target="_blank" >Spring</a>
+<a  title="Apache"  href="http://www.csdn.net/tag/apache"  target="_blank" >Apache</a>
+<a  title="Hadoop"  href="http://www.csdn.net/tag/hadoop"  target="_blank" >Hadoop</a>
+<a  title=".NET"  href="http://www.csdn.net/tag/.net"  target="_blank" >.NET</a>
+<a  title="API"  href="http://www.csdn.net/tag/api"  target="_blank" >API</a>
+<a  title="HTML"  href="http://www.csdn.net/tag/html"  target="_blank" >HTML</a>
+<a  title="SDK"  href="http://www.csdn.net/tag/sdk"  target="_blank" >SDK</a>
+<a  title="IIS"  href="http://www.csdn.net/tag/iis"  target="_blank" >IIS</a>
+<a  title="Fedora"  href="http://www.csdn.net/tag/fedora"  target="_blank" >Fedora</a>
+<a  title="XML"  href="http://www.csdn.net/tag/xml"  target="_blank" >XML</a>
+<a  title="LBS"  href="http://www.csdn.net/tag/lbs"  target="_blank" >LBS</a>
+<a  title="Unity"  href="http://www.csdn.net/tag/unity"  target="_blank" >Unity</a>
+<a  title="Splashtop"  href="http://www.csdn.net/tag/splashtop"  target="_blank" >Splashtop</a>
+<a  title="UML"  href="http://www.csdn.net/tag/uml"  target="_blank" >UML</a>
+<a  title="components"  href="http://www.csdn.net/tag/components"  target="_blank" >components</a>
+<a  title="Windows Mobile"  href="http://www.csdn.net/tag/windowsmobile"  target="_blank" >Windows Mobile</a>
+<a  title="Rails"  href="http://www.csdn.net/tag/rails"  target="_blank" >Rails</a>
+<a  title="QEMU"  href="http://www.csdn.net/tag/qemu"  target="_blank" >QEMU</a>
+<a  title="KDE"  href="http://www.csdn.net/tag/kde"  target="_blank" >KDE</a>
+<a  title="Cassandra"  href="http://www.csdn.net/tag/cassandra"  target="_blank" >Cassandra</a>
+<a  title="CloudStack"  href="http://www.csdn.net/tag/cloudstack"  target="_blank" >CloudStack</a>
+<a  title="FTC"  href="http://www.csdn.net/tag/ftc"  target="_blank" >FTC</a>
+<a  title="coremail"  href="http://www.csdn.net/tag/coremail"  target="_blank" >coremail</a>
+<a  title="OPhone "  href="http://www.csdn.net/tag/ophone"  target="_blank" >OPhone </a>
+<a  title="CouchBase"  href="http://www.csdn.net/tag/couchbase"  target="_blank" >CouchBase</a>
+<a  title="云计算"  href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97"  target="_blank" >云计算</a>
+<a  title="iOS6"  href="http://www.csdn.net/tag/iOS6"  target="_blank" >iOS6</a>
+<a  title="Rackspace "  href="http://www.csdn.net/tag/rackspace"  target="_blank" >Rackspace </a>
+<a  title="Web App"  href="http://www.csdn.net/tag/webapp"  target="_blank" >Web App</a>
+<a  title="SpringSide"  href="http://www.csdn.net/tag/springside"  target="_blank" >SpringSide</a>
+<a  title="Maemo"  href="http://www.csdn.net/tag/maemo"  target="_blank" >Maemo</a>
+<a  title="Compuware"  href="http://www.csdn.net/tag/compuware"  target="_blank" >Compuware</a>
+<a  title="大数据"  href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank" >大数据</a>
+<a  title="aptech"  href="http://www.csdn.net/tag/aptech"  target="_blank" >aptech</a>
+<a  title="Perl"  href="http://www.csdn.net/tag/perl"  target="_blank" >Perl</a>
+<a  title="Tornado"  href="http://www.csdn.net/tag/tornado"  target="_blank" >Tornado</a>
+<a  title="Ruby"  href="http://www.csdn.net/tag/ruby"  target="_blank" >Ruby</a>
+<a  title="Hibernate"  href="http://www.csdn.net/hibernate"  target="_blank" >Hibernate</a>
+<a  title="ThinkPHP"  href="http://www.csdn.net/tag/thinkphp"  target="_blank" >ThinkPHP</a>
+<a  title="Spark"  href="http://www.csdn.net/tag/spark"  target="_blank" >Spark</a>
+<a  title="HBase"  href="http://www.csdn.net/tag/hbase"  target="_blank" >HBase</a>
+<a  title="Pure"  href="http://www.csdn.net/tag/pure"  target="_blank" >Pure</a>
+<a  title="Solr"  href="http://www.csdn.net/tag/solr"  target="_blank" >Solr</a>
+<a  title="Angular"  href="http://www.csdn.net/tag/angular"  target="_blank" >Angular</a>
+<a  title="Cloud Foundry"  href="http://www.csdn.net/tag/cloudfoundry"  target="_blank" >Cloud Foundry</a>
+<a  title="Redis"  href="http://www.csdn.net/tag/redis"  target="_blank" >Redis</a>
+<a  title="Scala"  href="http://www.csdn.net/tag/scala"  target="_blank" >Scala</a>
+<a  title="Django"  href="http://www.csdn.net/tag/django"  target="_blank" >Django</a>
+<a  title="Bootstrap"  href="http://www.csdn.net/tag/bootstrap"  target="_blank" >Bootstrap</a>
+    </div>
+</div>
+
+                    <div  class="clear">
+                    </div>
+                </div>
+            </div>
+            <div  id="side">
+    <div  class="side">
+<div  id="panel_Profile"  class="panel">
+<ul  class="panel_head"><span>个人资料</span></ul>
+<ul  class="panel_body profile">
+<div  id="blog_userface">
+    <a  href="http://my.csdn.net/scut1135"  target="_blank">
+    <img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/1_scut1135.jpg"  title="访问我的空间"  style="max-width:90%">
+    </a>
+    <br>
+    <span><a  href="http://my.csdn.net/scut1135"  class="user_name"  target="_blank">scut1135</a></span>
+</div>
+<div  class="interact">
+<a  href="javascript:void(0);"  class="attent"  id="span_add_follow"  title="[加关注]" ></a>
+<a  href="javascript:void(0);"  class="letter"   title="[发私信]"></a>
+</div>
+<div  id="blog_medal">
+<div  id="bms_box"><a  href="http://medal.blog.csdn.net/allmedal.aspx"  target="_blank"><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/holdon_s.gif"    alt=""></a></div></div>
+<ul  id="blog_rank">
+    <li>访问：<span>562460次</span></li>
+    <li>积分：<span>9249分</span></li>
+    <li>排名：<span>第382名</span></li>
+</ul>
+<ul  id="blog_statistics">
+    <li>原创：<span>329篇</span></li>
+    <li>转载：<span>302篇</span></li>
+    <li>译文：<span>4篇</span></li>
+    <li>评论：<span>205条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div  class="panel"  id="panel_Search">
+    <ul  class="panel_head"><span>文章搜索</span></ul>
+    <ul  class="panel_body">
+        <form  id="frmSearch"  action="http://so.csdn.net/search"  class="form_search"  target="_blank">
+        <span><input  id="inputSearch"  type="text"  class="blogsearch"  title="请输入关键字"></span>
+        <input  id="btnSubmit"  type="submit"  value="搜索"  title="search in blog">
+        <input  type="hidden"  name="q"  id="inputQ">
+        <input  type="hidden"  name="t"  value="blog">
+        <a  id="btnSearchBlog"  target="_blank"></a>
+        </form>
+    </ul>
+</div><div  id="panel_Category"  class="panel">
+<ul  class="panel_head"><span>文章分类</span></ul>
+<ul  class="panel_body">
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/1057214">Android 常规</a><span>(46)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/621651">重构C/C++</a><span>(134)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/1104190">技术面经</a><span>(16)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/790993">Android 多媒体</a><span>(55)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/621771">重构Java</a><span>(15)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/801457">PKU Research</a><span>(65)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/1449467">云计算/大数据</a><span>(39)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/712785">开源硬件Raspberry</a><span>(18)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/1449469">开源社区代码</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/909756">Coding实战</a><span>(10)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/934830">流媒体基础</a><span>(50)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/680808">Ubuntu操作系统</a><span>(85)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/762263">网站设计</a><span>(44)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/732520">IT人物与新闻</a><span>(17)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/category/684984">杂记/八卦</a><span>(45)</span>
+</li>
+</ul>
+</div><div  id="panel_Archive"  class="panel">
+<ul  class="panel_head"><span>文章存档</span></ul>
+<ul  class="panel_body">
+<div  id="archive_list"><li><a  href="http://blog.csdn.net/pkueecser/article/month/2014/01">2014年01月</a><span>(16)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/12">2013年12月</a><span>(28)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/11">2013年11月</a><span>(17)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/10">2013年10月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/09">2013年09月</a><span>(3)</span></li><span  class="hidelist"  style="display:none;"><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/08">2013年08月</a><span>(14)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/07">2013年07月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/06">2013年06月</a><span>(23)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/05">2013年05月</a><span>(9)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/04">2013年04月</a><span>(13)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/03">2013年03月</a><span>(25)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/02">2013年02月</a><span>(12)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2013/01">2013年01月</a><span>(22)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/12">2012年12月</a><span>(20)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/11">2012年11月</a><span>(29)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/10">2012年10月</a><span>(14)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/09">2012年09月</a><span>(11)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/08">2012年08月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/07">2012年07月</a><span>(11)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/06">2012年06月</a><span>(22)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/05">2012年05月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/04">2012年04月</a><span>(23)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/03">2012年03月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/02">2012年02月</a><span>(13)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2012/01">2012年01月</a><span>(12)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/12">2011年12月</a><span>(21)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/11">2011年11月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/10">2011年10月</a><span>(31)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/09">2011年09月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/08">2011年08月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/07">2011年07月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/06">2011年06月</a><span>(15)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/05">2011年05月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/04">2011年04月</a><span>(16)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/03">2011年03月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/02">2011年02月</a><span>(6)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2011/01">2011年01月</a><span>(2)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/12">2010年12月</a><span>(23)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/11">2010年11月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/10">2010年10月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/09">2010年09月</a><span>(19)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/07">2010年07月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/06">2010年06月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/05">2010年05月</a><span>(13)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2010/04">2010年04月</a><span>(10)</span></li><li><a  href="http://blog.csdn.net/pkueecser/article/month/2009/11">2009年11月</a><span>(2)</span></li></span><div  id="archive_list_button"  class="list_closed">展开</div></div>
+</ul>
+</div>
+<div  id="hotarticls"  class="panel">
+<ul  class="panel_head"><span>阅读排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/5908328"  title="开源搜索引擎之路">开源搜索引擎之路</a><span>(15572)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6888392"  title="Win7与Ubuntu双系统时【卸载Ubuntu】">Win7与Ubuntu双系统时【卸载Ubuntu】</a><span>(12244)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6621576"  title="Windows 不能加载本地存储的配置文件。此问题的可能原因是安全权限不足或本地配置">Windows 不能加载本地存储的配置文件。此问题的可能原因是安全权限不足或本地配置</a><span>(11790)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6830758"  title="Ubuntu中SVN客户端安装+使用">Ubuntu中SVN客户端安装+使用</a><span>(9678)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7367641"  title="H264参数语法： SPS、PPS">H264参数语法： SPS、PPS</a><span>(8872)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6082104"  title="Ubuntu下MyEclipse 8.5  8.6下载与 安装 || 【svn插件】【ADT插件】安装！">Ubuntu下MyEclipse 8.5  8.6下载与 安装 || 【svn插件】【ADT插件】安装！</a><span>(8663)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6536157"  title="移植havlenapetr的ffmpeg--&gt;Android播放器">移植havlenapetr的ffmpeg--&gt;Android播放器</a><span>(7966)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7400085"  title="牛人对RTSP的android实现">牛人对RTSP的android实现</a><span>(7936)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6080250"  title="Ubuntu 10.10安装配置指南&amp;Ubuntu 11.10 图形安装教程">Ubuntu 10.10安装配置指南&amp;Ubuntu 11.10 图形安装教程</a><span>(7934)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/5549315"  title="解决libtinfo.so.5  libstdc++.so.5 的问题！">解决libtinfo.so.5  libstdc++.so.5 的问题！</a><span>(5555)</span>
+</li>
+</ul>
+</div>
+<div  id="hotarticls2"  class="panel">
+<ul  class="panel_head"><span>评论排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6536157"  title="移植havlenapetr的ffmpeg--&gt;Android播放器">移植havlenapetr的ffmpeg--&gt;Android播放器</a><span>(40)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7400085"  title="牛人对RTSP的android实现">牛人对RTSP的android实现</a><span>(11)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7329398"  title="OpenCV2.3.1运行程序报错“计算机丢失tbb_debug.dll”">OpenCV2.3.1运行程序报错“计算机丢失tbb_debug.dll”</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6830875"  title="WebRTC">WebRTC</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7367641"  title="H264参数语法： SPS、PPS">H264参数语法： SPS、PPS</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6840815"  title="WebRTC国内外介绍系列">WebRTC国内外介绍系列</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/5912997"  title="The method of type must override a superclass method解决方式">The method of type must override a superclass method解决方式</a><span>(5)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/6997756"  title="ffmpeg/ffplay vc6 源码剖析||Win7下SDL环境搭建---用于ffplay">ffmpeg/ffplay vc6 源码剖析||Win7下SDL环境搭建---用于ffplay</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/7061919"  title="【我的解决方案】android2.3 播放网络视频时，截取任意时间点图像且保存下来">【我的解决方案】android2.3 播放网络视频时，截取任意时间点图像且保存下来</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/pkueecser/article/details/8267644"  title="图像处理与计算机视觉：基础，经典以及最近发展">图像处理与计算机视觉：基础，经典以及最近发展</a><span>(4)</span>
+</li>
+</ul>
+</div>
+<div  id="homepageArticles"  class="panel tracking-ad"  data-mod="popu_4">
+<ul  class="panel_head"><span>推荐文章</span></ul>
+<ul  class="panel_body"  id="ad_commend"><iframe  id="ad_frm_1"  frameborder="0"  scrolling="no"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ad.htm"  style="border-width: 0px; overflow: hidden; width: 194px; height: 200px;"></iframe></ul>
+</div>
+<script  type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div  id="newcomments"  class="panel">
+<ul  class="panel_head"><span>最新评论</span></ul>
+<ul  class="panel_body itemlist">
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/5912997#comments">The method of type must override a superclass method解决方式</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/Qian_F"  class="user_name">Qian_F</a>:
+我也遇到了这个问题，但是我的jdk是1.6，使用了@Override也还是会报错，这是怎么回事？
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/7368820#comments">EditText的focus问题</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/belldeep"  class="user_name">belldeep</a>:
+真是好建议
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/8240535#comments">浙大CS延毕本科生，今年拒掉Google硅谷总部offer的就是他</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/litianqwe"  class="user_name">litianqwe</a>:
+LZ，看了你面试过程，感觉好震撼！你是怎么做到的？我感觉你好强
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/6888392#comments">Win7与Ubuntu双系统时【卸载Ubuntu】</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/moteted"  class="user_name">moteted</a>:
+您好！看您的账号，您也是SCUT的？现在师弟有个问题，就是笔记本装了双系统：win7_32bit+U...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/7400085#comments">牛人对RTSP的android实现</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/wangzhezhilu001"  class="user_name">wangzhezhilu001</a>:
+链接失败
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/8012007#comments">Deformable Part Model的学习</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/u013113770"  class="user_name">小龙-zheng</a>:
+博主你好，code能否在Windows下运行
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/7329398#comments">OpenCV2.3.1运行程序报错“计算机丢失tbb_debug.dll”</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/huakaihualuo06"  class="user_name">huakaihualuo06</a>:
+可是在ia32目录下已经有一个tbb_debug文件和tbb，怎木办？
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/6063599#comments">应用程序无法正常启动（0xc0150002）！</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/xiaojin111"  class="user_name">xiaojin111</a>:
+为什么不行啊
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/6888392#comments">Win7与Ubuntu双系统时【卸载Ubuntu】</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/shelly36yu"  class="user_name">shelly36yu</a>:
+为什么按你的方法卸载了之后重启还有ubuntu啊
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/scut1135/article/details/6888392#comments">Win7与Ubuntu双系统时【卸载Ubuntu】</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/shelly36yu"  class="user_name">shelly36yu</a>:
+你好，那个删除分区的时候有个没有名字的（OEM分区），也是ubuntu分区吗？
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div  class="clear">
+    </div>
+</div>
+
+            <div  class="clear">
+            </div>
+        </div>
+        
+
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script  type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">QQ客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="http://bbs.csdn.net/forums/Service"  target="_blank"  class="online">论坛反馈</a> <a  href="mailto:webmaster@csdn.net"  class="email">联系邮箱：webmaster@csdn.net</a> <span  class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+<script  type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/pv.aspx"  border="0"  width="0"  height="0">
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/count.js"></script><iframe  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/logs.htm"  frameborder="0"  width="0"  height="0"></iframe>
+<script  type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      
+    
+    <script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./Mysql性能优化 - GrantGu@PKU专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     
+
+
+</body></html>

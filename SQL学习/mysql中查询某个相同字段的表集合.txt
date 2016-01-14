@@ -1,0 +1,38 @@
+1.
+SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE COLUMN_NAME = 'userid' and TABLE_SCHEMA = 'ss_silver'
+GROUP BY TABLE_NAME
+
+mysql中查询某个相同字段的表集合
+
+2.
+SELECT TABLE_NAME '表名',
+ ORDINAL_POSITION '顺序',
+ COLUMN_NAME '字段',
+ DATA_TYPE '类型',
+ CHARACTER_OCTET_LENGTH '字节长',
+ IF( COLUMN_KEY = 'PRI', "√", "" ) '主键',
+ IF( EXTRA = 'auto_increment', "√", "" ) '自增长',
+ IF( IS_NULLABLE = 'YES', "√", "" ) '空',
+ CHARACTER_SET_NAME '编码', COLUMN_DEFAULT '默认值',
+ COLUMN_COMMENT '说明'
+FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA = 'ss_silver'
+AND COLUMN_NAME = 'userid'
+
+
+二 datetime 转换为 时间戳
+
+<?
+print(date( "l dS of F Y h:i:s A" ));
+print("July 1, 2000 is on a " . date("l", mktime(0,0,0,7,1,2000)));
+?>
+范例二:
+<?
+$tomorrow = mktime(0,0,0,date("m") ,date("d")+1,date("Y"));
+$lastmonth = mktime(0,0,0,date("m")-1,date("d"), date("Y"));
+$nextyear = mktime(0,0,0,date("m"), date("d", date("Y")+1);
+?>
+可以这样做：
+date("Y-m-d H-i-s");

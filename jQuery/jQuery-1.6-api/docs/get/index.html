@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.get()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/miscellaneous/" title="View all posts in Miscellaneous">Miscellaneous</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/miscellaneous/dom-element-methods/" title="View all posts in DOM Element Methods">DOM Element Methods</a></span>
+  
+  				</div>
+</div>
+<div id="get1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.get( [ index ] )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#Element,%20Array">Element, Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>通过jQuery对象获取对应的DOM元素。</p>
+<ul class="signatures"><li class="signature" id="get-index">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.get( [ index ] )</h4>
+<p class="arguement"><strong>index</strong>从0开始计数，用来确定获取哪个元素。</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.get()</code> 方法允许我们直接访问jQuery对象隐含的DOM节点。假设我们页面上有一个简单的无序列表：</p>
+<pre>
+&lt;ul&gt;
+  &lt;li id="foo"&gt;foo&lt;/li&gt;
+  &lt;li id="bar"&gt;bar&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果不带参数， <code>.get()</code> 会返回所有的元素：</p>
+<pre>alert($('li').get());</pre>
+<p>调用这个方法将会返回所有匹配的DOM节点，这些节点包含在一个标准的数组中：</p>
+<p><span class="result">[&lt;li id="foo"&gt;, &lt;li id="bar"&gt;]</span></p>
+<p>如果指定了 index 参数， .get() 则会获取单个元素：</p>
+<pre>($('li').get(0));</pre>
+<p>由于索引 index 是以 0 开始计数的，所以上面代码返回了第一个列表项：</p>
+<p><span class="output">&lt;li id="foo"&gt;</span></p>
+<p>每个 jQuery 对象也会冒充为一个数组，所以我们也可以用直接用数组的取值运算符来获得列表项：</p>
+<pre>alert($('li')[0]);</pre>
+<p>然而，这种语法缺少某些 .get() 所具有的附加功能，比如可以指定索引值为负值：</p>
+<pre>alert($('li').get(-1));</pre>
+<p>负的索引值表示从匹配的集合中从末尾开始倒数，所以上面这个例子将会返回列表中最后一项：</p>
+<p><span class="output">&lt;li id="bar"&gt;</span></p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">选择文档中的所有div，并且作为一个数组返回。然后使用浏览器原生的 reverse 方法将数组翻转。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Reversed - &lt;span&gt;&lt;/span&gt;
+
+  &lt;div&gt;One&lt;/div&gt;
+  &lt;div&gt;Two&lt;/div&gt;
+  &lt;div&gt;Three&lt;/div&gt;
+&lt;script&gt;
+
+    function disp(divs) {
+      var a = [];
+      for (var i = 0; i &lt; divs.length; i++) {
+        a.push(divs[i].innerHTML);
+      }
+      $("span").text(a.join(" "));
+    }
+    
+    disp( $("div").get().reverse() );
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">给出点中元素的标签名。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { color:red; }
+  div { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span&gt;&amp;nbsp;&lt;/span&gt;
+  &lt;p&gt;In this paragraph is an &lt;span&gt;important&lt;/span&gt; section&lt;/p&gt;
+
+  &lt;div&gt;&lt;input type="text" /&gt;&lt;/div&gt;
+&lt;script&gt;
+
+    $("*", document.body).click(function (e) {
+      e.stopPropagation();
+      var domEl = $(this).get(0);
+      $("span:first").text("Clicked on - " + domEl.tagName);
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

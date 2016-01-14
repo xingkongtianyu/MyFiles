@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.replaceAll()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-replacement/" title="View all posts in DOM Replacement">DOM Replacement</a></span>
+  
+  				</div>
+</div>
+<div id="replaceAll1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.replaceAll()</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>用匹配元素替换所有目标元素。</p>
+<ul class="signatures"><li class="signature" id="replaceAll"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.replaceAll()</h4></li></ul>
+<div class="longdesc">
+<p><code>.replaceAll()</code>和<code><a href="#p=replaceWith">.replaceWith()</a></code>功能一样，但是目标和源相反。请看下面的HTML:</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner first"&gt;Hello&lt;/div&gt;
+  &lt;div class="inner second"&gt;And&lt;/div&gt;
+  &lt;div class="inner third"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>我们可以创建一个元素然后用它替换其它元素：</p>
+<pre>$('&lt;h2&gt;New heading&lt;/h2&gt;').replaceAll('.inner');</pre>
+<p>结果如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+  &lt;h2&gt;New heading&lt;/h2&gt;
+&lt;/div&gt;</pre>
+<p>我们也可以选择一个元素用来替换其它的：</p>
+<pre>$('.first').replaceAll('.third');</pre>
+<p>This results in the DOM structure:</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner second"&gt;And&lt;/div&gt;
+  &lt;div class="inner first"&gt;Hello&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>从这个例子可以看出，用来替换的元素从老地方移到新位置，而不是复制。</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">将所有段落换成粗体字</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("&lt;b&gt;Paragraph. &lt;/b&gt;").replaceAll("p"); // check replaceWith() examples&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.load()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/shorthand-methods/" title="View all posts in Shorthand Methods">Shorthand Methods</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="load1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.load( url, [ data ], [ complete(responseText, textStatus, XMLHttpRequest) ] )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>载入远程 HTML 文件代码并插入至 DOM 中。</p>
+<ul class="signatures"><li class="signature" id="load-url-data-completeresponseText, textStatus, XMLHttpRequest">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.load( url, [ data ], [ complete(responseText, textStatus, XMLHttpRequest) ] )</h4>
+<p class="arguement"><strong>url</strong>一个包含发送请求的URL字符串</p>
+<p class="arguement"><strong>data</strong>向服务器发送请求的Key/value参数，例如{name:"愚人码头",age:23} </p>
+<p class="arguement"><strong>complete(responseText, textStatus, XMLHttpRequest)</strong>当请求成功后执行的回调函数。</p>
+</li></ul>
+<div class="longdesc">
+
+<p>这个方法是从服务器获取数据最简单的方法。除了是一个不是全局函数，这个方法和<code>$.get(url, data, success)</code> 基本相同，它有一种隐含的回调函数。 当他检查到一个成功的请求(i.e. 当 <code>textStatus</code>是 "success" 或者 "notmodified")，<code>.load()</code> 方法将返回的HTML 内容数据设置到相匹配的节点中。这就意味着大多数采用这个方法可以很简单:</p>
+<pre>$('#result').load('ajax/test.html');</pre>
+<p>如果提供回调,都将在执行后进行后处理:</p>
+<pre>$('#result').load('ajax/test.html', function() {
+  alert('Load was performed.');
+});
+</pre>
+<p>在上文的两个例子中, 如果当前的文件不包含ID为“result”的元素，那么<code>.load()</code>方法将不被执行。</p>
+<p>默认使用 GET 方式 - 传递附加参数时自动转换为 POST 方式。</p>
+<blockquote>
+  <p><strong>注意</strong>: 事件处理函数中也有一个方法叫 <code><a href="#p=load-event">.load()</a></code>。  哪一个被使用取决于传递的参数设置。  </p></blockquote>
+<h4>加载页面片段</h4>
+<p><code>.load()</code> 方法, 不像 <code><a href="#p=jQuery.get">$.get()</a></code>，允许我们指定远程文件被插入的部分。 他是一个特殊的 <code>url</code> 参数。 一个或多个空格字符被包括在这个 <code>url</code> 参数字符串中， 在这个字符串被第一空格划分jQuery选择内容将被载入。</p>
+<p>我们可以修改上述例子中,只有“#container”部分被载人到文件中：</p>
+<pre>$('#result').load('ajax/test.html #container');</pre>
+<p>当这种方法执行, 它将检索 <code>ajax/test.html</code> 页面的内容，jQuery会获取ID为 <code>container</code> 元素的内容，并且插入到ID为 <code>result</code> 元素，而其他的被检索到的元素将被废弃。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子: <span class="desc">Load the main page's footer navigation into an ordered list.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+ body{ font-size: 12px; font-family: Arial; }
+ &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;b&gt;Footer navigation:&lt;/b&gt;
+&lt;ol id="new-nav"&gt;&lt;/ol&gt;
+
+&lt;script&gt;
+  $("#new-nav").load("/ #jq-footerNavigation li");
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子: <span class="desc">显示一个信息如果Ajax请求遭遇一个错误</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body{ font-size: 12px; font-family: Arial; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;b&gt;Successful Response (should be blank):&lt;/b&gt;
+&lt;div id="success"&gt;&lt;/div&gt;
+&lt;b&gt;Error Response:&lt;/b&gt;
+&lt;div id="error"&gt;&lt;/div&gt;
+  
+&lt;script&gt;
+$("#success").load("/not-here.php", function(response, status, xhr) {
+  if (status == "error") {
+    var msg = "Sorry but there was an error: ";
+    $("#error").html(msg + xhr.status + " " + xhr.statusText);
+  }
+});
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>例子: <span class="desc"> 将feeds.html 文件载人到 ID为feeds的DIV.</span>
+</h4>
+<pre><code class="example">$("#feeds").load("feeds.html");</code></pre>
+<h4>结果:</h4>
+<pre><code class="results">&lt;div id="feeds"&gt;&lt;b&gt;45&lt;/b&gt; feeds found.&lt;/div&gt;</code></pre>
+</div>
+<div id="example-3">
+<h4>例子: <span class="desc">发送数组形式的data参数到服务器。</span>
+</h4>
+<pre><code class="example">$("#objectID").load("test.php", { 'choices[]': ["Jon", "Susan"] } );</code></pre>
+</div>
+<div id="example-4">
+<h4>例子: <span class="desc">同上, but will POST the additional parameters to the server and a callback that is executed when the server is finished responding.</span>
+</h4>
+<pre><code class="example">$("#feeds").load("feeds.php", {limit: 25}, function(){
+alert("The last 25 entries in the feed have been loaded");
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

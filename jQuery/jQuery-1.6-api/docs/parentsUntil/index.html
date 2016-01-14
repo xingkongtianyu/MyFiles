@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.parentsUntil()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="parentsUntil1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.parentsUntil( [ selector ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>查找当前元素的所有的前辈元素，直到遇到选择器匹配的元素为止，不包括那个匹配到的元素。</p>
+<ul class="signatures"><li class="signature" id="parentsUntil-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.parentsUntil( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于确定到哪个前辈元素时停止匹配。</p>
+</li></ul>
+<div class="longdesc">
+<p>>如果提供一个jQuery对象代表DOM元素集合， <code>.parentsUntil()</code> 方法会找遍所有这些元素的前辈元素，直到遇到了跟参数匹配的元素才会停止。返回的jQuery对象中包含了所有找到的前辈元素，除了与 <code>.parentsUntil()</code> 选择器匹配的那个元素。考虑如下的嵌套列表：</p>
+<pre>&lt;ul class="level-1"&gt;
+  &lt;li class="item-i"&gt;I&lt;/li&gt;
+  &lt;li class="item-ii"&gt;II
+    &lt;ul class="level-2"&gt;
+      &lt;li class="item-a"&gt;A&lt;/li&gt;
+      &lt;li class="item-b"&gt;B
+        &lt;ul class="level-3"&gt;
+          &lt;li class="item-1"&gt;1&lt;/li&gt;
+          &lt;li class="item-2"&gt;2&lt;/li&gt;
+          &lt;li class="item-3"&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-c"&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item-iii"&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们从项目 A 开始找它的前辈，但不包括 <code>&lt;ul class="level-1"&gt;</code> ，就可以用下面代码：</p>
+<pre>$('li.item-a').parentsUntil('.level-1')
+    .css('background-color', 'red');</pre>
+<p>结果就是 level-2 列表和项目 II 的背景变红。 </p>
+            <p>如果提供给 .parentsUntil() 的选择器没有匹配到任何东西，或者干脆没有提供选择器，那么返回的对象会是这个对象所有的前辈元素。例如再次从项目 A 开始找，但这次使用一个匹配不到任何东西的选择器：</p>
+<pre>$('li.item-a').parentsUntil('.not-here')
+    .css('background-color', 'red');</pre>
+<p>其结果是给 level-2 列表, 项目 II,  level-1 列表, <code>&lt;body&gt;</code> 元素和 <code>&lt;html&gt;</code> 元素都设置了红色背景。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">查找 &lt;li class="item-a"&gt; 的前辈，直到 &lt;ul class="level-1"&gt; 为止，并给它们设置红色背景。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+&lt;ul class="level-1"&gt;
+  &lt;li class="item-i"&gt;I&lt;/li&gt;
+  &lt;li class="item-ii"&gt;II
+    &lt;ul class="level-2"&gt;
+      &lt;li class="item-a"&gt;A&lt;/li&gt;
+      &lt;li class="item-b"&gt;B
+        &lt;ul class="level-3"&gt;
+          &lt;li class="item-1"&gt;1&lt;/li&gt;
+          &lt;li class="item-2"&gt;2&lt;/li&gt;
+          &lt;li class="item-3"&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-c"&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item-iii"&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+    $('li.item-a').parentsUntil('.level-1')
+      .css('background-color', 'red');
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

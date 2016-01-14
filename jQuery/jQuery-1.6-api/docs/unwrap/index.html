@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.unwrap()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-insertion-around/" title="View all posts in DOM Insertion, Around">DOM Insertion, Around</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-removal/" title="View all posts in DOM Removal">DOM Removal</a></span>
+  
+  				</div>
+</div>
+<div id="unwrap1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.unwrap()</span> <span class="returns">返回：<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>将匹配元素的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置。</p>
+<ul class="signatures"><li class="signature" id="unwrap"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.unwrap()</h4></li></ul>
+<div class="longdesc"><p><code>.unwrap()</code>删除元素的父级元素。和 <code><a href="#p=wrap">.wrap()</a></code>的功能相反。</p></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">在每个段落外层加上div或者删除div</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { border: 2px solid blue; }
+  p { background:yellow; margin:4px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;wrap/unwrap&lt;/button&gt;
+&lt;p&gt;Hello&lt;/p&gt;
+&lt;p&gt;cruel&lt;/p&gt;
+&lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;
+$("button").toggle(function(){
+  $("p").wrap("&lt;div&gt;&lt;/div&gt;");
+}, function(){
+  $("p").unwrap();
+});&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

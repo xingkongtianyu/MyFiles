@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">Next Adjacent Selector (“prev + next”)</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/hierarchy-selectors/" title="View all posts in Hierarchy">Hierarchy</a></span>
+  
+  				</div>
+</div>
+<div id="next-adjacent1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">next adjacent</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery('prev + next')</h4>
+<ul class="signatures"><li><dl class="arguments">
+<dt>prev</dt>
+<dd>任何有效的选择器。</dd>
+<dt>next</dt>
+<dd>一个选择器匹配这个元素下面的第一元素。</dd>
+</dl></li></ul>
+<p class="desc"><strong>描述： </strong>选择所有紧接在 “prev” 元素后的 “next” 元素</p>
+<div class="longdesc"><p>其中重要的一点既要考虑下一个相邻兄弟选择器（ <code>prev + next</code> ）和一般兄弟选择器（ <code>prev ~ siblings</code> ）是该组合子的元素两边必须共享相同的家长。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Finds all inputs that are next to a label.</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form&gt;
+
+    &lt;label&gt;Name:&lt;/label&gt;
+    &lt;input name="name" /&gt;
+    &lt;fieldset&gt;
+      &lt;label&gt;Newsletter:&lt;/label&gt;
+
+      &lt;input name="newsletter" /&gt;
+    &lt;/fieldset&gt;
+  &lt;/form&gt;
+  &lt;input name="none" /&gt;
+&lt;script&gt;$("label + input").css("color", "blue").val("Labeled!")&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

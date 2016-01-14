@@ -1,0 +1,469 @@
+  563  ls -la
+  564  cd ../
+  565  chown apache.apache media 3dmedia -R
+  566  cd /var/www/html/
+  567  LANg=C
+  568  vi mk_dir.php 
+  569  cd /var/log/httpd/
+  570  vi error_log
+  571  /etc/init.d/httpd restart
+  572  cd /var/www/html/
+  573  ls
+  574  cd /var/www/tupoedata/
+  575  ls
+  576  cd media/
+  577  ls
+  578  mv /var/www/html/mk_dir.php /data/TestDocuments/
+  579  mv /var/www/html/media.txt /data/TestDocuments/
+  580  mv /var/www/html/3dmedia.txt /data/TestDocuments/
+  581  cd /data/TestDocuments
+  582  ls
+  583  ls media.txt /var/www/html/
+  584  mv media.txt /var/www/html/
+  585  mv 3dmedia.txt /var/www/html/
+  586  mv mk_dir.php /var/www/html/
+  587  cd /var/log/httpd/error_log
+  588  vi /var/log/httpd/error_log
+  589  ps ax
+  590  echo ""> /var/log/httpd/error_log
+  591  ps ax
+  592  vi /var/log/httpd/error_log
+  593  vi /var/log/httpd/error_log
+  594  vi /var/log/httpd/error_log
+  595  vi /var/log/httpd/error_log
+  596  cd /var/www/html/
+  597  dir
+  598  chmod 777 media.txt 3dmedia.txt 
+  599  cd /data/
+  600  ls
+  601  cd TestDocuments
+  602  ls
+  603  chown nobody.nobody -R media 3dmedia
+  604  rsync -avzp --progress 211.100.99.166:/var/lib/mysql/ss_silver/Member.* /var/lib/mysql/ss_silver/
+  605  /etc/init.d/mysqld restart
+  606  cd /etc/subversion/authz.conf 
+  607  vi /etc/subversion/authz.conf 
+  608  cd /etc/yum.repos.d/
+  609  ls
+  610  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_silver/
+  611  /etc/init.d/mysqld restart
+  612  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_silver/
+  613  /etc/init.d/mysqld restart
+  614  cd /var/lib/mysql/
+  615  ls
+  616  rsync -avzp --progress ss_silver/ ss_silver1/
+  617  cd /var/lib/mysql/
+  618  rsync -avzp --progress ss_silver1/ ss_silver/
+  619  /etc/init.d/mysqld restart
+  620  rsync -avzp --progress ss_silver1/ ss_silver/
+  621  /etc/init.d/mysqld restart
+  622  cd /data/TestDocuments/media/
+  623  cd fr/522d2535a0a2da90a68c1deab5e51bd0
+  624  ls
+  625  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  626  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  627  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  628  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  629  /etc/init.d/mysqld restart
+  630  cd tmp
+  631  grep jwplayer *
+  632  grep jwplayer *
+  633  cd tsplayer/
+  634  grep jwplayer * -R
+  635  ls
+  636  grep jwplayer * -R
+  637  grep jw * -R
+  638  grep jw * -R
+  639  grep jwplayer * -R
+  640  grep jwp * -R
+  641  grep jwP * -R
+  642  grep jw * -R
+  643  grep jw * -R
+  644  grep jw * -R
+  645  vi bin-debug/pl.swf 
+  646  LANG=C
+  647  vi bin-debug/pl.swf 
+  648  grep JW * -R
+  649  cd tmp/tsplayer/
+  650  grep jw * -R
+  651  grep jwP * -R
+  652  grep jwD * -R
+  653  grep jwG * -R
+  654  grep jw * -R
+  655  cd jia
+  656  ls
+  657  cd /var/lib/mysql/
+  658  rsync -avzp --progress ss_silver1/ ss_silver/
+  659  /etc/init.d/mysqld restart
+  660  rsync -avzp --progress ss_silver1/ ss_silver/
+  661  /etc/init.d/mysqld restart
+  662  cd /var/lib/mysql/
+  663  rsync -avzp --progress ss_silver1/ ss_silver/
+  664  /etc/init.d/mysqld restart
+  665  rsync -avzp --progress ss_silver1/ ss_silver/
+  666  /etc/init.d/mysqld restart
+  667  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  668  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  669  vi /etc/subversion/authz.conf 
+  670  cd /var/lib/mysql/
+  671  rsync -avzp --progress ss_silver1/ ss_silver/
+  672  /etc/init.d/mysqld restart
+  673  rsync -avzp --progress ss_silver1/ ss_silver/
+  674  /etc/init.d/mysqld restart
+  675  rsync -avzp --progress 211.100.99.166:/data/ss_silver/Member.* /var/lib/mysql/ss_silver1/
+  676  /etc/init.d/mysqld restart
+  677  rsync -avzp --progress 211.100.99.166:/data/ss_silver/Member.* /var/lib/mysql/ss_silver1/
+  678  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_silver1/
+  679  /etc/init.d/mysqld restart
+  680  /etc/init.d/mysqld restart
+  681  cd /data/svnback/v2_tupoe_word/
+  682  vi /etc/httpd/conf.d/subversion.conf
+  683  cd /data/subversion/repos/
+  684  ls
+  685  cd v2_tupoe_word/
+  686  ls
+  687  find . -name "*1653*"
+  688  rm -rf db/revs/1/1653 db/revprops/1/1653 
+  689  grep 1653 * -R
+  690  vi db/current 
+  691  vi db/current 
+  692  grep 1653 * -R
+  693  cd /var/www/html/silver/assets/Users/
+  694  ls
+  695  rm -rf /tmp/silverstripe-cache-var-www-html-silver/
+  696  ls
+  697  cd ../
+  698  ls
+  699  cd ../
+  700  cd sapphire/filesystem/
+  701  vi File.php 
+  702  rm r-f /tmp/silverstripe-cache-var-www-html-silver/
+  703  rm r-f /tmp/silverstripe-cache-var-www-html-silver/ -rf
+  704  ls
+  705  cd /var/www/html/silver/sapphire/filesystem/
+  706  vi File.php 
+  707  vi /var/log/httpd/error_log
+  708  cd 
+  709  cd /data/
+  710  ls
+  711  cd subversion/repos/
+  712  vi /etc/subversion/authz.conf 
+  713  rsync -avzp --progress 211.100.99.166:/data/ss_silver/Member.* /var/lib/mysql/ss_silver1/
+  714  /etc/init.d/smb start
+  715  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html/silver/
+  716  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html/silver/
+  717  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html/silver/
+  718  df
+  719  cd /var/www/html/
+  720  ls
+  721  cd ..
+  722  ls
+  723  cd ..
+  724  ls
+  725  mv www /data/
+  726  ln -s /data/www /var/
+  727  ls
+  728  df
+  729  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html/silver/
+  730  vi /etc/subversion/authz.conf 
+  731  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html/silver/
+  732  vi /var/www/html/
+  733  cd /var/www/html/silver/mysite/
+  734  ls
+  735  vi _config.php 
+  736  rm -rf /tmp/silverstripe-cache-var-www-html-silver
+  737  ls
+  738  cd /root
+  739  ls
+  740  ~
+  741  cd /var/www/html/
+  742  ls
+  743  cd silver
+  744  vi mysite/_config.php 
+  745  ps ax
+  746  ps ax
+  747  /etc/init.d/mysqld stop
+  748  /etc/init.d/mysqld stop
+  749  ps ax
+  750  ps ax
+  751  df
+  752  cd /var/
+  753  ls
+  754  cd /data/
+  755  ls
+  756  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_silver1/
+  757  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_silver1/
+  758  ifconfig
+  759  ping 192.168.0.1
+  760  ping 192.168.0.1
+  761  /etc/init.d/smb start
+  762  reboot
+  763  /etc/init.d/smb start
+  764  cd /etc/init.d/
+  765  ls
+  766  /etc/init.d/webmin start
+  767  cd /data/
+  768  ls
+  769  cd TestDocuments
+  770  cd ../TestDocuments-20110601/
+  771  find . -name "*.swf" 
+  772  find . -name "*.swf"  > /root/swf.log
+  773  LANG=C
+  774  find . -name "*.swf"  > /root/swf.log
+  775  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  776  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  777  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  778  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  779  /etc/init.d/smb start
+  780  cd 
+  781  ls
+  782  md5sum tmp.sql 
+  783  ls
+  784  rsync -avzp --progress webmin-1.430-1.noarch.rpm 192.168.0.171:/root/
+  785  vi /root/.ssh/known_hosts 
+  786  rsync -avzp --progress webmin-1.430-1.noarch.rpm 192.168.0.171:/root/
+  787  ssh 192.168.0.171
+  788  ssh 192.168.0.171
+  789  rpm -qf /usr/bin/ssh-agent 
+  790  cd /data/
+  791  ls
+  792  vi /etc/crontab 
+  793  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  794  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.166:/var/www/tupoedata/media/
+  795  rsync -avzp --progress /data/TestDocuments/media/ 211.100.99.167:/var/www/tupoedata/media/
+  796  ls
+  797  find / -name php.ini
+  798  ssh 211.100.99.166
+  799  find / -name 3d
+  800  find . -name media
+  801  cd /
+  802  find . -name media
+  803  find . -name 3dmedia
+  804  cd /data/
+  805  ls
+  806  cd testdocuments
+  807  ls -l
+  808  service smb resrart
+  809  /etc/init.d/smb restart
+  810  /etc/init.d/vtpf restart
+  811  service smb start
+  812  service mysql start
+  813  service mysql restart
+  814  service ssh start
+  815  ping 192.168.0.125
+  816  ifconfig 
+  817  ping www.baidu.com
+  818  ping 192.168.0.1
+  819  service network restart
+  820  ifconfig 
+  821  nslookup www.baidu.com
+  822  ping 192.168.0.103
+  823  ping 192.168.0.103
+  824  ping 192.168.0.103
+  825  ping 192.168.0.1
+  826  ping 192.168.0.1
+  827  ping 192.168.0.1
+  828  ping 192.168.0.1
+  829  service network restart
+  830  ifconfig 
+  831  ping 192.168.0.1
+  832  ping 192.168.0.1
+  833  ls
+  834  find . -name data
+  835  find . -name TestDocument
+  836  find / -name TestDocument
+  837  pwd
+  838  cd tmp/
+  839  cd..
+  840  cd ..
+  841  find / -name TestDocument
+  842  cd /
+  843  ls
+  844  find / -name TestDocument
+  845  find / -name data
+  846  cd data
+  847  ls
+  848  cd silver/
+  849  ls
+  850  cd ..
+  851  ls
+  852  cd www
+  853  ls
+  854  cd ..
+  855  cd ..
+  856  ls
+  857  cd media
+  858  ls
+  859  ls
+  860  cd ..
+  861  find . -name 3dmedia
+  862  cd data
+  863  ls
+  864  cd TestDocuments
+  865  ls
+  866  vi test01
+  867  ls
+  868  chmod a+x test01
+  869  ls -l
+  870  test01
+  871  sh test01
+  872  ./test01
+  873  chmod a-x test01
+  874  ./test01
+  875  sh test01
+  876  vi test01
+  877  ls -l
+  878  chmod a+x test01
+  879  ls -l
+  880  ./test01
+  881  sh test01
+  882  sh test01
+  883  ./test01
+  884  ./test01.sh
+  885  vi showhello.sh
+  886  chmod u+x showhello.sh
+  887  showhello.sh
+  888  ls
+  889  vi showhello.sh
+  890  chmod u+x showhello.sh
+  891  ls -l
+  892  ./showhello.sh
+  893  showhello.sh
+  894  showhello.sh
+  895  showhello.sh
+  896  showhello.sh
+  897  ./showhello.sh
+  898  find / -mtime -1
+  899  find ./ -mtime -1
+  900  vi showhello.sh
+  901  ./showhello.sh
+  902  ./showhello.sh
+  903  roll
+  904  rollback
+  905  find / -name php.ini
+  906  find / -name httpd.conf
+  907  /data/old.enterprise/special/ent004/etc/httpd/conf/httpd.conf
+  908  vi /etc/httpd/conf/httpd.conf
+  909  vi /data/enterprise/install/6config/etc/httpd/conf/httpd.conf
+  910  vi /data/home/8chenqd/install.enterprise/etc/httpd/conf/httpd.conf
+  911  vi /data/old.enterprise/special/ent004/etc/httpd/conf/httpd.conf
+  912  find / -name www
+  913  cd /var/www
+  914  ls
+  915  cd html
+  916  ls
+  917  ls -l
+  918  cd silver
+  919  ls 
+  920  cp ./tupoe_user /data/TestDocument/tupoe_user
+  921  cp tupoe_user /data/TestDocument/tupoe_user
+  922  pwd
+  923  cd ..
+  924  ls
+  925  cp ./tupoe_user /data/TestDocument/tupoe_user
+  926  cd tupoe_user/
+  927  ls
+  928  ls -l
+  929  cd /data/TestDocuments
+  930  ls
+  931  cp /var/www/html/tupoe_user/ tupoe_user
+  932  cp /var/www/html/tupoe_user/* tupoe_user
+  933  cp /var/www/html/tupoe_user/* tupoe_user
+  934  cd /var/www/html/
+  935  ls
+  936  ls -l
+  937  cd mysql/
+  938  ls -l
+  939  cd ..
+  940  mkdir zc888
+  941  chomd 0777 zc888
+  942  chmod 0777 zc888
+  943  ls -l
+  944  cd zc888
+  945  vi index.php
+  946  chmod 0777 index.php
+  947  cd ..
+  948  vi index.php
+  949  cd /
+  950  cd data/
+  951  cd TestDocuments
+  952  ls -l
+  953  cd /var/www/html/
+  954  ls -l
+  955  cat ks1.cfg
+  956  find / -name htaccess
+  957  find / -name .htaccess
+  958  find / -name apache
+  959  find / -name *htaccess*
+  960  cat /data/enterprise/install/6config/var/www/html/mysql/libraries/.htaccess
+  961  vi /data/enterprise/install/6config/var/www/html/mysql/libraries/.htaccess
+  962  cd /data/TestDocuments/
+  963  ls -l
+  964  cd media/
+  965  ls -l a
+  966  cd a
+  967  ls
+  968  cd fe30b6545099801b10bfb773e78c4fa5/
+  969  ls 
+  970  ls -l
+  971  cd ..
+  972  ls -l
+  973  find / -name "html/www"
+  974  find / -name "html"
+  975  cd /var
+  976  ls
+  977  cd www
+  978  ls
+  979  cd html
+  980  ls
+  981  cd mysql
+  982  ls
+  983  cd ..
+  984  ls
+  985  cd mysql
+  986  ls
+  987  cat user_password.php 
+  988  ls
+  989  cd ..
+  990  cp ./mysql/* /data/TestDocuments/zc888
+  991  cp -rf ./mysql/* /data/TestDocuments/zc888
+  992  cp -r ./mysql/* /data/TestDocuments/zc888
+  993  cp -rf ./mysql/* /data/TestDocuments/zc888
+  994  cp ./mysql/* /data/TestDocuments/zc888
+  995  cp -r ./mysql/* /data/TestDocuments/zc888
+  996  cd ..
+  997  cd /data/TestDocuments/
+  998  rm -rf ./zc8881
+  999  rm -rf ./zc888
+ 1000  find / -name mysqld
+ 1001  service mysqld restart
+ 1002  cd /usr/bin/
+ 1003  ls
+ 1004  ls -l mysqld
+ 1005  ls -l mysqld_safe
+ 1006  service mysqld stop
+ 1007  /usr/bin/mysqld_safe --skip-grant-tables&
+ 1008  histoty
+ 1009  history
+ 1010  service mysqld restart
+ 1011  service mysqld restart
+ 1012  service mysqld stop
+ 1013  service mysqld start
+ 1014  cd /etc
+ 1015  find . -name mysql
+ 1016  cd /
+ 1017  find / -name mysql
+ 1018  service mysqld start
+ 1019  service mysqld restart
+ 1020  histroy
+ 1021  history
+ 1022  /usr/bin/mysqld_safe --skip-grant-tables&
+ 1023  kill 16745
+ 1024  sell>ps -eLf | grep mysql 
+ 1025  sell>ps -eLf | grep mysql_safe
+ 1026  service mysqld status
+ 1027  kill 15362
+ 1028  service mysqld restart
+ 1029  netstat -ln
+ 1030  history -a
+ 1031  history

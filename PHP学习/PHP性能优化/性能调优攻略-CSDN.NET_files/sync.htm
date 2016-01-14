@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0052)http://weibo.com/aj/static/sync.html?t=1392079985827 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+<title>sina sync page</title>
+</head>
+<body>
+<script  type="text/javascript">
+    var dre = 'http://weibo.com/login?url=';
+	var reg_sina = /^http\:\/\/login\.sina\.com\.cn/i;
+	
+    var regs = {};
+    regs['baidu'] = /^http\:\/\/cpro\.baidu\.com/i;
+    regs['yunyun'] = /^http:\/\/(.+\.)?yunyun\.com/i;
+    
+    var to_website_url = {};
+    to_website_url['baidu'] = 'http://cpro.baidu.com/cpro/ui/html/sync.htm';
+    to_website_url['yunyun'] = 'https://passport.yunyun.com/WeiboSync.php';
+
+    var getCookie = function(sKey) {
+        sKey = sKey.replace(/([\.\[\]\$])/g, '\\\$1');
+        var rep = new RegExp(sKey + '=([^;]*)?;', 'i');
+        var co = document.cookie + ';';
+        var res = co.match(rep);
+        if (res) {
+            return res[1] || "";
+        } else {
+            return '';
+        }
+    };
+    
+    var checkReferrer = function(fromURL) {
+    	fromURL = fromURL || '';
+    	var is_trust = false;
+    	for(var reg in regs){
+    		if(regs[reg].test(document.referrer)){
+    			is_trust = true;
+    		}
+    	}
+    	if(fromURL == 'sina' && !is_trust && reg_sina.test(document.referrer)){
+    		is_trust = true;
+    	}
+        return is_trust;
+    };
+    
+    var fromWebSite = function() {
+    	for(var reg in regs){
+    		if(regs[reg].test(document.referrer)){
+    			return reg;
+    		}
+    	}
+    	return '';
+    };
+
+    (function(){
+        if (checkReferrer('sina')) {
+            var uid = decodeURIComponent(getCookie('SUP')).match(
+                    /uid\=([0-9]+)/i);
+            uid = (uid && uid[1]) || '';
+            if (!uid) {
+                uid = getCookie('myuid') || '';
+            }
+            if (!uid && getCookie('ALF') && fromWebSite()) {
+                var thisURL = location.href;
+                location.href = dre + thisURL + (/\?/.test(thisURL)?'&':'?') + 'from=' + fromWebSite();
+                return;
+            }
+            var from = location.href.match(/[\&|\?]from\=([a-z]+)$/i); 
+            from = (from && from[1]) || fromWebSite() || '';
+            if(from && to_website_url[from]){
+            location.href = to_website_url[from] + '?sid=' + uid + '&t='
+                    + (new Date()).getTime();
+            }
+        }
+    })();
+</script>
+
+
+</body></html>

@@ -1,0 +1,1508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0046)http://baidutech.blog.51cto.com/4114344/742971 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<script  type="text/javascript"  async=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/ga.js"></script><script  id="allmobilize"  charset="utf-8"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/allmobilize.min.js"></script><style  type="text/css"></style><meta  http-equiv="Cache-Control"  content="no-siteapp"><link  rel="alternate"  media="handheld"  href="http://baidutech.blog.51cto.com/#">
+
+
+<title>大话PHP之性能 - 百度技术博客 - 51CTO技术博客</title>
+<meta  name="description"  content="1缘起关于PHP，很多人的直观感觉是PHP是一种灵活的脚本语言，库类丰富，使用简单，安全，非常适合WEB开发，但性能低下。PHP的性能是否真的就如同大家的感觉一样的差呢？本文就是围绕这么一个话题来进行探讨的。从..">
+<meta  name="keywords"  content="脚本语言, php , 性能">
+<meta  http-equiv="Cache-Control"  content="private">
+<!--<base  href="http://baidutech.blog.51cto.com/">--><base href=".">
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/def.js"></script>
+<script  language="javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/message.js"  type="text/javascript"></script>
+<script  language="javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/user_comment.js"  type="text/javascript"></script>
+<script  language="javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/base2.js"  type="text/javascript"></script>
+<script  language="javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/dialog_utf8.js"  type="text/javascript"></script>
+<link  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/36.css"  rel="stylesheet"  type="text/css">
+<link  rel="alternate"  href="http://baidutech.blog.51cto.com/rss.php?uid=4114344"  type="application/rss+xml"  title="RSS 2.0">
+<link  rel="edituri"  type="application/rsd+xml"  title="rsd"  href="http://baidutech.blog.51cto.com/xmlrpc.php?rsd=1">
+<link  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/header_master_top.css"  rel="stylesheet"  type="text/css">
+<link  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/base.css"  rel="stylesheet"  type="text/css">
+<style  type="text/css">
+	.mainNav li a{display:inline-block}
+</style>
+<script>
+var myid = "";
+function add_flink(){
+	if(myid==""){
+
+        var refurlk = "http://baidutech.blog.51cto.com/4114344/742971";
+
+				//commentSubmit("",refurlk);
+				location.href="http://home.51cto.com/index.php?reback="+encodeURIComponent(encodeURIComponent(refurlk));
+				return false;
+	}else{
+      		var url='/mod/edit_flink.php?type=addflink&uid=4114344&flink=http://baidutech.blog.51cto.com';
+		var ajax = InitAjax1();
+		ajax.open("GET", url, true);
+		ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				if(ajax.responseText==""){
+					alert("添加成功。");
+				}
+				if(ajax.responseText=="1"){
+				alert("链接指向自己。");
+				}
+				if(ajax.responseText=="2"){
+				alert("友情链接已存在。")
+				}
+			}
+		}
+		ajax.send(null);
+	}
+
+
+
+}
+function sendmessage(){
+
+	var refurlk = "http://baidutech.blog.51cto.com/4114344/742971";
+
+	if(myid){
+		return true;
+	}else{
+		commentSubmit("",refurlk);
+		return false;
+	}
+}
+function copylink(ourl){
+	if(!ourl){
+		var clipBoardContent = "http://baidutech.blog.51cto.com";
+	}else{
+		var clipBoardContent = ourl;
+	}
+	window.clipboardData.setData("Text",clipBoardContent);
+	alert("复制成功!");
+	return false;
+}
+function correctPNG() {
+if (document.getElementById('blog_touxian'))
+{
+var img = document.getElementById('blog_touxian');
+      var imgName = img.src.toUpperCase()
+      var imgID = (img.id) ? "id='" + img.id + "' " : ""
+      var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+      var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+      var imgStyle = "display:inline-block;" + img.style.cssText
+      if (img.align == "left") imgStyle = "float:left;" + imgStyle
+      if (img.align == "right") imgStyle = "float:right;" + imgStyle
+      if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle
+      var strNewHTML = "<span " + imgID + imgClass + imgTitle
+         + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+         + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+         + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" ;
+      img.outerHTML = strNewHTML;
+}
+}
+//window.attachEvent("onload", correctPNG);
+window.onload=correctPNG;
+
+function copy(){
+var text=document.getElementById("txtUser").value;
+if(copy2Clipboard(text)!=false){ 
+alert("复制成功了！ "); 
+} 
+}
+function copy2Clipboard(txt){ 
+if(window.clipboardData){ 
+window.clipboardData.clearData(); 
+window.clipboardData.setData("Text",txt); 
+}else if(navigator.userAgent.indexOf("Opera")!=-1){ 
+window.location=txt; 
+}else if(window.netscape){ 
+try{ 
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); 
+} 
+catch(e){ 
+alert("您使用的浏览器不支持此复制功能，请使用Ctrl+C或鼠标右键。"); 
+return false; 
+} 
+var clip=Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard); 
+if(!clip)return; 
+var trans=Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable); 
+if(!trans)return; 
+trans.addDataFlavor('text/unicode'); 
+var str=new Object(); 
+var len=new Object(); 
+var str=Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString); 
+var copytext=txt;str.data=copytext; 
+trans.setTransferData("text/unicode",str,copytext.length*2); 
+var clipid=Components.interfaces.nsIClipboard; 
+if(!clip)return false; 
+clip.setData(trans,null,clipid.kGlobalClipboard); 
+return true;
+} 
+}
+
+function mod_close(){
+  document.getElementById('mod_tg').style.display="none";
+}
+
+function match_invite(uid) {
+    var url='/mod/match_invite.php';
+	var ajax = InitAjax();
+    var re = 'uid=' + uid;
+	ajax.open("POST", url, true);
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	ajax.send(re);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            if(ajax.responseText == 1){
+                alert("邀请信息已经发送成功。");
+            } else if(ajax.responseText=="-1"){
+                alert("邀请失败，请稍候再试。");
+            } else if(ajax.responseText=="2"){
+                alert("该用户已经报名了。")
+            }
+        }
+    }
+}
+
+</script>
+<style  type="text/css">
+/*
+.artContent img {max-width:450px !important;}
+.showContent img{max-width:650px!important;}
+*/
+
+.artContent img{max-width: 450px; width:expression(this.width > 450 ? "450px" : this.width)}
+/*
+.showContent img{max-width: 450px; width:expression(this.width > 650 ? "650px" : this.width)}
+*/
+
+
+.header{
+	background-image:url(/image/upload/4114344_00b555326c.jpg);
+}
+
+</style>
+<link  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><style  id="list">
+.showContent ol,.showContent ul{margin:0;pading:0;}.showContent .list-paddingleft-1{padding-left:0}
+.showContent .list-paddingleft-2{padding-left:20px}
+.showContent .list-paddingleft-3{padding-left:40px}
+.showContent ol,.showContent ul{margin:0;pading:0;}.showContent .list-paddingleft-1{padding-left:0}
+.showContent .list-paddingleft-2{padding-left:20px}
+.showContent .list-paddingleft-3{padding-left:40px}</style><link  id="syntaxhighlighter_css"  rel="stylesheet"  type="text/css"  href=""><script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/logger.js"></script></head>
+
+<body><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://baidutech.blog.51cto.com/#"  class="bds_more">更多...</a></li></ul><p><a  href="http://baidutech.blog.51cto.com/#"  class="goWebsite">百度分享</a></p></div></div></div>
+
+<div  id="home_top">
+<div  class="top_nav"  style="width:990px;">
+<div  class="left"  style="margin-top:10px; width:440px;"><a  href="http://blog.51cto.com/"  target="_blank"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/head_blog_sibebar_logo.gif"  align="absmiddle"  style="margin-top:-4px;"></a><a  target="_blank"  href="http://www.51cto.com/">51CTO首页</a><img  height="25"  align="absmiddle"  width="16"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/top_bg_xian.gif"  style="margin-top:-4px;"><a  href="http://blog.51cto.com/"  target="_blank">51CTO博客</a><img  height="25"  align="absmiddle"  width="16"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/top_bg_xian.gif"  style="margin-top:-4px;"><a  href="http://home.51cto.com/?reback=http%253A%252F%252Fbaidutech.blog.51cto.com%252F4114344%252F742971">我的博客</a><img  height="25"  align="absmiddle"  width="16"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/top_bg_xian.gif"  style="margin-top:-4px;">
+
+<a  target="_blank"  href="http://blog.51cto.com/search.php">搜索</a>
+<a  href="javascript:void(0);"  style="color: rgb(255, 0, 0); text-decoration: underline;"  id="showMessagerDim">每日博报</a>
+</div>
+
+<div  class="right"  style="width:550px;">
+<div  class="more"><img  height="16"  align="absmiddle"  width="27"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/top_shequ.gif">社区：<a  target="_blank"  href="http://edu.51cto.com/"  style="color: rgb(204, 0, 0);">学院</a><a  target="_blank"  href="http://bbs.51cto.com/">论坛</a><a  target="_blank"  href="http://blog.51cto.com/">博客</a><a  target="_blank"  href="http://down.51cto.com/">下载</a><a  href="javascript:viod(0);"  >更多<img  align="absmiddle"  style="padding-left: 4px;"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/nav_ico1.gif"></a>            </div>            <span  id="login_status"><div  class="login"  style="padding-top:8px; text-align:right;"><a  href="http://home.51cto.com/index.php?s=/Home/index"  style="background:none"><img  style="margin-top:-3px"  id="dia"  align="absmiddle"  width="20"  title="今天领无忧币了吗？"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/dia.gif"></a><a  href="http://home.51cto.com/?reback=http%253A%252F%252Fbaidutech.blog.51cto.com%252F4114344%252F742971"  target="_self">登录</a><a  href="http://ucenter.51cto.com/reg_01.php?reback=http%253A%252F%252Fbaidutech.blog.51cto.com%252F4114344%252F742971"  target="_self">注册</a></div></span>                </div>    </div></div>
+
+
+
+<div  class="subMenu3"  id="s3"  >
+<ul>
+<li><a  href="http://home.51cto.com/"  target="_blank">家园</a></li>
+<li><a  href="http://edu.51cto.com/"  target="_blank">学院</a></li>
+<li><a  href="http://blog.51cto.com/"  target="_blank">博客</a></li>
+<li><a  href="http://bbs.51cto.com/"  target="_blank">论坛</a></li>
+<li><a  href="http://down.51cto.com/"  target="_blank">下载</a></li>
+
+<li><a  href="http://selftest.51cto.com/"  target="_blank">自测</a></li>
+<li><a  href="http://doctor.51cto.com/"  target="_blank">门诊</a></li>
+<li><a  href="http://blog.51cto.com/newsletter/"  target="_blank">周刊</a></li>
+<li><a  href="http://book.51cto.com/"  target="_blank">读书</a></li>
+<li><a  href="http://g.51cto.com/"  target="_blank">技术圈</a></li>
+</ul>
+</div>
+
+
+
+
+<div  class="headerBox">
+<div  class="header">
+<div  class="header_l">
+<div  class="logo_blogname">
+
+
+<div  class="blogLogo">
+<a  href="http://blog.51cto.com/blogcommend"  target="_blank"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/blogLogo01.png"  width="161px;"  height="70px;"></a>
+</div>
+
+
+<div  class="blogName">
+<a  href="http://baidutech.blog.51cto.com/"><h1>百度技术博客</h1></a>
+</div>
+</div>
+<div  class="blogLink">
+
+<a  href="http://baidutech.blog.51cto.com/">http://baidutech.blog.51cto.com</a> <input  id="txtUser"  type="hidden"  size="32"  value="http://baidutech.blog.51cto.com">   <a  href="javascript:void(0);" >【复制】</a> <a  href="http://baidutech.blog.51cto.com/rss.php?uid=4114344"  target="_blank"></a><a  href="http://baidutech.blog.51cto.com/rss.php?uid=4114344"  target="_blank">【订阅】</a>
+
+</div>
+
+
+
+</div>
+<div  class="header_r">
+<div  class="blogInfo"><span><a  href="http://baidutech.blog.51cto.com/4114344/o"  title="察看百度技术所有原创文章">原创</a>:402</span><span><a  href="http://baidutech.blog.51cto.com/4114344/t"  title="察看百度技术所有翻译文章">翻译</a>:0</span><span><a  href="http://baidutech.blog.51cto.com/4114344/c"  title="察看百度技术所有转载文章">转载</a>:0</span></div>
+<div  class="blogNav"><a  href="http://baidutech.blog.51cto.com/">博 客</a>|<a  href="http://home.51cto.com/apps/photo/index.php?s=/Index/photos/uid/4114344">图库</a>|<a  href="http://baidutech.blog.51cto.com/addblog.php">写博文</a>|<a  href="http://51ctoblog.blog.51cto.com/all/26414/4"  target="_blank">帮 助</a></div>
+</div>
+</div>
+
+</div>
+<div  class="mainNav">
+<span  class="mainNavT"></span>
+<ul>
+<li><a  href="http://baidutech.blog.51cto.com/">首页</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-1">搜索技术</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-2">框计算 </a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-3">运维与系统架构</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-4">用户体验与交互</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-5">前端技术</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-6">编程技术</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-7">软件交付</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-8">其他技术</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-9">攻城师杂谈</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-10">多媒体技术</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-11">自然语言处理</a></li>|<li><a  href="http://baidutech.blog.51cto.com/4114344/d-12">贴吧技术</a></li>
+</ul>
+<span  class="mainNavB"></span>
+</div>
+
+
+<script  type="text/javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/jquery-1.7.1.min.js"></script>
+
+<link  type="text/css"  rel="stylesheet"  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/fck_editorarea.css">
+<script  type="text/javascript"  charset="gbk"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/shCores.js"></script>
+<link  rel="stylesheet"  type="text/css"  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/shCoreDefault.css">
+<script  type="text/javascript"  charset="gbk"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/uparse.js"></script>
+<script  type="text/javascript">
+	uParse('.showContent');
+	$(function(){
+		//SyntaxHighlighter.config.clipboardSwf = 'http://bbs.51cto.com/plugins/syntaxhighlighter/scripts/clipboard.swf'; 
+		//为了在编辑器之外能展示高亮代码
+		SyntaxHighlighter.highlight();
+	}); 
+</script>
+<script  type="text/javascript">
+/**
+ * 回复评论需要用的js
+ * 2012-5-14
+ * by:chengtao
+ */
+ jQuery(function(){
+	blogpost.init();//初始化博客回复功能
+ })
+ /**
+  * 处理博文评论功能优化
+  */
+ blogpost={
+	abstruct_list:null,
+	init:function(){
+		blogpost.bind();//绑定一些时间
+		this.abstruct_list=new Array();//初始化保存评论信息的数组
+	},
+	/**
+	 * 博客回复需要绑定的一些事件
+	 */
+	bind:function(){
+		/**
+		 * 点击回复的事件
+		 */
+		jQuery('.repost').live('click',function(){
+			blogpost.repost(jQuery(this).attr('user_name'),jQuery(this).attr('parentid'));
+			return false;
+		});
+		/**
+		 * 点击楼层进行翻页且找到锚点
+		 */
+		jQuery('.anchor_page').live('click',function(){
+			var parentid = $(this).attr('parentid');
+			var tid=$(this).attr('tid');
+			$.get('/comments.php?tid='+tid+'&parentid='+parentid,function(data){
+				$('#artcomment').html(data);
+				window.location.hash=''+parentid;
+			})
+			return false;
+		}),
+		jQuery('.anchor_page').live('mouseover',function(){
+			var parentid = $(this).attr('parentid');
+			if(!blogpost.abstruct_list[parentid]){
+				var this_t = $(this);
+				$.get('/comments.php?cid='+parentid,function(data,textStatus){
+					blogpost.abstruct_list[parentid]=data;
+					this_t.attr('title',this_t.text()+':'+ blogpost.abstruct_list[parentid]);
+				});
+			}else{
+				$(this).attr('title',$(this).text()+':'+blogpost.abstruct_list[parentid]);
+			}
+		})
+	},
+	/**
+	 * @param user_name 用户名
+	 * @param parentid  父评论id
+	 */
+	repost:function(user_name,parentid){
+		window.location.hash='comment';
+		jQuery('#parentid').val(parentid);
+		jQuery('#commentcontent').val('回复 '+user_name+":\n").focus();
+		if(!$.browser.mozilla){
+			var elem = jQuery('#commentcontent')[0];		
+			var caretPos = elem.value.length;
+			if (elem.createTextRange) {
+				var range = elem.createTextRange();
+				range.move('character', caretPos);
+				range.select();
+			}else{
+				elem.setSelectionRange(caretPos, caretPos);	
+			}
+		}
+	},
+	/**
+	 * 发送完毕之后清理表单数据 不是ajax可能用不到
+	 */
+	clean:function(){
+		
+	}
+ }
+</script>
+<script  type="text/javascript">
+jQuery(function(){
+	var anchor = document.location.hash;
+	var comment_id=anchor.split('#')[1];
+	if(!isNaN(parseInt(comment_id))){//是整形
+		jQuery.get('/comments.php?tid=742971&parentid='+comment_id,function(data){
+			jQuery('#artcomment').html(data);
+			window.location.hash=''+comment_id;
+		})
+	}
+});
+</script>
+
+
+
+<script  type="text/javascript">
+jQuery(function() {
+	jQuery('#favourdiv').mouseover(function(){
+		if(jQuery(this).attr('className') == 'support01')
+		{
+			jQuery(this).attr('className', "support02");
+			jQuery(this).html('+1人');
+			jQuery(this).attr('title', "赞一个，我支持TA");
+		}
+		else if(jQuery(this).attr('className') == 'support03')
+		{
+			jQuery(this).attr('title', "你已经赞了这篇博文！");
+		}
+		
+	});
+	jQuery('#favourdiv').mouseout(function(){
+		if(jQuery(this).attr('className') == 'support02')
+		{
+			jQuery(this).attr('className', "support01");
+			jQuery(this).html("8人");
+		}
+	});
+	jQuery('.blog_match_yq').click(function(){
+		var wind_uid = '';
+		if(!wind_uid){
+			alert("请先登录！");
+			return false;
+		}
+		jQuery.ajax({
+			   type: "POST",
+			   url:"/contest2012/index.php?mod=sendmsg",
+			   dataType: "html",
+			   data: "vuid=" + 4114344,
+			   success: function(data) {
+					if(data == 0)
+					{
+						alert("查无此人！");
+						return false;
+					}else if(data == 1){
+						alert("请先登录！");
+						return false;
+					}else if(data == 2){
+						alert("不能邀请自己！");
+						return false;
+					}else if(data == 22){  
+						alert("邀请信息已发出！");
+						return false;
+					}
+			   }
+		  });
+	});
+	jQuery('#favourdiv').click(function(){
+			jQuery.ajax({
+			   type: "POST",
+			   url:"/mod/favour.php",
+			   dataType: "html",
+			   data: "tid=" + 742971,
+			   success: function(data) {
+					if(data == 0)
+					{
+						alert("您还未登录或者已过期，请重新登录");
+						location.href = "http://home.51cto.com/index.php?reback=http%253A%252F%252Fbaidutech.blog.51cto.com%252F4114344%252F742971";
+						return false;
+					}
+					else if(data == '-1')
+					{
+						alert("参数传递错误！");
+						return false;
+					}
+					else if(data == '-2')
+					{
+						alert("该博文已被删除或者不存在！");
+						return false;
+					}
+					else if(data == '-3')
+					{
+						alert("您已经赞过了！");
+						return false;
+					}
+					else if(data == '-4')
+					{
+						alert("赞操作失败！");
+						return false;
+					}
+					else
+					{  
+						//alert("操作成功，你已经赞了这篇博文！");
+						jQuery('#favourdiv').attr('className', "support03");
+
+						var num = 8 + 1 + "人";
+						jQuery('#favourdiv').html(num);
+						jQuery('#favourer').html(data);
+						return false;
+					}
+			   }
+		  });
+	});
+	//Jaydar http://blog.51cto.com/js/header.php?uid=blogdb[uid]&tid=tid
+	jQuery.post('/js/header.php',{uid:4114344,tid:742971},function(data){
+		jQuery('#readNum').html(data[0]);
+		jQuery('#cmtNum').html(data[1]);
+	},'json');
+	
+
+})
+
+jQuery(function(){
+	jQuery('#darid').bind('click',function(){
+		if(confirm("你确定删除此篇文章？")){
+			jQuery.ajax({
+				'type':'post',
+				'url':'user_index.php?action=delarticle',
+				'data':{'job':'del', 'selid':'742971'},
+				'dataType':'html',
+				'success':function(res){
+					if('ok' == res){
+						location.href="http://.blog.51cto.com";
+					}
+				
+				}
+			});
+		}
+	});
+});
+</script>
+
+
+
+
+<style  type="text/css">
+.m_sharelinks{ 
+	line-height:36px; 
+	text-align:left; 
+	padding-left:20px; 
+	background:url(http://img1.51cto.com/images/share/ico_lb.gif) no-repeat left center;
+	float:left; 
+	width:600px; 
+	height:36px;
+}
+.m_sharelinks a{ margin-left:10px;}
+.m_sharebtn{ height:50px; width:726px; margin:0 auto;}
+.m_sharebtn01{width:520px; float:left;}
+.weibo_51cto{ background:url(http://img1.51cto.com/images/share/ico_mweibo.gif) no-repeat center center; display:block; width:33px; height:33px; float:left; margin:3px 3px 0 0;cursor:pointer;}
+.shareMored {
+    line-height: 36px;
+	float:right; 
+	text-align:right; 
+	width:100px; 
+	height:36px;
+}
+
+.showContent {
+	margin:20px 15px 8px;
+}
+.userImage img {
+    text-align: center;
+	border:0;
+	padding:0;
+}
+.photo_links{ line-height:30px; padding-top:5px; font-size:13px;width:170px; margin:0 auto;}
+.photo_links_blue{ text-align:center;}
+.photo_links_blue a:link,.photo_links_blue a:visited,.photo_links_blue a:hover,.photo_links_blue a:active{ color:#015F91; text-decoration: underline;}
+.photo_links_red{ text-align:left;}
+.photo_links_red a:link,.photo_links_red a:visited,.photo_links_red a:hover,.photo_links_red a:active{ color:#fc4343; text-decoration:underline;}
+.photo_links_red02{ text-align:center;}
+
+.vlist{ margin:10px 10px; height:65px;}
+.vlist img{ float:left; margin-right:10px;}
+.vlist dl{ text-align:left;}
+.vlist dl dt{ height:40px;line-height: 20px; overflow:hidden; padding-top:5px;}
+.vlist dl dt,.vlist dl dt a{ color:#262626;}
+.vlist dl dd,.vlist dl dd a{ color:#777;}
+
+.video-icon{
+    position: relative;
+}
+.video-icon a.i_video {
+    background: url("http://www.51cto.com/images/homepage/Images/eduplay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    left:31px;
+    position: absolute;
+    top:22px;
+    width: 25px;
+    z-index: 10;
+}
+</style>
+<script  language="JavaScript"  type="text/javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/group.js"></script>
+<div  id="add_sys_type_div"  style="width:600px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+<div  id="add_sys_type_divs"  style="width:550px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+
+
+
+<div  class="blogMain">
+<div  class="blogLeft">
+
+
+<div  class="box moduleUser">
+<div  class="title">
+<h2><strong>百度技术</strong> 的BLOG  </h2>
+</div>
+<div  class="modCon">
+
+<div  class="userImage"  style="margin: 10px auto 5px;text-align: center;width: 130px;border: 1px solid #D4D4D4;">
+	<table  width="100%"  cellpadding="0"  cellspacing="0">
+		<tbody><tr>
+			<td  valign="middle"  align="center"  height="130"><script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/userface.php"></script><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar.php"  id="userface"></td>
+		</tr>
+	</tbody></table>
+</div>
+<div  class="photo_links">
+</div>
+
+
+
+
+
+
+
+
+
+<div  style="width:179px; height:54px; margin:0 auto; clear:both;">
+		<a  href="http://blog.51cto.com/contest2012/4114344"  target="_blank"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/jcbk_td.gif"></a>
+	</div>
+
+<div  class="crumbs">
+<a  href="http://home.51cto.com/index.php?s=/space/4114344#message"  class="writeMessage"  target="_blank">写留言</a><a  href="http://g.51cto.com/addgroup.php?uid="  class="inCircle"  target="_blank">邀请进圈子</a><a  href="http://home.51cto.com/index.php?s=/Notify/write/uid/4114344"  class="message"  target="_blank">发消息</a> <a  href="http://baidutech.blog.51cto.com/"   class="joinLinks">加友情链接</a><a  href="http://home.51cto.com/index.php?s=/space/4114344"  class="joinFriends"  target="_blank">进家园 加好友</a>
+</div>
+
+<div  style="width:239px;height:64px;display:none;">
+
+
+<div  style="float:left;"><p  style="padding:15px 0 0 28px; line-height:20px;">2012年度IT博客大赛<br><a  target="_blank"  href="http://blog.51cto.com/contest2012/#top10000"  style="color:#F00; text-decoration:underline;">十大杰出IT博客诞生</a></p></div>
+<div  style="float:right;"><a  target="_blank"  href="http://blog.51cto.com/contest2012/4114344"><img  width="57"  height="27"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/blog_match_endlook.jpg"  style="margin:23px 20px 0 0;"></a></div>
+
+
+
+<div  class="clear"></div>
+</div>
+
+
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="infoList box">
+<div  class="title">
+<h2>博客统计信息</h2>
+</div>
+<div  class="modCon">
+<p>
+<span  class="infoListHead"><a  href="http://blog.51cto.com/blogcommend"  target="_blank"  class="operlink"><b>51CTO推荐博客</b></a> <br></span>
+用户名：百度技术<br>
+文章数：403<br>
+评论数：135<br>
+访问量：345924<br>
+<a  href="http://home.51cto.com/index.php?s=/Account/credit"  target="_blank">无忧币</a>：594<br>
+<a  href="http://51ctoblog.blog.51cto.com/26414/5591"  target="_blank">博客积分</a>：5878<br>
+<a  href="http://51ctoblog.blog.51cto.com/26414/5591"  target="_blank">博客等级</a>：8<br>
+注册日期：2011-12-14<br>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/blogno1countdown.php"></script> 
+</p>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="infoList box">
+	<div  class="title">
+		<h2  class="fl">热门专题</h2>
+		<a  target="_blank"  class="fr"  href="http://blog.51cto.com/zt">更多&gt;&gt;</a>
+	</div>
+	<div  class="modCon">
+
+	
+		<div  class="vlist">
+		  <a  href="http://blog.51cto.com/zt/564"  target="_blank"><img  width="63"  height="63"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/wKiom1LTrfvApavTAAAwggXk86s393.jpg"></a>
+		<dl>
+		<dt>
+		  <a  href="http://blog.51cto.com/zt/564"  target="_blank"  title="OpenStack系统安装配置详解">OpenStack系统安装配置详解</a></dt>
+		<dd>阅读量：2934</dd>
+		</dl>
+		</div>
+	
+		<div  class="vlist">
+		  <a  href="http://blog.51cto.com/zt/565"  target="_blank"><img  width="63"  height="63"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/wKiom1LU6GeiuJWiAAAouIdeaHQ357.jpg"></a>
+		<dl>
+		<dt>
+		  <a  href="http://blog.51cto.com/zt/565"  target="_blank"  title="项目成长记">项目成长记</a></dt>
+		<dd>阅读量：2956</dd>
+		</dl>
+		</div>
+	
+		<div  class="vlist">
+		  <a  href="http://blog.51cto.com/zt/568"  target="_blank"><img  width="63"  height="63"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/wKiom1LfLKSB7tU1AAAvpPfcDp8470.jpg"></a>
+		<dl>
+		<dt>
+		  <a  href="http://blog.51cto.com/zt/568"  target="_blank"  title="Python 学习笔记">Python 学习笔记</a></dt>
+		<dd>阅读量：2135</dd>
+		</dl>
+		</div>
+	
+		<div  class="vlist">
+		  <a  href="http://blog.51cto.com/zt/569"  target="_blank"><img  width="63"  height="63"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/wKioL1LhzTjTaE3wAAAyC2WROnA005.jpg"></a>
+		<dl>
+		<dt>
+		  <a  href="http://blog.51cto.com/zt/569"  target="_blank"  title="桌面虚拟化的详细介绍">桌面虚拟化的详细介绍</a></dt>
+		<dd>阅读量：6683</dd>
+		</dl>
+		</div>
+		
+		
+	</div>
+	<span  class="modBot"></span>
+</div>
+
+
+<div  class="hotArt box">
+<div  class="title">
+<h2>热门文章</h2>
+</div>
+<div  class="modCon">
+<ul>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/762993">简单讨论火车票系统后面..</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/770958">浅谈架构</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/763031">再谈谈火车票系统</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/826768">Linux下常用SVN命令</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/1033718">解析nginx负载均衡</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/747973">我在百度运维的成长经历 ..</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/904419">Linux上Core Dump文件的..</a></li>
+<li><a  href="http://baidutech.blog.51cto.com/4114344/743809">Boosting算法简介</a></li>
+
+</ul>
+</div>
+<span  class="modBot"></span>
+</div>
+<div  class="search box">
+<div  class="title"><h2>搜索BLOG文章</h2></div>
+<div  class="modCon">
+<form  method="post"  action="http://baidutech.blog.51cto.com/search.php?"  tabindex="99">
+<input  type="hidden"  name="step"  value="2">
+<input  type="hidden"  name="authorid"  value="4114344">
+<input  type="hidden"  name="sch_area"  value="S">
+<input  type="text"  value=""  name="keyword"  class="searchInput">
+<input  type="submit"  value="搜 索"  class="searchBtn">
+</form>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="myHome box">
+<div  class="title"><h2  class="fl">我的技术圈(<a  href="http://baidutech.blog.51cto.com/mygroup.php"  target="_blank"><b>0</b></a>)</h2>
+<a  href="http://home.51cto.com/apps/group/index.php?s=/Index/index/"  class="fr"  target="_blank">更多&gt;&gt;</a></div>
+<div  class="modCon">
+<ul>
+
+</ul>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="box recentGuests">
+<div  class="title">
+<h2>最近访客</h2>
+</div>
+<div  class="modCon">
+<ul>
+
+<li><a  href="http://1801951.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(1).php"></a>
+<p><a  href="http://1801951.blog.51cto.com/">afdsqrew</a></p>
+
+</li><li><a  href="http://5715668.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(2).php"></a>
+<p><a  href="http://5715668.blog.51cto.com/">lixin..</a></p>
+
+</li><li><a  href="http://sonic2825.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(3).php"></a>
+<p><a  href="http://sonic2825.blog.51cto.com/">sonic..</a></p>
+
+</li><li><a  href="http://1368293.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(4).php"></a>
+<p><a  href="http://1368293.blog.51cto.com/">x1x1x</a></p>
+
+</li><li><a  href="http://7543154.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(5).php"></a>
+<p><a  href="http://7543154.blog.51cto.com/">wzw0114</a></p>
+
+</li><li><a  href="http://6522938.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(6).php"></a>
+<p><a  href="http://6522938.blog.51cto.com/">Ritas..</a></p>
+
+</li><li><a  href="http://7978412.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(7).php"></a>
+<p><a  href="http://7978412.blog.51cto.com/">bucci..</a></p>
+
+</li><li><a  href="http://gfstart.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(8).php"></a>
+<p><a  href="http://gfstart.blog.51cto.com/">q5725827</a></p>
+
+</li><li><a  href="http://nettm.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(9).php"></a>
+<p><a  href="http://nettm.blog.51cto.com/">nettm</a></p>
+
+</li><li><a  href="http://4972330.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(10).php"></a>
+<p><a  href="http://4972330.blog.51cto.com/">IBMICE</a></p>
+
+</li><li><a  href="http://7830714.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(11).php"></a>
+<p><a  href="http://7830714.blog.51cto.com/">坏孩..</a></p>
+
+</li><li><a  href="http://5846119.blog.51cto.com/"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/avatar(12).php"></a>
+<p><a  href="http://5846119.blog.51cto.com/">nuanf..</a></p>
+
+</li></ul>
+<span  class="clear"></span>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="newComments box">
+<div  class="title">
+<h2>最新评论 
+
+</h2>
+
+
+
+</div>
+<div  class="modCon">
+<ul>
+
+<li><a  href="http://hychuanshuo.blog.51cto.com/"  class="operlink"  target="_blank"><b>hychuanshuo</b></a>：<a  href="http://baidutech.blog.51cto.com/4114344/747973"  target="_blank">两年t3到t7。。</a></li>
+
+<li><a  href="http://hychuanshuo.blog.51cto.com/"  class="operlink"  target="_blank"><b>hychuanshuo</b></a>：<a  href="http://baidutech.blog.51cto.com/4114344/747973"  target="_blank">这哥们应该就是运维部的那个传奇了。。</a></li>
+
+<li><a  href="http://rfyiamcool.blog.51cto.com/"  class="operlink"  target="_blank"><b>rfyiamcool</b></a>：<a  href="http://baidutech.blog.51cto.com/4114344/748279"  target="_blank">回复 dahailinux: 牛逼~</a></li>
+
+<li><a  href="http://caizhiyong.blog.51cto.com/"  class="operlink"  target="_blank"><b>ouy3xx</b></a>：<a  href="http://baidutech.blog.51cto.com/4114344/790974"  target="_blank">赞一个，学习中</a></li>
+
+<li><a  href="http://yangctoweb.blog.51cto.com/"  class="operlink"  target="_blank"><b>51SQL</b></a>：<a  href="http://baidutech.blog.51cto.com/4114344/1033620"  target="_blank">系统运维的成败，直接决定了系统设..</a></li>
+
+
+</ul>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="hotBlogArt box">
+<div  class="title">
+  <h2  class="fl">51CTO推荐博文</h2>
+  <a  href="http://blog.51cto.com/artcommend"  class="fr">更多&gt;&gt;</a></div>
+<div  class="modCon">
+<ul>
+<li><a  href="http://teny32.blog.51cto.com/8027509/1357681"  title="Spring MVC 3.0版本 深入讲解"  target="_blank">Spring MVC 3.0版本 深入讲解</a></li>
+<li><a  href="http://91xueit.blog.51cto.com/400469/1357527"  title="理解SQL SERVER中的逻辑读，预读和物理读"  target="_blank">理解SQL SERVER中的逻辑读，预读..</a></li>
+<li><a  href="http://yisuowushinian.blog.51cto.com/4241271/1357647"  title="【C#小知识】C#中一些易混淆概念总结（七）---------解析抽象类，抽象方法"  target="_blank">【C#小知识】C#中一些易混淆概念..</a></li>
+<li><a  href="http://dynamic.blog.51cto.com/711418/1357389"  title="Lync 小技巧-15-授权普通用户查看Lync报表"  target="_blank">Lync 小技巧-15-授权普通用户查看..</a></li>
+<li><a  href="http://supercharles888.blog.51cto.com/609344/1355859"  title="SSL证书相关技巧 -- 为什么有时候访问某些加密网站是不需要证书的？"  target="_blank">SSL证书相关技巧 -- 为什么有时候..</a></li>
+<li><a  href="http://hcymysql.blog.51cto.com/5223301/1356326"  title="Percona5.6.15线程池压力测试"  target="_blank">Percona5.6.15线程池压力测试</a></li>
+<li><a  href="http://8204129.blog.51cto.com/8194129/1356894"  title="框架如何创建App子类的对象(二)?"  target="_blank">框架如何创建App子类的对象(二)?</a></li>
+<li><a  href="http://8204129.blog.51cto.com/8194129/1356896"  title="追求架構設計的&lt;簡單性&gt;"  target="_blank">追求架構設計的&lt;簡單性&gt;</a></li>
+<li><a  href="http://showerlee.blog.51cto.com/2047005/1356946"  title="windows下实现wamp与tomcat环境整合"  target="_blank">windows下实现wamp与tomcat环境整合</a></li>
+<li><a  href="http://woshixy.blog.51cto.com/5637578/1357027"  title="线程间共享数据"  target="_blank">线程间共享数据</a></li>
+<li><a  href="http://bruce007.blog.51cto.com/7748327/1357071"  title="使用pt-table-checksum与pt-table-sync修复mysql主从数据不一致"  target="_blank">使用pt-table-checksum与pt-table..</a></li>
+
+</ul>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+<div  class="friendLink box">
+<div  class="title">
+  <h2>友情链接</h2>
+</div>
+<div  class="modCon">
+<ul>
+
+<li><a  href="http://xdc.baidu.com/"  title="百度用户体验"  target="_blank">百度用户体验</a></li>
+
+<li><a  href="http://q.weibo.com/191905"  title="百度技术沙龙微群"  target="_blank">百度技术沙龙微群</a></li>
+
+<li><a  href="http://open.baidu.com/"  title="百度开放平台"  target="_blank">百度开放平台</a></li>
+
+<li><a  href="http://app.baidu.com/developer"  title="百度应用开放平台"  target="_blank">百度应用开放平台</a></li>
+
+<li><a  href="http://hi.baidu.com/baiduqa/home"  title="百度测试技术空间 "  target="_blank">百度测试技术空间</a></li>
+
+<li><a  href="http://hi.baidu.com/ops_bd/home"  title="百度运维空间"  target="_blank">百度运维空间</a></li>
+
+<li><a  href="http://mux.baidu.com/"  title="百度用户体验部"  target="_blank">百度无线用户体验部</a></li>
+
+<li><a  href="http://www.baiduux.com/blog/"  title="百度泛用户体验"  target="_blank">百度泛用户体验</a></li>
+
+<li><a  href="http://stblog.baidu-tech.com/"  title="百度搜索研发部"  target="_blank">百度搜索研发部</a></li>
+
+</ul>
+</div>
+<span  class="modBot"></span>
+</div>
+
+
+
+</div>
+
+
+<script  type="text/javascript">
+    var favor_url = "http://baidutech.blog.51cto.com/4114344/742971";
+    var favor_title = "大话PHP之性能";
+    var favor_fuid = "4114344";
+</script>
+<script  type="text/javascript"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/favorbox.js"></script>
+<div  class="blogRight">
+
+	
+	<div  class="relatedArt box">
+	<a  href="javascript:;"  target="_blank"><img  src=""></a>
+
+</div>
+
+
+	<div  class="artShow box">
+   	  <div  class="share"  id="share">
+
+    <div  class="shareItem">
+		<div  class="m_sharelinks"><a  target="_blank"  href="http://bbs.51cto.com/thread-1093286-1.html"  style="color:blue;">【大家来找茬】51CTO万年不变的首页 终！于！改！版！了！</a><a  target="_blank"  href="http://cnrdn.com/sAED"  style="color:red;">·【视频】MySQL日常工作维护详细教程(10集)</a><a  target="_blank"  href="http://baidutech.blog.51cto.com/4114344/742971"  style="color:blue;"></a></div>
+		<p  class="shareMored"><a  href="http://baidutech.blog.51cto.com/all/4114344">博主的更多文章&gt;&gt;</a></p>
+	</div>
+      </div>
+       <div  class="modCon">
+   	  <div  class="showBox"  style="margin:0 0 10px;">
+      <div  class="line_hd_r"></div>
+      <div  class="art_tj">
+
+      <a  href="http://blog.51cto.com/artcommend"  target="_blank"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/tj.png"></a>
+
+      </div>
+
+ 
+    		<div  class="showHead">
+    		  <div  class="showTitleBOx"  style="text-align:center">
+              <div  class="showTitle">
+
+             <img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/artType01.jpg">
+
+
+    		    大话PHP之性能
+                </div>
+  		    </div>
+   		    <span  class="artTime">2011-11-29 02:11:12</span></div>
+    <div  class="showTags">标签：<a  href="http://blog.51cto.com/tag-%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80.html"  target="_blank"  class="operlink">脚本语言</a> <a  href="http://blog.51cto.com/tag-%20php%20.html"  target="_blank"  class="operlink"> php </a> <a  href="http://blog.51cto.com/tag-%20%E6%80%A7%E8%83%BD.html"  target="_blank"  class="operlink"> 性能</a>
+
+	</div>
+
+			<div  class="CopyrightStatement lh22">
+            原创作品，允许转载，转载时请务必以超链接形式标明文章 <a  href="http://baidutech.blog.51cto.com/4114344/742971"  target="_blank"  style="text-decoration:underline">原始出处</a> 、作者信息和本声明。否则将追究法律责任。<a  href="http://baidutech.blog.51cto.com/4114344/742971">http://baidutech.blog.51cto.com/4114344/742971</a>
+            </div>
+
+
+            
+    		<div  class="showContent">
+    		  <h2>1缘起</h2>
+<p>关于PHP，很多人的直观感觉是PHP是一种灵活的脚本语言，库类丰富，使用简单，安全，非常适合WEB开发，但性能低下。PHP的性能是否真的就如同大家的感觉一样的差呢？本文就是围绕这么一个话题来进行探讨的。从源码、应用场景、基准性能、对比分析等几个方面深入分析PHP之性能问题，通过真实的性能数据来说话，最终找出影响PHP模块性能的关键因素。</p>
+<h2>2从原理分析PHP性能</h2>
+<p>从原理分析PHP的性能，主要从以下几个方面：内存管理、变量、函数、运行机制、网络模型来进行分析。</p>
+<h3>2.1内存管理</h3>
+<p>类似Nginx的内存管理方式，PHP在内部也是基于内存池，并且引入内存池的生命周期概念。在内存池方面，PHP对PHP脚本和扩展的所有内存相关操作都进行了托管。对大内存和小内存的管理采用了不同的实现方式和优化，具体可以参考以下文档：http://www.laruence.com/2011/11/09/2277.html。在内存分配和回收的生命周期内，PHP采用一次初始化申请+动态扩容+内存标识回收机制，并且在每次请求结束后直接对内存池进行重新mask。</p>
+<p>&nbsp;</p>
+<h3>2.2变量</h3>
+<p>总所周知，PHP是一种弱变量类型的语言，所以在PHP内部，所有的PHP变量都对应成一种类型Zval，其中具体定义如下：</p>
+<p  style="text-align: center">&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200016359.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200016359.jpg"                    ></a></p>
+<p  style="text-align: center">图一、PHP变量</p>
+<p>在变量方面，PHP做了大量的优化工作，比如说Reference counting和copy on writer机制。这样能够保证内存使用上的优化，并且减少内存拷贝次数（请参考http://blog.xiuwz.com/2011/11/09/php-using-internal-zval/）。在数组方面，PHP内部采用高效的hashtable来实现。</p>
+<h3>2.3函数</h3>
+<p>在PHP内部，所有的PHP函数都回转化成内部的一个函数指针。比如说扩展中函数</p>
+<p>ZEND_FUNCTION ( my_function );//类似function my_function(){}</p>
+<p>在内部展开后就会是一个函数</p>
+<p>void zif_my_function ( INTERNAL_FUNCTION_PARAMETERS );</p>
+<p>void zif_my_function(</p>
+<p>int ht,</p>
+<p>zval * return_value,</p>
+<p>zval * this_ptr,</p>
+<p>int return_value_used,</p>
+<p>zend_executor_globals * executor_globals</p>
+<p>);</p>
+<p>从这个角度来看，PHP函数在内部也是对应一个函数指针。</p>
+<h3>2.4运行机制</h3>
+<p>在话说PHP性能的时候，很多人都会说“C/C++是编译型，JAVA是半编译型，PHP是解释型”。也就是说PHP是先动态解析再代码运行的，所以从这个角度来看，PHP性能必然很差。</p>
+<p>的确，从PHP脚本运行来输出，的确是一个动态解析再代码运行的过程。具体来说，PHP脚本的运行机制如下图所示：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200049665.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200049665.jpg"                    ></a></p>
+<p  style="text-align: center">图二、PHP运行机制</p>
+<p>PHP的运行阶段也分成三个阶段：<br>
+●Parse。语法分析阶段。<br>
+● Compile。编译产出opcode中间码。<br>
+● Execute。运行，动态运行进行输出。</p>
+<p>通过上图也可以看出，其实在PHP内部本身也是存在编译的过程。事实上，在标准的生产环境中，也都基本上利用了这个特点，比如说opcode cache工具apc、eacc、xcache等等。基于opcode cache，能到做到“<strong>PHP</strong><strong>脚本编译一次，多次运行</strong>”的效果。从这点上，PHP就和JAVA的半编译机制非常类似。</p>
+<p>所以，从运行机制上来看，PHP的运行模式和JAVA是非常类似的，都是先产生中间码，然后运行在不同虚拟机上。</p>
+<h3>2.5动态运行</h3>
+<p>从上面的几个分析来看，PHP在内存管理、变量、函数、运行机制等几个方面都做了大量的工作，所以从原理来看，<strong>PHP</strong><strong>不应该存在性能问题，性能至少也应该和JAVA</strong><strong>比较接近</strong>。</p>
+<p>但为什么还有很多人感觉PHP慢呢？尤其是一些计算量的性能对比上，总发现PHP处理的性能相对比较低效（http://shootout.alioth.debian.org/u32/php.php）。这个时候就不得不谈PHP动态语言的特性所带来的性能问题了，由于PHP是动态运行时，所以所有的变量、函数、对象调用、作用域实现等等都是在执行阶段中才确定的。这个从根本上决定了PHP性能中很难改变的一些东西：<strong>在</strong><strong>C/C++</strong><strong>等能够在静态编译阶段确定的变量、函数，在PHP</strong><strong>中需要在动态运行中确定，也就决定了PHP</strong><strong>中间码不能直接运行而需要运行在Zend Engine</strong><strong>上</strong>。</p>
+<p>说到PHP变量的具体实现，又不得不说一个东西了：hashtable。Hashtable可以说在PHP灵魂之一，在PHP内部广泛用到，包含变量符号栈、函数符号栈等等都是基于hashtable的。</p>
+<p>以PHP变量为例来说明下PHP的动态运行特点，比如说代码：</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span  class="tag">&lt;?</span><span  class="tag-name">php</span><span>&nbsp;</span></span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$</span><span  class="attribute">var</span><span>&nbsp;=&nbsp;“hello,&nbsp;blog.xiuwz.com”; &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span  class="tag">?&gt;</span><span>&nbsp;</span></li><li><span>&nbsp;</span></li></ol></pre>
+<p>该代码的执行结果就是在变量符号栈（是一个hashtable）中新增一个项</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200142253.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200142253.jpg"                    ></a></p>
+<p>当要使用到该变量时候，就去变量符合栈中去查找（也就是变量调用对出了一个hash查找的过程）。</p>
+<p>同样对于函数调用也基本上类似有一个函数符号栈（hashtable）。</p>
+<p>其实关于动态运行的变量查找特点，在PHP的运行机制中也能看出一些。PHP代码通过解释、编译后的流程下图：<br>
+&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200200361.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200200361.jpg"                    ></a></p>
+<p  style="text-align: center">图3、PHP运行实例</p>
+<p>从上图可以看出，PHP代码在compile之后，产出的了类符号表、函数符号表、和OPCODE。在真正执行的时候，zend Engine会根据op code去对应的符号表中进行查找，处理。</p>
+<p>从某种程度上，在这种问题的上，很难找到解决方案。因为这是由于PHP语言的动态特性所决定的。但是在国内外也有不少的人在寻找解决方案。因为通过这样，能够从根本上完全的优化PHP。典型的列子有facebook的hiphop(<a  href="https://github.com/facebook/hiphop-php">https://github.com/facebook/hiphop-php</a>)。</p>
+<p>但所有的这种编译优化方案，都基本上是牺牲了PHP动态运行的特性。当然可以在具体的编译优化中去对动态特性做一些折中，但很难做到完完全全的兼容。</p>
+<h3>2.6网络模型</h3>
+<p>目前采用PHP的方式，比较理想和通用的模式是采用fastcgi（PHP-FPM）。Php-fpm在网络模型上比较类似nginx，采用了多进程Master+多worker的模式。Php-fpm本身是基于libevent中的epoll模型。从网络模型来看，该方式也不会和其他网络模型存在性能差异。</p>
+<h3>2.7结论</h3>
+<p>从上面分析来看，在基础的内存管理、变量、函数、运行机制、网络模型方面，PHP本身并不会存在明显的性能差异，但由于PHP的动态运行特性，决定了PHP和其他的编译型语言相比，所有的变量查找、函数运行等等都会多一些hash查找的CPU开销和额外的内存开销，至于这种开销具体有多大，可以通过后续的基准性能和对比分析得出。</p>
+<p>因此，也可以大体看出PHP不太适合的一些场景：大量计算性任务、大数据量的运算、内存要求很严格的应用场景。如果要实现这些功能，也建议通过扩展的方式实现，然后再提供钩子函数给PHP调用。这样可以减低内部计算的变量、函数等系列开销。</p>
+<h2>3基准性能</h2>
+<p>对于PHP基准性能，目前缺少标准的数据。大多数同学都存在感性的认识，有人认为800QPS就是PHP的极限了。此外，对于框架的性能和框架对性能的影响很没有响应的权威数字。</p>
+<p>本章节的目的是给出一个基准的参考性能指标，通过数据给大家一个直观的了解。</p>
+<p>具体的基准性能有以下几个方面：</p>
+<p>1、&nbsp; 裸PHP性能。完成基本的功能。</p>
+<p>2、&nbsp; 裸框架的性能。只做最简单的路由分发，只走通核心功能。</p>
+<p>3、&nbsp; 标准模块的基准性能。所谓标准模块的基准性能，是指一个具有完整服务模块功能的基准性能。</p>
+<h3>3.1环境说明</h3>
+<p>测试环境：</p>
+<p>Uname -a</p>
+<p>Linux db-forum-test17.db01.baidu.com 2.6.9_5-7-0-0 #1 SMP Wed Aug 12 17:35:51 CST 2009 x86_64 x86_64 x86_64 GNU/Linux</p>
+<p>Red Hat Enterprise Linux AS release 4 (Nahant Update 3)</p>
+<p>8&nbsp; Intel(R) Xeon(R) CPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E5520&nbsp; @ 2.27GHz</p>
+<p>软件相关：</p>
+<p>Nginx：</p>
+<p>nginx version: nginx/0.8.54&nbsp; built by gcc 3.4.5 20051201 (Red Hat 3.4.5-2)</p>
+<p>Php5：（采用php-fpm）</p>
+<p>PHP 5.2.8 (cli) (built: Mar&nbsp; 6 2011 17:16:18)</p>
+<p>Copyright (c) 1997-2008 The PHP Group</p>
+<p>Zend Engine v2.2.0, Copyright (c) 1998-2008 Zend Technologies</p>
+<p>with eAccelerator v0.9.5.3, Copyright (c) 2004-2006 eAccelerator, by eAccelerator</p>
+<p>bingo2：</p>
+<p>PHP框架。</p>
+<p>其他说明：</p>
+<p>目标机器的部署方式：</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200239299.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200239299.jpg"                    ></a></p>
+<p>脚本。</p>
+<p>测试压力机器和目标机器独立部署。</p>
+<h3>3.2裸PHP性能</h3>
+<p>最简单的PHP脚本。</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span  class="tag">&lt;?</span><span  class="tag-name">php</span><span>&nbsp;</span></span></li><li><span>&nbsp;</span></li><li  class="alt"><span>require_once&nbsp;‘./actions/indexAction.php’; &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$</span><span  class="attribute">objAction</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">new</span><span>&nbsp;indexAction(); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$objAction-</span><span  class="tag">&gt;</span><span>init(); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$objAction-</span><span  class="tag">&gt;</span><span>execute(); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span  class="tag">?&gt;</span><span>&nbsp;</span></li><li><span>&nbsp;</span></li></ol></pre>
+<p>Acitons/indexAction.php里面的代码如下</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span  class="tag">&lt;?</span><span  class="tag-name">php</span><span>&nbsp;</span></span></li><li><span>&nbsp;</span></li><li  class="alt"><span>class&nbsp;indexAction &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>public&nbsp;function&nbsp;execute() &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>echo&nbsp;‘hello,&nbsp;world!’; &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>} &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>} &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span  class="tag">?&gt;</span><span>&nbsp;</span></li><li><span>&nbsp;</span></li></ol></pre>
+<p>通过压力工具测试结果如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200409100.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200409100.jpg"                    ></a></p>
+<h3>3.3裸PHP框架性能</h3>
+<p>为了和3.2的对比，基于bingo2框架实现了类似的功能。代码如下</p>
+<pre><ol  class="dp-xml"><li  class="alt"><span><span  class="tag">&lt;?</span><span  class="tag-name">php</span><span>&nbsp;</span></span></li><li><span>&nbsp;</span></li><li  class="alt"><span>require_once&nbsp;‘Bingo/Controller/Front.php’; &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$</span><span  class="attribute">objFrontController</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">Bingo_Controller_Front</span><span>::getInstance(array( &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>‘actionDir’&nbsp;=</span><span  class="tag">&gt;</span><span>&nbsp;‘./actions’, &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>)); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span>$objFrontController-</span><span  class="tag">&gt;</span><span>dispatch(); &nbsp;</span></li><li><span>&nbsp;</span></li><li  class="alt"><span  class="tag">?&gt;</span><span>&nbsp;</span></li><li><span>&nbsp;</span></li></ol></pre>
+<p>压力测试结果如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200429551.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200429551.jpg"                    ></a></p>
+<p>从该测试结果可以看出：<strong>框架虽然有一定的消耗，但对整体的性能来说影响是非常小的</strong>。</p>
+<h3>3.4标准PHP模块的基准性能</h3>
+<p>所谓标准PHP模块，是指一个PHP模块所必须要具体的基本功能：</p>
+<p  style="padding-left: 30px">●路由分发。</p>
+<p  style="padding-left: 30px">●自动加载。</p>
+<p  style="padding-left: 30px">●LOG初始化&amp;Notice日志打印。所以的UI请求都一条标准的日志。</p>
+<p  style="padding-left: 30px">●错误处理。</p>
+<p  style="padding-left: 30px">●时间校正。</p>
+<p  style="padding-left: 30px">●自动计算每个阶段耗时开销。</p>
+<p  style="padding-left: 30px">●编码识别&amp;编码转化。</p>
+<p  style="padding-left: 30px">●标准配置文件的解析和调用</p>
+<p  style="padding-left: 30px">采用bingo2的代码自动生成工具产生标准的测试PHP模块：test。</p>
+<p>测试结果如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200502788.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200502788.jpg"                    ></a></p>
+<h3>3.5结论</h3>
+<p>从测试数据的结论来看，PHP本身的性能还是可以的。基准性能完全能够达到几千甚至上W的QPS。至于为什么在大多数的PHP模块中表现不佳，其实这个时候更应该去找出系统的瓶颈点，而不是简单的说OK，PHP不行，那我们换C来搞吧。（下一个章节，会通过一些例子来对比，采用C来处理不见得有特别的优势）</p>
+<p>通过基准数据，可以得出以下几个具体的结论：</p>
+<p>1、&nbsp;&nbsp;&nbsp; PHP本身性能也很不错。简单功能下能够达到5000QPS（50CPU IDLE），极限也能过W。</p>
+<p>2、&nbsp;&nbsp;&nbsp; PHP框架本身对性能影响非常有限。尤其是在有一定业务逻辑和数据交互的情况下，几乎可以忽略。</p>
+<p>3、&nbsp;&nbsp;&nbsp; 一个标准的PHP模块，基准性能能够达到2000QPS（80 cpu idle）。</p>
+<h2>4PHP与C性能对比分析</h2>
+<p>很多时候，大家发现PHP模块性能不行的时候，就来一句“ok，我们采用C重写吧”。在公司内，采用C/C++来写业务逻辑模块的现象到处都有，在前几年甚至几乎全部都是采用C来写。那时候大家写的真是一个痛苦：调试难、敏捷不要谈。</p>
+<p>那么，本章节要谈论的一个话题就是：C写的业务逻辑和PHP写的业务逻辑模块进行性能对比，采用真实的数据来说话。</p>
+<h3>4.1前提</h3>
+<p>为什么要特别说出这个前提呢？因为在理想情况下，一个功能采用PHP实现，该性能铁定不可能比理想的C写出来好。这个前提需要特别注意。</p>
+<p>但为什么还要对比呢？因为在现实情况下，能写出非常优秀的C程序，并且在频繁修改的情况下还能做到完全高性能的又有几个呢？并且在现实的应用中C实现的性能是否真的全都都比PHP要好好几倍呢？这些目前都没有确切的数据来论证。</p>
+<p>所以，本章节的对比是基于现实中的情况来进行的，并采用真实数据来说话。</p>
+<h3>4.2 真实业务模块PHP模块 VS C模块</h3>
+<h3>4.2.1业务模块介绍</h3>
+<p>一个真实的案列，该业务模块的流量高达数十亿。该模块的架构图如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200527239.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200527239.jpg"                    ></a></p>
+<p  style="text-align: center">图4、业务模块架构图</p>
+<p>该业务模块功能非常简单，上层是web server，下游是各个数据模块。都是基于socket进行数据交互。该业务模块的主要工作模型是：<strong>响应</strong><strong>web server</strong><strong>的请求，根据请求从各个后端数据模块读取相应数据，并根据数据产出最终的HTML</strong><strong>页面返回给web</strong><strong>服务器</strong>。</p>
+<p>为了方便后续介绍，定义CUI表示用C实现的模块，PHPUI表示用PHP实现的模块。</p>
+<h3>4.2.2C/C++模块的性能数据结果</h3>
+<p>09年，该模块重构选择了一个新的C/C++框架。当时重构的时候，该模块连接的后端数据模块规模<strong>在</strong><strong>5-7</strong><strong>个</strong>。</p>
+<p>基于C/C++的模块，最终测试数据数据分成两个部分：</p>
+<p>一、性能对比测试。</p>
+<p>基于当时线上压力，进行真实数据的性能测试。所以当时只测试一个压力数据如下：</p>
+<p><span  style="color: #ff0000">压力：210QPS</span></p>
+<p><span  style="color: #ff0000">CPU（IDLE）：84.18</span></p>
+<p>二、极限性能测试1。</p>
+<p>该测试模型是：CUI只连接一个核心数据模块，其他数据模块完全关闭。</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200555411.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200555411.jpg"                    ></a></p>
+<p>三、极限性能测试2。</p>
+<p>该测试模型是：CUI连接后端一个核心数据模块，3个数据模块，其他数据模块不连接。</p>
+<p>测试后性能数据如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200624695.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200624695.jpg"                    ></a></p>
+<h3>4.2.3 PHP实现模块的性能测试数据</h3>
+<p>到11年，基于09年的CUI基本上达到了代码不看维护的地步。而且这个时候，CUI的极限性能已经不到<strong>600QPS</strong>（主要原因是随着项目的发展，后端数据模块的数目增加到<span  style="color: #ff0000">14个</span>）。据此，决定采用PHP方案来重写整个模块，并产出最终的pbui模块。</p>
+<p>性能测试结果分成两种：</p>
+<p>1、PHPUI连接一个核心模块。测试数据如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200643192.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200643192.jpg"                    ></a></p>
+<p  style="text-align: center">图5、PHPUI性能测试结果1</p>
+<p>2、PHPUI连接后端所有模块（14个）。测试性能数据如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200731221.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200731221.jpg"                    ></a></p>
+<p  style="text-align: center">图6、PHPUI性能测试结果2</p>
+<h3>4.2.4数据对比结论</h3>
+<p>由于PHPUI和CUI的业务逻辑和测试方法都不完全相同，所以抽取了部分大体能对比的点进行整理。具体对比数据如下：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200810267.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200810267.jpg"                      width="650"></a></p>
+<p>从上面的对比数据来看，<strong>在真实的业务项目中，</strong><strong>PHPUI</strong><strong>的性能并不会比CUI</strong><strong>差</strong>。这个不是简简单单一个模块来验证的，在部门里面，我们有不少模块都是从C/C++迁移到PHP，从迁移的结果来看，并没有存在质的性能下降，大部分模块迁移后性能指标都是非常接近的。</p>
+<p>这个时候就需要思考为什么会这样了？细分来说有两个问题：</p>
+<p>1、 &nbsp; 为什么在真实业务项目中，PHPUI的性能并不会比CUI差太多？</p>
+<p>2、&nbsp; 为什么基准的PHP性能这么高，80CPU的情况下2000QPS，但到了真实的PHP模块中只能是200QPS？</p>
+<p>其实这两个问题，也可以归结成一种原因：<strong>在真实业务项目中，影响性能更多的不是说采用了什么语言，而是其业务相关的部分，比如说</strong><strong>socket</strong><strong>交互次数，比如说字符串处理，也比如说网络交互包大小</strong>。</p>
+<p>OK。那么接下来的关键是找出影响性能的关键因素。</p>
+<h3>4.2.5影响PHP模块性能的关键因素</h3>
+<p>从前面分析，我们得出，影响前端PHP模块性能的关键因素不是语言本身（是否是PHP/JAVA/C都不重要）。那么到底影响PHP业务模块性能的关键因素在哪里呢？CPU耗时是统计一个项目性能的关键点之一，考虑到系统中都打印出了系列日志。通过分析日志中请求的耗时分布可以大体上看出关键点。</p>
+<p>在我们系统中，CPU耗时重点打印出以下几个方面：</p>
+<p>1、&nbsp; 请求总时间。</p>
+<p>2、&nbsp; 请求关键函数的性能，其中所有的socket交互都有耗时计算。</p>
+<p>3、&nbsp; 模版渲染也是好事的一个关键点。</p>
+<p>在前面分析中，我们基本上判定socket和字符串处理是一个关键点之一，通过数据我们来验证下。抽取一个模块指定数目的日志，进行综合分析得出以下数据：</p>
+<p>&nbsp;</p>
+<p><a  target="_blank"  href="http://img1.51cto.com/attachment/201112/200842523.jpg"><img   border="0"  alt=""  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/200842523.jpg"                      width="650"></a></p>
+<p>通过这个可以看出，在一个业务模块中，影响最大的是socket数据交互，其次是大量的字符串处理。具体细分来说是以下几个因素：socket交互次数、socket交互包大小、socket交互响应时间、字符串处理。</p>
+<h3>4.2.6结论</h3>
+<p>通过上述分析，可以得出以下结论：在前端业务模块中，PHP语言本身不会成为性能瓶颈。因为影响性能的几个关键因数是：</p>
+<p>● 网络交互数目。</p>
+<p>●&nbsp; 网络交互数据大小，包含数据打包解包开销。</p>
+<p>● 网络交互响应时间。</p>
+<p>●&nbsp; 大量的字符串处理。</p>
+<h2>5最终结论</h2>
+<p>通过上述三个章节的具体分析，可以得出以下结论：</p>
+<p>1、从PHP实现原理来看，PHP属于半编译型语言，并且在各个方面都进行了大量的优化工作，本身不会存在明显的性能问题。但由于动态语言的特性，决定了PHP需要运行在Zend Engine虚拟机上，并且在变量查找、函数调用、作用域切换等各个方面需要一些额外开销。</p>
+<p>2、从PHP的基准性能来看，PHP本身不会存在明显的资源消耗，单机QPS能够轻松过W， PHP框架本身也不会对业务系统的性能带来关键性的影响。</p>
+<p>3、从真实的应用场景来看，基于C语言实现的模块不见得比基于PHP实现的模块性能高效很多。因为在真实的应用场景中，更多的性能开销在于网络数据交互和字符串处理。语言方面微小的性能差异不会成为瓶颈。</p>
+<p>据此，可以推出：基于C语言实现的大部分业务系统都可以考虑迁移到PHP上来，一方面能够快速开发，另外一方面性能也不会存在问题。</p>
+<p>最后，关于影响PHP性能的关键因素的具体分析和关于语言函数级别PHP与C的基准性能对比分析，请关注下文《深入探讨PHP性能问题》。</p>
+<h2>6参考文档</h2>
+<p><a  href="http://yanbin.org/">http://yanbin.org/</a></p>
+<p><a  href="https://wiki.php.net/internals/zend_mm">https://wiki.php.net/internals/zend_mm</a></p>
+<p><a  href="http://blog.xiuwz.com/2011/11/09/php-using-internal-zval/">http://blog.xiuwz.com/2011/11/09/php-using-internal-zval/</a></p>
+<p><a  href="http://developers.facebook.com/blog/post/358/">http://developers.facebook.com/blog/post/358/</a></p>
+<p><a  href="https://github.com/facebook/hiphop-php">https://github.com/facebook/hiphop-php</a></p>
+<p  style="text-align: right">by xuliqiang</p>
+<p  style="text-align: right">&nbsp;</p>
+<div>【本文首发于：<a  href="http://stblog.baidu-tech.com/"><span><span><font  color="#0000ff">搜索研发部官方博客</font></span></span>】</a><a  href="http://stblog.baidu-tech.com/?p=1343"><span  style="color: #0000ff">http://stblog.baidu-tech.com/?p=1343</span></a></div>
+<div>【<a  target="_blank"  href="http://weibo.com/baidutech"><span><span><font  color="#0000ff">关注百度技术沙龙</font></span></span>】</a></div><p>本文出自 “<a  href="http://baidutech.blog.51cto.com/">百度技术博客</a>” 博客，请务必保留此出处<a  href="http://baidutech.blog.51cto.com/4114344/742971">http://baidutech.blog.51cto.com/4114344/742971</a></p>
+    		</div>
+<script  type="text/javascript">
+	var kevent = 'onabort|onblur|onchange|onclick|ondblclick|onerror|onfocus|onkeydown|onkeypress|onkeyup|onload|onmousedown|onmousemove|onmouseout|onmouseover|onmouseup|onreset|onresize|onselect|onsubmit|onunload';
+	var aevent = kevent.split('|');
+
+	jQuery('.showContent img').each(function(){
+		var nimg = this;
+		jQuery.each(aevent, function(i, n){
+			if (n!='onload') {
+				jQuery(nimg).attr(n, '');
+			} else {
+				if (jQuery(nimg).attr(n) != 'if(this.width>650) this.width=650;') {
+					jQuery(nimg).attr(n, '');
+				}
+			}
+		});
+	});
+</script>
+<script  type="text/javascript"  charset="utf-8">
+var encodetitle = encodeURI('一篇很棒的博文分享给大家：《大话PHP之性能》');
+
+function show51share(){
+
+	window.open('http://t.51cto.com/index.php?m=share&url=http://baidutech.blog.51cto.com/4114344/742971&type=l&count=&relateUid=&appkey=3843950324&title=' + encodetitle);
+}
+</script>		
+<div  class="m_sharebtn clear">
+	<table  width="100%"  border="0"  cellspacing="0"  cellpadding="0">
+	  <tbody><tr>
+		<td  width="11%"  height="43"  align="center"  valign="middle"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/ssk.png"  alt="分享至"></td>
+		<td  width="77%"  align="left"  valign="top">
+			<div  id="bdshare"  class="bdshare_t bds_tools_32 get-codes-bdshare"  data="{&#39;wbuid&#39;:1706976420}">
+				<a  class="bds_tsina"  title="分享到新浪微博"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_qzone"  title="分享到QQ空间"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_baidu"  title="分享到百度搜藏"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_renren"  title="分享到人人网"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_qq"  title="分享到QQ收藏"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_douban"  title="分享到豆瓣网"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_hi"  title="分享到百度空间"  href="http://baidutech.blog.51cto.com/#"></a>
+				<a  class="bds_msn"  href="http://baidutech.blog.51cto.com/#"></a>
+				<em  title="分享到51CTO微博"  class="weibo_51cto"   ></em>
+				<span  class="bds_more">更多</span>
+				
+				<a  class="shareCount"  href="http://baidutech.blog.51cto.com/#"  title="累计分享0次">0</a>
+			</div>
+	<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=559183"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/bds_s_v2.js"></script>
+	
+	<script  type="text/javascript">
+		var bds_config = {'wbUid':1706976420, 'bdPic':'http://blog.51cto.com/attachment/201305/173413310.jpg'};
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+	</script>
+	</td>
+		<td  width="12%"  align="right"  valign="middle"><a  href="javascript:favorBox('open');"  title="一键收藏，随时查看，分享好友！"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/favorite_add_small.gif"  border="0"  alt="一键收藏，随时查看，分享好友！"></a></td>
+	  </tr>
+	</tbody></table>
+
+</div>			
+    		<div  class="showBottom">
+            
+              <table  width="720"  border="0"  cellspacing="0"  cellpadding="0">
+  <tbody><tr>
+    <td  align="right"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/icon01.png"  width="15"  height="16"> <span  style="cursor:pointer;"><a   id="favourer">lioncn、liqius、liqius</a></span></td>
+    <td  width="70"  align="left"><div  style="line-height:28px;"  id="favourdiv"  class="support01">8人</div></td>
+    <td  width="60"  align="left">了这篇文章</td>
+  </tr>
+</tbody></table>
+
+
+
+
+            <div  class="showType">类别：<a  href="http://baidutech.blog.51cto.com/4114344/d-6"  class="operlink">编程技术</a>┆<a  class="operlink" >技术圈</a>(<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/joingroup.php"></script>0)┆阅读(<span  id="readNum">1378</span>)┆评论(<span  id="cmtNum">4</span>)
+
+
+┆
+
+	<a  href="http://baidutech.blog.51cto.com/#"   class="operlink">
+
+推送到技术圈</a>┆<a  href="http://baidutech.blog.51cto.com/">返回首页</a></div>
+            <div  class="prevNext">
+
+			上一篇 <a  href="http://baidutech.blog.51cto.com/4114344/742967"  class="operlink"  title="iOS内存暴增问题追查与使用陷阱">iOS内存暴增问题追查与使用陷阱</a>
+
+
+			下一篇 <a  href="http://baidutech.blog.51cto.com/4114344/742972"  class="operlink"  title="支持快速迭代的LAMP解决方案 ——贴吧LAMP解决方案">支持快速迭代的LAMP解决方案 ——贴吧LAMP解决..</a>
+
+
+            </div>
+
+            </div>
+
+	  </div>
+      </div>
+    <span  class="modBot"></span>
+    </div>
+    <span  class="blank"></span>
+	
+	<div  class="relatedArt box">
+<a  href="javascript:;"><img  src=""></a>
+</div>
+	
+
+<div  class="artComm box">
+    <div  class="title"><a  name="replay"></a><h2>文章评论</h2></div>
+    <div  class="modCon"  id="artcomment">
+		<div>  &nbsp;</div><a  name="454294"></a><div  class="itcomment"  style="table-layout: fixed;word-wrap: break-word"  id="itcommentid0"><div><div  style="width:100%;border-bottom:1px solid #A0A0A0;height:20px"><label  style="float:left">[1楼]&nbsp;&nbsp;&nbsp;&nbsp;<img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/reply.gif">&nbsp;&nbsp;<a  target="_blank"  href="http://mj007.blog.51cto.com/"  class="operlink"  ref="nofollow"><b>MJ007</b></a></label><label  style="float:right">&nbsp;<a  href="http://baidutech.blog.51cto.com/#"  class="repost operlink"  user_name="MJ007"  parentid="454294">回复</a></label></div></div><div  align="right">2012-02-03 09:50:43</div><div  class="commentcontent">写的很不错 期待更多的分析</div></div><br><a  name="486812"></a><div  class="itcomment"  style="table-layout: fixed;word-wrap: break-word"  id="itcommentid1"><div><div  style="width:100%;border-bottom:1px solid #A0A0A0;height:20px"><label  style="float:left">[2楼]&nbsp;&nbsp;&nbsp;&nbsp;<img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/reply.gif">&nbsp;&nbsp;<a  target="_blank"  href="http://derekliu.blog.51cto.com/"  class="operlink"  ref="nofollow"><b>liu1985629</b></a></label><label  style="float:right">&nbsp;<a  href="http://baidutech.blog.51cto.com/#"  class="repost operlink"  user_name="liu1985629"  parentid="486812">回复</a></label></div></div><div  align="right">2012-06-05 15:25:08</div><div  class="commentcontent">好文章，学习了。</div></div><br><a  name="529716"></a><div  class="itcomment"  style="table-layout: fixed;word-wrap: break-word"  id="itcommentid2"><div><div  style="width:100%;border-bottom:1px solid #A0A0A0;height:20px"><label  style="float:left">[3楼]&nbsp;&nbsp;&nbsp;&nbsp;<img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/reply.gif">&nbsp;&nbsp;<a  target="_blank"  href="http://zuogehuairen.blog.51cto.com/"  class="operlink"  ref="nofollow"><b>shenlaile</b></a></label><label  style="float:right">&nbsp;<a  href="http://baidutech.blog.51cto.com/#"  class="repost operlink"  user_name="shenlaile"  parentid="529716">回复</a></label></div></div><div  align="right">2012-12-21 21:14:36</div><div  class="commentcontent">没看完……</div></div><br><a  name="529910"></a><div  class="itcomment"  style="table-layout: fixed;word-wrap: break-word"  id="itcommentid3"><div><div  style="width:100%;border-bottom:1px solid #A0A0A0;height:20px"><label  style="float:left">[4楼]&nbsp;&nbsp;&nbsp;&nbsp;<img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/reply.gif">&nbsp;&nbsp;<a  target="_blank"  href="http://phpstar.blog.51cto.com/"  class="operlink"  ref="nofollow"><b>616052505</b></a></label><label  style="float:right">&nbsp;<a  href="http://baidutech.blog.51cto.com/#"  class="repost operlink"  user_name="616052505"  parentid="529910">回复</a></label></div></div><div  align="right">2012-12-23 13:42:18</div><div  class="commentcontent">有没有相应的措施了。。。。</div></div><br><div>  &nbsp;</div>
+    </div>
+        <span  class="modBot"></span>
+</div>
+<a  href="http://baidutech.blog.51cto.com/4114344/742971"  id="com_top_top"></a>
+<form  action="http://baidutech.blog.51cto.com/comment.php?"  method="post"  name="form1"  id="form1" >
+<span  class="blank1"></span>
+<div  class="box writeComm"  style="min-height:30px;">
+<a  name="comment"></a>
+<input  type="hidden"  name="action"  value="comment">
+<input  id="commenttid"  type="hidden"  name="tid"  value="742971">
+<input  type="hidden"  name="com_count_ajax"  id="com_count_ajax"  value="1">
+
+ <div  class="title">
+	<h2  class="fl">发表评论&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+	<span  class="fl"><a  class="mred"  target="_blank"  href="http://bbs.51cto.com/thread-1093286-1.html">【大家来找茬】51CTO万年不变的首页 终！于！改！版！了！</a></span>
+	<style  type="text/css">
+		a.mred:link{ color:#ff0000; text-decoration:underline;}
+		a.mred:visited{color:#ff0000;}
+		a.mred:hover{color:#ff0000;}
+		a.mred:active{color:#ff0000;}
+	</style>
+</div>
+ <div  class="modCon">
+
+ <div  class="commForm">
+<dl>
+<dt>昵&nbsp;&nbsp;称：</dt>
+<dd>
+
+<input  type="text"  id="commentusername"  name="username"  value=""  class="commInput fl"><span><a  href="http://home.51cto.com/index.php?reback=http%253A%252F%252Fbaidutech.blog.51cto.com%252F4114344%252F742971"  style="text-decoration:underline">登录</a>&nbsp;&nbsp;<a  href="http://ucenter.51cto.com/reg_01.php?reback=http://blog.51cto.com"  target="_blank"  style="text-decoration: underline;">快速注册</a></span>
+
+
+
+</dd>
+</dl>
+
+
+
+<dl  id="commentyanzheng">
+
+
+<dt>验证码：</dt>
+<dd><input  class="code"  type="text"  value=""  id="commentauthnum"  name="authnum" >
+
+  <img  width="78"  class="fl"  height="29"  id="secunum"   style="display:none;"><p  class="fl"><span  style="display:none;"  id="spanfont">点击图片可刷新验证码</span><span  style="display:inline;"  id="clickfont">请点击后输入验证码</span><span  class="pl5"><a  href="http://51ctoblog.blog.51cto.com/26414/5591"  target="_blank"  style="text-decoration: underline;">博客过2级，无需填写验证码</a></span></p></dd>
+</dl>
+<dl>
+<dt>内&nbsp;&nbsp;容：</dt>
+<dd>
+<textarea  class="writeCommCon f12"  id="commentcontent"  name="content"></textarea>
+</dd>
+</dl>
+</div>
+<div  class="writeCommBot">
+  <input  type="hidden"  name="parentid"  value=""  id="parentid">
+  <input  class="commBtn fl"  name="submit"  type="button"  id="commentsubmit"  value="" >
+
+ <p  class="fl"  style="display:none;"><input  class="fl"  type="checkbox"  name="favour"  id="favour"  checked=""  value="1"><span  class="fl">同时赞一个</span></p>
+
+</div>
+<span  class="blank"></span>
+
+</div>
+<span  class="modBot"></span>
+</div>
+</form>
+
+<iframe  id="iframe1"  name="iframe1"  width="0"  height="0"></iframe>
+
+</div>
+</div>
+<script  language="javascript">
+	function refimg(){
+		var randval = Math.random();
+		document.getElementById("secunum").src="/seccode.php?rnum="+randval;
+	}
+	function displaysecunum()
+	{
+		var displaystr = document.getElementById("secunum").style.display;
+		if(displaystr == 'none')
+		{
+			refimg();
+			document.getElementById("clickfont").style.display = 'none';
+			document.getElementById("secunum").style.display = 'inline';
+			document.getElementById("spanfont").style.display = 'inline';
+		}
+	}
+
+	function showMsn(){
+		document.getElementById("c02").style.display = "none";
+		document.getElementById("c01").style.display = "block";
+		document.getElementById("share").style.height = "83px";
+		document.getElementById("share").style.background = "none";
+	}
+	function showBBS(){
+		document.getElementById("c01").style.display = "none";
+		document.getElementById("c02").style.display = "block";
+		document.getElementById("share").style.height = "83px";
+		document.getElementById("share").style.background = "none";
+	}
+
+	//资源页面，分享按钮
+	function copyShareUrl(title){
+
+		if (window.clipboardData){
+
+			if(document.getElementById("c01").style.display == 'block')
+			{
+				copy = "推荐：" + title + "http://baidutech.blog.51cto.com/4114344/742971";
+				var alertText = "复制成功，你可以粘贴到MSN或QQ中发给好友。";
+			}
+			else
+			{
+				copy = "[url=" + "http://baidutech.blog.51cto.com/4114344/742971" + "][u]" + title + "[/u][/url]";
+				var alertText = "复制成功，你可以粘贴到论坛分享给坛友。";
+			}
+			window.clipboardData.clearData();
+			window.clipboardData.setData("Text", copy);
+			alert(alertText);
+		}
+		else if (window.netscape){
+			alert("您使用的浏览器不支持此复制功能，请使用Ctrl+C或鼠标右键。");
+			if(document.getElementById("c01").style.display == 'block')
+			{
+				document.getElementById("shareTextQM").value = "推荐：" + title + "http://baidutech.blog.51cto.com/4114344/742971";
+				document.getElementById("shareTextQM").select();
+			}
+			else
+			{
+				document.getElementById("shareTextBBS").value = "[url=" + "http://baidutech.blog.51cto.com/4114344/742971" + "][u]" + title + "[/u][/url]";
+                document.getElementById("shareTextBBS").select();
+			}
+		}
+		return false;
+	}
+	function select_login(){
+		document.getElementById('fixed').style.display='';
+	}
+	function commentcheck()
+	{
+		if(document.form1.content.value == "")
+		{
+			alert("评论内容为空!");
+			document.form1.content.focus();
+			return false;
+		}
+	}
+	function changename(){
+
+	var memberid=0;
+	memberid="";
+
+	if(document.getElementById('commentniming').checked){
+		document.getElementById('commentusername').disabled=false;
+		document.getElementById('commentusername').value='';
+		document.getElementById("indexhidden").style.display="none";
+		document.getElementById("commentindex").value='';
+		document.getElementById("commentyanzheng").style.display="";
+	}else{
+		document.getElementById('commentusername').disabled=true;
+		document.getElementById('commentusername').value="";
+		document.getElementById("indexhidden").style.display="";
+		document.getElementById("commentindex").value="http://.blog.51cto.com";
+		if(memberid>8)
+		{
+			document.getElementById("commentyanzheng").style.display="none";
+		}
+	}
+	}
+	function openFavoulist()
+	{
+		window.open ('http://blog.51cto.com/mod/favourlist.php?tid=742971','newwindow','height=300,width=500,top=400,left=400,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no,z-look=yes');
+	}
+
+	var e_zti = document.getElementById('zti');//有专题锚点
+	var maodian = window.location.href;//锚点
+	if (e_zti) {
+		e_zti.href= (/[#]+/.test(maodian)) ? maodian : maodian + "#zhuanti";
+	}
+</script>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/jquery-1.7.1.min.js"></script>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/jquery.cookie.js"></script>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/jquery.messager.js"></script>
+<link  href="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/blog_top.css"  rel="stylesheet"  type="text/css">
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/blog_top_list.php"  type="text/javascript"  language="javascript"></script>
+<style>
+.backToTop {
+    display: none;
+	WIDTH: 45px;
+	height:45px;
+	BOTTOM: 20px;
+     position: fixed;
+    _position: absolute;
+    right: 140px;
+    bottom: 10px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: .6;
+    filter: Alpha(opacity=60);
+	text-indent:-9999px;
+}
+.tops { background:url(/images/tops.jpg) no-repeat center center; }
+</style>
+<script  type="text/javascript">
+(function() {
+    var backToTopTxt = "返回顶部", backToTopEle = $('<div class="backToTop tops"></div>').appendTo($("body"))
+        .text(backToTopTxt).attr("title", backToTopTxt).click(function() {
+            $("html, body").animate({ scrollTop: 0 }, 520);
+    }), backToTopFun = function() {
+        var st = $(document).scrollTop(), winh = $(window).height();
+        (st > 0)? backToTopEle.show(): backToTopEle.hide();    
+        //IE6下的定位
+        if (!window.XMLHttpRequest) {
+            backToTopEle.css("top", st + winh - 60);    
+        }
+    };
+    $(window).bind("scroll", backToTopFun);
+    $(function() { backToTopFun(); });
+})();
+</script><div  class="backToTop tops"  title="返回顶部"  style="display: block;">返回顶部</div>
+
+
+
+
+
+
+<div  class="clear"></div>
+
+
+<div  id="footer">
+  <div  id="innerFooter">
+	<center>
+		<small>
+			Copyright By 51CTO.COM 版权所有<br><br>
+			<a  href="http://blog.51cto.com/"  target="_blank"><img  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/copyright.jpg"></a>
+	  </small>
+	</center>
+  </div>
+</div>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/index.php"  charset="utf-8"></script>
+<div  style="display:none">
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/count.js"></script><script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/count.php"></script>
+
+<iframe  frameborder="0"  scrolling="no"  width="0"  height="0"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/pageview.htm"></iframe>
+</div>
+<div  style="display:none;"><script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/stat.php"  language="JavaScript"></script><script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=4274540"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/pic.gif"></a><div>
+<script  src="./大话PHP之性能 - 百度技术博客 - 51CTO技术博客_files/poptop.js"></script>
+<script  type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38670657-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</div></div></body></html>

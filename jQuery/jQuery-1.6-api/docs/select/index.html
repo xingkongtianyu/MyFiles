@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.select()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/form-events/" title="View all posts in Form Events">Form Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span>
+  
+  				</div>
+</div>
+<div id="select1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.select( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "select" 事件绑定一个处理函数，或者触发元素上的 "select" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="select-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.select( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="select-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.select( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="select"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.select()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('select', handler)</code> 的快捷方式，第二种用法是 <code>.trigger('select')</code> 的快捷方式。</p>
+<p>当用户在一个元素中进行文本选择时，<code>select</code>事件就会被发送到这个元素。此事件被限制在<code>&lt;input type="text"&gt;</code> 和<code>&lt;textarea&gt;</code>。
+</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>&lt;form&gt;
+  &lt;input id="target" type="text" value="Hello there" /&gt;
+&lt;/form&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p>这个事件处理程序可以绑定到文本框</p>
+<pre>$('#target').select(function() {
+  alert('Handler for .select() called.');
+});</pre>
+<p>现在文本框中任何字符被选择，警告将被显示。仅仅设置插入点的位置将不会触发该事件。我们可以通过点击另一个因素来手动触发事件时：</p>
+<pre>$('#other').click(function() {
+  $('#target').select();
+});</pre>
+<p>这些代码执行后，点击触发按钮同样警报显示:</p>
+<p><span class="output">Handler for .select() called.</span></p>
+<p>此外，默认文本域上的<code>select</code>动作被解除，所以整个文本字段将被选中。</p>
+<blockquote><p>用于检索当前选定文本的方法在各个浏览器中是不同的。jQuery的一个插件都提供跨平台的解决方案。</p></blockquote>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">在输入框中文本被选中时做一件事情时：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:blue; }
+  div { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+
+    Click and drag the mouse to select text in the inputs.
+  &lt;/p&gt;
+  &lt;input type="text" value="Some text" /&gt;
+  &lt;input type="text" value="to test on" /&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+    $(":input").select( function () { 
+      $("div").text("Something was selected").show().fadeOut(1000); 
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To trigger the select event on all input elements, try:</span>
+</h4>
+<pre><code class="example">$("input").select();</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

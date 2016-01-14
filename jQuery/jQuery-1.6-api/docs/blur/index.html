@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.blur()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/form-events/" title="View all posts in Form Events">Form Events</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span>
+  
+  				</div>
+</div>
+<div id="blur1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.blur( handler(eventObject) )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为 "blur" 事件绑定一个处理函数，或者触发元素上的 "blur" 事件。</p>
+<ul class="signatures">
+<li class="signature" id="blur-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.blur( handler(eventObject) )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="blur-eventData-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.blur( [ eventData ], handler(eventObject) )</h4>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="blur"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.blur()</h4></li>
+</ul>
+<div class="longdesc">
+<p>这个函数的第一种用法是 <code>.bind('blur', handler)</code> 的快捷方式，第二种用法是 <code>.bind('keydown')</code> 的快捷方式。</p>
+<p>一个元素失去焦点将触发<code>blur</code>事件。起初，这个事件仅适用于表单元素，如元素<code>&lt;input&gt;</code> 。在最新的浏览器中，这个事件适用范围已经扩大到包括所有元素类型。一个元素可以通过键盘命令失去焦点，比如tab键，或用鼠标点击网页上的其他地方。</p>
+<p>举例来说，请看下面的HTML：</p>
+
+<pre>&lt;form&gt;
+  &lt;input id="target" type="text" value="Field 1" /&gt;
+  &lt;input type="text" value="Field 2" /&gt;
+&lt;/form&gt;
+&lt;div id="other"&gt;
+  Trigger the handler
+&lt;/div&gt;</pre>
+<p>这个事件处理函数可以绑定到第一个 input field：
+</p>
+<pre>$('#target').blur(function() {
+  alert('Handler for .blur() called.');
+});</pre>
+<p>现在，如果第一个字段有焦点并且我们点击其他地方，或按tab键离开它，警报显示：</p>
+<p><span class="output">Handler for .blur() called.</span></p>
+<p>我们可以点击另一个元素时触发事件：</p>
+<pre>$('#other').click(function() {
+  $('#target').blur();
+});</pre>
+<p>这些代码执行后，点击<span class="output">Trigger the handler</span>也提醒消息。</p>
+<p><code>blur</code>事件不会在Internet Explorer中泡沫。因此，用<code>blur</code>事件委派，跨浏览器无法正常工作。</p>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">触发所有段落上的模糊事件：</span></h4>
+<pre><code class="example">$("p").blur();</code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

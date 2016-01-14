@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://blog.csdn.net/common/ad.html?t=12&containerId=ad_commend&frmId=ad_frm_1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CSDN Ad</title>
+    <style  type="text/css">
+        body { margin:0px; padding:0px;}
+    </style>
+     <script  src="jquery.js"  type="text/javascript"></script>
+</head>
+<body>
+    <div  id="div1"><style  type="text/css">
+ul { margin:0px; padding:0 4px 0 0; }
+ul, x:-moz-any-link, x:default { width:90%; }
+ul li { padding:3px 0px;}
+a { font-size:12px; text-decoration:none; color:#006699; }
+a:hover { color:#000; }
+</style>
+
+<ul>
+
+<li><a  href="http://blog.csdn.net/epluguo/article/details/19014325"  target="_blank">* OpenGL加载、显示、截图、保存位图文件</a></li>
+
+
+<li><a  href="http://blog.csdn.net/a1314517love/article/details/19014711"  target="_blank">* JBPM具体应用之task节点的使用</a></li>
+
+
+
+<li><a  href="http://blog.csdn.net/icyfox_bupt/article/details/18953581"  target="_blank">* 安卓教程----手把手教你做一个河北空气质量客户端</a></li>
+
+
+<li><a  href="http://blog.csdn.net/hitwhylz/article/details/19018613"  target="_blank">* cocos2d-x - loading加载动画</a></li>
+
+
+<li><a  href="http://blog.csdn.net/lufy_legend/article/details/19008011"  target="_blank">* HTML5各引擎显示效率比较</a></li>
+
+
+<li><a  href="http://blog.csdn.net/yysyangyangyangshan/article/details/19016525"  target="_blank">* ASP.NET—001：GridView绑定List、页面返回值</a></li>
+
+</ul></div>
+<script  type="text/javascript">
+    window.onload = function () {
+        if (document.domain != 'blog.csdn.net') {
+            document.domain = "csdn.net";
+        }
+        //这种给广告区域赋值的方式，对于有些JS广告不能完美的显示
+        //top.document.getElementById('ad_commend').innerHTML = document.getElementById('div1').innerHTML;
+
+        var h = document.body.offsetHeight + 2;
+        setTimeout(function () {
+            if (h > 800) h = document.getElementById('div1').offsetHeight + 4;
+            try { top.document.getElementById('ad_frm_1').style.height = h + 'px'; }
+            catch (err) { }
+        }, 100);
+    };
+    $(function() {
+        $("#div1 a").click(function() {
+            top._gaq.push(['_trackEvent', 'function', 'onclick', 'blog_articles_tuijianwenzhang']);
+        });
+    });
+</script>
+
+
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.scrollLeft()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/offset/" title="View all posts in Offset">Offset</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#scrollLeft1">scrollLeft() </a><ul><li>.scrollLeft()
+              </li></ul>
+</li>
+<li>
+<a href="#scrollLeft2">scrollLeft( value ) </a><ul><li>.scrollLeft( value )
+              </li></ul>
+</li>
+</ul>
+</fieldset>
+<div id="scrollLeft1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.scrollLeft()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Integer">Integer</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素集合中获取第一个元素的滚动条的水平位置。</p>
+<ul class="signatures"><li class="signature" id="scrollLeft"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.6/">1.2.6</a></span>.scrollLeft()</h4></li></ul>
+<div class="longdesc"><p>水平滚动位置是和像素值以上所隐藏的滚动区相同的。（The horizontal scroll position is the same as the number of pixels that are hidden from view above the scrollable area.）如果滚动条是在非常左边，或者这个元素没有可滚动的，那么这个数字是<code>0</code>。</p></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">获取段落的scrollLeft。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    p { margin:10px;padding:5px;border:2px solid #666; }
+    &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;script&gt;var p = $("p:first");
+			$("p:last").text( "scrollLeft:" + p.scrollLeft() );
+
+			&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div id="scrollLeft2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.scrollLeft( value )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述 </strong>为匹配的元素集合中每个元素设置滚动条的水平位置。</p>
+<ul class="signatures"><li class="signature" id="scrollLeft-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2.6/">1.2.6</a></span>.scrollLeft( value )</h4>
+<p class="arguement"><strong>value</strong>一个用来设置滚动条水平位置的正整数。</p>
+</li></ul>
+<div class="longdesc"><p>水平滚动位置是和像素值以上所隐藏的滚动区相同的。（The horizontal scroll position is the same as the number of pixels that are hidden from view above the scrollable area.） <code>scrollLeft</code>为每个匹配元素设置滚动条的水平位置。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples-1"><div id="example-1-0">
+<h4><span class="desc">设置一个div的scrollLeft。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div.demo {
+  background:#CCCCCC none repeat scroll 0 0;
+  border:3px solid #666666;
+  margin:5px;
+  padding:5px;
+  position:relative;
+  width:200px;
+  height:100px;
+  overflow:auto;
+  }
+  p { margin:10px;padding:5px;border:2px solid #666;width:1000px;height:1000px; }
+	&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="demo"&gt;&lt;h1&gt;lalala&lt;/h1&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+&lt;script&gt;$("div.demo").scrollLeft(300);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

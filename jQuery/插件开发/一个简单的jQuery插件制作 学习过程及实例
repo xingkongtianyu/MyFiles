@@ -1,0 +1,217 @@
+一个简单的jQuery插件制作 学习过程及实例
+阅读：998次   时间：2011-11-24 14:35:18   字体：[大 中 小]
+一，首先，制作jQuery插件需要一个闭包
+复制代码 代码如下:
+
+(function ($) {
+//code in here
+})(jQuery);
+
+这是来自jQuery官方的插件开发规范要求，使用这种编写方式有什么好处呢？
+a) 避免全局依赖。
+b) 避免第三方破坏。
+c) 兼容jQuery操作符'$'和'jQuery '
+
+二，有了闭包，在其中加入插件的骨架
+复制代码 代码如下:
+
+$.fn.dBox = function (options) {
+var defaults = {
+//各种属性及其默认值
+};
+var opts = $.extend(defaults, options);
+//function codes in here
+};
+
+
+在这里dBox是我为这个弹出层插件的命名
+
+三，为dBox建立起属性及其默认值
+复制代码 代码如下:
+
+$.fn.dBox = function (options) {
+var defaults = {
+opacity: 0.6, //for mask layer
+drag: true,
+title: 'dBox',
+content: '',
+left: 400,
+top: 200,
+width: 600,
+height: 300,
+setPos: false, //if use the customer's left and top
+overlay: true, //if use the mask layer
+loadStr: 'Loading',
+ajaxSrc: '',
+iframeSrc: ''
+};
+var opts = $.extend(defaults, options);
+//function codes in here
+};
+
+四，既然是弹出窗体，那么要先设计好一个div窗体和遮罩层，在这里我将样式也直接写进去了，在function codes区域中输入如下：
+复制代码 代码如下:
+
+//build html code of the dBox
+var dBoxHtml = "<div id='dBox' style='background-color:#FFF;border:solid 2px #00E;position:absolute;z-index:100;'>";
+dBoxHtml += "<div id='d_head' style='width:100%;height:20px;border-bottom:solid 1px #00E;'>";
+dBoxHtml += "<div id='d_title' style='float:left;width:90%;color:#00E'>" + opts.title + "</div>";
+dBoxHtml += "<div id='d_close' style='float:right;cursor:pointer;margin-right:5px;color:#00E'>[x]</div>";
+dBoxHtml += "</div>";
+dBoxHtml += "<div id='d_content' style='width:100%;height:100%;padding:3px;'>" + opts.content + "</div>";
+dBoxHtml += "</div>";
+var dBoxBG = "<iframe id='d_iframebg' style='position:absolute;top:0;left:0;width:0;height:0;border:none;'></iframe><div id='d_bg' style='background-color:#000;z-index:99;position:absolute;top:0;left:0;'></div>";
+var loading = "<div id='d_loading' style='position:fixed;top:48%;left:48%;z-index:100;border:solid 1px #000;'>" + opts.loadStr + "</div>";
+
+在IE6中，z-index对下拉列表不会起作用，所以这里遮罩层中加入id为d_iframebg的iframe作为遮罩层，这样，大体已经制作好了框架。
+五，现在我们考虑要实现什么功能了
+首先，如何出现弹出窗体，一般都是点击，这里仍然使用点击事件
+复制代码 代码如下:
+
+//click event
+$(this).click(function () {
+$("body").append(dBoxHtml);
+//case ajax
+if (opts.ajaxSrc != "") {
+$("#d_content").append("<div id='d_ajax' style='width:" + (opts.width - 6) + "px;height:" + (opts.height - 26) + "px;overflow:scroll;'><div id='d_ajaxcontent'></div></div>");
+$("#d_ajaxcontent").load(opts.ajaxSrc);
+}
+//case iframe
+else if (opts.iframeSrc != "") {
+$("#d_content").append("<iframe frameborder='0' width='" + (opts.width - 6) + "' height='" + (opts.height - 26) + "' src='" + opts.iframeSrc + "'>");
+}
+addCSS();
+//case drag
+if (opts.drag == true) {
+drag();
+}
+$("#d_close").click(dBoxRemove);
+return false;
+});
+
+最后一个return false可以去掉浏览器默认的点击事件，如在一个a标记上绑定点击事件，将不会造成默认的跳转效果
+在这个点击事件中，先将dBox的框架载入了页面，然后判断内容的加载方式，分别处理，最后有三个事件
+1，addCSS()此事件处理遮罩层大小，弹出层的位置
+2，drag()此事件处理弹出层的拖曳
+3，dBoxRemove()此事件处理弹出层的关闭
+有了这三个事件，整个插件就基本完成了
+
+六，这里贴出如上三个事件的代码
+1，addCSS()：
+复制代码 代码如下:
+
+//add css to the dBox
+function addCSS() {
+var pos = setPosition();
+$("#dBox").css({ "left": pos[0], "top": pos[1], "width": opts.width + "px", "height": opts.height + "px" });
+if (opts.overlay) {
+var wh = getPageSize();
+$(dBoxBG).appendTo("body").css({ "opacity": opts.opacity, "width": wh[0], "height": wh[1] });
+}
+}
+
+在这个addCSS中，还有两个功能需要实现，以下代码：
+复制代码 代码如下:
+
+//calc the size of the page to put the mask layer cover the whole document
+function getPageSize() {
+if ($(window).height() > $(document).height()) {
+h = $(window).height();
+} else {
+h = $(document).height();
+}
+w = $(window).width();
+return Array(w, h);
+}
+//calc the position of the dBox to put the dBox in the center of current window
+function setPosition() {
+if (opts.setPos) {
+l = opts.left;
+t = opts.top;
+} else {
+var w = opts.width;
+var h = opts.height;
+var width = $(document).width();
+var height = $(window).height();
+var left = $(document).scrollLeft();
+var top = $(document).scrollTop();
+var t = top + (height / 2) - (h / 2);
+var l = left + (width / 2) - (w / 2);
+}
+return Array(l, t);
+}
+
+
+
+2，drag()：
+复制代码 代码如下:
+
+//drag the dBox
+//this event contains four events(handle.mousedown,move,out,up)
+function drag() {
+var dx, dy, moveout;
+var handle = $("#dBox").find("#d_head>#d_title").css('cursor', 'move');
+handle.mousedown(function (e) {
+//cal the distance between e and dBox
+dx = e.clientX - parseInt($("#dBox").css("left"));
+dy = e.clientY - parseInt($("#dBox").css("top"));
+//bind mousemove event and mouseout event to the dBox
+$("#dBox").mousemove(move).mouseout(out).css({ "opacity": opts.opacity });
+handle.mouseup(up);
+});
+move = function (e) {
+moveout = false;
+win = $(window);
+var x, y;
+if (e.clientX - dx < 0) {
+x = 0;
+} else {
+if (e.clientX - dx > (win.width() - $("#dBox").width())) {
+x = win.width() - $("#dBox").width();
+} else {
+x = e.clientX - dx;
+}
+}
+if (e.clientY - dy < 0) {
+y = 0;
+} else {
+y = e.clientY - dy;
+}
+$("#dBox").css({
+left: x,
+top: y
+});
+}
+out = function (e) {
+moveout = true;
+setTimeout(function () {
+moveout && up(e);
+}, 10);
+}
+up = function (e) {
+$("#dBox").unbind("mousemove", move).unbind("mouseout", out).css("opacity", 1);
+handle.unbind("mouseup", up);
+}
+}
+
+
+3，dBoxRemove()：
+复制代码 代码如下:
+
+//close the dBox
+function dBoxRemove() {
+if ($("#dBox")) {
+$("#dBox").stop().fadeOut(200, function () {
+$("#dBox").remove();
+if (opts.overlay) {
+$("#d_bg").remove();
+$("#d_iframebg").remove();
+}
+});
+}
+}
+
+
+到这里，插件制作基本完成，不过loading这个东东没有加上去。。。
+另外还发现在ie6中，弹出的iframe高度和宽度都少了点，还有就是有遮罩层时，移动的时候不顺畅
+还有其它问题欢迎讨论！

@@ -1,0 +1,97 @@
+
+PHP设计模式-PHP插件机制实例代码
+
+作者：elinstudio 发布时间：July 2, 2012 分类：PHP	
+
+目录结构
+
+Index.php
+
+Plugins/Elin/action.php
+
+Plugins/Micxp/action.php
+
+index.php代码如下：
+
+    <?php   
+     class PluginManager {     
+        private $_listeners = array();     
+        public function __construct() {     
+            $plugins = array(//这里其实可以到数据库查询到相应的插件信息。这里只是为了方便定义了两组插件。  
+                array(     
+                    'name' => 'elin',     
+                    'directory'=>'elin'   
+                    ),   
+                array(     
+                    'name' => 'micxp',     
+                    'directory'=>'micxp'   
+                    )     
+            );     
+               
+      
+            if($plugins) {     
+                foreach($plugins as $plugin) {   
+      
+                    if (@file_exists('plugins/'.$plugin['directory'].'/actions.php'))  {     
+                            include_once('plugins/'.$plugin['directory'].'/actions.php');     
+                            $class = $plugin['name'].'_actions';    
+                            if (class_exists($class)){     
+                                new $class($this);     
+                            }     
+                    }     
+                }     
+            }     
+      
+        }     
+      
+           
+           
+        function register($hook, &$reference,$method)  {     
+            $key = get_class($reference).'->'.$method;     
+            $this->_listeners[$hook][$key] = array(&$reference, $method);     
+        }     
+      
+        function trigger($hook, $data='')  {     
+            $result = '';     
+    //查看要实现的钩子，是否在监听数组之中    
+            if (isset($this->_listeners[$hook]) && is_array($this->_listeners[$hook]) && count($this->_listeners[$hook]) > 0)  {     
+           
+                foreach ($this->_listeners[$hook] as $listener){     
+            // 取出插件对象的引用和方法    
+                    $class =& $listener[0];     
+                    $method = $listener[1];     
+                    if(method_exists($class,$method)) {     
+                        // 动态调用插件的方法    
+                        $result .= $class->$method($data);     
+                    }     
+                }     
+            }     
+    #此处做些日志记录方面的东西     
+            return $result;     
+        }     
+    }   
+      
+    $b= new PluginManager();   
+    //上面是NEW一个插件管理类！  
+      
+    $b->trigger("elin",'http://blog.MicXP.com');  
+    //这个方法就是在需要调用的地方插入即可！  
+    ?> 
+
+Plugins/Elin/action.php插件代码如下：
+
+    <?php   
+        class elin_actions{   
+            function __construct($ok){   
+                $ok->register("elin", $this,"go");   
+      
+            }   
+               
+            function go($url){   
+                header('Location:'.$url);   
+            }   
+           
+               
+        }   
+     //这个插件的功能就是做header跳转！  
+    ?>  

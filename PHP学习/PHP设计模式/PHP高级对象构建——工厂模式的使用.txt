@@ -1,0 +1,36 @@
+
+PHP高级对象构建——工厂模式的使用
+2010年12月17日  2,686 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP高级对象构建——工厂模式的使用
+
+之前我写去关于工厂设计模式的文章（http://www.chhua.com/web-note772），实际上，工厂模式包含普通工厂模式和抽象工厂模式，但是，不管是什么工厂模式，它们都是有一个作用，那就是生成对象。
+
+好了，那我们用下面最最简单的例子，再把PHP设计模式中的厂模式再演示一下。
+
+我自己总结了一下，工厂模式的三个要素：
+一、产品模型
+二、产品实例
+三、工厂车间
+
+ 
+<?php
+abstract class prModel {//产品模型
+	abstract function link();
+}
+ 
+class webLink extends prModel{//实例一个产品
+	public function link(){
+		echo "www.chhua.com";
+	}
+}
+ 
+class gongchang {//工厂
+	static public function createLink (){
+		return new webLink();
+	}
+}
+ 
+$weblink=gongchang::createLink();//通过工厂制造一个对象
+$weblink->link();//输出 www.chhua.com
+?>

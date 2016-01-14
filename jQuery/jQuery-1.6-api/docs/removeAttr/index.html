@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.removeAttr()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/general-attributes/" title="View all posts in General Attributes">General Attributes</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="removeAttr1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.removeAttr( attributeName )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>为匹配的元素集合中的每个元素中移除一个属性。</p>
+<ul class="signatures"><li class="signature" id="removeAttr-attributeName">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.removeAttr( attributeName )</h4>
+<p class="arguement"><strong>attributeName</strong>要移除的属性名</p>
+</li></ul>
+<div class="longdesc"><p><code>.removeAttr()</code> 方法使用原生的 JavaScript <code>removeAttribute()</code> 函数,但是它的优点是能够直接被jQuery对象访问调用。而且具有良好的浏览器兼容性。</p></div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4>点击按钮是文本框您够使用：</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button&gt;Enable&lt;/button&gt;
+&lt;input type="text" disabled="disabled" value="can't edit this" /&gt;
+&lt;script&gt;
+$("button").click(function () {
+  $(this).next().removeAttr("disabled")
+  .focus()
+  .val("editable now");
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,663 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0048)http://www.w3school.com.cn/php/php_ref_mysql.asp -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>PHP MySQL 函数</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META http-equiv=Content-Language content=zh-cn>
+<META content=all name=robots>
+<META content=w3school.com.cn name=author>
+<META content="Copyright W3school.com.cn All Rights Reserved." name=Copyright>
+<META content=true name=MSSmartTagsPreventParsing>
+<META http-equiv=imagetoolbar content=false><LINK 
+href="PHP MySQL 函数.files/c3.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.6104" name=GENERATOR></HEAD>
+<BODY class=serverscripting>
+<DIV id=wrapper>
+<DIV id=header><A title="w3school 在线教程" style="FLOAT: left" 
+href="http://www.w3school.com.cn/index.html">w3school 在线教程</A> 
+<DIV id=ad_head>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3381531532877742";
+/* 728x90, 创建于 08-12-1 */
+google_ad_slot = "7423315034";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</SCRIPT>
+
+<SCRIPT src="" type=text/javascript>
+</SCRIPT>
+</DIV></DIV>
+<DIV id=navfirst>
+<UL id=menu>
+  <LI id=h><A title="HTML 系列教程" 
+  href="http://www.w3school.com.cn/h.asp">HTML教程</A> </LI>
+  <LI id=x><A title="XML 系列教程" href="http://www.w3school.com.cn/x.asp">XML教程</A> 
+  </LI>
+  <LI id=b><A title=浏览器脚本系列教程 href="http://www.w3school.com.cn/b.asp">浏览器脚本</A> 
+  </LI>
+  <LI id=s><A title=服务器脚本系列教程 href="http://www.w3school.com.cn/s.asp">服务器脚本</A> 
+  </LI>
+  <LI id=d><A title=".NET (dotnet) 教程" 
+  href="http://www.w3school.com.cn/d.asp">dot net教程</A> </LI>
+  <LI id=m><A title=多媒体系列教程 href="http://www.w3school.com.cn/m.asp">多媒体教程</A> 
+  </LI>
+  <LI id=w><A title=网站构建手册 href="http://www.w3school.com.cn/w.asp">建站手册</A> 
+</LI></UL></DIV>
+<DIV id=navsecond>
+<DIV id=course>
+<H2>PHP 基础</H2>
+<UL>
+  <LI><A title="PHP 教程" href="http://www.w3school.com.cn/php/index.asp">PHP 
+  教程</A> 
+  <LI><A title=PHP简介 href="http://www.w3school.com.cn/php/php_intro.asp">PHP 
+  简介</A> 
+  <LI><A title="PHP 安装" 
+  href="http://www.w3school.com.cn/php/php_install.asp">PHP 安装</A> 
+  <LI><A title="PHP 语法" href="http://www.w3school.com.cn/php/php_syntax.asp">PHP 
+  语法</A> 
+  <LI><A title="PHP 变量" 
+  href="http://www.w3school.com.cn/php/php_variables.asp">PHP 变量</A> 
+  <LI><A title="PHP 字符串" 
+  href="http://www.w3school.com.cn/php/php_string.asp">PHP 字符串</A> 
+  <LI><A title="PHP 运算符" 
+  href="http://www.w3school.com.cn/php/php_operators.asp">PHP 运算符</A> 
+  <LI><A title="PHP If...Else 语句" 
+  href="http://www.w3school.com.cn/php/php_if_else.asp">PHP If...Else</A> 
+  <LI><A title="PHP Switch 语句" 
+  href="http://www.w3school.com.cn/php/php_switch.asp">PHP Switch</A> 
+  <LI><A title="PHP 数组" href="http://www.w3school.com.cn/php/php_arrays.asp">PHP 
+  数组</A> 
+  <LI><A title="PHP 循环" 
+  href="http://www.w3school.com.cn/php/php_looping.asp">PHP 循环</A> 
+  <LI><A title="PHP 函数" 
+  href="http://www.w3school.com.cn/php/php_functions.asp">PHP 函数</A> 
+  <LI><A title="PHP 表单和用户输入" 
+  href="http://www.w3school.com.cn/php/php_forms.asp">PHP 表单</A> 
+  <LI><A title="PHP $_GET" href="http://www.w3school.com.cn/php/php_get.asp">PHP 
+  $_GET</A> 
+  <LI><A title="PHP $_POST" 
+  href="http://www.w3school.com.cn/php/php_post.asp">PHP $_POST</A> </LI></UL>
+<H2>PHP 高级</H2>
+<UL>
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_date.asp">PHP 日期</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_includes.asp">PHP 
+  引用</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_file.asp">PHP 文件</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_file_upload.asp">PHP 
+  文件上传</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_cookies.asp">PHP 
+  Cookies</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_sessions.asp">PHP 
+  Sessions</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_mail.asp">PHP 
+  E-mail</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_secure_mail.asp">PHP 
+  安全 E-mail</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_error.asp">PHP 
+  Error</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_exception.asp">PHP 
+  Exception</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_filter.asp">PHP 
+  Filter</A> </LI></UL>
+<H2>PHP 数据库</H2>
+<UL class=small>
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_intro.asp">MySQL 简介</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_connect.asp">MySQL Connect</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_create.asp">MySQL Create</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_insert.asp">MySQL Insert</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_select.asp">MySQL Select</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_where.asp">MySQL Where</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_order_by.asp">MySQL Order 
+  By</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_update.asp">MySQL Update</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_mysql_delete.asp">MySQL Delete</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_db_odbc.asp">PHP 
+  ODBC</A> </LI></UL>
+<H2>PHP XML</H2>
+<UL class=small>
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_xml_parser_expat.asp">XML Expat 
+  Parser</A> 
+  <LI><A title="" href="http://www.w3school.com.cn/php/php_xml_dom.asp">XML 
+  DOM</A> 
+  <LI><A title="" 
+  href="http://www.w3school.com.cn/php/php_xml_simplexml.asp">XML SimpleXML</A> 
+  </LI></UL>
+<H2>PHP 和 AJAX</H2>
+<UL class=small>
+  <LI><A title="AJAX 简介" 
+  href="http://www.w3school.com.cn/php/php_ajax_intro.asp">AJAX 简介</A> 
+  <LI><A title="AJAX XMLHttpRequest" 
+  href="http://www.w3school.com.cn/php/php_ajax_xmlhttprequest.asp">XMLHttpRequest</A> 
+
+  <LI><A title="PHP 和 AJAX 请求" 
+  href="http://www.w3school.com.cn/php/php_ajax_suggest.asp">AJAX Suggest</A> 
+  <LI><A title="PHP 和 AJAX XML 实例" 
+  href="http://www.w3school.com.cn/php/php_ajax_xml.asp">AJAX XML</A> 
+  <LI><A title="PHP 和 AJAX MySQL 数据库实例" 
+  href="http://www.w3school.com.cn/php/php_ajax_database.asp">AJAX Database</A> 
+  <LI><A title="PHP 和 AJAX responseXML 实例" 
+  href="http://www.w3school.com.cn/php/php_ajax_responsexml.asp">AJAX 
+  responseXML</A> 
+  <LI><A title="PHP 和 AJAX Live Search" 
+  href="http://www.w3school.com.cn/php/php_ajax_livesearch.asp">AJAX Live 
+  Search</A> 
+  <LI><A title="PHP 和 AJAX RSS 阅读器" 
+  href="http://www.w3school.com.cn/php/php_ajax_rss_reader.asp">AJAX RSS 
+  Reader</A> 
+  <LI><A title="PHP 和 AJAX 投票" 
+  href="http://www.w3school.com.cn/php/php_ajax_poll.asp">AJAX Poll</A> </LI></UL>
+<H2>PHP 参考手册</H2>
+<UL class=small>
+  <LI><A title="PHP Array 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_array.asp">PHP Array</A> 
+  <LI><A title="PHP Calendar 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_calendar.asp">PHP Calendar</A> 
+  <LI><A title="PHP Date / Time 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_date.asp">PHP Date</A> 
+  <LI><A title="PHP Directory 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_directory.asp">PHP Directory</A> 
+  <LI><A title="PHP Error 和 Logging 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_error.asp">PHP Error</A> 
+  <LI><A title="PHP Filesystem 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_filesystem.asp">PHP 
+  Filesystem</A> 
+  <LI><A title="PHP Filter 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_filter.asp">PHP Filter</A> 
+  <LI><A title="PHP FTP 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_ftp.asp">PHP FTP</A> 
+  <LI><A title="PHP HTTP 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_http.asp">PHP HTTP</A> 
+  <LI><A title="PHP libxml 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_libxml.asp">PHP LibXML</A> 
+  <LI><A title="PHP Mail 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_mail.asp">PHP Mail</A> 
+  <LI><A title="PHP Math 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_math.asp">PHP Math</A> 
+  <LI><A title="PHP MySQL 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_mysql.asp">PHP MySQL</A> 
+  <LI><A title="PHP SimpleXML 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_simplexml.asp">PHP SimpleXML</A> 
+  <LI><A title="PHP String 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_string.asp">PHP String</A> 
+  <LI><A title="PHP XML Parser 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_xml.asp">PHP XML</A> 
+  <LI><A title="PHP Zip File 函数" 
+  href="http://www.w3school.com.cn/php/php_ref_zip.asp">PHP Zip</A> 
+  <LI><A title="PHP 杂项函数" 
+  href="http://www.w3school.com.cn/php/php_ref_misc.asp">PHP 杂项</A> </LI></UL>
+<H2>PHP 测验</H2>
+<UL>
+  <LI>PHP Quiz </LI></UL></DIV>
+<DIV id=selected>
+<H2>建站手册</H2>
+<UL>
+  <LI><A title=网站构建 href="http://www.w3school.com.cn/site/index.asp">网站构建</A> 
+  <LI><A title="万维网联盟 (W3C)" 
+  href="http://www.w3school.com.cn/w3c/index.asp">万维网联盟 (W3C)</A> 
+  <LI><A title=浏览器信息 
+  href="http://www.w3school.com.cn/browsers/index.asp">浏览器信息</A> 
+  <LI><A title=网站品质 href="http://www.w3school.com.cn/quality/index.asp">网站品质</A> 
+
+  <LI><A title=语义网 href="http://www.w3school.com.cn/semweb/index.asp">语义网</A> 
+  <LI><A title=职业规划 href="http://www.w3school.com.cn/careers/index.asp">职业规划</A> 
+
+  <LI><A title=网站主机 href="http://www.w3school.com.cn/hosting/index.asp">网站主机</A> 
+  </LI></UL>
+<H2><A id=link_about title="关于 W3School" 
+href="http://www.w3school.com.cn/about/index.asp">关于 W3School</A></H2>
+<H2><A id=link_help title="帮助 W3School" 
+href="http://www.w3school.com.cn/about/about_helping.asp">帮助 
+W3School</A></H2></DIV></DIV>
+<DIV id=maincontent>
+<H1>PHP MySQL 函数</H1>
+<DIV id=tpn>
+<UL class=prenext>
+  <LI class=pre><A 
+  href="http://www.w3school.com.cn/php/php_ref_math.asp">Previous Page</A> </LI>
+  <LI class=next><A 
+  href="http://www.w3school.com.cn/php/php_ref_simplexml.asp">Next Page</A> 
+</LI></UL></DIV>
+<DIV>
+<H2>PHP MySQL 简介</H2>
+<P>MySQL 函数允许您访问 MySQL 数据库服务器。</P></DIV>
+<DIV>
+<H2>安装</H2>
+<P>为了能够顺利的使用本类函数，必须在编译 PHP 时添加对 MySQL 的支持。</P>
+<P>编译时，只要使用 --with-mysql[=DIR] 配置选项即可，其中可选的 [DIR] 指向 MySQL 的安装目录。 
+<P>虽然本 MySQL 扩展库兼容 MySQL 4.1.0 及其以后版本，但是它不支持这些版本提供的额外功能。要使用这些功能，请使用 MySQLi 扩展库。 
+<P>如果要同时安装 mysql 扩展库和 mysqli 扩展库，必须使用同一个客户端库以避免任何冲突。 
+<H3>在 Linux 系统上安装</H3>
+<H4>PHP 4</H4>
+<P>默认开启了 --with-mysql 选项。此默认行为可以用 --without-mysql 配置选项来禁止。如果启用 MySQL 
+而不指定安装目录的话，PHP 将使用绑定的 MySQL 客户端连接库。</P>
+<P>还有其它应用程序使用 MySQL（例如 auth-mysql）的用户不要用绑定的库，而要指定 MySQL 
+的安装目录，如这样：--with-mysql=/path/to/mysql。这将强制 PHP 使用随 MySQL 
+安装的客户端连接库，就可以避免任何冲突。</P>
+<H4>PHP 5+</H4>
+<P>MySQL 默认未启用，也没有绑定的 MySQL 库。使用 --with-mysql[=DIR] 配置选项来加入 MySQL 的支持。可以从 <A 
+title="MySQL  The world's most popular open source database" 
+href="http://www.mysql.com/">MySQL</A> 下载头文件和库。</P>
+<H3>在 Windows 系统上安装</H3>
+<H4>PHP 4</H4>
+<P>PHP MySQL 扩展已经编译入 PHP。</P>
+<H4>PHP 5+</H4>
+<P>MySQL 默认未启用，因此必须在 php.ini 中激活 php_mysql.dll 动态连接库。此外，PHP 还需要访问 MySQL 
+客户端连接库。PHP 的 Windows 发行版包括了一个 libmysql.dll，为了让 PHP 能和 MySQL 对话，此文件必须放在 Windows 
+的系统路径 PATH 中。</P>
+<P>要激活任何 PHP 扩展库（例如 php_mysql.dll），PHP 指令 extension_dir 要被设为 PHP 扩展库所在的目录。PHP 5 
+下 extension_dir 取值的一个例子是 c:\php\ext。</P>
+<P class=note><SPAN>注释：</SPAN>如果启动 web 服务器时出现类似如下的错误："Unable to load dynamic 
+library './php_mysql.dll'"，这是因为系统找不到 php_mysql.dll 和 / 或 libmysql.dll。</P></DIV>
+<DIV>
+<H2>Runtime 配置</H2>
+<P>MySQL 函数的行为受到 php.ini 中设置的影响。</P>
+<P>MySQL 配置选项：</P>
+<TABLE class=dataintable>
+  <TBODY>
+  <TR>
+    <TH>名称</TH>
+    <TH>默认</TH>
+    <TH>描述</TH>
+    <TH>可更改</TH></TR>
+  <TR>
+    <TD>mysql.allow_persistent</TD>
+    <TD>"1"</TD>
+    <TD>是否允许 MySQL 的持久连接。</TD>
+    <TD>PHP_INI_SYSTEM</TD></TR>
+  <TR>
+    <TD>mysql.max_persistent</TD>
+    <TD>"-1"</TD>
+    <TD>每个进程中最大的持久连接数目。</TD>
+    <TD>PHP_INI_SYSTEM</TD></TR>
+  <TR>
+    <TD>mysql.max_links</TD>
+    <TD>"-1"</TD>
+    <TD>每个进程中最大的连接数，包括持久连接。</TD>
+    <TD>PHP_INI_SYSTEM</TD></TR>
+  <TR>
+    <TD>mysql.trace_mode</TD>
+    <TD>"0"</TD>
+    <TD>跟踪模式。从 PHP 4.3.0 起可用。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.default_port</TD>
+    <TD>NULL</TD>
+    <TD>指定默认连接数据库的 TCP 端口号。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.default_socket</TD>
+    <TD>NULL</TD>
+    <TD>默认的 socket 名称。PHP 4.0.1起可用。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.default_host</TD>
+    <TD>NULL</TD>
+    <TD>默认的服务器地址。不适用于SQL安全模式。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.default_user</TD>
+    <TD>NULL</TD>
+    <TD>默认使用的用户名。不适用于SQL安全模式。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.default_password</TD>
+    <TD>NULL</TD>
+    <TD>默认使用的密码。不适用于SQL安全模式。</TD>
+    <TD>PHP_INI_ALL</TD></TR>
+  <TR>
+    <TD>mysql.connect_timeout</TD>
+    <TD>"60"</TD>
+    <TD>连接超时秒数。</TD>
+    <TD>PHP_INI_ALL</TD></TR></TBODY></TABLE></DIV>
+<DIV>
+<H2>资源类型</H2>
+<P>在 MySQL 模块中使用了两种资源类型。第一种是数据库的连接句柄，第二种是 SQL 查询返回的结果集。</P></DIV>
+<DIV>
+<H2>PHP MySQL 函数</H2>
+<P class=note><SPAN>PHP：</SPAN>指示支持该函数的最早的 PHP 版本。</P>
+<TABLE class=dataintable>
+  <TBODY>
+  <TR>
+    <TH>函数</TH>
+    <TH>描述</TH>
+    <TH>PHP</TH></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_affected_rows.asp">mysql_affected_rows()</A></TD>
+    <TD>取得前一次 MySQL 操作所影响的记录行数。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_change_user()</TD>
+    <TD>不赞成。改变活动连接中登录的用户</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_client_encoding.asp">mysql_client_encoding()</A></TD>
+    <TD>返回当前连接的字符集的名称</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_close.asp">mysql_close()</A></TD>
+    <TD>关闭非持久的 MySQL 连接。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_connect.asp">mysql_connect()</A></TD>
+    <TD>打开非持久的 MySQL 连接。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_create_db()</TD>
+    <TD>不赞成。新建 MySQL 数据库。使用 mysql_query() 代替。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_data_seek.asp">mysql_data_seek()</A></TD>
+    <TD>移动记录指针。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_db_name.asp">mysql_db_name()</A></TD>
+    <TD>从对 mysql_list_dbs() 的调用返回数据库名称。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_db_query()</TD>
+    <TD>
+      <P>不赞成。发送一条 MySQL 查询。</P>
+      <P>使用 mysql_select_db() 和 mysql_query() 代替。</P></TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_drop_db()</TD>
+    <TD>
+      <P>不赞成。丢弃（删除）一个 MySQL 数据库。</P>
+      <P>使用 mysql_query() 代替。</P></TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_errno.asp">mysql_errno()</A></TD>
+    <TD>返回上一个 MySQL 操作中的错误信息的数字编码。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_error.asp">mysql_error()</A></TD>
+    <TD>返回上一个 MySQL 操作产生的文本错误信息。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_escape_string()</TD>
+    <TD>
+      <P>不赞成。转义一个字符串用于 mysql_query。</P>
+      <P>使用 mysql_real_escape_string() 代替。</P></TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_array.asp">mysql_fetch_array()</A></TD>
+    <TD>从结果集中取得一行作为关联数组，或数字数组，或二者兼有。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_assoc.asp">mysql_fetch_assoc()</A></TD>
+    <TD>从结果集中取得一行作为关联数组。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_field.asp">mysql_fetch_field()</A></TD>
+    <TD>从结果集中取得列信息并作为对象返回。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_lengths.asp">mysql_fetch_lengths()</A></TD>
+    <TD>取得结果集中每个字段的内容的长度。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_object.asp">mysql_fetch_object()</A></TD>
+    <TD>从结果集中取得一行作为对象。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_fetch_row.asp">mysql_fetch_row()</A></TD>
+    <TD>从结果集中取得一行作为数字数组。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_flags.asp">mysql_field_flags()</A></TD>
+    <TD>从结果中取得和指定字段关联的标志。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_len.asp">mysql_field_len()</A></TD>
+    <TD>返回指定字段的长度。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_name.asp">mysql_field_name()</A></TD>
+    <TD>取得结果中指定字段的字段名。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_seek.asp">mysql_field_seek()</A></TD>
+    <TD>将结果集中的指针设定为指定的字段偏移量。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_table.asp">mysql_field_table()</A></TD>
+    <TD>取得指定字段所在的表名。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_field_type.asp">mysql_field_type()</A></TD>
+    <TD>取得结果集中指定字段的类型。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_free_result.asp">mysql_free_result()</A></TD>
+    <TD>释放结果内存。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_get_client_info.asp">mysql_get_client_info()</A></TD>
+    <TD>取得 MySQL 客户端信息。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_get_host_info.asp">mysql_get_host_info()</A></TD>
+    <TD>取得 MySQL 主机信息。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_get_proto_info.asp">mysql_get_proto_info()</A></TD>
+    <TD>取得 MySQL 协议信息。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_get_server_info.asp">mysql_get_server_info()</A></TD>
+    <TD>取得 MySQL 服务器信息。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_info.asp">mysql_info()</A></TD>
+    <TD>取得最近一条查询的信息。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_insert_id.asp">mysql_insert_id()</A></TD>
+    <TD>取得上一步 INSERT 操作产生的 ID。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_list_dbs.asp">mysql_list_dbs()</A></TD>
+    <TD>列出 MySQL 服务器中所有的数据库。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD>mysql_list_fields()</TD>
+    <TD>
+      <P>不赞成。列出 MySQL 结果中的字段。</P>
+      <P>使用 mysql_query() 代替。</P></TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_list_processes.asp">mysql_list_processes()</A></TD>
+    <TD>列出 MySQL 进程。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD>mysql_list_tables()</TD>
+    <TD>
+      <P>不赞成。列出 MySQL 数据库中的表。</P>
+      <P>使用Use mysql_query() 代替。</P></TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_num_fields.asp">mysql_num_fields()</A></TD>
+    <TD>取得结果集中字段的数目。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp">mysql_num_rows()</A></TD>
+    <TD>取得结果集中行的数目。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_pconnect.asp">mysql_pconnect()</A></TD>
+    <TD>打开一个到 MySQL 服务器的持久连接。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_ping.asp">mysql_ping()</A></TD>
+    <TD>Ping 一个服务器连接，如果没有连接则重新连接。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_query.asp">mysql_query()</A></TD>
+    <TD>发送一条 MySQL 查询。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp">mysql_real_escape_string()</A></TD>
+    <TD>转义 SQL 语句中使用的字符串中的特殊字符。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_result.asp">mysql_result()</A></TD>
+    <TD>取得结果数据。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_select_db.asp">mysql_select_db()</A></TD>
+    <TD>选择 MySQL 数据库。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_stat.asp">mysql_stat()</A></TD>
+    <TD>取得当前系统状态。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD>mysql_tablename()</TD>
+    <TD>不赞成。取得表名。使用 mysql_query() 代替。</TD>
+    <TD>3</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_thread_id.asp">mysql_thread_id()</A></TD>
+    <TD>返回当前线程的 ID。</TD>
+    <TD>4</TD></TR>
+  <TR>
+    <TD><A 
+      href="http://www.w3school.com.cn/php/func_mysql_unbuffered_query.asp">mysql_unbuffered_query()</A></TD>
+    <TD>向 MySQL 发送一条 SQL 查询（不获取 / 缓存结果）。</TD>
+    <TD>4</TD></TR></TBODY></TABLE></DIV>
+<DIV>
+<H2>PHP MySQL 常量</H2>
+<P>在 PHP 4.3.0 以后的版本中，允许在 mysql_connect() 函数和 mysql_pconnect() 
+函数中指定更多的客户端标记：</P>
+<P class=note><SPAN>PHP：</SPAN>指示支持该常量的最早的 PHP 版本。</P>
+<TABLE class=dataintable>
+  <TBODY>
+  <TR>
+    <TH>常量</TH>
+    <TH>描述</TH>
+    <TH>PHP</TH></TR>
+  <TR>
+    <TD>MYSQL_CLIENT_COMPRESS</TD>
+    <TD>使用压缩的通讯协议。</TD>
+    <TD>4.3</TD></TR>
+  <TR>
+    <TD>MYSQL_CLIENT_IGNORE_SPACE</TD>
+    <TD>允许在函数名后留空格位。</TD>
+    <TD>4.3</TD></TR>
+  <TR>
+    <TD>MYSQL_CLIENT_INTERACTIVE</TD>
+    <TD>在关闭连接前所允许的交互超时非活动时间。</TD>
+    <TD>4.3</TD></TR>
+  <TR>
+    <TD>MYSQL_CLIENT_SSL</TD>
+    <TD>使用 SSL 加密（仅在 MySQL 客户端库版本为 4+ 时可用）。</TD>
+    <TD>4.3</TD></TR></TBODY></TABLE>
+<P>mysql_fetch_array() 函数使用一个常量来表示所返回数组的类型：</P>
+<TABLE class=dataintable>
+  <TBODY>
+  <TR>
+    <TH>常量</TH>
+    <TH>描述</TH>
+    <TH>PHP</TH></TR>
+  <TR>
+    <TD>MYSQL_ASSOC</TD>
+    <TD>返回的数据列使用字段名作为数组的索引名。</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>MYSQL_BOTH</TD>
+    <TD>返回的数据列使用字段名及数字索引作为数组的索引名。</TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>MYSQL_NUM</TD>
+    <TD>
+      <P>返回的数据列使用数字索引作为数组的索引名。</P>
+      <P>索引从 0 开始，表示返回结果的第一个字段。</P></TD>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE></DIV>
+<DIV id=bpn>
+<UL class=prenext>
+  <LI class=pre><A 
+  href="http://www.w3school.com.cn/php/php_ref_math.asp">Previous Page</A> </LI>
+  <LI class=next><A 
+  href="http://www.w3school.com.cn/php/php_ref_simplexml.asp">Next Page</A> 
+</LI></UL></DIV></DIV>
+<DIV id=sidebar>
+<DIV id=searchui>
+<FORM id=searchform action=http://www.google.com.hk/search method=get>
+<P><LABEL for=searched_content>Search:</LABEL></P>
+<P><INPUT type=hidden value=w3school.com.cn name=sitesearch></P>
+<P><INPUT class=box id=searched_content title=在此输入搜索内容。 name=as_q> <INPUT class=button title=搜索！ type=submit value=Go> </P></FORM></DIV>
+<DIV id=tools>
+<H5 id=tools_reference><A href="http://www.w3school.com.cn/php/php_ref.asp">PHP 
+参考手册</A></H5>
+<H5 id=tools_quiz><A href="http://www.w3school.com.cn/php/php_quiz.asp">PHP 
+测验</A></H5></DIV>
+<DIV id=ad>
+<H2>赞助商链接</H2>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-3381531532877742";
+/* 120x600, sidebar_big */
+google_ad_slot = "9995842720";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</SCRIPT>
+
+<SCRIPT src="" type=text/javascript>
+</SCRIPT>
+</DIV></DIV>
+<DIV id=footer>
+<P>W3School提供的内容仅用于培训。我们不保证内容的正确性。通过使用本站内容随之而来的风险与本站无关。当使用本站时，代表您已接受了本站的<A 
+title=关于使用 href="http://www.w3school.com.cn/about/about_use.asp">使用条款</A>和<A 
+title=关于隐私 
+href="http://www.w3school.com.cn/about/about_privacy.asp">隐私条款</A>。</P>
+<P>版权所有，保留一切权利。未经书面许可，不得转载。W3School 简体中文版的所有内容仅供测试，对任何法律问题及风险不承担任何责任。<A 
+title=上海赢科投资有限公司 
+href="http://www.yktz.net/">上海赢科投资公司</A>。</P></DIV></DIV></BODY></HTML>

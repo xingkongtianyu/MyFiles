@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.nextUntil()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="nextUntil1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.nextUntil( [ selector ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获取每个当前元素之后所有的同辈元素，但不包括选择器匹配的元素。</p>
+<ul class="signatures"><li class="signature" id="nextUntil-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.nextUntil( [ selector ] )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于确定到哪个前辈元素时停止匹配。</p>
+</li></ul>
+<div class="longdesc">
+<p>果提供的jQuery代表了一组DOM元素，<code>.nextUntil()</code>方法也能让我们找遍所有元素所在的DOM树，直到遇到了一个跟提供的参数匹配的元素的时候才会停下来。这个新jQuery对象里包含了下面所有找到的同辈元素，但不包括那个选择器匹配到的元素。 </p>
+<p>如果没有选择器匹配到，或者没有提供参数，那么跟在后面的所有同辈元素都会被选中。这就跟用没有提供参数的 <code>.nextAll()</code>效果一样。</p>
+<p>考虑一个页面上一个简单的列表：</p>
+<pre>
+&lt;dl&gt;
+  &lt;dt&gt;term 1&lt;/dt&gt;
+  &lt;dd&gt;definition 1-a&lt;/dd&gt;
+  &lt;dd&gt;definition 1-b&lt;/dd&gt;
+  &lt;dd&gt;definition 1-c&lt;/dd&gt;
+  &lt;dd&gt;definition 1-d&lt;/dd&gt;
+
+  &lt;dt id="term-2"&gt;term 2&lt;/dt&gt;
+  &lt;dd&gt;definition 2-a&lt;/dd&gt;
+  &lt;dd&gt;definition 2-b&lt;/dd&gt;
+  &lt;dd&gt;definition 2-c&lt;/dd&gt;
+
+  &lt;dt&gt;term 3&lt;/dt&gt;
+  &lt;dd&gt;definition 3-a&lt;/dd&gt;
+  &lt;dd&gt;definition 3-b&lt;/dd&gt;
+&lt;/dl&gt;
+</pre>
+<p>如果我们从 term 2 开始，查找在它之后的所有元素，直到 <code>&lt;dt&gt;</code>为止</p>
+<pre>$('#term-2').nextUntil('dt').css('background-color', 'red');</pre>
+<p>其结果是使 definition <code>2-a</code>, <code>2-b</code>, and <code>2-c</code> 的背景变为红色。 </p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">查找跟在 &lt;dt id="term-2"&gt; 之后的同辈元素，直到 &lt;dt&gt; 为止，并把它们的背景都设成红色。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;dl&gt;
+  &lt;dt&gt;term 1&lt;/dt&gt;
+  &lt;dd&gt;definition 1-a&lt;/dd&gt;
+  &lt;dd&gt;definition 1-b&lt;/dd&gt;
+  &lt;dd&gt;definition 1-c&lt;/dd&gt;
+  &lt;dd&gt;definition 1-d&lt;/dd&gt;
+
+  &lt;dt id="term-2"&gt;term 2&lt;/dt&gt;
+  &lt;dd&gt;definition 2-a&lt;/dd&gt;
+  &lt;dd&gt;definition 2-b&lt;/dd&gt;
+  &lt;dd&gt;definition 2-c&lt;/dd&gt;
+
+  &lt;dt&gt;term 3&lt;/dt&gt;
+  &lt;dd&gt;definition 3-a&lt;/dd&gt;
+  &lt;dd&gt;definition 3-b&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;script&gt;
+    $("#term-2").nextUntil("dt")
+      .css("background-color", "red")
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,122 @@
+
+PHP的PSR-0命名标准
+
+PSR是Proposing a Standards Recommendation（提出标准建议）的缩写，是由PHP Framework Interoperability Group（PHP通用性框架小组，简称PHP-FIG）发起的，通过他们命名就可以看出，这是个主要是针对框架通用性而做努力的开放性小组，他们的在Github上有自己的仓库地址，目前只有一个被接受的标准，那就是PSR-0标准，标准定义了PHP自动加载的命名规范和文件路径规范。 针对PSR-0标准主要提到了以下几点：
+要求
+
+    一个完全合格的命名空间和类名必须有以下的结构“\<提供者名称>\(<命名空间>\)*<类名>”
+    每个命名空间必须有顶级的命名空间（“提供者”）
+    每个命名空间可以有任意多个子命名空间
+    每个命名空间在被从文件系统加载时必须被转换为“操作系统路径分隔符”（DIRECTORY_SEPARATOR ）
+    每个“_”字符在“类名”中被转换为DIRECTORY_SEPARATOR 。“_”符号在命名空间中没有这个含义
+    符合命名标准的命名空间和类名必须以“.php”结尾来加载文件
+    提供商名称，命名空间，类名可以由大小写字母组成，其中命名空间和类名是大小写敏感的以保证多系统兼容性
+    如果文件不存在需要返回false
+
+例子
+
+\Doctrine\Common\IsolatedClassLoader => /path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php
+\Symfony\Core\Request => /path/to/project/lib/vendor/Symfony/Core/Request.php
+\Zend\Acl => /path/to/project/lib/vendor/Zend/Acl.php
+\Zend\Mail\Message => /path/to/project/lib/vendor/Zend/Mail/Message.php
+
+下划线在命名空间和类名中的使用
+
+\namespace\package\Class_Name => /path/to/project/lib/vendor/namespace/package/Class/Name.php
+\namespace\package_name\Class_Name => /path/to/project/lib/vendor/namespace/package_name/Class/Name.php
+
+设置这个标准是为了保证最基本的共同点。你可以通过实现5.3的SplClassLoader来测试这个标准。
+扩展例子
+
+提供一个函数来展示如何使用上述标准。
+
+<?php
+function autoload($className)
+{
+    $className = ltrim($className, '\\');
+    $fileName  = '';
+    $namespace = '';
+    if ($lastNsPos = strripos($className, '\\')) {
+        $namespace = substr($className, 0, $lastNsPos);
+        $className = substr($className, $lastNsPos + 1);
+        $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+    }
+    $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+    require $fileName;
+}
+
+SplClassloader的实现
+
+接下来这个gist实现了SplClassLoader可以加载你按照上面标准来实现的通用类库，这是5.3里面推荐的加载方式。
+
+http://gist.github.com/221634
+扩展实现
+
+因为这个标准提到了如果文件不存在的时候应该范围false，但是在上面函数的例子中并没有实现该机制，所有有人实现了优化的SplClassLoader。
+
+<?php
+
+class ClassLoader
+{
+    /**
+     * @var array Contains namespace/class prefix as key and sub path as value
+     */
+    protected $paths;
+
+    /**
+     * Construct a loader instance
+     *
+     * @param array $paths Containing class/namespace prefix as key and sub path as value
+     */
+    public function __construct( array $paths )
+    {
+        $this->paths = $paths;
+    }
+
+    /**
+     * Load classes/interfaces following PSR-0 naming
+     *
+     * @param string $className
+     * @return null|boolean Null if no match is found, bool if match and found/not found.
+     */
+    public function load( $className )
+    {
+        if ( $className[0] === '\\' )
+            $className = substr( $className, 1 );
+
+        foreach ( $this->paths as $prefix => $subPath )
+        {
+            if ( strpos( $className, $prefix ) !== 0 )
+                continue;
+
+            $lastNsPos = strripos( $className, '\\' );
+            $prefixLen = strlen( $prefix ) + 1;
+            $fileName = $subPath . DIRECTORY_SEPARATOR;
+
+            if ( $lastNsPos > $prefixLen )
+            {
+                // Replacing '\' to '/' in namespace part
+                $fileName .= str_replace(
+                    '\\',
+                    DIRECTORY_SEPARATOR,
+                    substr( $className, $prefixLen, $lastNsPos - $prefixLen )
+                ) . DIRECTORY_SEPARATOR;
+            }
+
+            // Replacing '_' to '/' in className part and append '.php'
+            $fileName .= str_replace( '_', DIRECTORY_SEPARATOR, substr( $className, $lastNsPos + 1 ) ) . '.php';
+
+            if ( ( $fileName = stream_resolve_include_path( $fileName ) ) === false )
+                return false;
+
+            require $fileName;
+            return true;
+        }
+    }
+}
+
+引用地址：https://github.com/andrerom/fig-standards/blob/psr2/proposed/PSR-2.md
+写在后面
+
+标准对于开发者来说是一个好事，如今已经越来越多的开源项目加入了这个标准Pear2、PHPBB、Composer、Packagist、Joomla、Drupal、Symfony、CakePHP、Doctrine2等等，我常用的一个框架MicroMVC也在很早的时候就采用了这个标准。采用同样标准的项目可以无缝的接入，做为开发者最好要尝试并接收一个好的标准。

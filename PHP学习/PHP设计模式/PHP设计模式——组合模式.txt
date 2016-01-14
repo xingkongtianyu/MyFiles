@@ -1,0 +1,150 @@
+
+PHP设计模式——组合模式
+2010年12月7日  2,665 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——组合模式
+
+以前我写过关于PHP组合模式的演示代码，感觉写的太过抽象，今天再重新写一下。
+PHP设计模式中的组合模式是最明显也最常用最容易理解的一个模式，一个组合体可用典型的面向对象的方式来表示树形结构，如多级菜单或可以回复的论坛等。
+
+下面我们就用面向对象的方法演示一个树形菜单的类，也许会更加容易理解一些。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+
+	
+
+<?php
+ 
+abstract class MenuComp {//写一个表示菜单和菜单选项之间相似性的抽象类
+	protected $marked=FALSE;//标识状态
+	protected $label;
+ 
+	public function mark(){$this->marked=TRUE;}//设置标记状态
+	public function ismark(){return $this->marked;}//返回标记状态
+ 
+	public function setLabel($label){ $this->label=$label;}//设置标签
+	public function getLabel(){ return $this->label;}//返回标签
+ 
+	abstract public function hasMenuOptionId($id);//抽象方法用来标识ID
+	abstract public function MarkPathToMenuOption($id);//抽象方法用来标识菜单路径
+}
+ 
+class menu extends MenuComp{
+	protected $marked=false;//标记状态
+	protected $label;//菜单标签
+	private $children=array();//子菜单或子菜单选项数组
+	private $id;//菜单ID
+ 
+	public function __construct($label,$id){//构造函数用来设置标签和ID
+		$this->label=$label;
+		$this->id=$id;
+	}
+ 
+	public function add($child){//添加菜单
+		$this->children[]=$child;
+	}
+ 
+	public function hasMenuOptionId($id){//用迭代方式询问所有子对象上是否有对应ID的菜单选项
+		foreach ($this->children as $child){
+			if ($child->hasMenuOptionID($id)) return TRUE;
+		}
+		return FALSE;
+	}
+ 
+	public function MarkPathToMenuOption($id){//用迭代方式标记路径
+		if (!$this->hasMenuOptionId($id)) return FALSE;
+		$this->mark();
+		foreach ($this->children as $child){//用迭代方式
+			$child->MarpathToMenuOption($id);
+		}
+	}
+}
+ 
+class menuOption extends MenuComp {//菜单选项类
+	protected $marked=false;//标记状态
+	protected $label;//菜单标签例如：www.chhua.com
+	private $id;//菜单ID
+ 
+	public function __construct($label,$id){//构造函数用来设置标签和ID
+		$this->label=$label;
+		$this->id=$id;
+	}
+ 
+	public function hasMenuOptionId($id){
+		return $id==$this->id;
+	}
+ 
+	public function MarkPathToMenuOption($id){
+		if ($this->hasMenuOptionId($id)) $this->mark();
+	}
+}
+ 
+?>
+
+/*以上方法就是演示了组合模式的使用，当然了，主要是要看menu类，没有迭代循环的更加明显。

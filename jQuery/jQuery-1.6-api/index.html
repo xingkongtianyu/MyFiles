@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery 1.6 API 中文版 (适用jQuery 1.6,jQuery 1.6.1,jQuery 1.6.2)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="jQuery 1.6 API 中文版, jQuery API 中文版,jQuery 中文手册,jQuery API 1.6 下载, jQuery API  1.6 中文版,jQuery 1.6 中文手册,jQuery API 1.6.1, jQuery API  1.6.1 中文版,jQuery 1.6.1 中文手册,jQ  1.6.2 API,jQ  1.6.1 API 中文版,jQ  1.6.1 中文手册" /> 
+<meta name="description" content="jQuery 1.6 API 中文版, jQuery API 中文版,jQuery 中文手册,jQuery API 1.6 下载, jQuery API  1.6 中文版,jQuery 1.6 中文手册,jQuery API 1.6.1, jQuery API  1.6.1 中文版,jQuery 1.6.1 中文手册,jQ  1.6.2 API,jQ  1.6.1 API 中文版,jQ  1.6.1 中文手册,jQuery Version 1.6  API 中文版,jQuery 1.6  中文API (适用jQuery 1.6和jQuery 1.6.1)" />
+<link rel="shortcut icon" type="image/x-icon" href="http://julying.com/favicon.ico" /> 
+
+<meta name="Language" content="zh-CN" />
+<meta name="Copyright" content="julying.com" />
+<meta name="Designer" content="julying.com" />
+<meta name="Publisher" content="王子墨,前端攻城师" />
+<meta name="Distribution" content="Global" />
+<meta name="author"  content="王子墨,前端攻城师" />
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow,archive" />
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/main.min.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/jquery.css" />
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/highlight.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+  
+  <body>
+<div id="ifIe6"></div>  
+  
+<div id="navigation">
+<h1 id="logo" class="logo"><a href="http://julying.com/" title="前端攻城师" target="_blank">jQuery 1.6 API 中文版</a></h1>
+
+
+
+
+<div id='search'>
+  <input type='search' placeholder='Search' autosave='searchdoc' results='10' id='search-field' autocomplete='off' />
+</div>
+<ul id="static-list">
+ 
+  <li class="category"><span>Ajax</span>
+    <ul>
+<li class="sub"><a href="docs/jQuery.ajax/index.html" title="jQuery.ajax()"><span class="searchable">jQuery.ajax()</span><span class="desc">通过 HTTP 请求加载远程数据</span></a></li>
+<li class="sub"><a href="docs/ajaxComplete/index.html" title="jQuery.ajaxComplete()"><span class="searchable">.ajaxComplete()</span><span class="desc">AJAX 请求完成时执行函数。Ajax 事件。 </span></a></li>
+<li class="sub"><a href="docs/ajaxError/index.html" title="jQuery.ajaxError()"><span class="searchable">.ajaxError()</span><span class="desc"> Ajax请求出错时注册一个回调处理函数，这是一个 Ajax 事件。</span></a></li>
+<li class="sub"><a href="docs/ajaxSend/index.html" title="jQuery.ajaxSend()"><span class="searchable">.ajaxSend()</span><span class="desc">在Ajax请求发送前显示一个信息.</span></a></li>
+<li class="sub"><a href="docs/jQuery.ajaxSetup/index.html" title="jQuery.ajaxSetup()"><span class="searchable">jQuery.ajaxSetup()</span><span class="desc">设置未来（可以理解为全局）的 AJAX请求默认选项</span></a></li>
+<li class="sub"><a href="docs/ajaxStart/index.html" title="jQuery.ajaxStart()"><span class="searchable">.ajaxStart()</span><span class="desc">在AJAX 请求刚开始时执行一个处理函数。 Ajax 事件。</span></a></li>
+<li class="sub"><a href="docs/ajaxStop/index.html" title="jQuery.ajaxStop()"><span class="searchable">.ajaxStop()</span><span class="desc">在Ajax请求停止后隐藏加载信息。</span></a></li>
+<li class="sub"><a href="docs/ajaxSuccess/index.html" title="jQuery.ajaxSuccess()"><span class="searchable">.ajaxSuccess()</span><span class="desc">当一个Ajax请求成功完成时显示一个信息</span></a></li>
+<li class="sub"><a href="docs/jQuery.get/index.html" title="jQuery.get()"><span class="searchable">jQuery.get()</span><span class="desc">通过服务器HTTP GET请求加载数据</span></a></li>
+<li class="sub"><a href="docs/jQuery.getJSON/index.html" title="jQuery.getJSON()"><span class="searchable">jQuery.getJSON()</span><span class="desc">通过 HTTP GET 请求从服务器载入 JSON 数据。</span></a></li>
+<li class="sub"><a href="docs/jQuery.getScript/index.html" title="jQuery.getScript()"><span class="searchable">jQuery.getScript()</span><span class="desc">通过 HTTP GET 请求从服务器载入并执行一个 JavaScript 文件</span></a></li>
+<li class="sub"><a href="docs/load/index.html" title="jQuery.load()"><span class="searchable">.load()</span><span class="desc">载入远程 HTML 文件代码并插入至 DOM 中</span></a></li>
+<li class="sub"><a href="docs/jQuery.param/index.html" title="jQuery.param()"><span class="searchable">jQuery.param()</span><span class="desc">创建一个序列化的数组或对象，适用于一个URL 地址查询字符串或Ajax请求。</span></a></li>
+<li class="sub"><a href="docs/jQuery.post/index.html" title="jQuery.post()"><span class="searchable">jQuery.post()</span><span class="desc">通过服务器HTTP POST请求加载数据</span></a></li>
+<li class="sub"><a href="docs/serialize/index.html" title="jQuery.serialize()"><span class="searchable">.serialize()</span><span class="desc">将用作提交的表单元素的值编译成字符串。</span></a></li>
+<li class="sub"><a href="docs/serializeArray/index.html" title="jQuery.serializeArray()"><span class="searchable">.serializeArray()</span><span class="desc">将用作提交的表单元素的值编译成拥有name和value对象组成的数组。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>属性（Attributes）</span>
+<ul>
+<li class="sub"><a href="docs/.prop/index.html" title="jQuery.prop()"><span class="searchable">.prop()</span><span class="desc">获取在匹配的元素集中的第一个元素的属性值。</span></a></li>
+<li class="sub"><a href="docs/.removeProp/index.html" title="jQuery.removeProp()"><span class="searchable">.removeProp()</span><span class="desc">为匹配的元素删除设置的属性。</span></a></li>
+<li class="sub"><a href="docs/addClass/index.html" title="jQuery.addClass()"><span class="searchable">.addClass()</span><span class="desc">为每个匹配的元素添加指定的类名</span></a></li>
+<li class="sub"><a href="docs/attr/index.html" title="jQuery.attr()"><span class="searchable">.attr()</span><span class="desc">取得第一个匹配元素的属性值。</span></a></li>
+<li class="sub"><a href="docs/hasClass/index.html" title="jQuery.hasClass()"><span class="searchable">.hasClass()</span><span class="desc">检查匹配的元素是否含有某个特定的类。</span></a></li>
+<li class="sub"><a href="docs/html/index.html" title="jQuery.html()"><span class="searchable">.html()</span><span class="desc">从匹配的第一个元素中获取HTML内容。</span></a></li>
+<li class="sub"><a href="docs/removeAttr/index.html" title="jQuery.removeAttr()"><span class="searchable">.removeAttr()</span><span class="desc">为匹配的元素集合中的每个元素中移除一个属性。</span></a></li>
+<li class="sub"><a href="docs/removeClass/index.html" title="jQuery.removeClass()"><span class="searchable">.removeClass()</span><span class="desc">移除每个匹配元素的一个，多个或全部样式。</span></a></li>
+<li class="sub"><a href="docs/text/index.html" title="jQuery.text()"><span class="searchable">.text()</span><span class="desc">得到匹配元素集合中每个元素的文本内容结合,包括他们的后代。</span></a></li>
+<li class="sub"><a href="docs/toggleClass/index.html" title="jQuery.toggleClass()"><span class="searchable">.toggleClass()</span><span class="desc">在匹配的元素集合中的每个元素上添加或删除一个或多个样式类,取决于这个样式类是否存在或价值切换属性。</span></a></li>
+<li class="sub"><a href="docs/val/index.html" title="jQuery.val()"><span class="searchable">.val()</span><span class="desc">获取匹配的元素集合中第一个元素的当前值。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>核心（Core）</span>
+<ul>
+    <li class="sub odd selected"><a href="docs/jQuery.holdReady/index.html" title="jQuery.holdReady()"><span class="searchable">jQuery.holdReady()</span><span class="desc">持有或释放执行jQuery的ready事件。</span></a></li>
+<li class="sub"><a href="docs/jQuery/index.html" title="jQueryjQuery()"><span class="searchable">jQuery()</span><span class="desc">接受一个包含CSS选择器的字符串用于匹配的元素集合。</span></a></li>
+<li class="sub"><a href="docs/jQuery.noConflict/index.html" title="jQuery.noConflict()"><span class="searchable">jQuery.noConflict()</span><span class="desc">放弃jQuery控制的$的变量。</span></a></li>
+    <li class="sub"><a href="docs/jQuery.sub/index.html" title="jQuery.sub()"><span class="searchable">jQuery.sub()</span><span class="desc">
+    可创建一个新的jQuery副本，不影响原有的jQuery对像。</span></a></li>
+    <li class="sub"><a href="docs/jQuery.when/index.html" title="jQuery.when()"><span class="searchable">jQuery.when()</span><span class="desc">提供一种方法来执行一个或多个对象的回调函数，延迟对象通常表示异步事件。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>CSS</span>
+<ul>
+<li class="sub"><a href="docs/addClass/index.html" title="jQuery.addClass()"><span class="searchable">.addClass()</span><span class="desc"> 为每个匹配的元素添加指定的类名 。</span></a></li>
+<li class="sub"><a href="docs/css/index.html" title="jQuery.css()"><span class="searchable">.css()</span><span class="desc">为匹配的元素集合中获取第一个元素的样式属性值。</span></a></li>
+<li class="sub"><a href="docs/hasClass/index.html" title="jQuery.hasClass()"><span class="searchable">.hasClass()</span><span class="desc">检查匹配的元素是否含有某个特定的类。</span></a></li>
+<li class="sub"><a href="docs/height/index.html" title="jQuery.height()"><span class="searchable">.height()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值。</span></a></li>
+<li class="sub"><a href="docs/innerHeight/index.html" title="jQuery.innerHeight()"><span class="searchable">.innerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/innerWidth/index.html" title="jQuery.innerWidth()"><span class="searchable">.innerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/offset/index.html" title="jQuery.offset()"><span class="searchable">.offset()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前坐标，相对于文档（document）。</span></a></li>
+<li class="sub"><a href="docs/outerHeight/index.html" title="jQuery.outerHeight()"><span class="searchable">.outerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，border和选择性的margin。</span></a></li>
+<li class="sub"><a href="docs/outerWidth/index.html" title="jQuery.outerWidth()"><span class="searchable">.outerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，border。</span></a></li>
+<li class="sub"><a href="docs/position/index.html" title="jQuery.position()"><span class="searchable">.position()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前坐标，是相对于相对于父级元素的位移。</span></a></li>
+<li class="sub"><a href="docs/removeClass/index.html" title="jQuery.removeClass()"><span class="searchable">.removeClass()</span><span class="desc">移除每个匹配元素的一个，多个或全部样式。</span></a></li>
+<li class="sub"><a href="docs/scrollLeft/index.html" title="jQuery.scrollLeft()"><span class="searchable">.scrollLeft()</span><span class="desc">为匹配的元素集合中获取第一个元素的的滚动条的水平位置。</span></a></li>
+<li class="sub"><a href="docs/scrollTop/index.html" title="jQuery.scrollTop()"><span class="searchable">.scrollTop()</span><span class="desc">为匹配的元素集合中获取第一个元素的的滚动条的垂直位置。</span></a></li>
+<li class="sub"><a href="docs/toggleClass/index.html" title="jQuery.toggleClass()"><span class="searchable">.toggleClass()</span><span class="desc">在匹配的元素集合中的每个元素上添加或删除一个或多个样式类,取决于这个样式类是否存在或价值切换属性。</span></a></li>
+<li class="sub"><a href="docs/width/index.html" title="jQuery.width()"><span class="searchable">.width()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>数据(Data)</span>
+<ul>
+<li class="sub"><a href="docs/clearQueue/index.html" title="jQuery.clearQueue()"><span class="searchable">.clearQueue()</span><span class="desc">从列队中移除所有未执行的项。</span></a></li>
+<li class="sub"><a href="docs/data/index.html" title="jQuery.data()"><span class="searchable">.data()</span><span class="desc">在匹配远上绑定任意相关数据。</span></a></li>
+<li class="sub"><a href="docs/jQuery.data/index.html" title="jQuery.data()"><span class="searchable">jQuery.data()</span><span class="desc">在匹配远上绑定任意相关数据。</span></a></li>
+    <li class="sub"><a href="docs/jQuery.hasData/index.html" title="jQuery.hasData()"><span class="searchable">jQuery.hasData()</span><span class="desc"> 确定任何一个元素是否有与之相关的jQuery数据。</span></a></li>
+<li class="sub"><a href="docs/dequeue/index.html" title="jQuery.dequeue()"><span class="searchable">.dequeue()</span><span class="desc">在匹配的元素上执行队列中的下一个函数。</span></a></li>
+<li class="sub"><a href="docs/jQuery.dequeue/index.html" title="jQuery.dequeue()"><span class="searchable">jQuery.dequeue()</span><span class="desc">在匹配的元素上执行队列中的下一个函数。</span></a></li>
+<li class="sub"><a href="docs/queue/index.html" title="jQuery.queue()"><span class="searchable">.queue()</span><span class="desc">显示在匹配的元素上的已经执行的函数列队。</span></a></li>
+<li class="sub"><a href="docs/jQuery.queue/index.html" title="jQuery.queue()"><span class="searchable">jQuery.queue()</span><span class="desc">显示在匹配的元素上的已经执行的函数列队。</span></a></li>
+<li class="sub"><a href="docs/removeData/index.html" title="jQuery.removeData()"><span class="searchable">.removeData()</span><span class="desc">在元素上移除绑定的数据</span></a></li>
+<li class="sub"><a href="docs/jQuery.removeData/index.html" title="jQuery.removeData()"><span class="searchable">jQuery.removeData()</span><span class="desc">在元素上移除绑定的数据</span></a></li>
+</ul>
+</li>
+<li class="category"><span>延迟对象（Deferred object）</span>
+<ul>
+    <li class="sub"><a href="docs/deferred.always/index.html" title="jQuerydeferred.always()"><span class="searchable">deferred.always()</span><span class="desc"> 当递延对象是解决或拒绝被调用添加处理程序。 </span></a></li>
+<li class="sub"><a href="docs/deferred.done/index.html" title="jQuerydeferred.done()"><span class="searchable">deferred.done()</span><span class="desc"> 添加处理程序被调用时，延迟对象得到解决。 </span></a></li>
+<li class="sub"><a href="docs/deferred.fail/index.html" title="jQuerydeferred.fail()"><span class="searchable">deferred.fail()</span><span class="desc"> 添加处理程序被调用时，延迟对象将被拒绝。</span></a></li>
+<li class="sub"><a href="docs/deferred.isRejected/index.html" title="jQuerydeferred.isRejected()"><span class="searchable">deferred.isRejected()</span><span class="desc"> 确定延迟对象是否已被拒绝。</span></a></li>
+<li class="sub"><a href="docs/deferred.isResolved/index.html" title="jQuerydeferred.isResolved()"><span class="searchable">deferred.isResolved()</span><span class="desc"> 确定延迟对象是否已得到解决。</span></a></li>
+    <li class="sub"><a href="docs/deferred.pipe/index.html" title="jQuerydeferred.pipe()"><span class="searchable">deferred.pipe()</span><span class="desc">筛选器和/或链Deferreds的实用程序方法。 </span></a></li>
+<li class="sub"><a href="docs/deferred.reject/index.html" title="jQuerydeferred.reject()"><span class="searchable">deferred.reject()</span><span class="desc"> 拒绝延迟对象，并根据给定的参数调用任何失败的回调函数。 </span></a></li>
+<li class="sub"><a href="docs/deferred.rejectWith/index.html" title="jQuerydeferred.rejectWith()"><span class="searchable">deferred.rejectWith()</span><span class="desc"> 拒绝延迟的对象，并根据给定的上下文和参数调用任何失败的回调函数。 </span></a></li>
+<li class="sub"><a href="docs/deferred.resolve/index.html" title="jQuerydeferred.resolve()"><span class="searchable">deferred.resolve()</span><span class="desc"> 解决递延对象，并根据给定的参数调用任何完成的回调函数。</span></a></li>
+<li class="sub"><a href="docs/deferred.resolveWith/index.html" title="jQuerydeferred.resolveWith()"><span class="searchable">deferred.resolveWith()</span><span class="desc"> 解决递延对象，并根据给定的上下文和参数调用任何完成的回调函数。</span></a></li>
+<li class="sub"><a href="docs/deferred.then/index.html" title="jQuerydeferred.then()"><span class="searchable">deferred.then()</span><span class="desc"> 添加处理程序被调用时，递延对象得到解决或者拒绝。</span></a></li>
+    <li class="sub"><a href="docs/promise/index.html" title="jQuery.promise()"><span class="searchable">.promise()</span><span class="desc"> 返回一个 Promise 对象用来观察当某种类型的所有行动绑定到集合，排队与否还是已经完成。 </span></a></li>
+</ul>
+</li>
+<li class="category"><span>尺寸（Dimensions）</span>
+<ul>
+<li class="sub"><a href="docs/height/index.html" title="jQuery.height()"><span class="searchable">.height()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值。</span></a></li>
+<li class="sub"><a href="docs/innerHeight/index.html" title="jQuery.innerHeight()"><span class="searchable">.innerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/innerWidth/index.html" title="jQuery.innerWidth()"><span class="searchable">.innerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/outerHeight/index.html" title="jQuery.outerHeight()"><span class="searchable">.outerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，border和选择性的margin。</span></a></li>
+<li class="sub"><a href="docs/outerWidth/index.html" title="jQuery.outerWidth()"><span class="searchable">.outerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，border。</span></a></li>
+<li class="sub"><a href="docs/width/index.html" title="jQuery.width()"><span class="searchable">.width()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>效果（Effects）</span>
+<ul>
+<li class="sub"><a href="docs/animate/index.html" title="jQuery.animate()"><span class="searchable">.animate()</span><span class="desc">执行一个CSS属性设置的自定义动画。</span></a></li>
+<li class="sub"><a href="docs/clearQueue/index.html" title="jQuery.clearQueue()"><span class="searchable">.clearQueue()</span><span class="desc">从列队中移除所有未执行的项。</span></a></li>
+<li class="sub"><a href="docs/delay/index.html" title="jQuery.delay()"><span class="searchable">.delay()</span><span class="desc">设置一个延时来推迟执行队列中之后的项目。</span></a></li>
+<li class="sub"><a href="docs/dequeue/index.html" title="jQuery.dequeue()"><span class="searchable">.dequeue()</span><span class="desc">在匹配的元素上执行队列中的下一个函数。</span></a></li>
+<li class="sub"><a href="docs/fadeIn/index.html" title="jQuery.fadeIn()"><span class="searchable">.fadeIn()</span><span class="desc">通过淡入的方式显示匹配元素。</span></a></li>
+<li class="sub"><a href="docs/fadeOut/index.html" title="jQuery.fadeOut()"><span class="searchable">.fadeOut()</span><span class="desc">通过淡出的方式显示匹配元素。</span></a></li>
+<li class="sub"><a href="docs/fadeTo/index.html" title="jQuery.fadeTo()"><span class="searchable">.fadeTo()</span><span class="desc">调整匹配元素的透明度。</span></a></li>
+    <li class="sub"><a href="docs/fadeToggle/index.html" title="jQuery.fadeToggle()"><span class="searchable">.fadeToggle()</span><span class="desc">Display or hide the matched elements by animating their opacity.</span></a></li>
+<li class="sub"><a href="docs/jQuery.fx.interval/index.html" title="jQuery.fx.interval"><span class="searchable">jQuery.fx.interval</span><span class="desc">该动画的频率（以毫秒为单位）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.fx.off/index.html" title="jQuery.fx.off"><span class="searchable">jQuery.fx.off</span><span class="desc">全局禁用所有动画。</span></a></li>
+<li class="sub"><a href="docs/hide/index.html" title="jQuery.hide()"><span class="searchable">.hide()</span><span class="desc">隐藏匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/queue/index.html" title="jQuery.queue()"><span class="searchable">.queue()</span><span class="desc">显示在匹配的元素上的已经执行的函数列队。</span></a></li>
+<li class="sub"><a href="docs/show/index.html" title="jQuery.show()"><span class="searchable">.show()</span><span class="desc">显示匹配的元素</span></a></li>
+<li class="sub"><a href="docs/slideDown/index.html" title="jQuery.slideDown()"><span class="searchable">.slideDown()</span><span class="desc">用滑动动画显示一个匹配元素。</span></a></li>
+<li class="sub"><a href="docs/slideToggle/index.html" title="jQuery.slideToggle()"><span class="searchable">.slideToggle()</span><span class="desc">用滑动动画显示或隐藏一个匹配元素。</span></a></li>
+<li class="sub"><a href="docs/slideUp/index.html" title="jQuery.slideUp()"><span class="searchable">.slideUp()</span><span class="desc">用滑动动画隐藏一个匹配元素。</span></a></li>
+<li class="sub"><a href="docs/stop/index.html" title="jQuery.stop()"><span class="searchable">.stop()</span><span class="desc">停止匹配元素当前正在运行的动画。</span></a></li>
+<li class="sub"><a href="docs/toggle/index.html" title="jQuery.toggle()"><span class="searchable">.toggle()</span><span class="desc">显示或隐藏匹配元素。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>事件（Events）</span>
+<ul>
+<li class="sub"><a href="docs/bind/index.html" title="jQuery.bind()"><span class="searchable">.bind()</span><span class="desc">为一个元素绑定一个处理事件。</span></a></li>
+<li class="sub"><a href="docs/blur/index.html" title="jQuery.blur()"><span class="searchable">.blur()</span><span class="desc">为 "blur" 事件绑定一个处理函数，或者触发元素上的 "blur" 事件。</span></a></li>
+<li class="sub"><a href="docs/change/index.html" title="jQuery.change()"><span class="searchable">.change()</span><span class="desc">为 "change" 事件绑定一个处理函数，或者触发元素上的 "change" 事件。</span></a></li>
+<li class="sub"><a href="docs/click/index.html" title="jQuery.click()"><span class="searchable">.click()</span><span class="desc">为 "click" 事件绑定一个处理函数，或者触发元素上的 "click" 事件。</span></a></li>
+<li class="sub"><a href="docs/dblclick/index.html" title="jQuery.dblclick()"><span class="searchable">.dblclick()</span><span class="desc">为 "dblclick" 事件绑定一个处理函数，或者触发元素上的 "dblclick" 事件。</span></a></li>
+<li class="sub"><a href="docs/delegate/index.html" title="jQuery.delegate()"><span class="searchable">.delegate()</span><span class="desc">为所有选择器匹配的元素附加一个处理一个或多个事件，现在或将来，基于一组特定的根元素。</span></a></li>
+<li class="sub"><a href="docs/die/index.html" title="jQuery.die()"><span class="searchable">.die()</span><span class="desc">从元素中删除先前用.live()绑定的所有事件</span></a></li>
+<li class="sub"><a href="docs/error/index.html" title="jQuery.error()"><span class="searchable">.error()</span><span class="desc">绑定一个事件处理器到"错误"JavaScript事件上。</span></a></li>
+<li class="sub"><a href="docs/event.currentTarget/index.html" title="jQueryevent.currentTarget"><span class="searchable">event.currentTarget</span><span class="desc">在事件冒泡阶段中的当前DOM元素</span></a></li>
+<li class="sub"><a href="docs/event.data/index.html" title="jQueryevent.data"><span class="searchable">event.data</span><span class="desc"> 
+    当前执行的处理器被绑定的时候，包含可选的数据传递给jQuery.fn.bind。</span></a></li>
+<li class="sub"><a href="docs/event.isDefaultPrevented/index.html" title="jQueryevent.isDefaultPrevented()"><span class="searchable">event.isDefaultPrevented()</span><span class="desc">根据事件对象中是否调用过 event.preventDefault() 方法来返回一个布尔值。 </span></a></li>
+<li class="sub"><a href="docs/event.isImmediatePropagationStopped/index.html" title="jQueryevent.isImmediatePropagationStopped()"><span class="searchable">event.isImmediatePropagationStopped()</span><span class="desc">根据事件对象中是否调用过 event.stopImmediatePropagation() 方法来返回一个布尔值。</span></a></li>
+<li class="sub"><a href="docs/event.isPropagationStopped/index.html" title="jQueryevent.isPropagationStopped()"><span class="searchable">event.isPropagationStopped()</span><span class="desc"> 根据事件对象中是否调用过event.stopPropagation() 方法来返回一个布尔值。 </span></a></li>
+<li class="sub"><a href="docs/event.namespace/index.html" title="jQueryevent.namespace"><span class="searchable">event.namespace</span><span class="desc"> 当事件被触发时此属性包含指定的命名空间。</span></a></li>
+<li class="sub"><a href="docs/event.pageX/index.html" title="jQueryevent.pageX"><span class="searchable">event.pageX</span><span class="desc">鼠标相对于文档的左边缘的位置。 </span></a></li>
+<li class="sub"><a href="docs/event.pageY/index.html" title="jQueryevent.pageY"><span class="searchable">event.pageY</span><span class="desc">鼠标相对于文档的顶部边缘的位置。  </span></a></li>
+<li class="sub"><a href="docs/event.preventDefault/index.html" title="jQueryevent.preventDefault()"><span class="searchable">event.preventDefault()</span><span class="desc"> 阻止默认事件行为被触发。 </span></a></li>
+<li class="sub"><a href="docs/event.relatedTarget/index.html" title="jQueryevent.relatedTarget"><span class="searchable">event.relatedTarget</span><span class="desc"> 在事件中涉及的其它任何DOM元素。 </span></a></li>
+<li class="sub"><a href="docs/event.result/index.html" title="jQueryevent.result"><span class="searchable">event.result</span><span class="desc">
+    这个属性包含了当前事件事件最后触发的那个处理函数的返回值，除非值是 <code>undefined</code> 。</span></a></li>
+<li class="sub"><a href="docs/event.stopImmediatePropagation/index.html" title="jQueryevent.stopImmediatePropagation()"><span class="searchable">event.stopImmediatePropagation()</span><span class="desc">阻止剩余的事件处理函数执行并且防止事件冒泡到DOM树上。</span></a></li>
+<li class="sub"><a href="docs/event.stopPropagation/index.html" title="jQueryevent.stopPropagation()"><span class="searchable">event.stopPropagation()</span><span class="desc">防止事件冒泡到DOM树上，也就是不触发的任何前辈元素上的事件处理函数。</span></a></li>
+<li class="sub"><a href="docs/event.target/index.html" title="jQueryevent.target"><span class="searchable">event.target</span><span class="desc"> 最初触发事件的DOM元素。 </span></a></li>
+<li class="sub"><a href="docs/event.timeStamp/index.html" title="jQueryevent.timeStamp"><span class="searchable">event.timeStamp</span><span class="desc"> 这个属性返回事件触发时距离1970年1月1日的毫秒数。 </span></a></li>
+<li class="sub"><a href="docs/event.type/index.html" title="jQueryevent.type"><span class="searchable">event.type</span><span class="desc"> 描述事件类型。</span></a></li>
+<li class="sub"><a href="docs/event.which/index.html" title="jQueryevent.which"><span class="searchable">event.which</span><span class="desc"> 针对键盘和鼠标事件，这个属性能确定你到底按的是哪个键。</span></a></li>
+<li class="sub"><a href="docs/focus/index.html" title="jQuery.focus()"><span class="searchable">.focus()</span><span class="desc">为 "focus" 事件绑定一个处理函数，或者触发元素上的 "focus" 事件。</span></a></li>
+<li class="sub"><a href="docs/focusin/index.html" title="jQuery.focusin()"><span class="searchable">.focusin()</span><span class="desc">将一个事件函数绑定到"focusin" 事件。</span></a></li>
+<li class="sub"><a href="docs/focusout/index.html" title="jQuery.focusout()"><span class="searchable">.focusout()</span><span class="desc">将一个事件函数绑定到"focusout" 事件。</span></a></li>
+<li class="sub"><a href="docs/hover/index.html" title="jQuery.hover()"><span class="searchable">.hover()</span><span class="desc">将二个事件函数绑定到匹配元素上，分别当鼠标指针进入和离开元素时被执行。</span></a></li>
+<li class="sub"><a href="docs/keydown/index.html" title="jQuery.keydown()"><span class="searchable">.keydown()</span><span class="desc">为 "keydown" 事件绑定一个处理函数，或者触发元素上的 "keydown" 事件。</span></a></li>
+<li class="sub"><a href="docs/keypress/index.html" title="jQuery.keypress()"><span class="searchable">.keypress()</span><span class="desc">为 "keypress" 事件绑定一个处理函数，或者触发元素上的 "keypress" 事件。</span></a></li>
+<li class="sub"><a href="docs/keyup/index.html" title="jQuery.keyup()"><span class="searchable">.keyup()</span><span class="desc">为 "keyup" 事件绑定一个处理函数，或者触发元素上的 "keyup" 事件。</span></a></li>
+<li class="sub"><a href="docs/live/index.html" title="jQuery.live()"><span class="searchable">.live()</span><span class="desc">附加一个事件处理器到符合目前选择器的所有元素匹配，现在和未来。</span></a></li>
+<li class="sub"><a href="docs/load-event/index.html" title="jQuery.load()"><span class="searchable">.load()</span><span class="desc">为 "load" 事件绑定一个处理函数。</span></a></li>
+<li class="sub"><a href="docs/mousedown/index.html" title="jQuery.mousedown()"><span class="searchable">.mousedown()</span><span class="desc">为 "mousedown" 事件绑定一个处理函数，或者触发元素上的 "mousedown" 事件。</span></a></li>
+<li class="sub"><a href="docs/mouseenter/index.html" title="jQuery.mouseenter()"><span class="searchable">.mouseenter()</span><span class="desc">为 mouse enters（鼠标进入） 事件绑定一个处理函数，或者触发元素上的 mouse enters（鼠标进入） 事件。</span></a></li>
+<li class="sub"><a href="docs/mouseleave/index.html" title="jQuery.mouseleave()"><span class="searchable">.mouseleave()</span><span class="desc">为 mouse leaves（鼠标离开） 事件绑定一个处理函数，或者触发元素上的 mouse leaves（鼠标离开） 事件。</span></a></li>
+<li class="sub"><a href="docs/mousemove/index.html" title="jQuery.mousemove()"><span class="searchable">.mousemove()</span><span class="desc">为 "mousemove" 事件绑定一个处理函数，或者触发元素上的 "mousemove" 事件。</span></a></li>
+<li class="sub"><a href="docs/mouseout/index.html" title="jQuery.mouseout()"><span class="searchable">.mouseout()</span><span class="desc">为 "mouseout" 事件绑定一个处理函数，或者触发元素上的 "mouseout" 事件。</span></a></li>
+<li class="sub"><a href="docs/mouseover/index.html" title="jQuery.mouseover()"><span class="searchable">.mouseover()</span><span class="desc">为 "mouseover" 事件绑定一个处理函数，或者触发元素上的 "mouseover" 事件。</span></a></li>
+<li class="sub"><a href="docs/mouseup/index.html" title="jQuery.mouseup()"><span class="searchable">.mouseup()</span><span class="desc">为 "mouseup" 事件绑定一个处理函数，或者触发元素上的 "mouseup" 事件。</span></a></li>
+<li class="sub"><a href="docs/one/index.html" title="jQuery.one()"><span class="searchable">.one()</span><span class="desc">附加一个处理事件到元素。处理函数在每个元素上最多执行一次。</span></a></li>
+<li class="sub"><a href="docs/jQuery.proxy/index.html" title="jQuery.proxy()"><span class="searchable">jQuery.proxy()</span><span class="desc">接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文语境。</span></a></li>
+<li class="sub"><a href="docs/ready/index.html" title="jQuery.ready()"><span class="searchable">.ready()</span><span class="desc">当DOM完全加载完成时，指定一个函数来执行。</span></a></li>
+<li class="sub"><a href="docs/resize/index.html" title="jQuery.resize()"><span class="searchable">.resize()</span><span class="desc">为 "resize" 事件绑定一个处理函数，或者触发元素上的 "resize" 事件。</span></a></li>
+<li class="sub"><a href="docs/scroll/index.html" title="jQuery.scroll()"><span class="searchable">.scroll()</span><span class="desc">为 "scroll" 事件绑定一个处理函数，或者触发元素上的 "scroll" 事件。</span></a></li>
+<li class="sub"><a href="docs/select/index.html" title="jQuery.select()"><span class="searchable">.select()</span><span class="desc">为 "select" 事件绑定一个处理函数，或者触发元素上的 "select" 事件。</span></a></li>
+<li class="sub"><a href="docs/submit/index.html" title="jQuery.submit()"><span class="searchable">.submit()</span><span class="desc">为 "submit" 事件绑定一个处理函数，或者触发元素上的 "submit" 事件。</span></a></li>
+<li class="sub"><a href="docs/toggle-event/index.html" title="jQuery.toggle()"><span class="searchable">.toggle()</span><span class="desc">绑定两个或多个处理程序绑定到匹配的元素，用来执行在交替的点击。</span></a></li>
+<li class="sub"><a href="docs/trigger/index.html" title="jQuery.trigger()"><span class="searchable">.trigger()</span><span class="desc">为给定的事件类型执行所有处理器和行为附加到匹配的元素</span></a></li>
+<li class="sub"><a href="docs/triggerHandler/index.html" title="jQuery.triggerHandler()"><span class="searchable">.triggerHandler()</span><span class="desc">Execute all handlers attached to an element for an event.</span></a></li>
+<li class="sub"><a href="docs/unbind/index.html" title="jQuery.unbind()"><span class="searchable">.unbind()</span><span class="desc">Remove a previously-attached event handler from the elements.</span></a></li>
+<li class="sub"><a href="docs/undelegate/index.html" title="jQuery.undelegate()"><span class="searchable">.undelegate()</span><span class="desc">Remove a handler from the event for all elements which match the current selector, now or in the future, based upon a specific set of root elements.</span></a></li>
+<li class="sub"><a href="docs/unload/index.html" title="jQuery.unload()"><span class="searchable">.unload()</span><span class="desc">Bind an event handler to the "unload" JavaScript event.</span></a></li>
+</ul>
+</li>
+<li class="category"><span>表单（Forms）</span>
+<ul>
+<li class="sub"><a href="docs/blur/index.html" title="jQuery.blur()"><span class="searchable">.blur()</span><span class="desc">为 "blur" 事件绑定一个处理函数，或者触发元素上的 "blur" 事件。</span></a></li>
+<li class="sub"><a href="docs/change/index.html" title="jQuery.change()"><span class="searchable">.change()</span><span class="desc">为 "change" 事件绑定一个处理函数，或者触发元素上的 "change" 事件。</span></a></li>
+<li class="sub"><a href="docs/focus/index.html" title="jQuery.focus()"><span class="searchable">.focus()</span><span class="desc">为 "focus" 事件绑定一个处理函数，或者触发元素上的 "focus" 事件。</span></a></li>
+<li class="sub"><a href="docs/jQuery.param/index.html" title="jQuery.param()"><span class="searchable">jQuery.param()</span><span class="desc">创建一个序列化的数组或对象，适用于一个URL 地址查询字符串或Ajax请求。 </span></a></li>
+<li class="sub"><a href="docs/select/index.html" title="jQuery.select()"><span class="searchable">.select()</span><span class="desc">为 "select" 事件绑定一个处理函数，或者触发元素上的 "select" 事件。</span></a></li>
+<li class="sub"><a href="docs/serialize/index.html" title="jQuery.serialize()"><span class="searchable">.serialize()</span><span class="desc">将用作提交的表单元素的值编译成字符串。</span></a></li>
+<li class="sub"><a href="docs/serializeArray/index.html" title="jQuery.serializeArray()"><span class="searchable">.serializeArray()</span><span class="desc">将用作提交的表单元素的值编译成拥有name和value对象组成的数组。例如[ { name: a value: 1 }, { name: b value: 2 },...]</span></a></li>
+<li class="sub"><a href="docs/submit/index.html" title="jQuery.submit()"><span class="searchable">.submit()</span><span class="desc">为 "submit" 事件绑定一个处理函数，或者触发元素上的 "submit" 事件。</span></a></li>
+<li class="sub"><a href="docs/val/index.html" title="jQuery.val()"><span class="searchable">.val()</span><span class="desc">获取匹配的元素集合中第一个元素的当前值。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>文档操作（Manipulation）</span>
+<ul>
+<li class="sub"><a href="docs/addClass/index.html" title="jQuery.addClass()"><span class="searchable">.addClass()</span><span class="desc">为每个匹配的元素添加指定的类名 。</span></a></li>
+<li class="sub"><a href="docs/after/index.html" title="jQuery.after()"><span class="searchable">.after()</span><span class="desc">根据参数设定在每一个匹配的元素之后插入内容。</span></a></li>
+<li class="sub"><a href="docs/append/index.html" title="jQuery.append()"><span class="searchable">.append()</span><span class="desc">根据参数设定在每个匹配元素里面的末尾处插入内容。</span></a></li>
+<li class="sub"><a href="docs/appendTo/index.html" title="jQuery.appendTo()"><span class="searchable">.appendTo()</span><span class="desc">将匹配的元素插入到目标元素的最后面（里面的后面）。</span></a></li>
+<li class="sub"><a href="docs/attr/index.html" title="jQuery.attr()"><span class="searchable">.attr()</span><span class="desc">取得第一个匹配元素的属性值。</span></a></li>
+<li class="sub"><a href="docs/before/index.html" title="jQuery.before()"><span class="searchable">.before()</span><span class="desc">根据参数设定在匹配元素的前面（外面）插入内容</span></a></li>
+<li class="sub"><a href="docs/clone/index.html" title="jQuery.clone()"><span class="searchable">.clone()</span><span class="desc">深度复制匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/css/index.html" title="jQuery.css()"><span class="searchable">.css()</span><span class="desc">为匹配的元素集合中获取第一个元素的样式属性值。</span></a></li>
+<li class="sub"><a href="docs/detach/index.html" title="jQuery.detach()"><span class="searchable">.detach()</span><span class="desc">从DOM中去掉所有匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/empty/index.html" title="jQuery.empty()"><span class="searchable">.empty()</span><span class="desc">从DOM中移除所有节点的子节点。</span></a></li>
+<li class="sub"><a href="docs/hasClass/index.html" title="jQuery.hasClass()"><span class="searchable">.hasClass()</span><span class="desc">检查匹配的元素是否含有某个特定的类。</span></a></li>
+<li class="sub"><a href="docs/height/index.html" title="jQuery.height()"><span class="searchable">.height()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值。</span></a></li>
+<li class="sub"><a href="docs/html/index.html" title="jQuery.html()"><span class="searchable">.html()</span><span class="desc">从匹配的第一个元素中获取HTML内容。</span></a></li>
+<li class="sub"><a href="docs/innerHeight/index.html" title="jQuery.innerHeight()"><span class="searchable">.innerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/innerWidth/index.html" title="jQuery.innerWidth()"><span class="searchable">.innerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，但是不包括border。</span></a></li>
+<li class="sub"><a href="docs/insertAfter/index.html" title="jQuery.insertAfter()"><span class="searchable">.insertAfter()</span><span class="desc">在目标后面插入每个匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/insertBefore/index.html" title="jQuery.insertBefore()"><span class="searchable">.insertBefore()</span><span class="desc">在目标前插入所有匹配元素。</span></a></li>
+<li class="sub"><a href="docs/offset/index.html" title="jQuery.offset()"><span class="searchable">.offset()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前坐标，相对于文档（document）。</span></a></li>
+<li class="sub"><a href="docs/outerHeight/index.html" title="jQuery.outerHeight()"><span class="searchable">.outerHeight()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算高度值,包括padding，border和选择性的margin。</span></a></li>
+<li class="sub"><a href="docs/outerWidth/index.html" title="jQuery.outerWidth()"><span class="searchable">.outerWidth()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值,包括padding，border。</span></a></li>
+<li class="sub"><a href="docs/position/index.html" title="jQuery.position()"><span class="searchable">.position()</span><span class="desc">获取匹配元素中第一个元素的当前坐标，相对于offset parent的坐标。( offset parent指离该元素最近的而且被定位过的祖先元素 )</span></a></li>
+<li class="sub"><a href="docs/prepend/index.html" title="jQuery.prepend()"><span class="searchable">.prepend()</span><span class="desc">将参数内容插入到每个匹配元素的前面（元素内部）。</span></a></li>
+<li class="sub"><a href="docs/prependTo/index.html" title="jQuery.prependTo()"><span class="searchable">.prependTo()</span><span class="desc">将所有元素插入到目标前面（元素内）。</span></a></li>
+<li class="sub"><a href="docs/remove/index.html" title="jQuery.remove()"><span class="searchable">.remove()</span><span class="desc">将匹配元素从DOM中删除。</span></a></li>
+<li class="sub"><a href="docs/removeAttr/index.html" title="jQuery.removeAttr()"><span class="searchable">.removeAttr()</span><span class="desc">为匹配的元素集合中的每个元素中移除一个属性。</span></a></li>
+<li class="sub"><a href="docs/removeClass/index.html" title="jQuery.removeClass()"><span class="searchable">.removeClass()</span><span class="desc">移除每个匹配元素的一个，多个或全部样式。</span></a></li>
+<li class="sub"><a href="docs/replaceAll/index.html" title="jQuery.replaceAll()"><span class="searchable">.replaceAll()</span><span class="desc">用匹配元素替换所有目标元素。</span></a></li>
+<li class="sub"><a href="docs/replaceWith/index.html" title="jQuery.replaceWith()"><span class="searchable">.replaceWith()</span><span class="desc">用提供的内容替换所有匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/scrollLeft/index.html" title="jQuery.scrollLeft()"><span class="searchable">.scrollLeft()</span><span class="desc">为匹配的元素集合中获取第一个元素的滚动条的水平位置。</span></a></li>
+<li class="sub"><a href="docs/scrollTop/index.html" title="jQuery.scrollTop()"><span class="searchable">.scrollTop()</span><span class="desc">为匹配的元素集合中获取第一个元素的滚动条的垂直位置。</span></a></li>
+<li class="sub"><a href="docs/text/index.html" title="jQuery.text()"><span class="searchable">.text()</span><span class="desc">得到匹配元素集合中每个元素的文本内容结合,包括他们的后代。</span></a></li>
+<li class="sub"><a href="docs/toggleClass/index.html" title="jQuery.toggleClass()"><span class="searchable">.toggleClass()</span><span class="desc">在匹配的元素集合中的每个元素上添加或删除一个或多个样式类,取决于这个样式类是否存在或价值切换属性。即：如果存在（不存在）就删除（添加）一个类。</span></a></li>
+<li class="sub"><a href="docs/unwrap/index.html" title="jQuery.unwrap()"><span class="searchable">.unwrap()</span><span class="desc">将匹配元素的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置。</span></a></li>
+<li class="sub"><a href="docs/val/index.html" title="jQuery.val()"><span class="searchable">.val()</span><span class="desc">获取匹配的元素集合中第一个元素的当前值。</span></a></li>
+<li class="sub"><a href="docs/width/index.html" title="jQuery.width()"><span class="searchable">.width()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前计算宽度值。</span></a></li>
+<li class="sub"><a href="docs/wrap/index.html" title="jQuery.wrap()"><span class="searchable">.wrap()</span><span class="desc">在每个匹配的元素外层包上一个html元素。</span></a></li>
+<li class="sub"><a href="docs/wrapAll/index.html" title="jQuery.wrapAll()"><span class="searchable">.wrapAll()</span><span class="desc">在所有匹配元素外面包一层HTML结构。</span></a></li>
+<li class="sub"><a href="docs/wrapInner/index.html" title="jQuery.wrapInner()"><span class="searchable">.wrapInner()</span><span class="desc">在匹配元素里的内容外包一层结构。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>杂项（Miscellaneous）</span>
+<ul>
+<li class="sub"><a href="docs/data/index.html" title="jQuery.data()"><span class="searchable">.data()</span><span class="desc">在匹配远上绑定任意相关数据。</span></a></li>
+<li class="sub"><a href="docs/each/index.html" title="jQuery.each()"><span class="searchable">.each()</span><span class="desc">遍历一个jQuery对象，为每一个匹配元素执行一个函数。</span></a></li>
+<li class="sub"><a href="docs/get/index.html" title="jQuery.get()"><span class="searchable">.get()</span><span class="desc">通过jQuery对象获取对应的DOM元素。</span></a></li>
+<li class="sub"><a href="docs/index/index.html" title="jQuery.index()"><span class="searchable">.index()</span><span class="desc">从匹配的元素中搜索给定元素的索引值，从0开始计数。</span></a></li>
+<li class="sub"><a href="docs/jQuery.noConflict/index.html" title="jQuery.noConflict()"><span class="searchable">jQuery.noConflict()</span><span class="desc">放弃jQuery控制的$的变量。</span></a></li>
+<li class="sub"><a href="docs/jQuery.param/index.html" title="jQuery.param()"><span class="searchable">jQuery.param()</span><span class="desc">创建一个序列化的数组或对象，适用于一个URL 地址查询字符串或Ajax请求。</span></a></li>
+<li class="sub"><a href="docs/removeData/index.html" title="jQuery.removeData()"><span class="searchable">.removeData()</span><span class="desc">在元素上移除绑定的数据</span></a></li>
+<li class="sub"><a href="docs/size/index.html" title="jQuery.size()"><span class="searchable">.size()</span><span class="desc">返回的jQuery对象匹配的DOM元素的数量。</span></a></li>
+<li class="sub"><a href="docs/toArray/index.html" title="jQuery.toArray()"><span class="searchable">.toArray()</span><span class="desc">返回一个包含jQuery对象集合中的所有DOM元素的数组。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>位置（Offset）</span>
+<ul>
+<li class="sub"><a href="docs/offset/index.html" title="jQuery.offset()"><span class="searchable">.offset()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前坐标，相对于文档（document）。</span></a></li>
+<li class="sub"><a href="docs/offsetParent/index.html" title="jQuery.offsetParent()"><span class="searchable">.offsetParent()</span><span class="desc">返回最近的被定过位的祖先元素。（祖先元素指该元素的上级元素，即包着它的外层元素）</span></a></li>
+<li class="sub"><a href="docs/position/index.html" title="jQuery.position()"><span class="searchable">.position()</span><span class="desc">为匹配的元素集合中获取第一个元素的当前坐标，是相对于相对于父级元素的位移。</span></a></li>
+<li class="sub"><a href="docs/scrollLeft/index.html" title="jQuery.scrollLeft()"><span class="searchable">.scrollLeft()</span><span class="desc">为匹配的元素集合中获取第一个元素的滚动条的水平位置。</span></a></li>
+<li class="sub"><a href="docs/scrollTop/index.html" title="jQuery.scrollTop()"><span class="searchable">.scrollTop()</span><span class="desc">为匹配的元素集合中获取第一个元素的滚动条的垂直位置。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>插件编写（Plugin Authoring）</span>
+<ul>
+<li class="sub"><a href="docs/context/index.html" title="jQuery.context"><span class="searchable">.context</span><span class="desc">返回传给jQuery()的原始的DOM节点内容；如果没有获得通过，那么上下文将可能是该文档。</span></a></li>
+<li class="sub"><a href="docs/jQuery.error/index.html" title="jQuery.error"><span class="searchable">jQuery.error</span><span class="desc">接受一个字符串，并抛出包含这个字符串的异常。</span></a></li>
+<li class="sub"><a href="docs/pushStack/index.html" title="jQuery.pushStack()"><span class="searchable">.pushStack()</span><span class="desc">将一个DOM元素集合加入到jQuery栈。</span></a></li>
+<li class="sub"><a href="docs/selector/index.html" title="jQuery.selector"><span class="searchable">.selector</span><span class="desc">返回传给jQuery()的原始选择器。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>Plugins</span>
+<ul>
+</ul>
+</li>
+<li class="category"><span>属性（Properties）</span>
+<ul>
+<li class="sub"><a href="docs/jQuery.browser/index.html" title="jQuery.browser"><span class="searchable">jQuery.browser</span><span class="desc">我们不推荐使用这个属性，请尝试使用功能检测来代替（见jQuery.support）。用来获取useragent的包含标志，读取 navigator.userAgent。虽然jQuery.browser不会从jQuery的未来版本被删除，竭力推荐应采用jQuery.support和适当的特征检测。</span></a></li>
+<li class="sub"><a href="docs/context/index.html" title="jQuery.context"><span class="searchable">.context</span><span class="desc">返回传给jQuery()的原始的DOM节点内容；如果没有获得通过，那么上下文将可能是该文档。</span></a></li>
+<li class="sub"><a href="docs/jQuery.fx.interval/index.html" title="jQuery.fx.interval"><span class="searchable">jQuery.fx.interval</span><span class="desc">该动画的频率（以毫秒为单位）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.fx.off/index.html" title="jQuery.fx.off"><span class="searchable">jQuery.fx.off</span><span class="desc">全局禁用所有动画效果</span></a></li>
+<li class="sub"><a href="docs/length/index.html" title="jQuery.length"><span class="searchable">.length</span><span class="desc">在jQuery对象中的元素数。</span></a></li>
+<li class="sub"><a href="docs/selector/index.html" title="jQuery.selector"><span class="searchable">.selector</span><span class="desc">返回传给jQuery()的原始选择器。</span></a></li>
+<li class="sub"><a href="docs/jQuery.support/index.html" title="jQuery.support"><span class="searchable">jQuery.support</span><span class="desc">一组属性，它们代表了不同的浏览器功能或缺陷的存在的集合。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>选择器（Selectors）</span>
+<ul>
+<li class="sub"><a href="docs/all-selector/index.html" title="jQueryAll Selector (&quot;*&quot;)"><span class="searchable">All Selector ("*")</span><span class="desc">选择所有元素.</span></a></li>
+<li class="sub"><a href="docs/animated-selector/index.html" title="jQuery:animated Selector"><span class="searchable">:animated Selector</span><span class="desc">选择所有正在执行动画效果的元素</span></a></li>
+<li class="sub"><a href="docs/attribute-contains-prefix-selector/index.html" title="jQuery[name|=value] 属性包选择器 "><span class="searchable">[name|=value] 属性包选择器 </span><span class="desc">选择指定属性等于给定字符串或以该字符串为前缀（该字符串后跟一个连字符"-" ）的元素。</span></a></li>
+<li class="sub"><a href="docs/attribute-contains-selector/index.html" title="jQuery[name*=value] 属性选择器 "><span class="searchable">[name*=value] 属性选择器 </span><span class="desc">
+    选择指定属性具有包含一个给定的子字符串的元素。（选择给定的属性是以包含某些值的元素）</span></a></li>
+<li class="sub"><a href="docs/attribute-contains-word-selector/index.html" title="jQuery[name~=value]  属性选择器"><span class="searchable">[name~=value]  属性选择器</span><span class="desc">选择指定属性用空格分隔的值中包含一个给定值的元素。</span></a></li>
+<li class="sub"><a href="docs/attribute-ends-with-selector/index.html" title="jQuery[name$=value] 属性选择器"><span class="searchable">[name$=value] 属性选择器</span><span class="desc">选择指定属性是以给定值结尾的元素。这个比较是区分大小写的。</span></a></li>
+<li class="sub"><a href="docs/attribute-equals-selector/index.html" title="jQuery[name=value] 属性选择器"><span class="searchable">[name=value] 属性选择器</span><span class="desc">选择指定属性是给定值的元素。</span></a></li>
+<li class="sub"><a href="docs/attribute-not-equal-selector/index.html" title="jQuery[name!=value] 属性选择器"><span class="searchable">[name!=value] 属性选择器</span><span class="desc">选择不存在指定属性，或者指定的属性值不等于给定值的元素。</span></a></li>
+<li class="sub"><a href="docs/attribute-starts-with-selector/index.html" title="jQuery[name^=value] 属性选择器"><span class="searchable">[name^=value] 属性选择器</span><span class="desc">选择指定属性是以给定字符串开始的元素</span></a></li>
+<li class="sub"><a href="docs/button-selector/index.html" title="jQuery:button Selector"><span class="searchable">:button Selector</span><span class="desc">选择所有按钮元素和类型为按钮的元素。</span></a></li>
+<li class="sub"><a href="docs/checkbox-selector/index.html" title="jQuery:checkbox Selector"><span class="searchable">:checkbox Selector</span><span class="desc">选择所有类型为复选框的元素。</span></a></li>
+<li class="sub"><a href="docs/checked-selector/index.html" title="jQuery:checked Selector"><span class="searchable">:checked Selector</span><span class="desc">选择所有勾选的元素。</span></a></li>
+<li class="sub"><a href="docs/child-selector/index.html" title="jQueryChild Selector (&quot;parent &gt; child&quot;)"><span class="searchable">Child Selector ("parent &gt; child")</span><span class="desc">选择所有通过"parent"给定的元素直接子元素，该子元素"child"给定。</span></a></li>
+<li class="sub"><a href="docs/class-selector/index.html" title="jQueryClass Selector (&quot;.class&quot;)"><span class="searchable">Class Selector (".class")</span><span class="desc">选择给定类名的所有元素。</span></a></li>
+<li class="sub"><a href="docs/contains-selector/index.html" title="jQuery:contains() Selector"><span class="searchable">:contains() Selector</span><span class="desc">选择所有包含指定文本的元素。</span></a></li>
+<li class="sub"><a href="docs/descendant-selector/index.html" title="jQueryDescendant Selector (&quot;ancestor descendant&quot;)"><span class="searchable">Descendant Selector ("ancestor descendant")</span><span class="desc">选择所有给定的祖先的后代元素。</span></a></li>
+<li class="sub"><a href="docs/disabled-selector/index.html" title="jQuery:disabled Selector"><span class="searchable">:disabled Selector</span><span class="desc">选择所有被禁用的元素。</span></a></li>
+<li class="sub"><a href="docs/element-selector/index.html" title="jQueryElement Selector (&quot;element&quot;)"><span class="searchable">Element Selector ("element")</span><span class="desc">选择所有给定标签名的元素。</span></a></li>
+<li class="sub"><a href="docs/empty-selector/index.html" title="jQuery:empty Selector"><span class="searchable">:empty Selector</span><span class="desc">选择所有没有子元素的元素（包括文本节点）。</span></a></li>
+<li class="sub"><a href="docs/enabled-selector/index.html" title="jQuery:enabled Selector"><span class="searchable">:enabled Selector</span><span class="desc">选择所有可用的元素。</span></a></li>
+<li class="sub"><a href="docs/eq-selector/index.html" title="jQuery:eq() Selector"><span class="searchable">:eq() Selector</span><span class="desc">选择一个给定索引值的元素。（从 0 开始计数）</span></a></li>
+<li class="sub"><a href="docs/even-selector/index.html" title="jQuery:even Selector"><span class="searchable">:even Selector</span><span class="desc">选择偶数元素，从 0 开始计数。同样查看奇数</span></a></li>
+<li class="sub"><a href="docs/file-selector/index.html" title="jQuery:file Selector"><span class="searchable">:file Selector</span><span class="desc">选择所有类型为文件的元素。</span></a></li>
+    <li class="sub"><a href="docs/focus-selector/index.html" title="jQuery:focus selector"><span class="searchable">:focus selector</span><span class="desc">选择当前获取焦点的元素。</span></a></li>
+<li class="sub"><a href="docs/first-child-selector/index.html" title="jQuery:first-child Selector"><span class="searchable">:first-child Selector</span><span class="desc">选择所有父级元素下的第一个子元素。</span></a></li>
+<li class="sub"><a href="docs/first-selector/index.html" title="jQuery:first Selector"><span class="searchable">:first Selector</span><span class="desc">选择第一个匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/gt-selector/index.html" title="jQuery:gt() Selector"><span class="searchable">:gt() Selector</span><span class="desc">选择所有大于给定索引值的元素</span></a></li>
+<li class="sub"><a href="docs/has-attribute-selector/index.html" title="jQueryHas Attribute Selector [name]"><span class="searchable">Has Attribute Selector [name]</span><span class="desc">选择所有具有指定属性的元素，该属性可以是任何值。 </span></a></li>
+<li class="sub"><a href="docs/has-selector/index.html" title="jQuery:has() Selector"><span class="searchable">:has() Selector</span><span class="desc">选择含有选择器所匹配的至少一个元素的元素。</span></a></li>
+<li class="sub"><a href="docs/header-selector/index.html" title="jQuery:header Selector"><span class="searchable">:header Selector</span><span class="desc">选择所有标题元素，像h1, h2, h3 等.</span></a></li>
+<li class="sub"><a href="docs/hidden-selector/index.html" title="jQuery:hidden Selector"><span class="searchable">:hidden Selector</span><span class="desc">选择所有隐藏的元素。</span></a></li>
+<li class="sub"><a href="docs/id-selector/index.html" title="jQueryID Selector (&quot;#id&quot;)"><span class="searchable">ID Selector ("#id")</span><span class="desc">选择一个具有给定id属性的单个元素。 </span></a></li>
+<li class="sub"><a href="docs/image-selector/index.html" title="jQuery:image Selector"><span class="searchable">:image Selector</span><span class="desc">选择所有图像类型的元素。</span></a></li>
+<li class="sub"><a href="docs/input-selector/index.html" title="jQuery:input Selector"><span class="searchable">:input Selector</span><span class="desc">选择所有 input, textarea, select 和 button 元素.</span></a></li>
+<li class="sub"><a href="docs/last-child-selector/index.html" title="jQuery:last-child Selector"><span class="searchable">:last-child Selector</span><span class="desc">选择所有父级元素下的最后一个子元素。</span></a></li>
+<li class="sub"><a href="docs/last-selector/index.html" title="jQuery:last Selector"><span class="searchable">:last Selector</span><span class="desc">选择最后一个匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/lt-selector/index.html" title="jQuery:lt() Selector"><span class="searchable">:lt() Selector</span><span class="desc">选择所有小于给定索引值的元素</span></a></li>
+<li class="sub"><a href="docs/multiple-attribute-selector/index.html" title="jQueryMultiple Attribute Selector [name=value][name2=value2]"><span class="searchable">Multiple Attribute Selector [name=value][name2=value2]</span><span class="desc">选择匹配所有指定的属性筛选器的元素</span></a></li>
+<li class="sub"><a href="docs/multiple-selector/index.html" title="jQueryMultiple Selector (&quot;selector1, selector2, selectorN&quot;)"><span class="searchable">Multiple Selector ("selector1, selector2, selectorN")</span><span class="desc">将每一个选择器匹配到的元素合并后一起返回。</span></a></li>
+<li class="sub"><a href="docs/next-adjacent-Selector/index.html" title="jQueryNext Adjacent Selector (&quot;prev + next&quot;)"><span class="searchable">Next Adjacent Selector ("prev + next")</span><span class="desc">选择所有紧接在 "prev" 元素后的 "next" 元素</span></a></li>
+<li class="sub"><a href="docs/next-siblings-selector/index.html" title="jQueryNext Siblings Selector (&quot;prev ~ siblings&quot;)"><span class="searchable">Next Siblings Selector ("prev ~ siblings")</span><span class="desc">匹配 "prev" 元素之后的所有 "siblings" 元素。</span></a></li>
+<li class="sub"><a href="docs/not-selector/index.html" title="jQuery:not() Selector"><span class="searchable">:not() Selector</span><span class="desc">选择所有去除不匹配给定的选择器的元素。</span></a></li>
+<li class="sub"><a href="docs/nth-child-selector/index.html" title="jQuery:nth-child() Selector"><span class="searchable">:nth-child() Selector</span><span class="desc">选择其父元素下的第N个子或奇偶元素。</span></a></li>
+<li class="sub"><a href="docs/odd-selector/index.html" title="jQuery:odd Selector"><span class="searchable">:odd Selector</span><span class="desc">选择奇数元素，从 0 开始计数。同样查看偶数</span></a></li>
+<li class="sub"><a href="docs/only-child-selector/index.html" title="jQuery:only-child Selector"><span class="searchable">:only-child Selector</span><span class="desc">选择所有其父元素下只有一个子元素的元素。</span></a></li>
+<li class="sub"><a href="docs/parent-selector/index.html" title="jQuery:parent Selector"><span class="searchable">:parent Selector</span><span class="desc">选择所有含有子元素或者文本的父级元素</span></a></li>
+<li class="sub"><a href="docs/password-selector/index.html" title="jQuery:password Selector"><span class="searchable">:password Selector</span><span class="desc">选择所有类型为密码的元素。</span></a></li>
+<li class="sub"><a href="docs/radio-selector/index.html" title="jQuery:radio Selector"><span class="searchable">:radio Selector</span><span class="desc">选择所有类型为单选框的元素。</span></a></li>
+<li class="sub"><a href="docs/reset-selector/index.html" title="jQuery:reset Selector"><span class="searchable">:reset Selector</span><span class="desc">选择所有类型为重置的元素。</span></a></li>
+<li class="sub"><a href="docs/selected-selector/index.html" title="jQuery:selected Selector"><span class="searchable">:selected Selector</span><span class="desc">选择所有被选中的元素。</span></a></li>
+<li class="sub"><a href="docs/submit-selector/index.html" title="jQuery:submit Selector"><span class="searchable">:submit Selector</span><span class="desc">选择所有类型为提交的元素。</span></a></li>
+<li class="sub"><a href="docs/text-selector/index.html" title="jQuery:text Selector"><span class="searchable">:text Selector</span><span class="desc">选择所有类型为文本的元素。</span></a></li>
+<li class="sub"><a href="docs/visible-selector/index.html" title="jQuery:visible Selector"><span class="searchable">:visible Selector</span><span class="desc">选择所有可见的元素。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>遍历（Traversing）</span>
+<ul>
+<li class="sub"><a href="docs/add/index.html" title="jQuery.add()"><span class="searchable">.add()</span><span class="desc">添加元素到匹配的元素集合。</span></a></li>
+<li class="sub"><a href="docs/andSelf/index.html" title="jQuery.andSelf()"><span class="searchable">.andSelf()</span><span class="desc">添加先前的堆栈元素集合到当前组合。</span></a></li>
+<li class="sub"><a href="docs/children/index.html" title="jQuery.children()"><span class="searchable">.children()</span><span class="desc">获得每个匹配元素集合元素的子元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/closest/index.html" title="jQuery.closest()"><span class="searchable">.closest()</span><span class="desc">从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素。</span></a></li>
+<li class="sub"><a href="docs/contents/index.html" title="jQuery.contents()"><span class="searchable">.contents()</span><span class="desc">获得每个匹配元素集合元素的子元素，包括文字和注释节点。</span></a></li>
+<li class="sub"><a href="docs/each/index.html" title="jQuery.each()"><span class="searchable">.each()</span><span class="desc">遍历一个jQuery对象，为每一个匹配元素执行一个函数。 </span></a></li>
+<li class="sub"><a href="docs/end/index.html" title="jQuery.end()"><span class="searchable">.end()</span><span class="desc">终止在当前链的最新过滤操作，并返回匹配的元素集合为它以前的状态。</span></a></li>
+<li class="sub"><a href="docs/eq/index.html" title="jQuery.eq()"><span class="searchable">.eq()</span><span class="desc">获取匹配集合中指定的元素</span></a></li>
+<li class="sub"><a href="docs/filter/index.html" title="jQuery.filter()"><span class="searchable">.filter()</span><span class="desc">筛选出与指定表达式匹配的元素集合。</span></a></li>
+<li class="sub"><a href="docs/find/index.html" title="jQuery.find()"><span class="searchable">.find()</span><span class="desc">获得当前元素匹配集合中每个元素的后代，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/first/index.html" title="jQuery.first()"><span class="searchable">.first()</span><span class="desc">获取元素集合中第一个元素。</span></a></li>
+<li class="sub"><a href="docs/has/index.html" title="jQuery.has()"><span class="searchable">.has()</span><span class="desc">保留包含特定后代的元素，去掉那些不含有指定后代的元素。</span></a></li>
+<li class="sub"><a href="docs/is/index.html" title="jQuery.is()"><span class="searchable">.is()</span><span class="desc">用一个选择器检查当前匹配的元素集合，如果这些元素至少选择一个匹配，返回true。</span></a></li>
+<li class="sub"><a href="docs/last/index.html" title="jQuery.last()"><span class="searchable">.last()</span><span class="desc">获取元素集合中最后一个元素。</span></a></li>
+<li class="sub"><a href="docs/map/index.html" title="jQuery.map()"><span class="searchable">.map()</span><span class="desc">通过一个函数匹配当前集合中的每个元素,产生一个包含的返回值的jQuery新对象。</span></a></li>
+<li class="sub"><a href="docs/next/index.html" title="jQuery.next()"><span class="searchable">.next()</span><span class="desc">取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。如果提供一个选择器，它检索下一个匹配选择器的兄弟元素。</span></a></li>
+<li class="sub"><a href="docs/nextAll/index.html" title="jQuery.nextAll()"><span class="searchable">.nextAll()</span><span class="desc">获得每个匹配元素集合中所有下面的同辈元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/nextUntil/index.html" title="jQuery.nextUntil()"><span class="searchable">.nextUntil()</span><span class="desc">获取每个当前元素之后所有的同辈元素，但不包括选择器匹配的元素。</span></a></li>
+<li class="sub"><a href="docs/not/index.html" title="jQuery.not()"><span class="searchable">.not()</span><span class="desc">删除匹配的元素集合中元素。</span></a></li>
+<li class="sub"><a href="docs/offsetParent/index.html" title="jQuery.offsetParent()"><span class="searchable">.offsetParent()</span><span class="desc">返回最近的被定过位的祖先元素。（祖先元素指该元素的上级元素，即包着它的外层元素）</span></a></li>
+<li class="sub"><a href="docs/parent/index.html" title="jQuery.parent()"><span class="searchable">.parent()</span><span class="desc">获得集合中每个匹配元素的父级元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/parents/index.html" title="jQuery.parents()"><span class="searchable">.parents()</span><span class="desc">获得集合中每个匹配元素的祖先元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/parentsUntil/index.html" title="jQuery.parentsUntil()"><span class="searchable">.parentsUntil()</span><span class="desc">查找当前元素的所有的前辈元素，直到遇到选择器匹配的元素为止，不包括那个匹配到的元素。</span></a></li>
+<li class="sub"><a href="docs/prev/index.html" title="jQuery.prev()"><span class="searchable">.prev()</span><span class="desc">取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合。选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/prevAll/index.html" title="jQuery.prevAll()"><span class="searchable">.prevAll()</span><span class="desc">获得集合中每个匹配元素的所有前面的兄弟元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/prevUntil/index.html" title="jQuery.prevUntil()"><span class="searchable">.prevUntil()</span><span class="desc">获取每个元素但不包括选择器匹配的元素的所有前面的兄弟元素。</span></a></li>
+<li class="sub"><a href="docs/siblings/index.html" title="jQuery.siblings()"><span class="searchable">.siblings()</span><span class="desc">获得匹配元素集合中每个元素的兄弟元素，选择性筛选的选择器。</span></a></li>
+<li class="sub"><a href="docs/slice/index.html" title="jQuery.slice()"><span class="searchable">.slice()</span><span class="desc">
+    减少匹配元素集合由索引范围到指定的一个子集。</span></a></li>
+</ul>
+</li>
+<li class="category"><span>工具（Utilities）</span>
+<ul>
+<li class="sub"><a href="docs/jQuery.boxModel/index.html" title="jQuery.boxModel"><span class="searchable">jQuery.boxModel</span><span class="desc">在jQuery 1.3中不建议使用。当前页面中浏览器是否使用标准盒模型渲染页面。 建议使用 jQuery.support.boxModel 代替。W3C CSS 盒模型。</span></a></li>
+<li class="sub"><a href="docs/jQuery.browser/index.html" title="jQuery.browser"><span class="searchable">jQuery.browser</span><span class="desc">我们不推荐使用这个属性，请尝试使用功能检测来代替（见jQuery.support）。用来获取useragent的包含标志，读取 navigator.userAgent。虽然jQuery.browser不会从jQuery的未来版本被删除，竭力推荐应采用jQuery.support和适当的特征检测。</span></a></li>
+<li class="sub"><a href="docs/clearQueue/index.html" title="jQuery.clearQueue()"><span class="searchable">.clearQueue()</span><span class="desc">从列队中移除所有未执行的项。</span></a></li>
+<li class="sub"><a href="docs/jQuery.contains/index.html" title="jQuery.contains()"><span class="searchable">jQuery.contains()</span><span class="desc">检查一个DOM节点是否在另一个的DOM节点内。</span></a></li>
+<li class="sub"><a href="docs/jQuery.data/index.html" title="jQuery.data()"><span class="searchable">jQuery.data()</span><span class="desc">在匹配远上绑定任意相关数据。</span></a></li>
+<li class="sub"><a href="docs/dequeue/index.html" title="jQuery.dequeue()"><span class="searchable">.dequeue()</span><span class="desc">在匹配的元素上执行队列中的下一个函数。</span></a></li>
+<li class="sub"><a href="docs/jQuery.dequeue/index.html" title="jQuery.dequeue()"><span class="searchable">jQuery.dequeue()</span><span class="desc">在匹配的元素上执行队列中的下一个函数。</span></a></li>
+<li class="sub"><a href="docs/jQuery.each/index.html" title="jQuery.each()"><span class="searchable">jQuery.each()</span><span class="desc">一个通用的迭代函数，它可以用来无缝迭代对象和数组。数组和类似数组的对象通过一个长度属性（如一个函数的参数对象）来迭代数字索引，从0到length - 1。其他对象迭代通过其命名属性。</span></a></li>
+<li class="sub"><a href="docs/jQuery.extend/index.html" title="jQuery.extend()"><span class="searchable">jQuery.extend()</span><span class="desc">合并两个或更多的对象的内容汇集成到第一个对象。</span></a></li>
+<li class="sub"><a href="docs/jQuery.globalEval/index.html" title="jQuery.globalEval()"><span class="searchable">jQuery.globalEval()</span><span class="desc">在全局范围下执行一些JavaScript代码。</span></a></li>
+<li class="sub"><a href="docs/jQuery.grep/index.html" title="jQuery.grep()"><span class="searchable">jQuery.grep()</span><span class="desc">查找满足过滤功能数组元素。原始数组不受影响。</span></a></li>
+<li class="sub"><a href="docs/jQuery.inArray/index.html" title="jQuery.inArray()"><span class="searchable">jQuery.inArray()</span><span class="desc">搜索数组中指定值并返回它的索引（如果没有找到则返回-1）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.isArray/index.html" title="jQuery.isArray()"><span class="searchable">jQuery.isArray()</span><span class="desc">确定的参数是否为一个数组。</span></a></li>
+<li class="sub"><a href="docs/jQuery.isEmptyObject/index.html" title="jQuery.isEmptyObject()"><span class="searchable">jQuery.isEmptyObject()</span><span class="desc">检查对象是否为空（不包含任何属性）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.isFunction/index.html" title="jQuery.isFunction()"><span class="searchable">jQuery.isFunction()</span><span class="desc">确定的参数是否为一个Javascript function对象。</span></a></li>
+<li class="sub"><a href="docs/jQuery.isPlainObject/index.html" title="jQuery.isPlainObject()"><span class="searchable">jQuery.isPlainObject()</span><span class="desc">测试对象是否是纯粹的对象（通过 "{}" 或者 "new Object" 创建的）</span></a></li>
+<li class="sub"><a href="docs/jQuery.isWindow/index.html" title="jQuery.isWindow()"><span class="searchable">jQuery.isWindow()</span><span class="desc">确定参数是否为一个窗口（window对象）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.isXMLDoc/index.html" title="jQuery.isXMLDoc()"><span class="searchable">jQuery.isXMLDoc()</span><span class="desc">检查一个DOM节点是否在XML文档中（或者是一个XML文档）。</span></a></li>
+<li class="sub"><a href="docs/jQuery.makeArray/index.html" title="jQuery.makeArray()"><span class="searchable">jQuery.makeArray()</span><span class="desc">转换一个类似数组的对象成为真正的JavaScript数组。</span></a></li>
+<li class="sub"><a href="docs/jQuery.map/index.html" title="jQuery.map()"><span class="searchable">jQuery.map()</span><span class="desc">将一个数组中的所有元素转换到另一个数组中。</span></a></li>
+<li class="sub"><a href="docs/jQuery.merge/index.html" title="jQuery.merge()"><span class="searchable">jQuery.merge()</span><span class="desc">合并两个数组内容到第一个数组。 </span></a></li>
+<li class="sub"><a href="docs/jQuery.noop/index.html" title="jQuery.noop()"><span class="searchable">jQuery.noop()</span><span class="desc">一个空函数。</span></a></li>
+<li class="sub"><a href="docs/jQuery.parseJSON/index.html" title="jQuery.parseJSON"><span class="searchable">jQuery.parseJSON</span><span class="desc">接受一个标准格式的 JSON 字符串，并返回解析后的 JavaScript 对象。</span></a></li>
+    <li class="sub"><a href="docs/jQuery.parseXML/index.html" title="jQuery.parseXML()"><span class="searchable">jQuery.parseXML()</span><span class="desc">解析一个字符串到一个XML文件。</span></a></li>
+<li class="sub"><a href="docs/jQuery.proxy/index.html" title="jQuery.proxy()"><span class="searchable">jQuery.proxy()</span><span class="desc">接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文语境。</span></a></li>
+<li class="sub"><a href="docs/queue/index.html" title="jQuery.queue()"><span class="searchable">.queue()</span><span class="desc">显示在匹配的元素上的已经执行的函数列队。</span></a></li>
+<li class="sub"><a href="docs/jQuery.queue/index.html" title="jQuery.queue()"><span class="searchable">jQuery.queue()</span><span class="desc">显示在匹配的元素上的已经执行的函数列队。</span></a></li>
+<li class="sub"><a href="docs/jQuery.removeData/index.html" title="jQuery.removeData()"><span class="searchable">jQuery.removeData()</span><span class="desc">在元素上移除绑定的数据</span></a></li>
+<li class="sub"><a href="docs/jQuery.support/index.html" title="jQuery.support"><span class="searchable">jQuery.support</span><span class="desc">一组属性，它们代表了不同的浏览器功能或缺陷的存在的集合。</span></a></li>
+<li class="sub"><a href="docs/jQuery.trim/index.html" title="jQuery.trim()"><span class="searchable">jQuery.trim()</span><span class="desc">去掉字符串起始和结尾的空格。</span></a></li>
+<li class="sub"><a href="docs/jQuery.type/index.html" title="jQuery.type()"><span class="searchable">jQuery.type()</span><span class="desc">确定JavaScript 对象的类型。</span></a></li>
+<li class="sub"><a href="docs/jQuery.unique/index.html" title="jQuery.unique()"><span class="searchable">jQuery.unique()</span><span class="desc">删除数组中重复元素。只处理删除DOM元素数组，而不能处理字符串或者数字数组。</span></a></li>
+</ul>
+</li>
+  
+</ul>
+
+
+</div><!--  .nav -->
+    
+    <div id="content">
+      <div class="entry-title">
+        <h1>jQuery 1.6 API 中文版</h1></div>
+      <div class="entry" > 
+</div>
+<div id="content-box">
+         
+        <table id="jquery_api_map">
+  <tbody>
+
+    <tr>
+<td class="col_5"><div class="cat selectors">
+<h2>Selectors</h2>
+<div class="subcat compact">
+<h3>Basics</h3>
+<div class="apiobj"><a href="#p=id-selector">#id</a>
+  <div class="description" style="display: none; ">Selects a single element with the given id attribute.</div>
+
+</div>
+<div class="apiobj"><a href="#p=element-selector">element</a>
+  <div class="description" style="display: none; ">Selects all elements with the given tag name.</div>
+</div>
+<div class="apiobj"><a href="#p=class-selector">.class</a>, <a href="#p=class-selector">.class.class</a>
+  <div class="description" style="top: 281px; left: 57px; display: none; ">Selects all elements with the given class.</div>
+
+</div>
+<div class="apiobj"><a href="#p=all-selector">*</a>
+  <div class="description" style="display: none; ">Selects all elements.</div>
+</div>
+<div class="apiobj"><a href="#p=multiple-selector">selector1, selector2</a>
+  <div class="description" style="top: 213px; left: 152px; display: none; ">Selects the combined results of all the specified selectors.</div>
+</div>
+
+</div>
+<div class="subcat compact">
+<h3>Hierarchy</h3>
+<div class="apiobj"><a href="#p=descendant-selector">ancestor descendant</a>
+  <div class="description" style="display: none; ">Selects all elements that are descendants of a given ancestor.</div>
+</div>
+<div class="apiobj"><a href="#p=child-selector">parent &gt; child</a>
+
+  <div class="description" style="top: 293px; left: 80px; display: none; ">Selects all direct child elements specified by "child" of elements specified by "parent".</div>
+</div>
+<div class="apiobj"><a href="#p=next-adjacent-selector">prev + next</a>
+  <div class="description" style="top: 299px; left: 93px; display: none; ">Selects all next elements matching "next" that are immediately preceded by a sibling "prev".</div>
+</div>
+<div class="apiobj"><a href="#p=next-siblings-selector">prev ~ siblings</a>
+  <div class="description" style="top: 408px; left: 624px; display: none; ">Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector.</div>
+
+</div>
+</div>
+<div class="clear"></div>
+<div class="subcat compact">
+<h3>Basic Filters</h3>
+<div class="apiobj"><a href="#p=first-selector">:first</a>
+  <div class="description" style="display: none; ">Selects the first matched element.</div>
+
+</div>
+<div class="apiobj"><a href="#p=last-selector">:last</a>
+  <div class="description" style="display: none; ">Selects the last matched element.</div>
+</div>
+<div class="apiobj"><a href="#p=not-selector">:not(selector)</a>
+  <div class="description" style="display: none; top: 610px; left: 489px; ">Selects all elements that do not match the given selector.</div>
+</div>
+
+<div class="apiobj"><a href="#p=even-selector">:even</a>
+  <div class="description" style="display: none; ">Selects even elements, zero-indexed.</div>
+</div>
+<div class="apiobj"><a href="#p=odd-selector">:odd</a>
+  <div class="description" style="display: none; ">Selects odd elements, zero-indexed.</div>
+</div>
+<div class="apiobj"><a href="#p=eq-selector">:eq(index)</a>
+
+  <div class="description" style="display: none; ">Select the element at index n within the matched set.</div>
+</div>
+<div class="apiobj"><a href="#p=gt-selector">:gt(index)</a>
+  <div class="description" style="display: none; ">Select all elements at an index greater than index within the matched set.</div>
+</div>
+<div class="apiobj"><a href="#p=lt-selector">:lt(index)</a>
+  <div class="description" style="display: none; ">Select all elements at an index less than index within the matched set.</div>
+
+</div>
+<div class="apiobj"><a href="#p=header-selector">:header</a>
+  <div class="description" style="display: none; ">Selects all elements that are headers, like h1, h2, h3 and so on.</div>
+</div>
+<div class="apiobj"><a href="#p=animated-selector">:animated</a>
+  <div class="description" style="display: none; ">Select all elements that are in the progress of an animation at the time the selector is run.</div>
+</div>
+
+<div class="apiobj"><a href="#p=focus-selector">:focus</a><span class="p1_4">1.6+</span>
+  <div class="description" style="display: none; ">Selects element if it is currently focused.</div>
+</div>
+</div>
+<div class="subcat compact">
+<h3>Content Filters</h3>
+<div class="apiobj"><a href="#p=contains-selector">:contains(text)</a>
+
+  <div class="description" style="display: none; ">Select all elements that contain the specified text.</div>
+</div>
+<div class="apiobj"><a href="#p=empty-selector">:empty</a>
+  <div class="description" style="display: none; ">Select all elements that have no children (including text nodes).</div>
+</div>
+<div class="apiobj"><a href="#p=has-selector">:has(selector)</a>
+  <div class="description" style="display: none; ">Selects elements which contain at least one element that matches the specified selector.</div>
+
+</div>
+<div class="apiobj"><a href="#p=parent-selector">:parent</a>
+  <div class="description" style="display: none; ">Select all elements that are the parent of another element, including text nodes.</div>
+</div>
+</div>
+<div class="subcat compact">
+<h3>Visibility Filters</h3>
+
+<div class="apiobj"><a href="#p=hidden-selector">:hidden</a>
+  <div class="description" style="display: none; ">Selects all elements that are hidden.</div>
+</div>
+<div class="apiobj"><a href="#p=visible-selector">:visible</a>
+  <div class="description" style="display: none; ">Selects all elements that are visible.</div>
+</div>
+</div>
+
+<div class="clear"></div>
+<div class="subcat compact">
+<h3>Child Filters</h3>
+<div class="apiobj"><a href="#p=nth-child-selector">:nth-child(expr)</a>
+  <div class="description" style="display: none; ">Selects all elements that are the nth-child of their parent.</div>
+</div>
+<div class="apiobj"><a href="#p=first-child-selector">:first-child</a>
+
+  <div class="description" style="display: none; ">Selects all elements that are the first child of their parent.</div>
+</div>
+<div class="apiobj"><a href="#p=last-child-selector">:last-child</a>
+  <div class="description" style="display: none; ">Selects all elements that are the last child of their parent.</div>
+</div>
+<div class="apiobj"><a href="#p=only-child-selector">:only-child</a>
+  <div class="description" style="display: none; ">Selects all elements that are the only child of their parent.</div>
+
+</div>
+</div>
+<div class="subcat compact">
+<h3>Attribute Filters</h3>
+<div class="apiobj"><a href="#p=has-attribute-selector">[attribute]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute, with any value.</div>
+</div>
+
+<div class="apiobj"><a href="#p=attribute-equals-selector">[attribute=value]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value exactly equal to a certain value.</div>
+</div>
+<div class="apiobj"><a href="#p=attribute-not-equal-selector">[attribute!=value]</a>
+  <div class="description" style="display: none; ">Select elements that either don't have the specified attribute, or do have the specified attribute but not with a certain value.</div>
+</div>
+<div class="apiobj"><a href="#p=attribute-starts-with-selector">[attribute^=value]</a>
+
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value beginning exactly with a given string.</div>
+</div>
+<div class="apiobj"><a href="#p=attribute-ends-with-selector">[attribute$=value]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value ending exactly with a given string.</div>
+</div>
+<div class="apiobj"><a href="#p=attribute-contains-selector">[attribute*=value]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value containing the a given substring.</div>
+
+</div>
+<div class="apiobj"><a href="#p=attribute-contains-prefix-selector">[attribute|=value]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value either equal to a given string or starting with that string followed by a hyphen (-).</div>
+</div>
+<div class="apiobj"><a href="#p=attribute-contains-word-selector">[attribute~=value]</a>
+  <div class="description" style="display: none; ">Selects elements that have the specified attribute with a value containing a given word, delimited by spaces.</div>
+</div>
+
+<div class="apiobj"><a href="#p=multiple-attribute-selector">[attribute][attribute2]</a>
+  <div class="description" style="display: none; ">Matches elements that match all of the specified attribute filters.</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="subcat compact">
+<h3>Forms</h3>
+
+<div class="apiobj"><a href="#p=input-selector">:input</a>
+  <div class="description" style="display: none; ">Selects all input, textarea, select and button elements.</div>
+</div>
+<div class="apiobj"><a href="#p=text-selector">:text</a>
+  <div class="description" style="display: none; ">Selects all elements of type text.</div>
+</div>
+<div class="apiobj"><a href="#p=password-selector">:password</a>
+
+  <div class="description" style="display: none; ">Selects all elements of type password</div>
+</div>
+<div class="apiobj"><a href="#p=radio-selector">:radio</a>
+  <div class="description" style="display: none; ">Selects all elements of type radio.</div>
+</div>
+<div class="apiobj"><a href="#p=checkbox-selector">:checkbox</a>
+  <div class="description" style="display: none; ">Selects all elements of type checkbox.</div>
+
+</div>
+<div class="apiobj"><a href="#p=submit-selector">:submit</a>
+  <div class="description" style="display: none; ">Selects all elements of type submit.</div>
+</div>
+<div class="apiobj"><a href="#p=image-selector">:image</a>
+  <div class="description" style="display: none; ">Selects all elements of type image.</div>
+</div>
+
+<div class="apiobj"><a href="#p=reset-selector">:reset</a>
+  <div class="description" style="display: none; ">Selects all elements of type reset.</div>
+</div>
+<div class="apiobj"><a href="#p=button-selector">:button</a>
+  <div class="description" style="display: none; ">Selects all button elements and elements of type button.</div>
+</div>
+<div class="apiobj"><a href="#p=file-selector">:file</a>
+
+  <div class="description" style="display: none; ">Selects all elements of type file.</div>
+</div>
+</div>
+<div class="subcat compact">
+<h3>Form Filters</h3>
+<div class="apiobj"><a href="#p=enabled-selector">:enabled</a>
+  <div class="description" style="display: none; ">Selects all elements that are enabled</div>
+
+</div>
+<div class="apiobj"><a href="#p=disabled-selector">:disabled</a>
+  <div class="description" style="display: none; ">Selects all elements that are disabled.</div>
+</div>
+<div class="apiobj"><a href="#p=checked-selector">:checked</a>
+  <div class="description" style="display: none; ">Matches all elements that are checked.</div>
+</div>
+
+<div class="apiobj"><a href="#p=selected-selector">:selected</a>
+  <div class="description" style="display: none; ">Selects all elements that are selected.</div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="cat core">
+<h2>Core</h2>
+
+<div class="subcat">
+<h3>jQuery function</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=jQuery">jQuery</a><span class="attributes">( selector <span class="opt">[, context]</span>&nbsp;)</span>, .<a href="#p=jQuery">jQuery</a><span class="attributes">( element&nbsp;)</span>, .<a href="#p=jQuery">jQuery</a><span class="attributes">( elementArray&nbsp;)</span>, .<a href="#p=jQuery">jQuery</a><span class="attributes">( jQueryObject&nbsp;)</span>, .<a href="#p=jQuery">jQuery</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Accepts a string containing a CSS selector which is then used to match a set of elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=jQuery/.m-jquery2">jQuery</a><span class="attributes">( html <span class="opt">[, ownerDocument]</span>&nbsp;)</span>, .<a href="#p=jQuery/.m-jquery2">jQuery</a><span class="attributes">( html, props&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Creates DOM elements on the fly from the provided string of raw HTML.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=jQuery/.m-jquery3">jQuery</a><span class="attributes">( fn&nbsp;)</span>
+  <div class="description" style="display: none; ">Binds a function to be executed when the DOM has finished loading.</div>
+</div>
+
+<div class="apiobj"><span class="type">def</span>.<a href="#p=jQuery.when">when</a><span class="attributes">(deferreds)</span>
+  <div class="description" style="display: none; ">Provides a way to execute callback functions based on one or more objects, usually Deferred objects that represent asynchronous events.</div>
+</div>
+<div class="apiobj"><span class="type">fn</span><a href="#p=jQuery.sub">jQuery.sub</a><span class="attributes">( )</span>
+  <div class="description" style="display: none; ">Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=jQuery.holdReady">holdReady</a><span class="attributes">( hold )
+  <div class="description" style="display: none; ">Indicates whether the ready hold is being requested or released</div>
+  </span></div>
+</div>
+<div class="subcat">
+<h3>jQuery Object Accessors</h3>
+
+<div class="apiobj"><span class="type">$</span><a href="#p=each">.each</a><span class="attributes">( fn(index, element)&nbsp;)</span>
+  <div class="description" style="display: none; ">Iterate over a jQuery object, executing a function for each matched element.</div>
+</div>
+<div class="apiobj_wd"><span class="type">num</span><span class="apiobj_d">.<a href="#p=size">size</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Return the number of DOM elements matched by the jQuery object.</div>
+  , <span class="apiobj_d">.<a href="#p=length">length</a>
+  <div class="description" style="display: none; ">The number of elements in the jQuery object.</div>
+  </span></span></div>
+<div class="apiobj"><span class="type">str</span>.<a href="#p=selector">selector</a>
+
+  <div class="description" style="display: none; ">A selector representing selector originally passed to jQuery().</div>
+</div>
+<div class="apiobj"><span class="type">el</span>.<a href="#p=context">context</a>
+  <div class="description" style="display: none; ">The DOM node context originally passed to jQuery(); if none was passed then context will likely be the document.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=eq">eq</a><span class="attributes">( index&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Reduce the set of matched elements to the one at the specified index.</div>
+</div>
+<div class="apiobj"><span class="type"></span><a href="#p=jQuery.error">jQuery.error</a><span class="attributes">( str&nbsp;)</span>
+  <div class="description" style="display: none; ">Takes a string and throws an exception containing it.</div>
+</div>
+<div class="apiobj"><span class="type">[el],el</span>.<a href="#p=get">get</a><span class="attributes">( [index]&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Retrieve the DOM elements matched by the jQuery object.</div>
+</div>
+<div class="apiobj"><span class="type">num</span>.<a href="#p=index">index</a><span class="attributes">(&nbsp;)</span><span ,="" .<a="" href="#p=index">index<span class="attributes">( selector&nbsp;)</span><span ,="" .<a="" href="#p=index">index<span class="attributes">( element&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Search for a given element from among the matched elements.</div>
+  </span></span></div>
+<div class="apiobj"><span class="type">$</span><a href="#p=jQuery.pushStack">jQuery.pushStack</a><span class="attributes">( elements, [name, arguments]&nbsp;)</span>
+  <div class="description" style="display: none; ">Add a collection of DOM elements onto the jQuery stack.</div>
+</div>
+<div class="apiobj"><span class="type">arr</span>.<a href="#p=toArray">toArray</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Retrieve all the DOM elements contained in the jQuery set, as an array.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Interoperability</h3>
+<div class="apiobj"><span class="type">$</span><a href="#p=jQuery.noConflic">jQuery.noConflict</a><span class="attributes">( <span class="opt">[extreme]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Relinquish jQuery's control of the $ variable.</div>
+</div>
+</div>
+</div>
+<div class="legend_holder"> 
+<!--
+            <h2 class="legend">Legend</h2>
+            <div class="legend">
+                <h3>Conventional signs</h3>
+                <div class="legend_item">[obj] — array of objects</div>
+                <div class="legend_item"><span class="p1_4">1.5+</span> — new in 1.5</div>
+                <div class="legend_item"><span class="c1_4">1.5&lowast;</span> — changed in 1.5</div>
+            </div>
+            <div class="legend">
+                <h3>Data types</h3>
+                <div class="legend_item">* — anything</div>
+                <div class="legend_item">$ — jQuery object</div>
+                <div class="legend_item">arr — array</div>
+                <div class="legend_item">bool — boolean</div>
+                <div class="legend_item">el — DOM element</div>
+                <div class="legend_item">fn — function</div>
+                <div class="legend_item">int — integer</div>
+                <div class="legend_item">obj — object</div>
+                <div class="legend_item">str — string</div>
+                <div class="legend_item">map — string or array or object</div>
+                <div class="legend_item">jqXHR — extended XMLHttpRequest</div>
+            </div>-->
+
+</div></td>
+<td class="col_1"><div class="cat attributes">
+<h2>Attributes</h2>
+<div class="subcat">
+<h3>Attributes</h3>
+
+<div class="apiobj"><span class="type">str</span>.<a href="#p=attr">attr</a><span class="attributes">( name&nbsp;)&nbsp;| (name&nbsp;, value&nbsp;)&nbsp;)</span><span class="p1_4">1.6*</span>
+  <div class="description" style="display: none; ">Get the value of an attribute for the first element in the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=attr/#attr2">attr</a><span class="attributes">( name, val&nbsp;)</span>, .<a href="#p=attr/#attr2">attr</a><span class="attributes">( map&nbsp;)</span>, .<a href="#p=attr/#attr2">attr</a><span class="attributes">( name, fn(index, attr)&nbsp;)</span>
+  <div class="description" style="display: none; ">Set one or more attributes for the set of matched elements.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=removeAttr">removeAttr</a><span class="attributes">( name&nbsp;)</span>
+  <div class="description" style="display: none; ">Remove an attribute from each element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prop">prop</a><span class="attributes">( name&nbsp;)</span><span class="p1_4">1.6+</span>
+
+  <div class="description" style="display: none; ">Get the value of a property for the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=removeProp">removeProp</a><span class="attributes">( name&nbsp;)</span><span class="p1_4">1.6+</span>
+  <div class="description" style="display: none; ">Remove a property for the set of matched elements.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Class</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=addClass">addClass</a><span class="attributes">( class&nbsp;)</span>, .<a href="#p=addClass">addClass</a><span class="attributes">( fn<span class="attributes">(index, class)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Adds the specified class(es) to each of the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span>.<a href="#p=hasClass">hasClass</a><span class="attributes">( class&nbsp;)</span>
+  <div class="description" style="display: none; ">Determine whether any of the matched elements are assigned the given class.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=removeClass">removeClass</a><span class="attributes">( <span class="opt">[class]</span>&nbsp;)</span>, .<a href="#p=removeClass">removeClass</a><span class="attributes">( fn<span class="attributes">(index, class)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Remove one or all classes from each element in the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=toggleClass">toggleClass</a><span class="attributes">( class <span class="opt">[, switch]</span>&nbsp;)</span>, .<a href="#p=toggleClass">toggleClass</a><span class="attributes">( fn<span class="attributes">(index, class)</span> <span class="opt">[, switch]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Add or remove a class from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.</div>
+
+</div>
+</div>
+<div class="subcat">
+<h3>HTML, text</h3>
+<div class="apiobj"><span class="type">str</span>.<a href="#p=html">html</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the HTML contents of the first element in the set of matched elements.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=html/#html2">html</a><span class="attributes">( val&nbsp;)</span>, .<a href="#p=html/#html2">html</a><span class="attributes">( fn(index, html)&nbsp;)</span>
+  <div class="description" style="display: none; ">Set the HTML contents of each element in the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">str</span>.<a href="#p=text">text</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the combined text contents of each element in the set of matched elements, including their descendants.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=text/#text2">text</a><span class="attributes">( val&nbsp;)</span>, .<a href="#p=text/#text2">text</a><span class="attributes">( fn(index, html)&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set the content of each element in the set of matched elements to the specified text.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Value</h3>
+<div class="apiobj"><span class="type">str,arr</span>.<a href="#p=val">val</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the current value of the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=val/#val2">val</a><span class="attributes">( val&nbsp;)</span>, .<a href="#p=val/#val2">val</a><span class="attributes">( fn()&nbsp;)</span>
+  <div class="description" style="display: none; ">Set the value of each element in the set of matched elements.</div>
+
+</div>
+</div>
+</div>
+<div class="cat css">
+<h2>CSS</h2>
+<div class="subcat">
+<h3>CSS</h3>
+<div class="apiobj"><span class="type">str</span>.<a href="#p=css">css</a><span class="attributes">( name&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the value of a style property for the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=css/#css2">css</a><span class="attributes">( name, val&nbsp;)</span>, .<a href="#p=css/#css2">css</a><span class="attributes">( map&nbsp;)</span>, .<a href="#p=css/#css2">css</a><span class="attributes">( name, fn(index, val)&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set one or more CSS properties for the set of matched elements.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Positioning</h3>
+<div class="apiobj"><span class="type">obj</span>.<a href="#p=offset">offset</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the current coordinates of the first element in the set of matched elements, relative to the document.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=offset/#offset2">offset</a><span class="attributes">( coord&nbsp;)</span>, .<a href="#p=offset/#offset2">offset</a><span class="attributes">( fn<span class="attributes">( index, coord&nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set the current coordinates of every element in the set of matched elements, relative to the document.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=offsetParent">offsetParent</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the closest ancestor element that is positioned.</div>
+</div>
+
+<div class="apiobj"><span class="type">obj</span>.<a href="#p=position">position</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.</div>
+</div>
+<div class="apiobj"><span class="type">int</span>.<a href="#p=scrollTop">scrollTop</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the current vertical position of the scroll bar for the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=scrollTop/#scrollTop2">scrollTop</a><span class="attributes">( val&nbsp;)</span>
+  <div class="description" style="display: none; ">Set the current vertical position of the scroll bar for each of the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">int</span>.<a href="#p=scrollLeft">scrollLeft</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current horizontal position of the scroll bar for the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=scrollLeft/#scrollLeft2">scrollLeft</a><span class="attributes">( val&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set the current horizontal position of the scroll bar for each of the set of matched elements.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Height and Width</h3>
+<div class="apiobj"><span class="type">int</span>.<a href="#p=height">height</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the current computed height for the first element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=height/#height2">height</a><span class="attributes">( val&nbsp;)</span>, .<a href="#p=height/#height2">height</a><span class="attributes">( fn<span class="attributes">(index, height&nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set the CSS height of every matched element.</div>
+</div>
+<div class="apiobj"><span class="type">int</span>.<a href="#p=width">width</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current computed width for the first element in the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=width/#width2">width</a><span class="attributes">( val&nbsp;), .<a href="#p=width/#width2">width</a>(<span class="attributes">( fn<span class="attributes">(index, height&nbsp;)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Set the CSS width of each element in the set of matched elements.</div>
+  </span></div>
+
+<div class="apiobj"><span class="type">int</span>.<a href="#p=innerHeight">innerHeight</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current computed height for the first element in the set of matched elements, including padding but not border.</div>
+</div>
+<div class="apiobj"><span class="type">int</span>.<a href="#p=innerWidth">innerWidth</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the current computed width for the first element in the set of matched elements, including padding but not border.</div>
+</div>
+<div class="apiobj"><span class="type">int</span>.<a href="#p=outerHeight">outerHeight</a><span class="attributes">( <span class="opt">[margin]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current computed height for the first element in the set of matched elements, including padding and border.</div>
+</div>
+
+<div class="apiobj"><span class="type">int</span>.<a href="#p=outerWidth">outerWidth</a><span class="attributes">( <span class="opt">[margin]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the current computed width for the first element in the set of matched elements, including padding and border.</div>
+</div>
+</div>
+</div>
+
+<div class="cat deferred">
+<h2>Deferred</h2>
+<div class="apiobj_wd"> <span>deferred object</span> = {
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.done">done</a><span class="attributes">(doneCallbacks)</span>
+  <div class="description" style="display: none; ">Add handlers to be called when the Deferred object is resolved. </div>
+
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.fail">fail</a><span class="attributes">(failCallbacks)</span>
+  <div class="description" style="display: none; ">A function, or array of functions, that are called when the Deferred is rejected. </div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=deferred.isRejected">isRejected</a><span class="attributes">()</span>
+
+  <div class="description" style="display: none; ">Determine whether a Deferred object has been rejected.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=deferred.isResolved">isResolved</a><span class="attributes">()</span>
+  <div class="description" style="display: none; ">Determine whether a Deferred object has been resolved.</div>
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.reject">reject</a><span class="attributes">([args])</span>
+
+  <div class="description" style="display: none; ">Reject a Deferred object and call any failCallbacks with the given args.</div>
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.rejectWith">rejectWith</a><span class="attributes">(context, [args])</span>
+  <div class="description" style="display: none; ">Reject a Deferred object and call any failCallbacks with the given context and args.</div>
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.resolve">resolve</a><span class="attributes">([args])</span>
+
+  <div class="description" style="display: none; ">Resolve a Deferred object and call any doneCallbacks with the given args.</div>
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.resolveWith">resolveWith</a><span class="attributes">(context, [args])</span>
+  <div class="description" style="display: none; ">Resolve a Deferred object and call any doneCallbacks with the given context and args.</div>
+</div>
+<div class="apiobj"><span class="type">def</span><a href="#p=deferred.then">then</a><span class="attributes">(doneCallbacks, failCallbacks)</span>
+
+  <div class="description" style="display: none; ">Add handlers to be called when the Deferred object is resolved or rejected. </div>
+</div>
+} </div>
+<div class="subcat">
+<div class="apiobj"><span class="type">def</span>.<a href="#p=promise">promise</a><span class="attributes">(deferreds)</span><span class="p1_4">1.6+</span>
+
+  <div class="description" style="display: none; ">Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.</div>
+</div>
+<div class="apiobj"><span class="type">def</span>.<a href="#p=deferred.pipe">pipe</a><span class="attributes">(deferreds)</span><span class="p1_4">1.6+</span>
+  <div class="description" style="display: none; ">Utility method to filter and/or chain Deferreds.</div>
+</div>
+
+<div class="apiobj"><span class="type">def</span>.<a href="#p=deferred.always">always</a><span class="attributes">(deferreds)</span><span class="p1_4">1.6+</span>
+  <div class="description" style="display: none; ">Add handlers to be called when the Deferred object is either resolved or rejected.</div>
+</div>
+</div>
+</div></td>
+<td class="col_2"><div class="cat traversing">
+
+<h2>Traversing</h2>
+<div class="subcat">
+<h3>Filtering</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=eq">eq</a><span class="attributes">( index&nbsp;)</span>
+  <div class="description" style="display: none; ">Reduce the set of matched elements to the one at the specified index.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=first">first</a><span class="attributes">( )</span>
+  <div class="description" style="display: none; ">Reduce the set of matched elements to the first in the set.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=last">last</a><span class="attributes">( )</span>
+
+  <div class="description" style="display: none; ">Reduce the set of matched elements to the final one in the set.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=has">has</a><span class="attributes">( selector&nbsp;)</span>, .<a href="#p=has">has</a><span class="attributes">( element&nbsp;)</span>
+  <div class="description" style="display: none; ">Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=filter">filter</a><span class="attributes">( selector&nbsp;)</span>, .<a href="#p=filter">filter</a><span class="attributes">( fn(index)&nbsp;)</span>
+  <div class="description" style="display: none; ">Reduce the set of matched elements to those that match the selector or pass the function's test.</div>
+</div>
+
+<div class="apiobj"><span class="type">bool</span>.<a href="#p=is">is</a><span class="attributes">( selector&nbsp;| function(index)&nbsp;| jQuery&nbsp;object&nbsp;| element&nbsp;)</span><span class="p1_4">1.6*</span>
+  <div class="description" style="display: none; ">Check the current matched set of elements against a selector and return true if at least one of these elements matches the selector.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=map">map</a><span class="attributes">( fn(index, element)&nbsp;)</span>
+  <div class="description" style="display: none; ">Pass each element in the current matched set through a function, producing a new jQuery object containing the return values..</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=not">not</a><span class="attributes">( selector&nbsp;)</span>, .<a href="#p=not">not</a><span class="attributes">( elements&nbsp;)</span>, .<a href="#p=not">not</a><span class="attributes">( fn<span class="attributes">( index&nbsp;)</span>&nbsp;)
+  <div class="description" style="display: none; ">Remove elements from the set of matched elements.</div>
+
+  </span></div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=slice">slice</a><span class="attributes">( start <span class="opt">[, end]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Reduce the set of matched elements to a subset specified by a range of indices.</div>
+</div>
+</div>
+
+<div class="subcat">
+<h3>Tree traversal</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=children">children</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the children of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=closest">closest</a><span class="attributes">( selector <span class="opt">[, context]</span>&nbsp;| jQuery object | element )</span><span class="p1_4">1.6*</span>
+  <div class="description" style="display: none; ">Get the first element that matches the selector, beginning at the current element and progressing up through the DOM tree.</div>
+</div>
+<div class="apiobj"><span class="type">arr</span>.<a href="#p=closest">closest</a><span class="attributes">( selectors <span class="opt">[, context]</span>&nbsp;)</span>
+
+  <div class="description" style="top: 402px; left: 900px; display: none; ">Gets an array of all the elements and selectors matched against the current element up through the DOM tree.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=find">find</a><span class="attributes">( selector&nbsp;| jQuery&nbsp;object&nbsp;| element&nbsp;)</span><span class="p1_4">1.6*</span>
+  <div class="description" style="display: none; ">Get the descendants of each element in the current set of matched elements, filtered by a selector.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=next">next</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the immediately following sibling of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=nextAll">nextAll</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=nextUntil">nextUntil</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get all following siblings of each element up to but not including the element matched by the selector.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=offsetParent">offsetParent</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get all following siblings of each element up to but not including the element matched by the selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=parent">parent</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the parent of each element in the current set of matched elements, optionally filtered by a selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=parents">parents</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=parentsUntil">parentsUntil</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prev">prev</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the immediately preceding sibling of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prevAll">prevAll</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prevUntil">prevUntil</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Get all preceding siblings of each element up to but not including the element matched by the selector.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=siblings">siblings</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Get the siblings of each element in the set of matched elements, optionally filtered by a selector.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Miscellaneous</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=add">add</a><span class="attributes">( selector <span class="opt">[, context]</span>&nbsp;)</span>, .<a href="#p=add">add</a><span class="attributes">( elements&nbsp;)</span>, .<a href="#p=add">add</a><span class="attributes">( html&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Add elements to the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=andSelf">andSelf</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Add the previous set of elements on the stack to the current set.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=contents">contents</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Get the children of each element in the set of matched elements, including text nodes.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=end">end</a><span class="attributes">(&nbsp;)</span>
+
+  <div class="description" style="display: none; ">End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.</div>
+</div>
+</div>
+</div>
+<div class="cat manipulation">
+<h2>Manipulation</h2>
+<div class="subcat">
+<h3>Inserting Inside</h3>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=append">append</a><span class="attributes">( content&nbsp;)</span>, .<a href="#p=append">append</a><span class="attributes">( fn<span class="attributes">( index, html&nbsp;)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Insert content, specified by the parameter, to the end of each element in the set of matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=appendTo">appendTo</a><span class="attributes">( target&nbsp;)</span>
+  <div class="description" style="display: none; ">Insert every element in the set of matched elements to the end of the target.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prepend">prepend</a><span class="attributes">( content&nbsp;)</span>, .<a href="#p=prepend">prepend</a><span class="attributes">( fn<span class="attributes">( index, html&nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=prependTo">prependTo</a><span class="attributes">( target&nbsp;)</span>
+  <div class="description" style="display: none; ">Insert every element in the set of matched elements to the beginning of the target.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Inserting Outside</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=after">after</a><span class="attributes">( content&nbsp;)</span>, .<a href="#p=after">after</a><span class="attributes">( fn()&nbsp;)</span>
+
+  <div class="description" style="display: none; "> Insert content, specified by the parameter, after each element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=before">before</a><span class="attributes">( content&nbsp;)</span>, .<a href="#p=before">before</a><span class="attributes">( fn()&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Insert content, specified by the parameter, before each element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=insertAfter">insertAfter</a><span class="attributes">( target&nbsp;)</span>
+  <div class="description" style="display: none; ">Insert every element in the set of matched elements after the target.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=insertBefore">insertBefore</a><span class="attributes">( target&nbsp;)</span>
+  <div class="description" style="display: none; ">Insert every element in the set of matched elements before the target.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Inserting Around</h3>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=unwrap">unwrap</a><span class="attributes">(&nbsp;)</span>
+  <div class="description" style="display: none; ">Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=wrap">wrap</a><span class="attributes">( wrappingElement&nbsp;)</span>, .<a href="#p=wrap">wrap</a><span class="attributes">( fn&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Wrap an HTML structure around each element in the set of matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=wrapAll">wrapAll</a><span class="attributes">(wrappingElement&nbsp;)</span>, .<a href="#p=wrapAll">wrapAll</a><span class="attributes">( fn&nbsp;)</span>
+  <div class="description" style="display: none; ">Wrap an HTML structure around all elements in the set of matched elements.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=wrapInner">wrapInner</a><span class="attributes">( wrappingElement&nbsp;)</span>, .<a href="#p=wrapInner">wrapInner</a><span class="attributes">( fn&nbsp;)</span>
+  <div class="description" style="display: none; ">Wrap an HTML structure around the content of each element in the set of matched elements.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Replacing</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=replaceWith">replaceWith</a><span class="attributes">( content&nbsp;)</span>, .<a href="#p=replaceWith">replaceWith</a><span class="attributes">( fn&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Replace each element in the set of matched elements with the provided new content.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=replaceAll">replaceAll</a><span class="attributes">( selector&nbsp;)</span>
+  <div class="description" style="display: none; ">Replace each target element with the set of matched elements.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Removing</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=detach">detach</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)
+  <div class="description" style="display: none; ">Remove the set of matched elements from the DOM.</div>
+  </span></div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=empty">empty</a><span class="attributes">(&nbsp;)
+  <div class="description" style="display: none; ">Remove all child nodes of the set of matched elements from the DOM.</div>
+  </span></div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=remove">remove</a><span class="attributes">( <span class="opt">[selector]</span>&nbsp;)
+  <div class="description" style="display: none; ">Remove the set of matched elements from the DOM.</div>
+
+  </span></div>
+</div>
+<div class="subcat">
+<h3>Copying</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=clone">clone</a><span class="attributes">( <span class="opt">[withDataAndEvents]</span>, [deepWithDataAndEvents]&nbsp;)
+  <div class="description" style="display: none; ">Create a copy of the set of matched elements.</div>
+
+  </span></div>
+</div>
+</div></td>
+<td class="col_3"><div class="cat events">
+<h2>Events</h2>
+<div class="subcat">
+<h3>Page Load</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ready">ready</a><span class="attributes">( fn()&nbsp;)
+  <div class="description" style="display: none; ">Specify a function to execute when the DOM is fully loaded.</div>
+
+  </span></div>
+</div>
+<div class="subcat">
+<h3>Event Handling</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=bind">bind</a><span class="attributes">( type <span class="opt">[, data ]</span>, fn(eventObj)&nbsp;)
+  <div class="description" style="display: none; ">Attach a handler to an event for the elements.</div>
+
+  </span></div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=bind">bind</a><span class="attributes">( type <span class="opt">[, data]</span>, false&nbsp;)</span>
+  <div class="description" style="display: none; ">Attach a handler to an event for the elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=bind">bind</a><span class="attributes">( array&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Attach a handler to an event for the elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=unbind">unbind</a><span class="attributes">( <span class="opt">[type]</span> <span class="opt">[, fn]</span>)
+  <div class="description" style="display: none; ">Remove a previously-attached event handler from the elements.</div>
+  </span></div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=one">one</a><span class="attributes">( type <span class="opt">[, data ]</span>, fn(eventObj)&nbsp;)
+  <div class="description" style="display: none; ">Attach a handler to an event for the elements. The handler is executed at most once.</div>
+  </span></div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=trigger">trigger</a><span class="attributes">( event <span class="opt">[, data]</span>)
+  <div class="description" style="display: none; ">Execute all handlers and behaviors attached to the matched elements for the given event type.</div>
+
+  </span></div>
+<div class="apiobj"><span class="type">obj</span>.<a href="#p=triggerHandler">triggerHandler</a><span class="attributes">( event <span class="opt">[, data]</span>)
+  <div class="description" style="display: none; ">Execute all handlers attached to an element for an event.</div>
+  </span></div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=delegate">delegate</a><span class="attributes">( selector, type, [data], handler)</span>
+
+  <div class="description" style="display: none; ">Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=undelegate">undelegate</a><span class="attributes">( [selector, type, [handler]])&nbsp;| ( selector,&nbsp;events&nbsp;)&nbsp;| ( namespace&nbsp;)</span> <span class="p1_4">1.6*</span>
+
+  <div class="description" style="display: none; ">Remove a handler from the event for all elements which match the current selector, now or in the future, based upon a specific set of root elements.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Live Events</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=live">live</a><span class="attributes">( eventType [, data], fn()&nbsp;)</span>
+
+  <div class="description" style="top: 487px; left: 958px; display: none; ">Attach a handler to the event for all elements which match the current selector, now or in the future.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=die/#die1">die</a><span class="attributes">(&nbsp;)</span>, .<a href="#p=die/#die2">die</a><span class="attributes">( <span class="opt">[eventType]</span> <span class="opt">[, fn() ]</span>)
+  <div class="description" style="display: none; ">Remove an event handler previously attached using .live() from the elements.</div>
+
+  </span></div>
+</div>
+<div class="subcat">
+<h3>Interaction Helpers</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=hover">hover</a><span class="attributes">( fnIn(eventObj), fnOut(eventObj))
+  <div class="description" style="display: none; ">Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.</div>
+  </span></div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=toggle">toggle</a><span class="attributes">( fn(eventObj), fn2(eventObj) <span class="opt">[, ...]</span>)
+  <div class="description" style="top: 358px; left: 66px; display: none; ">Bind two or more handlers to the matched elements, to be executed on alternate clicks.</div>
+  </span></div>
+</div>
+<div class="subcat">
+<h3>Event Helpers</h3>
+
+<span class="event_signature"><i>function</i> ( [data,]&nbsp;[fn]&nbsp;)</span>
+<div class="apiobj"><span class="f_left type">$</span>
+  <div class="event_helper">.<a href="#p=blur">blur</a>,</div>
+  <div class="event_helper">.<a href="#p=mousedown">mousedown</a>,</div>
+
+  <div class="event_helper">.<a href="#p=change">change</a>,</div>
+  <div class="event_helper">.<a href="#p=mouseenter">mouseenter</a>,</div>
+  <div class="event_helper">.<a href="#p=click">click</a>,</div>
+  <div class="event_helper">.<a href="#p=mouseleave">mouseleave</a>,</div>
+
+  <div class="event_helper">.<a href="#p=dblclick">dblclick</a>,</div>
+  <div class="event_helper">.<a href="#p=mousemove">mousemove</a>,</div>
+  <div class="event_helper">.<a href="#p=error">error</a>,</div>
+  <div class="event_helper">.<a href="#p=mouseout">mouseout</a>,</div>
+
+  <div class="event_helper">.<a href="#p=focus">focus</a>,</div>
+  <div class="event_helper">.<a href="#p=mouseover">mouseover</a>,</div>
+  <div class="event_helper">.<a href="#p=focusin">focusin</a>,</div>
+  <div class="event_helper">.<a href="#p=mouseup">mouseup</a>,</div>
+
+  <div class="event_helper">.<a href="#p=focusout">focusout</a>,</div>
+  <div class="event_helper">.<a href="#p=resize">resize</a>,</div>
+  <div class="event_helper">.<a href="#p=keydown">keydown</a>,</div>
+  <div class="event_helper">.<a href="#p=scroll">scroll</a>,</div>
+
+  <div class="event_helper">.<a href="#p=keypress">keypress</a>,</div>
+  <div class="event_helper">.<a href="#p=select">select</a>,</div>
+  <div class="event_helper">.<a href="#p=keyup">keyup</a>,</div>
+  <div class="event_helper">.<a href="#p=submit">submit</a>,</div>
+
+  <div class="event_helper">.<a href="#p=load">load</a><span class="attributes">( <span class="opt">[data,]</span> fn&nbsp;)</span>,</div>
+  <div class="event_helper">.<a href="#p=unload">unload</a><span class="attributes">( <span class="opt">[data,]</span> fn&nbsp;)</span></div>
+
+  <div class="clear"></div>
+</div>
+</div>
+<div class="subcat">
+<h3>Event object</h3>
+<div class="apiobj_wd"> event = {
+  <div class="event_property"><span class="type">el</span><a href="#p=event.currentTarget">currentTarget</a>,
+    <div class="description" style="display: none; ">The current DOM element within the event bubbling phase. </div>
+
+  </div>
+  <div class="event_property"><span class="type">*</span><a href="#p=event.data">data</a>,
+    <div class="description" style="display: none; ">Contains the optional data passed to jQuery.fn.bind when the current executing handler was bound. </div>
+  </div>
+  <div class="event_property"><span class="type">bool</span><a href="#p=event.isDefaultPrevented">isDefaultPrevented</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">Returns whether event.preventDefault() was ever called on this event object. </div>
+
+  </div>
+  <div class="event_property"><span class="type">bool</span><a href="#p=event.isImmediatePropagationStopped">isImmediatePropagationStopped</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">Returns whether event.stopImmediatePropagation() was ever called on this event object.</div>
+  </div>
+  <div class="event_property"><span class="type">bool</span><a href="#p=event.isPropagationStopped">isPropagationStopped</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">Returns whether event.stopPropagation() was ever called on this event object.</div>
+
+  </div>
+  <div class="event_property"><span class="type">str</span><a href="#p=event.namespace">namespace</a>,
+    <div class="description" style="display: none; ">This attribute contains the namespace specified when the event was triggered.</div>
+  </div>
+  <div class="event_property"><span class="type">num</span><a href="#p=event.pageX">pageX</a>,
+    <div class="description" style="display: none; ">The mouse position relative to the left edge of the document.</div>
+  </div>
+
+  <div class="event_property"><span class="type">num</span><a href="#p=event.pageY">pageY</a>,
+    <div class="description" style="display: none; ">The mouse position relative to the top edge of the document.</div>
+  </div>
+  <div class="event_property"><span class="type"></span><a href="#p=event.preventDefault">preventDefault</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">If this method is called, the default action of the event will not be triggered.</div>
+  </div>
+  <div class="event_property"><span class="type">el</span><a href="#p=event.relatedTarget">relatedTarget</a>,
+    <div class="description" style="display: none; ">The other DOM element involved in the event, if any.</div>
+
+  </div>
+  <div class="event_property"><span class="type">obj</span><a href="#p=event.result">result</a>,
+    <div class="description" style="display: none; ">This attribute contains the last value returned by an event handler that was triggered by this event, unless the value was <em>undefined</em>.</div>
+  </div>
+  <div class="event_property"><span class="type"></span><a href="#p=event.stopImmediatePropagation">stopImmediatePropagation</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">Prevents other event handlers from being called.</div>
+
+  </div>
+  <div class="event_property"><span class="type"></span><a href="#p=event.stopPropagation">stopPropagation</a><span class="attributes">()</span>,
+    <div class="description" style="display: none; ">This method prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.</div>
+  </div>
+  <div class="event_property"><span class="type">el</span><a href="#p=event.target">target</a>,
+    <div class="description" style="display: none; ">The DOM element that initiated the event.</div>
+  </div>
+
+  <div class="event_property"><span class="type">num</span><a href="#p=event.timeStamp">timeStamp</a>,
+    <div class="description" style="display: none; ">This attribute returns the number of milliseconds since January 1, 1970, when the event is triggered.</div>
+  </div>
+  <div class="event_property"><span class="type">str</span><a href="#p=event.type">type</a>,
+    <div class="description" style="display: none; ">Describes the nature of the event.</div>
+  </div>
+  <div class="event_property"><span class="type">str</span><a href="#p=event.which">which</a>
+
+    <div class="description" style="display: none; ">For key or button events, this attribute indicates the specific button or key that was pressed.</div>
+  </div>
+  } </div>
+</div>
+</div>
+<div class="cat effects">
+<h2>Effects</h2>
+
+<div class="subcat">
+<h3>Basics</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=show">show</a><span class="attributes">( <span class="opt">[ duration [, easing] <span class="opt">[, fn]</span> ]</span> &nbsp;)</span>
+
+  <div class="description" style="display: none; ">Display the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=hide">hide</a><span class="attributes">( <span class="opt">[ duration [, easing] <span class="opt">[, fn]</span> ]</span> &nbsp;)</span>
+
+  <div class="description" style="display: none; ">Hide the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=toggle/#toggle2">toggle</a><span class="attributes">( <span class="opt">[showOrHide]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Bind two or more handlers to the matched elements, to be executed on alternate clicks.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=toggle/#toggle2">toggle</a><span class="attributes">( duration [, easing] <span class="opt">[, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Bind two or more handlers to the matched elements, to be executed on alternate clicks.</div>
+</div>
+</div>
+<div class="subcat">
+
+<h3>Sliding</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=slideDown">slideDown</a><span class="attributes">( duration [, easing] <span class="opt">[, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Display the matched elements with a sliding motion.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=slideUp">slideUp</a><span class="attributes">( duration [, easing] <span class="opt">[, fn]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Hide the matched elements with a sliding motion.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=slideToggle">slideToggle</a><span class="attributes">( [duration] [, easing] <span class="opt">[, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Display or hide the matched elements with a sliding motion.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Fading</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=fadeIn">fadeIn</a><span class="attributes">( duration <span class="opt">[, easing] [, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Display the matched elements by fading them to opaque.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=fadeOut">fadeOut</a><span class="attributes">( duration <span class="opt">[, easing] [, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Hide the matched elements by fading them to transparent.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=fadeTo">fadeTo</a><span class="attributes">( [duration,] opacity <span class="opt">[, easing] [, fn]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Adjust the opacity of the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=fadeToggle">fadeToggle</a><span class="attributes">( [duration,] <span class="opt">[, easing] [, fn]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Display or hide the matched elements by animating their opacity.</div>
+</div>
+
+</div>
+<div class="subcat">
+<h3>Custom</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=animate">animate</a><span class="attributes">( params <span class="opt">[, duration]</span> <span class="opt">[, easing]</span> <span class="opt">[, fn]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Perform a custom animation of a set of CSS properties.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=animate">animate</a><span class="attributes">( params, options&nbsp;)</span>
+  <div class="description" style="display: none; ">Perform a custom animation of a set of CSS properties.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=stop">stop</a><span class="attributes">( <span class="opt">[clearQueue]</span> <span class="opt">[, jumpToEnd]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Stop the currently-running animation on the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=delay">delay</a><span class="attributes">( duration <span class="opt">[, queueName]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Set a timer to delay execution of subsequent items in the queue.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Settings</h3>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.fx.off">jQuery.fx.off</a>
+  <div class="description" style="display: none; ">Globally disable all animations.</div>
+
+</div>
+<div class="apiobj"><span class="type">num</span><a href="#p=jQuery.fx.interval">jQuery.fx.interval</a>
+  <div class="description" style="display: none; ">The rate (in milliseconds) at which animations fire.</div>
+</div>
+</div>
+</div></td>
+<td class="col_4"><div class="cat ajax">
+
+<h2>AJAX</h2>
+<div class="subcat">
+<h3>Low-Level Interface</h3>
+<div class="apiobj_wd"><span class="type small_type">jqXHR</span><a href="#p=jQuery.ajax">jQuery.ajax</a><span class="attributes">( options, [settings]&nbsp;)</span>
+  <ul class="ajax_option">
+    <li><span class="type">map</span>accepts
+      <div class="description" style="display: none; ">The content type sent in the request header that tells the server what kind of response it will accept in return.</div>
+
+    </li>
+    <li><span class="type">bool</span>async = true
+      <div class="description" style="display: none; ">By default, all requests are sent asynchronous.</div>
+    </li>
+    <li><span class="type">fn</span>beforeSend<span class="attributes">( jqXHR, config)</span>
+      <div class="description" style="display: none; ">A pre-request callback function that can be used to modify the jqXHR object before it is sent.</div>
+
+    </li>
+    <li><span class="type">bool</span>cache = true
+      <div class="description" style="display: none; ">If set to false it will force the pages that you request to not be cached by the browser.</div>
+    </li>
+    <li><span class="type">fn</span>complete<span class="attributes">( jqXHR, status)</span>
+      <div class="description" style="display: none; ">A function to be called when the request finishes (after success and error callbacks are executed).</div>
+
+    </li>
+    <li><span class="type">map</span>contents
+      <div class="description" style="display: none; ">A map of string/regular-expression pairs that determine how jQuery will parse the response, given its content type.</div>
+    </li>
+    <li><span class="type">str</span>contentType
+      <div class="description" style="display: none; ">When sending data to the server, use this content-type. Default is "application/x-www-form-urlencoded", which is fine for most cases.</div>
+    </li>
+    <li><span class="type">obj</span>context
+      <div class="description" style="display: none; ">This object will be made the context of all Ajax-related callbacks.</div>
+
+    </li>
+    <li><span class="type">map</span>converters
+      <div class="description" style="display: none; ">A map of dataType-to-dataType converters. Each converter's value is a function that returns the transformed value of the response.</div>
+    </li>
+    <li><span class="type">bool</span>crossDomain
+      <div class="description" style="display: none; ">If you wish to force a crossDomain request (such as JSONP) on the same domain, set the value of crossDomain to true.</div>
+    </li>
+    <li><span class="type"><nobr class="small_type">obj, str</nobr></span>data
+      <div class="description" style="display: none; ">Data to be sent to the server. It is converted to a query string, if not already a string.</div>
+
+    </li>
+    <li><span class="type">fn</span>dataFilter<span class="attributes">( data, type&nbsp;)</span>
+      <div class="description" style="display: none; ">A function to be used to handle the raw responsed data of XMLHttpRequest.This is a pre-filtering function to sanitize the response.</div>
+    </li>
+    <li><span class="type">bool</span>global = true
+      <div class="description" style="display: none; ">Whether to trigger global Ajax event handlers for this request.</div>
+
+    </li>
+    <li><span class="type">map</span>headers
+      <div class="description" style="display: none; ">A map of additional header key/value pairs to send along with the request.</div>
+    </li>
+    <li><span class="type">bool</span>ifModified = false
+      <div class="description" style="display: none; ">Allow the request to be successful only if the response has changed since the last request.</div>
+    </li>
+    <li><span class="type">str</span>jsonp
+      <div class="description" style="display: none; ">Override the callback function name in a jsonp request.</div>
+
+    </li>
+    <li><span class="type">fn</span>jsonpCallback
+      <div class="description" style="display: none; ">Specify the callback function name for a jsonp request.</div>
+    </li>
+    <li><span class="type">str</span>password
+      <div class="description" style="display: none; ">A password to be used in response to an HTTP access authentication request.</div>
+    </li>
+    <li><span class="type">bool</span>processData = true
+      <div class="description" style="display: none; ">By default, data passed in to the data option as an object will be processed and transformed into a query string, fitting to the default content-type "application/x-www-form-urlencoded".</div>
+
+    </li>
+    <li><span class="type">str</span>scriptCharset
+      <div class="description" style="display: none; ">Forces the request to be interpreted as a certain charset.</div>
+    </li>
+    <li><span class="type">map</span>statusCode
+      <div class="description" style="display: none; ">A map of numeric HTTP codes and functions to be called when the response has the corresponding code.</div>
+    </li>
+    <li><span class="type">num</span>timeout
+      <div class="description" style="display: none; ">Set a local timeout (in milliseconds) for the request.</div>
+
+    </li>
+    <li><span class="type">bool</span>traditional
+      <div class="description" style="display: none; ">Set this to true if you wish to use the traditional style of param serialization.</div>
+    </li>
+    <li><span class="type">str</span>type = 'GET'
+      <div class="description" style="display: none; ">The type of request to make ("POST" or "GET"), default is "GET".</div>
+    </li>
+    <li><span class="type">str</span>url = curr. page
+      <div class="description" style="display: none; ">A string containing the URL to which the request is sent.</div>
+
+    </li>
+    <li><span class="type">str</span>username
+      <div class="description" style="display: none; ">A username to be used in response to an HTTP access authentication request.</div>
+    </li>
+    <li><span class="type">fn</span>xhr
+      <div class="description" style="display: none; ">Callback for creating the XMLHttpRequest object.</div>
+    </li>
+    <li><span class="type">str</span>dataType ∈ {xml, json, script, html}
+      <div class="description" style="display: none; ">The type of data that you're expecting back from the server.</div>
+
+    </li>
+    <li><span class="type">fn</span>error<span class="attributes">( jqXHR, status, errorThrown&nbsp;)</span>
+      <div class="description" style="display: none; ">A function to be called if the request fails.</div>
+    </li>
+    <li><span class="type">fn</span>success<span class="attributes">( data, status, jqXHR&nbsp;)</span>
+
+      <div class="description" style="display: none; ">A function to be called if the request succeeds.</div>
+    </li>
+  </ul>
+</div>
+<div class="apiobj"><span class="type"></span><a href="#p=jQuery.ajaxSetup">jQuery.ajaxSetup</a><span class="attributes">( options&nbsp;)</span>
+  <div class="description" style="display: none; ">Set default values for future Ajax requests.</div>
+
+</div>
+</div>
+<div class="subcat">
+<h3>Shorthand Methods</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=load">load</a><span class="attributes">( url <span class="opt">[, data]</span> <span class="opt">[, fn<span class="attributes">( responseText, status, XHR&nbsp;)</span>]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Load data from the server and place the returned HTML into the matched element.</div>
+</div>
+<div class="apiobj"><span class="type small_type">jqXHR</span><a href="#p=jQuery.get">jQuery.get</a><span class="attributes">( url <span class="opt">[, data]</span> <span class="opt">[, fn<span class="attributes">( data, status, XHR&nbsp;)</span>]</span> <span class="opt">[, type]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Load data from the server using a HTTP GET request.</div>
+</div>
+<div class="apiobj"><span class="type small_type">jqXHR</span><a href="#p=jQuery.getJSON">jQuery.getJSON</a><span class="attributes">( url <span class="opt">[, data]</span> <span class="opt">[, fn<span class="attributes">( data, status&nbsp;)</span>]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Load JSON-encoded data from the server using a GET HTTP request.</div>
+</div>
+<div class="apiobj"><span class="type small_type">jqXHR</span><a href="#p=jQuery.getScript">jQuery.getScript</a><span class="attributes">( url <span class="opt">[, fn<span class="attributes">( data, status&nbsp;)</span>]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Load a JavaScript file from the server using a GET HTTP request, then execute it.</div>
+
+</div>
+<div class="apiobj"><span class="type small_type">jqXHR</span><a href="#p=jQuery.post">jQuery.post</a><span class="attributes">( url <span class="opt">[, data]</span> <span class="opt">[, fn<span class="attributes">( data, status&nbsp;)</span>]</span> <span class="opt">[, type]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Load data from the server using a HTTP POST request.</div>
+
+</div>
+</div>
+<div class="subcat">
+<h3>Global Ajax Event Handlers</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxComplete">ajaxComplete</a><span class="attributes">( fn<span class="attributes">( event, XHR, options&nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Register a handler to be called when Ajax requests complete.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxError">ajaxError</a><span class="attributes">( fn<span class="attributes">( event, XHR, options, thrownError&nbsp;)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Register a handler to be called when Ajax requests complete with an error.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxSend">ajaxSend</a><span class="attributes">( fn<span class="attributes">( event, XHR, options&nbsp;)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Show a message before an Ajax request is sent.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxStart">ajaxStart</a><span class="attributes">( fn<span class="attributes">( &nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Register a handler to be called when the first Ajax request begins. </div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxStop">ajaxStop</a><span class="attributes">( fn<span class="attributes">( &nbsp;)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Hide a loading message after all the Ajax requests have stopped.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=ajaxSuccess">ajaxSuccess</a><span class="attributes">( fn<span class="attributes">(event, XHR, options)</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Show a message when an Ajax request completes successfully.</div>
+</div>
+</div>
+
+<div class="subcat">
+<h3>Miscellaneous</h3>
+<div class="apiobj"><span class="type">str</span>.<a href="#p=serialize">serialize</a><span class="attributes">( &nbsp;)</span>
+  <div class="description" style="display: none; ">Encode a set of form elements as a string for submission.</div>
+</div>
+
+<div class="apiobj"><span class="type">[obj]</span>.<a href="#p=serializeArray">serializeArray</a><span class="attributes">( &nbsp;)</span>
+  <div class="description" style="display: none; ">Encode a set of form elements as an array of names and values.</div>
+</div>
+<div class="apiobj"><span class="type">str</span><a href="#p=jQuery.param">jQuery.param</a><span class="attributes">( obj, <span class="opt">[traditional]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Create a serialized representation of an array or object, suitable for use in a URL query string or Ajax request.</div>
+</div>
+</div>
+</div>
+<div class="cat utilities">
+<h2>Utilities</h2>
+<div class="subcat">
+<h3>Browser and Feature Detection</h3>
+
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.support">jQuery.support</a>
+  <div class="description" style="display: none; ">A collection of properties that represent the presence of different browser features or bugs.</div>
+</div>
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.browser">jQuery.browser</a><span class="d1_3">deprecated</span>
+  <div class="description" style="display: none; ">Contains flags for the useragent, read from navigator.userAgent.</div>
+
+</div>
+<div class="apiobj"><span class="type">str</span><a href="#p=jQuery.browser/.m-jquery.browser.version2">jQuery.browser.version</a><span class="d1_3">deprecated</span>
+  <div class="description" style="display: none; ">The version number of the rendering engine for the user's browser.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.boxModel">jQuery.boxModel</a><span class="d1_3">deprecated</span>
+
+  <div class="description" style="display: none; ">States if the current page, in the user's browser, is being rendered using the W3C CSS Box Model.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Basic operations</h3>
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.each">jQuery.each</a><span class="attributes">( obj, fn<span class="attributes">( index, valueOfElement&nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Iterates through the array displaying each number as both a word and numeral.</div>
+</div>
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.extend">jQuery.extend</a><span class="attributes">( <span class="opt">[deep,]</span> target, obj1 <span class="opt">[, objN]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Merge the contents of two or more objects together into the first object.</div>
+
+</div>
+<div class="apiobj"><span class="type">arr</span><a href="#p=jQuery.grep">jQuery.grep</a><span class="attributes">( array, fn<span class="attributes">( element, index&nbsp;)</span> <span class="opt">[, invert]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Finds the elements of an array which satisfy a filter function. The original array is not affected.</div>
+</div>
+
+<div class="apiobj"><span class="type">arr</span><a href="#p=jQuery.makeArray">jQuery.makeArray</a><span class="attributes">( obj&nbsp;)</span>
+  <div class="description" style="display: none; ">Convert an array-like object into a true JavaScript array.</div>
+</div>
+<div class="apiobj"><span class="type">arr</span><a href="#p=jQuery.map">jQuery.map</a><span class="attributes">( arrayOrObject, fn<span class="attributes">( element, index&nbsp;)</span>&nbsp;)</span><span class="p1_4">1.6*</span>
+
+  <div class="description" style="display: none; ">Translate all items in an array or array-like object to another array of items.</div>
+</div>
+<div class="apiobj"><span class="type">num</span><a href="#p=jQuery.inArray">jQuery.inArray</a><span class="attributes">( val, array&nbsp;)</span>
+  <div class="description" style="display: none; ">Search for a specified value within an array and return its index (or -1 if not found).</div>
+</div>
+<div class="apiobj"><span class="type">arr</span><a href="#p=jQuery.merge">jQuery.merge</a><span class="attributes">( first, second&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Merge the contents of two arrays together into the first array. </div>
+</div>
+<div class="apiobj"><span class="type">fn</span><a href="#p=jQuery.noop">jQuery.noop</a>
+  <div class="description" style="display: none; ">An empty function.</div>
+</div>
+<div class="apiobj"><span class="type">fn</span><a href="#p=jQuery.proxy">jQuery.proxy</a><span class="attributes">( fn, scope&nbsp;)</span>, <a href="#p=jQuery.proxy">jQuery.proxy</a><span class="attributes">( scope, name&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Takes a function and returns a new one that will always have a particular context.</div>
+</div>
+<div class="apiobj"><span class="type">arr</span><a href="#p=jQuery.unique">jQuery.unique</a><span class="attributes">( array&nbsp;)</span>
+  <div class="description" style="display: none; ">Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.</div>
+</div>
+<div class="apiobj"><span class="type">str</span><a href="#p=jQuery.trim">jQuery.trim</a><span class="attributes">( str&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Remove the whitespace from the beginning and end of a string.</div>
+</div>
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.parseJSON">jQuery.parseJSON</a><span class="attributes">( str&nbsp;)</span>
+  <div class="description" style="display: none; ">Takes a well-formed JSON string and returns the resulting JavaScript object.</div>
+</div>
+</div>
+
+<div class="subcat">
+<h3>Data functions</h3>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=clearQueue">clearQueue</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Remove from the queue all items that have not yet been run.</div>
+</div>
+
+<div class="apiobj"><span class="type">$</span>.<a href="#p=dequeue">dequeue</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span>, <a href="#p=jQuery.dequeue">jQuery.dequeue</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Execute the next function on the queue for the matched elements.</div>
+</div>
+
+<div class="apiobj"><span class="type">obj</span><a href="#p=jQuery.data">jQuery.data</a><span class="attributes">( element, key&nbsp;)</span>, <a href="#p=jQuery.data">jQuery.data</a><span class="attributes">( &nbsp;)</span>
+  <div class="description" style="display: none; ">Store arbitrary data associated with the specified element.</div>
+</div>
+<div class="apiobj"><span class="type">obj</span>.<a href="#p=data">data</a><span class="attributes">( &nbsp;)</span>, .<a href="#p=data">data</a><span class="attributes">( key&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Store arbitrary data associated with the specified element.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=data">data</a><span class="attributes">( key, val&nbsp;)</span>, .<a href="#p=data">data</a><span class="attributes">( obj&nbsp;)</span>
+  <div class="description" style="display: none; ">Store arbitrary data associated with the specified element.</div>
+
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=removeData">removeData</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span>
+  <div class="description" style="display: none; ">Remove a previously-stored piece of data.</div>
+</div>
+<div class="apiobj"><span class="type">[fn]</span>.<a href="#p=queue">queue</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span> <a href="#p=jQuery.queue">jQuery.queue</a><span class="attributes">( <span class="opt">[name]</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Show the queue of functions to be executed on the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=queue">queue</a><span class="attributes">( <span class="opt">[name,]</span> fn<span class="attributes">( next&nbsp;)</span>&nbsp;)</span>, <a href="#p=jQuery.queue">jQuery.queue</a><span class="attributes">( <span class="opt">[name,]</span> fn<span class="attributes">( &nbsp;)</span>&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Show the queue of functions to be executed on the matched elements.</div>
+</div>
+<div class="apiobj"><span class="type">$</span>.<a href="#p=queue">queue</a><span class="attributes">( <span class="opt">[name,]</span> queue&nbsp;)</span>, <a href="#p=jQuery.queue">jQuery.queue</a><span class="attributes">( <span class="opt">[name,]</span> queue&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Show the queue of functions to be executed on the matched elements.</div>
+</div>
+</div>
+<div class="subcat">
+<h3>Test operations</h3>
+<div class="apiobj"><span class="type">str</span><a href="#p=jQuery.type">jQuery.type</a><span class="attributes">( obj&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Determine the internal JavaScript [[Class]] of an object.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.isArray">jQuery.isArray</a><span class="attributes">( obj&nbsp;)</span>
+  <div class="description" style="display: none; ">Determine whether the argument is an array.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.isEmptyObject">jQuery.isEmptyObject</a><span class="attributes">( obj&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Check to see if an object is empty (contains no properties).</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.isFunction">jQuery.isFunction</a><span class="attributes">( obj&nbsp;)</span>
+  <div class="description" style="display: none; ">Determine if the argument passed is a Javascript function object.</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.isPlainObject">jQuery.isPlainObject</a><span class="attributes">( obj&nbsp;)</span>
+
+  <div class="description" style="display: none; ">Check to see if an object is a plain object (created using "{}" or "new Object").</div>
+</div>
+<div class="apiobj"><span class="type">bool</span><a href="#p=jQuery.isWindow">jQuery.isWindow</a><span class="attributes">( obj&nbsp;)</span>
+  <div class="description" style="display: none; ">Determine whether the argument is a window.</div>
+</div>
+</div>
+
+</div></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      
+      <div class="entry">
+        <h2><span class="name" title="jQuery 1.6  API 中文版 下载 (适用jQuery 1.6和jQuery 1.6.1)">下载jQuery 1.6  API 中文版</span></h2>
+        <div class="longdesc">
+          <ul>
+          <li>jQuery 1.6  API 中文版 下载：<a href="http://julying.com/jQuery-1.6-api/download/jQuery-1.6-api.zip" title="jQuery 1.6  API 中文版 下载" target="_blank">jQuery 1.6  API 中文版 下载(适用jQuery 1.6和jQuery 1.6.1,jQuery 1.6.2)</a></li>
+          
+          <li>jQuery 1.6  API 英文版 下载：<a href="http://julying.com/jQuery-1.6-api/download/jQuery-1.6-api-en.zip" title="jQuery 1.6  API 英文版 下载" target="_blank">jQuery 1.6  API 英文版 下载(适用jQuery 1.6和jQuery 1.6.1,jQuery 1.6.2)</a></li>
+          
+          
+          
+          
+
+          <li> jQuery 1.6  API 中文版[在线版]：<a href="http://julying.com/jQuery-1.6-api/" target="_blank" title="jQuery 1.6 API 中文版 (适用jQuery 1.6和jQuery 1.6.1,jQuery 1.6.2)">jQuery 1.6 API 中文版 (适用jQuery 1.6和jQuery 1.6.1,jQuery 1.6.2)</a>   </li>
+          
+            
+            
+            <li>jQuery 1.6  API 英文版[在线版]：<a href="http://julying.com/jQuery-1.6-api/en/" target="_blank">jQuery 1.6  API - Alternative jQuery Documentation(For jQuery 1.6 and jQuery 1.6.1, jQuery 1.6.2)</a>   </li>
+            
+						<div>
+ 
+</div>
+</li> 
+          
+          </ul>  
+        </div>
+      </div>
+      
+      
+      
+      <div class="entry">
+
+        <h2><span class="name">反馈和联系</span><span class="returns"></span></h2>
+        <div class="longdesc">
+          <p>腾讯微薄：<a href="http://t.qq.com/julying" target="_blank" title="前端攻城师的微博">@julying</a></p>
+
+          <p> Email：<span id="email">i[a]julying.com</span></p>
+          <p>主页  <a href="http://julying.com" target="_blank" title="前端攻城师">http://julying.com</a></p>
+          <p>本作品由 <strong>愚人码头 </strong>翻译，由<a href="http://julying.com" target="_blank" title="前端攻城师"> 前端攻城师 </a>整理、修订</p>
+        </div>
+      </div>
+      <script type="text/javascript">
+      $('#email').html('i'+ '@' +'julying.com');
+      </script>
+
+    </div>
+    
+    <ul id="topnav">
+      <li><a href="http://julying.com/jQuery-1.6-api/" id="home" class="home-link" title="jQuery 1.6  API 中文版">目录</a></li>
+      <li><a href="http://julying.com/" id="julying" class="home-link" target="_blank">前端攻城师</a></li>
+    </ul>
+<script type="text/javascript">
+var descrTimeOut;
+var index;
+
+$(function(){
+    var hoverIn = function(){
+        descrTimeOut = setTimeout('showDescription()', 1000);
+        $(this).bind('mousemove', moveDescription);
+    };
+    var hoverOut = function(){
+        $('.description').hide();
+        clearTimeout(descrTimeOut);
+        $(this).unbind('mousemove', moveDescription);
+    };
+    $('.apiobj a').hover(function(){
+        index = $('.description', $(this).parent()).index('.description');
+        hoverIn();
+    }, hoverOut);
+    $('.ajax_option li, .event_property').hover(function(){
+        index = $('.description', this).index('.description');
+        hoverIn();
+    }, hoverOut);
+});
+
+function showDescription()
+{
+    $('.description').hide();
+    $('.description:eq(' + index + ')').fadeIn(300);
+}
+
+var moveDescription = function(e) {
+    $('.description:eq(' + index + ')').css({
+        top: e.pageY + 5,
+        left: (e.pageX + 350 < $(document).width()) ? (e.pageX + 15) : (e.pageX - 325)
+    });
+};
+
+</script> 
+
+
+
+<div class="hide"><script src='http://pw.cnzz.com/c.php?id=80685900&l=2' language='JavaScript' charset='gb2312'></script></div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22586930-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4bb1dc2cc0dbe9578b6b86e87f650442' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+  </body>
+</html>

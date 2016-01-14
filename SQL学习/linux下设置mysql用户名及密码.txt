@@ -1,0 +1,50 @@
+linux下设置mysql用户名及密码
+一、安装设置密码
+我安装的时候直接用的yum命令， yum install mysql mysql-server
+这样就导致默认没有密码访问
+然后我就添加了用户名和密码
+首先以root用户名登录，然后进入没有密码的mysql，
+然后use mysql----------> insert into user(host,user,password) values('%','root',"**************");
+然后mysqladmin -u root password "your password"则OK了
+二、忘记密码
+1，通过service mysqld stop(或者 killall -TERM Mysql)停止mysql的服务
+2，/usr/bin/mysqld_safe --skip-grant-tables&  跳过安全检验机制（此时不要关闭当前终端，另开新的终端）
+3.（也可以进行一：设置密码）
+mysql 
+use mysql;
+update user set password=password('自己设置的密码') where user='root';
+(INSERT INTO `user` VALUES ('localhost', 'root', '*6F32271106B4F65F95450A10CD03FC47861EA9CD', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', '', '', '', '', '0', '0', '0', '0');)
+flush privileges;
+exit
+4.重启mysql服务
+
+
+--------------------------------------------------------------
+下面还有一种方法我没实验，下次出错了在实验
+
+方法二：可以进行如下的步骤重新设置MySQL的root密码： 
+1．首先确认服务器出于安全的状态，也就是没有人能够任意地连接MySQL数据库。 因为在重新设置MySQL的root密码的期间，MySQL数据库完全出于没有密码保护的 状态下，其他的用户也可以任意地登录和修改MySQL的信息。可以采用将MySQL对 外的端口封闭，并且停止Apache以及所有的用户进程的方法实现服务器的准安全 状态。最安全的状态是到服务器的Console上面操作，并且拔掉网线。 2．修改MySQL的登录设置： # vi /etc/my.cnf 在[mysqld]的段中加上一句：skip-grant-tables 例如： [mysqld] datadir=/var/lib/mysql socket=/var/lib/mysql/mysql.sock skip-name-resolve skip-grant-tables 保存并且退出vi。 3．重新启动mysqld # /etc/init.d/mysqld restart Stopping MySQL: [ OK ] Starting MySQL: [ OK ] 4．登录并修改MySQL的root密码 # /usr/bin/mysql Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 3 to server version: 3.23.56 Type ‘help;’ or ‘\h’ for help. Type ‘\c’ to clear the buffer. mysql> USE mysql ; Reading table information for completion of table and column names You can turn off this feature to get a quicker startup with -A Database changed mysql> UPDATE user SET Password = password ( ‘new-password’ ) WHERE User = ‘root’ ; Query OK, 0 rows affected (0.00 sec) Rows matched: 2 Changed: 0 Warnings: 0 mysql> flush privileges ; Query OK, 0 rows affected (0.01 sec) mysql> quit Bye 5．将MySQL的登录设置修改回来 # vi /etc/my.cnf 将刚才在[mysqld]的段中加上的skip-grant-tables删除 保存并且退出vi。 6．重新启动mysqld # /etc/init.d/mysqld restart Stopping MySQL: [ OK ] Starting MySQL: [ OK ]
+
+
+
+
+
+
+
+
+
+-------------------------下面是转载的
+
+在mysql环境下，你可以使用以下语句进行设置密码：
+1. insert into user(host,user,password) values('%','user_name',
+password("your password");
+2. set password for user_name = password("your password")
+以上两种方法都必须进行重载授权表.
+3.当然你也可以在创建一个用户时直接设置密码,grant语句将为你自动加密口令.
+如
+grant all on *.* to user_name@% identified by "your password";
+另外你也可以在shell环境下用mysqladmin程序来设置密码
+如
+mysqladmin -u root password "your password"
+快点去试一下,没问题吧! 
+

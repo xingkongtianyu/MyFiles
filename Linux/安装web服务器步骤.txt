@@ -1,0 +1,6 @@
+安装web服务器步骤
+1、安装最简化基础系统；
+2、关闭selinux；修改/etc/selinux/config，把配置中的选项改成SELINUX=disabled；
+3、在通过yum安装php和httpd、mysql服务器。命令为yum install php-gd php-mysql php-tidy php-mbstring php-mcrypt httpd mysql-server 。注意如果有缺失的包从http://mirrors.sohu.com/fedora-epel/6/x86_64/查找下载安装；
+4、修改httpd参数，直接复制外网的/etc/httpd/conf/httpd.conf和/etc/httpd/conf.d/下的expires.conf、rewrite.conf;
+5、tupoedata数据复制到/var/www/下，程序silver复制到/var/www/html/下，因为192.168.130.8只授权了192.168.130.50/51访问。需要远程访问需要独立授权。

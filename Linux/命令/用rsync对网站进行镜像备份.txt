@@ -1,0 +1,303 @@
+用rsync对网站进行镜像备份
+
+创建时间：2001-07-05
+文章属性：原创
+文章来源：http://xfocus.org/
+文章提交：inburst (inburst_at_263.net)
+
+用rsync对网站进行镜像备份
+
+by inburst<inburst@263.net>
+http://xfocus.org
+
+对系统管理员来说，平时的工作重心应该集中在维护系统正常运转，能够正常提供服务上，这里往往牵涉到一个数据备份的问题，在我所了解
+
+的情况中，有80%的系统管理员不是太关心自己服务器的安全性，但往往对备分镜像的技术相当感兴趣，但由于商业产品的软硬件价格都相当高
+
+昂，因此往往会选择自由软件。这里准备介绍的rsync就是这样的软件，它可以满足绝大多数要求不是特别高的备份需求。
+
+一、特性简介
+
+rsync是类unix系统下的数据镜像备份工具，从软件的命名上就可以看出来了——remote sync。它的特性如下：
+
+1、可以镜像保存整个目录树和文件系统。
+2、可以很容易做到保持原来文件的权限、时间、软硬链接等等。
+3、无须特殊权限即可安装。
+4、优化的流程，文件传输效率高。
+5、可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。
+6、支持匿名传输。
+
+二、使用方法
+
+rsync的使用方法很简单，我就举自己使用的例子来说明吧。
+
+1、系统环境
+
+rsync支持大多数的类unix系统，无论是Linux、Solaris还是BSD上都经过了良好的测试。我的系统环境为：
+
+server: FreeBSD 4.3  ip: 192.168.168.52
+client: Solaris 8    ip: 192.168.168.137
+rsync 版本 2.4.6(可以从http://rsync.samba.org/rsync/获得最新版本)
+
+2、配置server端的/etc/rsyncd.conf文件
+
+bash-2.03# cat /etc/rsyncd.conf
+
+uid = nobody 
+gid = nobody 
+use chroot = no         # 不使用chroot
+max connections = 4         # 最大连接数为4
+pid file = /var/run/rsyncd.pid 
+lock file = /var/run/rsync.lock
+log file = /var/log/rsyncd.log    # 日志记录文件
+
+[inburst]            # 这里是认证的模块名，在client端需要指定
+path = /home/inburst/python/    # 需要做镜像的目录
+comment = BACKUP CLIENT IS SOLARIS 8 E250 
+ignore errors            # 可以忽略一些无关的IO错误
+read only = yes            # 只读
+list = no            # 不允许列文件
+auth users = inburst        # 认证的用户名，如果没有这行，则表明是匿名
+secrets file = /etc/inburst.pas    # 认证文件名
+
+[web]
+path = /usr/local/apache/htdocs/
+comment = inburst.org web server
+
+3、在server端生成一个密码文件/etc/inburst.pas
+
+bash-2.03# cat /etc/inburst.pas
+inburst:hack
+
+出于安全目的，文件的属性必需是只有属主可读。
+
+4、在server端将rsync以守护进程形式启动
+
+bash-2.03# rsync --daemon
+
+如果要在启动时把服务起来，有几种不同的方法，比如：
+
+  a、加入inetd.conf
+
+    编辑/etc/services，加入rsync   873/tcp，指定rsync的服务端口是873
+    编加/etc/inetd.conf，加入rsync  stream  tcp   nowait  root  /bin/rsync rsync --daemon
+
+  b、加入rc.local
+
+    在各种操作系统中，rc文件存放位置不尽相同，可以修改使系统启动时rsync --daemon加载进去。
+
+5、从client端进行测试
+
+下面这个命令行中-vzrtopg里的v是verbose，z是压缩，r是recursive，topg都是保持文件原有属性如属主、时间的参数。--progress是指显示
+
+出详细的进度情况，--delete是指如果服务器端删除了这一文件，那么客户端也相应把文件删除，保持真正的一致。后面的inburst@ip中，
+
+inburst是指定密码文件中的用户名，之后的::inburst这一inburst是模块名，也就是在/etc/rsyncd.conf中自定义的名称。最后的/tmp是备份
+
+到本地的目录名。
+
+在这里面，还可以用-e ssh的参数建立起加密的连接。可以用--password-file=/password/path/file来指定密码文件，这样就可以在脚本中使
+
+用而无需交互式地输入验证密码了，这里需要注意的是这份密码文件权限属性要设得只有属主可读。
+
+bash-2.03# rsync -vzrtopg --progress --delete inburst@192.168.168.52::inburst /tmp/
+Password: 
+receiving file list ... done
+./
+1
+785 (100%)
+1.py
+4086 (100%)
+2.py
+10680 (100%)
+a
+0 (100%)
+ip
+3956 (100%)
+./
+wrote 190 bytes  read 5499 bytes  758.53 bytes/sec
+total size is 19507  speedup is 3.43
+
+6、创建更新脚本
+
+如果有比较复杂的工作，利用一些常见的脚本语言可以有帮助。比如：
+
+bash-2.03# cat /usr/local/bin/rsync.sh
+
+#!/bin/sh
+DATE=`date +%w`
+
+rsync -vzrtopg --progress --delete inburst@192.168.168.52::inburst /home/quack/backup/$DATE --password-file=/etc/rsync.pass > 
+
+/var/log/rsync.$DATE
+
+7、修改/etc/crontab做好定时
+
+比如:
+
+bash-2.03# echo "15      4       *       *       6       root    rsync.sh">>/etc/crontab
+
+三、FAQ
+
+Q：如何通过ssh进行rsync，而且无须输入密码？
+A：可以通过以下几个步骤
+
+1. 通过ssh-keygen在server A上建立SSH keys，不要指定密码，你会在~/.ssh下看到identity和identity.pub文件 
+2. 在server B上的home目录建立子目录.ssh
+3. 将A的identity.pub拷贝到server B上
+4. 将identity.pub加到~[user b]/.ssh/authorized_keys
+5. 于是server A上的A用户，可通过下面命令以用户B ssh到server B上了
+                e.g. ssh -l userB serverB
+这样就使server A上的用户A就可以ssh以用户B的身份无需密码登陆到server B上了。
+
+Q：如何通过在不危害安全的情况下通过防火墙使用rsync?
+A：解答如下：
+
+这通常有两种情况，一种是服务器在防火墙内，一种是服务器在防火墙外。
+无论哪种情况，通常还是使用ssh，这时最好新建一个备份用户，并且配置sshd仅允许这个用户通过RSA认证方式进入。
+如果服务器在防火墙内，则最好限定客户端的IP地址，拒绝其它所有连接。
+如果客户机在防火墙内，则可以简单允许防火墙打开TCP端口22的ssh外发连接就ok了。
+
+Q：我能将更改过或者删除的文件也备份上来吗？
+A：当然可以：
+
+你可以使用如：rsync -other -options -backupdir = ./backup-2000-2-13  ...这样的命令来实现。
+这样如果源文件:/path/to/some/file.c改变了，那么旧的文件就会被移到./backup-2000-2-13/path/to/some/file.c，这里这个目录需要自己
+
+手工建立起来
+
+Q：我需要在防火墙上开放哪些端口以适应rsync？
+A：视情况而定
+
+rsync可以直接通过873端口的tcp连接传文件，也可以通过22端口的ssh来进行文件传递，但你也可以通过下列命令改变它的端口：
+
+rsync --port 8730 otherhost::
+或者
+rsync -e 'ssh -p 2002' otherhost:
+
+Q：我如何通过rsync只复制目录结构，忽略掉文件呢？
+A：rsync -av --include '*/' --exclude '*' source-dir dest-dir
+
+Q：为什么我总会出现"Read-only file system"的错误呢？
+A：看看是否忘了设"read only = no"了
+
+Q：为什么我会出现'@ERROR: invalid gid'的错误呢？
+A：rsync使用时默认是用uid=nobody;gid=nobody来运行的，如果你的系统不存在nobody组的话，就会出现这样的错误，可以试试gid = 
+
+nogroup或者其它
+
+Q：绑定端口873失败是怎么回事？
+A：如果你不是以root权限运行这一守护进程的话，因为1024端口以下是特权端口，会出现这样的错误。你可以用--port参数来改变。
+
+Q：为什么我认证失败？
+A：从你的命令行看来：
+
+你用的是：
+> bash$ rsync -a 144.16.251.213::test test
+> Password:
+> @ERROR: auth failed on module test 
+> 
+> I dont understand this. Can somebody explain as to how to acomplish this.
+> All suggestions are welcome.
+
+应该是没有以你的用户名登陆导致的问题，试试rsync -a max@144.16.251.213::test test
+
+四、一些可借鉴的脚本
+
+这里这些脚本都是rsync网站上的例子：
+
+1、每隔七天将数据往中心服务器做增量备份
+
+#!/bin/sh
+
+# This script does personal backups to a rsync backup server. You will end up
+# with a 7 day rotating incremental backup. The incrementals will go
+# into subdirectories named after the day of the week, and the current
+# full backup goes into a directory called "current"
+# tridge@linuxcare.com
+
+# directory to backup
+BDIR=/home/$USER
+
+# excludes file - this contains a wildcard pattern per line of files to exclude
+EXCLUDES=$HOME/cron/excludes
+
+# the name of the backup machine
+BSERVER=owl
+
+# your password on the backup server
+export RSYNC_PASSWORD=XXXXXX
+
+
+########################################################################
+
+BACKUPDIR=`date +%A`
+OPTS="--force --ignore-errors --delete-excluded --exclude-from=$EXCLUDES 
+      --delete --backup --backup-dir=/$BACKUPDIR -a"
+
+export PATH=$PATH:/bin:/usr/bin:/usr/local/bin
+
+# the following line clears the last weeks incremental directory
+[ -d $HOME/emptydir ] || mkdir $HOME/emptydir
+rsync --delete -a $HOME/emptydir/ $BSERVER::$USER/$BACKUPDIR/
+rmdir $HOME/emptydir
+
+# now the actual transfer
+rsync $OPTS $BDIR $BSERVER::$USER/current
+
+2、备份至一个空闲的硬盘
+
+#!/bin/sh
+
+export PATH=/usr/local/bin:/usr/bin:/bin
+
+LIST="rootfs usr data data2"
+
+for d in $LIST; do
+    mount /backup/$d
+    rsync -ax --exclude fstab --delete /$d/ /backup/$d/
+    umount /backup/$d
+done
+
+DAY=`date "+%A"`
+    
+rsync -a --delete /usr/local/apache /data2/backups/$DAY
+rsync -a --delete /data/solid /data2/backups/$DAY
+
+3、对vger.rutgers.edu的cvs树进行镜像
+
+#!/bin/bash
+
+cd /var/www/cvs/vger/
+PATH=/usr/local/bin:/usr/freeware/bin:/usr/bin:/bin
+
+RUN=`lps x | grep rsync | grep -v grep | wc -l`
+if [ "$RUN" -gt 0 ]; then
+    echo already running
+    exit 1
+fi
+
+rsync -az vger.rutgers.edu::cvs/CVSROOT/ChangeLog $HOME/ChangeLog
+
+sum1=`sum $HOME/ChangeLog`
+sum2=`sum /var/www/cvs/vger/CVSROOT/ChangeLog`
+
+if [ "$sum1" = "$sum2" ]; then
+    echo nothing to do
+    exit 0
+fi
+
+rsync -az --delete --force vger.rutgers.edu::cvs/ /var/www/cvs/vger/
+exit 0
+
+4、利用find的一种巧妙方式
+
+rsync -avR remote:'`find /home -name "*.[ch]"`' /tmp/
+
+可以用这种方法列出需要备份的文件列表——这种方法似乎比较少人用到。
+
+五、参考资料：
+
+1、http://rsync.samba.org/
+2、rsync examples
+3、rsync FAQ 

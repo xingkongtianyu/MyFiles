@@ -1,0 +1,371 @@
+@charset "utf-8";
+
+body,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,pre,form,button,input,textarea,th,td {margin:0;padding:0;}
+body,button,input,select,textarea{font:12px/1 "\5B8B\4F53",Arial;}
+ul,ol,li{list-style:none;}
+img{ border:0;}
+em{font-style:normal;}
+a{ text-decoration:none; color:#565656;}
+a:hover{text-decoration:underline;color:#565656;}
+.clear{clear:both;height:0px;overflow:hidden;}
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix {display:inline-block;}
+*html .clearfix {height:1%;}
+.clearfix {display:block;}
+.mt8{margin-top:8px;}
+.mt10{margin-top:10px;}
+
+
+.Blog_append_a1, .Blog_append_a2, .Blog_nav1_2 span.Blog_span2, .Blog_btn1, .Blog_span3, .Blog_a3, .Blog_header1_3 span, .Blog_ul2 li input, .Blog_tit1, .Blog_jia1, .Blog_jian1, .Blog_ul5 li a.Blog_a4, .Blog_ul5 li a.Blog_a5, .Blog_span5, .Blog_a6, .Blog_a7, ul.yiiPager .previous a, ul.yiiPager .next a, .Blog_right1_9 .div3_1 span, .Blog_right1_9 .div3_2 .Blog_a11, .Blog_right1_9 .div3_2 .Blog_a12, .Blog_a13, .Blog_a14, .Blog_tit4 b, .Blog_tit4 span a, .Blog_more1 li span.Blog_span8, .Blog_more1 li span.Blog_span9, .Blog_more1 li span.Blog_span10, .Blog_right1_6 a.Blog_a15, .Blog_con3_3 div span, .Blog_con3_3 div a, .Blog_span6, .Blog_span7, .HT_tit1, .Blog_p4 span, a.HT_here1 span, .HT_con2_1 a.HT_a1, .HT_con2_1 a.HT_a2, .HT_tit4 a, .HT_a3, .HT_a4, .HT_a5, .HT_a6, .HT_a7, .HT_btn3, .HT_btn4, .HT_btn5, .HT_btn6, .HT_btn1, .HT_a8, .HT_a9, .HT_btn2, .HT_con7_1 li a, .HT_btn7, .Blog_tab1 li a, .Blog_tab1 li a.here, .Blog_a11, .Blog_a12, .HT_con6_1 p span a, .HT_tit6_1 span, .Blog_nav1_2 span.Blog_span1, .Blog_b1, .Blog_b2, .landing_btn1, .landing_con3 p, .HT_layer1_1 a, .login_btn1, .HT_layer3_1 span.login_span1, .HT_layer3_1 span.login_span2, .message_btn1, .nologin_btn1, .nologin_btn2{background-image:url("http://blog.chinaunix.net/image/default/bg.png"); background-repeat:no-repeat; _overflow:hidden;}
+
+.Blog_nav1, .Blog_tit2, .Blog_line3, .HT_line3{background-image:url("http://blog.chinaunix.net/image/default/linebg.png"); background-repeat:repeat-x; _overflow:hidden;}
+
+body{background:#f3f7f9;}
+.box{text-align:left; color:#565656;}
+.Blog_contain{margin:0 5px; min-width:1000px;} 
+
+
+.Blog_nav1{background-position:0 0; height:51px; line-height:51px;  z-index:1;}
+.Blog_nav1_2{float:left; padding-left:17px;}
+.Blog_nav1_2 img{vertical-align:-18px; margin-right:39px;}
+.Blog_nav1_2 a.Blog_a1, .Blog_nav1_2 a.Blog_a2{color:#125a94;}
+.Blog_nav1_2 a.Blog_a2{text-decoration:underline;}
+.Blog_nav1_2 span.Blog_span1{background-position:-427px 0; width:1px; height:17px; display:inline-block; vertical-align:-4px; *vertical-align:0px; margin:0 27px;}
+.Blog_nav1_2 span.Blog_span2{background-position:0 0; width:9px; height:5px; display:inline-block; margin-left:5px; *vertical-align:5px; _vertical-align:4px;}
+.Blog_nav1_3{float:right; padding-right:30px; _padding-top:16px;}
+.Blog_txt1{width:204px; height:18px; line-height:18px; padding-left:2px; border:1px solid #bbb; vertical-align:middle;}
+.Bolg_sel1{height:20px; vertical-align:middle;}
+.Blog_btn1{background-position:0 -73px; width:45px; height:20px; border:0; cursor:pointer; vertical-align:middle;}
+.Blog_nav1_layer1{background:#fff; border:1px solid #c0cad5; width:105px; height:100px; line-height:25px; text-align:center; position:absolute; left:670px; top:43px; z-index:100;}
+
+
+.Blog_header1{background:url("http://blog.chinaunix.net/image/default/bg_1.png") no-repeat center top; height:224px; overflow:hidden; clear:both; position:relative; z-index:1;}
+.Blog_header1_1{margin:40px 0 0 20px;}
+.Blog_header1_1 p a{color:#3067a0;}
+.Blog_header1_1 p span a{color:#aaa; font-size:12px; margin-left:20px; font-family:"宋体";}
+.Blog_p1{font-size:14px;}
+.Blog_p1 em{font-family:"微软雅黑","黑体","Verdana"; font-size:30px; display:block; margin-bottom:8px;}
+.Blog_p2{margin-top:24px; font-size:14px;}
+.Blog_header1_2{background:#ffffce; border:1px solid #f0e5ba; width:316px; height:25px; line-height:25px; color:#6c6a3d; position:absolute; right:191px; top:15px; padding-left:10px; overflow:hidden; z-index:100;}
+.Blog_header1_2 span{float:left;}
+.Blog_span3{background-position:-10px 0; width:14px; height:15px; margin:5px 11px 0 0;}
+.float_div1{float:left; margin-top:2px; _margin-top:1px;}
+
+.Blog_a3{background-position:-25px 0; width:15px; height:15px; float:right; position:absolute; right:5px; top:5px;}
+.Blog_header1_3{padding:50px 0 0 20px; height:31px; line-height:31px;}
+.Blog_header1_3 span{float:right; background-position:0 -122px; width:97px; height:31px; margin-right:31px; display:inline; text-indent:-9999px; _text-indent:0px;}
+.Blog_header1_3 a{display:inline-block; margin-top:10px;}
+.Blog_here1{color:#125a94;}
+
+
+.Blog_left{float:left; width:220px;}
+.Blog_bg1{background:#fff; overflow:hidden; border:1px solid #c2d9e8;}
+.Blog_left1{padding-bottom:10px;}
+.Blog_left1_1{text-align:center; margin:16px auto 0; padding-bottom:15px; width:200px; _padding-top:16px;}
+.Blog_left1_1 img{border:1px solid #dadada; padding:3px;}
+.Blog_left1_1 p{margin-top:10px;}
+.Blog_left1_1 p a{color:#3067a0; font-weight:bold; font-size:14px;}
+.Blog_ul1{width:200px; margin:15px auto 0;}
+.Blog_ul1 li{width:180px; margin:0 auto 6px; line-height:18px;}
+.Blog_ul2{width:172px; margin:15px auto 0;}
+.Blog_ul2 li{float:left; width:76px; height:27px; margin:5px; display:inline;}
+.Blog_ul2 li input{display:block; background-position:0 -94px; width:76px; height:27px; line-height:27px; text-align:center; color:#0359af; border:0; cursor:pointer;}
+.Blog_p3{width:200px; margin:4px auto 4px; line-height:24px;  word-wrap: break-word;}
+.Blog_left2{margin-top:8px; padding-bottom:10px;}
+.Blog_tit1{background-position:0 -154px; height:25px; line-height:25px; padding:0 10px; color:#fff; font-weight:bold;}
+.Blog_tit1 span{float:right;}
+.Blog_tit1 span a{font-weight:normal; color:#fff; text-decoration:underline;}
+.Blog_left2_1{width:190px; margin:8px auto;}
+.Blog_p4{width:190px; margin:15px 0 12px;}
+.Blog_p4 a{font-weight:bold;}
+.Blog_jia1, .Blog_jian1{background-position:0 -6px; width:9px; height:9px; display:inline-block; vertical-align:middle; margin-right:10px;}
+.Blog_jian1{background-position:0 -16px;}
+.Blog_left2_1 li{margin-bottom:12px; padding-left:24px;}
+.Blog_left2_1 li span.Blog_span4{background:none;}
+.Blog_left2_1 li p{padding:8px 0 0 30px;}
+.Blog_left2_1 li p a{font-weight:normal;}
+.Blog_span5{background-position:0 -16px; width:9px; height:9px; display:inline-block; vertical-align:middle; margin-right:10px;}
+.Blog_left2_1 li a{font-weight:bold;}
+.Blog_ul3 li{padding-left:43px;}
+.Blog_ul4{width:186px; margin:0 auto; padding-bottom:10px; overflow:hidden;}
+.Blog_ul4 li{float:left; width:52px; height:75px; overflow:hidden; margin:12px 5px 0; _margin:12px 3px; }
+.Blog_ul4 li img{padding:2px; border:1px solid #dadada;width:48px; height:48px;}
+.Blog_ul4 li p{margin-top:5px; text-align:center;}
+.Blog_ul5{width:186px; margin:15px auto 0;}
+.Blog_ul5 li{padding-bottom:9px;}
+.Blog_ul5 li a.Blog_a4{background-position:-77px -94px; width:60px; height:23px; display:block;}
+.Blog_ul5 li a.Blog_a5{background-position:-46px -73px; width:103px; height:16px; display:block;}
+.Blog_ul6{width:206px; margin:10px auto 0;}
+.Blog_ul6 li{line-height:26px; height:26px;}
+.Blog_ul6 li.no_line1{border-bottom:0;}
+.Blog_left3{padding-bottom:5px;}
+.Blog_noline1{border:0;}
+
+
+.Blog_right1{margin:0 0 0 230px; min-width:770px;}
+.Blog_right1_1{border:1px solid #c2d9e8; background:#fff; padding:30px 0 10px;}
+.Blog_right1_2{width:96%; margin:0 auto;}
+.Blog_tit2{background-position:0 -52px; height:23px; line-height:23px; color:#19599b; padding-left:10px; font-weight:bold;}
+.Blog_right1_3{color:#19599b; padding:28px 0 28px 10px; border-bottom:1px solid #cbdce5;}
+.Bolg_sel2{width:85px; height:20px; line-height:20px; border:1px solid #bbb; vertical-align:middle;}
+.Blog_txt2{width:188px; height:18px; line-height:18px; border:1px solid #bbb; vertical-align:middle;}
+.Blog_btn2{vertical-align:middle;}
+.Blog_table1{line-height:34px; margin-top:3px;}
+.Blog_table1 th{color:#19599b; background:#eef4f6; line-height:26px; height:26px; text-align:center;}
+.Blog_table1 th.Blog_th1{text-align:left; padding-left:35px;}
+.Blog_table1 td{text-align:center; border-bottom:1px dashed #b9b9b9;}
+.Blog_table1 td.Blog_td2 a{color:#19599b; text-decoration:underline;}
+.Blog_table1 td.Blog_td1{text-align:left; padding-left:10px;}
+.Blog_ck1{vertical-align:-2px; margin-right:10px;}
+.Blog_right1_4{padding:10px 0 12px 10px; text-align:center; border-bottom:1px solid #cbdce5; overflow:hidden;}
+.Blog_right1_4 p{color:#19599b; text-align:left; clear:left;}
+.Blog_right1_5{float:left;}
+.Blog_right1_5 a{color:#19599b;}
+.Blog_a6{background-position:0 -51px; width:69px; height:21px; display:inline-block; vertical-align:-6px; *vertical-align:-2px; margin-left:24px;}
+.Blog_right1_4 span{color:#19599b;}
+.Blog_right1_4 b{margin-right:18px; font-weight:normal;}
+.Blog_txt3{width:22px;}
+.Blog_right1_6{padding:31px 0 20px 16px; text-align:center;}
+.Blog_a7{float:left; background-position:-70px -51px; width:74px; height:21px;}
+
+.Blog_right1_7{margin-top:38px;}
+.Blog_tit3{background:#e6f0f3; padding-left:31px; font-weight:bold; color:#19599b; height:26px; line-height:26px;}
+.Blog_right1_8{margin:20px 32px 0; overflow:hidden;  _height:80px; _overflow:visible;}
+.Blog_right_img1{float:left; width:50px;}
+.Blog_right_img1 img{border:1px solid #cadce3; width:48px; height:48px;}
+.Blog_right_font1{margin-left:66px; padding-right:30px; height:100%;}
+.Blog_p5{color:#ababab; line-height:14px;}
+.Blog_p5 span{color:#ff9000; margin-right:30px;}
+.Blog_p6{margin-top:15px; color:#666; line-height:16px;word-wrap: break-word;}
+.Blog_right_font1 .div1{text-align:right; margin-top:16px; height:14px; line-height:14px; _padding-right:16px;}
+a.Blog_a10{color:#19599b;}
+a.Blog_a10:hover{color:#19599b;}
+.Blog_right1_9 .div2{margin:7px 0 9px; float:left; width:100%;}
+.Blog_ar1{width:99%; _width:98%;  height:65px; padding:10px 0 0 12px; color:#ababab;}
+.Blog_right1_9 .div3_1 span{background-position:0 -26px; width:20px; height:20px; float:left; vertical-align:-3px; margin-right:6px;}
+.Blog_right1_9 .div3_1 a{vertical-align:-5px; color:#19599b;}
+.div3_2{float:right;}
+.Blog_right1_9 .div3_2{color:#8b8b8b; _padding-right:16px;}
+.Blog_right1_9 .div3_2 span{font-family:Arial; font-size:16px; font-weight:bold; margin:0 5px;}
+.Blog_right1_9 .div3_2 .Blog_a11, .Blog_right1_9 .div3_2 .Blog_a12{background-position:-138px -94px; width:50px; height:23px; _height:24px; display:inline-block; vertical-align:middle; margin-left:10px; border:0;}
+.Blog_right1_9 .div3_2 .Blog_a12{background-position:-189px -94px;}
+.Blog_line1{background:url("http://blog.chinaunix.net/image/default/22.png") repeat-x; height:2px; margin-top:18px;}
+.Blog_p7{background:#fff; border:1px solid #cee0ea; margin-top:10px; padding:14px; color:#19599b; line-height:16px;word-wrap: break-word;}
+.Blog_p8{margin-top:10px; line-height:16px;word-wrap: break-word;}
+.Blog_p8 span{float:right; margin-right:85px; height:13px;}
+.span_text1{display:block; text-align:right;}
+.Blog_line2{margin-top:10px;}
+.Blog_right_font1 .div1_margin1{margin-top:9px;}
+.Blog_right1_10{margin-top:28px;}
+.Blog_con1{text-align:right; color:#19599b; margin-bottom:7px; line-height:14px; _padding-right:16px;}
+.Blog_con1 span{color:#ff9000;}
+.Blog_right1_9 .div4{margin-top:0;}
+.div3_3{margin-top:10px;}
+.Blog_a13, .Blog_a14, .Blog_append_a1, .Blog_append_a2{background-position:-98px -122px; width:82px; height:26px; display:inline-block; vertical-align:middle; border:0;}
+.Blog_a14{background-position:-181px -122px; margin-left:14px;}
+.Blog_line3{background-position:0 -76px; height:1px; margin-top:20px;}
+.Blog_right_font2{padding-right:0;}
+.Blog_rihgtcon1{margin-top:20px; padding-left:6px; color:#ababab;}
+.Blog_append_a1{background-position:-545px -122px; margin-right:10px;}
+.Blog_append_a2{background-position:-629px -122px;}
+
+
+.Blog_footer{margin-top:90px; border-top:1px solid #bfcfdd; text-align:center; color:#809ebc; line-height:24px; padding-bottom:20px;}
+.Blog_footer div{margin-top:10px;}
+.Blog_footer div a{color:#809ebc;}
+
+
+.Blog_right1_11{padding:20px 0 17px; margin-bottom:10px;}
+.Blog_tit4{border-bottom:1px dashed #b8b8b8; padding:0 10px 11px 0;}
+.Blog_tit4 a{font-family:"微软雅黑","黑体","Verdana"; font-size:20px; color:#19599b;}
+.Blog_tit4 b{background-position:-150px -73px; width:38px; height:18px; display:inline-block; margin-right:9px; vertical-align:-2px; *vertical-align:2px;}
+.Blog_tit4 span{float:right;background-position:-468px -96px; width:76px; height:23px; display:inline-block;background-image:url("http://blog.chinaunix.net/image/default/bg.png"); background-repeat:no-repeat; _overflow:hidden;cursor:pointer}
+
+.Blog_con2{color:#666; line-height:26px;}
+.Blog_p9{margin-top:4px;}
+.Blog_p10{margin-top:9px;}
+.Blog_p10 a{color:#19599b;}
+.Blog_con2_1{margin-top:9px; position:relative;}
+.Blog_con2_1 a{color:#19599b;}
+.Blog_more1{position:absolute; left:285px; top:10px; *top:5px; width:56px; height:74px; border:1px solid #bdd6e6; padding-bottom:5px; _padding-bottom:0px; z-index:1000; background:#fff;}
+.Blog_more1 ul{width:52px; margin:0 auto;}
+.Blog_more1 li{border-bottom:1px dashed #b9b9b9;}
+.Blog_more1 li.Blog_noline1{border:0;}
+.Blog_more1 li a{color:#005dbe;}
+.Blog_more1 li span{ float:left; margin:6px 8px 0 5px; _margin:6px 2px 0 5px; width:13px; height:13px; vertical-align:middle; display:inline;}
+.Blog_more1 li span.Blog_span8{background-position:-41px 0;}
+.Blog_more1 li span.Blog_span9{background-position:-55px 0; margin-top:7px; *margin-top:px;}
+.Blog_more1 li span.Blog_span10{background-position:-69px 0; width:16px; height:15px; margin:5px 6px 0 2px; *margin-top:4px; _margin-right:2px; vertical-align:-3px; _vertical-align:0px}
+.Blog_right_1_12{padding:13px 0 32px 16px;}
+.Blog_right1_6 a.Blog_a15{background-position:-269px -51px;}
+
+
+.Blog_wz1 ul li { list-style: disc  outside} 
+.Blog_wz1 ol li { list-style:decimal outside}
+.Blog_tit5{border-bottom:0; padding-right:0;}
+.Blog_tit5 em{margin-left:22px; color:#bbbaba; font-family:Arial;}
+.Blog_con3{margin-top:10px; line-height:22px;}
+.Blog_con3 p{color:#19599b;}
+.Blog_con3 span{color:#bbbaba; margin-right:25px;}
+.Blog_wz1 p{margin:5px 0;}
+.Blog_wz1 p a{color:#19599b;}
+.Blog_p11{margin-top:40px;}
+.Blog_con3_1{color:#bbbaba; margin-top:40px;}
+.Blog_con3_2{line-height:22px; margin-top:50px;}
+.Blog_con3_2 div{*padding-bottom:8px;}
+.Blog_con3_3{line-height:20px; margin-top:18px; color:#19599b;}
+.Blog_con3_3 div{float:right; padding-right:10px; color:#666;}
+.Blog_con3_3 div span{background-position:0 -180px; width:46px; height:36px; line-height:36px; text-align:center; display:inline-block; color:#656565; font-weight:bold; font-size:14px; vertical-align:middle;}
+.Blog_con3_3 div a{background-position:-47px -180px; width:56px; height:36px; display:inline-block; vertical-align:middle; margin-right:7px;}
+.Blog_tit6{margin-top:45px;}
+.Blog_con3_4{overflow:hidden;}
+.Blog_con3_4 ul{width:98%; margin:19px auto;}
+.Blog_con3_4 li{float:left; width:33%; margin-bottom:11px; overflow:hidden;}
+.Blog_span6, .Blog_span7{background-position:-86px 0; width:17px; height:17px; display:inline-block; margin-right:6px; vertical-align:-4px; *vertical-align:0px;}
+.Blog_span7{background-position:-104px 0;}
+.Blog_tit7{margin-top:10px;}
+.Blog_con3_5 li{width:25%; line-height:20px; margin-bottom:5px;}
+.Blog_con3_4 ul.Blog_ul7{float:left; width:31%; padding-left:12px;}
+.Blog_con3_4 ul.Blog_ul7 li{float:none; width:100%;}
+.Blog_tit4 b.Blog_b1{background-position:-150px -73px;}
+
+.Blog_tit4 b.Blog_b2{background-position:-383px -28px;}
+.Blog_tit4 b.Blog_b3{background-position:-344px -28px;}
+
+
+.Blog_con6 dl{border-bottom:1px solid #cbdce5; padding:22px 0 24px 9px;}
+.Blog_con6 dl.noline1{border-bottom:0;}
+.Blog_con6 dt{font-weight:bold; color:#19599b;}
+.Blog_con6 dd{margin-top:18px;word-wrap: break-word;}
+.HT_line3{background-position:0 -76px; height:1px; width:205px; margin:0 auto; _overflow:hidden;}
+.HT_line3_1{margin-top:15px;}
+.HT_line4{width:100%;}
+
+
+.landing_con1{height:115px; background-position:0 -109px;}
+.landing_con2{width:530px; margin:45px auto 23px;}
+.landing_con2 li{margin-bottom:6px; color:#125a94; height:40px; line-height:40px; overflow:hidden;}
+.landing_con2 li b{float:left; width:54px; line-height:40px; vertical-align:middle;}
+.landing_con2 li input{vertical-align:middle;}
+.landing_con2 li a{text-decoration:underline; margin:0 10px;}
+.landing_con2 li a.landing_a1{color:#06c;}
+.landing_con2 li a.landing_a1:hover{color:#06c;}
+.landing_con2 li img{vertical-align:middle; margin:0 15px;}
+.landing_txt1{width:267px; height:22px; line-height:22px; padding-left:5px;}
+.landing_txt2{width:132px; height:22px; line-height:22px;padding-left:5px;}
+.landing_con2 li input.landing_ck1{vertical-align:-2px;}
+@media all and (min-width:0px){ .landing_con2 li input.landing_ck1{vertical-align:middle\0;} } 
+.landing_btn1{background-position:-396px -96px; width:71px; height:25px; border:0; margin-right:32px; color:#fff; font-weight:bold; cursor:pointer;}
+.landing_con3{width:530px; margin:45px auto 23px;}
+.landing_con3 li{margin-bottom:6px; color:#125a94; margin-bottom:30px;}
+.landing_con3 p{background-position:-312px -99px; width:83px; height:22px; line-height:23px; text-align:center; font-weight:bold; margin-bottom:13px;}
+
+
+.HT_layer1{border:1px solid #bdd6e6;  width:396px; background:#fff;}
+.HT_layer1_1{line-height:25px; height:25px; background:#f5f5f5; border-bottom:1px solid #bdd6e6; padding-left:21px; color:#19599b;}
+.HT_layer1_1 a{background-position:-41px -14px; width:7px; height:8px; display:inline-block; float:right; margin:9px 11px 0 0; display:inline;}
+.HT_layer1_2{width:358px; margin:26px auto;}
+.HT_font2{color:#19599b;}
+.HT_font2 span{color:#565656;}
+.HT_font2 p{height:25px; line-height:25px;}
+.HT_sel5{width:170px; height:20px; border:1px solid #bbb; line-height:20px; padding-left:2px; color:#ababab; margin-top:2px; vertical-align:middle;}
+.HT_btn2{background-position:-240px -94px; width:50px; height:23px; cursor:pointer; border:0; vertical-align:middle;}
+.login_btn1{background-position:-440px -154px; width:50px; height:23px; border:0; cursor:pointer;}
+.HT_layer3_1 span.login_span1, .HT_layer3_1 span.login_span2{background-position:-529px -51px; width:26px; height:27px; display:inline-block; float:none; vertical-align:-8px; *vertical-align:-6px; margin-right:10px;}
+.HT_layer3_1 span.login_span2{background-position:-503px -51px;}
+
+.HT_layer2{overflow:hidden; height:100%; width:100%;}
+.HT_layer3{width:320px;}
+.HT_layer3_1{width:272px; margin:24px auto;}
+.HT_layer3_1 li{margin-bottom:13px;}
+.HT_layer3_1 li.HT_li1{text-align:center; margin-top:20px; padding-left:30px; _padding-left:40px;}
+.HT_layer3_1 span{float:left; width:100px; text-align:right; height:18px; line-height:18px; color:#19599b;}
+.HT_sel7, .HT_txt5{width:170px; _width:165px; vertical-align:middle; color:#ababab; line-height:18px; border:1px solid #bbb; height:18px;}
+.HT_txt5{padding-left:2px; width:165px; _width:162px;}
+.HT_btn4, .HT_btn5{background-position:-138px -94px; width:50px; height:23px; _height:24px; display:inline-block; vertical-align:middle; margin-left:10px; border:0; cursor:pointer;}
+.HT_btn5{background-position:-189px -94px;}
+.HT_layer3_2{text-align:center; line-height:22px; color:#19599b; margin:18px auto;}
+.HT_layer3_2 p{text-align:center; line-height:22px; color:#19599b; padding:0 20px 0 20px}
+.HT_layer3_2 li.HT_li1{text-align:center; margin-top:10px; padding-left:0;}
+
+
+.login_con1{width:268px; height:140px;}
+
+
+.add_friend{width:485px;}
+.add_friend1{width:450px; margin:22px auto; overflow:hidden;}
+.add_friend1_img1{width:49px; height:49px; float:left; border:1px solid #bcd7e1; margin-right:10px;}
+.add_friend1_font1{float:left; width:380px;}
+.add_friend1_font1 li{color:#19599b; padding:6px 0 5px;}
+.add_friend1_font1 li span{color:#ff9000;}
+.add_friend1_font1 li input.add_friend_int1{width:330px; height:20px; line-height:20px; padding-left:2px; color:#ababab;}
+.add_friend1_con1{margin-top:5px; color:#ababab; padding-left:45px;}
+.add_friend1_con2{color:#19599b; margin-top:10px;}
+.add_friend1_con2 select{width:170px; color:#ababab;}
+.add_friend1_con2 input, .add_friend1_con2 select{vertical-align:middle;}
+.add_friend1_con2 input.HT_btn2{width:50px; height:23px;}
+
+
+.message_con{width:504px; height:245px;}
+.HT_con5{margin:24px auto; width:468px;}
+.HT_con5 div{margin-bottom:11px; line-height:1.5;}
+.HT_con5 div b{float:left; font-weight:normal; text-align:right; width:50px; margin-top:5px;}
+.HT_txt2{width:215px; height:20px; line-height:20px;}
+.HT_con5 div em{color:#ff4800; *vertical-align:5px;}
+.Blog_right1_9_1{margin-left:50px;}
+.Blog_right1_9 .div2{margin:7px 0 9px; float:left; width:100%;}
+.Blog_ar1{width:404px; _width:390px;  height:97px; padding:10px 0 0 12px; color:#ababab;}
+.Blog_right1_9 .div3_1 a{vertical-align:-5px; color:#19599b;}
+.div3_2{float:right;}
+.Blog_right1_9 .div3_2{color:#8b8b8b; _padding-right:12px;}
+.Blog_right1_9 .div3_2 span{font-family:Arial; font-size:16px; font-weight:bold; margin:0 5px;}
+.message_btn1{background-position:-494px -122px; width:50px; height:23px; border:0; cursor:pointer; vertical-align:middle;}
+.message_height1{height:150px;}
+.Blog_right1_9 .div3_1 span.HT_span4{background-position:-291px -94px;}
+
+
+
+.wg_con1{width:378px; height:220px; padding-bottom:15px;}
+.wg_con1_1{width:340px; margin:18px auto;}
+.wg_con1_1 p{line-height:24px; color:#19599b;}
+.wg_con1_1 p span{color:#ababab;}
+.wg_txter{width:330px; margin-top:5px; height:60px; padding:5px; color:#ababab;}
+.wg_con1_2{margin-top:12px; text-align:right;}
+.wg_sel1{width:170px; color:#ababab; vertical-align:middle; float:left;}
+
+
+.classify_con1{width:670px; overflow:hidden; height:424px;}
+.classify_con1_1{background:none; border:0;}
+.classify_con1_2{width:630px; margin:0 auto;}
+.classify_con1_2 ul{float:left; width:125px;}
+.classify_tit1, .classify_tit2{color:#19599b; font-weight:bold; line-height:14px;}
+.classify_tit2{margin-top:45px; *margin-top:35px;}
+.classify_con1_2 li{margin-top:17px; *margin-top:10px; color:#19599b}
+@media all and (min-width:0px){ .classify_con1_2 li{margin-top:14px\0;} } 
+.classify_con1_2 li input{vertical-align:-2px;}
+
+
+.nologin_con1{border:1px solid #ababab; padding:10px; height:115px; background:#fff; color:#ababab;}
+.nologin_con1 p{margin-top:10px;}
+.nologin_con1 p a{color:#005dbe; text-decoration:underline;}
+.nologin_con2{margin-top:10px;}
+.nologin_btn1, .nologin_btn2{width:82px; height:26px; display:inline-block; background-position:-470px -180px; cursor:pointer; border:0;}
+.nologin_btn2{background-position:-553px -180px; margin-left:14px;}
+
+
+.Blog_ar1_1{width:98%; _width:98%;  height:136px; padding:10px 0 0 12px; color:#ababab;}
+
+
+#bnainput{width:210px; height:20px; line-height:20px; padding:0 2px 0 3px; border:1px #c2c2c2 solid;}
+#brfinput{width:331px; height:20px; line-height:20px; padding:0 2px 0 3px; border:1px #c2c2c2 solid;}
+.btn1{margin-left:10px; width:44px; height:22px; background:url("http://blog.chinaunix.net/image/default/input1031_03.png") no-repeat; cursor:pointer; border:0; }
+.btn2{margin-left:10px; width:44px; height:22px; background:url("http://blog.chinaunix.net/image/default/input1031_03.png") -54px 0 no-repeat; cursor:pointer; border:0;}
+#bnaspan a{font-size:30px; color:#3067a0;font-family:"微软雅黑"; margin-left:0px;}
+
+
+.Blog_left1_1,.Blog_right1_2{position:relative;}
+.img{position:absolute;top:98px;left:144px;width:53px;height:79px;background:url("http://blog.chinaunix.net/image/default/z1.png") no-repeat;_background-image: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/image/default/z1.png');}
+.img1{position:absolute;top:55px;right:287px;width:110px;z-index:-1;height:110px;background:url("http://blog.chinaunix.net/image/default/z2.png") no-repeat;_background-image: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/image/default/z2.png');}
+.img2{position:absolute;top:-24px;right:160px;width:50px;height:100px;background:url("http://blog.chinaunix.net/image/default/z3.png") no-repeat;_background-image: none; filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/image/default/z3.png');}
+
+.Blog_wz1 .none_number , .Blog_wz1 .none_number li {list-style:none outside none;}

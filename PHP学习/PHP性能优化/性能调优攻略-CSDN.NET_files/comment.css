@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+
+#comment {line-height:150%;text-align:left;font: 12px '宋体',Arial,Verdana,sans-serif,"Lucida Grande","Bitstream Vera Sans"; }
+#comment * {line-height:150%;}
+
+#comment a {color:#1F3A87;text-decoration:none;}
+#comment a:hover {color:#F30;text-decoration:underline;}
+
+#comment {margin:0px;padding:0px;border:1px solid #999;background:transparent;}
+#comment .tlt {margin:10px;font-size:14px;font-weight:bold;padding:3px 0px 9px 0px;border-bottom:1px solid #999;}
+#comment .tlt em {float:right;font-style:normal;font-size:12px;color:#BA2626;}
+#comment .tlt em a {color:#BA2626;}
+
+
+#comment #commentlist {margin:10px;overflow:hidden;}
+#comment #commentlist img {border:0px;}
+#comment #commentlist ul {list-style:none;}
+
+.cmtNotice {margin-top:20px;padding-top:10px;border-top:1px dotted #999;}
+
+.commenttitle em {float:right;font-style:normal;}
+
+.commentlist {margin:0px;padding:0px;color:#999;}
+.commentlist li {margin:10px auto;padding:0px 0px 9px 64px;border-bottom:1px dotted #777;}
+.commentlist li span {}
+.commentlist li span.u {float:left;display:block;width:60px;text-align:center;margin:0px 0px 0px -64px;} 
+.commentlist li span.u img {width:48px;height:48px;}
+.commentlist li span.t {color:#009;background:url("http://comment2.csdn.net/images/dot.gif") 0px 3px no-repeat;padding-left:12px;}
+.commentlist li p {color:#000;margin:6px auto;padding:0px;font-size:14px;word-break:break-all;word-wrap:break-word;}
+.commentlist li p.detail {font-size:12px;color:#999;margin:3px;text-align:right;}
+
+.ccommentlist {margin:20px 40px 0px 28px;}
+.ccommentlist li {margin:10px auto;padding:9px 9px 9px 64px;border:none;border-top:1px dotted #AFAFB0;background:#F6F6F6;}
+.ccommentlist li span.u {float:left;display:block;width:60px;text-align:center;margin:0px 0px 0px -64px;}
+.ccommentlist li span em {float:right;font-style:normal;font-size:12px;}
+.ccommentlist li p {color:#111;margin:6px auto;padding:0px;font-size:13px;word-break:break-all;word-wrap:break-word;}
+.ccommentlist li p.ccmsg {color:#333;margin:6px 11px;font-size:12px;}
+.ccommentlist li blockquote {color:#999;margin:6px 9px;padding:5px 9px;border:1px solid #DDD;background:#F1F5FA;word-break:break-all;word-wrap:break-word;}
+.ccommentlist li blockquote span {color:#999;display:block;}
+.ccommentlist li blockquote em {color:#DDD;}
+.ccommentlist a {color:#2C629E;}
+.ccommentlist a:hover {color:#BA2626;}
+
+.commentform {margin:15px 10px 20px 10px;padding:0px;}
+.commentform form {margin-top:0px;padding:0px;}
+.commentform .input {width:48px;}
+.commentform .submit {float:right;cursor:pointer;}
+.commentform textarea {font-size:14px;margin:6px 0px;border:1px solid #D4D0C8;border-top:1px solid #404040;border-left:1px solid #404040;width:90%;height:90px;}
+.commentform input {font-size:12px;}
+
+.digestComment li p,
+.digestComment dd p {color:#000;margin:6px auto;padding:0px;font-size:12px;line-height:135%;}
+.digestComment li p.detail,
+.digestComment dd p.detail {font-size:12px;color:#999;margin:3px;text-align:right;}
+.digestComment .ccommentlist {margin:10px 10px 0px 10px;}
+
+#digestComment li p,
+#digestComment dd p {color:#000;margin:6px auto;padding:0px;font-size:12px;line-height:135%;}
+#digestComment li p.detail,
+#digestComment dd p.detail {font-size:12px;color:#999;margin:3px;text-align:right;}
+#digestComment .ccommentlist {margin:10px 10px 0px 10px;}
+
+#cmtRplBlock {border:1px solid #999;background:#FFFFEE;}
+
+#cAImg,#rAImg {border:1px solid #CCC;cursor:pointer;}
+#cAImg:hover,#rAImg:hover {border:1px solid #999;}
+
+#cmtMsg span,
+#rplMsg span {display:block;color:#F30;font-weight:bold;margin:7px 0px 0px;padding:9px;background:#FFFF80;border:1px solid #F6BC80;line-height:120%;}
+#cmtMsg span em,
+#rplMsg span em {font-style:normal;padding:2px 20px;background:url("http://comment2.csdn.net/images/loading.gif") left top no-repeat;}
+
+#commentpage {text-align:center;}
+#commentpage a {text-decoration:none;margin:3px;padding:3px 5px;border:1px solid #CCC;}
+#commentpage a.selc,
+#commentpage a:hover {text-decoration:none;color:#FFF;background:#1F3A87;}
+#commentpage a.gray {color:#999;text-decoration:none;}
+
+.digc {font-size:12px;padding:10px 0 0;}
+.digc a {text-decoration:none;}
+.digc table {margin: 0 auto;}
+.digc table td{padding: 10px; text-align: center;}
+.digc table td .digcolumn{ position: relative; margin: 0 auto 6px; width: 20px; height: 50px;}
+.digc table td .digcolumn .digchart{ position: absolute; left: 0; bottom: 0; width: 20px; text-align: left; }
+	.digc table td .digcolumn .dc1{ background: #DC3912; }
+	.digc table td .digcolumn .dc2{ background: #FF9900; }
+	.digc table td .digcolumn .dc3{ background: #666666; }
+	.digc table td .digcolumn .dc4{ background: #008000; }
+	.digc table td .digcolumn .dc5{ background: #4942CC; }
+	.digc table td .digcolumn .dc6{ background: #CB4AC5; }
+	.digc table td .digcolumn .dc7{ background: #D6AE00; }
+	.digc table td .digcolumn .dc8{ background: #336699; }
+	.digc table td .digcolumn .dc9{ background: #DD4477; }
+	.digc table td .digcolumn .dc10{ background: #AAAA11; }
+.digc a:hover{color:red;text-decoration: none;}
+.digc table td .digcolumn em{ position: absolute; margin: -18px 0 0 -6px; width: 30px; font-size: 11px; text-align: center; font-style: normal; color: #999;}
+.digc table td img{border:0px;width:32px;margin: 0 0 5px; }
+
+

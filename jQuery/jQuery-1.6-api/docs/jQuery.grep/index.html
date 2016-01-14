@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.grep()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-grep1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.grep( array, function(elementOfArray, indexInArray), [ invert ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Array">Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>查找满足过滤功能数组元素。原始数组不受影响。</p>
+<ul class="signatures"><li class="signature" id="jQuery-grep-array-functionelementOfArray- indexInArray-invert">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.grep( array, function(elementOfArray, indexInArray), [ invert ] )</h4>
+<p class="arguement"><strong>array</strong>该数组用来搜索。
+</p>
+<p class="arguement"><strong>function(elementOfArray, indexInArray)</strong>该函数来处理每个项目的比对。第一个参数给函数是项目，第二个参数是索引。该函数应返回一个布尔值。<code>this</code>将是全局的窗口对象。</p>
+<p class="arguement"><strong>invert</strong>如果“invert”为false，或没有提供，函数返回一个所有元素组成的数组对于“callback”返回true。如果“invert”为true，函数返回一个所有元素组成的数组对于“callback”返回false。</p>
+</li></ul>
+<div class="longdesc">
+<p><code>$.grep()</code>方法删除数组必要项目，以使所有剩余项目通过提供的测试。该测试是一个函数传递一个数组项和该数组内的项目的索引。只有当测试返回true，该数组项将返回到结果数组中。</p>
+<p> 该过滤器的函数将被传递两个参数：当前数组项和它的索引。该过滤器函数必须返回'true'以包含在结果数组项。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Filters the original array of numbers leaving that are not 5 and have an index greater than 4.  Then it removes all 9s.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:blue; }
+  p { color:green; margin:0; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;p&gt;&lt;/p&gt;
+  &lt;span&gt;&lt;/span&gt;
+  
+&lt;script&gt;
+var arr = [ 1, 9, 3, 8, 6, 1, 5, 9, 4, 7, 3, 8, 6, 9, 1 ];
+$("div").text(arr.join(", "));
+
+arr = jQuery.grep(arr, function(n, i){
+  return (n != 5 &amp;&amp; i &gt; 4);
+});
+$("p").text(arr.join(", "));
+
+arr = jQuery.grep(arr, function (a) { return a != 9; });
+$("span").text(arr.join(", "));
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Filter an array of numbers to include only numbers bigger then zero.</span>
+</h4>
+<pre><code class="example">$.grep( [0,1,2], function(n,i){
+   return n &gt; 0;
+ });</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">[1, 2] </code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Filter an array of numbers to include numbers that are not bigger than zero.</span>
+</h4>
+<pre><code class="example">$.grep( [0,1,2], function(n,i){
+    return n &gt; 0;
+},true);</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">[0] </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,492 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0066)http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html -->
+<HTML><HEAD><TITLE>linux-Vi使用方法(备查)_Studing&Thinking_百度空间</TITLE>
+<META http-equiv=content-type content="text/html; charset=GBK"><LINK 
+title=订阅该空间的博客文章 href="http://hi.baidu.com/iamcyh/rss" type=application/rss+xml 
+rel=alternate>
+<STYLE type=text/css>.error {
+	FONT-SIZE: 12px; COLOR: #f00
+}
+.shareUser {
+	COLOR: #666; LINE-HEIGHT: 20px; TEXT-ALIGN: left
+}
+.shareLastEditor {
+	COLOR: #666; LINE-HEIGHT: 20px; TEXT-ALIGN: left
+}
+.shareLastEditor {
+	MARGIN: 5px 0px 8px
+}
+</STYLE>
+
+<SCRIPT>
+	    var g_pageTimerStart=new Date().getTime();
+	</SCRIPT>
+
+<SCRIPT 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/global.js"></SCRIPT>
+
+<SCRIPT src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/libs.js"></SCRIPT>
+
+<SCRIPT 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/tangram-1.1.0.js"></SCRIPT>
+
+<SCRIPT>
+var Session = {
+    isLogin: true,
+    isHost: 0,
+    loginStatus : 2,
+    userName: "iamcyh",   
+    userPortrait:'0c8169616d637968b407',
+    spaceURL: "\/iamcyh",
+    spBasicURL:"http:\/\/hi.baidu.com\/iamcyh",
+    spBasicURLEnc:"http%3A%2F%2Fhi.baidu.com%2Fiamcyh",
+    visitorName:    "80330582",
+    visitorPortrait:'59b538303333303538321404',
+    isActive: '1',   /*{cmt 访问者是否激活空间}*/
+    visitorURL: "\/80330582",        // 
+    pageURL: "http://hi.baidu.com\/iamcyh\/blog\/item\/97127051ba61547f85352489.html",    
+    refer: "http:\/\/www.baidu.com\/s?tn=baiduhome_pg&bs=vi%CA%E4%C8%EB&f=8&rsv_bp=1&rsv_spt=1&wd=vi%CA%E4%C8%EB%D7%B4%CC%AC%BA%CD%C3%FC%C1%EE%D7%B4%CC%AC%C8%E7%BA%CE%C7%D0%BB%BB&inputT=11578",
+    spToken: '8ecbf6b5c837fb61e652e86259048812', 
+    spFriendDomain: 'http://frd.baidu.com',
+    spSpaceDomain: 'http://hi.baidu.com',
+    spPortraitDomain: 'http://tx.bdimg.com',
+    spSpaceStaticDomain: 'http://hi.bdimg.com', /*{cmt TODO RD似乎还不有提供这个变量，记得补成呀！}*/
+    spImgDomain : 'http://img.baidu.com',
+    spStaticDomain : 'http://hi.bdimg.com',
+
+    isDrag: false  /*{cmt 是否在拖动页：是为了通用，只对模块内容有作用，这里也作为一个通用属性}*/
+    ,isProfile: false   /*{cmt 是否在拖动页：是为了通用，只对模块内容有作用，这里也作为一个通用属性}*/
+    ,isPortraitVerify:!true
+    };
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.6197" name=GENERATOR></HEAD>
+<BODY>
+<SCRIPT>
+/*<![CDATA[*/
+if(top.location != self.location){
+	top.location = self.location;
+}
+var myref = encodeURIComponent("http://hi.baidu.com\/iamcyh\/blog\/item\/97127051ba61547f85352489.html");
+/*]]>*/
+</SCRIPT>
+<!--[if (lt IE 8.0)]><LINK 
+href="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/mods.css" type=text/css 
+rel=stylesheet><![endif]--><!--[if (!IE)|(gte IE 8.0)]><!--><link rel=stylesheet type=text/css href="http://hi.bdimg.com/static/cblog/css/ui/mods_datauri.css?v=a1661a70.css"><!--<![endif]--><LINK 
+href="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/651c47aed37dc8cc7cd92aa9.css" 
+type=text/css rel=stylesheet><!--[if (lt IE 8.0)]><LINK 
+href="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/space.css" type=text/css 
+rel=stylesheet><![endif]--><!--[if (!IE)|(gte IE 8.0)]><!--><link rel=stylesheet type=text/css href="http://hi.bdimg.com/static/cblog/css/space_datauri.css?v=b27686c7.css"><!--<![endif]-->
+<DIV class=userbar>
+<CENTER>
+<DIV id=nav><A class=logo href="http://hi.baidu.com/index.htm"><IMG alt=百度空间 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/logo_93_30.gif" 
+border=0></A> 
+<UL class=topmenu>
+  <LI><A href="http://hi.baidu.com/80330582/ihome">个人中心</A></LI>
+  <LI class=vline></LI>
+  <LI><A href="http://hi.baidu.com/80330582/home">我的主页</A></LI>
+  <LI class=vline></LI>
+  <LI><A href="http://hi.baidu.com/80330582/ihome/frdme">好友</A></LI>
+  <LI class=vline></LI>
+  <LI id=topMsgLi><A id=topMsgTab href="http://hi.baidu.com/msg/index">消息</A> 
+  </LI></UL>
+<DL class=manage>
+  <DD class=nolink id=tary_space_name>80330582</DD>
+  <DT>|</DT>
+  <DD id=user_disguise_link><A 
+  href="http://hi.baidu.com/80330582/modify/spmodules/0">装扮</A></DD>
+  <DT id=user_disguise_l>|</DT>
+  <DD><A href="http://hi.baidu.com/80330582/ihome/basicconfig">设置</A></DD>
+  <DT>| </DT>
+  <DD><A 
+  href="https://passport.baidu.com/?logout&amp;bdstoken=8ecbf6b5c837fb61e652e86259048812&amp;u=">退出</A></DD></DL></DIV></CENTER></DIV>
+<SCRIPT src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/base.js"></SCRIPT>
+<LINK href="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/base.css" 
+type=text/css rel=stylesheet>
+<SCRIPT>			
+		(function(){
+			function initMessage(){
+				Space.msgConfig={
+					staticDomain:'http://hi.bdimg.com'
+					,portraitDomain:'http://tx.bdimg.com'
+					,appsDomain:'http://apps.hi.baidu.com'
+					,domain:'http://hi.baidu.com'
+					,userPortrait:"59b538303333303538321404"
+					,userName:"80330582"
+					,spToken:"8ecbf6b5c837fb61e652e86259048812"
+					,spaceUrl:"\/80330582"
+					,pageType:"blog"
+				};
+				if(Space.msgConfig.spaceUrl.indexOf("/")==0) {
+					Space.msgConfig.spaceUrl = Space.msgConfig.spaceUrl.substr(1);
+				}
+
+				var job = new Space.Libs.Jobs();
+				job.add("message_tip");
+				job.start();
+			}
+			
+			if(window.addEventListener){
+				window.addEventListener('load', initMessage, false );
+			}else if(window.attachEvent){
+				window.attachEvent('onload', initMessage);
+			}
+		})();
+	</SCRIPT>
+
+<SCRIPT language=javascript 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/dialog.js"></SCRIPT>
+
+<CENTER>
+<DIV id=main align=left><!--[if IE]>
+<SCRIPT>
+var objmain = document.getElementById("main");
+function updatesize(){ var bodyw = window.document.body.offsetWidth; if(bodyw <= 790) objmain.style.width="772px"; else if(bodyw >= 1016) objmain.style.width="996px"; else objmain.style.width="100%"; }
+updatesize(); window.onresize = updatesize;
+</SCRIPT>
+<![endif]-->
+<DIV id=header>
+<DIV class=lc>
+<DIV class=rc></DIV></DIV>
+<DIV class=tit><A class=titlink title="iamcyh的空间 http://hi.baidu.com/iamcyh" 
+href="http://hi.baidu.com/iamcyh">Studing&amp;Thinking</A></DIV>
+<DIV class=desc>学无止境，让我们一起进步……</DIV>
+<DIV id=tabline></DIV>
+<DIV id=tab><A href="http://hi.baidu.com/iamcyh/home">主页</A><A class=on 
+href="http://hi.baidu.com/iamcyh/blog">博客</A><A 
+href="http://hi.baidu.com/iamcyh/album">相册</A><SPAN>|</SPAN><A 
+href="http://hi.baidu.com/iamcyh/profile">个人档案</A><SPAN>|</SPAN><A 
+href="http://hi.baidu.com/iamcyh/friends">好友</A><SPAN>|</SPAN><A 
+onclick="BdUtil.ns_trackerLink('m_20110330_spacebar','')" 
+href="http://tieba.baidu.com/i/sys/jump?un=iamcyh&amp;fr=spacebar" 
+target=_blank>i贴吧</A></DIV></DIV>
+<DIV class=stage>
+<DIV class=stagepad>
+<DIV style="WIDTH: 100%">
+<TABLE class=modth cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=modtl width=7>&nbsp;
+    <TD class=modtc noWrap>
+      <DIV class=modhead><SPAN class=modtit>查看文章</SPAN></DIV>
+    <TD class=modtc noWrap align=right>
+    <TD class=modtr width=7>&nbsp;</TR></TBODY></TABLE>
+<DIV class=modbox id=m_blog style="OVERFLOW-X: hidden">
+<DIV class=tit>linux-Vi使用方法(备查)</DIV>
+<DIV class=date>2011-11-26 16:10</DIV>
+<TABLE style="TABLE-LAYOUT: fixed; WIDTH: 100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV class=cnt id=blog_text>
+      <P>&nbsp;vi编辑器是所有Unix及Linux系统下标准的编辑器，它的强大不逊色于任何最新的文本编辑器，这里只是简单地介绍一下它的用法和一小部分指令。由于对Unix及Linux系统的任何版本，vi编辑器是完全相同的，因此您可以在其他任何介绍vi的地方进一步了解它。Vi也是Linux中最基本的文本编辑器，学会它后，您将在Linux的世界里畅行无阻。 
+      <BR>1、vi的基本概念 <BR>　　基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert 
+      mode）和底行模式（last line mode），各模式的功能区分如下： <BR>&nbsp;&nbsp;&nbsp; 1) 
+      命令行模式command mode） <BR>　　控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 
+      last line mode。 <BR>&nbsp;&nbsp;&nbsp; 2) 插入模式（Insert mode） 
+      <BR>　　只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。 <BR>&nbsp;&nbsp;&nbsp; 3) 
+      底行模式（last line mode） <BR>　　将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。 
+      <BR>&nbsp;<BR>&nbsp;&nbsp;&nbsp; 不过一般我们在使用时把vi简化成两个模式，就是将底行模式（last line 
+      mode）也算入命令行模式command mode）。 <BR>2、vi的基本操作 <BR>a) 进入vi <BR>&nbsp;&nbsp; 
+      　在系统提示符号输入vi及文件名称后，就进入vi全屏幕编辑画面：<BR>　　　$ vi myfile 
+      <BR>　　不过有一点要特别注意，就是您进入vi之后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert 
+      mode）」才能够输入文字。初次使用vi的人都会想先用上下左右键移动光标，结果电脑一直哔哔叫，把自己气个半死，所以进入vi后，先不要乱动，转换到「插入模式（Insert 
+      mode）」再说吧！ <BR>&nbsp;<BR>b) 切换至插入模式（Insert mode）编辑文件 <BR>　　在「命令行模式（command 
+      mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。 <BR>&nbsp;<BR>c) 
+      Insert 的切换 <BR>　　您目前处于「插入模式（Insert 
+      mode）」，您就只能一直输入文字，如果您发现输错了字！想用光标键往回移动，将该字删除，就要先按一下「ESC」键转到「命令行模式（command 
+      mode）」再删除文字。 <BR>&nbsp;<BR>d) 退出vi及保存文件 <BR>　　在「命令行模式（command 
+      mode）」下，按一下「：」冒号键进入「Last line mode」，例如： <BR>: w filename （输入 「w 
+      filename」将文章以指定的文件名filename保存） <BR>: wq (输入「wq」，存盘并退出vi) <BR>: q! (输入q!， 
+      不存盘强制退出vi) <BR><BR>3、命令行模式（command mode）功能键 <BR>1）. 插入模式 
+      <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 按「i」切换进入插入模式「insert 
+      mode」，按"i"进入插入模式后是从光标当前位置开始输入文件； <BR>　　按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字； 
+      <BR>　　按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。 <BR>&nbsp;<BR>2）. 从插入模式切换为命令行模式 
+      <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 按「ESC」键。 <BR>&nbsp;<BR>3）. 移动光标 
+      <BR>　　vi可以直接用键盘上的光标来上下左右移动，但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格。 
+      <BR>　　按「ctrl」+「b」：屏幕往"后"移动一页。 <BR>　　按「ctrl」+「f」：屏幕往"前"移动一页。 
+      <BR>　　按「ctrl」+「u」：屏幕往"后"移动半页。 <BR>　　按「ctrl」+「d」：屏幕往"前"移动半页。 
+      <BR>　　按数字「0」：移到文章的开头。 <BR>　　按「G」：移动到文章的最后。 <BR>　　按「$」：移动到光标所在行的"行尾"。 
+      <BR>　　按「^」：移动到光标所在行的"行首" <BR>　　按「w」：光标跳到下个字的开头 <BR>　　按「e」：光标跳到下个字的字尾 
+      <BR>　　按「b」：光标回到上个字的开头 <BR>　　按「#l」：光标移到该行的第#个位置，如：5l,56l。 <BR>&nbsp;<BR>4）. 
+      删除文字 <BR>　　「x」：每按一次，删除光标所在位置的"后面"一个字符。 
+      <BR>　　「#x」：例如，「6x」表示删除光标所在位置的"后面"6个字符。 
+      <BR>　　「X」：大写的X，每按一次，删除光标所在位置的"前面"一个字符。 
+      <BR>　　「#X」：例如，「20X」表示删除光标所在位置的"前面"20个字符。 <BR>　　「dd」：删除光标所在行。 
+      <BR>　　「#dd」：从光标所在行开始删除#行 <BR>&nbsp;<BR>5）. 复制 
+      <BR>　　「yw」：将光标所在之处到字尾的字符复制到缓冲区中。 <BR>　　「#yw」：复制#个字到缓冲区 
+      <BR>　　「yy」：复制光标所在行到缓冲区。 <BR>　　「#yy」：例如，「6yy」表示拷贝从光标所在的该行"往下数"6行文字。 
+      <BR>　　「p」：将缓冲区内的字符贴到光标所在位置。注意：所有与"y"有关的复制命令都必须与"p"配合才能完成复制与粘贴功能。 
+      <BR>&nbsp;<BR>6）. 替换 <BR>　　「r」：替换光标所在处的字符。 
+      <BR>　　「R」：替换光标所到之处的字符，直到按下「ESC」键为止。 <BR>&nbsp;<BR>7）. 回复上一次操作 
+      <BR>　　「u」：如果您误执行一个命令，可以马上按下「u」，回到上一个操作。按多次"u"可以执行多次回复。 <BR>&nbsp;<BR>8）. 
+      更改 <BR>　　「cw」：更改光标所在处的字到字尾处 <BR>　　「c#w」：例如，「c3w」表示更改3个字 <BR>&nbsp;<BR>9）. 
+      跳至指定的行 <BR>　　「ctrl」+「g」列出光标所在行的行号。 <BR>　　「#G」：例如，「15G」，表示移动光标至文章的第15行行首。 
+      <BR><BR>4、Last line mode下命令简介 <BR>　　在使用「last line 
+      mode」之前，请记住先按「ESC」键确定您已经处于「command mode」下后，再按「：」冒号即可进入「last line mode」。 
+      <BR><BR>A) 列出行号 <BR><BR>　「set nu」：输入「set nu」后，会在文件中的每一行前面列出行号。 <BR><BR>B) 
+      跳到文件中的某一行 
+      <BR><BR>　「#」：「#」号表示一个数字，在冒号后输入一个数字，再按回车键就会跳到该行了，如输入数字15，再回车，就会跳到文章的第15行。 
+      <BR><BR>C) 查找字符 
+      <BR><BR>　「/关键字」：先按「/」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往后寻找到您要的关键字为止。 
+      <BR><BR>　「?关键字」：先按「?」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往前寻找到您要的关键字为止。 
+      <BR><BR>D) 保存文件 <BR><BR>　「w」：在冒号输入字母「w」就可以将文件保存起来。 <BR><BR>E) 离开vi 
+      <BR><BR>　「q」：按「q」就是退出，如果无法离开vi，可以在「q」后跟一个「!」强制离开vi。 
+      <BR><BR>　「qw」：一般建议离开时，搭配「w」一起使用，这样在退出的时候还可以保存文件。 <BR><BR>5、vi命令列表 
+      <BR>1、下表列出命令模式下的一些键的功能： <BR><BR>h <BR>左移光标一个字符 <BR><BR>l <BR>右移光标一个字符 
+      <BR><BR>k <BR>光标上移一行 <BR><BR>j <BR>光标下移一行 <BR><BR>^ <BR>光标移动至行首 <BR><BR>0 
+      <BR>数字"0"，光标移至文章的开头 <BR><BR>G <BR>光标移至文章的最后 <BR><BR>$ <BR>光标移动至行尾 
+      <BR><BR>Ctrl+f <BR>向前翻屏 <BR><BR>Ctrl+b <BR>向后翻屏 <BR><BR>Ctrl+d <BR>向前翻半屏 
+      <BR><BR>Ctrl+u <BR>向后翻半屏 <BR><BR>i <BR>在光标位置前插入字符 <BR><BR>a 
+      <BR>在光标所在位置的后一个字符开始增加 <BR><BR>o <BR>插入新的一行，从行首开始输入 <BR><BR>ESC 
+      <BR>从输入状态退至命令状态 <BR><BR>x <BR>删除光标后面的字符 <BR><BR>#x <BR>删除光标后的＃个字符 
+      <BR><BR>X <BR>(大写X)，删除光标前面的字符 <BR><BR>#X <BR>删除光标前面的#个字符 <BR><BR>dd 
+      <BR>删除光标所在的行 <BR><BR>#dd <BR>删除从光标所在行数的#行 <BR><BR>yw <BR>复制光标所在位置的一个字 
+      <BR><BR>#yw <BR>复制光标所在位置的#个字 <BR><BR>yy <BR>复制光标所在位置的一行 <BR><BR>#yy 
+      <BR>复制从光标所在行数的#行 <BR><BR>p <BR>粘贴 <BR><BR>u <BR>取消操作 <BR><BR>cw 
+      <BR>更改光标所在位置的一个字 <BR><BR>#cw <BR>更改光标所在位置的#个字 
+      <BR><BR><BR>2、下表列出行命令模式下的一些指令 <BR>w filename <BR>储存正在编辑的文件为filename 
+      <BR><BR>wq filename <BR>储存正在编辑的文件为filename，并退出vi <BR><BR>q! 
+      <BR>放弃所有修改，退出vi <BR><BR>set nu <BR>显示行号 <BR><BR>/或? <BR>查找，在/后输入要查找的内容 
+      <BR><BR>n <BR>与/或?一起使用，如果查找的内容不是想要找的关键字，按n或向后（与/联用）或向前（与?联用）继续查找，直到找到为止。 
+      <BR><BR><BR>对于第一次用vi，有几点注意要提醒一下： <BR>1、用vi打开文件后，是处于「命令行模式（command 
+      mode）」，您要切换到「插入模式（Insert mode）」才能够输入文字。切换方法：在「命令行模式（command 
+      mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。 
+      <BR>2、编辑好后，需从插入模式切换为命令行模式才能对文件进行保存，切换方法：按「ESC」键。 
+      <BR>3、保存并退出文件：在命令模式下输入:wq即可！（别忘了wq前面的:） </P>
+      <P>&nbsp;</P>
+      <P>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</P>
+      <P>vi有三种工作状态：命令状态，文本插入状态，最后一行状态<BR><BR>&nbsp;1.命令状态：是vi的初始状态及一般状态。在该状态下输入的内容均视为命令，调用命令后，若要返回初始状态，则需按〈Esc〉键。<BR><BR>注意：命令状态下，其字母大小写在vi中是意义不同的的命令（小窍门：若不知道当前是在什么状态，可按几次〈Esc〉键，以确保处于命令状态。）<BR><BR>&nbsp;2.插入状态：在命令状态调用插入命令后，进入插入状态，在此状态下输入的内容被视为文件内容，按〈Esc〉键回到命令状态。<BR><BR>&nbsp;3.最后一行状态：用于存储文件、退出编辑、在vi中执行shell命令。在命令状态下输入引号中列出的任意一键均可进入该状态：“：/ 
+      ？ ！”。若要转换到命令状态，按Enter键即可。<BR><BR>&nbsp;&nbsp; 
+      在vi中执行shell命令时，在命令前需加字符“！”。<BR><BR>&nbsp;&nbsp; 例：1 
+      最后一行状态下，执行shell的列表命令<BR>&nbsp; &nbsp;<BR>&nbsp;&nbsp;&nbsp; 
+      ：!ls<BR><BR><BR>插入命令（注意字母大小写）<BR><BR>&nbsp;i 在光标前插入文本<BR><BR>&nbsp;I 
+      在此行开始插入文本&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<BR><BR>&nbsp;a 
+      在光标后插入文本<BR><BR>&nbsp;A 在此行未插入文本<BR><BR>&nbsp;o 
+      在当前行下面加一空行并进入输入方式<BR><BR>&nbsp;O在当前行上面加一空行并进入输入方式<BR><BR>&nbsp;&nbsp; 
+      &nbsp;<BR>&nbsp;删除、复制、移动命令<BR><BR>&nbsp;x 删除当前字符<BR><BR>&nbsp;d$ 
+      删除当前行中从光标往后的所有字符<BR><BR>&nbsp;d0 删除当前行中从光标往前的所有字符<BR><BR>&nbsp;dd 
+      删除当前行<BR><BR>&nbsp;ndd 删除光标所在位置之下的n行<BR><BR>&nbsp;：n1 ,n2d 删除n1行到n2行 
+      (在最后一行状态)<BR><BR>&nbsp;&nbsp;&nbsp; yy 将当前行复制到缓冲区<BR><BR>&nbsp;nyy 
+      将光标所在位置之下的n行文本复制到缓冲区<BR><BR>&nbsp;p 将上一次删除或复制的文本复制到光标的下方 <BR><BR>&nbsp;P 
+      将上一次删除或复制的文本复制到光标的上方<BR><BR>&nbsp;说明：移动正文时需先用删除命令将要移动的正文删除，然后使用复制命令<BR><BR><BR>光标移动命令<BR><BR>&nbsp;键盘的←↑→↓键 
+      分别是左移,上移,右移,下移 <BR><BR>&nbsp;O(数字), $ 
+      移至当前行首和行尾<BR><BR>&nbsp;&lt;shift&gt;+h移动光标至当前窗口的起点<BR><BR>&nbsp;&lt;shift&gt;+l移动光标至当前窗口的末尾<BR><BR>&nbsp;&lt;shift&gt;+g 
+      （或G）移动光标至文件的末尾 
+      <BR><BR>&nbsp;&lt;ctrl&gt;+f前翻一页<BR><BR>&nbsp;&lt;ctrl&gt;+b后翻一页<BR><BR>&nbsp;nG 
+      移动光标至第n行<BR><BR>&nbsp;&lt;ctrl&gt;+g 显示当前行号<BR><BR>&nbsp;J 
+      将当前行与下一行连接<BR><BR>&nbsp;u 
+      取消前一个命令<BR><BR><BR>查找字符<BR><BR>&nbsp;/要查找的字符串(回车)：查找光标位置之后的字符串 
+      <BR><BR>&nbsp;?要查找的字符串(回车)：查找光标位置之前的字符串<BR><BR>&nbsp;n 
+      继续向同一方向查找匹配的字符串<BR><BR>&nbsp;N 继续进行反方向查找匹配的字符串<BR><BR>&nbsp;* 
+      在查找的字符串中可匹配任意字符<BR><BR>&nbsp;? 在查找的字符串中可匹配一个字符<BR><BR>修改字符<BR><BR>&nbsp;r 
+      只替换光标位置上的一个字符<BR><BR>&nbsp;R 
+      用重写的方法替换原来的字符串，结束替换按&lt;Esc&gt;键<BR><BR>&nbsp;:[n1,n2]s/旧字符串/新字符串/g&lt;Enter&gt; 
+      用新文本替换n1～n2行内的所有旧字符串, 
+      n1,n2缺省时只修改当前行<BR><BR>&nbsp;:g/旧文本/s//新文本/g&lt;Enter&gt; 
+      用新文本替换缓冲区内找到的所有旧文本<BR><BR>&nbsp;. 重复上一次修改<BR><BR>&nbsp;u 
+      取消上一次修改<BR><BR>&nbsp;U 
+      将当前行恢复到修改前的状态<BR><BR><BR>常用功能选项的设置<BR><BR>&nbsp;功能选项将改变vi的显示环境，用户可在文件$HOME/.exrc中设置自己的选项，如没有此文件，则使用缺省设置。set命令在vi的最后一行命令状态使用。<BR><BR>&nbsp;set 
+      显示与缺省不同的设置<BR><BR>&nbsp;set all 显示所有设置<BR><BR>&nbsp;set ai/noai 
+      自动/不自动缩进<BR><BR>&nbsp;set nu/nonu 显示/不显示行号<BR><BR>&nbsp;set list/nolist 
+      显示/不显示不可打印字符<BR><BR>&nbsp;set 
+      showmode/noshowmode显示/不显示当前操作模式<BR><BR>&nbsp;set ts=4 
+      设置&lt;Tab&gt;键为4个空格<BR><BR>&nbsp;set ic/noic 
+      忽略/不忽略大小写<BR><BR><BR>文件的读写和退出<BR><BR>&nbsp;vi中文件的读写命令均在最后一行状态命令实现<BR><BR>&nbsp;w 
+      将缓冲区内容写入原文件<BR><BR>&nbsp;w file2 将缓冲区内容写入文件file2<BR><BR>&nbsp;w 
+      &gt;&gt;file2 将缓冲区内容附加到文件file2的后面<BR><BR>&nbsp;q 退出vi<BR><BR>&nbsp;q! 
+      强行退出vi,不改写文件<BR><BR>&nbsp;r file2 将file2中的内容读入到缓冲区当前行后<BR><BR>&nbsp;wq 
+      存盘退出 <BR><BR>&nbsp;!shell 执行shell命令<BR><BR>&nbsp;! 
+  退出shell命令</P></DIV></TR></TBODY></TABLE><BR>
+<DIV class=opt id=blogOpt><A title=查看该分类中所有文章 
+href="http://hi.baidu.com/iamcyh/blog/category/&frac14;&AElig;&Euml;&atilde;&raquo;ú&Egrave;í&frac14;&thorn;">类别：计算机软件</A><SPAN 
+class=x-blog-opt-sp>|</SPAN><A onclick="addToShare(); return false;" 
+href="http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html#" 
+target=_blank><IMG 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/share_btn.gif" 
+align=absBottom border=0></A><SPAN class=x-blog-opt-sp>|</SPAN><A 
+title=将此文章添加到百度搜藏 onclick="return addToFavor();" 
+href="http://cang.baidu.com/do/add" target=_blank>添加到搜藏</A> <SPAN 
+class=x-blog-opt-sp>|</SPAN><A title=将此文章分享到i贴吧 
+onclick="addToiTieba(); return false;" 
+href="http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html#" 
+target=_blank>分享到i贴吧</A><SPAN class=x-blog-opt-sp>|</SPAN>浏览(<SPAN 
+id=result>55</SPAN>)<SPAN class=x-blog-opt-sp>|</SPAN><A 
+href="http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html#send">评论</A>&nbsp;(<SPAN 
+id=blogCmtCount>0</SPAN>)
+<SCRIPT language=javascript>
+										/*<![CDATA[*/
+										var pre = [true,'“Cookies 必须启用才能登入”的启用方法 phpmyadmin', '“Cookies 必须启用才能登入”的...','\/iamcyh/blog/item/78647959f13ec5c39c8204e4.html'];
+										var post = [true,'LXDE 不显示桌面图片 问题已解决','LXDE 不显示桌面图片 问题已解决', '\/iamcyh/blog/item/8de697d8641b83f439012f31.html'];
+										if(pre[0] || post[0]){
+											document.write('<div style="height:5px;line-height:5px;">&nbsp;</div><div id="in_nav">');
+											if(pre[0]){
+												document.write('上一篇：<a href="' + pre[3] + '" title="' + pre[1] + '">' +  pre[2] + '</a>&nbsp;&nbsp;&nbsp;&nbsp;');
+											}
+											if(post[0]){
+												document.write('下一篇：<a href="' + post[3] + '" title="' + post[1] + '">' +  post[2] + '</a>');
+											}
+											document.write('</div>');
+										}
+										/*]]>*/
+									</SCRIPT>
+</DIV>
+<DIV class=line></DIV>
+<STYLE type=text/css>#in_related_doc A {
+	TEXT-DECORATION: none
+}
+</STYLE>
+
+<DIV id=in_related_tmp></DIV>
+<DIV id=in_reader>
+<DIV class=tit>最近读者：</DIV></DIV>
+<DIV class=line></DIV>
+<DIV id=in_comment><A name=comment></A>
+<DIV class=tit>网友评论：</DIV><SPAN id=userCommentList></SPAN>
+<DIV id=page></DIV></DIV>
+<FORM id=blogCmtSubmitForm name=blogCmtSubmitForm action=/iamcyh/commit 
+method=post><INPUT type=hidden value=8ecbf6b5c837fb61e652e86259048812 
+name=bdstoken> <INPUT type=hidden value=8 name=ct> <INPUT type=hidden value=2 
+name=cm> <INPUT type=hidden value=97127051ba61547f85352489 name=spBlogID> <INPUT 
+type=hidden name=spBlogCmtID> <INPUT type=hidden name=spRefURL></FORM>
+<DIV id=in_send><A name=send></A>
+<FORM id=popFormSubmit name=form1 onsubmit="return checkcmtform()" 
+action=/iamcyh/commit method=post><INPUT type=hidden 
+value=8ecbf6b5c837fb61e652e86259048812 name=bdstoken><INPUT type=hidden value=8 
+name=ct><INPUT type=hidden value=1 name=cm><INPUT type=hidden 
+value=97127051ba61547f85352489 name=spBlogID><INPUT id=spRefURL type=hidden 
+name=spRefURL>
+<SCRIPT>
+										    document.getElementById("spRefURL").value = window.location.href;
+										</SCRIPT>
+
+<DIV class=tit>发表评论：</DIV>
+<TABLE cellSpacing=5 cellPadding=0 width=620 border=0>
+  <TBODY>
+  <TR>
+    <TD class=f14>姓　名：
+    <TD>80330582<INPUT id=spBlogCmtor style="DISPLAY: none" maxLength=50 
+      value=80330582 name=spBlogCmtor>
+      <DIV id=nmerror style="DISPLAY: none">*姓名最长为50字节</DIV><INPUT 
+      id=spBlogCmtURL style="WIDTH: 360px" type=hidden maxLength=128 
+      onchange='checkeandu("spBlogCmtURL")' value=http://hi.baidu.com/80330582 
+      name=spBlogCmtURL>
+  <TR id=2_err style="DISPLAY: none">
+    <TD>&nbsp;
+    <TD>
+      <DIV class=error id=2_err_con></DIV>
+  <TR>
+    <TD class=f14 id=reTitle vAlign=top>内　容：
+    <TD><TEXTAREA id=spBlogCmtText style="WIDTH: 520px; HEIGHT: 155px" onfocus=hidErr(3); tabIndex=3 name=spBlogCmtText></TEXTAREA>
+  <TR id=3_err style="DISPLAY: none">
+    <TD>&nbsp;
+    <TD>
+      <DIV class=error id=3_err_con></DIV>
+  <TR id=share_blog>
+    <TD>
+    <TD vAlign=top><INPUT id=shareBlog 
+      style="MARGIN-BOTTOM: -2px; VERTICAL-ALIGN: text-bottom" type=checkbox 
+      autocomplete="off"><LABEL for=shareBlog>同时将此文章分享给好友</LABEL><INPUT 
+      id=shareBlogEchoback type=hidden name=echoback>
+  <TR id=vercode>
+    <TD class=f14 vAlign=top>验证码：
+    <TD vAlign=top><INPUT type=hidden name=spVcode><INPUT id=spVerifyKey 
+      onfocus=f_focus() tabIndex=4 maxLength=4 size=6 name=spVerifyKey 
+      autocomplete="off"> 请点击后输入四位验证码，字母不区分大小写<BR>
+      <DIV id=yanzheng style="DISPLAY: none"><IMG id=verifypic height=40 
+      width=120><WBR><A title=看不清左边的字符 onfocus=this.blur(); 
+      onclick="return newverifypic();" 
+      href="http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html#">看不清?</A></DIV>
+  <TR>
+    <TD class=f14 vAlign=top>&nbsp;
+    <TD class=f14 vAlign=top><INPUT id=btn_ok tabIndex=5 type=submit value=发表评论 name=btn_ok autocomplete="off">&nbsp;&nbsp;&nbsp;&nbsp;<A 
+      id=cancleReLink style="DISPLAY: none; FONT-SIZE: 12px; COLOR: #666" 
+      onclick="canclereply(); return false;" 
+      href="http://hi.baidu.com/iamcyh/blog/item/97127051ba61547f85352489.html#">取消回复</A></TR></TBODY></TABLE></FORM></DIV><BR></DIV>
+<TABLE height=8 cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=modbl width=7>&nbsp;
+    <TD class=modbc>&nbsp;
+    <TD class=modbr width=7>&nbsp;</TR></TBODY></TABLE></DIV></DIV></DIV></DIV>
+<DIV class=clearfix></DIV>
+<DIV 
+style="FONT-SIZE: 12px; MARGIN: 30px auto 15px; FONT-FAMILY: Arial,simsun; TEXT-ALIGN: center">
+<DIV style="MARGIN: 0px auto 6px"><A style="COLOR: #00c" 
+href="http://help.baidu.com/question?prod_en=space" 
+target=_blank>帮助中心</A><SPAN>&nbsp;|&nbsp;</SPAN><A style="COLOR: #00c" 
+href="http://tieba.baidu.com/f?kw=%B0%D9%B6%C8%BF%D5%BC%E4&amp;fr=wwwt" 
+target=_blank>空间客服</A><SPAN>&nbsp;|&nbsp;</SPAN><A style="COLOR: #00c" 
+href="http://tousu.baidu.com/hi/" 
+target=_blank>投诉中心</A><SPAN>&nbsp;|&nbsp;</SPAN><A style="COLOR: #00c" 
+href="http://www.baidu.com/search/hi_contract.html" target=_blank>空间协议</A></DIV>
+<DIV style="COLOR: #7a77c8">&copy;2012&nbsp;Baidu</DIV></DIV></CENTER>
+<UL id=blogCmtContentList style="DISPLAY: none"></UL>
+<SCRIPT>	var g_blogTitle = 'linux-Vi使用方法(备查)';
+		var g_blogId = '97127051ba61547f85352489';
+		var g_isAllowCmt =  true ;
+		var g_isByShared =  false ;
+		var g_isAddRelate =  true ;
+		var g_latestReader = [
+									["http:\/\/hi.baidu.com\/binbin_1988","370f62696e62696e5f313938381106","binbin_1988"],
+									["http:\/\/hi.baidu.com\/bigliu819","7ba06269676c6975383139640d","bigliu819"],
+									["http:\/\/hi.baidu.com\/lijian_nhy","4dcc6c696a69616e5f6e68799605","lijian_nhy"],
+								{}
+			];
+	</SCRIPT>
+<IFRAME id=submitiframe style="DISPLAY: none" name=submitiframe 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/97127051ba61547f85352489.htm"></IFRAME>
+<SCRIPT 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/comment.js"></SCRIPT>
+
+<SCRIPT 
+src="linux-Vi使用方法(备查)_Studing&amp;Thinking_百度空间.files/detailpage.js"></SCRIPT>
+
+<SCRIPT>
+/*<![CDATA[*/
+/*{cmt
+    这个相当一个代理器  
+  在这里想实现一种这种加载效果：加载时注册（用一个 初始化数据.数组 记录要绑定的ID），文档ready后，按需加载js+css资源，js加载完，就初始化据执行
+
+  有个问题，有些结构是 动态 执行这个绑定的，可能会发生资源还没有加载的情况。可以考虑给初始化数据，加一个标志位，说明加载完未，如果未，则把数据push到 初始化数据中(因为是用 dom.onxxx 的方式，所以不怕多次对同一个ID执行的问题)
+
+
+  }*/
+var SP = SP || {};
+if(!SP.mycard){
+    SP.mycard = new (function(){
+        var me = this;
+        var _cancleAction = Session.isDrag;  /*{cmt 标记在特殊情况下，所有的注册都被abort 如拖动页面}*/
+        var _list = [];
+        var _sourceLoaded = false;    /*{cmt 这里用了一种资源加载结束后，回调的机制，这个标志资源是否加载结束}*/
+        me.bind = function (_id){
+            if(_cancleAction){  //abort
+                return;
+            }
+            if(!_sourceLoaded){
+                _list.push(_id);
+            } else {
+                baidu.space.mycard.bind(_id);
+            }
+        }
+        me.init = function (_config){
+            _cancleAction = !!_config.cancle;
+        }
+        me.onSourceLoaded = function (){
+            _sourceLoaded = true;
+            baidu.space.mycard.init({portrait: Session.visitorPortrait});
+            for(var i=0,len=_list.length; i<len; i++){
+                baidu.space.mycard.bind(_list[i]);
+            }
+        }
+    })();
+    baidu.dom.ready(function(){
+        BdAjax.loadCSS('http://hi.bdimg.com/static/cblog/css/ui/ucard/ucard.css?v=50de96ca.css');
+        BdAjax.loadJS('http://hi.bdimg.com/static/cblog/js/ui/ucard/ucard.js?v=fcbffbf8.js');
+    });
+}
+SP.mycard.bind('m_blog');  /*{cmt 只有文档加载完才真正绑定，这里只是append记录 }*/
+/*]]>*/
+</SCRIPT>
+</BODY></HTML>

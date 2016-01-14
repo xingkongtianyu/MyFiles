@@ -1,0 +1,189 @@
+PHP操作EXCEL 
+<转自寒风>
+
+一、php，不用COM，生成excel文件
+
+
+<?
+header("Content-type:application/vnd.ms-excel");
+header("Content-Disposition:filename=test.xls");
+echo "test1\t";
+echo "test2\t\n";
+echo "test1\t";
+echo "test2\t\n";
+echo "test1\t";
+echo "test2\t\n";
+echo "test1\t";
+echo "test2\t\n";
+echo "test1\t";
+echo "test2\t\n";
+echo "test1\t";
+echo "test2\t\n";
+?>
+　　在php环境运行上面的代码，大家就可以看到浏览器询问用户是否下载excel文档，点击保存，硬盘上就多了一个excel的文件，使用excel打开就会看到最终的结果，怎么样不错吧。
+　　其实在做真正的应用的时候，大家可以将数据从数据库中取出，然后按照每一列数据结束后加\t,每一行数据结束后加\n的方法echo出来，在php的开头用header("Content-type:application/vnd.ms-excel");表示输出的是excel文件，用header("Content-Disposition:filename=test.xls");表示输出的文件名为text.xls。这样就ok了。
+
+
+
+　　我们更可以修改header让他输出更多格式的文件，这样php在处理各种类型文件方面就更加方便了．
+
+
+二、用PHP将mysql数据表转换为excel文件格式
+
+
+<?php
+$DB_Server = "localhost";
+$DB_Username = "mydowns";
+$DB_Password = "";
+$DB_DBName = "mydowns";
+$DB_TBLName = "user";
+$Connect = @mysql_connect($DB_Server, $DB_Username, $DB_Password)
+or die("Couldn@#t connect.");
+$Db = @mysql_select_db($DB_DBName, $Connect)
+or die("Couldn@#t select database.");
+$file_type = "vnd.ms-excel";
+$file_ending = "xls";
+header("Content-Type: application/$file_type");
+header("Content-Disposition: attachment; filename=mydowns.$file_ending");
+header("Pragma: no-cache");
+header("Expires: 0");
+$now_date = date(@#Y-m-d H:i@#);
+$title = "数据库名:$DB_DBName,数据表:$DB_TBLName,备份日期:$now_date";
+$sql = "Select * from $DB_TBLName";
+$ALT_Db = @mysql_select_db($DB_DBName, $Connect)
+or die("Couldn@#t select database");
+$result = @mysql_query($sql,$Connect)
+or die(mysql_error());
+echo("$title\n");
+$sep = "\t";
+for ($i = 0; $i < mysql_num_fields($result); $i++) {
+echo mysql_field_name($result,$i) . "\t";
+}
+print("\n");
+$i = 0;
+while($row = mysql_fetch_row($result))
+{
+$schema_insert = "";
+for($j=0; $j<mysql_num_fields($result);$j++)
+{
+if(!isset($row[$j]))
+$schema_insert .= "NULL".$sep;
+elseif ($row[$j] != "")
+$schema_insert .= "$row[$j]".$sep;
+else
+$schema_insert .= "".$sep;
+}
+$schema_insert = str_replace($sep."$", "", $schema_insert);
+$schema_insert .= "\t";
+print(trim($schema_insert));
+print "\n";
+$i++;
+}
+return (true);
+?>
+
+
+三、PHP操作excel的一个例子（用COM对象生成excel）
+
+
+这是对于那些只喜欢简单处理一下excel朋友来说的
+
+<?php
+
+//定义一个excel文件
+$workbook = "C:/My Documents/test.xls";
+$sheet = "Sheet1";
+
+//生成一个com对象$ex
+$ex = new COM("Excel.sheet") or Die ("连不上！！！");
+
+//打开一个excel文件
+$book = $ex->application->Workbooks->Open($workbook) or Die ("打不开！！！");
+
+$sheets = $book->Worksheets($sheet);
+$sheets->activate;
+
+//获取一个单元格
+$cell = $sheets->Cells(5,5);
+$cell->activate;
+//给该单元格赋值
+$cell->value = 999;
+
+//保存为另一文件newtest.xls
+$ex->Application->ActiveWorkbook->SaveAs("newtest.xls");
+
+//关掉excel，如果想看效果，则注释掉下面两行，由用户手动关掉excel
+$ex->Application->ActiveWorkbook->Close("False");
+unset ($ex);
+
+?>
+
+
+
+四、php生成EXCEL的东东
+
+
+可以通过PHP来产生EXCEL档。
+
+----------------------------
+Excel Functions
+----------------------------
+将下面的代码存为excel.php ,然后在页面中包括进来
+
+然后调用
+1. Call xlsBOF()  
+2. 将一些内容写入到xlswritenunber() 或者 xlswritelabel()中.
+3.然后调用 Call xlsEOF()
+
+也可以用 fwrite 函数直接写到服务器上，而不是用echo 仅仅在浏览器上显示。
+   
+
+
+<?php
+// ----- begin of function library -----
+// Excel begin of file header
+function xlsBOF() {
+     echo pack("ssssss", 0x809, 0x8, 0x0, 0x10, 0x0, 0x0);  
+     return;
+}
+// Excel end of file footer
+function xlsEOF() {
+     echo pack("ss", 0x0A, 0x00);
+     return;
+}
+// Function to write a Number (double) into Row, Col
+function xlsWriteNumber($Row, $Col, $Value) {
+     echo pack("sssss", 0x203, 14, $Row, $Col, 0x0);
+     echo pack("d", $Value);
+     return;
+}
+// Function to write a label (text) into Row, Col
+function xlsWriteLabel($Row, $Col, $Value ) {
+     $L = strlen($Value);
+     echo pack("ssssss", 0x204, 8 + $L, $Row, $Col, 0x0, $L);
+     echo $Value;
+return;
+}
+// ----- end of function library -----
+?>
+
+//  
+// To display the contents directly in a MIME compatible browser  
+// add the following lines on TOP of your PHP file:
+
+<?php
+header ("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header ("Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT");
+header ("Cache-Control: no-cache, must-revalidate");     
+header ("Pragma: no-cache");     
+header (@#Content-type: application/x-msexcel@#);
+header ("Content-Disposition: attachment; filename=EmplList.xls" );  
+header ("Content-Description: PHP/INTERBASE Generated Data" );
+//
+// the next lines demonstrate the generation of the Excel stream
+//
+xlsBOF();    // begin Excel stream
+xlsWriteLabel(0,0,"This is a label");   // write a label in A1, use for dates too
+xlsWriteNumber(0,1,9999);   // write a number B1
+xlsEOF(); // close the stream
+?>

@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">jQuery()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/core/" title="View all posts in Core">Core</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#jQuery1">jQuery( selector, [ context ] ) </a><ul>
+<li>jQuery( selector, [ context ] )
+	  					</li>
+<li>jQuery( element )
+	  					</li>
+<li>jQuery( elementArray )
+	  					</li>
+<li>jQuery( jQuery object )
+	  					</li>
+<li>jQuery()
+	  					</li>
+</ul>
+</li>
+<li>
+<a href="#jQuery2">jQuery( html, [ ownerDocument ] ) </a><ul>
+<li>jQuery( html, [ ownerDocument ] )
+	  					</li>
+<li>jQuery( html, props )
+	  					</li>
+</ul>
+</li>
+<li>
+<a href="#jQuery3">jQuery( callback ) </a><ul><li>jQuery( callback )
+	  					</li></ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="jQuery1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery( selector, [ context ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>接受一个包含CSS选择器的字符串用于匹配的元素集合。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-selector-context">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( selector, [ context ] )</h4>
+<p class="arguement"><strong>selector</strong>一个包含CSS选择器的字符串</p>
+<p class="arguement"><strong>context</strong>一个待查找的 DOM 元素集、文档或 jQuery 对象。</p>
+</li>
+<li class="signature" id="jQuery-element">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( element )</h4>
+<p class="arguement"><strong>element</strong>一个用于封装成jQuery对象的DOM元素。</p>
+</li>
+<li class="signature" id="jQuery-elementArray">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( elementArray )</h4>
+<p class="arguement"><strong>elementArray</strong>一个用于封装成jQuery对象的DOM元素数组。</p>
+</li>
+<li class="signature" id="jQuery-jQuery object">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( jQuery object )</h4>
+<p class="arguement"><strong>jQuery object</strong>一个用于克隆的jQuery对象。</p>
+</li>
+<li class="signature" id="jQuery"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery()</h4></li>
+</ul>
+<div class="longdesc">
+<p>在上文列出的第一个公式中，  <code>jQuery()</code> — 这个也可以写成 <code>$()</code> — 通过提供的选择器检索任何DOM元素并且通过这些元素创建一个新的jQuery对象：</p>
+<pre>$('div.foo');</pre>
+<h4 id="selector-context">上下文选择器</h4>
+<p>默认情况下,选择器从文档根节点开始执行搜索。然而,另一个可以给<code>$()</code>函数传递用于上下文检索的第二个可选参数。 举个例子，如果在一个回调函数中我们希望为一个元素做一个检索， 我们可以限制搜索的范围:</p>
+<pre>
+$('div.foo').click(function() {
+  $('span', this).addClass('bar');
+});
+</pre>
+<p>由于我们限制这个span选择器的上下文为 <code>this</code>, 只有在点击元素里的span将会被附加样式。</p>
+<p>在内部，选择器上下文是使用<code>.find()</code>方法的，所以  <code>$('span', this)</code> 等价于<code>$(this).find('span')</code>。</p>
+<h4 id="using-dom-elements">使用DOM节点</h4>
+<p>在上文列出的第二个和第三个公式中，这个方法同样使用 一个DOM元素或者我们用其他一些方式已找到的元素 来创建一个jQuery对象， 这个设备普遍使用jQuery方法通过一个回调函数传递<code>this</code>关键字 ：</p>
+<pre>
+$('div.foo').click(function() {
+  $(this).slideUp();
+});
+</pre>
+<p>这个例子，当点击使得这些元素隐藏的时候使用了滑动动画。因为这个处理函数接收了点击项中作为暴露DOM元素的<code>this</code> 关键字，这个元素必须事先包含在一个jQuery对象中，这样我们可以在它上面调用jQuery方法。</p>
+<p>当XML数据是返回自己一个Ajax请求，我们可以使用 <code>$()</code> 方法去把他包含在jQuery对象中，我们可以很容易的工作。一旦这样做了之后，我们可以使用<code>.find()</code>和其他DOM遍历方法在XML结构中检索特定元素。</p>
+<h4 id="cloning-jquery-objects">克隆jQuery对象</h4>
+<p>当一个jQuery对象作为一个参数传递给<code>$()</code>方法，这个对象的一个克隆将被创建。 这个新的jQuery对象引用同一DOM元素作为初始化。</p>
+<h4 id="returning-empty-set">返回一个空设置</h4>
+<p>在jQuery 1.4中，如果你传递给<code>jQuery()</code>方法一个空参数，一个空的jQuery设置将被返回。  在以前的jQuery版本中，一个包行这个文档节点的集合将被返回。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子: <span class="desc">找到所有div元素子节点为p的元素。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;one&lt;/p&gt; &lt;div&gt;&lt;p&gt;two&lt;/p&gt;&lt;/div&gt; &lt;p&gt;three&lt;/p&gt;
+&lt;script&gt;$("div &gt; p").css("border", "1px solid gray");&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+<h4>Result:</h4>
+<pre><code class="results">[ &lt;p&gt;two&lt;/p&gt; ] </code></pre>
+</div>
+<div id="example-1">
+<h4>Example: 找到文档中第一个表单下的所有单选框。</h4>
+<pre><code class="example">$("input:radio", document.forms[0]);</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">找到所有从一个Ajax请求中获取的XML文档中的div元素。</span>
+</h4>
+<pre><code class="example">$("div", xml.responseXML);</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: 设置页面背景为黑色。</h4>
+<pre><code class="example">$(document.body).css( "background", "black" );</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">隐藏一个表单下所有元素。</span>
+</h4>
+<pre><code class="example">$(myForm.elements).hide()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="entry method" id="jQuery2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery( html, [ ownerDocument ] )</span> <span class="returns">Returns: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>根据提供的原始 HTML 标记字符串，动态创建由 jQuery 对象包装的 DOM 元素。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-html-ownerDocument">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( html, [ ownerDocument ] )</h4>
+<p class="arguement"><strong>html</strong>用于动态创建DOM元素的HTML标记字符串，不是XML</p>
+<p class="arguement"><strong>ownerDocument</strong>一个文档的新元素将被创建。</p>
+</li>
+<li class="signature" id="jQuery-html-props">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery( html, props )</h4>
+<p class="arguement"><strong>html</strong>一个单标记的HTML 元素字符串 (例如： &lt;div/&gt; or &lt;div&gt;)。</p>
+<p class="arguement"><strong>props</strong>访问新创建元素的属性，事件和方法。</p>
+</li>
+</ul>
+<div class="longdesc">
+<h4 id="creating-new-elements">创建新元素</h4>
+<p>如果一个字符串最为一个参数传递个<code>$()</code>, jQuery 检查这个属性是否看上去像HTML (也就是， <code>&lt;tag ... &gt;</code> 之类的元素在这个字符串中)。如果没有, 这个字符串将被解释为选择器， 作为解析上下文。 但如果字符串似乎是一个HTML代码段里，jQuery企图创造新的用HTML描述的DOM元素的。然后jQuery对象创建并返回引用的这些因素。我们可以在这个对象上执行一些常用的jQuery方法：</p>
+<pre>$('&lt;p id="test"&gt;My &lt;em&gt;new&lt;/em&gt; text&lt;/p&gt;').appendTo('body');</pre>
+<p>在上面的例子中，当这个HTML比一个没有属性的简单标签复杂的时候，元素的实际操作是由浏览器的<code>innerHTML</code> 原理。特别说明，jQuery创建一个新的&lt;div&gt;元素，并且设置innerHTML属性到HTML代码段里将被通过。当参数是一个单标签，就像 <code>$('&lt;img /&gt;')</code> or  <code>$('&lt;a&gt;&lt;/a&gt;')</code>，jQuery将使用javasrcipt原生的 <code>createElement()</code>函数创建这个元素。</p>
+<p>为了确保跨平台兼容性，这个片段必须完好。可以包含其它元素的标签应该关闭标签：</p>
+<pre>$('&lt;a href="http://jquery.com"&gt;&lt;/a&gt;');</pre>
+<p>另外， jQuery 允许 XML-like 标签语法(在斜杠前带或不带空格):</p>
+<pre>$('&lt;a/&gt;');</pre>
+<p>标签不能含有元素可快速关闭与否</p>
+<pre>$('&lt;img /&gt;');
+$('&lt;input&gt;');
+</pre>
+<p>在 jQuery 1.4中，我们可以传递一个对象作为第二个参数。 这个参数接受一个属性的集合，这些可以传递给<a href="#p=attr">.attr()</a> 方法。此外，一些<a href="/category/events/">event type（事件类型）</a>能通过， 而且后面的jQuery方法能够调用： <a href="#p=val">val</a>, <a href="#p=css">css</a>, <a href="#p=html">html</a>, <a href="#p=text">text</a>, <a href="#p=data">data</a>, <a href="#p=width">width</a>, <a href="#p=height">height</a>, or <a href="#p=offset">offset</a>。</p>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子：动态创建一个 div 元素（以及其中的所有内容），并将它追加到 body 元素中。在这个函数的内部，是通过临时创建一个元素，并将这个元素的 innerHTML 属性设置为给定的标记字符串，来实现标记到 DOM 元素转换的。所以，这个函数既有灵活性，也有局限性。 </span>
+</h4>
+<pre><code class="example">$("&lt;div&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;").appendTo("body")</code></pre>
+</div>
+<div id="example-1">
+<h4>Example:创建一些DOM元素</h4>
+<pre><code class="example">$("&lt;div/&gt;", {
+  "class": "test",
+  text: "Click me!",
+  click: function(){
+    $(this).toggleClass("test");
+  }
+}).appendTo("body");
+
+$("&lt;input&gt;", {
+  type: "text",
+  val: "Test",
+  focusin: function() {
+    $(this).addClass("active");
+  },
+  focusout: function() {
+    $(this).removeClass("active");
+  }
+}).appendTo("form");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="entry method" id="jQuery3">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery( callback )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述: </strong>当DOM完成加载的时候绑定一个要执行的函数。</p>
+<ul class="signatures"><li class="signature" id="jQuery-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery( callback )</h4>
+<p class="arguement"><strong>callback</strong><span class="desc">当DOM完成加载的时候绑定的函数</span></p>
+</li></ul>
+<div class="longdesc">
+  <p>允许你绑定一个在DOM文档载入完成后执行的函数。这个函数的作用如同$(document).ready()一样，只不过用这个函数时，需要把页面中所有需要在   DOM 加载完成时执行的$()操作符都包装到其中来。从技术上来说，这个函数是可链接的－－但真正以这种方式链接的情况并不多。</p>
+</div>
+<h3>例子:</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Executes the function when the DOM is ready to be used.</span>
+</h4>
+<pre><code class="example">$(function(){
+  // Document is ready
+});</code></pre>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Uses both the shortcut for $(document).ready() and the argument to write failsafe jQuery code using the $ alias, without relying on the global alias.</span>
+</h4>
+<pre><code class="example">jQuery(function($) {
+  // Your code using failsafe $ alias here...
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

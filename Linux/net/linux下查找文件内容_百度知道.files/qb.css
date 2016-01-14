@@ -1,0 +1,1353 @@
+HTML {
+	BACKGROUND: url(about:blank) fixed
+}
+.c-being {
+	COLOR: #ff7200
+}
+.c-voting {
+	COLOR: #01939c
+}
+.c-closed {
+	COLOR: #a8a8a8
+}
+.c-finish {
+	COLOR: #4bb900
+}
+SPAN.answer-type {
+	DISPLAY: inline-block; FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) no-repeat; VERTICAL-ALIGN: middle; OVERFLOW: hidden; WIDTH: 23px; LINE-HEIGHT: 20; HEIGHT: 32px
+}
+SPAN.wonderful {
+	BACKGROUND-POSITION: left -310px
+}
+SPAN.optimal {
+	BACKGROUND-POSITION: -24px -310px
+}
+SPAN.recommend {
+	BACKGROUND-POSITION: -48px -310px
+}
+.bread {
+	MARGIN: -5px 0px 6px; LINE-HEIGHT: 14px
+}
+.bread A {
+	FONT-SIZE: 12px
+}
+.qbox {
+	ZOOM: 1
+}
+.qbox .header {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) repeat-x 0px -45px; OVERFLOW: hidden; HEIGHT: 64px
+}
+.qbox .body {
+	PADDING-RIGHT: 24px; MARGIN-TOP: -64px; PADDING-LEFT: 24px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; ZOOM: 1; POSITION: relative
+}
+.qbox .question H1 {
+	ZOOM: 1; POSITION: relative; WORD-WRAP: break-word
+}
+.qbox .content {
+	MARGIN-TOP: 8px
+}
+.qbox .question .details {
+	MARGIN: 2px 0px 0px; FONT-FAMILY: tahoma
+}
+.qbox .question .details .visited-times {
+	FLOAT: right; WHITE-SPACE: nowrap
+}
+.votingflow .question .details {
+	COLOR: #333
+}
+.votingflow .question .details H3 {
+	FONT-WEIGHT: normal
+}
+.qbox .avarta {
+	FLOAT: left; WIDTH: 48px; MARGIN-RIGHT: 20px; POSITION: relative
+}
+.user-head-img {
+	BORDER-RIGHT: #e3e3e3 1px solid; BORDER-TOP: #e3e3e3 1px solid; DISPLAY: block; BORDER-LEFT: #e3e3e3 1px solid; BORDER-BOTTOM: #e3e3e3 1px solid
+}
+.qbox .question-title {
+	DISPLAY: block; LEFT: 26px; OVERFLOW: hidden; WORD-BREAK: break-all; MARGIN-RIGHT: 25px; ZOOM: 1; POSITION: relative; TOP: 0px
+}
+.qbox H1 .icon {
+	PADDING-LEFT: 26px; LEFT: 0px; POSITION: absolute; HEIGHT: 20px
+}
+.qbox .i-finished {
+	BACKGROUND-POSITION: 0px -7px
+}
+.qbox .i-being {
+	BACKGROUND-POSITION: 0px -1095px
+}
+.qbox .i-voting {
+	BACKGROUND-POSITION: 0px -127px
+}
+.qbox .i-openiknow2 {
+	BACKGROUND-POSITION: 0px -1068px
+}
+.qbox .i-wapuser {
+	BACKGROUND-POSITION: 0px -34px
+}
+.qbox SPAN.i-reward {
+	PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat left -278px
+}
+SPAN.i-adopt {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+SPAN.i-added {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+SPAN.i-enhance {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+A.i-forward {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+SPAN.i-startvoting {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+SPAN.i-noanswer {
+	PADDING-RIGHT: 4px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 6px
+}
+SPAN.i-adopt-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+SPAN.i-added-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+SPAN.i-enhance-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+SPAN.i-forward-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+SPAN.i-startvoting-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+SPAN.i-noanswer-on {
+	COLOR: #000; BACKGROUND-COLOR: #d8eaca
+}
+.adoptAnswer {
+	BACKGROUND-POSITION: 0px -131px; BACKGROUND-COLOR: #fff
+}
+.supdetail {
+	BACKGROUND-POSITION: 0px -69px; BACKGROUND-COLOR: #fff
+}
+.addscore {
+	BACKGROUND-POSITION: 0px -37px; BACKGROUND-COLOR: #fff
+}
+.share {
+	BACKGROUND-POSITION: 0px -52px; BACKGROUND-COLOR: #fff
+}
+.TurnToVote {
+	BACKGROUND-POSITION: 0px -88px; BACKGROUND-COLOR: #fff
+}
+.no-ans {
+	BACKGROUND-POSITION: 0px -110px; BACKGROUND-COLOR: #fff
+}
+.adoptAnswer-on {
+	BACKGROUND-POSITION: 0px -289px; BACKGROUND-COLOR: #d8eaca
+}
+.supdetail-on {
+	BACKGROUND-POSITION: 0px -265px; BACKGROUND-COLOR: #d8eaca
+}
+.addscore-on {
+	BACKGROUND-POSITION: 0px -240px; BACKGROUND-COLOR: #d8eaca
+}
+.share-on {
+	BACKGROUND-POSITION: 0px -213px; BACKGROUND-COLOR: #d8eaca
+}
+.TurnToVote-on {
+	BACKGROUND-POSITION: 0px -188px; BACKGROUND-COLOR: #d8eaca
+}
+.no-ans-on {
+	BACKGROUND-POSITION: 0px -315px; BACKGROUND-COLOR: #d8eaca
+}
+.offical-admin A {
+	MARGIN-RIGHT: 15px
+}
+.oper {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 25px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; ZOOM: 1
+}
+.from-email .action SPAN {
+	COLOR: gray
+}
+.from-email .action A {
+	COLOR: gray
+}
+.qbox .oper .editor TEXTAREA {
+	PADDING-RIGHT: 5px; OVERFLOW-Y: auto; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; WIDTH: 564px; PADDING-TOP: 5px
+}
+.editor .outter {
+	BORDER-LEFT-COLOR: #cedec1; BORDER-BOTTOM-COLOR: #cedec1; BORDER-TOP-COLOR: #cedec1; ZOOM: 1; BORDER-RIGHT-COLOR: #cedec1
+}
+.editor .inner {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 25px; PADDING-BOTTOM: 20px; PADDING-TOP: 10px
+}
+.editor .inner .title {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/words.png) no-repeat 0px 2px; FLOAT: left; WIDTH: 135px; HEIGHT: 28px
+}
+.editor .title {
+	FLOAT: left
+}
+.ans-panel .editor .gray {
+	MARGIN-RIGHT: 10px
+}
+.editor .gray {
+	FONT-SIZE: 12px; FLOAT: right
+}
+.editor .word-tip {
+	FONT-SIZE: 12px; FLOAT: right
+}
+.editor .word-error {
+	FONT-SIZE: 12px; FLOAT: right
+}
+.editor .word-error {
+	COLOR: red
+}
+.editor .f20 {
+	FONT-FAMILY: "Î¢ÈíÑÅºÚ","ºÚÌå",Arial
+}
+.editor .limit-num {
+	DISPLAY: inline-block; VERTICAL-ALIGN: middle; ZOOM: 1; POSITION: relative; TOP: -6px
+}
+.editor .bar {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) repeat-x 0px -315px; PADDING-BOTTOM: 3px; PADDING-TOP: 2px; HEIGHT: 26px
+}
+.editor .i-insertimg {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 10px
+}
+.editor .i-insertmap {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 10px
+}
+.editor .i-deleteimg {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 10px
+}
+.editor .i-deletemap {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 10px
+}
+.editor .i-insertvideo {
+	FONT-SIZE: 12px; CURSOR: pointer; COLOR: #133db6; MARGIN-RIGHT: 10px
+}
+.editor .i-insertimg-disable {
+	CURSOR: default; COLOR: #666
+}
+.editor .i-insertmap-disable {
+	CURSOR: default; COLOR: #666
+}
+.editor .i-insertvideo-disable {
+	CURSOR: default; COLOR: #666
+}
+.editor TEXTAREA {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 5px; BORDER-TOP: 0px; OVERFLOW-Y: auto; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: 0px; PADDING-TOP: 5px; BORDER-BOTTOM: 0px; HEIGHT: 180px
+}
+.editor .refer INPUT {
+	BORDER-RIGHT: #cedec1 1px solid; BORDER-TOP: #cedec1 1px solid; FONT-SIZE: 12px; MARGIN-LEFT: 10px; BORDER-LEFT: #cedec1 1px solid; WIDTH: 275px; COLOR: #666; BORDER-BOTTOM: #cedec1 1px solid; HEIGHT: 22px
+}
+.editor .refer {
+	FLOAT: left; PADDING-TOP: 4px
+}
+.editor .refer INPUT {
+	PADDING-LEFT: 2px
+}
+.editor .unname {
+	FONT-SIZE: 12px; FLOAT: left; MARGIN-LEFT: 100px; PADDING-TOP: 4px
+}
+.editor .unname INPUT {
+	VERTICAL-ALIGN: -2px; MARGIN-RIGHT: 2px
+}
+.editor .btn-submit {
+	FLOAT: right; MARGIN: 0px
+}
+.editor A.close {
+	MARGIN-TOP: -10px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) -114px -131px; FLOAT: right; WIDTH: 20px; MARGIN-RIGHT: -25px; HEIGHT: 20px
+}
+.editor .err-tip {
+	MARGIN-TOP: -20px; FONT-SIZE: 12px; COLOR: red
+}
+.editor .clear {
+	OVERFLOW: hidden; HEIGHT: 0px
+}
+.vote-intro {
+	WIDTH: 340px
+}
+.votingflow {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.votingflow-title {
+	WIDTH: 180px
+}
+.vote-intro .rod {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.vote-intro .rod1 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.vote-intro .rod2 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.vote-intro .rod3 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.vote-intro .rod {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 20px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.vote-result {
+	BORDER-TOP: #e3e3e3 1px dashed; PADDING-LEFT: 20px; PADDING-TOP: 10px
+}
+.box-gray .header {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.box-gray .header H3 {
+	DISPLAY: inline; MARGIN-RIGHT: 10px
+}
+.best-answer-panel {
+	Z-INDEX: 100; PADDING-TOP: 0px; ZOOM: 1; POSITION: relative
+}
+.best-answer-panel .header {
+	PADDING-LEFT: 24px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) repeat-x 0px -110px; MARGIN-BOTTOM: -10px; OVERFLOW: hidden; HEIGHT: 52px
+}
+.best-answer-panel .answer-type {
+	FLOAT: left
+}
+.recommend-answer-panel .answer-type {
+	FLOAT: left
+}
+.best-answer-panel .reference {
+	WORD-WRAP: break-word
+}
+.recommend-answer-panel .reference {
+	WORD-WRAP: break-word
+}
+.ans-panel .reference {
+	WORD-WRAP: break-word
+}
+.best-answer-title {
+	MARGIN-TOP: 7px; FONT-SIZE: 15px; FLOAT: left
+}
+.best-answer-panel .body {
+	CLEAR: both; PADDING-RIGHT: 24px; PADDING-LEFT: 24px; Z-INDEX: 2; PADDING-BOTTOM: 10px; PADDING-TOP: 0px; ZOOM: 1; POSITION: relative
+}
+.best-answer-panel .details {
+	MARGIN-TOP: 20px; ZOOM: 1; POSITION: relative
+}
+.best-replyer {
+	BORDER-TOP: #bbb 1px dashed; MARGIN-TOP: 10px; PADDING-TOP: 10px; ZOOM: 1
+}
+#best-answer-content {
+	LINE-HEIGHT: 22px
+}
+.best-replyer .avarta {
+	FLOAT: left
+}
+.best-replyer .carefield {
+	FLOAT: left
+}
+.best-replyer .rod {
+	BORDER-LEFT-COLOR: #fbe2cb; BACKGROUND: #fefdfa; BORDER-BOTTOM-COLOR: #fbe2cb; BORDER-TOP-COLOR: #fbe2cb; BORDER-RIGHT-COLOR: #fbe2cb
+}
+.best-replyer .rod2 {
+	BORDER-LEFT-COLOR: #fbe2cb; BACKGROUND: #fefdfa; BORDER-BOTTOM-COLOR: #fbe2cb; BORDER-TOP-COLOR: #fbe2cb; BORDER-RIGHT-COLOR: #fbe2cb
+}
+.best-replyer .rod3 {
+	BORDER-LEFT-COLOR: #fbe2cb; BACKGROUND: #fefdfa; BORDER-BOTTOM-COLOR: #fbe2cb; BORDER-TOP-COLOR: #fbe2cb; BORDER-RIGHT-COLOR: #fbe2cb
+}
+.best-replyer .rod1 {
+	BORDER-LEFT-COLOR: #fbe2cb; BACKGROUND: #fefdfa; BORDER-BOTTOM-COLOR: #fbe2cb; BORDER-TOP-COLOR: #fbe2cb; BORDER-RIGHT-COLOR: #fbe2cb
+}
+.best-replyer .rod4 {
+	BORDER-LEFT-COLOR: #fbe2cb; BACKGROUND: #fefdfa; BORDER-BOTTOM-COLOR: #fbe2cb; BORDER-TOP-COLOR: #fbe2cb; BORDER-RIGHT-COLOR: #fbe2cb
+}
+.best-replyer .rod {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 25px; PADDING-BOTTOM: 13px; OVERFLOW: hidden; PADDING-TOP: 13px; ZOOM: 1
+}
+.best-replyer .carefield {
+	FONT-SIZE: 12px; FONT-FAMILY: tahoma
+}
+.best-replyer .carefield P {
+	PADDING-BOTTOM: 0px
+}
+.best-replyer .carefield A.i-experts:link {
+	COLOR: #e41400
+}
+.recommend-answer-panel {
+	BACKGROUND: #fdfff8
+}
+.recommend-answer-panel .header {
+	PADDING-LEFT: 24px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) repeat-x 0px -175px; MARGIN-BOTTOM: -10px; OVERFLOW: hidden; HEIGHT: 52px
+}
+.recommend-answer-panel .body {
+	PADDING-RIGHT: 24px; PADDING-LEFT: 24px; Z-INDEX: 2; PADDING-BOTTOM: 10px; PADDING-TOP: 0px; ZOOM: 1; POSITION: relative
+}
+.ans-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.relative-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.uoperator-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.push-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.ans-panel .i-otheranswer {
+	BACKGROUND-POSITION: left -94px; PADDING-LEFT: 25px
+}
+.relative-panel .i-relatedanswer {
+	BACKGROUND-POSITION: left -154px; PADDING-LEFT: 25px
+}
+.uoperator-panel {
+	ZOOM: 1
+}
+.push-panel .i-waitinganswer {
+	BACKGROUND-POSITION: left -184px; PADDING-LEFT: 25px
+}
+.push-more {
+	MARGIN-TOP: 10px; FLOAT: left
+}
+.push-del {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -902px; FLOAT: right; VISIBILITY: hidden; MARGIN-LEFT: 5px; WIDTH: 15px; CURSOR: pointer; TEXT-INDENT: -9999px; HEIGHT: 25px
+}
+.push-ans-num {
+	FONT-SIZE: 12px; FLOAT: right; COLOR: #666; FONT-FAMILY: tahoma
+}
+.push-score {
+	PADDING-RIGHT: 5px; DISPLAY: inline-block; PADDING-LEFT: 20px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -270px; FLOAT: left; COLOR: #d55111; LINE-HEIGHT: 32px
+}
+.push-ans-title {
+	FLOAT: left
+}
+.push-ans-cell {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/global.png) no-repeat 0px -874px; FLOAT: left; MARGIN: auto 5px; WIDTH: 16px; TEXT-INDENT: -9999px; LINE-HEIGHT: 32px
+}
+.push-change {
+	MARGIN-TOP: 5px; FONT-SIZE: 12px; FLOAT: right; COLOR: #555; LINE-HEIGHT: 32px
+}
+.push-change #push-change {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/global.png) no-repeat -188px -106px; MARGIN-LEFT: 6px; WIDTH: 62px; CURSOR: pointer; COLOR: #fff; LINE-HEIGHT: 19px; HEIGHT: 19px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.push-del-all {
+	MARGIN: 15px 0px
+}
+.push-nochange {
+	FONT-SIZE: 16px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ','ºÚÌå',arial
+}
+.push-nochange P {
+	MARGIN-TOP: 10px
+}
+.push-nochange-gray {
+	FONT-SIZE: 12px; COLOR: #666; FONT-FAMILY: arial
+}
+.cle:unknown {
+	CLEAR: both; DISPLAY: block; VISIBILITY: hidden; HEIGHT: 0px; content: "."
+}
+.cle {
+	DISPLAY: inline-block
+}
+ HTML .cle {
+	HEIGHT: 1%
+}
+.cle {
+	DISPLAY: block
+}
+.ans-panel .entry {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; BORDER-BOTTOM: #bbb 1px dashed
+}
+.ans-panel .entry .avarta IMG {
+	DISPLAY: block
+}
+.avarta .img {
+	PADDING-LEFT: 2px; FONT-SIZE: 0px; LINE-HEIGHT: 0; TEXT-ALIGN: center
+}
+.avata .ask-btn {
+	TEXT-ALIGN: center
+}
+.ans-panel .entry .avarta {
+	FONT-SIZE: 12px; FLOAT: left; WIDTH: 48px; LINE-HEIGHT: 16px; MARGIN-RIGHT: 15px
+}
+.ans-panel .entry .avarta .wp IMG {
+	DISPLAY: inline
+}
+.ans-panel .entry .avarta .icon {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: -2px; OVERFLOW: hidden; WIDTH: 16px; LINE-HEIGHT: 10; PADDING-TOP: 0px; HEIGHT: 20px
+}
+.ans-panel .details .icon {
+	PADDING-LEFT: 16px
+}
+.ans-panel .i-prize-famous {
+	BACKGROUND-POSITION: 0px -304px
+}
+.ans-panel .i-prize-todas {
+	BACKGROUND-POSITION: 0px -334px
+}
+.ans-panel .i-experts {
+	BACKGROUND-POSITION: 0px -364px
+}
+.ans-panel .entry .content {
+	MARGIN-BOTTOM: 5px; ZOOM: 1
+}
+.ans-panel .last {
+	PADDING-BOTTOM: 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.best-answer-panel .last {
+	PADDING-BOTTOM: 0px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.best-answer-panel .content {
+	ZOOM: 1
+}
+.ans-panel .icon-wap {
+	VERTICAL-ALIGN: -2px
+}
+.best-answer-panel .icon-wap {
+	VERTICAL-ALIGN: -2px
+}
+.reference {
+	WORD-WRAP: break-word
+}
+.reference .refer-title {
+	WHITE-SPACE: nowrap
+}
+.ans-panel .entry .box-gray-active {
+	BORDER-RIGHT: #f0f3f0 1px solid; PADDING-RIGHT: 15px; BORDER-TOP: #f0f3f0 1px solid; PADDING-LEFT: 15px; BACKGROUND: #f7fcf8; PADDING-BOTTOM: 10px; MARGIN: 0px -15px 10px; BORDER-LEFT: #f0f3f0 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #f0f3f0 1px solid
+}
+.ans-panel A.modify {
+	BORDER-RIGHT: #cedec1 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cedec1 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; FLOAT: left; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 2px; MARGIN-LEFT: 58px; BORDER-LEFT: #cedec1 1px solid; COLOR: #589b00; PADDING-TOP: 2px; BORDER-BOTTOM: #cedec1 1px solid
+}
+.ans-panel .editor .inner .title {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/words.png) 0px -24px; FLOAT: left; WIDTH: 90px; HEIGHT: 24px
+}
+.ans-panel FORM {
+	FLOAT: left; WIDTH: 100%
+}
+.ans-panel .form {
+	MARGIN-TOP: -25px; FLOAT: left; OVERFLOW: visible
+}
+.ans-panel .form INPUT {
+	MARGIN-RIGHT: 20px
+}
+.ans-panel .form .btn {
+	MARGIN: 0px
+}
+.ans-panel .entry .editor TEXTAREA {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.asker-adopt .editor {
+	MARGIN: 0px
+}
+.asker-adopt .operation {
+	MARGIN-RIGHT: 10px
+}
+.vote-panel INPUT.vote {
+	FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) 0px -4px; WIDTH: 96px; CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 32px; BORDER-BOTTOM-STYLE: none
+}
+.vote-panel .i-voting {
+	BACKGROUND-POSITION: left -124px; PADDING-LEFT: 24px
+}
+.push-panel .body {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.relative-panel .body {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.push-panel LI {
+	CLEAR: both; BACKGROUND: #fff; LINE-HEIGHT: 30px; BORDER-BOTTOM: #e3e3e3 1px dashed; ZOOM: 1; POSITION: relative
+}
+.relative-panel LI {
+	CLEAR: both; BACKGROUND: #fff; LINE-HEIGHT: 30px; BORDER-BOTTOM: #e3e3e3 1px dashed; ZOOM: 1; POSITION: relative
+}
+.relative-panel LI SPAN.good {
+	PADDING-LEFT: 22px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) no-repeat -20px -367px; MARGIN-RIGHT: 10px; PADDING-TOP: 2px
+}
+.relative-panel LI SPAN.mid {
+	MARGIN-LEFT: 6px; WIDTH: 60px; PADDING-TOP: 6px; TEXT-ALIGN: left
+}
+.relative-panel LI SPAN.mid .icon {
+	BACKGROUND-POSITION: left -217px; PADDING-LEFT: 24px; LINE-HEIGHT: 22px
+}
+.relative-panel LI A {
+	DISPLAY: inline-block
+}
+.push-panel LI A {
+	DISPLAY: inline-block
+}
+.relative-panel LI SPAN.details {
+	RIGHT: 0px; POSITION: absolute; TOP: 6px
+}
+.push-panel LI SPAN.details {
+	RIGHT: 0px; POSITION: absolute; TOP: 6px
+}
+.relative-panel .mid .red {
+	FONT-SIZE: 12px
+}
+.share-panel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px; ZOOM: 1
+}
+.share-panel SPAN {
+	MARGIN-LEFT: 5px
+}
+.share-panel A {
+	MARGIN: 0px 5px; VERTICAL-ALIGN: middle; LINE-HEIGHT: 20px
+}
+.round-block-gray .rod2 {
+	BORDER-LEFT-COLOR: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.round-block-gray .rod3 {
+	BORDER-LEFT-COLOR: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.round-block-gray .rod1 {
+	BORDER-LEFT-COLOR: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.round-block-gray .rod4 {
+	BORDER-LEFT-COLOR: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.round-block-gray .rod {
+	BORDER-LEFT-COLOR: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.login-panel .rod {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 10px; PADDING-TOP: 2px
+}
+.rec .rod {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 10px; PADDING-TOP: 2px
+}
+.ad-cpro .rod {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; PADDING-BOTTOM: 0px; PADDING-TOP: 6px
+}
+.rec .title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.login-panel .title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.login-panel .title .rod {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.login-panel .title .rod2 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.login-panel .title .rod3 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.login-panel .title .rod1 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.login-panel .title .rod4 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.rec .title .rod {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod2 {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod3 {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod1 {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod4 {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod {
+	BORDER-LEFT-COLOR: #e3e3e3; BACKGROUND: #e3e3e3; BORDER-BOTTOM-COLOR: #e3e3e3; BORDER-TOP-COLOR: #e3e3e3; BORDER-RIGHT-COLOR: #e3e3e3
+}
+.rec .title .rod {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.login-panel .title .rod {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.login-kernel {
+	PADDING-BOTTOM: 10px; MARGIN: 15px 20px 0px; BORDER-BOTTOM: #e8e8e8 1px solid
+}
+.login-kernel LEGEND {
+	DISPLAY: none
+}
+.login-kernel .operation {
+	WIDTH: 84px; CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.user-kernel {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 12px
+}
+.user-kernel .avarta {
+	FLOAT: left
+}
+.user-kernel UL {
+	FLOAT: left
+}
+.user-kernel .avarta {
+	MARGIN-RIGHT: 10px
+}
+.user-kernel .i-grade {
+	MARGIN-LEFT: 2px; VERTICAL-ALIGN: 2px
+}
+.user-kernel LI {
+	FONT-SIZE: 12px
+}
+.user-kernel .uc-enter-btn {
+	BORDER-TOP: #e8e8e8 1px solid; MARGIN-TOP: 10px; PADDING-TOP: 10px; ZOOM: 1; TEXT-ALIGN: center
+}
+.user-kernel .red A:link {
+	COLOR: #d55111
+}
+.user-kernel .red A:visited {
+	COLOR: #d55111
+}
+.pass-username {
+	FONT-SIZE: 12px; MARGIN: 6px 0px
+}
+.pass-password {
+	FONT-SIZE: 12px; MARGIN: 6px 0px
+}
+.pass-verifycode {
+	FONT-SIZE: 12px; MARGIN: 6px 0px
+}
+.pass-username INPUT {
+	BORDER-RIGHT: #bebebe 1px solid; BORDER-TOP: #bebebe 1px solid; PADDING-LEFT: 2px; BORDER-LEFT: #bebebe 1px solid; WIDTH: 160px; LINE-HEIGHT: 21px; BORDER-BOTTOM: #bebebe 1px solid; HEIGHT: 21px
+}
+.pass-password INPUT {
+	BORDER-RIGHT: #bebebe 1px solid; BORDER-TOP: #bebebe 1px solid; PADDING-LEFT: 2px; BORDER-LEFT: #bebebe 1px solid; WIDTH: 160px; LINE-HEIGHT: 21px; BORDER-BOTTOM: #bebebe 1px solid; HEIGHT: 21px
+}
+.pass-verifycode INPUT {
+	BORDER-RIGHT: #bebebe 1px solid; BORDER-TOP: #bebebe 1px solid; PADDING-LEFT: 2px; BORDER-LEFT: #bebebe 1px solid; WIDTH: 160px; LINE-HEIGHT: 21px; BORDER-BOTTOM: #bebebe 1px solid; HEIGHT: 21px
+}
+.pass-username INPUT.text-focus {
+	BORDER-RIGHT: #4cbe00 1px solid; BORDER-TOP: #4cbe00 1px solid; BORDER-LEFT: #4cbe00 1px solid; BORDER-BOTTOM: #4cbe00 1px solid
+}
+.pass-password INPUT.text-focus {
+	BORDER-RIGHT: #4cbe00 1px solid; BORDER-TOP: #4cbe00 1px solid; BORDER-LEFT: #4cbe00 1px solid; BORDER-BOTTOM: #4cbe00 1px solid
+}
+.pass-verifycode INPUT.text-focus {
+	BORDER-RIGHT: #4cbe00 1px solid; BORDER-TOP: #4cbe00 1px solid; BORDER-LEFT: #4cbe00 1px solid; BORDER-BOTTOM: #4cbe00 1px solid
+}
+.pass-username LABEL {
+	MARGIN-RIGHT: 4px
+}
+.pass-password LABEL {
+	MARGIN-RIGHT: 4px
+}
+.pass-verifycode LABEL {
+	MARGIN-RIGHT: 4px
+}
+.pass-verifycode IMG {
+	MARGIN: 8px 4px 0px 56px
+}
+.pass-mem_pass {
+	MARGIN-TOP: 10px; FONT-SIZE: 12px; MARGIN-LEFT: 54px
+}
+.pass-mem_pass LABEL {
+	MARGIN-LEFT: 6px
+}
+.pass-submit {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 70px
+}
+.pass-submit A {
+	FONT-SIZE: 12px; MARGIN-LEFT: 4px; VERTICAL-ALIGN: -6px
+}
+.pass-server-error {
+	COLOR: #d55111
+}
+.reg {
+	MARGIN: 10px 0px 0px; TEXT-ALIGN: center
+}
+.login-panel .content {
+	MARGIN: 20px 0px 0px 10px
+}
+.rec .content {
+	MARGIN: 20px 0px 0px 10px
+}
+.login-panel .content {
+	PADDING-TOP: 10px; TEXT-ALIGN: left
+}
+.rec .content LI {
+	LIST-STYLE-POSITION: inside; FONT-SIZE: 9px; COLOR: #133db6; LIST-STYLE-TYPE: disc
+}
+.rec .content A {
+	FONT-SIZE: 12px; LINE-HEIGHT: 22px
+}
+.freecode .rod {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px
+}
+.freecode HR {
+	MARGIN: 4px 0px
+}
+.freecode .border-bottom {
+	PADDING-BOTTOM: 4px; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid
+}
+.freecode P {
+	COLOR: #666
+}
+#qb-ad-cpro {
+	FONT-SIZE: 12px; LINE-HEIGHT: 18px; FONT-FAMILY: Arial
+}
+#qb-ad-cpro TD {
+	FONT-SIZE: 12px; LINE-HEIGHT: 18px; FONT-FAMILY: Arial
+}
+#qb-ad-cpro DIV {
+	FONT-SIZE: 12px; LINE-HEIGHT: 18px; FONT-FAMILY: Arial
+}
+#qb-ad-cpro DIV.r {
+	LINE-HEIGHT: 18px
+}
+#qb-ad-cpro .r A:link {
+	FONT-SIZE: 12px; COLOR: #261cdc; FONT-FAMILY: Arial; TEXT-DECORATION: underline
+}
+#qb-ad-cpro .r A:visited {
+	FONT-SIZE: 12px; COLOR: #261cdc; FONT-FAMILY: Arial; TEXT-DECORATION: underline
+}
+#qb-ad-cpro DIV.r FONT {
+	FONT-SIZE: 14px
+}
+#qb-ad-cpro DIV.r SPAN FONT {
+	FONT-SIZE: 12px
+}
+#qb-ad-cpro TABLE {
+	TABLE-LAYOUT: fixed; WORD-WRAP: break-word
+}
+.r {
+	WIDTH: 270px; CURSOR: pointer
+}
+.ad-fc-down {
+	LINE-HEIGHT: 20px
+}
+.ad-fc-down A:link {
+	FONT-SIZE: 12px; COLOR: #261cdc; FONT-FAMILY: Arial; TEXT-DECORATION: underline
+}
+.ad-fc-down A:visited {
+	FONT-SIZE: 12px; COLOR: #261cdc; FONT-FAMILY: Arial; TEXT-DECORATION: underline
+}
+.ad-fc-down A:hover {
+	COLOR: #261cdc
+}
+.cover {
+	BACKGROUND: #000 fixed
+}
+.shadow {
+	BACKGROUND: #000 fixed
+}
+.cover {
+	MIN-HEIGHT: 1000px; FILTER: alpha(opacity=25); LEFT: 0px; WIDTH: 100%; POSITION: absolute; TOP: 0px; HEIGHT: 1000px; moz-opacity: .25; opacity: .25
+}
+.shadow {
+	FILTER: alpha(opacity=30); LEFT: 300px; WIDTH: 454px; ZOOM: 1; POSITION: absolute; TOP: 200px; HEIGHT: 245px; moz-opacity: .3; opacity: .3
+}
+.dialog {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 25px; BACKGROUND: #fff 0px 0px; LEFT: 296px; PADDING-BOTTOM: 20px; WIDTH: 400px; PADDING-TOP: 20px; POSITION: absolute; TOP: 196px
+}
+.dialog A.close {
+	MARGIN-TOP: -10px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) -114px -131px; FLOAT: right; WIDTH: 20px; MARGIN-RIGHT: -10px; HEIGHT: 20px
+}
+.dialog .title {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 24px; PADDING-BOTTOM: 20px; PADDING-TOP: 0px; BORDER-BOTTOM: #4cbe00 2px solid
+}
+.dialog INPUT.gr {
+	MARGIN: 15px 10px 0px 0px
+}
+.dialog INPUT.submit {
+	FONT-SIZE: 0px; OVERFLOW: hidden; WIDTH: 112px; BORDER-TOP-STYLE: none; LINE-HEIGHT: 0; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 30px; BORDER-BOTTOM-STYLE: none
+}
+.dialog INPUT.cancel {
+	FONT-SIZE: 0px; OVERFLOW: hidden; WIDTH: 112px; BORDER-TOP-STYLE: none; LINE-HEIGHT: 0; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 30px; BORDER-BOTTOM-STYLE: none
+}
+.dialog INPUT.submit {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) 0px -71px; MARGIN-RIGHT: 30px
+}
+.dialog INPUT.cancel {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/bg.png) 0px -101px
+}
+.dialog P {
+	MARGIN-TOP: 10px
+}
+.dialog .alc {
+	MARGIN-TOP: 30px; LINE-HEIGHT: 30px
+}
+PRE {
+	ZOOM: 1; FONT-FAMILY: Arial; WORD-WRAP: break-word
+}
+.img-holder {
+	BORDER-RIGHT: #666999 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #666999 1px solid; PADDING-LEFT: 5px; BACKGROUND: #f6f6f6 0px 0px; PADDING-BOTTOM: 5px; BORDER-LEFT: #666999 1px solid; WIDTH: 200px; PADDING-TOP: 5px; BORDER-BOTTOM: #666999 1px solid
+}
+.img-holder IMG {
+	DISPLAY: block
+}
+.relative-tag A {
+	MARGIN-RIGHT: 5px
+}
+.selectarea {
+	MARGIN: 5px 0px
+}
+.selectarea INPUT {
+	VERTICAL-ALIGN: middle
+}
+.selectarea LABEL {
+	VERTICAL-ALIGN: middle
+}
+.selectarea LABEL {
+	FONT-SIZE: 12px; MARGIN-LEFT: 5px; COLOR: #133db6; FONT-FAMILY: tahoma
+}
+.votingflow-btns {
+	PADDING-RIGHT: 10px; BORDER-TOP: #e3e3e3 1px dashed; PADDING-LEFT: 10px; PADDING-BOTTOM: 5px; PADDING-TOP: 15px
+}
+.votingflow-btns A:link {
+	FONT-SIZE: 12px; VERTICAL-ALIGN: bottom
+}
+.thank-info {
+	BORDER-TOP: #bbb 1px dashed; MARGIN-TOP: 10px; PADDING-TOP: 10px
+}
+.value-block {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) no-repeat left -252px; FLOAT: left; OVERFLOW: hidden; WIDTH: 84px; CURSOR: pointer; HEIGHT: 29px
+}
+.value-block-hover {
+	BACKGROUND-POSITION: left -281px
+}
+.value-tip {
+	FONT-SIZE: 12px; COLOR: #c87673; LINE-HEIGHT: 27px; TEXT-ALIGN: center
+}
+.value-num {
+	PADDING-LEFT: 40px; FONT-WEIGHT: bold; OVERFLOW: visible; COLOR: #df4843; LINE-HEIGHT: 29px; ZOOM: 1; TEXT-ALIGN: left
+}
+.comment-link {
+	FONT-SIZE: 12px; FLOAT: right
+}
+.team-level {
+	DISPLAY: inline-block; BACKGROUND-IMAGE: url(http://img.baidu.com/img/iknow/userteam/lev/l.gif); VERTICAL-ALIGN: -4px; WIDTH: 14px; HEIGHT: 17px
+}
+.team-level11 {
+	BACKGROUND-POSITION: -3px 0px
+}
+.team-level21 {
+	BACKGROUND-POSITION: -3px -20px
+}
+.team-level31 {
+	BACKGROUND-POSITION: -3px -40px
+}
+.team-level32 {
+	BACKGROUND-POSITION: -3px -60px
+}
+.team-level33 {
+	BACKGROUND-POSITION: -3px -80px
+}
+.team-level34 {
+	BACKGROUND-POSITION: -3px -100px
+}
+.team-level41 {
+	BACKGROUND-POSITION: -3px -120px
+}
+.team-level42 {
+	BACKGROUND-POSITION: -3px -140px
+}
+.team-level43 {
+	BACKGROUND-POSITION: -3px -160px
+}
+.team-level44 {
+	BACKGROUND-POSITION: -3px -180px
+}
+.team-level51 {
+	BACKGROUND-POSITION: -3px -200px
+}
+.team-level52 {
+	BACKGROUND-POSITION: -3px -220px
+}
+.team-level53 {
+	BACKGROUND-POSITION: -3px -240px
+}
+.team-level54 {
+	BACKGROUND-POSITION: -3px -260px
+}
+.team-level61 {
+	BACKGROUND-POSITION: -3px -280px
+}
+.team-level62 {
+	BACKGROUND-POSITION: -3px -300px
+}
+.team-level63 {
+	BACKGROUND-POSITION: -3px -320px
+}
+.team-level64 {
+	BACKGROUND-POSITION: -3px -340px
+}
+.team-level71 {
+	BACKGROUND-POSITION: -3px -360px
+}
+.unlogin-info {
+	WIDTH: 174px
+}
+.unlogin-info .rod {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.unlogin-info .rod1 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.unlogin-info .rod2 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.unlogin-info .rod3 {
+	BORDER-LEFT-COLOR: #e0f4e2; BACKGROUND: #e0f4e2; BORDER-BOTTOM-COLOR: #e0f4e2; BORDER-TOP-COLOR: #e0f4e2; BORDER-RIGHT-COLOR: #e0f4e2
+}
+.unlogin-info .rod {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 20px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px
+}
+.reply-from-help {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/qb-bg.png) no-repeat 0px -343px; VERTICAL-ALIGN: middle; WIDTH: 90px; HEIGHT: 18px
+}
+A.i-openiknow {
+	VERTICAL-ALIGN: baseline; COLOR: #0184e4
+}
+.ask-btn {
+	MARGIN-TOP: 2px; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma
+}
+.extra-panel {
+	BACKGROUND: #f0f0f0
+}
+.qbox .question H1 {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.push-panel-title {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.ans-panel-title STRONG {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.best-answer-title {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.thank-info P {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.relative-panel-title {
+	FONT-SIZE: 15px; FONT-FAMILY: 'Î¢ÈíÑÅºÚ'
+}
+.replyask-box {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 3px; MARGIN-LEFT: 26px; PADDING-TOP: 3px; BORDER-BOTTOM: #bbb 1px dashed; ZOOM: 1; FONT-FAMILY: tahoma
+}
+.replyask-box:unknown {
+	CLEAR: both; DISPLAY: block; HEIGHT: 0px; content: ' '
+}
+.replyask-box H4 {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: left
+}
+.replyask-box H4.reply {
+	COLOR: #999
+}
+.replyask-box H4.ask {
+	COLOR: #5ebb0b
+}
+.replyask-content {
+	MARGIN-LEFT: 40px; OVERFLOW: hidden
+}
+.replyask-box .replyask-text {
+	WORD-WRAP: break-word
+}
+.replyask-delete {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; PADDING-TOP: 5px
+}
+.show-target-box {
+	TEXT-ALIGN: right
+}
+.show-target-box A:link {
+	TEXT-DECORATION: none
+}
+.show-target-box A:hover {
+	TEXT-DECORATION: none
+}
+.show-target-box A:hover {
+	COLOR: #03f
+}
+.show-target-box .show-target B {
+	DISPLAY: inline-block; FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/arrow_n.png) no-repeat left bottom; VERTICAL-ALIGN: middle; OVERFLOW: hidden; WIDTH: 15px; LINE-HEIGHT: 10; HEIGHT: 6px
+}
+.show-target-box .replyask-close B {
+	BACKGROUND-POSITION: left top
+}
+.pop-content {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 50px; PADDING-TOP: 15px; TEXT-ALIGN: center
+}
+.pop-content P {
+	FONT: 16px/30px "Î¢ÈíÑÅºÚ"
+}
+.pop-content .ok {
+	DISPLAY: inline-block; FONT-SIZE: 0px; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/btns/ok.png) no-repeat left center; VERTICAL-ALIGN: middle; OVERFLOW: hidden; WIDTH: 30px; LINE-HEIGHT: 10; HEIGHT: 20px
+}
+.pop-content .operation {
+	MARGIN: 10px
+}
+.pop-buttons {
+	TEXT-ALIGN: center
+}
+#vertical_box {
+	BORDER-RIGHT: #aac99a 1px solid; BORDER-TOP: #aac99a 1px solid; DISPLAY: none; BORDER-LEFT: #aac99a 1px solid; BORDER-BOTTOM: #aac99a 1px solid
+}
+#vertical_box .i-otheranswer {
+	PADDING-LEFT: 25px
+}
+#vertical_box .editor_bar {
+	CURSOR: pointer
+}
+#verticalBoxCon {
+	FONT-SIZE: 12px; BACKGROUND-COLOR: #fff
+}
+.verticalBar {
+	MARGIN-TOP: -5px; MARGIN-BOTTOM: 5px
+}
+.verticalBar .v-bar-tit {
+	FLOAT: left; WIDTH: 42px
+}
+.verticalBar .v-bar-linkwrap {
+	MARGIN-LEFT: 42px; WIDTH: 575px
+}
+.verticalBar .v-bar-split {
+	MARGIN: 0px 15px; COLOR: #71756e; FONT-FAMILY: tahoma
+}
+.accuse-link A:link {
+	COLOR: gray
+}
+.accuse-link A:visited {
+	COLOR: gray
+}
+#linger-tag1 {
+	FONT-SIZE: 12px; MARGIN-BOTTOM: 10px; LINE-HEIGHT: 22px; FONT-FAMILY: "ËÎÌå"
+}
+A.tag1-bg1 {
+	DISPLAY: inline-block; BACKGROUND: #a4cb98; MARGIN-RIGHT: 12px; ZOOM: 1; HEIGHT: 22px
+}
+A.tag1-bg1:hover {
+	BACKGROUND: #77b664; TEXT-DECORATION: none
+}
+A.tag1-bg1:visited {
+	COLOR: #fff
+}
+.tag1-bg2 {
+	DISPLAY: inline-block; PADDING-LEFT: 10px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/tag1_icon.gif) no-repeat left -22px; ZOOM: 1; HEIGHT: 22px
+}
+A.tag1-bg1:hover .tag1-bg2 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/tag1_icon.gif) no-repeat left -66px
+}
+SPAN.tag1-bg3 {
+	PADDING-RIGHT: 10px; DISPLAY: inline-block; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/tag1_icon.gif) no-repeat right 0px; CURSOR: pointer; COLOR: #fff; ZOOM: 1; HEIGHT: 22px; TEXT-ALIGN: center
+}
+A.tag1-bg1:hover .tag1-bg3 {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/qb/tag1_icon.gif) no-repeat right -44px
+}
+#linger-tag2 {
+	PADDING-RIGHT: 24px; BORDER-TOP: #e7e7e7 1px solid; PADDING-LEFT: 24px; FONT-SIZE: 12px; BACKGROUND: #f9fcf8; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.tag2-span {
+	COLOR: #666
+}
+.tag2-bg {
+	BORDER-RIGHT: #c1c1c1 1px solid; PADDING-RIGHT: 12px; PADDING-LEFT: 12px
+}
+SPAN.tag2-bg-last {
+	BORDER-RIGHT-WIDTH: 0px
+}
+#linger-tag3 {
+	MARGIN-TOP: 10px; MARGIN-BOTTOM: 3px; BORDER-BOTTOM: #d6d6d6 1px solid
+}
+.tag3-a {
+	BORDER-RIGHT: #d6d6d6 1px solid; PADDING-RIGHT: 15px; BORDER-TOP: #dbdbdb 1px solid; DISPLAY: inline-block; PADDING-LEFT: 15px; FONT-SIZE: 12px; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/tag3_bg.gif) repeat-x; PADDING-BOTTOM: 1px; BORDER-LEFT: #fff 1px solid; PADDING-TOP: 1px; ZOOM: 1; TEXT-ALIGN: center
+}
+#tag3-a0 {
+	BORDER-LEFT: #d6d6d6 1px solid
+}
+.tag3-a-hover {
+	BACKGROUND: #fff; MARGIN-BOTTOM: -1px; PADDING-BOTTOM: 2px; BORDER-LEFT: #d6d6d6 1px solid; POSITION: relative; TOP: 1px
+}
+.linger-tag6 {
+	PADDING-RIGHT: 0px; BORDER-TOP: #bbb 1px dashed; PADDING-LEFT: 0px; PADDING-BOTTOM: 10px; MARGIN: 0px 24px; PADDING-TOP: 10px
+}
+.tag6-input {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; FONT-SIZE: 16px; FLOAT: left; PADDING-BOTTOM: 3px; WIDTH: 358px; LINE-HEIGHT: 19px; PADDING-TOP: 3px; FONT-FAMILY: Arial
+}
+.tag6-btn {
+	FONT-SIZE: 14px; MARGIN-LEFT: 12px; WIDTH: 8em; PADDING-TOP: 2px; FONT-FAMILY: Arial; HEIGHT: 2em
+}
+#layer-share {
+	PADDING-RIGHT: 6px; DISPLAY: none; PADDING-LEFT: 6px; Z-INDEX: 100; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/bg/blank.gif); LEFT: -4px; PADDING-BOTTOM: 6px; WIDTH: 146px; PADDING-TOP: 6px; POSITION: absolute; TOP: 26px
+}
+#test-layer {
+	PADDING-RIGHT: 6px; DISPLAY: none; PADDING-LEFT: 6px; Z-INDEX: 100; BACKGROUND: url(http://img.baidu.com/img/iknow/ui/bg/blank.gif); LEFT: -4px; PADDING-BOTTOM: 6px; WIDTH: 146px; PADDING-TOP: 6px; POSITION: absolute; TOP: 26px
+}
+#layer-share .layer-share-inner {
+	BACKGROUND: #fff; POSITION: relative
+}
+#test-layer .layer-share-inner {
+	BACKGROUND: #fff; POSITION: relative
+}
+#layer-share .layer-share-kernel {
+	ZOOM: 1
+}
+.layer-share-kernel#test-layer {
+	ZOOM: 1
+}
+#layer-share .share-arrow {
+	BACKGROUND: url(http://img.baidu.com/img/iknow/ui/icons/arrow.gif) no-repeat; LEFT: 20px; WIDTH: 12px; ZOOM: 1; POSITION: absolute; TOP: -4px; HEIGHT: 5px
+}
+#layer-share .icon {
+	DISPLAY: block; PADDING-LEFT: 26px; MARGIN: 0px 5px; HEIGHT: 22px
+}
+#test-layer .icon {
+	DISPLAY: block; PADDING-LEFT: 26px; MARGIN: 0px 5px; HEIGHT: 22px
+}
+#layer-share .share-hd {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; PADDING-BOTTOM: 3px; MARGIN: 0px 5px; COLOR: #6e6e6e; PADDING-TOP: 3px; BORDER-BOTTOM: #dedede 1px solid
+}
+#test-layer .share-hd {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; PADDING-BOTTOM: 3px; MARGIN: 0px 5px; COLOR: #6e6e6e; PADDING-TOP: 3px; BORDER-BOTTOM: #dedede 1px solid
+}
+#layer-share .share-list {
+	MARGIN: 0px 1px
+}
+#test-layer .share-list {
+	MARGIN: 0px 1px
+}
+#layer-share .share-list LI {
+	MARGIN: 3px 0px 0px; LIST-STYLE-TYPE: none
+}
+#test-layer .share-list LI {
+	MARGIN: 3px 0px 0px; LIST-STYLE-TYPE: none
+}
+#layer-share .share-list A {
+	COLOR: #666; LINE-HEIGHT: 24px; TEXT-DECORATION: none
+}
+#test-layer .share-list A {
+	COLOR: #666; LINE-HEIGHT: 24px; TEXT-DECORATION: none
+}
+#layer-share .share-list A:hover {
+	BACKGROUND-COLOR: #eee
+}
+#test-layer .share-list A:hover {
+	BACKGROUND-COLOR: #eee
+}
+.relative-more A SPAN {
+	COLOR: #f03
+}
+.i-admin-level-0 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-1 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-2 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-3 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-4 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-5 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-6 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-7 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-8 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-9 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-10 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-11 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-12 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-13 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-14 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-15 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-16 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-17 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-18 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-19 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-20 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-10000 {
+	DISPLAY: inline-block; BACKGROUND: url(http://img.baidu.com/img/iknow/qb/admin-icon.gif) no-repeat 0px 0px; WIDTH: 18px; HEIGHT: 17px
+}
+.i-admin-level-0 {
+	BACKGROUND-POSITION: 0px 0px
+}
+.i-admin-level-1 {
+	BACKGROUND-POSITION: 0px -22px
+}
+.i-admin-level-2 {
+	BACKGROUND-POSITION: 0px -46px
+}
+.i-admin-level-3 {
+	BACKGROUND-POSITION: 0px -68px
+}
+.i-admin-level-4 {
+	BACKGROUND-POSITION: 0px -90px
+}
+.i-admin-level-5 {
+	BACKGROUND-POSITION: 0px -112px
+}
+.i-admin-level-6 {
+	BACKGROUND-POSITION: 0px -134px
+}
+.i-admin-level-7 {
+	BACKGROUND-POSITION: 0px -156px
+}
+.i-admin-level-8 {
+	BACKGROUND-POSITION: 0px -178px
+}
+.i-admin-level-9 {
+	BACKGROUND-POSITION: 0px -200px
+}
+.i-admin-level-10 {
+	BACKGROUND-POSITION: 0px -222px
+}
+.i-admin-level-11 {
+	BACKGROUND-POSITION: 0px -244px
+}
+.i-admin-level-12 {
+	BACKGROUND-POSITION: 0px -266px
+}
+.i-admin-level-13 {
+	BACKGROUND-POSITION: 0px -288px
+}
+.i-admin-level-14 {
+	BACKGROUND-POSITION: 0px -310px
+}
+.i-admin-level-15 {
+	BACKGROUND-POSITION: 0px -332px
+}
+.i-admin-level-16 {
+	BACKGROUND-POSITION: 0px -354px
+}
+.i-admin-level-17 {
+	BACKGROUND-POSITION: 0px -376px
+}
+.i-admin-level-18 {
+	BACKGROUND-POSITION: 0px -398px
+}
+.i-admin-level-19 {
+	BACKGROUND-POSITION: 0px -420px
+}
+.i-admin-level-20 {
+	BACKGROUND-POSITION: 0px -442px
+}
+.i-admin-level-10000 {
+	BACKGROUND-POSITION: 0px -464px
+}

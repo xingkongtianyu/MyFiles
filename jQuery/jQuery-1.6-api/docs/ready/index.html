@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.ready()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/document-loading/" title="View all posts in Document Loading">Document Loading</a></span>
+  
+  				</div>
+</div>
+<div id="ready1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.ready( handler )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>当DOM完全加载完成时，指定一个函数来执行。</p>
+<ul class="signatures"><li class="signature" id="ready-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.ready( handler )</h4>
+<p class="arguement"><strong>handler</strong>当DOM完全加载完成时，执行一个函数。</p>
+</li></ul>
+<div class="longdesc">
+<p>虽然JavaScript提供了<code>load</code>事件，当页面执呈现时用来执行这个事件，直到所有的东西，如图像已被完全接收前，此事件不会被触发。在大多数情况下，只要DOM结构已完全加载脚本就可以运行。传递给处理函数给<code>.ready()</code>能保证DOM准备好后就执行这个函数，所以附加所有其他的事件处理程序和运行其它jQuery代码，这个方法通常是最好的地方。当使用脚本依赖CSS样式属性值的时候，重要的是要引用外部样式或引用样式元素防止在脚本之前。</p>
+<p>如遇到有代码依赖于加载元素（例如，如果一个图像的尺寸为必须项），代码应该被放置在该处理函数中，用来替换<code>load</code> 事件。</p>
+<blockquote><p><code>.ready()</code>方法通常是不符合<code>&lt;body onload=""&gt;</code>属性。如果<code>load</code>必须使用，要么不使用<code>.ready()</code>，要么使用jQuery的<code>.load()</code>方法来附加<code>load</code>事件处理函数到window或更多的具体对象，比如图片。
+</p></blockquote>
+<p>以下三个语法全部是等价的：</p>
+<ul>
+<li><code>$(document).ready(handler)</code></li>
+   <li>
+<code>$().ready(handler)</code> (this is not recommended)</li>
+   <li><code>$(handler)</code></li>
+ </ul>
+<p>还有<code>$(document).bind("ready", handler)</code>。此行为类似于 ready 方法，但有一个例外：如果ready 事件已准备触发，你再尝试用<code>.bind("ready")</code>绑定处理函数将不会被执行。</p>
+<p><code>.ready()</code>方法只能在一个jQuery对象匹配的当前文档上调用。所以选择可以省略。</p>
+<p><code>.ready()</code>方法通常用于一个匿名函数：</p>
+<pre>$(document).ready(function() {
+  // Handler for .ready() called.
+});</pre>
+<p>如果<code>.ready()</code>在DOM被初始化后被调用，新的处理函数通过将立即执行。</p>
+<h4>Aliasing the jQuery Namespace</h4>
+<p>当使用其他JavaScript库时，我们不妨调用<a href="#p=jQuery.noConflict"><code>$.noConflict()</code></a>以避免命名空间中的混淆。当这个函数被调用，<code>$</code>快捷方式将不再可用，迫使我们每次将写<code>$</code>的时候写<code>jQuery</code>代替 。然而，处理函数传递给<code>.ready()</code>方法可以带一个参数，这个参数就是全局的<code>jQuery</code>对象。这意味着我们可以重新命名上下文对象内的<code>.ready()</code>处理函数，而不影响其他代码：</p>
+<pre>jQuery(document).ready(function($) {
+  // Code using $ as usual goes here.
+});</pre>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">显示当DOM加载的信息。
+</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { color:red; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+  $(document).ready(function () {
+  $("p").text("The DOM is now loaded and can be manipulated.");
+});
+  &lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Not loaded yet.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

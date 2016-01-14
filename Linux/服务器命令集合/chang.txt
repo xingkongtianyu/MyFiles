@@ -1,0 +1,1006 @@
+   3  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/html/
+    4  rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+    5  cd /var/www/html/
+    6  ls -rtl
+    7  rsync -avzl --progress --delete 125.46.40.120:/var/www/html/jilimedia .
+    8  cd /var/www/html/
+    9  ls
+   10  mkdir 20101219
+   11  cd /var/www/html/
+   12  ls
+   13  cd 20101
+   14  cd 20101219/
+   15  ls
+   16  cp levelb.mp3 levelc.mp3
+   17  yum update -y
+   18  reboot
+   19  rpm -qa | grep kernel
+   20  rpm -e kernel-2.6.18-194.11.1.el5
+   21  cd /var/lib/mysql
+   22  ls
+   23  mysql ss_yasi -uroot -p
+   24  cd /var/www/html/
+   25  ls
+   26  cd yasi/
+   27  ls
+   28  cd mysite/
+   29  ls
+   30  vi _config.php 
+   31  vi _config.php 
+   32  df
+   33  ls
+   34  cd ss_silver/
+   35  ls
+   36  rm -rf ss_silver
+   37  unzip ss_silver.zip 
+   38  ls
+   39  cd ss_silver
+   40  ls
+   41  chown mysql.mysql -R ss_silver
+   42  cd ss_silver/
+   43  ls
+   44  cd ..
+   45  mv ss_silver /var/lib/mysql/ss_threeD
+   46  /etc/init.d/mysqld restart
+   47  cd 
+   48  ls
+   49  cd /var/www/html/
+   50  ls
+   51  cd coc/
+   52  ls
+   53  cd ../
+   54  cd code
+   55  ls
+   56  cd threed_english/
+   57  ls
+   58  cd mysite/
+   59  ls
+   60  vi _config.php 
+   61  cd ..
+   62  ls
+   63  ls
+   64  ls
+   65  cd threedenglish/
+   66  ls
+   67  vi _config.php 
+   68  cd ..
+   69  ls
+   70  ls
+   71  cd sqls/
+   72  ls
+   73  ls
+   74  mysql ss_threed -uroot -p123456 < 013-LevelA.sql 
+   75  mysql ss_threed -uroot -p123456 < 013-LevelA.sql 
+   76  mysql ss_threed -uroot -p123456 < 014-levelB.sql 
+   77  mysql ss_threed -uroot -p123456 < 015-levelC.sql 
+   78  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+   79  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+   80  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+   81  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+   82  mysql ss_threed -uroot -p123456 < 020-threedprofile.sql 
+   83  vi 019-sitetree_update_expired.sql 
+   84  LANG=C
+   85  vi 019-sitetree_update_expired.sql 
+   86  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+   87  mysql ss_threed -uroot -p123456 < 021-modify-LevelC.sql 
+   88  cd /var/www/html/threed_english/sqls/
+   89  chown mysql.mysql sitetree.*
+   90  mv sitetree.* /var/lib/mysql/ss_threed/
+   91  /etc/init.d/mysqld restart
+   92  ps ax
+   93  ps ax|more
+   94  last |more
+   95  yum update 
+   96  cd /var/lib/mysql/
+   97  ls
+   98  mv ss_threeD ss_threed
+   99  /etc/init.d/mysqld restart
+  100  cd ss_threed/
+  101  ls
+  102  mv sitetree.frm SiteTree.frm
+  103  mv sitetree.MYD SiteTree.MYD
+  104  mv sitetree.MYI SiteTree.MYI
+  105  /etc/init.d/mysqld restart
+  106  ls
+  107  /etc/init.d/mysqld restart
+  108  rm -rf SiteTree.*
+  109  cd ss_silver/
+  110  ls
+  111  rm -rf ss_silver
+  112  tar zxvf ss_threed.tar.gz 
+  113  ls
+  114  rm -rf /var/lib/mysql/ss_threed
+  115  chown mysql.mysql -R ss_threed
+  116  mv ss_threed /var/lib/mysql/
+  117  cd /var/www/html/
+  118  ls
+  119  cd threed_english/
+  120  ls
+  121  /etc/init.d/mysqld restart
+  122  cd /var/www/html/my
+  123  ls
+  124  cd sqls/
+  125  ls
+  126  mysql ss_threed -uroot -p123456 < 013-LevelA.sql 
+  127  mysql ss_threed -uroot -p123456 < 014-levelB.sql 
+  128  mysql ss_threed -uroot -p123456 < 015-levelC.sql 
+  129  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  130  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  131  LANG=C
+  132  vi 019-sitetree_update_expired.sql 
+  133  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  134  mysql ss_threed -uroot -p123456 < 020-threedprofile.sql 
+  135  mysql ss_threed -uroot -p123456 < 021-modify-LevelC.sql 
+  136  ls
+  137  unzip 3D_Member.zip 
+  138  vi 3D_Member.
+  139  vi 3D_Member.sql 
+  140  ls
+  141  LANG=C
+  142  vi 014-levelB.sql 
+  143  vi 3D_Member.sql 
+  144  mysql ss_threed -uroot -p123456 < 3D_Member.sql 
+  145  cd ..
+  146  rm -rf sqls
+  147  cd ..
+  148  mv threed_english threed
+  149  cd /var/lib/mysql/ss_threed/
+  150  ls -la Site*
+  151  cd /var/
+  152  cd www/html/
+  153  cd threed/
+  154  ls
+  155  ps ax
+  156  ps ax
+  157  /etc/init.d/mysql restart
+  158  ls
+  159  cd /var/www/html/
+  160  cd sql
+  161  cd threed/sq
+  162  cd 
+  163  cd ss_silver/
+  164  ls
+  165  tar zxvf ss_threed.tar.gz 
+  166  chown mysql.mysql -R ss_threed
+  167  ls -la
+  168  cd ss_threed
+  169  ls
+  170  ls -la
+  171  cd ..
+  172  ls
+  173  rm -rf /var/lib/mysql/ss_threed
+  174  mv ss_threed /var/lib/mysql/
+  175  /etc/init.d/mysqld restart
+  176  unzip 3D_Member.zip 
+  177  mysql ss_threed -uroot -p123456 < 001-SiteTree.sql 
+  178  mysql ss_threed -uroot -p123456 < 002-Sitetree_Live.sql 
+  179  mysql ss_threed -uroot -p123456 < 003-Sitetree_versions.sql 
+  180  mysql ss_threed -uroot -p123456 < 004-threedAssign.sql 
+  181  mysql ss_threed -uroot -p123456 < 005-threedOperation.sql 
+  182  mysql ss_threed -uroot -p123456 < 006-threedRecord.sql 
+  183  mysql ss_threed -uroot -p123456 < 007-ThreedProfile.sql 
+  184  mysql ss_threed -uroot -p123456 < 3D_Member.sql 
+  185  LANG=C
+  186  vi 007-ThreedProfile.sql 
+  187  grep set *
+  188  grep names *
+  189  LANG=C
+  190  vi 3D_Member.sql 
+  191  mysql ss_threed -uroot -p123456 < 3D_Member.sql 
+  192  mysql ss_threed -uroot -p123456 < 009-mdl_word_lib.sql 
+  193  mysql ss_threed -uroot -p123456 < 010-v2_word_libbook.sql 
+  194  mysql ss_threed -uroot -p123456 < 011-v2_word_unit.sql 
+  195  mysql ss_threed -uroot -p123456 < 012-v2_word_unitwords.sql 
+  196  mysql ss_threed -uroot -p123456 < 013-LevelA.sql 
+  197  mysql ss_threed -uroot -p123456 < 014-levelB.sql 
+  198  mysql ss_threed -uroot -p123456 < 015-levelC.sql 
+  199  mysql ss_threed -uroot -p123456 < 016-RedirectorPage.sql 
+  200  mysql ss_threed -uroot -p123456 < 017-RedirectorPage_Live.sql 
+  201  mysql ss_threed -uroot -p123456 < 018-RedirectorPage_versions.sql 
+  202  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  203  vi 019-sitetree_update_expired.sql 
+  204  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  205  mysql ss_threed -uroot -p123456 < 020-threedprofile.sql 
+  206  mysql ss_threed -uroot -p123456 < 021-modify-LevelC.sql 
+  207  cd /var/lib/mysql/ss_threed/
+  208  ls -la
+  209  cd ..
+  210  ls
+  211  cd 
+  212  cd ss_silver/
+  213  ls
+  214  tar zxvf ss_threed.tar.gz 
+  215  chown mysql.mysql -R ss_threed
+  216  cd /var/www/html/threed/mysite/
+  217  vi _config.php 
+  218  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  219  vi _config.php 
+  220  mkdir /var/www/threedmedia
+  221  chown apache.apache -R /var/www/threedmedia
+  222  vi /var/log/httpd/error_log
+  223  vi _config.php 
+  224  vi _config.php 
+  225  cd ss_silver/
+  226  ls
+  227  rm -rf /var/lib/mysql/ss_threed
+  228  mv ss_threed /var/lib/mysql/
+  229  mysql ss_threed -uroot -p123456 <001-SiteTree.sql 
+  230  mysql ss_threed -uroot -p123456 <002-Sitetree_Live.sql 
+  231  mysql ss_threed -uroot -p123456 <003-Sitetree_versions.sql 
+  232  mysql ss_threed -uroot -p123456 <004-threedAssign.sql 
+  233  mysql ss_threed -uroot -p123456 <005-threedOperation.sql 
+  234  mysql ss_threed -uroot -p123456 <006-threedRecord.sql 
+  235  mysql ss_threed -uroot -p123456 <007-ThreedProfile.sql 
+  236  mysql ss_threed -uroot -p123456 <3D_Member.sql 
+  237  mysql ss_threed -uroot -p123456 < 009-mdl_word_lib.sql 
+  238  mysql ss_threed -uroot -p123456 < 010-v2_word_libbook.sql 
+  239  mysql ss_threed -uroot -p123456 < 011-v2_word_unit.sql 
+  240  mysql ss_threed -uroot -p123456 < 012-v2_word_unitwords.sql 
+  241  mysql ss_threed -uroot -p123456 < 013-LevelA.sql 
+  242  mysql ss_threed -uroot -p123456 < 014-levelB.sql 
+  243  mysql ss_threed -uroot -p123456 < 015-levelC.sql 
+  244  mysql ss_threed -uroot -p123456 < 016-RedirectorPage.sql 
+  245  mysql ss_threed -uroot -p123456 < 017-RedirectorPage_Live.sql 
+  246  mysql ss_threed -uroot -p123456 < 018-RedirectorPage_versions.sql 
+  247  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  248  mysql ss_threed -uroot -p123456 < 020-threedprofile.sql 
+  249  mysql ss_threed -uroot -p123456 < 021-modify-LevelC.sql 
+  250  /etc/init.d/mysqld restart
+  251  mysql ss_threed -uroot -p123456 < ss_silver/001-SiteTree.sql 
+  252  cd ss_silver/
+  253  mysql ss_threed -uroot -p123456 < 001-SiteTree.sql 
+  254  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  255  LANG=C
+  256  vi 001-SiteTree.sql 
+  257  rm -rf /tmp/silverstripe-cache-var-www-html-threed/*
+  258  cd ss_silver/
+  259  mysql ss_threed -uroot -p123456 < 022-DocPage.sql 
+  260  mysql ss_threed -uroot -p123456 < 023-DocPage_Live.sql 
+  261  mysql ss_threed -uroot -p123456 < 024-DocPage_versions.sql 
+  262  LANG=C
+  263  vi 008-3D_Member.sql 
+  264  cd ss_silver
+  265  vi 003-Sitetree_versions.sql 
+  266  cd /etc/init.d
+  267  ./mysqld restart
+  268  cd /root/ss_silver
+  269  ls
+  270  vi 019-sitetree_update_expired.sql 
+  271  ls
+  272  cd /etc/init.d
+  273  ./mysqld restart
+  274  cd /root/ss-silver
+  275  cd /root/ss_silver
+  276  dir
+  277  tar -zvxf ss_threed.tar.gz 
+  278  service mysql
+  279  ls -ps
+  280  ps -l
+  281  ps -e
+  282  mysql
+  283  mysql -u root
+  284  ps -aux
+  285  ps -aux | mysql
+  286  cd /etc/init.d
+  287  cd mysqld 
+  288  ls
+  289  .mysqld status
+  290  mysqld status
+  291  ./mysqld status
+  292  ./mysqld restart
+  293  mysql
+  294  mysql -uroot -p123456
+  295  mysql -uroot -p123456
+  296  cd /root
+  297  cd ss_silver/
+  298  vi 002-Sitetree_Live.sql 
+  299  vi 002-Sitetree_Live.sql 
+  300  vi 002-Sitetree_Live.sql 
+  301  mysql
+  302  mysql -uroot -p123456
+  303  cd ss_silver/
+  304  ls
+  305  unzip media.zip 
+  306  mv media threed
+  307  mv threed /var/www/threedmedia/
+  308  cd /var/www/html/
+  309  ls
+  310  cd ss_threed/
+  311  ls
+  312  cd 
+  313  cd ss_silver/
+  314  ls
+  315  cd ss_threed
+  316  ls
+  317  cd ..
+  318  unzip media.zip 
+  319  rm -rf media
+  320  ls
+  321  unzip threed.zip 
+  322  vi /etc/httpd/conf/httpd.conf
+  323  ls
+  324  cd threed
+  325  ls
+  326  mv * /var/www/tupoedata/
+  327  cd /var/www/tupoedata/documents/
+  328  ls
+  329  ls
+  330  cd /var/www/html/
+  331  ls
+  332  vi ss_threed/mysite/_config.php 
+  333  vi /etc/httpd/conf/httpd.conf
+  334  cd /var/www/threedmedia/
+  335  ls
+  336  mv threed/* .
+  337  ls
+  338  rm -rf threed
+  339  cd /var/www/html/
+  340  ls
+  341  mv ss_threed xxtthreed
+  342  cd documents/
+  343  ls
+  344  cd /var/www/tupoedata/
+  345  ls
+  346  vi /etc/httpd/conf/httpd.conf
+  347  rsync -avzp --progress /var/www/html/documents/ /var/www/tupoedata/docume
+nts/
+  348  rsync -avzp --progress /var/www/html/media/ /var/www/tupoedata/media/
+  349  rsync -avzp --progress /var/www/html/jilimedia/ /var/www/tupoedata/jilime
+dia/
+  350  df
+  351  du -h
+  352  ls
+  353  cd ..
+  354  /etc/init.d/httpd restart
+  355  cd /var/www/html/
+  356  ls
+  357  cd documents/
+  358  ls
+  359  cd threed/
+  360  ls
+  361  mv * ../
+  362  cd ..
+  363  cp buy.* intro.* threed/
+  364  cp buy.* intro.* threed/ -rfp
+  365  rm -rf /tmp/silverstripe-cache-var-www-html-ss_threed/ /tmp/silverstripe-
+cache-var-www-html-xxtthreed/ /tmp/silverstripe-cache-var-www-html-threed
+  366  ls
+  367  mv intro.* buy.* /var/www/threedmedia/
+  368  vi /etc/httpd/conf/httpd.conf
+  369  /etc/init.d/httpd restart
+  370  cd /var/www/html/documents/
+  371  ls
+  372  cd /var/www/tupoedata/documents/
+  373  ls
+  374  mv threed/* .
+  375  ls
+  376  rm -rf threed
+  377  ls
+  378  cd ..
+  379  ls
+  380  rm -rf intro.* buy.*
+  381  ls
+  382  cd ../threedmedia/
+  383  ls
+  384  vi /etc/httpd/conf/httpd.conf
+  385  vi /etc/httpd/conf/httpd.conf
+  386  ls
+  387  rm -rf buy.* intro.*
+  388  ls
+  389  cd ..
+  390  mv  threedmedia /var/www/html/threed
+  391  cd /var/www/html/
+  392  ls
+  393  cd threed/
+  394  ls
+  395  cd ..
+  396  ls
+  397  cd documents/
+  398  ls
+  399  cp threed/* . -rfp
+  400  ls
+  401  cd ..
+  402  cd ..
+  403  ls
+  404  cd /var/www/html/
+  405  ls
+  406  rm -rf /var/www/tupoedata
+  407  df
+  408  df
+  409  df
+  410  df
+  411  cd /var/www/html/documents/
+  412  ls
+  413  cd threed/
+  414  ls
+  415  cd ..
+  416  ls -la
+  417  cd ss_silver/
+  418  mysql ss_threed -uroot -p123456 < 019-sitetree_update_expired.sql 
+  419  mv 019-sitetree_update_expired.sql db_patch/
+  420  cd /var/www/html/
+  421  cd threed/
+  422  for file in *.JPG;do mv $file ${file%.*}.jpg;done
+  423  find . -name "*.JPG" -exec for file in *.JPG;do mv $file ${file%.*}.jpg;d
+one
+  424  cd ss_silver/
+  425  ls
+  426  unzip media.zip 
+  427  cd media
+  428  ls
+  429  cd ..
+  430  rm -rf /var/www/html/threed
+  431  mv media /var/www/html/threed
+  432  cd /var/www/html/
+  433  cd threed/
+  434  cd LevelA/
+  435  cd Season1/Lesson1556d708d4cc77299/
+  436  ./changename 
+  437  vi changename 
+  438  ./changename 
+  439  cd ..
+  440  cd Lesson25c3b4b033b23c6d9/
+  441  ./changename 
+  442  cd ..
+  443  cd Lesson3e8b686b5d278ac62/
+  444  ./changename 
+  445  cd ..
+  446  cd Lesson40ab8442a33171d6a/
+  447  ./changename 
+  448  cd ..
+  449  cd Lesson5e9352d1f8498f9a0/
+  450  ./changename 
+  451  cd ..
+  452  cd Lesson6cf655d7561901a50/
+  453  ./changename 
+  454  cd ..
+  455  cd Lesson76d5bb702f1c301c0/
+  456  ./changename 
+  457  cd ..
+  458  cd Lesson809c2fa4edc9bd44c/
+  459  ./changename 
+  460  cd ..
+  461  cd ..
+  462  cd ..
+  463  cd LevelB
+  464  cd Season0/
+  465  cd Lesson160e228fe9756d2c2/
+  466  ./changename 
+  467  cd ..
+  468  cd ..
+  469  cd Season1
+  470  cd Lesson1900a50f09bbc0f6b/
+  471  ./changename 
+  472  cd ..
+  473  cd Lesson2fde61f2f8d34faf9/
+  474  ./changename 
+  475  cd ..
+  476  cd Lesson3c2e7039c27aef832/
+  477  ./changename 
+  478  cd ..
+  479  cd Lesson4d65a228a9dd41c40/
+  480  ./changename 
+  481  cd ..
+  482  cd Lesson54d82be5325174b89/
+  483  ./changename 
+  484  cd ..
+  485  cd Lesson6946926d639329261/
+  486  ./changename 
+  487  cd ..
+  488  cd Lesson707085228df271fa6/
+  489  ./chane
+  490  ./changename 
+  491  cd ..
+  492  cd Lesson88020ef0b668783b9/
+  493  ./changename 
+  494  cd ..
+  495  cd ..
+  496  cd ..
+  497  cd LevelC
+  498  cd Season0
+  499  cd Lesson167965da96360333f/
+  500  ./changename 
+  501  cd ..
+  502  cd ..
+  503  cd Season1/
+  504  cd Lesson11989d01917119c79/
+  505  ./changename 
+  506  cd ..
+  507  cd Lesson254d4d8062d34afde/
+  508  ./changename 
+  509  cd ..
+  510  cd Lesson38a48eaa4a9e967db/
+  511  ./changename 
+  512  cd ..
+  513  cd Lesson400da017089808197/
+
+
+
+  514  ./changename 
+  515  cd ..
+  516  cd Lesson58690782024dbe31b/
+  517  ./changename 
+  518  cd ..
+  519  cd Lesson6a8382326442e2898/
+  520  ./changename 
+  521  cd ..
+  522  cd Lesson728a7d3a4c93cfcd8/
+  523  ./changename 
+  524  cd /var/www/html/threed/levelC
+  525  cd ..
+  526  cd /var/www/html/threed/levelC
+  527  cd /var
+  528  cd www/html/threed/LevelC
+  529  cd Season1
+  530  cd Lesson11989d01917119c79/
+  531  ls
+  532  ./changename 
+  533  cd ..
+  534  cd Lesson254d4d8062d34afde/
+  535  ./changename 
+  536  cp changename ../../
+  537  cd ..
+  538  cd ..
+  539  cp changename ../
+  540  cd ..
+  541  ./changename 
+  542  ls
+  543  cp changename LevelA/Season1/Lesson1556d708d4cc77299/
+  544  cp changename LevelA/Season1/Lesson25c3b4b033b23c6d9/
+  545  cp changename LevelA/Season1/Lesson3e8b686b5d278ac62/
+  546  cp changename LevelA/Season1/Lesson40ab8442a33171d6a/
+  547  cp changename LevelA/Season1/Lesson5e9352d1f8498f9a0/
+  548  cp changename LevelA/Season1/Lesson6cf655d7561901a50/
+  549  cp changename LevelA/Season1/Lesson76d5bb702f1c301c0/
+  550  cp changename LevelA/Season1/Lesson809c2fa4edc9bd44c/
+  551  cp changename LevelB/Season0/Lesson160e228fe9756d2c2/
+  552  cp changename LevelB/Season1/Lesson1900a50f09bbc0f6b/
+  553  cp changename LevelB/Season1/Lesson2fde61f2f8d34faf9/
+  554  cp changename LevelB/Season1/Lesson3c2e7039c27aef832/
+  555  cp changename LevelB/Season1/Lesson4d65a228a9dd41c40/
+  556  cp changename LevelB/Season1/Lesson54d82be5325174b89/
+  557  cp changename LevelB/Season1/Lesson6946926d639329261/
+  558  cp changename LevelB/Season1/Lesson707085228df271fa6/
+  559  cp changename LevelB/Season1/Lesson88020ef0b668783b9/
+  560  cp changename LevelC/Season0/Lesson167965da96360333f/
+  561  cp changename LevelC/Season1/Lesson11989d01917119c79/
+  562  cp changename LevelC/Season1/Lesson11989d01917119c79/
+  563  cp changename LevelC/Season1/Lesson254d4d8062d34afde/
+  564  cp changename LevelC/Season1/Lesson38a48eaa4a9e967db/
+  565  cp changename LevelC/Season1/Lesson400da017089808197/
+  566  cp changename LevelC/Season1/Lesson58690782024dbe31b/
+  567  cp changename LevelC/Season1/Lesson6a8382326442e2898/
+  568  cp changename LevelC/Season1/Lesson728a7d3a4c93cfcd8/
+  569  vi /etc/httpd/conf/httpd.conf
+  570  vi /etc/httpd/conf/httpd.conf
+  571  /etc/init.d/httpd restart
+  572  cd /var/www/html/
+  573  ls
+  574  vi /etc/httpd/conf/httpd.conf
+  575  /etc/init.d/httpd restart
+  576  cd /var/www/html/
+  577  ls
+  578  cd threed/
+  579  ls
+  580  cd ../documents/
+  581  ls
+  582  cd threed/
+  583  ls
+  584  vi /var/www/html/xxtthreed/mysite/_config.php 
+  585  cd /var/www/html/
+  586  ls
+  587  cd threed/
+  588  ls
+  589  cd LevelB/Season1/Lesson1900a50f09bbc0f6b/
+  590  ls
+  591  cd ..
+  592  cd ..
+  593  cd ..
+  594  du -h
+  595  rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  596  reboot
+  597  rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  598  vi /etc/httpd/conf/httpd.conf
+  599  vi /etc/httpd/conf/httpd.conf
+  600  wget http://wordpresschina.googlecode.com/files/wordpress.31.chs.tar.gz
+  601  tar zxvf wordpress.31.chs.tar.gz 
+  602  mv wordpress /var/www/html/
+  603  cd 
+  604  cd /var/www/html/wordpress/
+  605  ls
+  606  cp wp-config-sample.php wp-config.php 
+  607  vi wp-config.php 
+  608  rm -rf wp-config.php 
+  609  cd ..
+  610  chmod 777 wordpress
+  611  mysqladmin create wordpredd -uroot -p
+  612  mysqladmin create wordpress -uroot -p
+  613  mysqladmin drop wordpredd -uroot -p
+  614  ls
+  615  cd 
+  616  ls
+  617  md5sum xbt_cron.sh 
+  618  ls
+  619  cat sh 
+  620  last | more
+  621  ls
+  622  ls -la
+  623  vi .mysql_history 
+  624  vi .mysql_history 
+  625  ls
+  626  rm -rf *
+  627  ls
+  628  ls -la
+  629  cd /var/
+  630  ls
+  631  ls
+  632  cd 
+  633  md5sum .tcshrc 
+  634  passwd
+  635  cd /var/www/html/
+  636  ls
+  637  cd wordpress/
+  638  ls
+  639  chmod 777 -R wp-content
+  640  vi wp-config.php 
+  641  LANG=C
+  642  vi wp-config.php 
+  643  grep WM_MEM *
+  644  vi wp-config.php 
+  645  vi /etc/php.ini
+  646  /etc/init.d/httpd restart
+  647  cd /var/www/html/
+  648  ls
+  649  ls
+  650  ls
+  651  wget http://cn.wordpress.org/wordpress-3.1-zh_CN.tar.gz
+  652  tar zxvf wordpress-3.1-zh_CN.tar.gz 
+  653  cd wordpress
+  654  ls
+  655  rsync -avzp --progress /root/wordpress/ /var/www/html/wordpress/
+  656  cd /var/www/html/wordpress/
+  657  ls
+  658  chmod 777 -R wp-content
+  659  cd /var/lib/mysql
+  660  ls
+  661  cp -rfp wordpress wordpre
+  662  cd /var/www/html/
+  663  ls
+  664  cp -Rfp wordpress 2
+  665  cd 2
+  666  ls
+  667  vi wp-config.php 
+  668  LANG=C
+  669  vi wp-config.php 
+  670  vi /etc/httpd/conf/httpd.conf
+  671  /etc/init.d/httpd restart
+  672  cd /var/www/html/
+  673  ls
+  674  vi /etc/httpd/conf/httpd.conf
+  675  /etc/init.d/httpd restart
+  676  cd /var/lib/mysql
+  677  ls
+  678  mv wordpre wppre
+  679  mv wordpress wpsupport
+  680  LANG=C
+  681  cd /var/www/html/
+  682  ls
+  683  cd 2
+  684  ls
+  685  vi wp-config.php 
+  686  cd ../wordpress/
+  687  vi wp-config.php 
+  688  /etc/init.d/mysqld restart
+  689  cd ..
+  690  ls
+  691  mv wordpress 1
+  692  mv 2 wordpress
+  693  cp wordpress 2 -rfp
+  694  cd 2
+  695  vi wp-config.php 
+  696  ls
+  697  vi wp-config.php 
+  698  cd ../1/
+  699  vi wp-config.php 
+  700  ls
+  701  cd ..
+  702  rm -rf wordpress
+  703  ls
+  704  cd /var/lib/mysql
+  705  ls
+  706  /etc/init.d/mysqld restart
+  707  ping 1.xinxuetang.com.cn
+  708  vi /etc/httpd/conf/httpd.conf
+  709  /etc/init.d/httpd restart
+  710  ls
+  711  md5sum wordpress-3.1-zh_CN.tar.gz 
+  712  cd 
+  713  rm -rf wordpress
+  714  cd /var/www/html/
+  715  ls
+  716  cd 1/
+  717  ls
+  718  cd wp-includes/
+  719  ls
+  720  cd ../wp-admin/
+  721  ls
+  722  cd ..
+  723  find . -name "Akismet" 
+  724  find . -name "*kismet*" 
+  725  ls
+  726  cd 
+  727  ls
+  728  unzip accessqontrol.2.1.zip 
+  729  unzip stream-video-player.zip 
+  730  ls
+  731  chmod 777 -R accessqontrol stream-video-player
+  732  cp accessqontrol /var/www/html/1/wp-content/plugins/ -rfp
+  733  cp accessqontrol /var/www/html/2/wp-content/plugins/ -rfp
+  734  cp stream-video-player /var/www/html/2/wp-content/plugins/ -rfp
+  735  cp stream-video-player /var/www/html/1/wp-content/plugins/ -rfp
+  736  cd /etc/httpd/
+  737  grep 8M * 
+  738  grep 8M * -R
+  739  cd conf
+  740  vi httpd.conf
+  741  vi /var/www/html/phpinfo.php
+  742  vi /etc/php.ini
+  743  vi /etc/php.ini
+  744  /etc/init.d/httpd restart
+  745  rm -rf /var/www/html/phpinfo.php 
+  746  cp accessqontrol-functions.php /var/www/html/1/wp-content/plugins/accessqontrol/
+  747  cp accessqontrol-functions.php /var/www/html/2/wp-content/plugins/accessqontrol/
+  748  /etc/init.d/httpd restart
+  749  cp accessqontrol-functions.php /var/www/html/2/wp-content/plugins/accessqontrol/
+  750  LANG=C
+  751  vi accessqontrol-functions.php 
+  752  service httpd status
+  753  service httpdrestart
+  754  service httpd restart
+  755  cd /var/log//httpd/
+  756  ls
+  757  vi error_log
+  758  vi error_log
+  759  cd /var/www/html/1/wp-content/plugins/
+  760  ls
+  761  ls
+  762  vi /etc/httpd/conf/httpd.conf
+  763  /etc/init.d/httpd restart
+  764  ls
+  765  ls
+  766  service httpd restart
+  767  ls
+  768  ls
+  769  exit
+  770  ls
+  771  cd /var/lib/mysql
+  772  ls
+  773  cp wpsupport beijing -rfp
+  774  /etc/init.d/mysqld restart
+  775  cd /var/www/html/
+  776  ls
+  777  cp 1 beijing -rfp
+  778  vi /etc/httpd/conf/httpd.conf
+  779  cd beijing/
+  780  ls
+  781  vi wp-config.php 
+  782  LANG=C
+  783  vi wp-config.php 
+  784  cd /var/www/html/
+  785  ls
+  786  cd 
+  787  ls
+  788  /etc/init.d/httpd restart
+  789  mysql beijing -uroot -p
+  790  mysql beijing -uroot -p
+  791  ls
+  792  cd /var/www/html/1/
+  793  vi wp-config.php 
+  794  cd /var/lib/mysql
+  795  mv beijing/ wp-beijing
+  796  /etc/init.d/mysqld restart
+  797  cd /var/www/html/beijing/
+  798  vi wp-config.php 
+  799  cd ../1
+  800  vi wp-config.php 
+  801  md5sum wp-config.php 
+  802  cd ../beijing/
+  803  md5sum wp-config.php 
+  804  lsls
+  805  dmidecode |grep ame
+  806  cat /proc/scsi/scsi
+  807  cat /proc/cpuinfo 
+  808  cat /proc/meminfo 
+  809  cd /var/www/
+  810  ls
+  811  cd html/
+  812  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/html/
+  813  rm -rf .ssh/known_hosts 
+  814  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/html/
+  815  cd /var/www/html/
+  816  ls
+  817  cp download-monitor.3.3.5.2.zip  /var/www/html/1/wp-content/plugins/
+  818  cd /var/www/html/1/wp-content/plugins/
+  819  ls
+  820  unzip download-monitor.3.3.5.2.zip 
+  821  rm -rf download-monitor.3.3.5.2.zip 
+  822  cat /usr/bin/rsync.sh 
+  823  cat /usr/bin/rsync.sh 
+  824  /usr/bin/rsync -avzp --progress --delete root@class.pupiltown.com:/opt/macromedia/fms/applications /opt/macromedia/fms/
+  825  cat /usr/bin/rsync.sh 
+  826  /usr/bin/rsync -avzp --progress --delete root@class.pupiltown.com:/var/class /var/
+  827  reboot
+  828  yum update -y
+  829  yum update -y
+  830  reboot
+  831  cd /var/www/html/
+  832  ls
+  833  cd jilimedia/html/ga/ga008/
+  834  ls -la
+  835  cd thumbs/
+  836  ls -la
+  837  cd /var/www/
+  838  ls
+  839  cd html/jilimedia/
+  840  cd html/ga/
+  841  ls
+  842  pwd
+  843  cd ..
+  844  ls
+  845  cd ..
+  846  df
+  847  df
+  848  traceroute www.tupoe.com
+  849  tracepath www.tupoe.com
+  850  tracepath 116.253.189.130
+  851  tracepath 182.236.162.201
+  852  last | more
+  853  qqqqqqq
+  854  vi /etc/selinux/config 
+  855  ls
+  856  cd /var/www/html/
+  857  ls
+  858  rm -rf C3YWZ-001-00-00_blackboard.flv.torrent 
+  859  rm r-f phpMyAdmin/ xxtthreed/
+  860  rm -rf phpMyAdmin/ xxtthreed/ threed/
+  861  cd /var/lib/mysql
+  862  ls
+  863  rm -rf ss_threed/ xbt/
+  864  /etc/init.d/mysqld restart
+  865  /etc/init.d/mysqld restart
+  866  yum update -y
+  867  reboot
+  868  ls
+  869  rpm -qa | grep kernel
+  870  rpm -e kernel-2.6.18-194.32.1.el5
+  871  reboot
+  872  yum update -y
+  873  rpm -qa | grep php
+  874  yum update -y
+  875  cd /var/www/html/
+  876  ls
+  877  cd /var/www/
+  878  ls
+  879  cd html/
+  880  ls
+  881  rsync -avzp --progress 211.151.66.136:/var/www/tupoedata/ /var/www/html/
+  882  rsync -avzp --progress 211.151.66.136:/var/www/tupoedata/ /var/www/html/
+  883  rsync -avzp --progress 211.151.66.136:/var/www/tupoedata/jilimedia/html/ga/ /var/www/html/jilimedia/html/ga/ --delete 
+  884  exit
+  885  reboot
+  886  cd /var/www/html/
+  887  ls
+  888  vi /etc/httpd/conf/httpd.conf
+  889  ls
+  890  cd safeweb/
+  891  ls
+  892  cd /var/www/html/
+  893  ls
+  894  cd tupoe/
+  895  vi mysite/_config.php 
+  896  vi /etc/httpd/conf/httpd.conf
+  897  cd ..
+  898  rm -rf tupoe
+  899  cd /var/www/html/
+  900  ls
+  901  mysql ss_threed -uroot -p
+  902  /etc/init.d/mysqld restart
+  903  mysql  -uroot -p
+  904  ls
+  905  vi /etc/httpd/conf/httpd.conf
+  906  cd /var/www/html/
+  907  ls
+  908  rsync -avzp --progress 116.253.189.130:/var/www/html/silver /var/www/html/
+  909  rsync -avzp --progress 116.253.189.130:/var/lib/mysql/ss_silver/ /var/lib/mysql/ss_silver/
+  910  ls
+  911  vi silver/mysite/_config.php 
+  912  vi /etc/httpd/conf/httpd.conf
+  913  vi /etc/httpd/conf/httpd.conf
+  914  cd /var/www/html/
+  915  ls
+  916  exit
+  917  cd /var/www/html/
+  918  ls
+  919  rsync -avzp --progress /var/www/html/safeweb 211.100.99.168:/var/www/html/
+  920  cd safeweb/
+  921  ls
+  922  vi test1.sql 
+  923  ls
+  924  vi server.php 
+  925  LANG=C
+  926  ls
+  927  mv test1.sql test1.sql.php
+  928  vi inc_db.php 
+  929  vi inc_dbcfg.php 
+  930  rsync -avzp --porgress /var/lib/mysql/test1/ 211.100.99.168:/var/lib/mysql/safeweb/
+  931  rsync -avzp --progress /var/lib/mysql/test1/ 211.100.99.168:/var/lib/mysql/safeweb/
+  932  vi /etc/httpd/conf/httpd.conf
+  933  cd /var/www/html/
+  934  ls
+  935  rsync -avzp --progress /var/www/html/manage 211.100.99.168:/var/www/html/
+  936  cd /var/www/html/
+  937  ls
+  938  cd safeweb/
+  939  ls
+  940  cd ../
+  941  find . -name "newversion*"
+  942  cd /var/www/html/
+  943  find . -name "*.cab"
+  944  ls -la
+  945  cd safeweb/
+  946  ls -la
+  947  cd /var/www/html/
+  948  ls
+  949  exit
+  950  ping sofe.tupoe.com
+  951  ping safe.tupoe.com
+  952  ping safeweb.tupoe.com
+  953  find / -name english.mp3
+  954  cd /var/www/html/
+  955  ls
+  956  cd threed/
+  957  ls
+  958  cd LevelA
+  959  ls
+  960  cd ..
+  961  ls
+  962  find / -name avatar1.jpg
+  963  cd ..
+  964  ls
+  965  cd xxtthreed/
+  966  ls
+  967  cd threedenglish/
+  968  ls
+  969  cd ..
+  970  cd ..
+  971  ls
+  972  find / -name *tarter*
+  973  cd threed
+  974  ls
+  975  cat index.html
+  976  ls
+  977  pwd
+  978  cd ..
+  979  ls
+  980  cat index.php
+  981  ls -l
+  982  cd threed
+  983  ls
+  984  ls -R LevelB
+  985  ls -R LevelA
+  986  ls -R LevelA LeveB
+  987  ls -R LevelA >>tree.txt
+  988  ls -R LevelB >>tree.txt
+  989  ls -R LevelC >>tree.txt
+  990  ls
+  991  find / -name mysql
+  992  cd /usr/bin/
+  993  ls
+  994  mysql -uroot -p
+  995  mysql -uroot -p
+  996  mysql -uadmin -p
+  997  mysql -uadmin -p
+  998  mysql -uadmin -p
+  999  mysql -uadmin -p
+ 1000  mysql -uadmin -p
+ 1001  history

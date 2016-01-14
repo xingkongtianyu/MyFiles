@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.see-source.com/blog/300000033/287 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Bootstrap JS插件使用实例(4)-滚动侦测 - see source网</title>
+
+<meta  name="keywords"  content="Bootstrap JS插件使用实例(4)-滚动侦测">
+<meta  name="description"  content="
+	
+
+
+	本篇文章讨论Bootstrap的js滚动侦测插件(bootstrap-scrollspy.js)
+
+
+	先看个简单示例，可直接粘贴运行：
+
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&quot;en&quot;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset...">
+<meta  name="author"  content="see source网">
+<link  rel="stylesheet"  href="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/style.css"  type="text/css"  media="screen">
+<link  rel="stylesheet"  href="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/notice.css"  type="text/css">
+
+<script  type="text/javascript">
+function getBaseHref(){
+  var baseHref = 'http://www.see-source.com';
+  return baseHref;
+}
+function getArticleId(){
+  return '287';
+}
+</script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/jquery-1.6.2.min.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/util.js"></script> 
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/common.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/notice.js"></script>
+    
+ 
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shCore.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushBash.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushCpp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushCSharp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushCss.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushDelphi.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushDiff.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushGroovy.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushJava.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushJScript.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushPhp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushPlain.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushPython.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushRuby.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushScala.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushSql.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushVb.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shBrushXml.js"></script>
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shCore.css">
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/shThemeDefault.css">
+<script  type="text/javascript">
+  SyntaxHighlighter.defaults['auto-links'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+</head>
+<body>
+
+<div  class="notice"  style="height: 20px;">
+  <div  class="topborder">
+    <p></p>
+  </div>
+  <div  class="msg">
+        系统通知
+  </div>
+  <div  class="msg_border"  style="display: none;"></div>
+  <div  class="content"  style="text-align: left; display: none;">
+     <p>看源社区成立一年以来感谢大家对网站的支持，希望我们的工作对大家有所帮助，也希望您继续给予关注。同时，祝大家圣诞、新年快乐。</p>
+     <a  target="_blank"  href="http://www.see-source.com/">"首页"</a>、<a  target="_blank"  href="http://www.see-source.com/java/java!index">"java开源"</a> 版块已经改版 - 希望大家给予关注<br>
+               
+  </div>
+  <div  class="time"  style="display: none;">11月29日 14:10</div>
+  <div  class="close"  style="display: none;">&nbsp;</div>
+  <span  class="open"  style="display: inline;">open</span>
+</div>
+ 
+
+<div  id="top">
+   <div  class="wp998">
+        <div  class="OSC_Channels">
+        	<ul>
+        	<li  class="item"><a  href="http://www.see-source.com/"  class="home">首页</a></li>      
+			<li  class="item"><a  href="http://www.see-source.com/course/index.jsp">推荐教程</a></li>
+        	
+        	<li  class="item"><a  href="http://www.see-source.com/">博客</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/question/question!latest">问答</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/front/front!index">前端框架专区</a></li>
+        	</ul>
+        </div>
+		<div  class="OSC_Userbar">
+            <ul>
+             
+	         <li  class="item"><a  href="javascript:void(0)" >登录</a></li>
+	         <li  class="item"><a  href="javascript:void(0)" >注册</a></li>
+	         
+        	</ul>
+        </div>
+		<div  class="clear"></div>
+	</div>
+</div>
+
+
+<div  id="header">
+   <div  class="wp998">
+      <div  class="logo">see source</div>
+	  <div  class="clear"></div>
+    </div>
+</div>
+
+
+
+<div  id="main">
+   <div  class="current_position"><a  href="http://www.see-source.com/">首页</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a  href="http://www.see-source.com/front/front!index">前端框架专区</a>&nbsp;&nbsp;»&nbsp;&nbsp;博客</div>   
+   
+   <div  class="left">
+       <div  class="userInfo">
+		   <ul>
+	       <li  class="nickname">我的昵称：liyi</li>	     
+           <li>技术专长：<label> </label></li>
+           
+           <li  class="guanzhu"><a  href="javascript:void(0)" >加关注</a></li>
+           
+           
+           </ul>	
+	   </div>
+	   <div  class="blogStatistics">
+	       <span>共22个博文 ，已有47063次阅读</span>
+	   </div>
+	   <div  class="blogList">
+	       <div  class="RightTitle">
+				   ⇓最新博文
+		   </div>
+		   <ul>
+		   
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 1.使用 Bootstrap Typeahead 组件(自动补全)</a>
+				    <p>
+	Bootstrap 的 Typeahead 插件是...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> 2.ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+				    <p>
+	Ext.form.Label:可以与表单中的一个字...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> 3.Bootstrap示例演示：bootstrap-popover.js</a>
+				    <p>
+	bootstrap-popover.js继承自bo...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> 4.Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+				    <p>
+	bootstrap-affix.js组件，直译过来...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> 5.Bootstrap文件上传插件(jQuery-File-Upload)</a>
+				    <p>
+	
+ 
+
+
+	推荐一款基于Bootstrap...</p>
+			        </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="hotBlogs">
+	       <strong  class="title">
+				阅读排行
+		   </strong>
+		   <ul>
+		   
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 使用 Bootstrap Typeahead 组件(自动补全)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> Bootstrap示例演示：bootstrap-popover.js</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> Bootstrap文件上传插件(jQuery-File-Upload)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/393"> Bootstrap分页插件--Bootstrap Paginator</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/373"> Bootstrap JS扩展插件使用实例(9)-datepicker	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/371"> 扩展Twitter Bootstrap的JavaScript插件</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/369"> Bootstrap JS插件使用实例(8)-按钮	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/367"> Bootstrap JS插件使用实例(7)-通知消息</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/364"> Bootstrap JS插件使用实例(6)-折叠(手风琴效果)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/338"> 为 Bootstrap 添加更多自定义图标</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/337"> 红色大气的Bootstrap网页模板</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/287"> Bootstrap JS插件使用实例(4)-滚动侦测</a>
+			 </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="blogType">
+	       <strong  class="title">
+				博客分类
+		   </strong>
+	       <ul>
+	       
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=23">JavaScript插件 </a><span>(15)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=59">ExtJS </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=28">代码分享 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=26">HTML模板 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=19">布局 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=18">栅格系统 </a><span>(3)</span></li>
+		      
+	       </ul>
+	   </div>
+	   <div  class="relationBlogs">
+	       <div  class="title">
+				相关博文
+		   </div>
+		   <ul>
+		       
+		       
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>(阅读2293)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/364"> Bootstrap JS插件使用实例(6)-折叠(手风琴效果)</a>(阅读2392)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/367"> Bootstrap JS插件使用实例(7)-通知消息</a>(阅读2165)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/369"> Bootstrap JS插件使用实例(8)-按钮	</a>(阅读2469)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/286"> Bootstrap JS插件使用实例(3)-下拉菜单</a>(阅读3316)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/282"> Bootstrap JS插件使用实例(2)-模态对话框</a>(阅读4042)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/281"> Bootstrap JS插件使用实例(1)-轮播</a>(阅读4973)
+			      </li>	
+			   	
+		       
+		       	       
+		   </ul>
+	   </div>
+   </div>
+   
+   
+   <div  class="right">
+      <div  class="project">
+	     <h1  class="title"><a  href="http://www.see-source.com/blog/300000033/287#"  class="name">Bootstrap JS插件使用实例(4)-滚动侦测</a> </h1>
+		 <div  class="blogStat">
+		     <span>发表于 2013-04-28 18:27    ,已有<strong>2223</strong>次阅读 ，共<strong>1</strong>个评论</span>
+	     </div>		 	
+	     <div  class="blog_content">
+		     <div  class="internal_content">
+                   <p>
+	<br>
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	本篇文章讨论Bootstrap的js滚动侦测插件(bootstrap-scrollspy.js)
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	先看个简单示例，可直接粘贴运行：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_417471"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;!DOCTYPE html&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">html</code> <code  class="color1">lang</code><code  class="plain">=</code><code  class="string">"en"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">head</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">meta</code> <code  class="color1">http-equiv</code><code  class="plain">=</code><code  class="string">"Content-Type"</code> <code  class="color1">content</code><code  class="plain">=</code><code  class="string">"text/html; charset=utf-8"</code> <code  class="plain">/&gt;</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">title</code><code  class="plain">&gt;滚动侦测示例&lt;/</code><code  class="keyword">title</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">link</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/css/bootstrap.css"</code> <code  class="color1">rel</code><code  class="plain">=</code><code  class="string">"stylesheet"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/jquery.js"</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/bootstrap-scrollspy.js"</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">head</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">body</code> <code  class="color1">style</code><code  class="plain">=</code><code  class="string">"width:870px; margin:auto;"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"navbarExample"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"navbar"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"navbar-inner"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"brand"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#"</code><code  class="plain">&gt;项目名称&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">ul</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"nav"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active"</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#fat"</code><code  class="plain">&gt;红利&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#mdo"</code><code  class="plain">&gt;哈芬&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">17.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#one"</code><code  class="plain">&gt;遛狗&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">18.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#two"</code><code  class="plain">&gt;失踪&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">19.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#three"</code><code  class="plain">&gt;耳光&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">20.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;/</code><code  class="keyword">ul</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">21.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">22.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">23.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt2"><code  class="number">24.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">data-spy</code><code  class="plain">=</code><code  class="string">"scroll"</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#navbarExample"</code> <code  class="color1">data-offset</code><code  class="plain">=</code><code  class="string">"50"</code> <code  class="color1">style</code><code  class="plain">=</code><code  class="string">"height:200px; overflow:auto;"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">25.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"fat"</code><code  class="plain">&gt;红利&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">26.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">27.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 84px;"><code  class="plain">中方向美方承诺提高国有企业红利上缴比例，增加上缴利润的中央国企和省级国企的数量，将国有资本经营预算纳入国家预算体系。还承诺，鼓励包括国有公司在内的上市公司增加红利支付。还承诺在信贷提供、税收优惠和监管政策等方面对各类所有制企业一视同仁。&lt;</code><code  class="keyword">br</code><code  class="plain">&gt;&lt;</code><code  class="keyword">br</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">28.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt1"><code  class="number">29.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">美方认为，提高国有企业分红比例带来的收入可用于资助政府的社保和养老开支，从而有可能降低中国人大量储蓄的必要性，让他们提高消费支出，从而达到刺激中国内需的目的。</code></span></span></div><div  class="line alt2"><code  class="number">30.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">31.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"mdo"</code><code  class="plain">&gt;哈芬&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">32.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">33.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">据估，中国高铁槽道市场约十几亿元，德国哈芬占70%。业内人士称，中铁设计院的铁道图纸，直接指定使用哈芬，而非技术标准。哈芬在德国使用成本高昂的不锈钢，在中国则是碳钢。更有业内人士证实，目前中国高铁用的实为国内生产，原产几乎不足四分之一。（财新）</code></span></span></div><div  class="line alt2"><code  class="number">34.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">35.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"one"</code><code  class="plain">&gt;遛狗&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">36.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">37.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">近日，拍摄于四川绵阳街头的一张照片引起热议，一辆在路上行驶的法院警车，车窗里伸出一个宠物狗的脑袋，四处张望。此情景被怀疑是公务人员私用警车带宠物狗兜风。经调查得知，这是我国新近引进的一批特殊品种警犬，为麻痹犯罪分子，故意化妆成宠物狗的样子。</code></span></span></div><div  class="line alt2"><code  class="number">38.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">39.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"two"</code><code  class="plain">&gt;失踪&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">40.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">41.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">4月25日，19岁的韩耀在云南省昆明市晋宁县晋城镇南门村鑫云冷库附近失踪。家属在寻找时，竟然发现这一区域已先后有8名青少年失踪，其中近一年内就有6人。有一名青年雷玉生就在此地的大街上被人拖进了一面包车，被扔进黑砖窑强迫劳动，后逃离黑砖窑重获自由。</code></span></span></div><div  class="line alt2"><code  class="number">42.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">43.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"three"</code><code  class="plain">&gt;耳光&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">44.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">45.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">30多岁女人直接吐东西在刚扫过的地上，环卫大姐上去说了两句，结果挨了三巴掌三脚。见到被打的环卫大姐时，她精神不好，坐在凳子上不说话，左脸的伤痕还很显眼，工友在一旁照料她。2012年5月4日，浙江省，杭州市。</code></span></span></div><div  class="line alt2"><code  class="number">46.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">47.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">48.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">尹大姐说：“小孩子都知道不能在街上乱吐。”那女人说：那不就是你们环卫应该做的事情吗？尹大姐说：难道我们环卫工人就低人一等吗？”话音刚落，“啪”“啪”“啪”三个巴掌落在尹大姐脸上。</code></span></span></div><div  class="line alt1"><code  class="number">49.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">50.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></span></span></div><div  class="line alt1"><code  class="number">51.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">body</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">52.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">html</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;">
+	运行效果：
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;">
+	<img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/1367144795350_scrollspy_demo.jpg"  alt=""> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;">
+	需要注意：
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:20px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;color:#333333;">
+	Bootstrap使用的某些HTML元素和CSS属性需要文档类型为HTML5 doctype。因此这一文档类型必须出现在项目的每个页面的开始部分。
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_637664"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;!DOCTYPE html&gt; </code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">html</code> <code  class="color1">lang</code><code  class="plain">=</code><code  class="string">"en"</code><code  class="plain">&gt; </code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><code  class="spaces">&nbsp;</code><span  class="block"  style="margin-left: 7px;"><code  class="plain">... </code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">html</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	<br>
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	下面来对上面的代码进行解析下：
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	bootstrap.css &nbsp; Bootstrap 样式库，这是必不可少的。
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<span  style="margin:0px;padding:0px;line-height:1.5;">jquery.js &nbsp; 引入jquery，Bootstrap插件是jquery插件，依赖于jquery。</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	bootstrap-scrollspy.js &nbsp; 滚动侦测插件
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<br>
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	如上效果图所示，包含俩部分：导航栏、滚动区。所谓滚动侦测就是侦测当前滚动区滚动条的位置然后自动更新导航栏中的链接状态<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;">。如上实例中，Bootstrap也定义了一个导航栏样式：</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_926149"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"navbarExample"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"navbar"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"navbar-inner"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"brand"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#"</code><code  class="plain">&gt;项目名称&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">ul</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"nav"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active"</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#fat"</code><code  class="plain">&gt;红利&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#mdo"</code><code  class="plain">&gt;哈芬&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#one"</code><code  class="plain">&gt;遛狗&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#two"</code><code  class="plain">&gt;失踪&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">&lt;</code><code  class="keyword">li</code><code  class="plain">&gt;&lt;</code><code  class="keyword">a</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#three"</code><code  class="plain">&gt;耳光&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;/</code><code  class="keyword">ul</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+.navbar 导航栏整体样式，.nav导航样式，.active 当前活动链接。
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;">滚动区可根据实际需求用户自定义。</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;"><br>
+</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;font-family:Verdana, sans-serif, 宋体;font-size:14px;background-color:#FFFFFF;">
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:1.5;">下面看下如何使导航栏与滚动区联系起来达到滚动侦测的效果。和其他Bootstrap提供的插件一样，也是有俩种方法：</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;line-height:1.5;">
+	<strong  style="margin:0px;padding:0px;"><span  style="margin:0px;padding:0px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:1.5;">1</span>.</strong><span  style="margin:0px;padding:0px;line-height:1.5;">通过data属性</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;">
+	<span  style="line-height:1.5;margin:0px;padding:0px;"><span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;">将</span><code  style="padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:12px;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;line-height:20px;">data-spy="scroll"</code><span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;">和</span></span><code  style="line-height:20px;padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">data-target=""</code><span  style="line-height:20px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;background-color:#FFFFFF;">添加到</span><span  style="line-height:20px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;">滚动区元素上（大部分情况是添加到body上）</span><span  style="line-height:20px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;">。</span><code  style="line-height:20px;padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">data-target=""</code><span  style="line-height:20px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;background-color:#FFFFFF;">是指向导航栏的，可以用class属性、也可用id，如上面实例中就可写为：data-target=".</span><span  style="color:#333333;font-family:&#39;Helvetica Neue, Helvetica, Arial, sans-serif&#39;;"><span  style="font-size:14px;line-height:20px;">navbar</span></span><span  style="line-height:20px;background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;">"或"#</span><span  style="color:#333333;font-family:&#39;Helvetica Neue, Helvetica, Arial, sans-serif&#39;;"><span  style="font-size:14px;line-height:20px;">navbarExample</span></span><span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">"。如下：</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;">
+	<span  style="line-height:1.5;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_14190"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">data-spy</code><code  class="plain">=</code><code  class="string">"scroll"</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#navbarExample"</code><code  class="plain">&gt;...&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	<span  style="line-height:1.5;">或</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;padding:0px;">
+	<span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_797646"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">data-spy</code><code  class="plain">=</code><code  class="string">"scroll"</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">".navbar"</code><code  class="plain">&gt;...&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<br>
+<p>
+	<span  style="margin:0px;padding:0px;font-family:Verdana, sans-serif, 宋体;font-size:14px;line-height:1.5;">2.通过javascript</span> 
+</p>
+<p>
+	<span  style="margin:0px;padding:0px;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_492028"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$().scrollspy()</code></span></span></div></div></div>
+<span  style="font-family:Verdana, sans-serif, 宋体;font-size:14px;line-height:1.5;background-color:#FFFFFF;">其中$()是jquery选择器，意思是选择哪个作为滚动区。如上面示例可进行修改，为滚动区添加id="</span><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;"><span  style="font-size:14px;line-height:21px;">navbarExample":</span></span> 
+<p>
+	<span  style="margin:0px;padding:0px;"><span  style="font-family:&#39;Verdana, sans-serif, 宋体&#39;;"> </span></span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_368736"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code>&nbsp; <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"navbarExample"</code> <code  class="color1">style</code><code  class="plain">=</code><code  class="string">"height:200px; overflow:auto;"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"fat"</code><code  class="plain">&gt;红利&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 84px;"><code  class="plain">中方向美方承诺提高国有企业红利上缴比例，增加上缴利润的中央国企和省级国企的数量，将国有资本经营预算纳入国家预算体系。还承诺，鼓励包括国有公司在内的上市公司增加红利支付。还承诺在信贷提供、税收优惠和监管政策等方面对各类所有制企业一视同仁。&lt;</code><code  class="keyword">br</code><code  class="plain">&gt;&lt;</code><code  class="keyword">br</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><span  class="block"  style="margin-left: 0px;">&nbsp;</span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">美方认为，提高国有企业分红比例带来的收入可用于资助政府的社保和养老开支，从而有可能降低中国人大量储蓄的必要性，让他们提高消费支出，从而达到刺激中国内需的目的。</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"mdo"</code><code  class="plain">&gt;哈芬&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">据估，中国高铁槽道市场约十几亿元，德国哈芬占70%。业内人士称，中铁设计院的铁道图纸，直接指定使用哈芬，而非技术标准。哈芬在德国使用成本高昂的不锈钢，在中国则是碳钢。更有业内人士证实，目前中国高铁用的实为国内生产，原产几乎不足四分之一。（财新）</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"one"</code><code  class="plain">&gt;遛狗&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">近日，拍摄于四川绵阳街头的一张照片引起热议，一辆在路上行驶的法院警车，车窗里伸出一个宠物狗的脑袋，四处张望。此情景被怀疑是公务人员私用警车带宠物狗兜风。经调查得知，这是我国新近引进的一批特殊品种警犬，为麻痹犯罪分子，故意化妆成宠物狗的样子。</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"two"</code><code  class="plain">&gt;失踪&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">17.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">18.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">4月25日，19岁的韩耀在云南省昆明市晋宁县晋城镇南门村鑫云冷库附近失踪。家属在寻找时，竟然发现这一区域已先后有8名青少年失踪，其中近一年内就有6人。有一名青年雷玉生就在此地的大街上被人拖进了一面包车，被扔进黑砖窑强迫劳动，后逃离黑砖窑重获自由。</code></span></span></div><div  class="line alt1"><code  class="number">19.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">20.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"three"</code><code  class="plain">&gt;耳光&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">21.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">22.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">30多岁女人直接吐东西在刚扫过的地上，环卫大姐上去说了两句，结果挨了三巴掌三脚。见到被打的环卫大姐时，她精神不好，坐在凳子上不说话，左脸的伤痕还很显眼，工友在一旁照料她。2012年5月4日，浙江省，杭州市。</code></span></span></div><div  class="line alt1"><code  class="number">23.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">24.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">25.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 70px;"><code  class="plain">尹大姐说：“小孩子都知道不能在街上乱吐。”那女人说：那不就是你们环卫应该做的事情吗？尹大姐说：难道我们环卫工人就低人一等吗？”话音刚落，“啪”“啪”“啪”三个巴掌落在尹大姐脸上。</code></span></span></div><div  class="line alt2"><code  class="number">26.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 35px;"><code  class="plain">&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">27.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<span  style="font-size:14px;line-height:21px;">那么就可通过js： &nbsp;$('#navbarExample').scrollspy()即可。</span> 
+<p>
+	<br>
+</p>
+<p>
+	<span  style="margin:0px;padding:0px;"> </span> 
+</p>
+<div  class="alert alert-info"  style="padding:8px 35px 8px 14px;margin-bottom:20px;text-shadow:rgba(255, 255, 255, 0.498039) 0px 1px 0px;background-color:#D9EDF7;border:1px solid #BCE8F1;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;color:#3A87AD;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">
+	<strong>注意！</strong>&nbsp;导航条中链接中指定的id必须与滚动区中设置的id属性值相同。例如，<code  style="padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:12px;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">&lt;a href="#fat"&gt;home&lt;/a&gt;</code>必须和滚动区中<code  style="padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:12px;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">&lt;h4 id="fat"&gt;&lt;/h4&gt;</code>的id值相同
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<span  style="font-size:14px;"><strong>方法&nbsp;</strong></span> 
+</p>
+<p>
+	<span  class="pun"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;line-height:20px;white-space:pre-wrap;color:#93A1A1;">.</span><span  class="pln"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;line-height:20px;white-space:pre-wrap;color:#48484C;">scrollspy</span><span  class="pun"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;line-height:20px;white-space:pre-wrap;color:#93A1A1;">(</span><span  class="str"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;line-height:20px;white-space:pre-wrap;color:#DD1144;">'refresh'</span><span  class="pun"  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:13px;line-height:20px;white-space:pre-wrap;color:#93A1A1;">) 刷新方法</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	当滚动监听所作用的滚动区中DOM有增删页面元素的操作时，需要调用下面的refresh方法刷新下：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_38266"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'[data-spy="scroll"]'</code><code  class="plain">).each(</code><code  class="keyword">function</code> <code  class="plain">() {</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="keyword">var</code> <code  class="plain">$spy = $(</code><code  class="keyword">this</code><code  class="plain">).scrollspy(</code><code  class="string">'refresh'</code><code  class="plain">)</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">});</code></span></span></div></div></div>
+<p>
+	<strong><span  style="font-size:14px;"><br>
+</span></strong> 
+</p>
+<p>
+	<strong><span  style="font-size:14px;">选项</span></strong> 
+</p>
+<section  id="scrollspy"  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;background-color:#FFFFFF;">
+<div  class="row"  style="margin-left:-30px;">
+	<div  class="span9 columns"  style="float:left;margin-left:30px;width:870px;">
+		<table  class="table table-bordered table-striped"  style="max-width:100%;border-collapse:separate;border-spacing:0px;background-color:transparent;margin-top:5px;width:869px;margin-bottom:18px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;">
+			<thead>
+				<tr>
+					<th  style="padding:8px;line-height:18px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:100px;">
+						名称
+					</th>
+					<th  style="padding:8px;line-height:18px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:100px;">
+						类型
+					</th>
+					<th  style="padding:8px;line-height:18px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:50px;">
+						默认
+					</th>
+					<th  style="padding:8px;line-height:18px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:0px;border-top-right-radius:4px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;">
+						描述
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td  style="padding:8px;line-height:18px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;border-bottom-left-radius:4px;">
+						offset
+					</td>
+					<td  style="padding:8px;line-height:18px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+						数字
+					</td>
+					<td  style="padding:8px;line-height:18px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+						10
+					</td>
+					<td  style="padding:8px;line-height:18px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-right-radius:4px;border-bottom-left-radius:0px;">
+						计算滚动位置相对顶端的偏移量，当达到这个偏移量时触发导航栏链接状态改变
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<br>
+<br>
+<p>
+	<br>
+</p>
+<p>
+	<strong><span  style="font-size:14px;">事件</span></strong> 
+</p>
+<p>
+	当导航栏中的链接状态改变时，或叫切换时，将调用“<span  style="background-color:#F9F9F9;font-size:14px;line-height:20px;">activate</span><span  style="line-height:1.5;">”事件。</span> 
+</p>
+<p>
+	<br>
+</p>
+<section  id="scrollspy"  style="font-size:14px;line-height:20px;">
+<table  class="table table-bordered table-striped"  style="max-width:100%;background-color:transparent;border-collapse:separate;border-spacing:0px;margin-top:5px;width:869px;margin-bottom:20px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;">
+	<thead>
+		<tr>
+			<th  style="padding:8px;line-height:20px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;width:150px;">
+				Event
+			</th>
+			<th  style="padding:8px;line-height:20px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-right-radius:4px;">
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;border-bottom-left-radius:4px;">
+				activate
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;border-bottom-right-radius:4px;">
+				<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:13px;line-height:19px;background-color:#FFFFFF;">当导航栏中的链接状态改变时，或叫切换时触发</span> 
+			</td>
+		</tr>
+	</tbody>
+</table>
+</section>
+<p>
+	添加事件：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_556595"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/287#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/287#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/287#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'.navbar'</code><code  class="plain">).on(</code><code  class="string">'activate'</code><code  class="plain">, </code><code  class="keyword">function</code> <code  class="plain">() {</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">....</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">})</code></span></span></div></div></div>
+其中的$()是jquery选择器，选择导航栏，即将事件添加到导航栏上而不是滚动区上，这点注意。
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<div>
+	<br>
+</div>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+</section>
+		     </div>						
+		 </div>
+		 
+		 <div  class="blog_comment">
+		     <div  class="tabs">
+                 <ul>
+    	         <li>共有 1 条网友评论</li>
+                 </ul>
+             </div>
+			 <div  class="list">
+			     <ul  id="comment_list"><li  id="comment_item_18"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#1楼 :0-&nbsp;发布于2013-05-26 19:19 </div><div  class="content">890980</div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li></ul>
+			 </div>
+		 </div>
+		 	
+		 
+	  <div  class="comment_edit">
+	    
+	    
+	    <div  class="_title">评论内容：</div>	    
+	    <div  class="edit_form">		 
+	    <form  action="http://www.see-source.com/blog/300000033/287#"  method="post">    
+		     <textarea  id="tbCommentBody"></textarea><br>
+		     
+	                         昵称：<input  type="text"  class="nickname"  id="tbCommentNickname"><br>
+	         
+		             
+		     <input  type="button"   value="发表评论"  id="newComment_submit"  class="SUBMIT"> 		             
+		     <span><a  href="javascript:void(0)" >刷新</a></span>	    
+		</form>
+		</div>
+	  </div>
+	  	 
+      </div>      
+   </div>
+   
+   
+</div>
+
+
+
+<div  id="friend_links">
+   <div  class="main">
+     <h3  class="caption">+友情链接</h3>
+     <a  target="_blank"  href="http://www.oschina.net/">开源中国</a><a  href="http://bbs.jquery.org.cn/"  target="_blank">jQuery中文社区</a><a  href="http://os.51cto.com/"  target="_blank">51CTO</a>
+     <a  href="http://www.cnblogs.com/"  target="_blank">博客园</a><a  href="http://www.osphp.com.cn/"  target="_blank">php源码网</a><a  href="http://www.lupaworld.com/"  target="_blank">LUPA开源社区</a>
+   </div>   
+</div>
+
+
+
+<div  id="footer">
+   <div  class="main">
+       <a  class="contact"  target="_blank"  href="http://www.see-source.com/contact.jsp">联系我们</a>&nbsp;|&nbsp;<a  class="beian"  target="_blank"  href="http://www.miitbeian.gov.cn/">京ICP备13014578号</a>
+       <script  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/stat.php"  language="JavaScript"></script><script  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=5342930"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./Bootstrap JS插件使用实例(4)-滚动侦测 - see source网_files/pic.gif"></a>
+   </div>
+</div>
+
+
+</body></html>

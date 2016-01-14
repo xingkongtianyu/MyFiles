@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.toggle()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/mouse-events/" title="View all posts in Mouse Events">Mouse Events</a></span>
+  
+  				</div>
+</div>
+<div id="toggle1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.toggle( handler(eventObject), handler(eventObject), [ handler(eventObject) ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>绑定两个或多个处理程序绑定到匹配的元素，用来执行在交替的点击。</p>
+<ul class="signatures"><li class="signature" id="toggle-handlereventObject-handlereventObject-handlereventObject">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.toggle( handler(eventObject), handler(eventObject), [ handler(eventObject) ] )</h4>
+<p class="arguement"><strong>handler(eventObject)</strong>第一数次（奇数）点击时要执行的函数。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>第二数次（偶数）点击时要执行的函数。</p>
+<p class="arguement"><strong>handler(eventObject)</strong>更多次点击时要执行的函数。</p>
+</li></ul>
+<div class="longdesc">
+<p><code>.toggle()</code>方法的处理程序绑定一个<code>click</code>事件，这个规则概述触发<code>click</code>这里也适用。</p>
+<p>举例来说，请看下面的HTML：</p>
+<pre>
+&lt;div id="target"&gt;
+  Click here
+&lt;/div&gt;</pre>
+<p class="image"><img src="/images/0042_05_05.png" alt=""></p>
+<p>这个事件处理程序可以绑定到<code>&lt;div&gt;</code>:</p>
+<pre>$('#target').toggle(function() {
+  alert('First handler for .toggle() called.');
+}, function() {
+  alert('Second handler for .toggle() called.');
+});</pre>
+<p>这样元素被点击多次，信息提示：</p>
+<p>
+  <span class="output">First handler for .toggle() called.</span><br><span class="output">Second handler for .toggle() called.</span><br><span class="output">First handler for .toggle() called.</span><br><span class="output">Second handler for .toggle() called.</span><br><span class="output">First handler for .toggle() called.</span>
+</p>
+<p>如果提供两个以上的处理函数，<code>.toggle()</code>将在它们中循环。例如，如果有三个处理程序，那么第一次点击，点击第四，第七点击后第一个处理程序将被调用等等。</p>
+<p>
+The <code>.toggle()</code> method is provided for convenience. It is relatively straightforward to implement the same behavior by hand, and this can be necessary if the assumptions built into <code>.toggle()</code> prove limiting. For example, <code>.toggle()</code> is not guaranteed to work correctly if applied twice to the same element. Since <code>.toggle()</code> internally uses a <code>click</code> handler to do its work, we must unbind <code>click</code> to remove a behavior attached with <code>.toggle()</code>, so other <code>click</code> handlers can be caught in the crossfire. The implementation also calls <code>.preventDefault()</code> on the event, so links will not be followed and buttons will not be clicked if <code>.toggle()</code> has been called on the element.</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Click to toggle highlight on the list item.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  ul { margin:10px; list-style:inside circle; font-weight:bold; }
+  li { cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Go to the store&lt;/li&gt;
+    &lt;li&gt;Pick up dinner&lt;/li&gt;
+    &lt;li&gt;Debug crash&lt;/li&gt;
+
+    &lt;li&gt;Take a jog&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;script&gt;
+    $("li").toggle(
+      function () {
+        $(this).css({"list-style-type":"disc", "color":"blue"});
+      },
+      function () {
+        $(this).css({"list-style-type":"disc", "color":"red"});
+      },
+      function () {
+        $(this).css({"list-style-type":"", "color":""});
+      }
+    );
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To toggle a style on table cells:</span>
+</h4>
+<pre><code class="example">$("td").toggle(
+  function () {
+    $(this).addClass("selected");
+  },
+  function () {
+    $(this).removeClass("selected");
+  }
+);</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

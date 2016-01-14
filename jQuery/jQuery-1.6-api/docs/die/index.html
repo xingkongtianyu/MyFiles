@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.die()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#die1">die() </a><ul><li>.die()
+              </li></ul>
+</li>
+<li>
+<a href="#die2">die( eventType, [ handler ] ) </a><ul><li>.die( eventType, [ handler ] )
+              </li></ul>
+</li>
+</ul>
+</fieldset>
+<div id="die1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.die()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>从元素中删除先前用.live()绑定的所有事件</p>
+<ul class="signatures"><li class="signature" id="die"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.1/">1.4.1</a></span>.die()</h4></li></ul>
+<div class="longdesc"><p>任何通过<code>.live()</code>附加的处理器都可以使用<code>.die()</code>删除。这个方法类似于调用不带参数的<code>.unbind()</code>，这是用来删除先前用<code>.bind()</code> 绑定的所有事件。见<code>.live()</code>和<code>.unbind()</code>讨论的更多详情。</p></div>
+</div>
+</div>
+<div id="die2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.die( eventType, [ handler ] )</span> <span class="returns">Returns: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>从元素中删除一个先前用.live()绑定的事件。</p>
+<ul class="signatures"><li class="signature" id="die-eventType-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>.die( eventType, [ handler ] )</h4>
+<p class="arguement"><strong>eventType</strong>一个包含一个或多个JavaScript事件类型的字符串，比如"click"或"keydown,"或自定义事件的名称。</p>
+<p class="arguement"><strong>handler</strong>不再执行的函数。</p>
+</li></ul>
+<div class="longdesc"><p>任何通过<code>.live()</code>附加的处理器都可以使用<code>.die()</code>删除。 这个方法类似于<code>.unbind()</code>，这是用来删除先前用<code>.bind()</code> 绑定的所有事件。见<code>.live()</code>和<code>.unbind()</code>讨论的更多详情。</p></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples-1">
+<div id="example-1-0">
+<h4>Example: <span class="desc">彩色按钮可以绑定和取消绑定事件的。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+button { margin:5px; }
+button#theone { color:red; background:yellow; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="theone"&gt;Does nothing...&lt;/button&gt;
+&lt;button id="bind"&gt;Bind Click&lt;/button&gt;
+&lt;button id="unbind"&gt;Unbind Click&lt;/button&gt;
+
+&lt;div style="display:none;"&gt;Click!&lt;/div&gt;
+&lt;script&gt;
+
+function aClick() {
+  $("div").show().fadeOut("slow");
+}
+$("#bind").click(function () {
+  $("#theone").live("click", aClick)
+              .text("Can Click!");
+});
+$("#unbind").click(function () {
+  $("#theone").die("click", aClick)
+              .text("Does nothing...");
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1-1">
+<h4>Example: <span class="desc">所有段落解除绑定的live事件，写：</span>
+</h4>
+<pre><code class="example">$("p").die()</code></pre>
+</div>
+<div id="example-1-2">
+<h4>Example: <span class="desc">所有段落解除绑定的live click事件，写：</span>
+</h4>
+<pre><code class="example">$("p").die( "click" )</code></pre>
+</div>
+<div id="example-1-3">
+<h4>Example: <span class="desc">
+通过作为第二个参数的函数,只解除以前绑定的这个处理程序：</span>
+</h4>
+<pre><code class="example">var foo = function () {
+// code to handle some kind of event
+};
+
+$("p").live("click", foo); // ... now foo will be called when paragraphs are clicked ...
+
+$("p").die("click", foo); // ... foo will no longer be called.</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

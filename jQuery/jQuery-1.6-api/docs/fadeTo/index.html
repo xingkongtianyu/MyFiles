@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.fadeTo()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/fading/" title="View all posts in Fading">Fading</a></span>
+  
+  				</div>
+</div>
+<div id="fadeTo1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.fadeTo( duration, opacity, [ callback ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>调整匹配元素的透明度。</p>
+<ul class="signatures">
+<li class="signature" id="fadeTo-duration-opacity-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.fadeTo( duration, opacity, [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>opacity</strong>一个0至1之间表示目标透明度的数字。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="fadeTo-duration-opacity-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.fadeTo( [ duration ], opacity, [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>opacity</strong>一个0至1之间表示目标透明度的数字。</p>
+<p class="arguement"><strong>easing</strong>一个用来表示使用哪个缓冲函数来过渡的字符串</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.fadeTo()</code> 方法通过匹配元素的不透明度做动画效果。</p>
+<p>延时时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。如果提供任何其他字符串，或者这个<code>duration</code>参数被省略，那么默认使用<code>400</code>毫秒的延时。和其他效果方法不同，<code>.fadeTo()</code>需要明确的指定<code>duration</code>参数。</p>
+<p>如果提供回调函数参数，回调函数会在动画完成的时候调用。这个对于将不同的动画串联在一起按顺序排列是非常有用的。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是这个回调函数在每个匹配元素上执行一次，不是这个动画作为一个整体。</p>
+<p>我们可以给任何元素做动画，比如一个简单的图片：</p>
+<pre>&lt;div id="clickme"&gt;
+    Click here
+  &lt;/div&gt;
+  &lt;img id="book" src="book.png" alt="" width="100" height="123" /&gt;
+  With the element initially shown, we can dim it slowly:
+  $('#clickme').click(function() {
+    $('#book').fadeTo('slow', 0.5, function() {
+      // Animation complete.
+    });
+  });
+  </pre>
+<p class="image four-across"> 
+    <img src="/images/0042_06_41.png" alt=""><img src="/images/0042_06_42.png" alt=""><img src="/images/0042_06_43.png" alt=""><img src="/images/0042_06_44.png" alt=""></p>
+<p>将<code>duration</code>设置为<code>0</code>，这个方法只是改变<code>opacity</code> CSS属性，所以<code>.fadeTo(0, opacity)</code>和<code>.css('opacity', opacity)</code>是一样的效果。</p>
+</div>
+<h3 id="notes-0">注意：</h3>
+<div class="longdesc"><ul><li>
+所有的jQuery效果，包括 <code>.fadeTo()</code>,能使用<code>jQuery.fx.off = true</code>关闭全局性。更多信息请查看<a   target="_blank" href="http://api.jquery.com/jquery.fx.off">jQuery.fx.off</a>。</li></ul></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>举例： <span class="desc">将第一个段落的不透明度设置成0.33（33%），在600毫秒内完成这些动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+Click this paragraph to see it fade.
+&lt;/p&gt;
+
+&lt;p&gt;
+Compare to this one that won't fade.
+&lt;/p&gt;
+&lt;script&gt;
+$("p:first").click(function () {
+$(this).fadeTo("slow", 0.33);
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">
+点击将div设置成随机的不透明度，在200毫秒内完成这些动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+p { width:80px; margin:0; padding:5px; }
+div { width:40px; height:40px; position:absolute; }
+div#one { top:0; left:0; background:#f00; }
+div#two { top:20px; left:20px; background:#0f0; }
+div#three { top:40px; left:40px; background:#00f; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;And this is the library that John built...&lt;/p&gt;
+
+&lt;div id="one"&gt;&lt;/div&gt;
+&lt;div id="two"&gt;&lt;/div&gt;
+&lt;div id="three"&gt;&lt;/div&gt;
+&lt;script&gt;
+$("div").click(function () {
+$(this).fadeTo("fast", Math.random());
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Find the right answer!  The fade will take 250 milliseconds and change various styles when it completes.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div, p { width:80px; height:40px; top:0; margin:0; 
+position:absolute; padding-top:8px; }
+p { background:#fcc; text-align:center; }
+div { background:blue; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Wrong&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;p&gt;Wrong&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;
+
+&lt;p&gt;Right!&lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+var getPos = function (n) {
+return (Math.floor(n) * 90) + "px";
+};
+$("p").each(function (n) {
+var r = Math.floor(Math.random() * 3);
+var tmp = $(this).text();
+$(this).text($("p:eq(" + r + ")").text());
+$("p:eq(" + r + ")").text(tmp);
+$(this).css("left", getPos(n));
+});
+$("div").each(function (n) {
+      $(this).css("left", getPos(n));
+    })
+.css("cursor", "pointer")
+.click(function () {
+      $(this).fadeTo(250, 0.25, function () {
+            $(this).css("cursor", "")
+                   .prev().css({"font-weight": "bolder",
+                                "font-style": "italic"});
+          });
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

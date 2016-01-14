@@ -1,0 +1,4 @@
+jquery each循环,要实现break和continue的功能：
+break----用return false;
+
+continue --用return true;﻿

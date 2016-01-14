@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0071)http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+        <meta name="keywords" content="技术博客,Web前台技术,技术文章,PHP技术,Asp.NET文章,Javascript文章,Mysql技术,编程,程序,程序语言">
+        <meta name="description" content="本博客自2010年下半年开博以来秉承自学自用同时也为方便广大程序爱好者的目的开博到现在，本博客主要发布和关注的内容有，php技术，asp.net深入学习,javascript编程技术,mysql教程等于技术相关的文章。">
+		<meta name="baidu-site-verification" content="fpMm8fEE8P4D2GSl">
+	<title>
+	  深入解读PHP类phpExcel应用 | 曾经的年少轻狂	</title>
+		<link rel="stylesheet" type="text/css" media="all" href="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/style.css">
+	<link rel="pingback" href="http://www.pkwind.com/wordpress/xmlrpc.php">
+        <script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/jquery.lazyload.mini.js"></script>
+<script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/iweb.js"></script>
+<script type="text/javascript" language="javascript" charset="UTF-8">
+/* <![CDATA[ */
+    var position = 0;
+    $(document).ready(function() {
+        $('.post-info-bottom .spana a').each(function(){
+            $(this).css({"background":"url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif) no-repeat 0px "+position+"px"});
+            position -= 32;
+        });
+        $("img").lazyload({
+            placeholder : "http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/grey.gif",
+            effect : "fadeIn"
+        });
+    });
+/* ]]> */
+</script>
+<style type="text/css">
+    .wrap_top{background:#F2F2F2;}
+</style>
+	<link rel="alternate" type="application/rss+xml" title="曾经的年少轻狂 » feed" href="http://www.pkwind.com/feed">
+<link rel="alternate" type="application/rss+xml" title="曾经的年少轻狂 » 评论 feed" href="http://www.pkwind.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="曾经的年少轻狂 » 深入解读PHP类phpExcel应用 评论 feed" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/feed">
+<script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.pkwind.com/wordpress/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.pkwind.com/wordpress/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="php pathinfo()函数用法详解" href="http://www.pkwind.com/php-pathinfo-function-usage-detailed">
+<link rel="next" title="php set_time_limit() 函数" href="http://www.pkwind.com/php-set_time_limit-function">
+<meta name="generator" content="WordPress 3.3">
+<link rel="canonical" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel">
+<link rel="shortlink" href="http://www.pkwind.com/?p=201">
+</head>
+<body class="single single-post postid-201 single-format-standard">
+<div id="nav">
+	<div id="menus">
+		<ul><li><a href="http://www.pkwind.com/">首页</a></li></ul>
+		<ul id="menu-%e4%b8%bb%e8%8f%9c%e5%8d%95" class="menu"><li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-563"><a href="http://www.pkwind.com/php">PHP</a>
+<ul class="sub-menu">
+	<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://www.pkwind.com/wordpress">WordPress</a></li>
+</ul>
+</li>
+<li id="menu-item-564" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-564"><a href="http://www.pkwind.com/javascript">JavaScript</a>
+<ul class="sub-menu">
+	<li id="menu-item-566" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-566"><a href="http://www.pkwind.com/jquery">jQuery</a></li>
+</ul>
+</li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://www.pkwind.com/mysql">MYSQL</a></li>
+<li id="menu-item-570" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-570"><a href="http://www.pkwind.com/web">WEB</a>
+<ul class="sub-menu">
+	<li id="menu-item-571" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-571"><a href="http://www.pkwind.com/div-css">DIV+CSS</a></li>
+</ul>
+</li>
+<li id="menu-item-630" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-630"><a href="http://www.pkwind.com/asp-net">ASP.NET</a></li>
+<li id="menu-item-569" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-569"><a href="http://www.pkwind.com/fengxiang-jingcai">分享精彩</a>
+<ul class="sub-menu">
+	<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://www.pkwind.com/film-video">电影视频</a></li>
+	<li id="menu-item-572" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-572"><a href="http://www.pkwind.com/kuaiyi-rensheng">快意人生</a></li>
+</ul>
+</li>
+</ul>	</div>
+	<div id="search">
+		<form id="searchform" method="get" action="http://www.pkwind.com/">
+<input type="text" value="站内搜索" onfocus="if (this.value == &#39;站内搜索&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;站内搜索&#39;;}" size="35" maxlength="50" name="s" id="s">
+<input type="submit" id="searchsubmit" value="搜索">
+</form>	</div>
+</div>
+<div id="wrapper">
+	<div id="header">		<h1><a href="http://www.pkwind.com/">曾经的年少轻狂</a></h1>
+		<h2>当青春慢慢失去，请你牢牢捉住梦想！</h2>
+		<div class="clear"></div>
+			</div>
+<div id="content">
+	
+<!-- Start Of Script Generated By WP-PostViews Plus -->
+<script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+/* ]]> */
+</script>
+<!-- End Of Script Generated By WP-PostViews Plus -->
+	<div class="post-201 post type-post status-publish format-standard hentry category-php tag-php tag-phpexcel tag-class post-single" id="post-201"><!-- post div -->
+		<h2 class="title">深入解读PHP类phpExcel应用</h2>
+		<div class="post-info-top">
+			<span class="post-info-date">
+				发表于2011 年 01 月 22 日							</span>
+						<span id="addcomment"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/#respond" rel="nofollow" title="发表评论？">发表评论</a> (7)</span>
+			<span id="gotocomments"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/#comments" rel="nofollow" title="查看评论？">查看评论</a></span>
+					</div>
+		<div class="clear"></div>
+		<div class="entry">
+			<p><span style="font-size: 13px;">PHP语言在实际编写中经常会与数据库打上交道。下面我们就来一起看看PHP类phpExcel的具体使用方法。phpExcel，操作excel很方便，尤其是可以方便的加入图片，支持jpg gif png格式。<br>
+<strong>下面是总结的几个PHP类phpExcel使用方法</strong></span></p>
+<p><span style="font-size: 13px;">创建一个excel</span></p>
+<pre><span style="font-size: 13px;">$objPHPExcel = new PHPExcel();</span></pre>
+<p><span style="font-size: 13px;">PHP类phpExcel保存excel—2007格式</span></p>
+<pre><span style="font-size: 13px;">$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);</span>
+<span style="font-size: 13px;">//非2007格式 $objWriter-&gt;save("xxx.xlsx");</span>
+<span style="font-size: 13px;">$objWriter=new PHPExcel_Writer_Excel5($objPHPExcel);</span></pre>
+<p><span style="font-size: 13px;">直接输出到浏览器</span></p>
+<pre><span style="font-size: 13px;">$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);</span>
+<span style="font-size: 13px;">header("Pragma: public");</span>
+<span style="font-size: 13px;">header("Expires: 0");</span>
+<span style="font-size: 13px;">header("Cache-Control:must-revalidate,post-check=0,pre-check=0");</span>
+<span style="font-size: 13px;">header("Content-Type:application/force-download");</span>
+<span style="font-size: 13px;">header("Content-Type:application/vnd.ms-execl");</span>
+<span style="font-size: 13px;">header("Content-Type:application/octet-stream");</span>
+<span style="font-size: 13px;">header("Content-Type:application/download");</span>
+<span style="font-size: 13px;">header('Content-Disposition:attachment;filename="resume.xls" ');</span>
+<span style="font-size: 13px;">header("Content-Transfer-Encoding:binary");</span>
+<span style="font-size: 13px;">$objWriter-&gt;save("php://output");</span></pre>
+<p><span style="font-size: 13px;">PHP类phpExcel设置excel的属性：</span></p>
+<p><span style="font-size: 13px;">创建人</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setCreator(”Maarten Balliauw”);</span></p>
+<p><span style="font-size: 13px;">最后修改人</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setLastModifiedBy(”Maarten Balliauw”);</span></p>
+<p><span style="font-size: 13px;">标题</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setTitle(”Office 2007 XLSX Test Document”);</span></p>
+<p><span style="font-size: 13px;">题目</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setSubject(”Office 2007 XLSX Test Document”);</span></p>
+<p><span style="font-size: 13px;">描述</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setDescription(”Test document for Office 2007 XLSX, generated using PHP classes.”);</span></p>
+<p><span style="font-size: 13px;"><span class="wp_keywordlink_affiliate"><a href="http://www.pkwind.com/tag/keywords" title="关键字" target="_blank">关键字</a></span></span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setKeywords(”office 2007 openxml <span class="wp_keywordlink_affiliate"><a href="http://www.pkwind.com/tag/php" title="php" target="_blank">php</a></span>”);</span></p>
+<p><span style="font-size: 13px;">种类</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getProperties()-&gt;setCategory(”Test result file”);</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel设置当前的sheet</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;setActiveSheetIndex(0);</span></p>
+<p><span style="font-size: 13px;">设置sheet的name</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setTitle(’Simple’);</span></p>
+<p><span style="font-size: 13px;">设置单元格的值</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(’A1′, ‘String’);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(’A2′, 12);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(’A3′, true);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(’C5′, ‘=SUM(C2:C4)’);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;setCellValue(’B8′, ‘=MIN(B2:C5)’);</span></p>
+<p><span style="font-size: 13px;">合并单元格</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;mergeCells(’A18:E22′);</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel分离单元格</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;unmergeCells(’A28:B28′);</span></p>
+<p><span style="font-size: 13px;">保护cell</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getProtection()-&gt;setSheet(true); // Needs to be set to true in order to enable any worksheet protection!</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;protectCells(’A3:E13′, ‘<span class="wp_keywordlink_affiliate"><a href="http://www.pkwind.com/tag/phpexcel" title="PHPExcel" target="_blank">PHPExcel</a></span>’);</span></p>
+<p><span style="font-size: 13px;">设置格式</span><br>
+<span style="font-size: 13px;"> // Set cell number formats</span><br>
+<span style="font-size: 13px;"> echo date(’H:i:s’) . ” Set cell number formats\n”;</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E4′)-&gt;getNumberFormat()-&gt;setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;duplicateStyle( $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E4′), ‘E5:E13′ );</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel设置宽width</span><br>
+<span style="font-size: 13px;"> // Set column widths</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getColumnDimension(’B’)-&gt;setAutoSize(true);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getColumnDimension(’D’)-&gt;setWidth(12);</span></p>
+<p><span style="font-size: 13px;">设置font</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFont()-&gt;setName(’Candara’);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFont()-&gt;setSize(20);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFont()-&gt;setBold(true);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFont()-&gt;setUnderline(PHPExcel_Style_Font::UNDERLINE_SINGLE);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFont()-&gt;getColor()-&gt;setARGB(PHPExcel_Style_Color::COLOR_WH<span class="wp_keywordlink_affiliate"><a href="http://www.pkwind.com/tag/IT" title="IT" target="_blank">IT</a></span>E);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E1′)-&gt;getFont()-&gt;getColor()-&gt;setARGB(PHPExcel_Style_Color::COLOR_WHITE);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D13′)-&gt;getFont()-&gt;setBold(true);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E13′)-&gt;getFont()-&gt;setBold(true);</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel设置align</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D11′)-&gt;getAlignment()-&gt;setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D12′)-&gt;getAlignment()-&gt;setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D13′)-&gt;getAlignment()-&gt;setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’A18′)-&gt;getAlignment()-&gt;setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY);</span><br>
+<span style="font-size: 13px;"> //垂直居中</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’A18′)-&gt;getAlignment()-&gt;setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel设置column的border</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’A4′)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B4′)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’C4′)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D4′)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E4′)-&gt;getBorders()-&gt;getTop()-&gt;setBorderStyle(PHPExcel_Style_Border::BORDER_THIN);</span></p>
+<p><span style="font-size: 13px;">设置border的color</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D13′)-&gt;getBorders()-&gt;getLeft()-&gt;getColor()-&gt;setARGB(’FF993300′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D13′)-&gt;getBorders()-&gt;getTop()-&gt;getColor()-&gt;setARGB(’FF993300′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’D13′)-&gt;getBorders()-&gt;getBottom()-&gt;getColor()-&gt;setARGB(’FF993300′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E13′)-&gt;getBorders()-&gt;getTop()-&gt;getColor()-&gt;setARGB(’FF993300′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E13′)-&gt;getBorders()-&gt;getBottom()-&gt;getColor()-&gt;setARGB(’FF993300′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’E13′)-&gt;getBorders()-&gt;getRight()-&gt;getColor()-&gt;setARGB(’FF993300′);</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel设置填充颜色</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’A1′)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’A1′)-&gt;getFill()-&gt;getStartColor()-&gt;setARGB(’FF808080′);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;getActiveSheet()-&gt;getStyle(’B1′)-&gt;getFill()-&gt;getStartColor()-&gt;setARGB(’FF808080′);</span></p>
+<p><span style="font-size: 13px;">加图片</span><br>
+<span style="font-size: 13px;"> $objDrawing = new PHPExcel_Worksheet_Drawing();</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setName(’Logo’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setDescription(’Logo’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setPath(’./images/officelogo.jpg’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setHeight(36);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setWorksheet($objPHPExcel-&gt;getActiveSheet());</span></p>
+<p><span style="font-size: 13px;">$objDrawing = new PHPExcel_Worksheet_Drawing();</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setName(’Paid’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setDescription(’Paid’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setPath(’./images/paid.png’);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setCoordinates(’B15′);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setOffsetX(110);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setRotation(25);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;getShadow()-&gt;setVisible(true);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;getShadow()-&gt;setDirection(45);</span><br>
+<span style="font-size: 13px;"> $objDrawing-&gt;setWorksheet($objPHPExcel-&gt;getActiveSheet());</span></p>
+<p><span style="font-size: 13px;">PHP类phpExcel在默认sheet后，创建一个worksheet</span><br>
+<span style="font-size: 13px;"> echo date(’H:i:s’) . ” Create new Worksheet object\n”;</span><br>
+<span style="font-size: 13px;"> $objPHPExcel-&gt;createSheet();</span></p>
+<p><span style="font-size: 13px;">$objWriter = PHPExcel_IOFactory::createWriter($objExcel, ‘Excel5′);</span><br>
+<span style="font-size: 13px;"> $objWriter-save(‘php://output’);</span></p>
+<p>&nbsp;</p>
+<p><strong><span style="font-size: 13px;">经常有朋友问如何用PHPExcel读取Excel文件，以下为读取的实现：</span></strong></p>
+<pre><span style="font-size: 13px;">$PHPExcel = new PHPExcel();</span>
+<span style="font-size: 13px;">//读取2007格式的Excel</span>
+<span style="font-size: 13px;">$PHPReader = new PHPExcel_Reader_Excel2007();</span>
+<span style="font-size: 13px;">//为了从上向下兼容，先判断是否为2007的，再判断是否为非2007的</span>
+<span style="font-size: 13px;">if (!$PHPReader-&gt;canRead($filepath)) {</span>
+<span style="font-size: 13px;"> //非2007格式的Excel</span>
+<span style="font-size: 13px;"> $PHPReader = new PHPExcel_Reader_Excel5();</span>
+<span style="font-size: 13px;"> //判断是否为正确的Excel文件</span>
+<span style="font-size: 13px;"> if (!$PHPReader-&gt;canRead($filepath)) {</span>
+<span style="font-size: 13px;"> echo 'no Excel';</span>
+<span style="font-size: 13px;"> exit();</span>
+<span style="font-size: 13px;"> }</span>
+<span style="font-size: 13px;">}</span>
+<span style="font-size: 13px;">//filepath Excel文件路径</span>
+<span style="font-size: 13px;">$PHPExcel = $PHPReader-&gt;load($filepath);</span>
+<span style="font-size: 13px;">//转换为数组方便读取</span>
+<span style="font-size: 13px;">$arr = $PHPExcel-&gt;getSheet(0)-&gt;toArray();</span></pre>
+					</div><!-- END entry -->
+		<div style="text-align:center;">
+			<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7412911934761054";
+/* pk视频 */
+google_ad_slot = "9826520870";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+		</div>
+                <div class="post-info-bottom">
+			<span style="float:right;" class="spana">
+				<a onclick="javascript:shareto(&#39;sina&#39;)" title="分享到新浪微博" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px 0px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;tqq&#39;)" title="分享到QQ微博" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -32px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;miliao&#39;)" title="分享到米聊" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -64px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;renren&#39;)" title="分享到人人网" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -96px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;kaixin&#39;)" title="分享到开心网" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -128px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;douban&#39;)" title="分享到豆瓣" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -160px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;googlebuzz&#39;)" title="分享到Google Buzz" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -192px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;sohu&#39;)" title="分享到搜狐微博" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -224px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;qzone&#39;)" title="分享到QQ空间" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -256px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;baidu&#39;)" title="收藏到百度搜藏" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -288px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;163&#39;)" title="分享到网易微博" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -320px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;digu&#39;)" title="分享到嘀咕" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -352px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;tao&#39;)" title="分享到淘江湖" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -384px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;bai&#39;)" title="分享到搜狐白社会" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -416px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;msn&#39;)" title="分享到MSN" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -448px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;xiaoyou&#39;)" title="分享到QQ校友" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -480px; background-repeat: no-repeat no-repeat; "></a>
+				<a onclick="javascript:shareto(&#39;xianguo&#39;)" title="推荐到鲜果网" style="opacity: 0.5; background-image: url(http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/socialmedia.gif); background-position: 0px -512px; background-repeat: no-repeat no-repeat; "></a>
+			</span>
+                    <div style="clear:both;"></div>			
+			<span class="post-info-category">分类：<a href="http://www.pkwind.com/php" title="查看 PHP 的全部文章" rel="category tag">PHP</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="post-info-tags">标签：<a href="http://www.pkwind.com/tag/php" rel="tag">PHP</a>, <a href="http://www.pkwind.com/tag/phpexcel" rel="tag">PHPExcel</a>, <a href="http://www.pkwind.com/tag/class" rel="tag">类库</a></span>
+		</div>
+		<div class="add-info">
+					</div>
+		<div id="nav-below">
+			<div class="nav-previous"><a href="http://www.pkwind.com/php-pathinfo-function-usage-detailed" rel="prev"><span class="meta-nav">←</span> php pathinfo()函数用法详解</a></div>
+			<div class="nav-next"><a href="http://www.pkwind.com/php-set_time_limit-function" rel="next">php set_time_limit() 函数 <span class="meta-nav">→</span></a></div>
+		</div><!-- #nav-below -->
+	</div><!-- END post -->
+	<!-- You can start editing here. -->
+
+				<div id="comments-div"><span id="comments-addcomment"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/#respond" rel="nofollow" title="发表评论？">发表评论？</a></span><h2 id="comments">7 条评论。</h2></div>
+			<ol class="commentlist" id="thecomments">
+					
+<li class="comment even thread-even depth-1" id="li-comment-288">
+	<div id="comment-288">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/08c66c18080ae624af7f66b0b885c9ed" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/08c66c18080ae624af7f66b0b885c9ed?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn"><a href="http://www.baidu.com/" rel="external nofollow" class="url">穗溪</a></cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-288">2012 年 05 月 23 日 在 下午 8:26</a></span>
+		</div>
+		<div class="comment-text">
+			<p>试试看 <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; "> </p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=288#respond" onclick="return addComment.moveForm(&quot;comment-288&quot;, &quot;288&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+</li>
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-447">
+	<div id="comment-447">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/0bf54cf48b3fdf4d34a4f8114a5c5e54" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/0bf54cf48b3fdf4d34a4f8114a5c5e54?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn">紫枫闲人</cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-447">2012 年 08 月 16 日 在 下午 9:06</a></span>
+		</div>
+		<div class="comment-text">
+			<p>多谢啊， <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; "> </p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=447#respond" onclick="return addComment.moveForm(&quot;comment-447&quot;, &quot;447&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+<ul class="children">
+
+<li class="comment byuser comment-author-yjttc bypostauthor even depth-2" id="li-comment-452">
+	<div id="comment-452">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn">yjttc</cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-452">2012 年 08 月 22 日 在 下午 1:55</a></span>
+		</div>
+		<div class="comment-text">
+			<p>客气</p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=452#respond" onclick="return addComment.moveForm(&quot;comment-452&quot;, &quot;452&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+</li>
+</ul>
+</li>
+
+<li class="comment odd alt thread-even depth-1" id="li-comment-465">
+	<div id="comment-465">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/83dcfdfff6276f0e9c016f23d4fb231e" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/83dcfdfff6276f0e9c016f23d4fb231e?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn"><a href="http://blog.ityuan.net/" rel="external nofollow" class="url">isgrey</a></cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-465">2012 年 09 月 03 日 在 下午 2:57</a></span>
+		</div>
+		<div class="comment-text">
+			<p> <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; ">  <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; ">  <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; ">  <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; ">  <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; ">  <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; "> 学写一下</p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=465#respond" onclick="return addComment.moveForm(&quot;comment-465&quot;, &quot;465&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+<ul class="children">
+
+<li class="comment byuser comment-author-yjttc bypostauthor even depth-2" id="li-comment-466">
+	<div id="comment-466">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn">yjttc</cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-466">2012 年 09 月 03 日 在 下午 5:24</a></span>
+		</div>
+		<div class="comment-text">
+			<p>动手写是必须的。。</p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=466#respond" onclick="return addComment.moveForm(&quot;comment-466&quot;, &quot;466&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+</li>
+</ul>
+</li>
+
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-492">
+	<div id="comment-492">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/26c1535b08635a6998a94e021014f290" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/26c1535b08635a6998a94e021014f290?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn">奇诺</cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-492">2012 年 09 月 11 日 在 下午 7:24</a></span>
+		</div>
+		<div class="comment-text">
+			<p>这篇文章很好，但是没有关于读取excel的吗？</p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=492#respond" onclick="return addComment.moveForm(&quot;comment-492&quot;, &quot;492&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+<ul class="children">
+
+<li class="comment byuser comment-author-yjttc bypostauthor even depth-2" id="li-comment-495">
+	<div id="comment-495">
+		<div class="comment-author vcard">
+			<img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85" class="avatar avatar-40 photo" height="40" width="40" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G" style="display: block; ">			<cite class="fn">yjttc</cite>
+			<span class="comment-meta commentmetadata"><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-495">2012 年 09 月 12 日 在 上午 10:15</a></span>
+		</div>
+		<div class="comment-text">
+			<p>读取的实现方法已更新至文章下方。 <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_youmuyou.gif" alt=":ymy:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_youmuyou.gif" style="display: inline; "> </p>
+					</div>
+		<div class="reply">
+			<a class="comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/?replytocom=495#respond" onclick="return addComment.moveForm(&quot;comment-495&quot;, &quot;495&quot;, &quot;respond&quot;, &quot;201&quot;)">回复</a>		</div>
+	</div>
+
+</li>
+</ul>
+</li>
+			</ol>
+			<div class="navigation"></div>
+	
+	<script type="text/javascript">
+	/* <![CDATA[ */
+		function grin(tag) {
+			var myField;
+			tag = ' ' + tag + ' ';
+			if (document.getElementById('comment') && document.getElementById('comment').type == 'textarea') {
+				myField = document.getElementById('comment');
+			} else {
+				return false;
+			}
+			if (document.selection) {
+				myField.focus();
+				sel = document.selection.createRange();
+				sel.text = tag;
+				myField.focus();
+			}
+			else if (myField.selectionStart || myField.selectionStart == '0') {
+				var startPos = myField.selectionStart;
+				var endPos = myField.selectionEnd;
+				var cursorPos = endPos;
+				myField.value = myField.value.substring(0, startPos)
+							  + tag
+							  + myField.value.substring(endPos, myField.value.length);
+				cursorPos += tag.length;
+				myField.focus();
+				myField.selectionStart = cursorPos;
+				myField.selectionEnd = cursorPos;
+			}
+			else {
+				myField.value += tag;
+				myField.focus();
+			}
+		}
+	/* ]]> */
+	</script>
+									<div id="respond">
+				<h3 id="reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/#respond" style="display:none;"><small>取消回复</small></a></small></h3>
+									<form action="http://www.pkwind.com/wordpress/wp-comments-post.php" method="post" id="commentform">
+																										<p class="comment-form-author"><input id="author" name="author" type="text" value="" size="30"> <label for="author"><small>昵称</small></label></p>
+<p class="comment-form-email"><input id="email" name="email" type="text" value="" size="30"> <label for="email">邮箱</label></p>
+<p class="comment-form-url"><input id="url" name="url" type="text" value="" size="30"> <label for="url">网址</label></p>
+												<p class="smilies">
+        <a href="javascript:grin(':!!!:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_exclamation.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_exclamation.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':gl:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':sbq:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_sbq.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_sbq.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':ymy:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_youmuyou.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_youmuyou.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':sx:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_shaoxiang.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_shaoxiang.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':?:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_question.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_question.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':razz:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_razz.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_razz.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':evil:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_evil.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_evil.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':!:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_exclaim.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_exclaim.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':smile:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_smile.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_smile.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':oops:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_redface.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_redface.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':grin:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_biggrin.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_biggrin.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':eek:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_surprised.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_surprised.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':shock:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_eek.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_eek.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':???:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_confused.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_confused.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':cool:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_cool.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_cool.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':lol:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_lol.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_lol.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':mad:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_mad.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_mad.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':twisted:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_twisted.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_twisted.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':roll:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_rolleyes.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_rolleyes.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':wink:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_wink.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_wink.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':idea:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_idea.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_idea.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':arrow:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_arrow.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_arrow.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':neutral:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_neutral.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_neutral.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':cry:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_cry.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_cry.gif" style="display: inline; "></a>
+	<a href="javascript:grin(':mrgreen:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_mrgreen.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_mrgreen.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':see:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_see.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_see.gif" style="display: inline; "></a>
+        <a href="javascript:grin(':kbz:')"><img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_kbz.gif" alt="" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_kbz.gif" style="display: inline; "></a>
+	<br></p><p class="comment-form-comment"><textarea aria-required="true" rows="8" cols="45" name="comment" id="comment" onkeydown="if(event.ctrlKey){if(event.keyCode==13){document.getElementById(&#39;submit&#39;).click();return false}};"></textarea></p>						<p class="comment-note">注意 - 你可以用以下 <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:<br> <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="提交">
+							<input type="hidden" name="comment_post_ID" value="201" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b4835ca8f3"></p>					</form>
+							</div><!-- #respond -->
+						</div><!--content-->
+<div id="sidebar-border">
+	<div id="rss_border">
+            <div class="rss_border">
+			<div id="rss_wrap">
+				<div class="rss_wrap">
+		<a class="rss " href="http://www.pkwind.com/feed" rel="bookmark" title="RSS 订阅">
+                &nbsp;</a>
+            </div>
+                        </div>
+            </div>
+	</div>
+	<div id="sidebar">
+
+
+	<div class="widget">
+		<h3>随便看看</h3>
+		<ul>
+						<li><span><a href="http://www.pkwind.com/wordpress-set-the-date-format-the-display-of-posts">WordPress-设定文章显示的日期格式</a></span></li>
+						<li><span><a href="http://www.pkwind.com/javascript-array-to-remove-duplicate">javascript去除数组重复</a></span></li>
+						<li><span><a href="http://www.pkwind.com/php-shan-chu-session">php 删除session</a></span></li>
+						<li><span><a href="http://www.pkwind.com/20120825">asp.net 栏目今日正式开通</a></span></li>
+						<li><span><a href="http://www.pkwind.com/mysql-keywords-reserved-words">mysql关键字–保留字</a></span></li>
+						<li><span><a href="http://www.pkwind.com/phps-zip-compression-classes">PHP之ZIP压缩类</a></span></li>
+						<li><span><a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel">深入解读PHP类phpExcel应用</a></span></li>
+						<li><span><a href="http://www.pkwind.com/jquery-autocomplete-with-details">jQuery Autocomplete 使用详细说明</a></span></li>
+						<li><span><a href="http://www.pkwind.com/years-we-will-piece-together-the-label-you-are-familiar-with-a-specific-to-childhood-memories-after-80">十年—我们将你熟悉的标签拼凑起一份专属于80后的童年回忆</a></span></li>
+						<li><span><a href="http://www.pkwind.com/mysql-myisam-and-innodb-difference">MySQL: MyISAM和InnoDB的区别</a></span></li>
+					</ul>
+	</div>
+	<div>
+		<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7412911934761054";
+/* pkwind侧栏广告 */
+google_ad_slot = "2926994038";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+	</div>
+         <div class="widget">
+		<h3>最新评论</h3>
+		<ul>
+			<li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85(1)" class="avatar avatar-26 photo" height="26" width="26" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=26&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>yjttc</b> <a href="http://www.pkwind.com/wei-bo-feed-xi-tong-di-push-he-pull-mo-shi-he-shi-jian-fen-qu-la-mo-shi-jia-gou-tan#comment-1026" style="color:#791E00;font-size:12px;"> <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_gl.gif" alt=":gl:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_gl.gif"> </a></span></li><li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/21f256c727269361ce8c03ab002f4aa0" class="avatar avatar-26 photo" height="26" width="26" original="http://0.gravatar.com/avatar/21f256c727269361ce8c03ab002f4aa0?s=26&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>瑜伽减肥</b> <a href="http://www.pkwind.com/dui-mysql-xing-neng-ying-xiang-guan-xi-jin-mi-di-wu-da-pei-zhi-can-shu#comment-859" style="color:#791E00;font-size:12px;">进来参考一下。。</a></span></li><li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/1bedde65506e3bf3c1a1d1c6cdc6966b" class="avatar avatar-26 photo" height="26" width="26" original="http://1.gravatar.com/avatar/1bedde65506e3bf3c1a1d1c6cdc6966b?s=26&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>haha</b> <a href="http://www.pkwind.com/zend-db-lian-he-cha-xun-union#comment-545" style="color:#791E00;font-size:12px;">不错 学习啦</a></span></li><li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85(1)" class="avatar avatar-26 photo" height="26" width="26" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=26&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>yjttc</b> <a href="http://www.pkwind.com/zend-db-lian-he-cha-xun-union#comment-522" style="color:#791E00;font-size:12px;">我用的这个版本比较老，是1.11.7，2.0中还真没发现有这个方法，不行就自行拼个SQL语句吧。。</a></span></li><li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/c556e4a24d1ce6dcad7bf035f8c6d67f" class="avatar avatar-26 photo" height="26" width="26" original="http://0.gravatar.com/avatar/c556e4a24d1ce6dcad7bf035f8c6d67f?s=26&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>sss</b> <a href="http://www.pkwind.com/zend-db-lian-he-cha-xun-union#comment-516" style="color:#791E00;font-size:12px;">这个是什么版本？   2.0中如何使用union，在db里面没有找到union方法，望指教~~~</a></span></li><li><span style="vertical-align:middle;"><img alt="" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/2dc2f3a61ec00d3b21b68a40e7f0ca85(1)" class="avatar avatar-26 photo" height="26" width="26" original="http://0.gravatar.com/avatar/2dc2f3a61ec00d3b21b68a40e7f0ca85?s=26&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D26&amp;r=G"></span> <span style="height:26px;"><b>yjttc</b> <a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel#comment-495" style="color:#791E00;font-size:12px;">读取的实现方法已更新至文章下方。 <img src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/icon_youmuyou.gif" alt=":ymy:" class="wp-smiley" original="http://www.pkwind.com/wordpress/wp-includes/images/smilies/icon_youmuyou.gif"> </a></span></li>		</ul>
+	</div>
+	<div class="widget">
+		<h3>标签云</h3>
+		<ul><a href="http://www.pkwind.com/tag/80-hou" class="tag-link-94" title="3 个话题" style="color:#36e;font-size: 11.323943661972pt;;">80后</a>
+<a href="http://www.pkwind.com/tag/ajax-2" class="tag-link-111" title="2 个话题" style="color:#281;font-size: 10.394366197183pt;;">Ajax</a>
+<a href="http://www.pkwind.com/tag/apache" class="tag-link-91" title="8 个话题" style="color:#1ee;font-size: 14.035211267606pt;;">Apache</a>
+<a href="http://www.pkwind.com/tag/css" class="tag-link-117" title="2 个话题" style="color:#376;font-size: 10.394366197183pt;;">css</a>
+<a href="http://www.pkwind.com/tag/div" class="tag-link-116" title="2 个话题" style="color:#249;font-size: 10.394366197183pt;;">div</a>
+<a href="http://www.pkwind.com/tag/get" class="tag-link-112" title="2 个话题" style="color:#3b;font-size: 10.394366197183pt;;">get</a>
+<a href="http://www.pkwind.com/tag/htaccess" class="tag-link-90" title="6 个话题" style="color:#d0;font-size: 13.260563380282pt;;">htaccess</a>
+<a href="http://www.pkwind.com/tag/html" class="tag-link-143" title="3 个话题" style="color:#226;font-size: 11.323943661972pt;;">html</a>
+<a href="http://www.pkwind.com/tag/html5" class="tag-link-161" title="2 个话题" style="color:#205;font-size: 10.394366197183pt;;">html5</a>
+<a href="http://www.pkwind.com/tag/ibm" class="tag-link-76" title="1 个话题" style="color:#3c1;font-size: 9pt;;">IBM</a>
+<a href="http://www.pkwind.com/tag/intel" class="tag-link-130" title="2 个话题" style="color:#1fa;font-size: 10.394366197183pt;;">intel</a>
+<a href="http://www.pkwind.com/tag/javascript-2" class="tag-link-64" title="18 个话题" style="color:#364;font-size: 16.591549295775pt;;">javascript</a>
+<a href="http://www.pkwind.com/tag/jquery-2" class="tag-link-63" title="11 个话题" style="color:#2ff;font-size: 15.042253521127pt;;">jquery</a>
+<a href="http://www.pkwind.com/tag/lazyload" class="tag-link-65" title="1 个话题" style="color:#233;font-size: 9pt;;">lazyload</a>
+<a href="http://www.pkwind.com/tag/mvc" class="tag-link-79" title="1 个话题" style="color:#e8;font-size: 9pt;;">MVC</a>
+<a href="http://www.pkwind.com/tag/mysql-2" class="tag-link-74" title="22 个话题" style="color:#329;font-size: 17.211267605634pt;;">mysql</a>
+<a href="http://www.pkwind.com/tag/pear" class="tag-link-80" title="1 个话题" style="color:#3a2;font-size: 9pt;;">PEAR</a>
+<a href="http://www.pkwind.com/tag/php" class="tag-link-10" title="52 个话题" style="color:#24a;font-size: 20pt;;">PHP</a>
+<a href="http://www.pkwind.com/tag/phpmyadmin" class="tag-link-70" title="2 个话题" style="color:#2da;font-size: 10.394366197183pt;;">phpmyadmin</a>
+<a href="http://www.pkwind.com/tag/post" class="tag-link-113" title="2 个话题" style="color:#34b;font-size: 10.394366197183pt;;">post</a>
+<a href="http://www.pkwind.com/tag/this" class="tag-link-164" title="2 个话题" style="color:#61;font-size: 10.394366197183pt;;">this</a>
+<a href="http://www.pkwind.com/tag/web-2" class="tag-link-106" title="5 个话题" style="color:#f6;font-size: 12.718309859155pt;;">web</a>
+<a href="http://www.pkwind.com/tag/wordpress" class="tag-link-12" title="8 个话题" style="color:#34b;font-size: 14.035211267606pt;;">WordPress</a>
+<a href="http://www.pkwind.com/tag/xampp" class="tag-link-78" title="1 个话题" style="color:#3a8;font-size: 9pt;;">XAMPP</a>
+<a href="http://www.pkwind.com/tag/zend" class="tag-link-81" title="2 个话题" style="color:#362;font-size: 10.394366197183pt;;">Zend</a>
+<a href="http://www.pkwind.com/tag/life" class="tag-link-86" title="4 个话题" style="color:#109;font-size: 12.098591549296pt;;">人生</a>
+<a href="http://www.pkwind.com/tag/pseudo-static" class="tag-link-71" title="1 个话题" style="color:#392;font-size: 9pt;;">伪静态</a>
+<a href="http://www.pkwind.com/tag/xin-xin" class="tag-link-89" title="1 个话题" style="color:#22f;font-size: 9pt;;">信心</a>
+<a href="http://www.pkwind.com/tag/keywords" class="tag-link-93" title="1 个话题" style="color:#147;font-size: 9pt;;">关键字</a>
+<a href="http://www.pkwind.com/tag/function" class="tag-link-66" title="24 个话题" style="color:#35c;font-size: 17.521126760563pt;;">函数</a>
+<a href="http://www.pkwind.com/tag/chuang-yi" class="tag-link-131" title="3 个话题" style="color:#315;font-size: 11.323943661972pt;;">创意</a>
+<a href="http://www.pkwind.com/tag/animation" class="tag-link-133" title="9 个话题" style="color:#2a8;font-size: 14.422535211268pt;;">动画</a>
+<a href="http://www.pkwind.com/tag/variable" class="tag-link-67" title="1 个话题" style="color:#4b;font-size: 9pt;;">变量</a>
+<a href="http://www.pkwind.com/tag/jiong" class="tag-link-68" title="1 个话题" style="color:#2ed;font-size: 9pt;;">囧</a>
+<a href="http://www.pkwind.com/tag/security" class="tag-link-83" title="3 个话题" style="color:#32a;font-size: 11.323943661972pt;;">安全</a>
+<a href="http://www.pkwind.com/tag/work" class="tag-link-87" title="1 个话题" style="color:#300;font-size: 9pt;;">工作</a>
+<a href="http://www.pkwind.com/tag/guang-gao" class="tag-link-122" title="4 个话题" style="color:#cc;font-size: 12.098591549296pt;;">广告</a>
+<a href="http://www.pkwind.com/tag/ji-qiao" class="tag-link-92" title="20 个话题" style="color:#98;font-size: 16.901408450704pt;;">技巧</a>
+<a href="http://www.pkwind.com/tag/plugins" class="tag-link-108" title="2 个话题" style="color:#335;font-size: 10.394366197183pt;;">插件</a>
+<a href="http://www.pkwind.com/tag/tutorial" class="tag-link-77" title="12 个话题" style="color:#317;font-size: 15.274647887324pt;;">教程</a>
+<a href="http://www.pkwind.com/tag/database" class="tag-link-102" title="7 个话题" style="color:#134;font-size: 13.647887323944pt;;">数据库</a>
+<a href="http://www.pkwind.com/tag/array" class="tag-link-73" title="4 个话题" style="color:#314;font-size: 12.098591549296pt;;">数组</a>
+<a href="http://www.pkwind.com/tag/you-qu" class="tag-link-69" title="3 个话题" style="color:#a5;font-size: 11.323943661972pt;;">有趣</a>
+<a href="http://www.pkwind.com/tag/destructor" class="tag-link-72" title="1 个话题" style="color:#da;font-size: 9pt;;">析构函数</a>
+<a href="http://www.pkwind.com/tag/zheng-zhe" class="tag-link-75" title="3 个话题" style="color:#1e1;font-size: 11.323943661972pt;;">正则表达式</a>
+<a href="http://www.pkwind.com/tag/man" class="tag-link-88" title="1 个话题" style="color:#36b;font-size: 9pt;;">男人</a>
+<a href="http://www.pkwind.com/tag/class" class="tag-link-103" title="4 个话题" style="color:#2b0;font-size: 12.098591549296pt;;">类库</a>
+<a href="http://www.pkwind.com/tag/lao-boy" class="tag-link-95" title="2 个话题" style="color:#13;font-size: 10.394366197183pt;;">老男孩</a>
+<a href="http://www.pkwind.com/tag/video" class="tag-link-98" title="10 个话题" style="color:#13b;font-size: 14.732394366197pt;;">视频</a>
+<a href="http://www.pkwind.com/tag/music" class="tag-link-100" title="6 个话题" style="color:#83;font-size: 13.260563380282pt;;">音乐</a></ul>
+	</div>
+	<div class="widget">
+		<h3>文章分类 <span style="float:right;margin-right:10px;">文章归档</span></h3>
+                <ul>
+                    <span style="float:left;">	<li class="cat-item cat-item-3"><a href="http://www.pkwind.com/ajax" title="查看 AJAX 下的所有文章">AJAX</a> (1)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.pkwind.com/asp-net" title="查看 ASP.NET 下的所有文章">ASP.NET</a> (5)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.pkwind.com/div-css" title="查看 DIV+CSS 下的所有文章">DIV+CSS</a> (3)
+</li>
+	<li class="cat-item cat-item-159"><a href="http://www.pkwind.com/java" title="查看 JAVA 下的所有文章">JAVA</a> (1)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.pkwind.com/javascript" title="查看 JavaScript 下的所有文章">JavaScript</a> (19)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.pkwind.com/jquery" title="查看 jQuery 下的所有文章">jQuery</a> (12)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.pkwind.com/linux" title="查看 LINUX 下的所有文章">LINUX</a> (3)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.pkwind.com/mysql" title="查看 MYSQL 下的所有文章">MYSQL</a> (19)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.pkwind.com/php" title="查看 PHP 下的所有文章">PHP</a> (63)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.pkwind.com/web" title="查看 WEB 下的所有文章">WEB</a> (11)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.pkwind.com/wordpress" title="查看 WordPress 下的所有文章">WordPress</a> (8)
+</li>
+	<li class="cat-item cat-item-165"><a href="http://www.pkwind.com/yii" title="查看 YII 下的所有文章">YII</a> (1)
+</li>
+	<li class="cat-item cat-item-85"><a href="http://www.pkwind.com/yejie-news" title="查看 业界新闻 下的所有文章">业界新闻</a> (2)
+</li>
+	<li class="cat-item cat-item-82"><a href="http://www.pkwind.com/fengxiang-jingcai" title="查看 分享精彩 下的所有文章">分享精彩</a> (13)
+</li>
+	<li class="cat-item cat-item-84"><a href="http://www.pkwind.com/kuaiyi-rensheng" title="查看 快意人生 下的所有文章">快意人生</a> (2)
+</li>
+	<li class="cat-item cat-item-132"><a href="http://www.pkwind.com/film-video" title="精彩炫目视频动画">电影视频</a> (10)
+</li>
+</span>
+                    <span style="float:right;">	<li><a href="http://www.pkwind.com/2012/11" title="2012 年十一月">2012 年十一月</a></li>
+	<li><a href="http://www.pkwind.com/2012/10" title="2012 年十月">2012 年十月</a></li>
+	<li><a href="http://www.pkwind.com/2012/09" title="2012 年九月">2012 年九月</a></li>
+	<li><a href="http://www.pkwind.com/2012/08" title="2012 年八月">2012 年八月</a></li>
+	<li><a href="http://www.pkwind.com/2012/07" title="2012 年七月">2012 年七月</a></li>
+	<li><a href="http://www.pkwind.com/2012/03" title="2012 年三月">2012 年三月</a></li>
+	<li><a href="http://www.pkwind.com/2012/02" title="2012 年二月">2012 年二月</a></li>
+	<li><a href="http://www.pkwind.com/2011/12" title="2011 年十二月">2011 年十二月</a></li>
+	<li><a href="http://www.pkwind.com/2011/11" title="2011 年十一月">2011 年十一月</a></li>
+	<li><a href="http://www.pkwind.com/2011/10" title="2011 年十月">2011 年十月</a></li>
+	<li><a href="http://www.pkwind.com/2011/09" title="2011 年九月">2011 年九月</a></li>
+	<li><a href="http://www.pkwind.com/2011/08" title="2011 年八月">2011 年八月</a></li>
+	<li><a href="http://www.pkwind.com/2011/07" title="2011 年七月">2011 年七月</a></li>
+	<li><a href="http://www.pkwind.com/2011/06" title="2011 年六月">2011 年六月</a></li>
+	<li><a href="http://www.pkwind.com/2011/04" title="2011 年四月">2011 年四月</a></li>
+	<li><a href="http://www.pkwind.com/2011/03" title="2011 年三月">2011 年三月</a></li>
+	<li><a href="http://www.pkwind.com/2011/02" title="2011 年二月">2011 年二月</a></li>
+	<li><a href="http://www.pkwind.com/2011/01" title="2011 年一月">2011 年一月</a></li>
+</span>
+		</ul>
+	</div>
+            <div style="clear:both;">&nbsp;</div>
+            <div class="widget">
+		<h3>友情链接</h3>
+		<ul>
+			<li><a href="http://www.peiduan.com/" rel="friend" title="新思路seo推广团队利用seo新思路,服务于网站推广、网站推广服务、网站推广策划" target="_blank">网站推广服务</a></li>
+		</ul>
+	</div>
+	<div class="widget">
+		<h3>管理</h3>
+		<ul>
+						<li><a href="http://www.pkwind.com/wordpress/wp-login.php">登录</a></li>
+					</ul>
+	</div>
+	<!--<div id="clustrmaps-widget"></div><script type="text/javascript">var _clustrmaps = {'url' : 'http://www.pkwind.com', 'user' : 1047459, 'server' : '4', 'id' : 'clustrmaps-widget', 'version' : 1, 'date' : '2012-09-28', 'lang' : 'zh', 'corners' : 'square' };(function (){ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'http://www4.clustrmaps.com/counter/map.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);})();</script><noscript><a href="http://www4.clustrmaps.com/user/efeffba3"><img src="http://www4.clustrmaps.com/stats/maps-no_clusters/www.pkwind.com-thumb.jpg" alt="Locations of visitors to this page" /></a></noscript>-->
+
+
+	</div><!-- end: #sidebar -->
+</div><!-- end: #sidebar-border --></div><!--wrapper-->
+<div class="clear"></div>
+<div id="footer">
+    <div id="footer-inside">
+        <p>
+			Copyright&nbsp;©&nbsp;2012&nbsp;曾经的年少轻狂            &nbsp;|&nbsp;本站基于 WordPress 构建
+            &nbsp;|&nbsp;<!--Valid <a href="http://validator.w3.org/check?uri=referer" title="This page validates as XHTML 1.1 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> and <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a>-->
+            <a href="http://www.pkwind.com/sitemap.xml" title="sitemap">网站地图</a>&nbsp;&nbsp;|&nbsp;
+            <script type="text/javascript" src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/stat.php" language="JavaScript"></script><script src="./深入解读PHP类phpExcel应用   曾经的年少轻狂_files/cnzz_core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=2811648" target="_blank" title="站长统计">站长统计</a>&nbsp;&nbsp;|&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">豫ICP备11018466号</a>
+        </p>
+    <!--<img src="http://www.pkwind.com/wordpress/wp-content/themes/zbench/images/dcode.gif" alt="本站二维码" />-->
+        <span id="back-to-top">Δ <a href="http://www.pkwind.com/insight-into-application-of-php-classes-phpexcel/#nav" rel="nofollow" title="Back to top">Top</a></span>
+    </div>
+</div><!--footer-->
+
+</body></html>

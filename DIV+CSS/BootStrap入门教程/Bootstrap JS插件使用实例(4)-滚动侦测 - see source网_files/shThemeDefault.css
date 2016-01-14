@@ -1,0 +1,157 @@
+
+
+
+.syntaxhighlighter
+{
+	background-color: #E7E5DC;
+}
+
+
+.syntaxhighlighter .line.highlighted .number
+{
+	background-color: #6CE26C;
+	color: black;
+}
+
+
+.syntaxhighlighter .line.highlighted.alt1 .content,
+.syntaxhighlighter .line.highlighted.alt2 .content
+{
+	background-color: #6CE26C;
+}
+
+
+.syntaxhighlighter .line .number
+{
+	color: #5C5C5C;
+}
+
+
+.syntaxhighlighter .line .content
+{
+	border-left: 3px solid #6CE26C;
+	color: #000;
+}
+
+.syntaxhighlighter.printing .line .content 
+{
+	border: 0;
+}
+
+
+.syntaxhighlighter .line.alt1 .content
+{
+	background-color: #fff;
+}
+
+
+.syntaxhighlighter .line.alt2 .content
+{
+	background-color: #F8F8F8;
+}
+
+.syntaxhighlighter .line .content .block
+{
+	background: url("http://www.see-source.com/js/highlight/styles/wrapping.png") 0 1.1em no-repeat;
+}
+
+.syntaxhighlighter .ruler
+{
+	color: silver;
+	background-color: #F8F8F8;
+	border-left: 3px solid #6CE26C;
+}
+
+.syntaxhighlighter.nogutter .ruler
+{
+	border: 0;
+}
+
+.syntaxhighlighter .toolbar
+{
+	background-color: #F8F8F8;
+	border: #E7E5DC solid 1px;
+}
+
+.syntaxhighlighter .toolbar a
+{
+	color: #a0a0a0;
+}
+
+.syntaxhighlighter .toolbar a:hover
+{
+	color: red;
+}
+
+
+.syntaxhighlighter .plain,
+.syntaxhighlighter .plain a
+{ 
+	color: #000;
+}
+
+.syntaxhighlighter .comments,
+.syntaxhighlighter .comments a
+{ 
+	color: #008200;
+}
+
+.syntaxhighlighter .string,
+.syntaxhighlighter .string a
+{
+	color: blue; 
+}
+
+.syntaxhighlighter .keyword
+{ 
+	color: #069; 
+	font-weight: bold; 
+}
+
+.syntaxhighlighter .preprocessor 
+{ 
+	color: gray; 
+}
+
+.syntaxhighlighter .variable 
+{ 
+	color: #a70; 
+}
+
+.syntaxhighlighter .value
+{ 
+	color: #090; 
+}
+
+.syntaxhighlighter .functions
+{ 
+	color: #ff1493; 
+}
+
+.syntaxhighlighter .constants
+{ 
+	color: #0066CC; 
+}
+
+.syntaxhighlighter .script
+{ 
+	background-color: yellow !important;
+}
+
+.syntaxhighlighter .color1,
+.syntaxhighlighter .color1 a
+{ 
+	color: #808080; 
+}
+
+.syntaxhighlighter .color2,
+.syntaxhighlighter .color2 a
+{ 
+	color: #ff1493; 
+}
+
+.syntaxhighlighter .color3,
+.syntaxhighlighter .color3 a
+{ 
+	color: red; 
+}

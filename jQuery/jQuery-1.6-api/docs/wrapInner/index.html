@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.wrapInner()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/dom-insertion-around/" title="View all posts in DOM Insertion, Around">DOM Insertion, Around</a></span>
+  
+  				</div>
+</div>
+<div id="wrapInner1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.wrapInner( wrappingElement )</span> <span class="returns">返回<a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>在匹配元素里的内容外包一层结构。</p>
+<ul class="signatures">
+<li class="signature" id="wrapInner-wrappingElement">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>.wrapInner( wrappingElement )</h4>
+<p class="arguement"><strong>wrappingElement</strong>用来包在匹配元素的内容外面的HTML片段，选择表达式，jQuery对象或者DOM元素。</p>
+</li>
+<li class="signature" id="wrapInner-wrappingFunction">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.wrapInner( wrappingFunction )</h4>
+<p class="arguement"><strong>wrappingFunction</strong>一个返回HTML结构的函数，用来包在匹配元素内容的外面。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>参数可以是string或者对象，只要能形成DOM结构，可以是嵌套的，但是结构只包含一个最里层元素。这个结构会包住所有匹配元素的内容。</p>
+<p>例子：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;Hello&lt;/div&gt;
+  &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>用<code>.wrapInner()</code>, 我们可以再inner元素的内容外加一个新的div:</p>
+<pre>$('.inner').wrapInner('&lt;div class="new" /&gt;');</pre>
+<p>结果：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;
+    &lt;div class="new"&gt;Hello&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="inner"&gt;
+    &lt;div class="new"&gt;Goodbye&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>该方法的第二种用法允许我们用一个callback函数做参数，每次遇到匹配元素时，该函数被执行，返回一个DOM元素，jQuery对象，或者HTML片段，用来包住匹配元素的内容。</p>
+<pre>$('.inner').wrapInner(function() {
+  return '&lt;div class="' + this.nodeValue + '" /&gt;';
+});</pre>
+<p>这将使得每个div有和他文本内容一样名字的class:</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="inner"&gt;
+    &lt;div class="Hello"&gt;Hello&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="inner"&gt;
+    &lt;div class="Goodbye"&gt;Goodbye&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>例子：<span class="desc">选中所有段落，然后在段落内容外加粗体：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { background:#bbf; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("p").wrapInner("&lt;b&gt;&lt;/b&gt;");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子：<span class="desc">生成一个jQuery对象树然后将它包在body里面。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div { border:2px green solid; margin:2px; padding:2px; }
+  p { background:yellow; margin:2px; padding:2px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Plain old text, or is it?
+&lt;script&gt;$("body").wrapInner("&lt;div&gt;&lt;div&gt;&lt;p&gt;&lt;em&gt;&lt;b&gt;&lt;/b&gt;&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">选中所有段落然后在段落内容外包上粗体标签。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;p { background:#9f9; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("p").wrapInner(document.createElement("b"));&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>例子：<span class="desc">选中所有段落然后在段落内容外包上一个jQuery对象。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { background:#9f9; }
+  .red { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+  &lt;p&gt;cruel&lt;/p&gt;
+  &lt;p&gt;World&lt;/p&gt;
+&lt;script&gt;$("p").wrapInner($("&lt;span class='red'&gt;&lt;/span&gt;"));&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

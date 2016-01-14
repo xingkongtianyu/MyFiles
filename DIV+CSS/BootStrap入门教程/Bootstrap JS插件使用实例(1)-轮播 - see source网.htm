@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.see-source.com/blog/300000033/281 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Bootstrap JS插件使用实例(1)-轮播 - see source网</title>
+
+<meta  name="keywords"  content="Bootstrap JS插件使用实例(1)-轮播">
+<meta  name="description"  content="
+	Bootstrap为用户提供了13个很有用的jquery插件，下面列出了各个插件及对应的js文件：
+
+
+	轮播 --------bootstrap-carousel.js
+
+
+	过度效果-----bootstrap-transition.js
+
+
+	模态对话框------bootstrap-modal.js
+
+
+	下拉菜单-------boots...">
+<meta  name="author"  content="see source网">
+<link  rel="stylesheet"  href="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/style.css"  type="text/css"  media="screen">
+<link  rel="stylesheet"  href="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/notice.css"  type="text/css">
+
+<script  type="text/javascript">
+function getBaseHref(){
+  var baseHref = 'http://www.see-source.com';
+  return baseHref;
+}
+function getArticleId(){
+  return '281';
+}
+</script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/jquery-1.6.2.min.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/util.js"></script> 
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/common.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/notice.js"></script>
+    
+ 
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shCore.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushBash.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushCpp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushCSharp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushCss.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushDelphi.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushDiff.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushGroovy.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushJava.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushJScript.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushPhp.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushPlain.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushPython.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushRuby.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushScala.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushSql.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushVb.js"></script>
+<script  type="text/javascript"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shBrushXml.js"></script>
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shCore.css">
+<link  type="text/css"  rel="stylesheet"  href="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/shThemeDefault.css">
+<script  type="text/javascript">
+  SyntaxHighlighter.defaults['auto-links'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+</head>
+<body>
+
+<div  class="notice"  style="height: 20px;">
+  <div  class="topborder">
+    <p></p>
+  </div>
+  <div  class="msg">
+        系统通知
+  </div>
+  <div  class="msg_border"  style="display: none;"></div>
+  <div  class="content"  style="display: none;">
+     <a  target="_blank"  href="http://www.see-source.com/fenxiang/fenxiang!list">"热点分享"</a> 版块已经上线 - 在这里您可以分享时下最火热的开源框架、技术<br>
+               
+  </div>
+  <div  class="time"  style="display: none;">11月29日 14:10</div>
+  <div  class="close"  style="display: none;">&nbsp;</div>
+  <span  class="open"  style="display: inline;">open</span>
+</div>
+ 
+
+<div  id="top">
+   <div  class="wp998">
+        <div  class="OSC_Channels">
+        	<ul>
+        	<li  class="item"><a  href="http://www.see-source.com/"  class="home">首页</a></li>      
+			<li  class="item"><a  href="http://www.see-source.com/course/index.jsp">推荐教程</a></li>
+        	
+        	<li  class="item"><a  href="http://www.see-source.com/">博客</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/question/question!latest">问答</a></li>
+        	<li  class="item"><a  href="http://www.see-source.com/front/front!index">前端框架专区</a></li>
+        	</ul>
+        </div>
+		<div  class="OSC_Userbar">
+            <ul>
+             
+	         <li  class="item"><a  href="javascript:void(0)" >登录</a></li>
+	         <li  class="item"><a  href="javascript:void(0)" >注册</a></li>
+	         
+        	</ul>
+        </div>
+		<div  class="clear"></div>
+	</div>
+</div>
+
+
+<div  id="header">
+   <div  class="wp998">
+      <div  class="logo">see source</div>
+	  <div  class="clear"></div>
+    </div>
+</div>
+
+
+
+<div  id="main">
+   <div  class="current_position"><a  href="http://www.see-source.com/">首页</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a  href="http://www.see-source.com/front/front!index">前端框架专区</a>&nbsp;&nbsp;»&nbsp;&nbsp;博客</div>   
+   
+   <div  class="left">
+       <div  class="userInfo">
+		   <ul>
+	       <li  class="nickname">我的昵称：liyi</li>	     
+           <li>技术专长：<label> </label></li>
+           
+           <li  class="guanzhu"><a  href="javascript:void(0)" >加关注</a></li>
+           
+           
+           </ul>	
+	   </div>
+	   <div  class="blogStatistics">
+	       <span>共22个博文 ，已有46390次阅读</span>
+	   </div>
+	   <div  class="blogList">
+	       <div  class="RightTitle">
+				   ⇓最新博文
+		   </div>
+		   <ul>
+		   
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 1.使用 Bootstrap Typeahead 组件(自动补全)</a>
+				    <p>
+	Bootstrap 的 Typeahead 插件是...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> 2.ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+				    <p>
+	Ext.form.Label:可以与表单中的一个字...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> 3.Bootstrap示例演示：bootstrap-popover.js</a>
+				    <p>
+	bootstrap-popover.js继承自bo...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> 4.Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+				    <p>
+	bootstrap-affix.js组件，直译过来...</p>
+			        </li>
+		    
+					<li>
+				    <a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> 5.Bootstrap文件上传插件(jQuery-File-Upload)</a>
+				    <p>
+	
+ 
+
+
+	推荐一款基于Bootstrap...</p>
+			        </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="hotBlogs">
+	       <strong  class="title">
+				阅读排行
+		   </strong>
+		   <ul>
+		   
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/484"> 使用 Bootstrap Typeahead 组件(自动补全)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/436"> ExtJS 中Label、Fieldset字段集、FieldContainer 容器字段</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/434"> Bootstrap示例演示：bootstrap-popover.js</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/411"> Bootstrap JS插件使用实例(10)-附加导航(affix)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/395"> Bootstrap文件上传插件(jQuery-File-Upload)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/393"> Bootstrap分页插件--Bootstrap Paginator</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/373"> Bootstrap JS扩展插件使用实例(9)-datepicker	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/371"> 扩展Twitter Bootstrap的JavaScript插件</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/369"> Bootstrap JS插件使用实例(8)-按钮	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/367"> Bootstrap JS插件使用实例(7)-通知消息</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/364"> Bootstrap JS插件使用实例(6)-折叠(手风琴效果)</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/338"> 为 Bootstrap 添加更多自定义图标</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/337"> 红色大气的Bootstrap网页模板</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>
+			 </li>
+		    
+			 <li>
+			 <a  target="_blank"  href="http://www.see-source.com/blog/300000033/287"> Bootstrap JS插件使用实例(4)-滚动侦测</a>
+			 </li>
+		    								
+		   </ul>
+	   </div>
+	   <div  class="blogType">
+	       <strong  class="title">
+				博客分类
+		   </strong>
+	       <ul>
+	       
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=23">JavaScript插件 </a><span>(15)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=59">ExtJS </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=28">代码分享 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=26">HTML模板 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=19">布局 </a><span>(1)</span></li>
+		    
+	    	<li><a  target="_blank"  href="http://www.see-source.com/blog/300000033?forumId=18">栅格系统 </a><span>(3)</span></li>
+		      
+	       </ul>
+	   </div>
+	   <div  class="relationBlogs">
+	       <div  class="title">
+				相关博文
+		   </div>
+		   <ul>
+		       
+		       
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/282"> Bootstrap JS插件使用实例(2)-模态对话框</a>(阅读3979)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/286"> Bootstrap JS插件使用实例(3)-下拉菜单</a>(阅读3278)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/287"> Bootstrap JS插件使用实例(4)-滚动侦测</a>(阅读2197)
+			      </li>	
+			   
+		          <li>
+			        <div  class="img_div"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/li_image.jpg"></div><a  target="_blank"  href="http://www.see-source.com/blog/300000033/288"> Bootstrap JS插件使用实例(5)-标签页	</a>(阅读2262)
+			      </li>	
+			   	
+		       
+		       	       
+		   </ul>
+	   </div>
+   </div>
+   
+   
+   <div  class="right">
+      <div  class="project">
+	     <h1  class="title"><a  href="http://www.see-source.com/blog/300000033/281#"  class="name">Bootstrap JS插件使用实例(1)-轮播</a> </h1>
+		 <div  class="blogStat">
+		     <span>发表于 2013-04-27 13:46    ,已有<strong>4915</strong>次阅读 ，共<strong>5</strong>个评论</span>
+	     </div>		 	
+	     <div  class="blog_content">
+		     <div  class="internal_content">
+                   <p>
+	Bootstrap为用户提供了13个很有用的jquery插件，下面列出了各个插件及对应的js文件：
+</p>
+<p>
+	轮播 --------bootstrap-carousel.js
+</p>
+<p>
+	过度效果-----bootstrap-transition.js
+</p>
+<p>
+	模态对话框------bootstrap-modal.js
+</p>
+<p>
+	下拉菜单-------bootstrap-dropdown.js
+</p>
+<p>
+	滚动监听--------bootstrap-scrollspy.js
+</p>
+<p>
+	标签页--------bootstrap-tab.js
+</p>
+<p>
+	工具提示-------bootstrap-tooltip.js
+</p>
+<p>
+	弹出提示--------bootstrap-popover.js
+</p>
+<p>
+	警告框----------bootstrap-alert.js
+</p>
+<p>
+	按钮----------bootstrap-button.js
+</p>
+<p>
+	Collapse-------bootstrap-collapse.js
+</p>
+<p>
+	输入提示------bootstrap-typeahead.js
+</p>
+<p>
+	附加导航------bootstrap-affix.js
+</p>
+<p>
+	<br>
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	每个插件都可以单独的引入到页面中（注意插件间的依赖关系），或者一次性引入。另外，<strong>bootstrap.js</strong>&nbsp;和<strong>bootstrap.min.js</strong>&nbsp;文件将所有插件包含在一个文件中了（前者是未压缩版，后者是压缩版）。
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<span  style="color:#000000;font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:14px;line-height:18px;">本文讨论轮播</span><span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;line-height:1.5;">(carousel)</span><span  style="color:#000000;font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;line-height:18px;">插件</span><span  style="color:#000000;font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;line-height:18px;">。先给个示例，可以直接拷下来运行：</span> 
+</p>
+<div>
+<div  class="syntaxhighlighter "  id="highlighter_559552"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;!DOCTYPE html&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">html</code> <code  class="color1">lang</code><code  class="plain">=</code><code  class="string">"en"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">head</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">meta</code> <code  class="color1">http-equiv</code><code  class="plain">=</code><code  class="string">"Content-Type"</code> <code  class="color1">content</code><code  class="plain">=</code><code  class="string">"text/html; charset=utf-8"</code> <code  class="plain">/&gt;</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">title</code><code  class="plain">&gt;轮播示例&lt;/</code><code  class="keyword">title</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">link</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/css/bootstrap.css"</code> <code  class="color1">rel</code><code  class="plain">=</code><code  class="string">"stylesheet"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">link</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/css/docs.css"</code> <code  class="color1">rel</code><code  class="plain">=</code><code  class="string">"stylesheet"</code><code  class="plain">"&gt;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/jquery.js"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/js/bootstrap-carousel.js"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">style</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/css"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">body{width:800px; margin:auto; margin-top:100px;}</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">style</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">head</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">body</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"myCarousel"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel slide"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">ol</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-indicators"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">17.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"0"</code>&nbsp; <code  class="color1">class</code><code  class="plain">=</code><code  class="string">""</code> <code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">18.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"1"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">""</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">19.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 49px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"2"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">20.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;/</code><code  class="keyword">ol</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">21.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-inner"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">22.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"item"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">23.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 77px;"><code  class="plain">&lt;</code><code  class="keyword">img</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/demo/images/bootstrap-mdo-sfmoma-01.jpg"</code> <code  class="color1">alt</code><code  class="plain">=</code><code  class="string">""</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">24.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 77px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-caption"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">25.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 98px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code><code  class="plain">&gt;First Thumbnail label&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">26.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 98px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">27.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 77px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">28.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">29.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"item"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">30.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;</code><code  class="keyword">img</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/demo/images/bootstrap-mdo-sfmoma-02.jpg"</code> <code  class="color1">alt</code><code  class="plain">=</code><code  class="string">""</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">31.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-caption"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">32.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 154px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code><code  class="plain">&gt;Second Thumbnail label&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">33.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 154px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">34.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">35.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">36.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"item active"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">37.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;</code><code  class="keyword">img</code> <code  class="color1">src</code><code  class="plain">=</code><code  class="string">"http://www.see-source.com/bootstrap/demo/images/bootstrap-mdo-sfmoma-03.jpg"</code> <code  class="color1">alt</code><code  class="plain">=</code><code  class="string">""</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">38.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-caption"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">39.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 154px;"><code  class="plain">&lt;</code><code  class="keyword">h4</code><code  class="plain">&gt;Third Thumbnail label&lt;/</code><code  class="keyword">h4</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">40.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 154px;"><code  class="plain">&lt;</code><code  class="keyword">p</code><code  class="plain">&gt;Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/</code><code  class="keyword">p</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">41.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 140px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">42.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 56px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">43.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">44.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"left carousel-control"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"prev"</code><code  class="plain">&gt;‹&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">45.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"right carousel-control"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"next"</code><code  class="plain">&gt;›&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">46.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">47.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">body</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">48.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">html</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">49.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">script</code> <code  class="color1">type</code><code  class="plain">=</code><code  class="string">"text/javascript"</code><code  class="plain">&gt; </code></span></span></div><div  class="line alt2"><code  class="number">50.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$('#myCarousel').carousel('next');</code></span></span></div><div  class="line alt1"><code  class="number">51.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">script</code><code  class="plain">&gt;</code></span></span></div></div></div>
+</div>
+<p>
+	<span  style="line-height:1.5;">请点击下图的红色标记处即可启动自动播放，目前是5秒切换一次，效果图如下：</span> 
+</p>
+<p>
+	<img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/1367041519705_carousel_demo_img2.jpg"  alt=""> 
+</p>
+<p>
+	需要注意：
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	Bootstrap使用的某些HTML元素和CSS属性需要文档类型为HTML5 doctype。因此这一文档类型必须出现在项目的每个页面的开始部分。如下：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_708964"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;!DOCTYPE html&gt; </code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">html</code> <code  class="color1">lang</code><code  class="plain">=</code><code  class="string">"en"</code><code  class="plain">&gt; </code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><code  class="spaces">&nbsp;</code><span  class="block"  style="margin-left: 7px;"><code  class="plain">... </code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">html</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	<br>
+</p>
+<p>
+	下面来对上面的代码进行解析下：
+</p>
+<p>
+	bootstrap.css &nbsp; Bootstrap 样式库，这是必不可少的。
+</p>
+<p>
+	docs.css &nbsp; 可有可无，这个样式库是为Bootstrap的帮助文档的示例(demo)使用的。
+</p>
+<p>
+	jquery.js &nbsp; 引入jquery，Bootstrap插件是jquery插件。
+</p>
+<p>
+	bootstrap-carousel.js &nbsp; &nbsp; 轮播插件
+</p>
+<p>
+	<br>
+</p>
+<p>
+	如果将上面的html代码中的不必要的样式去掉可简化成如下：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_171179"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">01.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"myCarousel"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">02.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">ol</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-indicators"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">03.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"0"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">04.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"1"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">05.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"2"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">06.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;/</code><code  class="keyword">ol</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">07.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="comments">&lt;!-- Carousel items --&gt;</code></span></span></div><div  class="line alt2"><code  class="number">08.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-inner"</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">09.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active item"</code><code  class="plain">&gt;…&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">10.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"item"</code><code  class="plain">&gt;…&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">11.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 28px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"item"</code><code  class="plain">&gt;…&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">12.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">13.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="comments">&lt;!-- Carousel nav --&gt;</code></span></span></div><div  class="line alt2"><code  class="number">14.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-control left"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"prev"</code><code  class="plain">&gt;&amp;lsaquo;&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">15.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel-control right"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"next"</code><code  class="plain">&gt;&amp;rsaquo;&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">16.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;/</code><code  class="keyword">div</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	bootstrap为轮播组件定义了一套轮播的css样式，<span  style="line-height:1.5;">&nbsp; 其中有三个最基本的样式".</span><span  style="line-height:1.5;">carousel</span><span  style="line-height:1.5;">"、".</span>carousel-inner<span  style="line-height:1.5;">"、".</span>item<span  style="line-height:1.5;">"。</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">".</span><span  style="line-height:1.5;">carousel</span><span  style="line-height:1.5;">" 是整个轮播的样式。</span><span  style="line-height:1.5;">".</span><span  style="line-height:1.5;">carousel-inner</span><span  style="line-height:1.5;">"是幻灯片组的样式，所有的幻灯片都定义在其内。</span><span  style="line-height:1.5;">".</span><span  style="line-height:1.5;">item</span><span  style="line-height:1.5;">"是每张幻灯片的样式(其内是轮播的元素，比如单张图片)，这三个样式定义了整个轮播组件的架构。</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">另外还有俩个</span>".carousel-indicators"(指示器)、".carousel-control"(控制器) ,&nbsp;<span  style="line-height:1.5;">是可选的</span><span  style="line-height:1.5;">，这俩个是用于控制幻灯片的，比如"上一张</span><span  style="line-height:1.5;">"、"下一张</span><span  style="line-height:1.5;">"。</span><span  style="line-height:1.5;">".carousel-indicators"是指示器，控制直接切换到哪张，</span><span  style="line-height:1.5;">".carousel-control</span><span  style="line-height:1.5;">"是控制器，用于切换上一张、下一张，如上图标示。</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><br>
+</span> 
+</p>
+<p>
+	有了上边的定义之后轮播组件就建成了，下面看下如何使其工作即自动切换。
+</p>
+<p>
+	<strong><span  style="font-size:14px;">启动方式</span></strong> 
+</p>
+<p>
+	轮播组件定义好后是不能自动工作的，必须通过代码或手动（点击指示器或控制器）使其自动切换，有俩种方式。
+</p>
+<p>
+	<strong><span  style="font-size:14px;">1.</span></strong><span  style="line-height:1.5;">通过data属性启动</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">有俩个data属性 "</span>data-slide-to" 和 "data-slide" ，如上面代码中。<span  style="line-height:1.5;">"</span><span  style="line-height:1.5;">data-slide-to" 一般用作指示器，用于直接切换到第几张，其值从0(第1张)开始。</span><span  style="line-height:1.5;">"data-slide" 一般用作控制器，用于切换上一张、下一张，有俩个值："prev" 切换到上一张，"next"切换到下一张。示例：</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_973943"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"0"</code>&nbsp; <code  class="color1">class</code><code  class="plain">=</code><code  class="string">""</code> <code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"1"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">""</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"2"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"active"</code><code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div></div></div>
+用作指示器
+<p>
+	<span  style="line-height:1.5;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_136326"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"left carousel-control"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"prev"</code><code  class="plain">&gt;‹&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"right carousel-control"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"next"</code><code  class="plain">&gt;›&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div></div></div>
+用作控制器
+<p>
+	<span  style="line-height:1.5;">一旦设置了好了data属性，那么只要在网页中手动点击任何一个都能启动轮播进行自动切换，默认情况每5秒切换一次。</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;"><br>
+</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">2.通过javascript启动</span> 
+</p>
+<p>
+	<span  style="line-height:1.5;">如下：</span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_517136"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'.carousel'</code><code  class="plain">).carousel()</code></span></span></div></div></div>
+<span  style="line-height:1.5;">执行上面js代码即可。其中</span>$('.carousel') 是jquery选择器，意思是将带有"<span  style="line-height:1.5;">carousel</span><span  style="line-height:1.5;">"类样式的元素作为轮播组件启动。当然也可以设置其他方式，如上面代码中通过给元素设置</span>&nbsp;id="myCarousel" ，则调用$('#myCarousel').carousel()也可。
+<p>
+	<br>
+</p>
+<p>
+	<strong><span  style="font-size:14px;">选项</span></strong> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	bootstrap提供了俩个参数用于对轮播过程进行控制。
+</p>
+<table  class="table table-bordered table-striped"  style="max-width:100%;background-color:#FFFFFF;border-collapse:separate;border-spacing:0px;width:869px;margin-bottom:20px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">
+	<thead>
+		<tr>
+			<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;width:100px;">
+				名称
+			</th>
+			<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:50px;">
+				类型
+			</th>
+			<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;width:50px;">
+				默认值
+			</th>
+			<th  style="padding:8px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-right-radius:4px;">
+				描述
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				interval
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				number
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				5000
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				在自动轮播过程中，展示每帧所停留的时间。如果是false，轮播不会自动启动。
+			</td>
+		</tr>
+		<tr>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-left-radius:4px;">
+				pause
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+				string
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;">
+				"hover"
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-right-radius:4px;">
+				当鼠标在轮播区域内时暂停循环，在区域外时则继续循环。
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	<span  style="font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">参数可以通过data属性或JavaScript传递。对于data属性，将参数名称附着到</span><code  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:12px;line-height:20px;padding:2px 4px;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">data-</code><span  style="font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">之后，即</span><code  style="font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;font-size:12px;line-height:20px;padding:2px 4px;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">data-interval=""</code>&nbsp;示例如下：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_320730"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"myCarousel"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel"</code> <code  class="color1">data-interval</code><code  class="plain">=</code><code  class="string">"10000"</code><code  class="plain">&gt;</code></span></span></div></div></div>
+设置到轮播的html元素上，10秒切换一次
+<div  class="syntaxhighlighter "  id="highlighter_213949"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">li</code> <code  class="color1">data-target</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide-to</code><code  class="plain">=</code><code  class="string">"0"</code>&nbsp; <code  class="color1">data-interval</code><code  class="plain">=</code><code  class="string">"10000"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">""</code> <code  class="plain">&gt;&lt;/</code><code  class="keyword">li</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	在指示器上设置
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_781599"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">a</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"left carousel-control"</code> <code  class="color1">href</code><code  class="plain">=</code><code  class="string">"#myCarousel"</code> <code  class="color1">data-slide</code><code  class="plain">=</code><code  class="string">"prev"</code>&nbsp; <code  class="color1">data-interval</code><code  class="plain">=</code><code  class="string">"10000"</code><code  class="plain">&gt;‹&lt;/</code><code  class="keyword">a</code><code  class="plain">&gt;</code></span></span></div></div></div>
+在控制器上设置。
+<p>
+	<br>
+</p>
+<p>
+	对于通过javascript设置，如下：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_434146"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">.carousel(options)</code></span></span></div></div></div>
+<p>
+	即在通过javascript启动轮播的同时带上参数。
+</p>
+示例如下：
+<div  class="syntaxhighlighter "  id="highlighter_715680"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'.carousel'</code><code  class="plain">).carousel({</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">interval: 2000</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">})</code></span></span></div></div></div>
+启动轮播，同时设置2秒切换一次。
+<p>
+	<br>
+</p>
+<p>
+	<span  style="line-height:1.5;"></span> 
+</p>
+<p>
+	另外还提供了几个用于对轮播控制的方法，如下：
+</p>
+<p>
+	<span  style="background-color:#FFFFFF;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:17.5px;line-height:20px;">.carousel('cycle')</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	从左向右循环播放。
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.carousel('pause')
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	停止循环播放。
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.carousel(number)
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	循环到指定帧（下标从0开始，类似数组）。
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.carousel('prev')
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	返回到上一帧。
+</p>
+<h4  style="margin:10px 0px;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;line-height:20px;color:#333333;text-rendering:optimizelegibility;font-size:17.5px;background-color:#FFFFFF;">
+	.carousel('next')
+</h4>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	下一帧。
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<br>
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<strong>设置过度效果</strong> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<span  style="color:#000000;font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:18px;">给轮播加过度效果，使轮播切换过程中不至于过于生硬。</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:1.5;">需要设置俩个地方，</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:1.5;">首先要引入过度效果的javascript插件</span><span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:1.5;">bootstrap-transition.js ,同时将轮播组件添加类样式 .</span><span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:1.5;">slide。 如下：</span> 
+</p>
+<p  style="margin-top:0px;margin-bottom:10px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">
+	<span  style="font-family:&#39;sans serif&#39;, tahoma, verdana, helvetica;font-size:12px;line-height:1.5;"> </span> 
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_599178"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code> <code  class="plain">src=</code><code  class="string">"http://www.see-source.com/bootstrap/js/jquery.js"</code><code  class="plain">&gt;&lt;/script&gt;</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code> <code  class="plain">src=</code><code  class="string">"http://www.see-source.com/bootstrap/js/bootstrap-carousel.js"</code><code  class="plain">&gt;&lt;/script&gt;</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;script type=</code><code  class="string">"text/javascript"</code> <code  class="plain">src=</code><code  class="string">"http://www.see-source.com/bootstrap/js/bootstrap-transition.js"</code><code  class="plain">&gt;&lt;/script&gt;</code></span></span></div></div></div>
+<div  class="syntaxhighlighter "  id="highlighter_648445"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">&lt;</code><code  class="keyword">div</code> <code  class="color1">id</code><code  class="plain">=</code><code  class="string">"myCarousel"</code> <code  class="color1">class</code><code  class="plain">=</code><code  class="string">"carousel slide"</code><code  class="plain">&gt;</code></span></span></div></div></div>
+<p>
+	<strong  style="background-color:#FFFFFF;line-height:1.5;"><span  style="font-size:14px;"><br>
+</span></strong> 
+</p>
+<p>
+	<strong  style="background-color:#FFFFFF;line-height:1.5;"><span  style="font-size:14px;">事件</span></strong> 
+</p>
+<p>
+	<span  style="color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;background-color:#FFFFFF;">Bootstrap的轮播插件对外暴露了两个可被监听的事件。</span> 
+</p>
+<section  id="carousel"  style="padding-top:0px;background-color:#FFFFFF;"><section  id="carousel"  style="padding-top:30px;color:#333333;font-family:&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:14px;line-height:20px;">
+<table  class="table table-bordered table-striped"  style="max-width:100%;background-color:transparent;border-collapse:separate;border-spacing:0px;width:869px;margin-bottom:20px;border-width:1px 1px 1px 0px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-top-color:#DDDDDD;border-right-color:#DDDDDD;border-bottom-color:#DDDDDD;border-top-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;border-bottom-left-radius:4px;">
+	<thead>
+		<tr>
+			<th  style="padding:8px;line-height:20px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-left-radius:4px;width:150px;">
+				事件
+			</th>
+			<th  style="padding:8px;line-height:20px;vertical-align:bottom;border-top-width:0px;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-top-right-radius:4px;">
+				描述
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				slide
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;background-color:#F9F9F9;">
+				当<code  style="padding:2px 4px;font-family:Monaco, Menlo, Consolas, &#39;Courier New&#39;, monospace;color:#DD1144;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;white-space:nowrap;background-color:#F7F7F9;border:1px solid #E1E1E8;">slide</code>实例方法被调用时，此事件会被立即触发。
+			</td>
+		</tr>
+		<tr>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-left-radius:4px;">
+				slid
+			</td>
+			<td  style="padding:8px;line-height:20px;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#DDDDDD;border-left-width:1px;border-left-style:solid;border-left-color:#DDDDDD;border-bottom-right-radius:4px;">
+				当切换完一帧后触发。
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	slide事件用于在幻灯片每次切换时触发。slid事件也是在每次切换时触发，是在末尾触发，如果存在过度效果则在过度效果完成后触发。三者的先后顺序是slide事件---&gt;过度效果----&gt;slid事件。
+</p>
+<p>
+	可以如下给轮播添加事件：
+</p>
+<div  class="syntaxhighlighter "  id="highlighter_798725"><div  class="bar"><div  class="toolbar"><a  href="http://www.see-source.com/blog/300000033/281#viewSource"  title="view source"  class="item viewSource"  style="width: 16px; height: 16px;">view source</a><a  href="http://www.see-source.com/blog/300000033/281#printSource"  title="print"  class="item printSource"  style="width: 16px; height: 16px;">print</a><a  href="http://www.see-source.com/blog/300000033/281#about"  title="?"  class="item about"  style="width: 16px; height: 16px;">?</a></div></div><div  class="lines"><div  class="line alt1"><code  class="number">1.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#myCarousel'</code><code  class="plain">).on(</code><code  class="string">'slide'</code><code  class="plain">, </code><code  class="keyword">function</code> <code  class="plain">() {</code></span></span></div><div  class="line alt2"><code  class="number">2.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">....</code></span></span></div><div  class="line alt1"><code  class="number">3.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">})</code></span></span></div><div  class="line alt2"><code  class="number">4.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">$(</code><code  class="string">'#myCarousel'</code><code  class="plain">).on(</code><code  class="string">'slid'</code><code  class="plain">, </code><code  class="keyword">function</code> <code  class="plain">() {</code></span></span></div><div  class="line alt1"><code  class="number">5.</code><span  class="content"><code  class="spaces">&nbsp;&nbsp;</code><span  class="block"  style="margin-left: 14px;"><code  class="plain">....</code></span></span></div><div  class="line alt2"><code  class="number">6.</code><span  class="content"><span  class="block"  style="margin-left: 0px;"><code  class="plain">})</code></span></span></div></div></div>
+<br>
+<p>
+	<br>
+</p>
+</section>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+<p>
+	<br>
+</p>
+</section>
+		     </div>						
+		 </div>
+		 
+		 <div  class="blog_comment">
+		     <div  class="tabs">
+                 <ul>
+    	         <li>共有 5 条网友评论</li>
+                 </ul>
+             </div>
+			 <div  class="list">
+			     <ul  id="comment_list"><li  id="comment_item_2"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#1楼 :Webuffer&nbsp;发布于2013-05-11 09:07 </div><div  class="content">收藏了耶 </div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li><li  id="comment_item_3"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#2楼 :Webuffer&nbsp;发布于2013-05-11 09:08 </div><div  class="content">博主最近在研究 bootstrap 么？我也在研究，准备把新版 bootsrap v2.3.1 研究透 。。</div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li><li  id="comment_item_4"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#3楼 :<a  target="_blank"  href="http://www.see-source.com/blog/300000033">liyi</a>&nbsp;发布于2013-05-12 13:27 </div><div  class="content">是吗，那期待与你多多交流、分享下</div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li><li  id="comment_item_23"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#4楼 :人人&nbsp;发布于2013-07-14 20:24 </div><div  class="content">人人人突然</div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li><li  id="comment_item_60"  class="comment_item"><table><tbody><tr><td  class="user_photo"><img  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/default.gif"  align=""  alt=""  title=""></td><td><div  class="title">#5楼 :寒风飞天&nbsp;发布于2013-11-15 14:50 </div><div  class="content">讲的很好。</div><div  class="footer"><a  href="javascript:void(0)" >引用</a></div></td></tr></tbody></table></li></ul>
+			 </div>
+		 </div>
+		 	
+		 
+	  <div  class="comment_edit">
+	    
+	    
+	    <div  class="_title">评论内容：</div>	    
+	    <div  class="edit_form">		 
+	    <form  action="http://www.see-source.com/blog/300000033/281#"  method="post">    
+		     <textarea  id="tbCommentBody"></textarea><br>
+		     
+	                         昵称：<input  type="text"  class="nickname"  id="tbCommentNickname"><br>
+	         
+		             
+		     <input  type="button"   value="发表评论"  id="newComment_submit"  class="SUBMIT"> 		             
+		     <span><a  href="javascript:void(0)" >刷新</a></span>	    
+		</form>
+		</div>
+	  </div>
+	  	 
+      </div>      
+   </div>
+   
+   
+</div>
+
+
+
+<div  id="friend_links">
+   <div  class="main">
+     <h3  class="caption">+友情链接</h3>
+     <a  target="_blank"  href="http://www.oschina.net/">开源中国</a><a  href="http://bbs.jquery.org.cn/"  target="_blank">jQuery中文社区</a><a  href="http://os.51cto.com/"  target="_blank">51CTO</a>
+     <a  href="http://www.cnblogs.com/"  target="_blank">博客园</a><a  href="http://www.osphp.com.cn/"  target="_blank">php源码网</a><a  href="http://www.lupaworld.com/"  target="_blank">LUPA开源社区</a>
+   </div>   
+</div>
+
+
+
+<div  id="footer">
+   <div  class="main">
+       <a  class="contact"  target="_blank"  href="http://www.see-source.com/contact.jsp">联系我们</a>&nbsp;|&nbsp;<a  class="beian"  target="_blank"  href="http://www.miitbeian.gov.cn/">京ICP备13014578号</a>
+       <script  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/stat.php"  language="JavaScript"></script><script  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=5342930"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./Bootstrap JS插件使用实例(1)-轮播 - see source网_files/pic.gif"></a>
+   </div>
+</div>
+
+
+</body></html>

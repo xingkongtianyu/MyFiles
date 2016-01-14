@@ -1,0 +1,471 @@
+PHP教程：WebService最常用的两种方法
+http://www.sina.com.cn  2009年07月14日 15:29  IT168.com
+
+文本Tag： PHP
+
+　　【IT168 技术】企业级应用，主要是讲PHP5对Webservice的一些实现(以下的程序可以被Java，NET，C等正常调用)
+
+　　国内用PHP写WebService的真的很少，网上资料也没多少，公司的项目开发过程中，经历了不少这方面的东西，写出来以供大家参考(谢谢老农提供的WSDL和程序文件)
+
+　　客户端
+
+　　代码:
+01.  
+　　02.header ( "Content-Type: text/html; charset=utf-8" );
+　　03./*
+　　04.* 指定WebService路径并初始化一个WebService客户端
+　　05.*/
+　　06.$ws = "http://soap/soapCspMessage.php?wsdl";
+　　07.$client = new SoapClient ( $ws, array ('trace' => 1, 'uri' => 'http://www.zxsv.com/SoapDiscovery/' ) );
+　　08./*
+　　09.* 获取SoapClient对象引用的服务所提供的所有方法
+　　10.*/
+　　11.echo ("SOAP服务器提供的开放函数:");
+　　12.echo ('
+');
+　　13.var_dump ( $client->__getFunctions () );
+　　14.echo ('
+');
+　　15.echo ("SOAP服务器提供的Type:");
+　　16.echo ('
+');
+　　17.var_dump ( $client->__getTypes () );
+　　18.echo ('
+');
+　　19.echo ("执行GetGUIDNode的结果:");
+　　20.//$users = $client->GetUsers();
+　　21.//var_dump($HelloWorld );
+　　22.$parameters = array('uname'=>'zxsv',"upassword"=>'123');
+　　23.$out = $client->HelloWorld($parameters);
+　　24.$datadb = $out->HelloWorldResponse;
+　　25.var_dump($out);
+　　26.?>
+
+　　服务端
+
+　　代码:
+01.  
+　　02.class Member
+　　03.{
+　　04.public $UserId;
+　　05.public $Name;
+　　06.public function __construct($parmas){
+　　07.$this->UserId = $parmas[0];
+　　08.$this->Name = $parmas[1];
+　　09.}
+　　10.}
+　　11.$servidorSoap = new SoapServer('testphp.XML',array('uri' => 'http://www.TestPHP.com/','encoding'=>'utf-8','soap_version' => SOAP_1_2 ));
+　　12.$servidorSoap->setClass(Testphp);
+　　13.$servidorSoap->handle();
+　　14.class Testphp {
+　　15.public function HelloWorld($uid){
+　　16.return array('HelloWorldResult'=>"mystring".$uid->{'uname'}.' and '.$uid->{'upassword'});
+　　17.}
+　　18.public function GetMember($uid){
+　　19.$s=array();
+　　20.for($i=0;$i<$uid->{'uid'};$i++){
+　　21.$s[] =&new Member(array($i, $uid->{'uname'}.'我测试'.$i));
+　　22.}
+　　23.return array('GetMemberResult'=>$s);
+　　24.}
+　　25.}
+　　26.?>
+
+　　到这里应该都看的懂吧
+
+　　下面是WSDL文件
+
+　　代码:
+001.<?xml version="1.0" encoding="utf-8"?>
+002.<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.TestPHP.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.TestPHP.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+003.<wsdl:types>
+004.<s:schema elementFormDefault="qualified" targetNamespace="http://www.TestPHP.com/">
+005.<s:element name="HelloWorld">
+006.<s:complexType>
+007.<s:sequence>
+008.<s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+009.<s:element minOccurs="0" maxOccurs="1" name="upassword" type="s:string" />
+010.</s:sequence>
+011.</s:complexType>
+012.</s:element>
+013.<s:element name="HelloWorldResponse">
+014.<s:complexType>
+015.<s:sequence>
+016.<s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+017.</s:sequence>
+018.</s:complexType>
+019.</s:element>
+020.<s:element name="GetMember">
+021.<s:complexType>
+022.<s:sequence>
+023.<s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+024.<s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+025.</s:sequence>
+026.</s:complexType>
+027.</s:element>
+028.<s:element name="GetMemberResponse">
+029.<s:complexType>
+030.<s:sequence>
+031.<s:element minOccurs="0" maxOccurs="1" name="GetMemberResult" type="tns:ArrayOfMember" />
+032.</s:sequence>
+033.</s:complexType>
+034.</s:element>
+035.<s:complexType name="ArrayOfMember">
+036.<s:sequence>
+037.<s:element minOccurs="0" maxOccurs="unbounded" name="Member" nillable="true" type="tns:Member" />
+038.</s:sequence>
+039.</s:complexType>
+040.<s:complexType name="Member">
+041.<s:sequence>
+042.<s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+043.<s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+044.</s:sequence>
+045.</s:complexType>
+046.</s:schema>
+047.</wsdl:types>
+048.<wsdl:message name="HelloWorldSoapIn">
+049.<wsdl:part name="parameters" element="tns:HelloWorld" />
+050.</wsdl:message>
+051.<wsdl:message name="HelloWorldSoapOut">
+052.<wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+053.</wsdl:message>
+054.<wsdl:message name="GetMemberSoapIn">
+055.<wsdl:part name="parameters" element="tns:GetMember" />
+056.</wsdl:message>
+057.<wsdl:message name="GetMemberSoapOut">
+058.<wsdl:part name="parameters" element="tns:GetMemberResponse" />
+059.</wsdl:message>
+060.<wsdl:portType name="TestPHPSoap">
+061.<wsdl:operation name="HelloWorld">
+062.<wsdl:input message="tns:HelloWorldSoapIn" />
+063.<wsdl:output message="tns:HelloWorldSoapOut" />
+064.</wsdl:operation>
+065.<wsdl:operation name="GetMember">
+066.<wsdl:input message="tns:GetMemberSoapIn" />
+067.<wsdl:output message="tns:GetMemberSoapOut" />
+068.</wsdl:operation>
+069.</wsdl:portType>
+070.<wsdl:binding name="TestPHPSoap" type="tns:TestPHPSoap">
+071.<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+072.<wsdl:operation name="HelloWorld">
+073.<soap:operation soapAction="http://www.TestPHP.com/HelloWorld"   />
+074.<wsdl:input>
+075.<soap:body use="literal" />
+076.</wsdl:input>
+077.<wsdl:output>
+078.<soap:body use="literal" />
+079.</wsdl:output>
+080.</wsdl:operation>
+081.<wsdl:operation name="GetMember">
+082.<soap:operation soapAction="http://www.TestPHP.com/GetMember"  />
+083.<wsdl:input>
+084.<soap:body use="literal" />
+085.</wsdl:input>
+086.<wsdl:output>
+087.<soap:body use="literal" />
+088.</wsdl:output>
+089.</wsdl:operation>
+090.</wsdl:binding>
+091.<wsdl:binding name="TestPHPSoap12" type="tns:TestPHPSoap">
+092.<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+093.<wsdl:operation name="HelloWorld">
+094.<soap12:operation soapAction="http://www.TestPHP.com/HelloWorld"  />
+095.<wsdl:input>
+096.<soap12:body use="literal" />
+097.</wsdl:input>
+098.<wsdl:output>
+099.<soap12:body use="literal" />
+100.</wsdl:output>
+101.</wsdl:operation>
+102.<wsdl:operation name="GetMember">
+103.<soap12:operation soapAction="http://www.TestPHP.com/GetMember"  />
+104.<wsdl:input>
+105.<soap12:body use="literal" />
+106.</wsdl:input>
+107.<wsdl:output>
+108.<soap12:body use="literal" />
+109.</wsdl:output>
+110.</wsdl:operation>
+111.</wsdl:binding>
+112.<wsdl:service name="TestPHP">
+113.<wsdl:port name="TestPHPSoap" binding="tns:TestPHPSoap">
+114.<soap:address location="http://soap/goodwsdl/testphp.php" />
+115.</wsdl:port>
+116.<wsdl:port name="TestPHPSoap12" binding="tns:TestPHPSoap12">
+117.<soap12:address location="http://soap/goodwsdl/testphp.php" />
+118.</wsdl:port>
+119.</wsdl:service>
+120.</wsdl:definitions>
+
+ 
+
+　　这里有返回的两个字段，一个是返回字符串，这个很好理解
+01.<s:element name="HelloWorld">
+02.<s:complexType>
+03.<s:sequence>
+04.<s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+05.<s:element minOccurs="0" maxOccurs="1" name="upassword" type="s:string" />
+06.</s:sequence>
+07.</s:complexType>
+08.</s:element>
+09.<s:element name="HelloWorldResponse">
+10.<s:complexType>
+11.<s:sequence>
+12.<s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+13.</s:sequence>
+14.</s:complexType>
+15.</s:element>
+
+　　这一段就字符串的
+
+　　那返回数组的就比较麻烦了，我和老农搞了一两周才发现是WSDL文件写错了，看下面的一段
+01.<s:element name="GetMember">
+02.<s:complexType>
+03.<s:sequence>
+04.<s:element minOccurs="1" maxOccurs="1" name="uid" type="s:int" />
+05.<s:element minOccurs="0" maxOccurs="1" name="uname" type="s:string" />
+06.</s:sequence>
+07.</s:complexType>
+08.</s:element>
+09.<s:element name="GetMemberResponse">
+10.<s:complexType>
+11.<s:sequence>
+12.<s:element minOccurs="0" maxOccurs="1" name="GetMemberResult" type="tns:ArrayOfMember" />
+13.</s:sequence>
+14.</s:complexType>
+15.</s:element>
+16.<s:complexType name="ArrayOfMember">
+17.<s:sequence>
+18.<s:element minOccurs="0" maxOccurs="unbounded" name="Member" nillable="true" type="tns:Member" />
+19.</s:sequence>
+20.</s:complexType>
+21.<s:complexType name="Member">
+22.<s:sequence>
+23.<s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+24.<s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+25.</s:sequence>
+26.</s:complexType>
+
+　　第一段GetMember是输入，最重要的是GetMemberResponse这段，看type=”tns:ArrayOfMember”这里，返回一 个数组，WSDL中定义了ArrayOf这个，后面的就简单了，ArrayOfMember的类型是type=”tns:Member” ，从name=”Member”得到要返回的数组，完工。
+
+　　Ping Service，博客程序提供一种通知机制,以便在第一时间将博客的更新信息发布到提供Ping Service服务的网站，写聚合的时候研究了一下
+
+　　先看标准吧
+
+　　这是一个标准的Ping Service,用XMLRPC来传数据的，注释写的这么详细，代码说明就不需要了吧，PHP5开启XMLRPC方法
+
+　　client.php
+
+　　代码：
+01.  
+　　02.$host = 'zxsv';
+　　03.$port = 80;
+　　04.$rpc_server = '/test/xmlrpc_server.php';
+　　05.$title = 'zxsv';
+　　06.$server = 'http://zxsv/test/';
+　　07.$rss = 'http://zxsv/test/rss.php';
+　　08.//WeblogUpdates.Ping方法
+　　09.$Ping = xmlrpc_encode_request('weblogUpdates.Ping', array($title, $server ));
+　　10.//weblogUpdates.extendedPing方法
+　　11.$extendedPing = xmlrpc_encode_request('weblogUpdates.extendedPing', array($title, $server, $rss ));
+　　12.//调用rpc_client_call函数把所有请求发送给XML-RPC服务器端后获取信息
+　　13.$response = rpc_client_call($host, $port, $rpc_server, $Ping);
+　　14.$split = '';
+　　15.$xml = explode($split, $response);
+　　16.$xml = $split . array_pop($xml);
+　　17.$response = xmlrpc_decode($xml);
+　　18.//输出从RPC服务器端获取的信息
+　　19.print_r($response);
+　　20./**
+　　21.* 函数：提供给客户端进行连接XML-RPC服务器端的函数
+　　22.* 参数：
+　　23.* $host 需要连接的主机
+　　24.* $port 连接主机的端口
+　　25.* $rpc_server XML-RPC服务器端文件
+　　26.* $request 封装的XML请求信息
+　　27.* 返回：连接成功成功返回由服务器端返回的XML信息，失败返回false
+　　28.*/
+　　29.function rpc_client_call($host, $port, $rpc_server, $request) {
+　　30.
+　　$fp = fsockopen($host, $port);
+　　31.
+　　$query = "POST $rpc_server HTTP/1.0\nUser_Agent: XML-RPC Client\nHost: ".$host."\nContent-Type: text/xml\nContent-Length: ".strlen($request)."\n\n".$request."\n";
+　　32.
+　　if (!fputs($fp, $query, strlen($query))) {
+　　33.
+　　$errstr = "Write error";
+　　34.
+　　return false;
+　　35.
+　　}
+　　36.
+　　$contents = '';
+　　37.
+　　while (!feof($fp)){
+　　38.
+　　$contents .= fgets($fp);
+　　39.
+　　}
+　　40.
+　　fclose($fp);
+　　41.
+　　return $contents;
+　　42.}
+　　43.?>
+
+　　server.php
+
+　　代码:
+01.  
+　　02./**
+　　03.* 函数：提供给RPC客户端调用的函数
+　　04.* 参数：
+　　05.* $method 客户端需要调用的函数
+　　06.* $params 客户端需要调用的函数的参数数组
+　　07.* 返回：返回指定调用结果
+　　08.*/
+　　09.function rpc_server_extendedping($method, $params) {
+　　10.
+　　$title = $params[0];
+　　11.
+　　$server = $params[1];
+　　12.
+　　$rss = $params[2];
+　　13.
+　　//中间的判断,成功返回$XML_RPC_String
+　　14.
+　　$XML_RPC_String = array('flerror'=>false,'message'=>'Thanks for the ping.');
+　　15.
+　　return $XML_RPC_String;
+　　16.}
+　　17.function rpc_server_ping($method, $params) {
+　　18.
+　　$title = $params[0];
+　　19.
+　　$server = $params[1];
+　　20.
+　　//中间的判断,成功返回$XML_RPC_String
+　　21.
+　　$XML_RPC_String = array('flerror'=>false,'message'=>'Thanks for the ping.');
+　　22.
+　　return $XML_RPC_String;
+　　23.}
+　　24.//产生一个XML-RPC的服务器端
+　　25.$xmlrpc_server = xmlrpc_server_create();
+　　26.//注册一个服务器端调用的方法rpc_server，实际指向的是rpc_server_extendedping函数
+　　27.xmlrpc_server_reGISter_method($xmlrpc_server, "weblogUpdates.extendedPing", "rpc_server_extendedping");
+　　28.xmlrpc_server_register_method($xmlrpc_server, "weblogUpdates.Ping", "rpc_server_ping");
+　　29.//接受客户端POST过来的XML数据
+　　30.$request = $HTTP_RAW_POST_DATA;
+　　31.//print_r($request);
+　　32.//执行调用客户端的XML请求后获取执行结果
+　　33.$xmlrpc_response = xmlrpc_server_call_method($xmlrpc_server, $request, null);
+　　34.//把函数处理后的结果XML进行输出
+　　35.header('Content-Type: text/xml');
+　　36.echo $xmlrpc_response;
+　　37.//销毁XML-RPC服务器端资源
+　　38.xmlrpc_server_destroy($xmlrpc_server);
+　　39.?>
+
+　　类写的，有BUG
+
+　　代码:
+　01.  
+　　02.class Pings {
+　　03.
+　　public $xmlrpc_server;
+　　04.
+　　public $xmlrpc_response;
+　　05.
+　　public $methodName;
+　　06.
+　　public function __construct() {
+　　07.
+　　//产生一个XML-RPC的服务器端
+　　08.
+　　$this->xmlrpc_server = xmlrpc_server_create ();
+　　09.
+　　$this->run ();
+　　10.
+　　}
+　　11.
+　　12.
+　　//注册一个服务器端调用的方法rpc_server，实际指向的是ping函数
+　　13.
+　　public function rpc_server() {
+　　14.
+　　$this->methodName = !$this->methodName ? 'weblogUpdates.extendedPing':'weblogUpdates.Ping';
+　　15.
+　　xmlrpc_server_register_method ( $this->xmlrpc_server, $this->methodName, array (__CLASS__, "ping"));
+　　16.
+　　}
+　　17.
+　　/**
+　　18.
+　　* 函数：提供给RPC客户端调用的函数
+　　19.
+　　* 参数：
+　　20.
+　　* $method 客户端需要调用的函数
+　　21.
+　　* $params 客户端需要调用的函数的参数数组
+　　22.
+　　* 返回：返回指定调用结果
+　　23.
+　　*/
+　　24.
+　　public function ping($method, $params) {
+　　25.
+　　$this->title = $params [0];
+　　26.
+　　$this->server = $params [1];
+　　27.
+　　$this->rss = $params [2];
+　　28.
+　　$this->tag = $params [3];
+　　29.
+　　//$a = $this->title ? $this->update():'';
+　　30.
+　　$string = array ('flerror' => false, 'message' => 'Thanks for the ping.', 'legal' => "You agree that use of the blueidea.com ping service is governed by the Terms of Use found at www.blueidea.com." );
+　　31.
+　　return $string;
+　　32.
+　　}
+　　33.
+　　34.
+　　public function update(){
+　　35.
+　　echo '这里放更新的一些条件';
+　　36.
+　　}
+　　37.
+　　38.
+　　public function run() {
+　　39.
+　　$this->rpc_server ();
+　　40.
+　　$request = isset ( $GLOBALS ["HTTP_RAW_POST_DATA"] ) ? file_get_contents ( "php://input" ) : $GLOBALS ["HTTP_RAW_POST_DATA"];
+　　41.
+　　$this->xmlrpc_response = xmlrpc_server_call_method ( $this->xmlrpc_server, $request, null );
+　　42.
+　　//把函数处理后的结果XML进行输出
+　　43.
+　　header ( 'Content-Type: text/xml' );
+　　44.
+　　echo $this->xmlrpc_response;
+　　45.
+　　}
+　　46.
+　　47.
+　　//销毁XML-RPC服务器端资源
+　　48.
+　　public function __destruct() {
+　　49.
+　　xmlrpc_server_destroy ( $this->xmlrpc_server );
+　　50.
+　　}
+　　51.}
+　　52.$Obj = new Pings ( );
+　　53.?>
+
+　　WebService的最常用的两种方法算是写齐了。

@@ -1,0 +1,64 @@
+
+PHP设计模式——注册表模式（多个类的注册）
+2011年01月23日  3,631 次浏览 陈华 抢板凳
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式注册表模式
+
+注册表模式其实是一个单例模式，注册表类提供静态方法（或单例对象的实例化方法）来让其它对象访问其中的数据（通常是对象）。整个系统中的每个对象都可以访问这些数据对象。
+以前我也写过一个注册表类http://www.chhua.com/web-note1574，不过那一个不能进行多个类的注册，下面用数组对类进行了存储。
+
+
+	
+
+ 
+<?php
+//基础类
+class webSite {//一个非常简单的基础类
+	private $siteName;
+	private $siteUrl;
+ 
+	function __construct($siteName,$siteUrl){
+		$this->siteName=$siteName;
+		$this->siteUrl=$siteUrl;
+	}
+ 
+	function getName(){
+		return $this->siteName;
+	}
+ 
+	function getUrl(){
+		return $this->siteUrl;
+	}
+}
+ 
+class registry {//注册表类 单例模式
+	private static $instance;
+	private $values=array();//用数组存放类名称
+ 
+	private function __construct(){}//这个用法决定了这个类不能直接实例化
+ 
+	static function instance(){
+		if (!isset(self::$instance)){self::$instance=new self();}
+		return self::$instance;
+	}
+ 
+	function get($key){//获取已经注册了的类
+		if (isset($this->values[$key])){
+			return $this->values[$key];
+		}
+		return null;
+	}
+ 
+	function set($key,$value){//注册类方法
+		$this->values[$key]=$value;
+	}
+}
+ 
+$reg=registry::instance();
+$reg->set("website",new webSite("WEB开发笔记","www.chhua.com"));//对类进行注册
+$website=$reg->get("website");//获取类
+echo $website->getName();//输出WEB开发笔记
+echo $website->getUrl();//输出www.chhua.com
+?>
+
+注册表的作用是提供系统级别的对象访问功能。有的同学会说，这样是多此一举，不过小项目中的确没有必要对类进行注册，如果是大项目，还是非常有用的。 

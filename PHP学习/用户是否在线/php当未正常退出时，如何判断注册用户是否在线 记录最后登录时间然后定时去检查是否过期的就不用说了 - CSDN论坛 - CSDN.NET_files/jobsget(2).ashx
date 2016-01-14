@@ -1,0 +1,1 @@
+document.write('<li><a href="http://g.csdn.net/5258117" target=_blank>从零开始编写网络游戏</a></li><li><a href="http://g.csdn.net/5258349" target=_blank>【下载】Tizen教程、文档和工具</a></li>');

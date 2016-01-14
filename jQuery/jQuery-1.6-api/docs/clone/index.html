@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">.clone()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/copying/" title="View all posts in Copying">Copying</a></span>
+  
+
+          </div>
+
+</div>
+<div id="clone1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.clone( [ withDataAndEvents ] )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述：</strong>深度复制匹配的元素。</p>
+<ul class="signatures">
+<li class="signature" id="clone-withDataAndEvents">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.clone( [ withDataAndEvents ] )</h4>
+<p class="arguement"><strong>withDataAndEvents</strong>一个Boolean值（true 或者 false）指示事件处理函数是否会被复制。对已jQuery 1.4，元素数据也会被复制。</p>
+</li>
+<li class="signature" id="clone-withDataAndEvents-deepWithDataAndEvents">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.5/">1.5</a></span>.clone( [ withDataAndEvents ], [ deepWithDataAndEvents ] )</h4>
+<p class="arguement"><strong>withDataAndEvents</strong>一个Boolean值（true 或者 false）指示事件处理函数是否会被复制。对已jQuery 1.4，元素数据也会被复制。 默认值是 <code>false</code>。<em>*对于1.5.0的默认值是不正确<code>true</code> 。这将在1.5.1以上改回<code>false</code>。</em></p>
+<p class="arguement"><strong>deepWithDataAndEvents</strong>一个布尔值，指示是否对事件处理程序和克隆的元素的所有子元素的数据应该被复制。默认情况下它的值相匹配的第一个参数的值（ 默认值是 <code>false</code>）
+</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.clone()</code>方法深度复制所有匹配的元素，包括所有匹配元素、匹配元素的下级元素、文字节点。
+当和插入方法联合使用时，<code>.clone()</code>对于复制页面上的元素很方便。请看下面的HTML：</p>
+
+<pre>&lt;div class="container"&gt;
+  &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;div class="goodbye"&gt;Goodbye&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>像我们讨论<code><a href="#p=append">.append()</a></code>一样，通常我们将页面上一个元素插入到DOM里另立个地方，它会被从老地方移走：</p>
+<pre>$('.hello').appendTo('.goodbye');</pre>
+<p>得到的DOM结构如下：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="goodbye"&gt;
+    Goodbye
+    &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>但是我们如果需要的是复制而不是移除，我们可以像下面这样写代码：</p>
+<pre>$('.hello').clone().appendTo('.goodbye');</pre>
+<p>结果会是：</p>
+<pre>&lt;div class="container"&gt;
+  &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;div class="goodbye"&gt;
+    Goodbye
+    &lt;div class="hello"&gt;Hello&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<blockquote><p>当我们用<code>.clone()</code>方法时，我们可以修改被复制的元素或者元素内容，在将它插入到文档之前。</p></blockquote>
+<p>通常，任何绑定绑定在原始元素上的事件处理函数都不会被复制到克隆元素。可选的<code>withDataAndEvents </code>参数允许我们改变该行为，
+从而将所有绑定在原始元素上的事件处理函数复制到克隆元素上。对于jQuery 1.4，所有元素数据（ <code>.data()</code>方法返回的内容）同样被复制到新的克隆元素。 </p>
+
+<p>在jQuery 1.5，<code>withDataAndEvents</code>可以选择性增强<code>deepWithDataAndEvents</code>复制元素的事件和数据的克隆的所有子元素。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">复制所有 b 元素然后将他们插入到所有段落里面的前面。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-1.5.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;b&gt;Hello&lt;/b&gt;&lt;p&gt;, how are you?&lt;/p&gt;
+
+&lt;script&gt;
+  $("b").clone().prependTo("p");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

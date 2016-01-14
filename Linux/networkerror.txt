@@ -1,0 +1,7 @@
+问题：
+　　使用putty登录显示network error:Connection refused使用putty登录显示network error:Connection refused
+　　在局域网使用putty登录显示network error:Connection refused
+解决方法：
+　　1.gedit /etc/ssh/sshd_config    将PermitRootLogin的注释取消，或者将no改为yes。(如果没有sshd_config文件说明linux上没有安装SSH，使用sudo apt-get install ssh安装之后，sshd-config文件中PermitRootLogin选项默认的是yes，新安装的ssh不用操作下面两部)
+　　2.service sshd restart
+　　3.setup命令进入将防火墙关闭。

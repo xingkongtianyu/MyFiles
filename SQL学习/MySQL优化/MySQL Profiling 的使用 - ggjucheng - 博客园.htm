@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0064)http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html -->
+<html  lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script  type="text/javascript"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/encoder.js"></script><script  async=""  type="text/javascript"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/gpt.js"></script>
+
+<title>MySQL Profiling 的使用 - ggjucheng - 博客园</title>
+<link  type="text/css"  rel="stylesheet"  href="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/blog-common.css">
+<link  id="MainCss"  type="text/css"  rel="stylesheet"  href="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/style.css">
+<link  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://www.cnblogs.com/ggjucheng/rss">
+<link  title="RSD"  type="application/rsd+xml"  rel="EditURI"  href="http://www.cnblogs.com/ggjucheng/rsd.xml">
+<link  type="application/wlwmanifest+xml"  rel="wlwmanifest"  href="http://www.cnblogs.com/ggjucheng/wlwmanifest.xml">
+<script  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/jquery.js"  type="text/javascript"></script>  
+<script  type="text/javascript">var currentBlogApp = 'ggjucheng', cb_enable_mathjax=false;</script>
+<script  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/blog-common.js"  type="text/javascript"></script>
+<script  async=""  type="text/javascript"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/pubads_impl_32.js"></script><script  type="text/javascript"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/osd.js"></script></head>
+<body>
+<a  name="top"></a>
+
+<div  id="top">
+	
+<div>
+	<table>
+		<tbody><tr>
+			<td  class="HeaderTitles">
+				<h1  class="HeaderTitle"><a  id="Header1_HeaderTitle"  class="HeaderMainTitle"  href="http://www.cnblogs.com/ggjucheng/">简单，可复制</a></h1>
+				<p  id="tagline">点点滴滴，尽在文中</p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div  class="HeaderBar">
+	<table  id="HeaderBar"  class="HeaderBar"  cellpadding="0"  cellspacing="0">
+		<tbody><tr>
+			<td  class="HeaderBarTab"  nowrap="">
+&nbsp;
+ ::
+<a  id="Header1_MyLinks1_MyHomeLink"  href="http://www.cnblogs.com/ggjucheng/">首页</a> ::
+<a  href="http://q.cnblogs.com/"  class="menu">博问</a> ::
+<a  href="http://home.cnblogs.com/ing/"  class="menu">闪存</a> ::
+<a  id="Header1_MyLinks1_NewPostLink"  rel="nofollow"  href="http://www.cnblogs.com/ggjucheng/admin/EditPosts.aspx?opt=1">新随笔</a> ::
+<a  id="Header1_MyLinks1_ContactLink"  accesskey="9"  rel="nofollow"  href="http://space.cnblogs.com/msg/send/ggjucheng">联系</a> ::
+<a  id="Header1_MyLinks1_Syndication"  href="http://www.cnblogs.com/ggjucheng/rss">订阅</a>
+<a  id="Header1_MyLinks1_XMLLink"  class="XMLLink"  href="http://www.cnblogs.com/ggjucheng/rss"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/xml.gif"  alt="订阅"></a> ::
+<a  id="Header1_MyLinks1_Admin"  rel="nofollow"  href="http://www.cnblogs.com/ggjucheng/admin/EditPosts.aspx">管理</a> ::
+
+</td>
+			<td><img  id="Header1_BlueTab"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/BlueTabRight.gif"  align="absmiddle"></td>
+			<td  class="HeaderBarTabBack"  nowrap=""  width="100%">
+				
+<div  class="BlogStatsBar">
+	<table  class="BlogStatsBar">
+		<tbody><tr>
+			<td  width="100%">
+			</td>
+			<td  class="BlogStatsBar"  nowrap="">
+				&nbsp;
+				435 
+				随笔&nbsp;::
+				0 文章
+				::
+				140 评论
+				::
+				0 引用
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<div  id="leftmenu">	
+
+	    <div  id="blog-calendar"  style="display:none"></div><script  type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>公告</h3>
+<div  class="News">
+	<div  id="blog-news"><br>
+<a  href="http://www.svn999.com/?bokeyuan"><font  size="4">小团队的免费svn空间</font></a>
+<br>
+
+<br>
+<div  id="weibowidget"><iframe  width="190"  height="100"  class="share_self"  frameborder="0"  scrolling="no"  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/index.htm"></iframe></div><div  id="profile_block">昵称：<a  href="http://home.cnblogs.com/u/ggjucheng/">ggjucheng</a><br>园龄：<a  href="http://home.cnblogs.com/u/ggjucheng/"  title="入园时间：2011-12-13">2年2个月</a><br>粉丝：<a  href="http://home.cnblogs.com/u/ggjucheng/followers/">249</a><br>关注：<a  href="http://home.cnblogs.com/u/ggjucheng/followees/">6</a><div  id="p_b_follow"></div><div  style="display: none"  id="__document_write_ajax_div-2"></div></div></div><script  type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div  id="blog-sidecolumn">
+		<h3>博客地图</h3>
+		
+				<ul>
+			
+				<li><a  id="ctl01_CatList_LinkList_0_Link_0"  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645319.html">c/c++笔记</a> </li>
+			<li  class="c_b_p_link_desc">本人学习c/c++的一些笔记</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_1"  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/02/2751119.html">db笔记</a> </li>
+			<li  class="c_b_p_link_desc">mysql nosql</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_2"  href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465625.html">hadoop笔记</a> </li>
+			<li  class="c_b_p_link_desc">本人工作中hadoop的心得</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_3"  href="http://www.cnblogs.com/ggjucheng/archive/2013/01/20/2868837.html">internet笔记</a> </li>
+			<li  class="c_b_p_link_desc">互联网学习笔记</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_4"  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/19/2777695.html">java笔记</a> </li>
+			<li  class="c_b_p_link_desc">java平台笔记</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_5"  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645321.html">Linux/Unix笔记</a> </li>
+			<li  class="c_b_p_link_desc">本人学习linux/unix的笔记 <br></li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_6"  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645324.html">TCP/IP笔记</a> </li>
+			<li  class="c_b_p_link_desc">本人学习TCP/IP的心得和笔记</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_7"  rel="nofollow"  href="http://www.cnblogs.com/ggjucheng/p/3348355.html">web开发</a> </li>
+			<li  class="c_b_p_link_desc">html css js php etc.....</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_8"  rel="nofollow"  href="http://www.cnblogs.com/ggjucheng/p/3348282.html">技术花絮</a> </li>
+			<li  class="c_b_p_link_desc">非技术的技术</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_9"  href="http://www.cnblogs.com/ggjucheng/archive/2011/12/15/2288839.html">其他笔记本</a> </li>
+			<li  class="c_b_p_link_desc">比较零碎的技术文章归类</li>
+				<li><a  id="ctl01_CatList_LinkList_0_Link_10"  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/17/2774916.html">学习指南</a> </li>
+			<li  class="c_b_p_link_desc">IT技术学习路线,IT经典书籍学习和下载</li>
+				</ul>
+			
+	
+		<h3>友情链接</h3>
+		
+				<ul>
+			
+				<li><a  id="ctl01_CatList_LinkList_1_Link_0"  rel="nofollow"  href="http://itfun.ingchat.com/"  target="_blank">IT短篇笑话</a> </li>
+			<li  class="c_b_p_link_desc">百忙中，可以看看it短篇笑话，笑一笑，放松下！</li>
+				<li><a  id="ctl01_CatList_LinkList_1_Link_1"  rel="nofollow"  href="http://www.svn999.com/"  target="_blank">挺不错的免费svn空间</a> </li>
+			<li  class="c_b_p_link_desc">国内挺不错的svn免费空间，很适合小团队使用</li>
+				</ul>
+			
+	
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		366632
+	</li><li>
+		排名 -
+		217
+	</li>
+</ul>
+
+<h3  class="catListTitle">最新评论</h3>
+<div  class="RecentComment"  id="RecentComments">
+	<div  id="RecentCommentsBlock"><ul>
+    <li  class="recent_comment_title"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645321.html#2863147">1. Re:Linux/Unix笔记本</a></li>
+    <li  class="recent_comment_body">请教下博主，近期局方要求我们对现网的生产系统进行版本升级，现服务器大多用的是redhat 5.4的版本，要求我们升级到6以上，请教下有这方面的文档么？</li>
+    <li  class="recent_comment_author">--journeyto</li>
+    <li  class="recent_comment_title"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645916.html#2858547">2. Re:Windows XP硬盘安装Ubuntu 12.04双系统图文详解(转)</a></li>
+    <li  class="recent_comment_body">您这篇教程相当有用。按照您的指导，已经进入安装阶段。Ubuntu的安装引导程序做的很人性化。</li>
+    <li  class="recent_comment_author">--不见不散</li>
+    <li  class="recent_comment_title"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html#2845211">3. Re:Linux netstat命令详解</a></li>
+    <li  class="recent_comment_body">很好，例子很好</li>
+    <li  class="recent_comment_author">--今秋</li>
+    <li  class="recent_comment_title"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/19/2777695.html#2842562">4. Re:java笔记</a></li>
+    <li  class="recent_comment_body">接口那里少写了一小节“Implementing an Interface”</li>
+    <li  class="recent_comment_author">--ayanamaist</li>
+    <li  class="recent_comment_title"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465782.html#2835036">5. Re:hadoop mapreduce作业流程概论</a></li>
+    <li  class="recent_comment_body">一个分片（split）上不是应该运行一个map？图中的M3与M1为什么运行两个分片？</li>
+    <li  class="recent_comment_author">--jahunter</li>
+</ul>
+</div>
+</div>
+
+<h3  class="catListTitle">阅读排行榜</h3>
+<div  class="RecentComment"  id="TopViewPosts"> 
+	<div  id="TopViewPostsBlock"><ul><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html">1. Linux tcpdump命令详解(119388)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">2. Linux netstat命令详解(66294)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html">3. Linux GCC常用命令(53598)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html">4. linux awk命令详解(30903)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/05/2312625.html">5. Linux vmstat命令实战详解(20026)</a></li></ul></div>
+</div>
+
+<h3  class="catListTitle">评论排行榜</h3>
+<div  class="RecentComment"  id="TopCommentsPosts">
+	<div  id="TopFeedbackPostsBlock"><ul><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2011/12/16/2290158.html">1. Linux入门——适合初学者(11)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/19/2646007.html">2. 实例讲解虚拟机3种网络模式(桥接、nat、Host-only)(9)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/04/2311967.html">3. 异常不可用于逻辑处理(8)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/08/18/2645321.html">4. Linux/Unix笔记本(6)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2013/01/08/2850797.html">5. hive sql遇到的问题(6)</a></li></ul></div>
+</div>
+<h3  class="catListTitle">推荐排行榜</h3>
+<div  class="RecentComment">
+	<div  id="TopDiggPostsBlock"><ul><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html">1. Linux GCC常用命令(17)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html">2. Linux tcpdump命令详解(16)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html">3. Linux netstat命令详解(12)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/02/02/2335994.html">4. TCP慢启动算法(5)</a></li><li><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/04/22/2465625.html">5. hadoop笔记本(5)</a></li></ul></div>
+</div></div><script  type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+<div  id="main">
+	
+
+<div  class="post">
+	<div  class="postTitle">
+		<a  id="cb_post_title_url"  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html">MySQL Profiling 的使用</a>
+	</div>
+	
+	<div  class="postText">
+		<div  id="cnblogs_post_body"><p>在本章第一节中我们还提到过通过 Query Profiler 来定位一条 Query 的性能瓶颈，这里我们再详细介绍一下 Profiling 的用途及使用方法。</p>
+<p><br>要想优化一条  Query，我们就需要清楚的知道这条  Query 的性能瓶颈到底在哪里，是消耗的  CPU计算太多，还是需要的的  IO  操作太多？要想能够清楚的了解这些信息，在  MySQL  5.0  和  MySQL 5.1正式版中已经可以非常容易做到了，那就是通过  Query  Profiler 功能。</p>
+<p><br>MySQL 的  Query Profiler 是一个使用非常方便的  Query 诊断分析工具，通过该工具可以获取一条Query 在整个执行过程中多种资源的消耗情况，如  CPU，IO，IPC，SWAP 等，以及发生的  PAGE  FAULTS，CONTEXT SWITCHE 等等，同时还能得到该 Query 执行过程中 MySQL 所调用的各个函数在源文件中的位置。</p>
+<p>下面我们看看  Query Profiler 的具体用法。</p>
+<p>1、 开启  profiling 参数</p>
+<div  class="cnblogs_code">
+<pre>root@localhost : (none) <span  style="color: #800080;">10</span>:<span  style="color: #800080;">53</span>:<span  style="color: #800080;">11</span>&gt; set profiling=<span  style="color: #800080;">1</span><span  style="color: #000000;">;
+Query OK, </span><span  style="color: #800080;">0</span> rows affected (<span  style="color: #800080;">0.00</span> sec)</pre>
+</div>
+<p>通过执行 “set profiling”命令，可以开启关闭 Query Profiler 功能。</p>
+<p><br>2、 执行  Query</p>
+<div  class="cnblogs_code"><div  class="cnblogs_code_toolbar"><span  class="cnblogs_code_copy"><a  href="javascript:void(0);"   title="复制代码"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/copycode.gif"  alt="复制代码"></a></span></div>
+<pre><span  style="color: #000000;">... ...
+root@localhost : test </span><span  style="color: #800080;">07</span>:<span  style="color: #800080;">43</span>:<span  style="color: #800080;">18</span>&gt; <span  style="color: #0000ff;">select</span> status,count(*<span  style="color: #000000;">)
+</span>-&gt;<span  style="color: #000000;"> from test_profiling group by status;
+</span>+----------------+----------+
+| status | count(*) |
++----------------+----------+
+| st_xxx1 | <span  style="color: #800080;">27</span> |
+| st_xxx2 | <span  style="color: #800080;">6666</span> |
+| st_xxx3 | <span  style="color: #800080;">292887</span> |
+| st_xxx4 | <span  style="color: #800080;">15</span> |
++----------------+----------+
+<span  style="color: #800080;">5</span> rows <span  style="color: #0000ff;">in</span> set (<span  style="color: #800080;">1.11</span><span  style="color: #000000;"> sec)
+... ...</span></pre>
+<div  class="cnblogs_code_toolbar"><span  class="cnblogs_code_copy"><a  href="javascript:void(0);"   title="复制代码"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/copycode.gif"  alt="复制代码"></a></span></div></div>
+<p>在开启 Query Profiler 功能之后，MySQL 就会自动记录所有执行的 Query 的 profile 信息了。</p>
+<p><br>3、获取系统中保存的所有  Query 的  profile 概要信息</p>
+<div  class="cnblogs_code"><div  class="cnblogs_code_toolbar"><span  class="cnblogs_code_copy"><a  href="javascript:void(0);"   title="复制代码"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/copycode.gif"  alt="复制代码"></a></span></div>
+<pre>root@localhost : test <span  style="color: #800080;">07</span>:<span  style="color: #800080;">47</span>:<span  style="color: #800080;">35</span>&gt;<span  style="color: #000000;"> show profiles;
+</span>+----------+------------+------------------------------------------------------------+
+| Query_ID | Duration |<span  style="color: #000000;"> Query
+</span>|
++----------+------------+------------------------------------------------------------+
+| <span  style="color: #800080;">1</span> | <span  style="color: #800080;">0.00183100</span> |<span  style="color: #000000;"> show databases
+</span>|
+| <span  style="color: #800080;">2</span> | <span  style="color: #800080;">0.00007000</span> |<span  style="color: #000000;"> SELECT DATABASE()
+</span>|
+| <span  style="color: #800080;">3</span> | <span  style="color: #800080;">0.00099300</span> |<span  style="color: #000000;"> desc test
+</span>|
+| <span  style="color: #800080;">4</span> | <span  style="color: #800080;">0.00048800</span> |<span  style="color: #000000;"> show tables
+</span>|
+| <span  style="color: #800080;">5</span> | <span  style="color: #800080;">0.00430400</span> |<span  style="color: #000000;"> desc test_profiling
+</span>|
+| <span  style="color: #800080;">6</span> | <span  style="color: #800080;">1.90115800</span> | <span  style="color: #0000ff;">select</span> status,count(*) from test_profiling group by status |
++----------+------------+------------------------------------------------------------+
+<span  style="color: #800080;">3</span> rows <span  style="color: #0000ff;">in</span> set (<span  style="color: #800080;">0.00</span> sec)</pre>
+<div  class="cnblogs_code_toolbar"><span  class="cnblogs_code_copy"><a  href="javascript:void(0);"   title="复制代码"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/copycode.gif"  alt="复制代码"></a></span></div></div>
+<p>通过执行 “SHOW PROFILE” 命令获取当前系统中保存的多个 Query 的 profile 的概要信息。</p>
+<p><br>4、针对单个  Query 获取详细的  profile 信息。</p>
+<p><br>在获取到概要信息之后，我们就可以根据概要信息中的  Query_ID 来获取某个  Query 在执行过程中</p>
+<p>详细的 profile 信息了，具体操作如下：</p>
+<p><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/2012111518270656.jpg"  alt=""></p>
+<p><br>上面的例子中是获取  CPU  和  Block  IO  的消耗，非常清晰，对于定位性能瓶颈非常适用。希望得到取其他的信息，都可以通过执行  “SHOW  PROFILE ***  FOR  QUERY n”  来获取，各位读者朋友可以自行测试熟悉。</p>
+<p>转自 《MySQL性能优化与架构设计》</p></div><div  id="MySignature"></div>
+<div  class="clear"></div>
+<div  id="blog_post_info_block">
+<div  id="blog_post_info"><div  id="BlogPostCategory">分类: <a  href="http://www.cnblogs.com/ggjucheng/category/424948.html">db</a></div>
+<div  id="EntryTag"></div>
+<div  id="green_channel">
+绿色通道：
+<a  href="javascript:void(0);"  id="green_channel_digg" >好文要顶</a>
+<a  id="green_channel_follow"   href="javascript:void(0);">关注我</a>
+<a  id="green_channel_favorite"   href="javascript:void(0);">收藏该文</a><a  id="green_channel_contact"  href="http://space.cnblogs.com/msg/send/ggjucheng"  target="_blank">与我联系</a>
+<a  id="green_channel_weibo"  href="javascript:void(0);"  title="分享至新浪微博" ><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/icon_weibo_24.png"  alt=""></a>
+</div>
+<div  id="digg_block">
+<div  id="author_profile">
+<div  id="author_profile_info"  class="author_profile_info">
+<a  href="http://home.cnblogs.com/u/ggjucheng/"  target="_blank"><img  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/u360373.jpg"  class="author_avatar"  alt=""></a>
+<div  id="author_profile_detail"  class="author_profile_info">
+<a  href="http://home.cnblogs.com/u/ggjucheng/">ggjucheng</a><br>
+<a  href="http://home.cnblogs.com/u/ggjucheng/followees">关注 - 6</a><br>
+<a  href="http://home.cnblogs.com/u/ggjucheng/followers">粉丝 - 249</a>
+</div>
+</div>
+<div  class="clear"></div>
+<div  id="author_profile_honor"></div>
+<div  id="author_profile_follow">
+<a  href="javascript:void(0);" >+加关注</a>
+</div>
+</div>
+<div  id="div_digg">										
+	<div  class="diggit" > 
+		<span  class="diggnum"  id="digg_count">2</span>
+	</div>
+	<div  class="buryit" > 
+		<span  class="burynum"  id="bury_count">0</span>
+	</div>
+	<div  class="clear"></div>	
+	<div  class="diggword"  id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div  class="clear"></div>
+<div  id="post_next_prev"><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2771877.html"  class="p_n_p_prefix">« </a> 上一篇：<a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2771877.html"  title="发布于2012-11-15 17:25">MySQL硬件瓶颈分析</a><br><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772148.html"  class="p_n_p_prefix">» </a> 下一篇：<a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772148.html"  title="发布于2012-11-15 19:48">Join的实现原理及优化思路</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div  class="postfoot">
+		posted on <span  id="post-date">2012-11-15 18:33</span> <a  href="http://www.cnblogs.com/ggjucheng/">ggjucheng</a> 阅读(<span  id="post_view_count">649</span>) 评论(<span  id="post_comment_count">0</span>)  <a  href="http://www.cnblogs.com/ggjucheng/admin/EditPosts.aspx?postid=2772058"  rel="nofollow">编辑</a> <a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html#" >收藏</a>
+	</div>
+</div>
+<script  type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=104392,cb_entryId=2772058,cb_blogApp=currentBlogApp,cb_blogUserGuid='d3935eec-4025-e111-b422-842b2b196315',cb_entryCreatedDate='2012/11/15 18:33:00';loadViewCount(cb_entryId);</script>
+
+<a  name="!comments"></a><div  id="blog-comments-placeholder"></div><script  type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div  id="comment_form"  class="commentform">
+<a  name="commentform"></a>
+<div  id="divCommentShow"></div>
+<div  id="comment_nav"><span  id="span_refresh_tips"></span><a  href="javascript:void(0);"  id="lnk_RefreshComments" >刷新评论</a><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html#" >刷新页面</a><a  href="http://www.cnblogs.com/ggjucheng/archive/2012/11/15/2772058.html#top">返回顶部</a></div>
+<div  id="comment_form_container"><div  class="login_tips">注册用户登录后才能发表评论，请 <a  rel="nofollow"  href="javascript:void(0);"  class="underline" >登录</a> 或 <a  rel="nofollow"  href="javascript:void(0);"  class="underline" >注册</a>，<a  href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div  class="ad_text_commentbox"  id="ad_text_under_commentbox"><a  target="_blank"  href="http://q.cnblogs.com/">程序员问答平台，解决您的技术难题</a></div>
+<div  id="site_nav_under"><a  href="http://www.cnblogs.com/"  target="_blank"  title="程序员的网上家园">博客园首页</a><a  href="http://q.cnblogs.com/"  target="_blank"  title="程序员问答社区">博问</a><a  href="http://news.cnblogs.com/"  target="_blank"  title="IT新闻">新闻</a><a  href="http://home.cnblogs.com/ing/"  target="_blank">闪存</a><a  href="http://job.cnblogs.com/"  target="_blank">程序员招聘</a><a  href="http://kb.cnblogs.com/"  target="_blank">知识库</a></div>
+<div  id="ad_under_post_holder">
+
+<div  id="google_ad_c1"  class="c_ad_block">
+    
+    <div  id="div-gpt-ad-1346480159711-0"  style="width:300px; height:250px;">
+    
+    <div  id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__container__"  style="border: 0pt none;"><iframe  id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0"  name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0"  width="300"  height="250"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  src="javascript:"<html><body style='background:transparent'></body></html>""  style="border: 0px; vertical-align: bottom;"></iframe></div><iframe  id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__"  name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__"  width="0"  height="0"  scrolling="no"  marginwidth="0"  marginheight="0"  frameborder="0"  src="javascript:"<html><body style='background:transparent'></body></html>""  style="border: 0px; vertical-align: bottom; visibility: hidden; display: none;"></iframe></div>
+</div>
+<div  id="blog_news_kb"><div  class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a  href="http://news.cnblogs.com/n/200092/"  target="_blank">Python超级程序员使用的开发工具</a><br> ·  <a  href="http://news.cnblogs.com/n/200091/"  target="_blank">Bing 新增比特币价格转换功能</a><br> ·  <a  href="http://news.cnblogs.com/n/200090/"  target="_blank">传微软新CEO对游戏没兴趣 也要卖掉Xbox游戏业务</a><br> ·  <a  href="http://news.cnblogs.com/n/200089/"  target="_blank">谷歌眼镜概念操作界面曝光： 同时显示六个窗口</a><br> ·  <a  href="http://news.cnblogs.com/n/200088/"  target="_blank">任天堂否认游戏《Flappy Bird》下架与其有关</a><br>» <a  href="http://news.cnblogs.com/"  title="IT新闻"  target="_blank">更多新闻...</a></div><div  class="itnews c_ad_block"  id="kb_block"><b>最新知识库文章</b>:<br><div  id="kb_recent"> ·  <a  href="http://kb.cnblogs.com/page/199787/"  target="_blank">别错把需求当市场</a><br> ·  <a  href="http://kb.cnblogs.com/page/199251/"  target="_blank">浏览器中关于事件的那点事儿</a><br> ·  <a  href="http://kb.cnblogs.com/page/198974/"  target="_blank">全栈工程师就是一棵歪脖子树</a><br> ·  <a  href="http://kb.cnblogs.com/page/191744/"  target="_blank">Linux上的基础网络设备详解</a><br> ·  <a  href="http://kb.cnblogs.com/page/198414/"  target="_blank">深入剖析阿里巴巴云梯YARN集群</a><br></div>» <a  href="http://kb.cnblogs.com/"  target="_blank">更多知识库文章...</a></div></div></div>
+<script  type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div  id="HistoryToday"  class="c_ad_block"></div>
+<script  type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script  type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+</div>
+<div  class="footer">
+
+<p  id="footer">
+	Powered by: 
+	<br>
+	
+	<a  id="Footer1_Hyperlink3"  name="Hyperlink1"  href="http://www.cnblogs.com/"  style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © ggjucheng
+</p>
+</div>
+
+<script  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/stat.php"  language="JavaScript"></script><script  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/core.php"  charset="utf-8"  type="text/javascript"></script><script  src="./MySQL Profiling 的使用 - ggjucheng - 博客园_files/online_v3.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=4902471"  target="_blank">站长统计</a>
+
+
+
+<iframe  id="google_osd_static_frame_1944781709462"  name="google_osd_static_frame"  style="display: none; width: 0px; height: 0px;"></iframe></body></html>

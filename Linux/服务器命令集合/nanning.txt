@@ -1,0 +1,1052 @@
+  5  ls
+    6  cd tools/
+    7  ls
+    8  cd ..
+    9  vi INSTALL 
+   10  cd /var/www/extsuite/extmail/
+   11  ls
+   12  chmod +x cgi -R
+   13  cd ../extman/
+   14  chmod +x cgi -R
+   15  cd /var/log/
+   16  cd httpd/
+   17  rm -rf .error_log.swp 
+   18  cd /var/www/extsuite/extmail/
+   19  cd ../extman/
+   20  rm -rf .INSTALL.swp 
+   21  vi /etc/httpd/conf/httpd.conf 
+   22  cd /etc/httpd/conf/
+   23  vi vhost_extmail.conf 
+   24  chown vuser.vgroup -R /var/www/extsuite/extmail/cgi
+   25  chown vuser.vgroup -R /var/www/extsuite/extman/cgi/
+   26  cd /home/domains/xinxuetang.com.cn/xiaolu.he/Maildir/
+   27  ls
+   28  cd new/
+   29  ls
+   30  cd /var/www/html/
+   31  ls
+   32  rm -rf ft.org
+   33  cd ft/
+   34  ls
+   35  vi config.cfg.php 
+   36  LANG=C
+   37  vi config.cfg.php 
+   38  yum install php-mcrypt
+   39  yum update -y
+   40  yum package-cleanup
+   41  yum update -y
+   42  ping mail.xinxuetang.com.cn
+   43  yum update -y  --skip-broken
+   44  df
+   45  vi /etc/yum.repos.d/EMOS.repo 
+   46  df
+   47  ls
+   48  cd 
+   49  ls
+   50  mount /root/EMOS_1.5_i386.iso /mnt/ -o loop
+   51  yum update -y
+   52  yum update -y  --skip-broken
+   53  rm -rf /etc/yum.repos.d/EMOS.repo 
+   54  yum clean
+   55  yum clean all
+   56  yum update -y
+   57  last | more
+   58  reboot
+   59  last | more
+   60  yum update -y
+   61  df
+   62  umount /mnt/
+   63  vi /etc/yum.conf 
+   64  vi /etc/yum.repos.d/
+   65  cd  /etc/yum.repos.d/
+   66  ls
+   67  vi CentOS-Media.repo 
+   68  grep mnt *
+   69  cd ..
+   70  grep mnt *
+   71  yum clean all
+   72  yum update -y
+   73  rm -rf /var/convert
+   74  ps ax
+   75  cat /usr/bin/rsync_class.sh 
+   76  /usr/bin/rsync -avzp --progress class.pupiltown.com:/var/convert /var/
+   77  rm -rf /root/.ssh/known_hosts
+   78  /usr/bin/rsync -avzp --progress class.pupiltown.com:/var/convert /var/
+   79  /usr/bin/rsync -avzp --progress class.pupiltown.com:/var/class /var/
+   80  cd /var/lib/mysql/schoolvideo/
+   81  chown mysql.mysql *
+   82  chmod 660 myth_user.*
+   83  /etc/init.d/mysqld restart
+   84  cd /var/lib/mysql/
+   85  cd schoolvideo/
+   86  chown mysql.mysql *
+   87  /etc/init.d/httpd restart
+   88  mysql schoolvideo
+   89  mysql schoolvideo -uroot -p
+   90  LANG=C
+   91  vi /var/www/html/ft/config.cfg.php 
+   92  mysql schoolvideo -uroot -p
+   93  /usr/bin/rsync -avzp --progress class.pupiltown.com:/var/class /var/
+   94  passwd
+   95  cd /var/www/html/
+   96  ls
+   97  ls
+   98  passwd
+   99  last | more
+  100  df
+  101  last | more
+  102  netstat 
+  103  rsync -avzp --progress 211.151.66.136://var/www/tupoedata/jilimedia/ /var
+/www/html/jilimedia/
+  104  lsb_release -a
+  105  lsb_release_a
+  106  setup
+  107  vi /etc/sysconfig/network-scripts/
+  108  vi /etc/sysconfig/network-scripts/ifcfg-eth0
+  109  service network restart
+  110  init 0
+  111  passwd
+  112  passwd
+  113  reboot
+  114  cd /var/log/
+  115  ls
+  116  cd /etc/postfix/
+  117  vi main.cf
+  118  grep bl *
+  119  grep bl.extmail.org *
+  120  ls
+  121  grep spam *
+  122  vi dspam_header_checks 
+  123  cd ..
+  124  grep bl.extmail.org *
+  125  grep bl.extmail.org * -R
+  126  vi clamd.conf
+  127  vi /etc/rc.d/rc.local 
+  128  cd /var/www/html/
+  129  ls
+  130  cd /var/www/extsuite/extmail/dispatch
+  131  cd /var/www/extsuite/extmail/
+  132  ls
+  133  vi /etc/httpd/conf/httpd.conf 
+  134  vi /etc/httpd/conf/vhost_extmail.conf 
+  135  reboot
+  136  ls
+  137  cd /var/log/
+  138  vi maillog
+  139  vi /etc/postfix/main.cf
+  140  /etc/init.d/postfix restart
+  141  cd /var/log/
+  142  vi maillog
+  143  vi maillog
+  144  cd /var/www/html/
+  145  ls
+  146  rsync -avzp --progress class.pupiltown.com:/var/www/html/jilimedia/ /var/
+www/html/jilimedia/
+  147  rpm -qa | grep php
+  148  ls
+  149  cd mail/
+  150  ls
+  151  rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/ 
+  152  rsync -avzp --progress class.pupiltown.com:/opt/macromedia/fms/applicatio
+ns/ /opt/macromedia/fms/applications/
+  153  cd /var/www/html/
+  154  ls
+  155  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/html/
+  156  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/html/
+  157  vi /etc/httpd/conf/httpd.conf 
+  158  cd /var/www/html/
+  159  ls
+  160  rm -rf modlisten/ lhhMovie/ documents/ media jilimedia/
+  161  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/tupoed
+ata/
+  162  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/tupoed
+ata/
+  163  rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  164  ls -rtl
+  165  cd /var/www/html/
+  166  ls -rtl
+  167  cd /var/www
+  168  l s-rtl
+  169  ls -rtl
+  170  cd tupoedata/
+  171  ls -rtl
+  172  rsync -avzl --progress --delete 125.46.40.120:/var/www/html/jilimedia .
+  173  cd /var/www/html/
+  174  ls
+  175   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  176   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  177   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  178  reboot
+  179  ps ax
+  180  ps ax
+  181  rpm -e webmin
+  182  ping mail.xinxuetang.com.cn
+  183  mail
+  184  postqueue 
+  185  postqueue p
+  186  postqueue -p
+  187  ls
+  188  vi .ssh/authorized_keys 
+  189   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  190  vi .ssh/id_dsa.pub 
+  191  rm -rf .ssh/authorized_keys 
+  192   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  193  rsync_class.sh 
+  194   rsync -avzp --progress class.pupiltown.com:/var/class/ /var/class/
+  195  cat /usr/bin/rsync_class.sh 
+  196  cat /usr/bin/rsync_class.sh 
+  197  /usr/bin/rsync -avzp --progress --delete class.pupiltown.com:/opt/macrome
+dia/fms/applications/ /opt/macromedia/fms/applications/ 
+  198  yum update -y
+  199  yum update -y
+  200  yum package-cleanup
+  201  yum clean
+  202  yum clean all
+  203  yum update -y
+  204  yum install perl-IO-Compress
+  205  rpm -e perl-IO-Compress
+  206  rpm -qa | grep httpd
+  207  cd /var/www/html/
+  208  ls
+  209  yum install telnet
+  210  telnet 182.236.162.201 80
+  211  ls
+  212  md5sum dspam-trained-data.sql 
+  213  passwd
+  214  cd /var/www/html/
+  215  ls
+  216  dmidecode |grep ame
+  217  cat /proc/cpuinfo 
+  218  cat /proc/meminfo 
+  219  fdisk -l /dev/sda
+  220  cat /proc/scsi/scsi
+  221  dmidecode
+  222  dmidecode |grep mem
+  223  dmidecode |grep memory
+  224  cd /var/www/
+  225  ls
+  226  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/tupoed
+ata/
+  227  cd 
+  228  rm -rf .ssh/known_hosts 
+  229  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/tupoed
+ata/
+  230  ls
+  231  cat /usr/bin/rsync_class.sh 
+  232  /usr/bin/rsync -avzp --progress --delete class.pupiltown.com:/var/class /
+var/
+  233  /usr/bin/rsync -avzp --progress --delete class.pupiltown.com:/opt/macrome
+dia/fms/applications/ /opt/macromedia/fms/applications/ 
+  234  reboot
+  235  ls
+  236  cd /var/www/html/
+  237  ls
+  238  cd /var/www/tupoedata/
+  239  ls
+  240  rsync -avzp --progress class.pupiltown.com:/var/www/html/ /var/www/tupoed
+ata/
+  241  rsync -avzp --progress class.pupiltown.com:/var/www/html/jilimedia/ /var/
+www/tupoedata/jilimedia/
+  242  cd jilimedia/html/ga/
+  243  ls
+  244  cd ga008/
+  245  ls
+  246  cd thumbs/
+  247  ls
+  248  vi /etc/httpd/conf/httpd.conf 
+  249  /etc/init.d/httpd restart
+  250  cd /var/log/httpd/
+  251  vi error_log
+  252  cd /var/www/tupoedata/jilimedia/html/ga/ga002/thumbs/
+  253  ls
+  254  ls -la
+  255  cd -
+  256  vi error_log
+  257  vi /var/www/tupoedata/jilimedia/html/ga/ga008/thumbs/ga00801.jpg
+  258  ls
+  259  yum update -y
+  260  cd /var/www/html/
+  261  kls
+  262  ls
+  263  cd /var/www/
+  264  ls
+  265  cd html/
+  266  ls
+  267  rm -rf media
+  268  tracepath 122.139.57.174
+  269  ssh 122.139.57.174
+  270  ssh 122.139.57.174
+  271  ls
+  272  cd /var/www/html/
+  273  ls
+  274  cd ../tupoedata/
+  275  rsync -avzp --progress 211.151.66.136:/var/www/tupoedata/ /var/www/tupoed
+ata/
+  276  cd /var/www/html/
+  277  ls
+  278  cd ../tupoedata/
+  279  ls
+  280  rsync -avzp /var/www/tupoedata/ home.3denglish.org:/var/www/tupoedata/
+  281  ls
+  282  cd /var/www/
+  283  ls
+  284  cd html/
+  285  ls
+  286  rsync -avpz --progress 211.151.66.136:/var/www/tupoedata/ /var/www/tupoed
+ata/
+  287  rsync -avpz --progress 211.151.66.136:/var/www/tupoedata/jilimedia/html/g
+a/ /var/www/tupoedata/jilimedia/html/ga/ --delete
+  288  cd /var/lib/mysql/schoolvideo/
+  289  chown mysql.mysql *
+  290  /etc/init.d/mysqld restart
+  291  ping class.up30.org
+  292  /etc/init.d/mysqld restart
+  293  vi /etc/httpd/conf/httpd.conf 
+  294  cd /etc/httpd/conf.d/
+  295  ls
+  296  cd ..
+  297  vi conf/httpd.conf 
+  298  /etc/init.d/httpd restart
+  299  cd /var/www/html/
+  300  ls
+  301  cd ft/
+  302  grep 201 * -R
+  303  grep 182.236.162.201 * -R
+  304  cd conf
+  305  ls
+  306  vi webServer.json 
+  307  ls
+  308  cd /var/www/html/
+  309  ls
+  310  cd ft/
+  311  ls
+  312  vi config.cfg.php 
+  313  LANG=C
+  314  vi config.cfg.php 
+  315  ls
+  316  ps ax
+  317  /etc/init.d/ntpd restart
+  318  date
+  319  vi /etc/httpd/conf/httpd.conf 
+  320  /etc/init.d/httpd restart
+  321  cd /var/www/html/
+  322  ls
+  323  cd /var/lib/mysql/
+  324  ls
+  325  df
+  326  df -h
+  327  cd /var/www/html/
+  328  ls
+  329  vi tupoe_cn/mysite/_config.php 
+  330  /etc/init.d/mysqld restart
+  331  df -h
+  332  ls
+  333  cd silver
+  334  ls
+  335  vi /etc/httpd/conf/httpd.conf 
+  336  cd /var/www/tupoedata/
+  337  ls
+  338  /etc/init.d/httpd restart
+  339  vi /etc/httpd/conf/httpd.conf 
+  340  /etc/init.d/httpd restart
+  341  /etc/init.d/mysqld restart
+  342  /etc/init.d/mysqld restart
+  343  df -h
+  344  mail
+  345  cd /var/www/html/
+  346  ls
+  347  cd silver/mysite/_config.php 
+  348  vi silver/mysite/_config.php 
+  349  rsync -avzp --progress /var/www/html/silver/assets/ 211.100.99.166:/var/w
+ww/html/silver/assets/
+  350  rsync -avzp --progress /var/www/html/silver/assets/ 211.100.99.167:/var/w
+ww/html/silver/assets/
+  351  rsync -avzp --progress /var/lib/mysql/ss_tupoe_cn/ 211.100.99.168:/var/li
+b/mysql/ss_tupoe_cn/
+  352  rsync -avzp --progress /var/lib/mysql/ss_tupoe_cn/ 211.100.99.168:/var/li
+b/mysql/ss_tupoe_cn/
+  353  /etc/init.d/httpd stop
+  354  /etc/init.d/mysqld stop
+  355  rsync -avzp --progress /var/lib/mysql/ss_silver/ 211.110.99.169:/var/lib/
+mysql/ss_silver/
+  356  rsync -avzp --progress /var/lib/mysql/ss_silver/ 211.100.99.169:/var/lib/
+mysql/ss_silver/
+  357  rsync -avzp --progress /var/lib/mysql/ss_silver/ 211.100.99.166:/data/ss_
+silver/
+  358  /etc/init.d/mysqld start
+  359  /etc/init.d/httpd start
+  360  service fms stop
+  361  service fms start
+  362  ls
+  363  cd /var/www/html/
+  364  ls
+  365  cd /data/
+  366  ls
+  367  df
+  368  cd 
+  369  unzip phpmyadmin2.11.6.zip 
+  370  mv phpmyadmin2.11.6 /var/www/html/mysql
+  371  ls
+  372  cd /var/www/html/
+  373  ls
+  374  cd ft/
+  375  ls
+  376  grep 147 * -R
+  377  ls
+  378  cd data/
+  379  ls
+  380  cd ../
+  381  rm -rf user_data.txt 
+  382  ls
+  383  rm -rf data/
+  384  ls
+  385  grep 147 * -R
+  386  cd conf
+  387  ks
+  388  ls
+  389  LANG=C
+  390  vi webServer.json 
+  391  vi webServer.json 
+  392  ps ax
+  393  /etc/init.d/postfix stop
+  394  /etc/init.d/saslauthd stop
+  395  /etc/init.d/courier-imap stop
+  396  /etc/init.d/courier-authlib stop
+  397  chkconfig --level 35 postfix off
+  398  chkconfig --level 35 saslauthd off
+  399  chkconfig --level 35 courier-authlib off
+  400  chkconfig --level 35 courier-imap off
+  401  reboot
+  402  chkconfig --level 35 postfix oon
+  403  chkconfig --level 35 postfix on
+  404  chkconfig --level 35 saslauthd on
+  405  chkconfig --level 35 courier-authlib on
+  406  chkconfig --level 35 courier-imap on
+  407  reboot
+  408  cd /var/www/html/
+  409  ls
+  410  ping www.tupoe.cn
+  411  rsync -avzp --progress 211.100.99.166:/var/www/html/silver/ /var/www/html
+/silver/
+  412  rsync -avzp --progress 211.100.99.166:/data/ss_silver/ /var/lib/mysql/ss_
+silver/
+  413  cd /var/www/html/silver/mysite/
+  414  mv _config.php.old _config.php
+  415  vi _config.php 
+  416  reboot
+  417  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  418  vi /etc/httpd/conf/httpd.conf 
+  419  df
+  420  cd /data/
+  421  wget http://mirrors.kernel.org/centos/6/isos/i386/CentOS-6.0-i386-bin-DVD
+.iso
+  422  ls
+  423  cd /var/www/html/
+  424  ls
+  425  cd redmine/
+  426  ls
+  427  ls -la
+  428  rm -rf redmine-files-20100114.tar.gz 
+  429  cd ..
+  430  mv redmine/ /var/www/
+  431  ls
+  432  rm -rf GZYYYFT-208-00-00_blackboard.abp.torrent 
+  433  ls
+  434  wget http://downloads.sourceforge.net/project/mantisbt/mantis-stable/1.2.
+8/mantisbt-1.2.8.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fmantisbt%2Ff
+iles%2Fmantis-stable%2F1.2.8%2F&ts=1321922184&use_mirror=nchc
+  435  ls
+  436  ls
+  437  tar zxvf mantisbt-1.2.8.tar.gz 
+  438  mv mantisbt-1.2.8 bug
+  439  ls
+  440  cd mantisbt-1.2.8.tar.gz 
+  441  cd bug/
+  442  ls
+  443  cd /var/log/httpd/
+  444  ls
+  445  vi error_log
+  446  cd /var/www/html/
+  447  chown apache.apache bug -R
+  448  cd ..
+  449  cd html/silver
+  450  vi mysite/_config.php 
+  451  cd ..
+  452  cd bug/
+  453  vi config_inc.php
+  454  cd ..
+  455  ls
+  456  cd ..
+  457  df
+  458  mkdir bugdata
+  459  chown apache.apache -R bugdata
+  460  cd bugdata/
+  461  mkdir appcarrier
+  462  cd ..
+  463  chown apache.apache -R bugdata
+  464  mkdir bugdata/tupoeKid
+  465  chown apache.apache -R bugdata
+  466  chmod 777 -R bugdata/
+  467  vi /var/log/httpd/error_log
+  468  mkdir bugdata/tupoeKid/student
+  469  mkdir bugdata/tupoeKid/teacher
+  470  mkdir bugdata/tupoeKid/cloud
+  471  mkdir bugdata/tupoeKid/appstore
+  472  chown apache.apache -R bugdata
+  473  mkdir bugdata/appcarrier/BS
+  474  mkdir bugdata/appcarrier/CS
+  475  chown apache.apache -R bugdata
+  476  cd /var/www/html/
+  477  ls
+  478  cd bug/
+  479  ls
+  480  rm -rf admin
+  481  cd /var/www/html/
+  482  ls
+ 483  vi /etc/httpd/conf/httpd.conf 
+  484  ps ax
+  485  postqueue 
+  486  postqueue -p
+  487  yum install webmin
+  488  cd /var/spool/postfix 
+  489  find defer deferred -type f  
+  490  find defer deferred -type f -delete
+  491  find defer deferred -type f  
+  492  /etc/init.d/postfix restart
+  493  postqueue -p
+  494  vi /etc/httpd/conf/httpd.conf 
+  495  /etc/init.d/httpd restart
+  496  mkdir /var/www/bugdata/appcarrier/ebook
+  497  chown apache.apache -R /var/www/bugdata/
+  498  useradd update -d /var/www/html/update -g apache
+  499  passwd
+  500  yum install vsftpd
+  501  chkconfig --level 3 5 vsftpd on
+  502  chkconfig --level 35 vsftpd on
+  503  /etc/init.d/vsftpd start
+  504  vi /etc/vsftpd/user_list 
+  505  vi /etc/vsftpd/ftpusers 
+  506  ls
+  507  vi /etc/vsftpd/user_list 
+  508  vi /etc/passwd
+  509  cd /var/www/html/
+  510  ls -la
+  511  cd /var/log/
+  512  ls
+  513  cd /var/www/html/
+  514  ls -la
+  515  chmod 755 update/
+  516  ls
+  517  cd update/
+  518  ls- la
+  519  ls -la
+  520  rm -rf .bash*
+  521  ls -la
+  522  ls
+  523  md5sum .bash_history 
+  524  passwd update 
+  525  cd /var/www/html/
+  526  ls
+  527  df
+  528  cd /var/log/
+
+
+503  /etc/init.d/vsftpd start
+  504  vi /etc/vsftpd/user_list 
+  505  vi /etc/vsftpd/ftpusers 
+  506  ls
+  507  vi /etc/vsftpd/user_list 
+  508  vi /etc/passwd
+  509  cd /var/www/html/
+  510  ls -la
+  511  cd /var/log/
+  512  ls
+  513  cd /var/www/html/
+  514  ls -la
+  515  chmod 755 update/
+  516  ls
+  517  cd update/
+  518  ls- la
+  519  ls -la
+  520  rm -rf .bash*
+  521  ls -la
+  522  ls
+  523  md5sum .bash_history 
+  524  passwd update 
+  525  cd /var/www/html/
+  526  ls
+  527  df
+  528  cd /var/log/
+  529  ls
+  530  vi maillog
+  531  vi maillog
+  532  vi maillog
+  533  cd /var/www/html/
+  534  ls
+  535  rm -rf tupoe_cn silver
+  536  cd /var/log/
+  537  ls
+  538  grep vsftp *
+  539  ls
+  540  grep vsftp *
+  541  vi secure
+  542  ls
+  543  vi /etc/vsftpd/vsftpd.conf 
+  544  ls
+  545  vi xferlog.1 
+  546  vi /etc/vsftpd/ftpusers 
+  547  vi /etc/vsftpd/vsftpd.conf 
+  548  vi /etc/vsftpd/vsftpd.conf 
+  549  vi /etc/vsftpd/chroot_list
+  550  /etc/init.d/vsftpd restart
+  551  last | more
+  552  cat /etc/passwd
+  553  /etc/init.d/vsftpd restart
+  554  /etc/init.d/vsftpd restart
+  555  cd /var/www/html/
+  556  ls
+  557  adduser kidstory -d/var/www/html/kidstory
+  558  mail
+  559  vi /var/spool/mail/root 
+  560  ls
+  561  md5sum /var/spool/mail/root 
+  562  passwd kidstory 
+  563  vi /etc/passwd
+  564  last | more
+  565  cd kidstory/
+  566  ls
+  567  ls -la
+  568  rm -rf .bash*
+  569  vi /etc/vsftpd/vsftpd.conf 
+  570  /etc/init.d/vsftpd restart
+  571  vi /etc/vsftpd/chroot_list 
+  572  /etc/init.d/vsftpd restart
+  573  cd ..
+  574  ls -la
+  575  chown kidstory.apache -R kidstory
+  576  vi /etc/passwd
+  577  groupdel kidstory
+  578  vi /etc/group
+  579  cd kidstory/
+  580  ls -la
+  581  cd ..
+  582  ls
+  583  ls -la
+  584  chmod 755 -R kidstory
+  585  yum install proftpd-mysql
+  586  cd 
+  587  chown mysql.mysql -R proftp
+  588  mv proftp/ /var/lib/mysql/
+  589  ls
+  590  cd /var/lib/mysql/
+  591  ls
+  592  /etc/init.d/mysqld restart
+  593  rpm -ql proftpd-mysql
+  594  vi /etc/proftpd.conf 
+  595  cd 
+  596  cd /etc/
+  597  mv proftpd.conf proftpd.conf.orig
+  598  mv /root/proftpd.conf  .
+  599  ls -la proftpd.conf*
+  600  chmod 640 proftpd.conf
+  601  ls -la proftpd.conf*
+  602  vi proftpd.conf
+  603  /etc/init.d/proftpd restart
+  604  cd /var/log/
+  605  /etc/init.d/proftpd start
+  606  rpm -ql proftpd
+  607  cp proftpd.conf /etc/
+  608  /etc/init.d/mysqld restart
+  609  /etc/init.d/proftpd restart
+  610  /etc/init.d/proftpd restart
+  611  vi /var/spool/mail/root 
+  612  echo > /var/spool/mail/root 
+  613  /etc/init.d/proftpd restart
+  614  /etc/init.d/proftpd restart
+  615  /etc/init.d/proftpd start
+  616  cd /var/log/
+  617  ls
+  618  cd proftpd/
+  619  ls
+  620  ls -la
+  621  cd ..
+  622  grep proftpd *
+  623  /etc/init.d/proftpd restart
+  624  cd proftpd/
+  625  ls
+  626  ls -la
+  627  cd /etc/
+  628  vi proftpd.conf
+  629  mv proftpd.conf.orig proftpd.conf
+  630  /etc/init.d/proftpd restart
+  631  cp proftpd.conf /root/
+  632  rpm -qi proftpd
+  633  /etc/init.d/proftpd restart
+  634  /etc/init.d/proftpd restart
+  635  ls
+  636  cd /var/www/html/
+  637  ls
+  638  cd /var/log/
+  639  cd proftpd/
+  640  ls
+  641  cat auth_log 
+  642  ls
+  643  ls -la
+  644  cat paranoid_log 
+  645  ls
+  646  cd /var/www/html/
+  647  ls
+  648  vi /etc/passwd
+  649  userdel update
+  650  userdel kidstory
+  651  cat /etc/group
+  652  chown vuser.vgroup -R update/ kidstory
+  653  ls -la
+  654  /etc/init.d/proftpd restart
+  655  /etc/init.d/proftpd restart
+  656  /etc/init.d/proftpd restart
+  657  /etc/init.d/proftpd restart
+  658  /etc/init.d/proftpd restart
+  659  /etc/init.d/proftpd restart
+  660  /etc/init.d/proftpd restart
+  661  /etc/init.d/proftpd restart
+  662  /etc/init.d/proftpd restart
+  663  /etc/init.d/proftpd start
+  664  cd /var/log/
+  665  ls
+  666  cd proftpd
+  667  ls
+  668  vi system.log 
+  669  cd ..
+  670  vi proftpd.log 
+  671  rm -rf proftpd.log 
+  672  cd /var/log/
+  673  ls
+  674  cd proftpd/
+  675  ls
+  676  cat sql.log 
+  677  ls
+  678  cat auth_log 
+  679  cat system.log 
+  680  ls
+  681  cat xferlog 
+  682  cat sql.log 
+  683  ls
+  684  cat system.log 
+  685  cat /etc/ftpusers 
+  686  vi /etc/ftpusers 
+  687  ls
+  688  cd /var/www/html/
+  689  ls -la
+  690  cd kidstory/
+  691  ls -la
+  692  ls
+  693  cd foldertest/
+  694  ls
+  695  ls
+  696  cd ..
+  697  rm -rf foldertest
+  698  ls -la
+  699  ls -la
+  700  cd all/
+  701  ls
+  702  cd libraries/
+  703  ls -la
+  704  cd FlexPaper/
+  705  ls -la
+  706  ls
+  707  cd examples/
+  708  ls
+  709  vi /etc/resolv.conf 
+  710  vi /etc/resolv.conf 
+  711  /etc/init.d/vsftpd restart
+  712  vi /etc/vsftpd/vsftpd.conf 
+  713  /etc/init.d/vsftpd restart
+  714  yum install proftpd
+  715  rpm -e vsftpd
+  716  rm -rf /etc/vsftpd
+  717  /etc/init.d/proftpd start
+  718  vi /etc/proftpd.conf 
+  719  vi /etc/httpd/conf/httpd.conf 
+  720  cd /var/www/html/
+  721  ls
+  722  cd update/
+  723  ls
+  724  pwd
+  725  vi index.php
+  726  vi /etc/httpd/conf/httpd.conf 
+  727  /etc/init.d/httpd restart
+  728  vi /etc/httpd/conf/httpd.conf 
+  729  /etc/init.d/httpd restart
+  730  cd /var/www/html/update/
+  731  ls
+  732  vi index.php
+  733  rm -rf .index.php.swp 
+  734  vi index.php
+  735  vi index.php
+  736  ls
+  737  rm -rf test.txt 
+  738  ls
+  739  cd file/
+  740  ls
+  741  cd TupovV1.0.1R111212/
+  742  ls
+  743  ls
+  744  ls
+  745  cd ..
+  746  pwd
+  747  cd 
+  748  ls
+  749  ping home.3denglish.org
+  750  rm -rf /var/lib/mysql/ss_*
+  751  mv /var/www/html/mysql/ /data/
+  752  cd /var/www/html/
+  753  ls
+  754  cd /var/www/html/
+  755  ls -la
+  756  cd kidstory/
+  757  ls -la
+  758  cd rm -rf all
+  759  cd story/
+  760  ls
+  761  ls -la
+  762  cd /var/log/
+  763  ls
+  764  cd proftpd/
+  765  ls
+  766  cat auth_log 
+  767  cat sql.log 
+  768  cd /etc/httpd/conf.d/
+  769  ls
+  770  vi rewrite.conf
+  771  /etc/init.d/httpd restart
+  772  cd ../conf
+  773  vi httpd.conf 
+  774  vi /var/log/httpd/error_log
+  775  vi /var/log/httpd/access_log
+  776  cd /var/www/bugdata/appcarrier/office
+  777  cd /var/www/bugdata/appcarrier/
+  778  ls -la
+  779  mkdir office
+  780  chown apache.apache -R office/
+  781  /etc/init.d/proftpd stop
+  782  mv /data/mysql /var/www/html/
+  783  cd /var/www/html/
+  784  ls
+  785  /etc/init.d/proftpd start
+  786  mv mysql/ /data/
+  787  mv mysql/ /data/
+  788  cd /var/www/html/
+  789  ls
+  790  mv /data/mysql .
+  791  df 
+  792  cd /data/
+  793  mkdir appcarier
+  794  cd -
+  795  ls -la
+  796  cd -
+  797  chown vuser.vgroup appcarier -R
+  798  mv appcarier appcarrier
+  799  ls -la
+  800  cd -
+  801  mv mysql /data/
+  802  ls
+  803  rm -rf class
+  804  ls
+  805  cd /data/
+  806  ls
+  807  ls -la
+  808  cd appcarrier/
+  809  ls -la
+  810  cd /var/www/html/
+  811  mv /data/mysql .
+  812  mv mysql/ /data/
+  813  ls
+  814  cd update/
+  815  ls
+  816  vi index.php cd /var/log/
+  817  ls
+  818  cd /var/log/
+  819  ls
+  820  cd proftpd/
+  821  kls
+  822  ls
+  823  vi auth_log 
+  824  ls
+  825  vi sql.log
+  826  vi system.log
+  827  vi /etc/proftpd.conf 
+  828  /etc/init.d/proftpd restart
+  829  cd -
+  830  cd proftpd/
+  831  vi system.log
+  832  cat  system.log
+  833  cat  system.log
+  834  cd /var/www/html/
+  835  mv /data/appcarrier .
+  836  ls
+  837  cd /data/
+  838  ls
+  839  ls -la
+  840  cd appcarrier/
+  841  ls -la
+  842  mv /data/mysql/ /var/www/html/
+  843  ls
+  844  vi /etc/proftpd.conf 
+  845  vi /etc/proftpd.conf 
+  846  /etc/init.d/proftpd restart
+  847  vi /etc/proftpd.conf 
+  848  /etc/init.d/proftpd restart
+  849  vi /etc/httpd/conf/httpd.conf 
+  850  /etc/init.d/httpd restart
+  851  cd /var/www/html/
+  852  ls
+  853  vi /etc/httpd/conf/httpd.conf 
+  854  /etc/init.d/httpd restart
+  855  vi /etc/httpd/conf/httpd.conf 
+  856  /etc/init.d/httpd restart
+  857  vi /etc/httpd/conf/httpd.conf 
+  858  /etc/init.d/httpd restart
+  859  cd appcarrier/
+  860  ls
+  861  ethtool -i eth0
+  862  ethtool -k eth0
+  863  ethtool -g eth0
+  864  lspci | grep Ethernet
+  865  lspci 
+  866  dmidecode |grep "Name"
+  867  mkdir /var/www/bugdata/appcarrier/iphone
+  868  chown apache.apache -R /var/www/bugdata/appcarrier/iphone
+  869  cd /var/log/
+  870  ls
+  871  cd httpd/
+  872  vi error_log
+  873  mysql
+  874  ps ax
+  875  reboot
+  876  cd ..
+  877  ls
+  878  find / -name season
+  879  cd media
+  880  ls
+  881  cd ..
+  882  cd data
+  883  ls
+  884  find . -name eason
+  885  find . -name *eason*
+  886  find / -name *.jpg
+  887  cd /var
+  888  ls
+  889  find / -name english.mp3
+  890  cd ..
+  891  find / -name english.mp3
+  892  find / -name dialog
+  893  cd
+  894  vim /etc/shadow
+  895  vi /etc/shadow
+  896  vi /etc/passwd
+  897  ls /home/
+  898  cd /home/
+  899  ls vuser/
+  900  ls  domains/
+  901  find /-name kidstory
+  902  su kidstory
+  903  ls
+  904  mysql
+  905  cd /usr
+  906  ls
+  907  cd local/
+  908  cd mysql
+  909  ls
+  910  cd bin
+  911  ls
+  912  cd ..
+  913  cd /
+  914  ls
+  915  pwd
+  916  ls
+  917  cd var
+  918  find / -name *.swf
+  919  finger
+  920  finger kidiry
+  921  finger -l kidstory
+  922  ?
+  923  cat /etc/shadow |more
+  924  ls -a /home/
+  925  find /-name ftp
+  926  cd /etc/ftpusers 
+  927  cat /etc/ftpusers
+  928  vi  /etc/ftpusers
+  929  cd /etc/ftp
+  930  cd /etc/
+  931  ls
+  932  find  ftp
+  933  cd /ftp
+  934  cd
+  935  fing /-name ftp
+  936  less /etc/ftpusers 
+  937  whois kidstory
+  938  find / -name vsftpd.conf
+  939  cd /etc/
+  940  whois kidstory
+  941  fing / -name *.conf
+  942  fing / -name *ftp
+  943  fing / -name *ftp*
+  944  rpm -qa ftp
+  945  ifconfig 
+  946  chkconfig --list vstpd
+  947  chkconfig --list vsftpd
+  948  chkconfig --list
+  949  cd 
+  950  cd /var/ftp/
+  951  find / -name ftpusers
+  952  cd /etc/ftpusers 
+  953  vi /etc/ftpusers 
+  954  find /etc/usr_list
+  955  service vsftpd start
+  956  cd /etc
+  957  ls
+  958  cat passwd
+  959  vi group
+  960  passwd -l kidstory
+  961  nslookup home.3denglish.org
+  962  nslookup 116.253.189.130
+  963  cd /var
+  964  ls
+  965  cd www
+  966  cd html
+  967  ls
+  968  rm -rf mp3_voice/
+  969  ls
+  970  ls
+  971  rm -rf mkdir4.0/
+  972  mysql -u root -p 9d176faefd
+  973  use databases;
+  974  find / -name mysql
+  975  cd /usr/bin/mysql
+  976  find / -name threedlogin
+  977  cd /var/spool/mail/root
+  978  cd /var/spool/mail/
+  979  ls
+  980  cat kidstory 
+  981  ls -l
+  982  cd /var/www/html/
+  983  ls
+  984  cd ..
+  985  ls
+  986  cd tupoedata/
+  987  ls -l
+  988  cd media
+  989  ls
+  990  cd ..
+  991  cd ..
+  992  cd html
+  993  ls 
+  994  find .. -name mp3_voice
+  995  rm -rf 116.253.189.130../html/kidstory_del/mp3_voice
+  996  rm -rf ../html/kidstory_del/mp3_voice
+  997  cd update
+  998  ls
+  999  cd file
+ 1000  ls
+ 1001  history

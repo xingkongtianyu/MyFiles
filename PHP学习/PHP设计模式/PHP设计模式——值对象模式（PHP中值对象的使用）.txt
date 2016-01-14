@@ -1,0 +1,65 @@
+
+PHP设计模式——值对象模式（PHP中值对象的使用）
+2010年12月20日  2,414 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——值对象模式（PHP中值对象的使用）
+说到值对象，不得不说一下对象的引用，对象的引用是将一个对象赋值给一个变量，有很多人认为这是在复制对象，但实际上，只是在复制对象的引用而已，而在更改一个对象的引用时，另一个引用也会跟着更改，例如：
+
+
+	
+
+ 
+<?php
+class website {
+	public $url;
+	public function __construct(){
+		$this->url="http://www.chhua.com";
+	}
+ 
+	public function addName($name){
+		$name=$name.":".$this->url;
+		$this->url=$name;
+	}
+ 
+	public function printName(){
+	    echo $this->url;	
+	}
+}
+ 
+$web=new website();
+$webTest=$web;
+$webTest->addName("WEB开发笔记");
+$web->printName();//引用改变之后，被引用的对象也会随着变化.输出的将不会是"http://www.chhua.com",而是“WEB开发笔记:http://www.chhua.com"”。
+?>
+
+引用改变之后，被引用的对象也会随着变化.输出的将不会是”http://www.chhua.com”,而是“WEB开发笔记”。而我们是希望webTest对象改变，而web对象不改变，因此就用到了值对象模式。看下面的演示：
+
+	
+
+ 
+<?php
+class website {
+	private $url;//首先这里改成私有方法
+	public function __construct(){
+		$this->url="http://www.chhua.com";
+	}
+ 
+	public function addName($name){
+		$newWeb=clone $this;
+		$name=$name.":".$newWeb->url;
+		$newWeb->url=$name;
+		return $newWeb;
+	}
+ 
+	public function printName(){
+	    echo $this->url;	
+	}
+}
+ 
+$web=new website();
+$webTest=$web->addName("WEB开发笔记");
+$web->printName();//使用值对象之后，输出的将依然是"http://www.chhua.com"
+$webTest->printName();//这里输出的是“WEB开发笔记:http://www.chhua.com"”。
+?>
+
+其实很容易理解，值对象就是返回一个带有不可改变的属性的对象而已，呵呵，我的理解是这样的，“有值的对象就是值对象”。

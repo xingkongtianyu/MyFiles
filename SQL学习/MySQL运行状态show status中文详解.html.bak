@@ -1,0 +1,1845 @@
+<div class="content">
+		<p></p><p>
+	要查看MySQL运行状态，要优化MySQL运行效率都少不了要运行show status查看各种状态，下面是参考官方文档及网上资料整理出来的中文详细解释：</p>
+<p>
+	<span style="display: none; " _fck_bookmark="1">&nbsp;</span><span style="color: rgb(255, 0, 0); " class="Apple-style-span">如有问题，欢迎指正</span></p>
+<table cellspacing="0" cellpadding="0" style="color: #465f93;background-color: #ffffff; border-collapse: collapse;font-size:12px;">
+	<tbody>
+		<tr>
+			<td style="width: 215.0px; height: 24.2px; border-bottom: solid 1px #5284bc;">
+				<p>
+					<b>状态名</b></p>
+			</td>
+			<td style="width: 42.9px; height: 24.2px; border-bottom: solid 1px #5284bc;">
+				<p>
+					<b>作用域</b></p>
+			</td>
+			<td style="width: 100.1px; height: 24.2px; border-bottom: solid 1px #5284bc;">
+				<p>
+					<b>详细解释</b></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Aborted_clients</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					由于客户端没有正确关闭连接导致客户端终止而中断的连接数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Aborted_connects</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					试图连接到<span>MySQL</span><span>服务器而失败的连接数</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Binlog_cache_disk_use</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					使用临时二进制日志缓存但超过<span>binlog_cache_size</span><span>值并使用临时文件来保存事务中的语句的事务数量</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Binlog_cache_use</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					使用临时二进制日志缓存的事务数量</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Bytes_received</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					从所有客户端接收到的字节数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Bytes_sent</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					发送给所有客户端的字节数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					com*</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					各种数据库操作的数量</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Compression</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Session</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					客户端与服务器之间只否启用压缩协议</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Connections</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					试图连接到<span>(</span><span>不管是否成功</span><span>)MySQL</span><span>服务器的连接数</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Created_tmp_disk_tables</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					服务器执行语句时在硬盘上自动创建的临时表的数量</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Created_tmp_files</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					mysqld<span>已经创建的临时文件的数量</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Created_tmp_tables</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					服务器执行语句时自动创建的内存中的临时表的数量。如果<span>Created_tmp_disk_tables</span><span>较大，你可能要增加</span><span>tmp_table_size</span><span>值使临时</span><span> </span><span>表基于内存而不基于硬盘</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Delayed_errors</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					用<span>INSERT DELAYED</span><span>写的出现错误的行数</span><span>(</span><span>可能为</span><span>duplicate key)</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Delayed_insert_threads</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					使用的<span>INSERT DELAYED</span><span>处理器线程数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Delayed_writes</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					写入的<span>INSERT DELAYED</span><span>行数</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Flush_commands</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					执行的<span>FLUSH</span><span>语句数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_commit</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					内部提交语句数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_delete</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					行从表中删除的次数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_discover</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					MySQL<span>服务器可以问</span><span>NDB CLUSTER</span><span>存储引擎是否知道某一名字的表。这被称作发现。</span><span>Handler_discover</span><span>说明通过该方法发现的次数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_prepare</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					A counter for the prepare phase of two-phase commit operations.</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_first</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					索引中第一条被读的次数。如果较高，它建议服务器正执行大量全索引扫描；例如，<span>SELECT col1 FROM foo</span><span>，假定</span><span>col1</span><span>有索引。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_key</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					根据键读一行的请求数。如果较高，说明查询和表的索引正确。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_next</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					按照键顺序读下一行的请求数。如果你用范围约束或如果执行索引扫描来查询索引列，该值增加。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_prev</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					按照键顺序读前一行的请求数。该读方法主要用于优化<span>ORDER BY ... DESC</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_rnd</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					根据固定位置读一行的请求数。如果你正执行大量查询并需要对结果进行排序该值较高。你可能使用了大量需要<span>MySQL</span><span>扫描整个表的查询或你的连接没有正确使用键。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_read_rnd_next</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在数据文件中读下一行的请求数。如果你正进行大量的表扫描，该值较高。通常说明你的表索引不正确或写入的查询没有利用索引。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_rollback</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					内部<span>ROLLBACK</span><span>语句的数量。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_savepoint</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在一个存储引擎放置一个保存点的请求数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_savepoint_rollback</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					在一个存储引擎的要求回滚到一个保存点数目。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_update</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在表内更新一行的请求数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Handler_write</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					在表内插入一行的请求数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_data</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					包含数据的页数<span>(</span><span>脏或干净</span><span>)</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_dirty</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					当前的脏页数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_flushed</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					要求清空的缓冲池页数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_free</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					空页数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_latched</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在<span>InnoDB</span><span>缓冲池中锁定的页数。这是当前正读或写或由于其它原因不能清空或删除的页数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_misc</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					忙的页数，因为它们已经被分配优先用作管理，例如行锁定或适用的哈希索引。该值还可以计算为<span>Innodb_buffer_pool_pages_total - Innodb_buffer_pool_pages_free - Innodb_buffer_pool_pages_data</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_pages_total</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					缓冲池总大小（页数）。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_read_ahead_rnd</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					InnoDB<span>初始化的</span><span>“</span><span>随机</span><span>”read-aheads</span><span>数。当查询以随机顺序扫描表的一大部分时发生。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_read_ahead_seq</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					InnoDB<span>初始化的顺序</span><span>read-aheads</span><span>数。当</span><span>InnoDB</span><span>执行顺序全表扫描时发生。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_read_requests</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					InnoDB<span>已经完成的逻辑读请求数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_reads</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					不能满足<span>InnoDB</span><span>必须单页读取的缓冲池中的逻辑读数量。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_wait_free</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					一般情况，通过后台向<span>InnoDB</span><span>缓冲池写。但是，如果需要读或创建页，并且没有干净的页可用，则它还需要先等待页面清空。该计数器对等待实例进行记数。如果已经适当设置缓冲池大小，该值应小。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_buffer_pool_write_requests</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					向<span>InnoDB</span><span>缓冲池的写数量。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_fsyncs</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					fsync()<span>操作数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_pending_fsyncs</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					当前挂起的<span>fsync()</span><span>操作数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_pending_reads</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					当前挂起的读数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_pending_writes</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					当前挂起的写数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_read</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					至此已经读取的数据数量（字节）。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_reads</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					数据读总数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_writes</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					数据写总数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_data_written</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					至此已经写入的数据量（字节）。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_dblwr_pages_written</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					已经执行的双写操作数量</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_dblwr_writes</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					双写操作已经写好的页数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_log_waits</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					我们必须等待的时间，因为日志缓冲区太小，我们在继续前必须先等待对它清空</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;" colspan="3">
+				<p>
+					<a href="http://www.sandzhang.com/blog/2010/04/07/mysql-show-status-explained-detail/" title="MySQL运行状态show status中文详解">原文地址</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_log_write_requests</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					日志写请求数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_log_writes</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					向日志文件的物理写数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_os_log_fsyncs</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					向日志文件完成的<span>fsync()</span><span>写数量。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_os_log_pending_fsyncs</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					挂起的日志文件<span>fsync()</span><span>操作数量。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_os_log_pending_writes</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					挂起的日志文件写操作</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_os_log_written</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					写入日志文件的字节数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_page_size</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					编译的<span>InnoDB</span><span>页大小</span><span>(</span><span>默认</span><span>16KB)</span><span>。许多值用页来记数；页的大小很容易转换为字节。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_pages_created</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					创建的页数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_pages_read</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					读取的页数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_pages_written</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					写入的页数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_row_lock_current_waits</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					当前等待的待锁定的行数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_row_lock_time</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					行锁定花费的总时间，单位毫秒。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_row_lock_time_avg</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					行锁定的平均时间，单位毫秒。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_row_lock_time_max</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					行锁定的最长时间，单位毫秒。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_row_lock_waits</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					一行锁定必须等待的时间数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_rows_deleted</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					从<span>InnoDB</span><span>表删除的行数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_rows_inserted</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					插入到<span>InnoDB</span><span>表的行数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_rows_read</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					从<span>InnoDB</span><span>表读取的行数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Innodb_rows_updated</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					InnoDB<span>表内更新的行数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Key_blocks_not_flushed</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					键缓存内已经更改但还没有清空到硬盘上的键的数据块数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Key_blocks_unused</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					键缓存内未使用的块数量。你可以使用该值来确定使用了多少键缓存</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Key_blocks_used</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					键缓存内使用的块数量。该值为高水平线标记，说明已经同时最多使用了多少块。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Key_read_requests</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					从缓存读键的数据块的请求数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Key_reads</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					从硬盘读取键的数据块的次数。如果<span>Key_reads</span><span>较大，则</span><span>Key_buffer_size</span><span>值可能太小。可以用</span><span>Key_reads/Key_read_requests</span><span>计算缓存损失率。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Key_write_requests</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					将键的数据块写入缓存的请求数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Key_writes</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					向硬盘写入将键的数据块的物理写操作的次数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Last_query_cost</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Session</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					用查询优化器计算的最后编译的查询的总成本。用于对比同一查询的不同查询方案的成本。默认值<span>0</span><span>表示还没有编译查询。</span><span> </span><span>默认值是</span><span>0</span><span>。</span><span>Last_query_cost</span><span>具有会话范围。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Max_used_connections</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					服务器启动后已经同时使用的连接的最大数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					ndb*</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					ndb<span>集群相关</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Not_flushed_delayed_rows</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; border: solid 1.0px #b3cbde;">
+				<p>
+					等待写入<span>INSERT DELAY</span><span>队列的行数。</span></p>
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Open_files</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					打开的文件的数目。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Open_streams</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					打开的流的数量<span>(</span><span>主要用于记录</span><span>)</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Open_table_definitions</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					缓存的<span>.frm</span><span>文件数量</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Open_tables</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					当前打开的表的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;" colspan="3">
+				<p>
+					原文地址:<a href="http://www.sandzhang.com/blog/2010/04/07/mysql-show-status-explained-detail/" title="MySQL运行状态show status中文详解">http://www.sandzhang.com/blog/2010/04/07/mysql-show-status-explained-detail/</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Opened_files</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					文件打开的数量。不包括诸如套接字或管道其他类型的文件。<span> </span><span>也不包括存储引擎用来做自己的内部功能的文件。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Opened_table_definitions</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					已经缓存的<span>.frm</span><span>文件数量</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Opened_tables</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					已经打开的表的数量。如果<span>Opened_tables</span><span>较大，</span><span>table_cache </span><span>值可能太小。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Prepared_stmt_count</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					当前的预处理语句的数量。<span> (</span><span>最大数为系统变量</span><span>: max_prepared_stmt_count)&nbsp;</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_free_blocks</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					查询缓存内自由内存块的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_free_memory</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					用于查询缓存的自由内存的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_hits</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					查询缓存被访问的次数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_inserts</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					加入到缓存的查询数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_lowmem_prunes</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					由于内存较少从缓存删除的查询数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_not_cached</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					非缓存查询数<span>(</span><span>不可缓存，或由于</span><span>query_cache_type</span><span>设定值未缓存</span><span>)</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_queries_in_cache</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					登记到缓存内的查询的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Qcache_total_blocks</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					查询缓存内的总块数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Queries</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					服务器执行的请求个数，包含存储过程中的请求。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Questions</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					已经发送给服务器的查询的个数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Rpl_status</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					失败安全复制状态<span>(</span><span>还未使用</span><span>)</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Select_full_join</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					没有使用索引的联接的数量。如果该值不为<span>0,</span><span>你应仔细检查表的索引</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Select_full_range_join</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在引用的表中使用范围搜索的联接的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Select_range</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					在第一个表中使用范围的联接的数量。一般情况不是关键问题，即使该值相当大。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Select_range_check</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在每一行数据后对键值进行检查的不带键值的联接的数量。如果不为<span>0</span><span>，你应仔细检查表的索引。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Select_scan</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					对第一个表进行完全扫描的联接的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Slave_heartbeat_period</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					复制的心跳间隔</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Slave_open_temp_tables</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					从服务器打开的临时表数量</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Slave_received_heartbeats</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					从服务器心跳数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Slave_retried_transactions</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					本次启动以来从服务器复制线程重试次数</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Slave_running</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					如果该服务器是连接到主服务器的从服务器，则该值为<span>ON</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Slow_launch_threads</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					创建时间超过<span>slow_launch_time</span><span>秒的线程数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Slow_queries</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					查询时间超过<span>long_query_time</span><span>秒的查询的个数。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Sort_merge_passes</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					排序算法已经执行的合并的数量。如果这个变量值较大，应考虑增加<span>sort_buffer_size</span><span>系统变量的值。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Sort_range</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					在范围内执行的排序的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Sort_rows</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					已经排序的行数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Sort_scan</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Both</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					通过扫描表完成的排序的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					ssl<span>＊</span></p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					ssl<span>连接相关</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Table_locks_immediate</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					立即获得的表的锁的次数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Table_locks_waited</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					不能立即获得的表的锁的次数。如果该值较高，并且有性能问题，你应首先优化查询，然后拆分表或使用复制。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Threads_cached</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					线程缓存内的线程的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Threads_connected</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					当前打开的连接的数量。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Threads_created</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="height: 26.0px; background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					创建用来处理连接的线程数。如果<span>Threads_created</span><span>较大，你可能要增加</span><span>thread_cache_size</span><span>值。缓存访问率的计算方法</span><span>Threads_created/Connections</span><span>。</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					Threads_running</p>
+			</td>
+			<td style=" border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="border: solid 1.0px #b3cbde;">
+				<p>
+					激活的（非睡眠状态）线程数。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Uptime</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					服务器已经运行的时间（以秒为单位）。</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Uptime_since_flush_status</p>
+			</td>
+			<td style=" background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					Global</p>
+			</td>
+			<td style="background-color: #f1f6f7; border: solid 1.0px #b3cbde;">
+				<p>
+					最近一次使用<span>FLUSH STATUS </span><span>的时间（以秒为单位）。</span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p></p>
+	</div>

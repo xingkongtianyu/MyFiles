@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)http://www.deepshiftlabs.com/dev_blog/?p=1880&lang=en-us -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 «  Deep Shift Labs Development Blog</title>
+<link rel="SHORTCUT ICON" href="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/favicon.ico">
+<link rel="stylesheet" href="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/style.css" type="text/css" media="screen">
+<link rel="alternate" type="application/rss+xml" title="Deep Shift Labs Development Blog RSS Feed" href="http://www.deepshiftlabs.com/dev_blog/?feed=rss2&lang=en-us">
+<link rel="alternate" type="application/atom+xml" title="Deep Shift Labs Development Blog Atom Feed" href="http://www.deepshiftlabs.com/dev_blog/?feed=atom&lang=en-us">
+<link rel="pingback" href="http://www.deepshiftlabs.com/dev_blog/xmlrpc.php">
+
+<style type="text/css" media="screen">
+
+	/*#page { background: url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/kubrickbgwide.jpg") repeat-y top; border: none; }*/
+	#page { background: url("http://www.deepshiftlabs.com/dev_blog/wp-content/themes/dev_blog/images/bg_wide.gif") repeat-y top; border: none; }
+
+</style>
+
+
+<link rel="alternate" type="application/rss+xml" title="Deep Shift Labs Development Blog » Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 Comments Feed" href="http://www.deepshiftlabs.com/dev_blog/?feed=rss2&p=1880&lang=en-us">
+<script type="text/javascript" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.deepshiftlabs.com/dev_blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.deepshiftlabs.com/dev_blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Sparklines galore" href="http://www.deepshiftlabs.com/dev_blog/?p=1889&lang=en-us">
+<link rel="next" title="XSS and HTML formatted text" href="http://www.deepshiftlabs.com/dev_blog/?p=1885&lang=en-us">
+<link rel="canonical" href="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog.htm">
+
+
+	<link rel="stylesheet" href="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/codebox.css" type="text/css" media="screen">
+	<script language="javascript" type="text/javascript" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/codebox.js"></script>
+
+</head>
+<body>
+<div id="page">
+
+
+<div id="header">
+		<div id="headertxt">
+			            Deep Shift Labs <a href="http://www.deepshiftlabs.com/dev_blog/">development blog</a><br>is trying to answer the rhetorical Russian question <a target="_blank" href="http://en.wikipedia.org/wiki/Alexander_Herzen">'Who is to blame?'</a> <br>
+                applied to a process of web application development, system administration and business.
+					</div>
+		<div id="headerimg">
+			<a href="http://www.deepshiftlabs.com/"><img src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/fish_green.png" border="0"></a>
+		</div>
+</div>
+
+<hr>
+
+	<div id="content" class="widecolumn">
+					<div class="post-1880 post type-post status-publish format-standard hentry category-uncategorized" id="post-1880">
+			<h2>Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008				<br><span class="post_date">Sep 2nd, 2012</span> <span class="author"></span>
+			</h2>
+
+			<div class="entry">
+				<div style="float: left;"><img class="alignleft size-full wp-image-1752" style="padding: 5px 20px 10px 0;" title="Instal PHP 5.4.6 on IIS 7 to work with MS SQL 2008" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/php_iis_tn_2.png" alt="Instal PHP 5.4.6 on IIS 7 to work with MS SQL 2008"></div>
+<p>I decided to write this post because I have not found a simple and clear description for installing PHP on Windows, and setting this not very common combination to work with MS SQL 2008.</p>
+<p>We are currently working on porting the largest system ever created in Deep Shift Labs from Windows 2000 and MS SQL 2000 to Windows 2008 and MS SQL 2008. I want to speak briefly about the history of this system and why we actually needed to install PHP on Windows. The system is about 800K lines of PHP code and it has been helping people to solve their business needs for the last 10 years. This system is designed for one of our customers. The first few years, the system worked on FreeBSD, Apache and PostgreSQL. Then the client’s company went public, and they needed to switch to commercial software. Sometime in 2004, we have been able, thanks to the fact that we originally used <a href="http://adodb.sourceforge.net/" target="_blank">ADODB</a>, to move, with a little effort, from FreeBSD/Apache to Windows 2000/IIS 5 (PHP runs as an ISAPI module). Finally, in 2006 we moved the then small database, both in structure and in size, to MS SQL 2000 from PostgreSQL.</p>
+<p>The most difficult part in the distant 2006 was to find a driver which is bug free with MS SQL. We had tried everything supported by ADODB back then, and, in the end, we decided in favor of php_dblib.dll suggested and maintained by Frank Kromann. <a href="http://www.linkedin.com/in/webbypixel" target="_blank">Frank</a> was <a href="http://php.net/credits.php" target="_blank">maintaining</a> MS SQL extensions in PHP project and helped us immensely. The php_mssql.dll driver was using ntwdblib.dll from Microsoft, that does not work with dates and long texts properly. php_dblib.dll used dblib.dll from FreeTDS and we have not found any problems in it and started using it.<br>
+<span id="more-1880"></span><br>
+And now came the moment when the customer wants to move to the operating system and database that have Microsoft support (Windows 2000 and MS SQL 2000 are not supported anymore) and such a move, in general, is a common requirement in large enterprises.</p>
+<p>Naturally, in the ADODB 4.93 we have been using since 2006, there is no mssqlnative driver support and so the challenge was set as follows:</p>
+<p>- Move the database from MS SQL 2000 to MS SQL 2008<br>
+- Move the web server from Windows 2000 and IIS 5 (ISAPI) on Windows 2008 and IIS 7 (FastCGI)<br>
+- Upgrade PHP 5.1.6 to PHP 5.4.6<br>
+- Upgrade ADODB from 4.93 to 5.17 with transition to the new driver ‘mssqlnative’<br>
+- To test the system, including the two replications processes to our database from servers running MS SQL 2000 and MS SQL 2005.</p>
+<p>This is one of the installation methods (obviously the one we used).</p>
+<p>1. Create C:\PHP and C:\tmp folders<br>
+2. Load non thread safe PHP version recommended for use <a href="http://www.php.net/manual/en/install.windows.iis7.php" target="_blank">here</a> and <a href="http://learn.iis.net/page.aspx/246/using-fastcgi-to-host-php-applications-on-iis/" target="_blank">here</a>. The file will contain _nts_ in the name, for example – php-5.4.6-nts-Win32-VC9-x86.zip (latest version available at the time of writing this post) from the site <a href="http://windows.php.net/download/" target="_blank">http://windows.php.net/download/</a>.<br>
+3. Unpack it in C:\PHP<br>
+4. Load <a href="http://www.microsoft.com/en-us/download/details.aspx?id=20098" target="_blank">latest</a> drivers from MS SQL Microsoft (file SQLSRV30) and extract it to C:\PHP\ext<br>
+5. Download the PHP <a href="http://www.microsoft.com/web/platform/phponwindows.aspx" target="_blank">web installer</a> from Microsoft. They offer two versions and I used the latter one available with PHP 5.3.13. Install it.</p>
+<p>You can ask a reasonable question why we install 5.3.13 to switch to 5.4.6. There are two reasons. First – I did not manage to set PHP 5.4.6 and manually configure IIS. Despite my attempts to let PHP see its php.ini file inside the C:\PHP I failed to do so. According to all the manuals you need to create a variable PHPRC assigning the path to php.ini, but in my case, someone has done something wrong.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHPRC did not work for me" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/PHPRC.png" alt="PHPRC did not work for me"></p>
+<p>Since PHP couldn’t see the configuration file, MS SQL driver was not loaded. Being stuck at this point for a couple of hours I asked for help in the forum and started looking for alternatives, waiting until America wakes up and sees my ‘SOS’ message in the forum. It was then that I accidentally came across a <a href="http://www.microsoft.com/web/platform/phponwindows.aspx" target="_blank">site</a> where I found the alternative I was looking for. Maybe I would not have started using the installer if it had not offered to set this magical and wonderful <a href="http://phpmanager.codeplex.com/" target="_blank">PHP Manager</a> I could not resist at the thought of trying. In the end I found that the PHP Manager allows adding PHP 5.4.6, making its php.ini file perfectly visible.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="Microsoft PHP web installer" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/php_installer.png" alt="Microsoft PHP web installer"></p>
+<p>It installs all the necessary components as well. It took some 10 years for Microsoft to add some really cool things to run PHP on Windows – here you have MS SQL driver and the installer which adds a special PHP Manager inside IIS, and even <a href="http://blogs.iis.%20net/robert_mcmurray/archive/2012/07/26/windows-cache-1-3-for-for-php-5-4.aspx" target="_blank">Windows Cache</a> PHP accelerator for IIS.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP Manager" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/iis_manager.png" alt="PHP Manager"></p>
+<p>After installation, we have PHP 5.3.13 installed in the Program Files and PHP Manager inside IIS.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP Manager dashboard" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/php_manager.png" alt="PHP Manager dashboard"></p>
+<p>As you can see from the PHP Manager, you can control the configuration parameters from php.ini, and the extensions are shown in a separate page. Also here we see what php.ini file is being used and where the error logs are written. There is quick access to the FastCGI handler created by the installer. It is possible to add other versions of PHP and switch between them. We have not tested if it is possible to use PHP Manager to set different PHP versions on different virtual hosts. I think this and much more, such as to use different php.ini files for different virtual hosts can be done manually using the excellent <a href="http://learn.iis.net/page.aspx/246/using-fastcgi-to-host-php-applications-on-iis/" target="_blank">article</a> by Ruslan Yakushev from Microsoft. We just needed to add PHP version 5.4.6 to “live happily ever after”.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="Adding PHP 5.4.6" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/adding_5_4_6.png" alt="Adding PHP 5.4.6"></p>
+<p>Now we can add PHP 5.4.6, which we put into in C:\PHP. After adding, we see that IIS now uses a new version of PHP, and that PHP Manager created a new handler, which is used (we do not see it here), but we can check with phpinfo(), which PHP manager can dynamically generate for us (how-cool-it-is!).</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP 5.4.6 can see php.ini now" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/php_info.png" alt="PHP 5.4.6 can see php.ini now"></p>
+<p>Now it is time to look at PHP extensions (modules). I removed mysql and added both versions of the MS SQL driver sqlsrv and pdo_sqlsrv. I forgot to check if IIS sees our changes immediately. I am used to executing “iisreset” after changing configuration.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP Manager extensions UI" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/extensions.png" alt="PHP Manager extensions UI"></p>
+<p>PHP Manager offers two pre-defined configuration options for error handling for development and production.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP Manager error reporting UI" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/error_reporting.png" alt="PHP Manager error reporting UI"></p>
+<p>When I changed the path to the error log, PHP Manager did not see my changes, and I had to restart the IIS. I really got used to the old fashioned way for a folder for uploaded files, session and logs and store them in PHP C:\tmp. No wonder our periodic scripts are in C:\etc. Options ‘Configure error reporting’ and ‘Set runtime limits’ are kept separately in PHP Manager for convenience only, as they all (except for the extension modules) are available from the ‘Manage all settings’ panel.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="PHP Manager points to a wrong location after PHP version switch" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/still_wrong.png" alt="PHP Manager points to a wrong location after PHP version switch"></p>
+<p>If you need to parse HTML files with PHP – create one more mapping by looking at parameters of existing PHP mapping you already have.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="Setting PHP to handle HTML files (if needed)" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/php_html.png" alt="Setting PHP to handle HTML files (if needed)"></p>
+<p>Now we can try to connect to MS SQL with the driver only and via ADODB. First you need to make sure the server is configured to allow TCP/IP as well as port 1433 is open on the Windows firewall.</p>
+<p><img class="aligncenter size-full wp-image-1734" style="-ms-interpolation-mode: bicubic;" title="Checking SQL Server networking" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/sql.png" alt="Checking SQL Server networking"></p>
+<p>In my case it was not so. If you cannot connect from PHP, it is recommended to install SQLCMD and use it for testing. For example, <a href="http://www.microsoft.com/en-us/download/details.aspx?id=16978#SQLCMD" target="_blank">here</a> we will find the required version of SQLCMD.</p>
+<p>I want to draw your attention to the fact that the new Microsoft driver returns datetime as PHP <a href="http://www.php.net/manual/en/class.datetime.php" target="_blank">DateTime::</a> object. But we use ADODB, which does this little trick converting this object into a string on line 794 of adodb-mssqlnative.inc.php file:</p>
+
+<div class="wp_codebox_msgheader"><span class="right"></span><span class="left"><a href="javascript:;">View Code</a> PHP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table width="100%"><tbody><tr id="p18801"><td class="code" id="p1880code1"><pre class="php" style="font-family:monospace;"><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fields</span><span style="color: #009900;">[</span><span style="color: #000088;">$key</span><span style="color: #009900;">]</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$value</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span><span style="color: #009900;">(</span><span style="color: #0000ff;">"Y-m-d<span style="color: #000099; font-weight: bold;">\T</span>H:i:s\Z"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></pre></td></tr></tbody></table></div>
+
+<p>Thus, returning us the string ’2012-08-22T23:42:22Z ‘instead of the usual ’2012-08-22 23:42:22′ and so for backward compatibility, you can correct adodb-mssqlnative.inc.php this way:</p>
+
+<div class="wp_codebox_msgheader"><span class="right"></span><span class="left"><a href="javascript:;">View Code</a> PHP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table width="100%"><tbody><tr id="p18802"><td class="code" id="p1880code2"><pre class="php" style="font-family:monospace;"><span style="color: #b1b100;">if</span><span style="color: #009900;">(</span><a href="http://www.php.net/is_array"><span style="color: #990000;">is_array</span></a><span style="color: #009900;">(</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fields</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span> <span style="color: #009900;">{</span>
+    <span style="color: #b1b100;">foreach</span><span style="color: #009900;">(</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fields</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$key</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$value</span><span style="color: #009900;">)</span> <span style="color: #009900;">{</span>
+        <span style="color: #b1b100;">if</span> <span style="color: #009900;">(</span><a href="http://www.php.net/is_object"><span style="color: #990000;">is_object</span></a><span style="color: #009900;">(</span><span style="color: #000088;">$value</span><span style="color: #009900;">)</span> <span style="color: #339933;">&amp;&amp;</span> <a href="http://www.php.net/method_exists"><span style="color: #990000;">method_exists</span></a><span style="color: #009900;">(</span><span style="color: #000088;">$value</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'format'</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span> <span style="color: #009900;">{</span><span style="color: #666666; font-style: italic;">//is DateTime object</span>
+	    <span style="color: #666666; font-style: italic;">//$this-&gt;fields[$key] = $value-&gt;format("Y-m-d\TH:i:s\Z");</span>
+            <span style="color: #666666; font-style: italic;">//DSL DateTime output format fix</span>
+            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fields</span><span style="color: #009900;">[</span><span style="color: #000088;">$key</span><span style="color: #009900;">]</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$value</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span><span style="color: #009900;">(</span><span style="color: #0000ff;">"Y-m-d H:i:s"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">}</span>
+    <span style="color: #009900;">}</span>
+<span style="color: #009900;">}</span></pre></td></tr></tbody></table></div>
+
+<p>Here is an example, where you can find connection and query snippets which use Microsoft driver directly and via ADODB.</p>
+
+<div class="wp_codebox_msgheader"><span class="right"></span><span class="left"><a href="javascript:;">View Code</a> PHP</span><div class="codebox_clear"></div></div><div class="wp_codebox" style="display: block;"><table width="100%"><tbody><tr id="p18803"><td class="code" id="p1880code3"><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"&lt;B&gt;Direct driver connection&lt;/b&gt;&lt;BR&gt;"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$connectionInfo</span> <span style="color: #339933;">=</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">(</span>
+      <span style="color: #0000ff;">"UID"</span><span style="color: #339933;">=&gt;</span><span style="color: #0000ff;">'aws_user'</span><span style="color: #339933;">,</span>
+      <span style="color: #0000ff;">"PWD"</span><span style="color: #339933;">=&gt;</span><span style="color: #0000ff;">'Q1w2e3r4t5'</span><span style="color: #339933;">,</span>
+      <span style="color: #0000ff;">"Database"</span><span style="color: #339933;">=&gt;</span><span style="color: #0000ff;">"AWS_Database"</span>
+<span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">/* Connect using SQL Server Authentication. */</span>
+<span style="color: #000088;">$conn</span> <span style="color: #339933;">=</span> sqlsrv_connect<span style="color: #009900;">(</span><span style="color: #0000ff;">'192.168.3.86, 1433'</span><span style="color: #339933;">,</span> <span style="color: #000088;">$connectionInfo</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">if</span><span style="color: #009900;">(</span> <span style="color: #000088;">$conn</span> <span style="color: #339933;">===</span> <span style="color: #000000; font-weight: bold;">false</span> <span style="color: #009900;">)</span>
+<span style="color: #009900;">{</span>
+   <a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"Unable to connect.&lt;/br&gt;"</span><span style="color: #339933;">;</span>
+   <a href="http://www.php.net/die"><span style="color: #990000;">die</span></a><span style="color: #009900;">(</span> <a href="http://www.php.net/print_r"><span style="color: #990000;">print_r</span></a><span style="color: #009900;">(</span> sqlsrv_errors<span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">true</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span>
+&nbsp;
+&nbsp;
+<span style="color: #000088;">$tsql</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">"SELECT GETDATE() AS today"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$stmt</span> <span style="color: #339933;">=</span> sqlsrv_query<span style="color: #009900;">(</span> <span style="color: #000088;">$conn</span><span style="color: #339933;">,</span> <span style="color: #000088;">$tsql</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">if</span><span style="color: #009900;">(</span> <span style="color: #000088;">$stmt</span> <span style="color: #339933;">===</span> <span style="color: #000000; font-weight: bold;">false</span> <span style="color: #009900;">)</span>
+<span style="color: #009900;">{</span>
+   <a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"Error in executing query.&lt;/br&gt;"</span><span style="color: #339933;">;</span>
+   <a href="http://www.php.net/die"><span style="color: #990000;">die</span></a><span style="color: #009900;">(</span> <a href="http://www.php.net/print_r"><span style="color: #990000;">print_r</span></a><span style="color: #009900;">(</span> sqlsrv_errors<span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">,</span> <span style="color: #000000; font-weight: bold;">true</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">}</span>
+&nbsp;
+<span style="color: #000088;">$row</span> <span style="color: #339933;">=</span> sqlsrv_fetch_array<span style="color: #009900;">(</span><span style="color: #000088;">$stmt</span><span style="color: #339933;">,</span> SQLSRV_FETCH_ASSOC<span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"Today is "</span><span style="color: #339933;">.</span><span style="color: #000088;">$row</span><span style="color: #009900;">[</span><span style="color: #0000ff;">'today'</span><span style="color: #009900;">]</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">format</span><span style="color: #009900;">(</span><span style="color: #0000ff;">'Y-m-d H:i:s'</span><span style="color: #009900;">)</span><span style="color: #339933;">.</span><span style="color: #0000ff;">"&lt;/br&gt;"</span><span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+sqlsrv_free_stmt<span style="color: #009900;">(</span> <span style="color: #000088;">$stmt</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+sqlsrv_close<span style="color: #009900;">(</span> <span style="color: #000088;">$conn</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+<a href="http://www.php.net/ini_set"><span style="color: #990000;">ini_set</span></a><span style="color: #009900;">(</span> <span style="color: #0000ff;">"include_path"</span><span style="color: #339933;">,</span> <a href="http://www.php.net/ini_get"><span style="color: #990000;">ini_get</span></a><span style="color: #009900;">(</span> <span style="color: #0000ff;">"include_path"</span> <span style="color: #009900;">)</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">";"</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$_SERVER</span><span style="color: #009900;">[</span><span style="color: #0000ff;">"DOCUMENT_ROOT"</span><span style="color: #009900;">]</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">"/include"</span> <span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #b1b100;">require_once</span><span style="color: #009900;">(</span><span style="color: #0000ff;">"adodb5\adodb.inc.php"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$user</span>     <span style="color: #339933;">=</span> <span style="color: #0000ff;">"aws_user"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$password</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">"Q1w2e3r4t5"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$server</span><span style="color: #339933;">=</span><span style="color: #0000ff;">"192.168.3.86, 1433"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$database</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">"AWS_Database"</span><span style="color: #339933;">;</span>
+&nbsp;
+<a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"&lt;B&gt;ADODB MSSQL Native connection&lt;/b&gt;&lt;BR&gt;"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$adoConnection</span> <span style="color: #339933;">=</span> ADONewConnection<span style="color: #009900;">(</span><span style="color: #0000ff;">'mssqlnative'</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">//$adoConnection-&gt;debug = true;</span>
+<span style="color: #000088;">$adoConnection</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">Connect</span><span style="color: #009900;">(</span><span style="color: #000088;">$server</span><span style="color: #339933;">,</span> <span style="color: #000088;">$user</span><span style="color: #339933;">,</span> <span style="color: #000088;">$password</span><span style="color: #339933;">,</span> <span style="color: #000088;">$database</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+<span style="color: #000088;">$rs</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$adoConnection</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">Execute</span><span style="color: #009900;">(</span><span style="color: #000088;">$tsql</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+&nbsp;
+<a href="http://www.php.net/echo"><span style="color: #990000;">echo</span></a> <span style="color: #0000ff;">"Today is "</span><span style="color: #339933;">.</span><span style="color: #000088;">$rs</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fields</span><span style="color: #009900;">[</span><span style="color: #0000ff;">'today'</span><span style="color: #009900;">]</span><span style="color: #339933;">.</span><span style="color: #0000ff;">"&lt;/br&gt;"</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$adoConnection</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">Close</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span></pre></td></tr></tbody></table></div>
+
+<p>In conclusion, we want to say that the Microsoft site provides a lot of useful information for running PHP on IIS and using Microsoft drivers to connect to MS SQL. For example, <a href="http://php.iis.net/" target="_blank">here</a> you will find the entry to the forum PHP/IIS, and other useful links. Forums dedicated to PHP driver for MS SQL databases are located <a href="http://social.msdn.microsoft.com/Forums/en-US/sqldriverforphp/threads" target="_blank">here</a>. I used them <a href="http://social.msdn.microsoft.com/Forums/en-US/sqldriverforphp/thread/b8ede10a-a679-49d0-b748-0a5944409d8f" target="_blank">more</a>-than-<a href="http://social.msdn.microsoft.com/Forums/en-US/sqldriverforphp/thread/0e023a13-aac2-4114-a8ac-178e54427f39" target="_blank">once</a>. They are active and guys helped me a lot.</p>
+<p>Finally a couple of handy articles on how to configure PHP on IIS:<br>
+- <a href="http://learn.iis.net/page.aspx/745/enable-per-site-php-configuration-on-iis-60-and-iis-7-and-above/" target="_blank">Enable Per-Site PHP Configuration on IIS 7 and IIS 6.0</a><br>
+- <a href="http://learn.iis.net/page.aspx/246/using-fastcgi-to-host-php-applications-on-iis/" target="_blank">Using FastCGI to Host PHP Applications on IIS</a><br>
+- <a href="http://learn.iis.net/page.aspx/247/using-fastcgi-to-host-php-applications-on-iis-60/" target="_blank">Using FastCGI to Host PHP Applications on IIS 6.0</a></p>
+<p><em>Igor</em><br>
+</p>
+				<center><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&lang=en-us&print=1" title="Print this post" rel="nofollow">Print this post</a>
+| <a href="http://www.deepshiftlabs.com/dev_blog/">Home</a></center>
+											</div>
+		</div>
+
+	
+
+
+	<h3 id="comments">11 comments	</h3>
+
+	<ol class="commentlist">
+			<li class="comment even thread-even depth-1" id="comment-1350">
+				<div id="div-comment-1350" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/a87ee52ca514d85334aed98c13b3ab60" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Sylvia</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1350">
+			17 October 2012 at 7:00</a>		</div>
+
+		<p>Я так понимаю что для этого нужно иметь полный доступ к серверу, так? Просто у меня именно windows-хостинг и эта проблема надоела уже)))</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1351">
+				<div id="div-comment-1351" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1351">
+			17 October 2012 at 7:09</a>		</div>
+
+		<p>Что именно надоело? <img src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-1381">
+				<div id="div-comment-1381" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/dbc5ef80fffad054acedb89809f5f759" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">ivaseg</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1381">
+			16 November 2012 at 15:25</a>		</div>
+
+		<p>Как у тебя получилось установить Microsoft Drivers 3.0 for PHP v5.4 for SQL Server in IIS через Web Platform Installer? У меня на Windows 2008 Server и MS SQL 2008 и IIS7 через Web Platform Installer не захотело установиться, выдало ошибку:<br>
+Невозможно установить этот продукт, поскольку продукт, от которого он зависит, не был успешно установлен.</p>
+<p>И вот ошибки зависимостей:<br>
+Product: Microsoft SQL Server 2012 Native Client  — Installation of this product failed because it is not supported on this operating system. For information on supported configurations, see the product documentation.</p>
+<p>Так как у тебя Microsoft SQL Server 2012 Native Client установился, если установщик пишет, что он не поддерживается Windows 2008 Server?</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1382">
+				<div id="div-comment-1382" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1382">
+			17 November 2012 at 7:14</a>		</div>
+
+		<p>Я не устанавливал “Microsoft Drivers 3.0 for PHP v5.4 for SQL Server in IIS через Web Platform Installer”</p>
+<p>Я загрузил с сайта Microsoft инсталлятор PHP 5.3.6 и установил его. Далее я просто добавил 5.4. В посте параграф начинается со слов “Теперь мы можем добавить PHP 5.4.6,  …..”.<br>
+Подготовительная работа для 5.4.6 описана выше в посте:</p>
+<p>1. Создаём папки C:\PHP и C:\tmp<br>
+2. Загружаем non thread safe PHP версию, рекомендуемую к использованию тут и тут. Файл будет содержать _nts_ в имени, например – php-5.4.6-nts-Win32-VC9-x86.zip (последняя доступная версия на момент написания поста) с сайта <a href="http://windows.php.net/download/" rel="nofollow">http://windows.php.net/download/</a>.<br>
+3. Распаковываем её в C:\PHP<br>
+4. Загружаем последнюю версию драйверов MS SQL от Microsoft (файл SQLSRV30) и распаковываем в C:\PHP\ext</p>
+<p>Видите пункт 4? Просто распаковали и положили в папку. Нет никакого Web Platform Installer-а</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-1383">
+				<div id="div-comment-1383" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/dbc5ef80fffad054acedb89809f5f759" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">ivaseg</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1383">
+			17 November 2012 at 8:40</a>		</div>
+
+		<p>Просто у вас на скриншоте как раз и показан Web Platform Installer <a href="http://www.deepshiftlabs.com/dev_blog/wp-content/uploads/2012/09/php_installer.png" rel="nofollow">http://www.deepshiftlabs.com/dev_blog/wp-content/uploads/2012/09/php_installer.png</a></p>
+<p>ЗЫ: проблема решена, нужно было установить SP2 для Windows 2008 Server, т.к. на SP1 или вообще без сервис пака, не поставить. Кстати, так и не понял, какой резон было ставить 5.3.6, чтобы потом поставить 5.4.6? Объяснение я то понял, но вопрос в том, почему именно 5.3.6, почему не 5.4.0 (а потом уже 5.4.6 поставить)?</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1384">
+				<div id="div-comment-1384" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1384">
+			17 November 2012 at 9:45</a>		</div>
+
+		<p>Про 5.3.6 в посте ни слова.</p>
+<p>Web Platform Installer устанавливает всё в этих двух версиях (это прямо сейчас на сайте Майкрософт)- <a href="http://www.microsoft.com/web/platform/phponwindows.aspx" rel="nofollow">http://www.microsoft.com/web/platform/phponwindows.aspx</a> PHP 5.2.17 и 5.3.5.<br>
+Когда я устанавливал последняя доступная версия Web Platform Installer была 5.3.13, а мне нужна была 5.4. Вот я и описал процесс установки 5.3.13 из Web Platform Installer и добавления 5.4 постфактум.</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor even thread-even depth-1" id="comment-1385">
+				<div id="div-comment-1385" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1385">
+			17 November 2012 at 9:51</a>		</div>
+
+		<p>As for: “Product: Microsoft SQL Server 2012 Native Client — Installation of this product failed because it is not supported on this operating system. For information on supported configurations, see the product documentation.”</p>
+<p>If you Google it you will see – <a href="http://msdn.microsoft.com/en-us/library/cc280356.aspx" rel="nofollow">http://msdn.microsoft.com/en-us/library/cc280356.aspx</a></p>
+<p>However as usual with Microsoft you will not find SP2 as a requirement but below in comments:<br>
+——————<br>
+“SQL Server Native Client 2012 can be installed with Windows Server 2008 SP2″</p>
+<p>- Windows Server 2008 – Failed<br>
+- Windows Server 2008 SP1 – Not tested yet<br>
+- Windows Server 2008 SP2 – Success!<br>
+——————-</p>
+<p>Basically I updated my Win 2008 R2 before installation and I did not hit this problem and as a result did not describe it in my post.</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1386">
+				<div id="div-comment-1386" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1386">
+			17 November 2012 at 9:56</a>		</div>
+
+		<p>“Про 5.3.6 в посте ни слова.” – беру свои слова обратно. Если бы вы не написали – ошибка бы осталась. Спасибо. Исправил пост. Устанавливал не 5.3.6, а 5.3.13, которая была последней доступной из Web Installer во время написания поста.</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-1387">
+				<div id="div-comment-1387" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/dbc5ef80fffad054acedb89809f5f759" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">ivaseg</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1387">
+			17 November 2012 at 12:18</a>		</div>
+
+		<p>кстати, весь процесс можно чуток ускорить, если ставить все через Web Platform Installer, в конечном счете нам нужно просто отдельно потом добавить себе версию ПХП посвежее, и не нужно ничего скачивать вручную не нужно, все почти на автомате делается.</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment byuser comment-author-ivk bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1408">
+				<div id="div-comment-1408" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/7c98619419efb5c12e2799aae5f89d41" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">Igor Kryltsov</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1408">
+			28 November 2012 at 3:28</a>		</div>
+
+		<blockquote><p>кстати, весь процесс можно чуток ускорить, если ставить все через Web Platform Installer, </p></blockquote>
+<p>Так так и было сделано. Что вы видите в моём посте лишним?</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+		<li class="comment even thread-even depth-1" id="comment-1439">
+				<div id="div-comment-1439" class="comment-body">
+				<div class="comment-author vcard">
+		<img alt="" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/902f8134ce648eaa10d26fd865707851" class="avatar avatar-32 photo" height="32" width="32">		<cite class="fn">micaz</cite> <span class="says">says:</span>		</div>
+
+		<div class="comment-meta commentmetadata"><a href="http://www.deepshiftlabs.com/dev_blog/?p=1880&amp;lang=en-us&cpage=1#comment-1439">
+			4 January 2013 at 12:47</a>		</div>
+
+		<p>best of best blog<br>
+step by step and detail picture<br>
+thank you</p>
+
+		<div class="reply">
+				</div>
+				</div>
+		</li>
+	</ol>
+
+	<div class="navigation">
+		<div class="alignleft"></div>
+		<div class="alignright"></div>
+	</div>
+ 
+
+
+<div id="respond">
+
+<h3>Post a comment</h3>
+
+<div class="cancel-comment-reply">
+	<small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.deepshiftlabs.com/dev_blog/?p=1880&lang=en-us#respond" style="display:none;">Click here to cancel reply.</a></small>
+</div>
+
+
+<form action="http://www.deepshiftlabs.com/dev_blog/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required="true">
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required="true">
+<label for="email"><small>Mail (required but not published)</small></label></p>
+
+
+
+
+
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+<input type="hidden" name="comment_post_ID" value="1880" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="fc76f3c420"></p>
+</form>
+
+</div>
+
+
+	
+	</div>
+	<div id="sidebar">
+		<ul>
+						<div class="filled_block" style="margin-bottom: 30px;">
+							<h2>Who are Deep Shift Labs?</h2>
+							<p><strong>Igor Kryltsov</strong>
+                                                        <br>Sydney, Australia
+                                                        <br><strong>Dmitry Yakubovsky
+                                                        <br>Alexander Savchenko</strong>
+                                                        <br>Kharkiv, Ukraine
+                                                        <br><strong>Vadym&nbsp;Chepkov</strong>
+                                                        <br>Leesburg, Virginia</p>
+							<h2><a href="http://feeds.feedburner.com/DeepShiftLabsDevelopmentBlog" class="image"><img alt="Grab our RSS feed" src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/rss-button.gif"></a></h2>
+    						
+					<br>
+										  
+			</div>
+			<div id="langs">
+								<a href="http://www.deepshiftlabs.com/dev_blog/?lang=ru" title="Russian version">Читать на Русском</a>
+							</div>
+			<div id="ords">
+								<a href="http://www.deepshiftlabs.com/dev_blog/?order=asc" title="ORDER BY date_published ASC">Show oldest posts first</a>
+							</div>
+			
+					</ul>
+	</div>
+
+
+<hr>
+<div id="footer">
+
+	<p>
+		Content copyright © 2002-2013 <a href="http://www.deepshiftlabs.com/" class="footerc" title="DeepShift Labs" target="blank">Deep Shift Labs</a> 
+		<br><br><a href="http://www.deepshiftlabs.com/dev_blog/?page_id=5" class="footerc" title="Acknowledgements">Acknowledgements</a>
+</p></div>
+</div>
+
+
+
+		<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Install PHP 5.4.6 on IIS 7 to work with MS SQL 2008 « Deep Shift Labs Development Blog_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7446002-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+</body></html>

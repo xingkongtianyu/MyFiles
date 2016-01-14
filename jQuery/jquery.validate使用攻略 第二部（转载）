@@ -1,0 +1,95 @@
+
+jquery.validate使用攻略 第二部（转载）  
+
+2010-07-19 09:47:12|  分类： Jquery |举报 |字号 订阅
+jQuery.validate.js API说明
+
+Plugin methodsName Type
+validate( options ) Returns: Validator
+验 证所选的FORM
+valid( ) Returns: Boolean
+检查是否验证通过
+rules( ) Returns: Options
+返回元素的验证规则
+rules( "add", rules ) Returns: Options
+增加验证规则
+rules( "remove", rules ) Returns: Options
+删除验 证规则
+removeAttrs( attributes ) Returns: Options
+删除特殊属性并且返回他们
+Custom selectors
+Name Type
+:blank Returns: Array <Element >
+没 有值的筛选器
+:filled Returns: Array <Element >
+有值的筛选器
+:unchecked Returns: Array <Element >
+没选择的元素的筛选器
+Utilities
+Name Type
+jQuery.format( template, argument , argumentN... ) Returns: String
+用参数代替模板中的 {n}。
+Validatorvalidate方法返回一个Validator对象, 它有很多方法， 让你能使用引发校验程序或者改变form的内容.
+下面只是列出常用的.
+form( ) Returns: Boolean
+验证form返回成功还是失败
+element( element ) Returns: Boolean
+验 证单个元素是成功还是失败
+resetForm( ) Returns: undefined
+把前面验证的FORM恢复到验证前原来的 状态
+showErrors( errors ) Returns: undefined
+显示特定的错误信息
+built-in Validation methods
+Name Type
+setDefaults( defaults ) Returns: undefined
+改变默认的设置
+addMethod( name, method, message ) Returns: undefined
+添加一个新的验证方法. 必须包括名字，一个JAVASCRIPT方法和一个默认的信息
+addClassRules( name, rules ) Returns: undefined
+增加组合验证类型
+addClassRules( rules ) Returns: undefined
+增加组合验证类型
+built-in Validation methodsName Type
+required( ) Returns: Boolean
+必填验证元素
+required( dependency-expression ) Returns: Boolean
+必填元素依赖于表达式的结果.
+required( dependency-callback ) Returns: Boolean
+必填元素依赖于回调函数的结果.
+remote( url ) Returns: Boolean
+请求远程校验。url通常是一个远程调用方法
+minlength( length ) Returns: Boolean
+设置最小长度
+maxlength( length ) Returns: Boolean
+设 置最大长度
+rangelength( range ) Returns: Boolean
+设置一个长度范围[min,max]
+min( value ) Returns: Boolean
+设置最小值.
+max( value ) Returns: Boolean
+设 置最大值.
+range( range ) Returns: Boolean
+设置值的范围
+email( ) Returns: Boolean
+验证电子邮箱格式
+url( ) Returns: Boolean
+验证连接格式
+date( ) Returns: Boolean
+验证日期格式(类似30/30/2008的格式，不验证日期准确性只验证格式)
+dateISO( ) Returns: Boolean
+研制ISO类型的日期格式
+dateDE( ) Returns: Boolean
+验 证德式的日期格式（29.04.1994 or 1.1.2006）
+number( ) Returns: Boolean
+验证十进 制数字（包括小数的）
+numberDE( ) Returns: Boolean
+Makes the element require a decimal number with german format.
+digits( ) Returns: Boolean
+验证整数
+creditcard( ) Returns: Boolean
+验证信用卡号
+accept( extension ) Returns: Boolean
+验证相同后缀名的字符串
+equalTo( other ) Returns: Boolean
+验证两个输入框的内容是否相同
+其他API参考下一章的自定义部分。

@@ -1,0 +1,154 @@
+
+
+    show status(查询语句可以加上SQL_NO_CACHE)
+
+    flush status;
+    show session status like 'select%';
+    select * from user_account limit 100;#语句没有使用索引，影响Select_scan值
+    show session status like 'select%';
+    select * from user_account where uid=100;#user_account表uid为主键，不影响select相关值
+    show session status like 'select%';
+    select * from user_account ua left join user_coin_pay_log up on ua.uid=up.uid limit 10;#user_coin_pay_log表uid没有索引，Select_full_join加1
+    show session status like 'select%';
+    select * from user_account where uid < 100;#范围查询，影响Select_range值
+    show session status like 'select%';
+    select * from user_account ua left join user_collection uc on ua.uid=uc.uid limit 10;#user_collection表uid有索引，不影响Select_full_join
+    show session status like 'select%';
+    +------------------------+-------+
+    | Variable_name          | Value |
+    +------------------------+-------+
+    | Select_full_join       | 1     |                                  没有使用索引的联表的数量
+    | Select_full_range_join | 0     |                           在引用的表中使用范围搜索的联表的数量
+    | Select_range           | 1     |                                  在第一个表中使用范围的联接的数量
+    | Select_range_check     | 0     |                           在每一行数据后对键值进行检查的不带键值的联表的数量。如果不为0，你应仔细检查表的索引
+    | Select_scan            | 2     |                                   对第一个表进行完全扫描的联表的数量
+    +------------------------+-------+
+    flush status;
+    show session status like 'Handler%';
+    select * from user_account limit 10;#没用到索引，进行全索引扫描，影响Handler_read_first，Handler_read_rnd_next
+    show session status like 'Handler%';
+    select * from user_account where uid = 100;#uid为主键，影响Handler_read_key
+    show session status like 'Handler%';
+    select * from user_account where uid > 100 limit 10;#uid为主键，影响Handler_read_key，Handler_read_next
+    show session status like 'Handler%';
+    select * from user_account where uid < 200 order by uid desc limit 10 ;#uid为主键，并且使用desc，影响Handler_read_key，Handler_read_prev
+    show session status like 'Handler%';
+    select * from user_account group by energy order by count(*) limit 100;#没有使用索引，并且进行group by和order by，影响Handler_read_first，Handler_read_key，Handler_read_rnd，Handler_read_rnd_next，Handler_update，Handler_write，此条影响“Handler_update，Handler_write”原因是排序使用临时表
+    show session status like 'Handler%';
+    +----------------------------+-------+
+    | Variable_name              | Value |
+    +----------------------------+-------+
+    | Handler_commit             | 2     |
+    | Handler_delete             | 0     |
+    | Handler_discover           | 0     |
+    | Handler_prepare            | 0     |
+    | Handler_read_first         | 2     |                                  索引中第一条被读的次数，如果较高，服务器正执行大量全索引扫描
+    | Handler_read_key           | 33831 |                           根据键读一行的请求数，如果较高，说明查询和表的索引正确
+    | Handler_read_next          | 0     |                                按照键顺序读下一行的请求数
+    | Handler_read_prev          | 0     |                                按照键顺序读上一行的请求数，主要用于优化ORDER BY ... DESC
+    | Handler_read_rnd           | 48    |                                根据固定位置读一行的请求数。如果你正执行大量查询并需要对结果进行排序该值较高。你可能使用了大量需要MySQL扫描整个表的查询或你的连接没有正确使用键
+    | Handler_read_rnd_next      | 33977 |                       在数据文件中读下一行的请求数。如果你正进行大量的表扫描，该值较高。通常说明你的表索引不正确或写入的查询没有利用索引。
+    | Handler_rollback           | 0     |
+    | Handler_savepoint          | 0     |
+    | Handler_savepoint_rollback | 0     |
+    | Handler_update             | 33779 |
+    | Handler_write              | 48    |
+    +----------------------------+-------+
+    flush status;
+    show session status like 'Sort%';
+    select * from user_account group by energy order by count(*) limit 100;
+    show session status like 'Sort%';
+    +-------------------+-------+
+    | Variable_name     | Value |
+    +-------------------+-------+
+    | Sort_merge_passes | 0     |                                排序算法已经执行的合并的数量。如果这个变量值较大，应考虑增加sort_buffer_size系统变量的值
+    | Sort_range        | 0     |                                          在范围内执行的排序的数量
+    | Sort_rows         | 0     |                                           已经排序的行数
+    | Sort_scan         | 0     |                                           通过扫描表完成的排序的数量
+    +-------------------+-------+
+    flush status;
+    show session status like 'Created%';
+    select * from user_account group by energy order by count(*) limit 100;
+    show session status like 'Created%';
+    +-------------------------+-------+
+    | Variable_name           | Value |
+    +-------------------------+-------+
+    | Created_tmp_disk_tables | 0     |                      服务器执行语句时在硬盘上自动创建的临时表的数量
+    | Created_tmp_files       | 2     |                              mysqld已经创建的临时文件的数量
+    | Created_tmp_tables      | 3     |                           服务器执行语句时自动创建的内存中的临时表的数量。如果Created_tmp_disk_tables较大，你可能要增加tmp_table_size值使临时 表基于内存而不基于硬盘
+    +-------------------------+-------+
+
+    show profile
+
+    set profiling =1;
+    select * from user_account group by energy order by count(*) limit 100;
+    show profile;
+    select * from user_account group by uid order by count(*) limit 100;
+
+    show profile;
+    show profiles;
+    show profile cpu,block io,memory,swaps,context switches,source for query 1;
+    +----------------------+----------+
+    | Status               | Duration |
+    +----------------------+----------+
+    | starting             | 0.000083 |
+    | Opening tables       | 0.000090 |
+    | System lock          | 0.000008 |
+    | Table lock           | 0.000010 |
+    | init                 | 0.000033 |
+    | optimizing           | 0.000009 |
+    | statistics           | 0.000011 |
+    | preparing            | 0.000012 |
+    | Creating tmp table   | 0.000043 |
+    | executing            | 0.000007 |
+    | Copying to tmp table | 0.048096 |
+    | Sorting result       | 0.000044 |
+    | Sending data         | 0.000243 |
+    | end                  | 0.000006 |
+    | removing tmp table   | 0.000010 |
+    | end                  | 0.000006 |
+    | query end            | 0.000005 |
+    | freeing items        | 0.000048 |
+    | logging slow query   | 0.000006 |
+    | logging slow query   | 0.000044 |
+    | cleaning up          | 0.000007 |
+    +----------------------+----------+
+
+    explain
+
+    explain select * from user_account group by energy order by count(*) limit 100;
+    +----+-------------+--------------+------+---------------+------+---------+------+-------+---------------------------------+
+    | id | select_type | table        | type | possible_keys | key  | key_len | ref  | rows  | Extra                           |
+    +----+-------------+--------------+------+---------------+------+---------+------+-------+---------------------------------+
+    |  1 | SIMPLE      | user_account | ALL  | NULL          | NULL | NULL    | NULL | 33897 | Using temporary; Using filesort |
+    +----+-------------+--------------+------+---------------+------+---------+------+-------+---------------------------------+
+    select_type : SELECT类型，如SIMPLE,SUBQUERY等
+    type:联接类型
+             const : SELECT * from tbl_name WHERE primary_key=1
+             eq_ref : 对于每个来自于前面的表的行组合，从该表中读取一行。这可能是最好的联接类型，除了const类型
+                            SELECT * FROM ref_table,other_table WHERE ref_table.key_column=other_table.column;
+             ref : ref可以用于使用=或<=>操作符的带索引的列
+                     SELECT * FROM ref_table WHERE key_column=expr;
+             ref_or_null : 同ref，但是多了一个null查询
+             index_merge : 该联接类型表示使用了索引合并优化方法
+             unique_subquery : unique_subquery是一个索引查找函数，可以完全替换子查询，效率更高
+                                                value IN (SELECT primary_key FROM single_table WHERE some_expr)
+             index_subquery : 适合下列形式的子查询中的非唯一索引
+                                              value IN (SELECT key_column FROM single_table WHERE some_expr)
+             range : 当使用=、<>、>、>=、<、<=、IS NULL、<=>、BETWEEN或者IN操作符，用常量比较关键字列时，可以使用range
+                           只检索给定范围的行，使用一个索引来选择行
+             index : 该联接类型与ALL相同，但是只有索引树被扫描
+             all : 进行完整的表扫描
+    ref : ref列显示使用哪个列或常数与key一起从表中选择行
+    Extra : MySQL解决查询的详细信息
+                Distinct : MySQL发现第1个匹配行后，停止为当前的行组合搜索更多的行
+                Not exists : MySQL能够对查询进行LEFT JOIN优化，发现1个匹配LEFT JOIN标准的行后，不再为前面的的行组合在该表内检查更多的行
+                                     SELECT * from t1 LEFT JOIN t2 ON t1.id=t2.id WHERE t2.id IS NULL
+                range checked for each record : MySQL没有发现好的可以使用的索引，但发现如果来自前面的表的列值已知，可能部分索引可以使用
+                Using filesort : MySQL需要额外的一次传递，以找出如何按排序顺序检索行
+                Using index : 只使用索引树中的信息而不需要进一步搜索读取实际的行来检索表中的列信息
+                Using temporary : MySQL需要创建一个临时表来容纳结果。典型情况如查询包含可以按不同情况列出列的GROUP BY和ORDER BY子句时
+                Using where : 如果没有从表中索取或检查所有行，而Extra值不为Using where并且表联接类型为ALL或index，查询可能会有一些错误
+                Using sort_union(...), Using union(...),Using intersect(...)
+    　　　Using index for group-by : 表示MySQL发现了一个索引，可以用来查询GROUP BY或DISTINCT查询的所有列，而不要额外搜索硬盘访问实际的表
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.live()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span>
+  
+  				</div>
+</div>
+<div id="live1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.live( eventType, handler )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>附加一个事件处理器到符合目前选择器的所有元素匹配，现在和未来。</p>
+<ul class="signatures">
+<li class="signature" id="live-eventType-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>.live( eventType, handler )</h4>
+<p class="arguement"><strong>eventType</strong>A string containing a JavaScript event type, such as "click" or "keydown." As of jQuery 1.4 the string can contain multiple, space-separated event types or custom event names, as well.</p>
+<p class="arguement"><strong>handler</strong>每次事件触发时会执行的函数。</p>
+</li>
+<li class="signature" id="live-eventType-eventData-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.live( eventType, eventData, handler )</h4>
+<p class="arguement"><strong>eventType</strong>一个包含一个JavaScript事件类型的字符串，比如"click"或"keydown"。在jQuery 1.4中，该字符串可以包含多个用空格分隔的事件类型或自定义事件名称。</p>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler</strong>每次事件触发时会执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个方法是基于<code>.bind()</code>方法在元素上绑定事件处理器的一种变化。当<code>.bind()</code>被调用时，该元素的jQuery对象，是指附加处理器的元素;后面引入的让元素不能这样做，所以他们需要另一个<code>.bind()</code>调用。看下面的代码：</p>
+<pre>&lt;body&gt;
+  &lt;div class="clickme"&gt;
+    Click here
+  &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>我们可以在这个元素上绑定一个简单的点击处理器：</p>
+<pre>$('.clickme').bind('click', function() {
+  // Bound handler called.
+});
+</pre>
+<p>当元素被点击时，该处理程序被调用。但是，假设在此之后，另一个因素被增加：
+  </p>
+<pre>$('body').append('&lt;div class="clickme"&gt;Another target&lt;/div&gt;');</pre>
+<p>这个新元素也匹配<code>.clickme</code>选择器，但因为它是调用<code>.bind()</code>后再添加的 ，点击它什么都不会做。</p>
+<p><code>.live()</code>方法提供了一个可以替代的行为。如果我们绑定单击处理器到目标元素使用此方法：</p>
+<pre>$('.clickme').live('click', function() {
+  // Live handler called.
+});</pre>
+<p>再后来加入新元素：</p>
+<pre>$('body').append('&lt;div class="clickme"&gt;Another target&lt;/div&gt;');</pre>
+<p>然后点击新添加的元素也会触发的处理程序。</p>
+<h4 id="event-delegation">事件描述</h4>
+<p><code>.live()</code>方法能影响尚未通过对事件的DOM方法添加的使用元素：绑定到父元素的处理程序是对于那些在其后代触发的事件负责。传递给处理器给<code>.live()</code>从不绑定到一个元素;相反， <code>.live()</code>绑定一个特殊的处理到DOM树的根。在我们的例子，当新的元素被点击，执行以下步骤：
+</p>
+<ol>
+<li>一个Click事件生成，并传递到 <code>&lt;div&gt;</code>处理。</li>
+    <li>没有处理器是直接绑定到<code><div></code> ，因此事件向上冒泡的DOM树。</li>
+    <li>这个时间泡沫，直到它到达树的根，<code>.live()</code>默认情况下结合其特殊的处理。<br><em>* 在 jQuery 1.4中, 事件冒泡可以随意停在 "context" DOM元素的。</em></li>
+    <li>特别<code>click</code>通过<code>.live()</code>执行的处理器。</li>
+    <li>此处理程序测试<code>target</code>的事件对象，看它是否应该继续下去。
+这项测试是由检查，如果<code>$(event.target).closest('.clickme')</code>是能够找到一个匹配的元素。
+</li>
+    <li>如果找到一个匹配的元素，原来的处理程序被调用就可以了。</li>
+  </ol>
+<p>因为直到事件发生时在第5步不进行测试，元素可以在任何时候添加，仍然响应事件。.</p>
+<p>更多信息见<a href="#p=bind"><code>.bind()</code></a>。</p>
+<h4 id="multiple-events">Multiple Events</h4>
+<p>在jQuery 1.4.1 中，<code>.live()</code> 能接受多个，用空间分隔事件，在提供类似<a href="#p=bind">.bind()</a>的功能 。例如，我们可以“live ” 同时绑定<code>mouseover</code>和<code>mouseout</code>事件,像这样： </p>
+<pre>$('.hoverme').live('mouseover mouseout', function(event) {
+  if (event.type == 'mouseover') {
+    // do something on mouseover
+  } else {
+    // do something on mouseout
+  }
+});</pre>
+<h4 id="event-data">Event Data</h4>
+<p>在jQuery 1.4 中，可选<code>eventData</code>参数允许我们通过附加信息处理程序。一个方便的使用这个参数来解决由于闭包造成的问题。更多信息见"<a href="/bind/#passing-event-data">Passing Event Data</a>"。</p>
+<h4 id="event-context">Event Context</h4>
+<p>在jQuery 1.4 中， live事件可以绑定到“context”DOM元素，而不是默认的文档的根。要设置此背景下，我们通过在一个单一的DOM元素(而不是一个jQuery集合或选择
+器)使用<a   target="_blank" href="http://api.jquery.com/jquery/#selector-context"><code>jQuery()</code> function's second argument</a>。</p>
+<pre>$('div.clickme', $('#container')[0]).live('click', function() {
+  // Live handler called.
+});</pre>
+<p>
+The live handler in this example is called only when <code>&lt;div class="clickme"&gt;</code> is a descendant of an element with an ID of "container."</p>
+<h4 id="caveats">Caveats</h4>
+<p>The <code>.live()</code> technique is useful, but due to its special approach cannot be simply substituted for <code>.bind()</code> in all cases. Specific differences include:</p>
+<ul>
+<li>DOM traversal methods are not fully supported for finding elements to send to <code>.live()</code>. Rather, the <code>.live()</code> method should always be called directly after a selector, as in the example above.</li>
+    <li>To stop further handlers from executing after one bound using <code>.live()</code>, the handler must return <code>false</code>. Calling <code>.stopPropagation()</code> will not accomplish this.</li>
+    <li>In <b>jQuery 1.3.x</b> only the following JavaScript events (in addition to custom events) could be bound with <code>.live()</code>: <code>click</code>, <code>dblclick</code>, <code>keydown</code>, <code>keypress</code>, <code>keyup</code>, <code>mousedown</code>, <code>mousemove</code>, <code>mouseout</code>, <code>mouseover</code>, and <code>mouseup</code>.</li>
+  </ul>
+<blockquote>
+    <ul>
+<li>As of <b>jQuery 1.4</b> the <code>.live()</code> method supports custom events as well as all JavaScript events. As of <b>jQuery 1.4.1</b> even <code>focus</code> and <code>blur</code> work with live (mapping to the more appropriate, bubbling, events <code>focusin</code> and <code>focusout</code>).</li>
+      <li>As of <b>jQuery 1.4.1</b> the <code>hover</code> event can be specified (mapping to <code>mouseenter</code> and  <code>mouseleave</code>, which, in turn, are mapped to <code>mouseover</code> and <code>mouseout</code>).</li>
+    </ul>
+</blockquote>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Click a paragraph to add another. Note that .live() binds the click event to all paragraphs - even new ones.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; font-weight:bold; cursor:pointer; 
+      padding:5px; }
+  p.over { background: #ccc; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Click me!&lt;/p&gt;
+
+  &lt;span&gt;&lt;/span&gt;
+&lt;script&gt;
+    $("p").live("click", function(){
+      $(this).after("&lt;p&gt;Another paragraph!&lt;/p&gt;");
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">To display each paragraph's text in an alert box whenever it is clicked:</span>
+</h4>
+<pre><code class="example">$("p").live("click", function(){
+  alert( $(this).text() );
+});</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">To cancel a default action and prevent it from bubbling up, return false:</span>
+</h4>
+<pre><code class="example">$("a").live("click", function() { return false; })</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">To cancel only the default action by using the preventDefault method.</span>
+</h4>
+<pre><code class="example">$("a").live("click", function(event){
+  event.preventDefault();
+});</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">Can bind custom events too.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:red; }
+  span { color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Has an attached custom event.&lt;/p&gt;
+  &lt;button&gt;Trigger custom event&lt;/button&gt;
+  &lt;span style="display:none;"&gt;&lt;/span&gt;
+&lt;script&gt;
+
+    $("p").live("myCustomEvent", function(e, myName, myValue){
+      $(this).text("Hi there!");
+      $("span").stop().css("opacity", 1)
+               .text("myName = " + myName)
+               .fadeIn(30).fadeOut(1000);
+    });
+    $("button").click(function () {
+      $("p").trigger("myCustomEvent");
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

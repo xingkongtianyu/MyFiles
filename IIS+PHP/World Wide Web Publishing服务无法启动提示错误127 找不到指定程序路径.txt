@@ -1,0 +1,39 @@
+World Wide Web Publishing服务无法启动提示:错误127 找不到指定程序/路径
+By 清泉13. 六月 2012 23:19
+在更新完一些新补丁后，World Wide Web Publishing服务启动会总会报127 错误，具体如下：
+错误信息：无法启动world wide web publishing service服务 错误：127 找不到指定的程序 
+继KB939373补丁之后，现在又遇到KB2124261、KB2271195、KB2290570等新出的补丁导致IIS无法正常启动。
+最简单的只要删除这些补丁就可以正常启动IIS了
+
+其它解决方案：
+
+安装了上述各类补丁后，假如你的iis是5.1版，那么从别的机器（前提是该机器能正常使用iis）的%windir%\system32\inetsrv（一般为：C:\WINDOWS\system32\inetsrv）
+目录下复制 infocomm.dll 文件，然后删除或覆盖自己机器里面的%windir%\system32\dllcache(一般为：C:\WINDOWS\system32\dllcache)
+和%windir%\system32\inetsrv（一般为：C:\WINDOWS\system32\inetsrv）目录下的 infocomm.dll 文件。
+
+提示几点：
+1、操作过程中应该会出现提示非系统文件之类的警告，此时点“取消”，然后点“保留文件”即可。接着打开管理工具启动 World Wide Web Publishing 服务，一切即可恢复正常。
+2、此方法解决了不能启动问题，漏洞还是没补上。
+3、无法找到infocomm.dll文件的话，那么网上随便下个iis 安装包，解压开，找到INFOCOMM.DL_文件，然后使用dos命令： expand INFOCOMM.DL_ d:\infocomm.dll即可得到。
+4、iis5.1正常使用的 infocomm.dll 是 235K ，补丁后的是 252K自己注意
+5、由于是系统文件，需要在dos命令提示符下进行文件替换才行。有很多朋友不会替换，故写了如下批处理命令，将infocomm.dll文件放于d盘目录下，然后将如下代码另存为.bat文件运行即可。
+@echo off&setlocal EnableDelayedExpansion
+color f2
+title infocomm.dll替换批处理程序-解决错误127 找不到指定程序/路径问题
+echo 请先将infocomm.dll文件放于D盘下，然后回车继续...
+echo %date% %time%
+pause
+color 0a
+cd %windir%\system32\dllcache
+copy infocomm.dll d:\
+ren infocomm.dll infocomm.dll.bak
+d:
+copy infocomm.dll %windir%\system32\dllcache
+c:
+cd %windir%\system32\inetsrv
+ren infocomm.dll infocomm.dll.bak
+d:
+copy infocomm.dll %windir%\system32\dllcache
+
+echo 文件替换成功！
+pause

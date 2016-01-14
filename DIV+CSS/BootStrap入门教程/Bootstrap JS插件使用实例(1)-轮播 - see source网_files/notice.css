@@ -1,0 +1,75 @@
+.notice{
+   position:absolute;
+   width:430px;
+   border-color:#d2d2d2;
+   border-right-style:solid;
+   border-right-width:1px;
+   border-bottom-style:solid;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-width:1px;
+   left:570px;
+   height:80px;
+   background-color:#f9f9f9;
+   z-index:11; 
+
+}
+.notice .topborder{
+   background-color:#eb192d;
+   height:2px;
+   margin:0;
+   padding:0;
+}
+.notice .topborder p{
+   border-color:transparent;
+   margin:0;
+   padding:0;
+}
+.notice .msg{
+   color:#0078b6;
+   font-size:14px;
+   margin-left:8px;
+   text-align:left;
+}
+.notice .msg_border{
+   background-color:#f0f0f0;
+   height:5px;
+   margin-left:8px;
+   margin-right:12px;
+}
+.notice .content{
+   color:#595959;
+   font-size:12px;
+   margin-left:12px;
+   margin-top:5px;
+   line-height:15px;
+}
+.notice .content a{
+	color:#0078b6;
+}
+.notice .time{
+   color:#9abbc8;
+   font-size:12px;
+   margin-left:12px;
+   margin-top:5px;
+   text-align:left;
+}
+.notice .close{
+   background:url("http://www.see-source.com/content/blog/template1/images/close.png") no-repeat;
+   float:right;
+   height:13px;
+   width:15px;
+   line-height:13px;
+   margin-top:-8px;
+}
+.notice .open{
+   float:right;
+   height:13px;
+   line-height:13px;
+   margin-top:-17px;
+   margin-right:3px;
+   z-index:11; 
+   background-color:#9abbc8;
+   color:white;
+   display:none;
+}

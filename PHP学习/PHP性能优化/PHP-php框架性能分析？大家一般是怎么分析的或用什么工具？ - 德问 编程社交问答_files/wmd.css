@@ -1,0 +1,253 @@
+textarea{font-size:12px; line-height:18px; font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;}
+pre{
+margin:0 0 7px 0;
+margin:0 0 5px 0;
+background:#f9f9f9;
+font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+height:auto;
+max-height:650px;
+overflow:auto;
+white-space:pre-wrap;
+width:auto;
+word-wrap:break-word;
+padding-left: 20px;
+}
+
+pre.prettyprint {background:#eee;border:1px solid #f3f3f3;}
+pre.prettyprint ol.linenums li {background:#fafafa;font-size:12px;line-height:170%;padding-left:10px;}
+
+
+code
+{
+background-color:#f9f9f9;
+font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+#qst_content pre *, #qst_content code *{font-size:12px; line-height:170%;}
+.as_box pre *, .as_box code *{font-size:12px;}
+p code{padding:1px 5px;}
+blockquote{background-color:#EEE; margin:0 0 10px 0; padding:7px 10px 3px;}
+
+
+hr{background-color: #aaa;border: 0;height: 1px; margin: 0 0 20px 0;}
+.wmd-prompt-dialog *{margin:0; padding:0;}
+#upload-file-input #filename-input{left:15px;border:1px solid red;background:red;width:370px !important;margin-left:0px !important;}
+.imgbox_upload {background:#eee;margin:0px 10px 10px 10px;}
+.imgbox_upload input.re {background: url("http://img.dewen.org/theme/images/dewen_updates.gif") repeat-x left #19558D;border-color:#19558D #19558D #062C50;text-shadow:0 -1px #19558D;color:#fff;min-width:30px;border-radius:3px;padding:2px 10px;text-align:center;}
+
+.imgbox_upload input.cancel {background: url("http://img.dewen.org/theme/images/popbtn.jpg") repeat-x 0 0;
+border: 1px solid #CDCDCD;
+border-radius: 3px;
+-moz-border-radius: 3px 3px 3px 3px;
+-webkit-border-radius: 3px 3px 3px 3px;
+color: #757575;
+display: inline-block;
+font-size: 12px;
+line-height: 20px;
+margin-right: 10px;
+padding: 0 14px;
+}
+
+.str {color: maroon;}
+.kwd {color: #00008B; font-weight: bold;}
+.com {color: gray;}
+.typ {color: #2B91AF; font-weight: bold;}
+.lit {color: maroon;}
+.pun {color: #000000;}
+.pln {color: #000000;}
+.tag {color: maroon; font-weight: bold;}
+.atn {color: red;}
+.atv {color: blue;}
+.dec {color: purple;}
+
+
+.editors{margin:0 auto;}
+.editors h3{font-size:15px;font-weight:bold;}
+
+.wmd{position:relative;}
+#wmd-button-bar, .wmd-button-bar {
+    
+    clear: both;
+    
+    padding:2px 0 0;
+    margin: 0;
+}
+textarea#wmd-input, textarea.wmd-input {
+    line-height: 18px;
+    padding:0 3px;
+    width:98.7%;
+    margin:0;
+    color:#555;
+    font-size:12px;
+}
+#wmd-preview, .wmd-preview {
+    border: 2px dotted #CCCCCC;
+    clear: both;
+    font-size: 107%;
+    line-height: 130%;
+    padding: 3px;
+    background:#FFF;
+    overflow-y:auto;
+}
+
+.wmd-preview ol, .wmd-preview ul{margin:10px 0; padding:0 0 0 40px; list-style-position:outside; list-style-image:none; marker-offset:auto;}
+.wmd-preview ol li{list-style-type:decimal;}
+.wmd-preview ul li{list-style-type:disc;}
+
+.wmd-preview p{margin:10px 0;}
+
+.grippie{position:relative; background-image:url("http://img.dewen.org/theme/images/editor/drag.gif"); background-repeat:no-repeat; background-position:center 1px; margin-bottom:6px; background-color:#EEE; cursor:s-resize; height:9px; line-height:9px;}
+.grippie .preview_ans{position:absolute; display:block; right:0; top:-1px; width:60px; height:17px; background:#EEE;line-height:17px; border-dadius:0 0 3px 3px; -moz-border-radius:0 0 3px 3px; -webkit-border-radius:0 0 3px 3px; text-align:center;border-top:1px solid #ccc;border-left:1px solid #999; border-right:1px solid #999; border-bottom:1px solid #999; cursor:pointer;color:#004B73;}
+#wmd-preview p {
+    word-wrap: break-word;
+}
+.wmd-button-row {
+    height: 26px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background:#eee;
+    border:1px solid #999;
+    border-bottom:none;
+    padding:1px 0px;
+}
+.wmd-spacer {
+    background-color: Silver;
+    display: inline-block;
+    height: 26px;
+    list-style: none outside none;
+    margin-left: 7px;
+    position: absolute;
+    width: 1px;
+}
+.wmd-button {
+    background-image: url("http://img.dewen.org/theme/images/editor/wmd-new-buttons.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 24px;
+    list-style: none outside none;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: absolute;
+    width: 28px;
+}
+.wmd-button > a {
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    width: 28px;
+}
+
+
+.wmd-code-button    {left: 5px;  width:36px;background-position: -80px 0;}
+.wmd-link-button    {left: 48px;  background-position: -40px 0;}
+.wmd-image-button   {left: 77px;  background-position: -100px 0;}
+.wmd-bold-button    {left: 106px;   background-position: -5px 0;}
+.wmd-at-button      {left: 135px;}
+.wmd-spacer1        {left: 160px;}
+.wmd-olist-button   {left: 168px;  background-position: -120px 0;}
+.wmd-ulist-button   {left: 197px; background-position: -140px 0;}
+.wmd-heading-button {left: 226px; background-position: -160px 0;}
+.wmd-italic-button  {left: 255px;  background-position: -20px 0;}
+.wmd-quote-button   {left: 284px;  background-position: -60px 0;}
+
+
+
+.wmd-undo-button    {left: 313px; background-position: -200px 0;}
+.wmd-redo-button    {left: 342px; background-position: -220px 0;}
+.wmd-help-button    {left: 371px; background-position: -240px 0;}
+.wmd-switch-button    {right: -5px; background-position: -240px 0;}
+.wmd-help-button a:hover{background:url("http://img.dewen.org/theme/images/editor/wmd-new-buttons.png"); background-position:-367px -55px;}
+.view_code    {right:0px;background-image:url("http://img.dewen.org/theme/images/editor/wmd-new-buttons.png");background-position: -530px 0;}
+.view_code a:hover{right:0px;background-image:url("http://img.dewen.org/theme/images/editor/wmd-new-buttons.png");background-position: -530px -55px;background-color: #F9F9F9;}
+.wmd-prompt-background {
+    background-color: Black;
+}
+.wmd-prompt-dialog {
+    background-color: #FAFAFA;
+    border-color: #666;
+    border-style: solid;
+    border-width: 7px;
+}
+.wmd-mini-button, .wmd-mini-button:visited {
+    color: #444444;
+    margin: 5px;
+    padding: 3px 8px;
+    text-decoration: none;
+	
+}
+.wmd-mini-button:hover, .wmd-mini-button.selected {
+	border-radius: 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+    background-color: #CCCCCC;
+    text-decoration: none;
+}
+.wmd-mini-button.selected:hover, .wmd-mini-button.selected {
+    background-color: #888888;
+    color: #EEEEEE;
+}
+
+.dialog-input, #upload-url-input input, #shadow-filename{border:1px solid #999999; padding:3px 0 0 2px; height:23px; font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;}
+.dialog-button, #ok-dialog-button,#close-dialog-button,#choose-file{border:1px solid #999; background-color:#F0F0F0; height:26px; cursor:pointer;font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;}
+#image-upload-progress{text-indent:-9999px; height:5px; background:url("http://img.dewen.org/theme/images/editor/progress-dots.gif") no-repeat center center;}
+.qlink_box{position:absolute; z-index:10001; display:none; background:#eee; border-width:1px; border-style:solid; border-color:#EFEFEF; padding:3px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+.qlink_box .hide_act{width:11px; height:11px;text-indent:-9999px; background:url("http://img.dewen.org/theme/images/close_now1.png") no-repeat 0 0; cursor:pointer;position:absolute;right:5px;top:5px;}
+.qlink_box .hide_act:hover{background-image:url("http://img.dewen.org/theme/images/close_now2.png");}
+.qlink_box input{width:400px; height:24px; font-size:100%; padding:0px; border:1px solid #B1B1B1; background:#FFF; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px;}
+.qlink_suggest{position:absolute; left: 3px; top:44px; padding:1px 0; width:400px; border:1px solid #B1B1B1; border-top:0; background:#FFF;}
+.qlink_suggest dl{list-style:none; margin:0; padding:0;}
+.qlink_suggest dd{margin:0; padding:0 5px; line-height:28px; display:block;}
+.qlink_suggest dd.active{background:#EFEFEF;}
+.qlink_suggest dd:hover{background:#EFEFEF; cursor:pointer;}
+
+textarea, #notes-preview {border:1px solid gray;}
+#notes-preview {overflow-x:hidden;}
+
+.md_help{position:relative; margin-bottom:-1px; font-family:'Arial','宋体',sans-serif; background:#FFF9D4; color:#000; border-left:1px solid #999; border-right:1px solid #999; border-bottom:1px solid #999;}
+.md_help .on{background:#FFF9D4;}
+.md_help .help_items{line-height:1%; overflow:hidden; background:#F3EED5;}
+.md_help .help_items li{float:left;margin: 3px 0 0 5px; padding:2px 10px 3px; _display:inline; line-height:13px; color:#444; cursor:pointer;}
+.md_help .help_items li:hover{color:#000;}
+.md_help .help_cnt div{padding:10px; }
+.md_help .help_cnt pre{margin:0; background:#F3EED5; border-radius:3px;}
+
+.wmd-close-dialog{
+    background: url("http://img.dewen.org/theme/images/box/close0.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 14px;
+    overflow: hidden;
+    right: -22px;
+    top: -14px;
+    width: 14px;
+    display:none;
+}
+
+.tool,.copy_code{
+    height: 15px;
+    
+    padding:0 12px 12px 12px;
+    position:absolute;
+    visibility: hidden;
+    background: none repeat scroll 0 0 #F9F9F9;
+}
+a.tool{
+    background: url("http://img.dewen.org/theme/images/editor/viewcode.png") no-repeat scroll 0 0 transparent;
+}
+code{background: none;}
+a:hover.tool{
+    background: url("http://img.dewen.org/theme/images/editor/viewcode_box.png") no-repeat scroll 0 0 transparent;
+}
+
+
+
+#viewcode_id li {color: #999;padding-left: 10px;border-left: #cccccc 1px solid;background-color:#F9F9F9;font-family:Consolas,Menlo,Monaco,Lucida Console;font-size: 12px;line-height: 170%;}
+#viewcode_id ol{background-color:#e5e5e5;padding-left:35px;margin-left:-15px;border: #D5D5D5 solid 1px;}
+#viewcode_id ol li{list-style-type: decimal;}
+.linenums li{color:#999999;}
+
+.code_block{position:relative;}
+.copy_code{width:20px;top:8px;}
+a.copy_code,a:hover.copy_code{
+    background: url("http://img.dewen.org/theme/images/newsletter.gif") no-repeat scroll 0 0 transparent;
+}

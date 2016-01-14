@@ -1,0 +1,15 @@
+假如LZ你是redhat或者centos这一类发行版本的linux，请继续往下看。如果不是就当我啥都没说过。
+1、ifconfig -a  //看看网卡是否正常
+2、netstat -tpln  //看看80服务有无在监听状态
+3、curl localhost  //命令行状态查看80服务是否正常接收请求
+4、service iptalbes stop  //把防火墙关闭
+5、cat -n /etc/selinux/config |grep 6  //看SELINUX=disable 如果不是的话vi改成disable然后重启系统再试
+
+
+关闭防火墙
+1.重启后永久性生效
+开启: chkconfig iptables on
+关闭: chkconfig iptables off
+
+2.即时生效,重启后失效
+开启:service iptables start

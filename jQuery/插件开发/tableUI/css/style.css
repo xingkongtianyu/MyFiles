@@ -1,0 +1,235 @@
+button{
+	padding-top:1px;
+	padding-bottom:1px;
+}
+textarea{
+	border:1px solid #7F9DB9;
+	padding:2px;
+}
+a:link,a:visited,a:active{
+	color:#005A94;
+	text-decoration:none;
+}
+a:hover{
+	color:#f60;
+}
+.color1{color:#C00000;}
+.color2{color:#376091;}
+.color3{color:#254061;}
+.color4{color:#4F6228;}
+.evenRow{background-color:#f0f0f0;}
+.activeRow{background-color:#FFFF55;}
+input[type="text"]{
+	padding:1px 10px;
+}
+input[type="button"].big{
+	padding:5px 25px;
+}
+input[type="button"]{
+	padding:1px  10px;
+}
+/*** 顶部menutab ***/
+.tabArea .tabList {
+	display:inline;
+	float:left; 
+	list-style:none outside none;
+	padding-left:3%;
+	padding-right:3%;
+}
+
+.tabArea .tabList li {
+display:inline;
+float:left;
+line-height:1.5em;
+list-style:none outside none;
+margin-right:7px;
+}
+
+.tabArea .tabList a:link, .tabArea .tabList a:visited, .tabArea .tabList a:active {
+	background:url("../images/bg_tabArea.gif") repeat-x scroll 0 0 transparent;
+	color:black;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-left:1px solid #888888;
+	border-top:1px solid #888888;
+	border-right:1px solid #888888;
+	float:left;
+	padding:6px 15px;
+	text-decoration:none;
+	font-size:14px;
+	font-weight:bold;
+}
+ .tabArea .tabList a:hover{color:#f60;}
+.tabArea .tabList li a.current:link, .tabArea .tabList li a.current:visited, .tabArea .tabList li a.current:active {
+	background:#8586B2  none;
+	color:white;
+	cursor:default;
+}
+.fullwidth{
+	width:100%;
+}
+.block{
+	margin:15px auto;
+}
+
+.table_solid {
+border-bottom:1px solid #333333;
+border-right:1px solid #333333;
+margin-bottom:0px;
+}
+
+.table_solid th,.table_solid td{
+	border-left:1px solid #333333;
+	border-top:1px solid #333333;
+	color:#333333;
+	padding:0.5em;
+}
+.table_solid th{
+	background-color:#B8CCE4;
+}
+
+.table_gray {
+border-bottom:1px solid #D8D8D8;
+border-right:1px solid #D8D8D8;
+margin-bottom:0px;
+}
+
+.table_gray th,.table_gray td{
+	border-left:1px solid #D8D8D8;
+	border-top:1px solid #D8D8D8;
+	color:#333333;
+	padding:0.5em;
+}
+
+.btn1{
+	padding-left:18px;
+	line-height:18px;
+	margin-left:5px;
+	display:inline;
+	background:transparent  url('../images/bg_btn1.gif') no-repeat;
+}
+.btn2{
+	display:inline;
+	padding-left:18px;
+	line-height:18px;
+	margin-left:5px;
+	background:transparent  url('../images/bg_btn2.gif') no-repeat;
+}
+.btn3{
+	display:inline;
+	padding-left:18px;
+	line-height:18px;
+	margin-left:5px;
+	background:transparent  url('../images/bg_btn3.gif') no-repeat;
+}
+.btn4{
+	display:inline;
+	padding-left:18px;
+	line-height:18px;
+	margin-left:5px;
+	background:transparent  url('../images/bg_btn4.gif') no-repeat;
+}
+.page_list {
+	background-color:#FFFFFF;
+	font-size:13px;
+	padding:0px 0;
+	text-align:center;
+}
+.page_list a {
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border:2px solid #F0F0F0;
+	color:#4B78BB;
+	margin:0 2px;
+	padding:2px 5px;
+	text-decoration:none;
+}
+.page_list a:hover{
+	background-color:#FF6C16;
+	color:#FFFFFF;
+}
+.page_list .current{
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color:#FF6C16;
+	border:2px solid #FF5A00;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:2px 5px;
+}
+
+/*** 页面结构 ***/
+#wrapper{
+	width:100%;
+	margin:0 auto;
+}
+#top_info{
+	margin:5px;
+}
+#top_info h1{
+	margin:0 10px;
+}
+#import_notice{
+	padding-right:10px;
+}
+#menu{
+	margin:10px 0;
+}
+#menu .clear{
+	font-size:0px;
+	line-height:0;
+}
+
+#menu_level2{
+	width:100%;
+	height:25px;
+	background-color:#8586B2;
+	padding-top:10px;
+}
+#menu_level2_list{
+	margin-left:35px;
+}
+#menu_level2_list li{
+	float:left; 
+	display:inline;
+	margin-left:10px;
+	margin-right:10px;
+}
+#menu_level2_list li a{
+	color:white;
+	font-weight:bold;
+}
+#menu_level2_list li a.current{
+	color:#FFFF66;
+}
+
+#container{
+	margin:10px;
+}
+
+#txtSearch{
+	width:200px;
+	border:1px solid #7F9DB9;
+	height:19px;
+	padding:0 2px;
+}
+
+#btnSearch{
+	padding:1px 10px;
+}
+
+/*** 新建页面 ***/
+#page_title{
+	margin:5px auto;
+	height:30px;
+	line-height:30px;
+	text-indent:15px;
+	color:white;
+	background-color:#8586B2;
+}

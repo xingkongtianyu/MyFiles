@@ -1,0 +1,66 @@
+在同一form表单中如何提交两个不同的action
+2011-05-19 10:51:10
+标签：Action form表单 不同的action 休闲 职场
+（转载：常用，以便查阅）  有两种办法可以实现：
+1.针对一个action有多个提交按钮，那么在提交后进行根据ID进行一下判断，是哪个提交的执行哪种动作，这是可以实现的。
+2.直接做成两个form，每个form里的action不同，都有一个提交按钮，从客户看来是没有区别的，但是提交的时候，会提交到不到的action里去.
+第一种的实现：
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+<title>Java Applet......</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="Author" content="YuLimin,俞黎敏,DayBreak,Beyond DayBreak Office Master">
+</head>
+
+<body bgcolor="#FFFFFF">
+<center>
+<form action="" name="form1">
+    <input type="button" value="查询1" type="submit" onclick="form1.action='action_1';form1.submit();"/>
+    <input type="button" value="查询2" type="submit" onclick="form1.action='action_2';form1.submit();" />
+</form>
+
+</center>
+</body>
+</html>
+例子：这样也许更清晰：
+<Script Language="JavaScript"> 
+    function modify() 
+    { 
+    document.form1.action="modify.jsp"; 
+    document.form1.submit(); 
+    } 
+     
+    function delete() 
+    { 
+    document.form1.action="delete.jsp"; 
+    document.form1.submit(); 
+    } 
+    </Script> 
+     
+    <form name="form1" action=""> 
+    <INPUT Type="Button" Name="Modify" Value="修 改 " onClick="modify()"> 
+     <INPUT Type="Button" Name="Delete" Value="删 除 " onClick="delete()"> 
+    </form> 
+    这样可以实现将多个按钮发送到不同网页中。
+第二种实现：
+提交form的时候，里面的action不能带参数。
+如：
+<form action="test.do?args=888"> 
+
+<input type="button" value="submit">
+
+</form>
+
+通过这个方法，test.do无法读取args，必须换成一下写法
+
+<form action="test.do"> 
+
+<input type="hidden" name="args" value="888">
+
+<input type="button" value="submit">
+
+</form>

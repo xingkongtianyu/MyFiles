@@ -1,0 +1,89 @@
+´ÓMysql µ½ Excel
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+       xmlns:x="urn:schemas-microsoft-com:office:excel"
+       xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+       <meta http-equiv="expires" content="Mon, 06 Jan 1999 00:00:01 GMT">
+       <meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+       <!--[if gte mso 9]><xml>
+       <x:ExcelWorkbook>
+       <x:ExcelWorksheets>
+               <x:ExcelWorksheet>
+               <x:Name></x:Name>
+               <x:WorksheetOptions>
+                       <x:DisplayGridlines/>
+               </x:WorksheetOptions>
+               </x:ExcelWorksheet>
+       </x:ExcelWorksheets>
+       </x:ExcelWorkbook>
+       </xml><![endif]-->
+</head>
+<body link=blue vlink=purple leftmargin=0 topmargin=0>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="center" class="big6" >Users</td></tr> 
+<tr><td bgcolor=red>
+ <table border="1" align="center" width="100%" cellpadding="1" cellspacing="1">
+ <tr align="center">
+     <td class="TableTopHeader" nowrap>
+     Login   </td>
+  <td class="TableTopHeader" nowrap>
+     Name   </td>
+  <td class="TableTopHeader" width="3%" nowrap>
+     EMail   </td>
+  <td class="TableTopHeader" nowrap>
+   Department   </td>
+  <td class="TableTopHeader" nowrap>
+   Position   </td>
+  <td class="TableTopHeader" nowrap width="1%">
+    Level   </td>
+  <td class="TableTopHeader">Address</td>
+  <td class="TableTopHeader">Phone</td>
+</tr>
+   <tr  class="even">     
+     <td class="mtlist">King</td>
+     <td class="mtlist"><b>Sangern</b></td>
+     <td class="mtlist" >XX@Gmail.com</td>
+     <td class="mtlist">Interneter</td>
+     <td class="mtlist">SEO</td>
+     <td class="mtlist">Admin</td>      
+     <td class="mtlist">SH</td>
+     <td class="mtlist">110</td>
+ </tr>
+ </table>
+</td></tr>  
+</table>
+</body>
+</html> 
+
+´ÓExcel µ½Mysql 
+
+1£©Ñ¡ÖÐ×Ö¶ÎaÖÐµÄÈ«²¿¼ÇÂ¼,Ñ¡Ôñ¡±¸´ÖÆ¡±
+2£©ÐÂ½¨Ò»¸öExcelÊý¾Ý¿âÎÄ¼þ£¬°Ñ¸´ÖÆ¹ýÀ´µÄÊý¾ÝÕ³ÌùÔÚÒ»¸ö¿Õ°×µÄ×Ö¶Î£¨Í¨³£ÊÇA)ÏÂ£¬±£Ö¤ÆäËû×Ö¶Î¿Õ°×£¬±£´æÎªa.xls
+3£©Áí´æa.xlsÎªa.txt(¸ñÊ½Îª¡±ÎÄ±¾ÎÄ¼þ(ÖÆ±í·û·Ö¸ô)¡±£©
+4£©E.xlsÖÐÆäËû3¸ö×Ö¶ÎµÄÊý¾Ý°´1µ½3²½Öè¼ÌÐøÉú³Éb.txt,c.txtºÍd.txt¡£
+???? 2.Íê³ÉÉÏÊö²½Öèºó£¬ÄãÒÑ¾­Íê³ÉÁË´ó²¿·ÖµÄ¹¤×÷£¬ÏÂÃæ¾ÍÓÉphpºÍmysqlÀ´Íê³É£¬ºÜ¼òµ¥£º
+1£©Òª°ÑÊý¾Ý·ÅÔÚmysqlÖÐ£¬±ØÐë½¨Á¢Ò»¸ömysqlÊý¾Ý¿âÎÄ¼þÃûÎªdbname(Óëphp´úÂëÖÐµÄdbnameÒªÒ»ÖÂ),°üÀ¨±ítbname(Óëphp´úÂëÖÐµÄtbnameÒªÒ»ÖÂ),4¸ö×Ö¶Îinc char(100),adds char(100),pri char(100),tel char(100),´óÐ¡Òª¸ù¾ÝExcelÖÐ×Ö¶Î´óÐ¡×öµ÷Õû£¬·ñÔò¿ÉÄÜ³öÏÖ²¿·ÖÖµ¶ªÊ§¡£
+2£©ÔÙ±àÐ´php´úÂë£¬ÊÇ×îÖ÷ÒªµÄ£¬´úÂëÈçÏÂ£º
+¡ª¡ªtxt2mysql.php¡ª¡ª¡ª
+<?
+$inc=file(¡±a.txt¡±);
+$adds=file(¡±b.txt¡±);
+$pri=file(¡±c.txt¡±);
+$tel=file(¡±d.txt¡±);
+$i=0;
+mysql_connect();
+while (strlen($inc[$i])>0)
+{
+$sql=¡±insert into tbname values (¡¯$inc[$i]¡¯,'$adds[$i]¡¯,'$pri[$i]¡¯,'$tel[$i]¡¯)¡±;
+$do=mysql_db_query(¡±dbname¡±,$sql);
+$i=$i+1;
+echo ¡®<br>¡¯;
+}
+$s=¡±select * from tbname¡±;
+$gg=mysql_db_query(¡±dbname¡±,$s);
+$n=mysql_num_rows($gg);
+mysql_close();
+echo ¡®<br>¡¯;
+echo ¡°¹²Ìí¼ÓÁË¡±.$n.¡±¸ö¼ÇÂ¼¡±;
+?> 

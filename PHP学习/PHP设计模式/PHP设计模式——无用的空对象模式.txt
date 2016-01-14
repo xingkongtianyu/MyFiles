@@ -1,0 +1,58 @@
+
+PHP设计模式——无用的空对象模式
+2010年12月5日  4,207 次浏览 陈华 抢沙发
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式——无用的空对象模式
+
+哎哟，今天发现一个PHP中的设计模式：空对象模式，下面说说我的想法。
+真的好鸡肋，在百度和GG 上搜了很久空对象模式，均没有找到好的回答，我这种不弄个明白不罢休的破脾气，让我纠结了好久。最终发现了，主要是节省部分IF判断的语句。这种方法称之为“模式”真的有点小题大作。
+
+下面用代码来演示一下，在编程中的应用。
+
+
+
+
+//www.chhua.com 建立一个类
+class user {
+	static function create() {
+		return null;
+	}
+}
+$user=user::create();
+$user->login();
+/*以上方法在运行的时候肯定就会报错，
+ * Fatal error: Call to a member function login() on a non-object in http://www.chhua.com/test.php on line 18
+ */
+
+为了避免报错，我就就需要做以下处理
+
+
+
+	
+
+if (is_object($user)){
+	$user->login();
+}
+
+为了不使用IF条件的判断，我们就用以下的方法，也就是传说中的空对象模式
+
+
+
+
+interface nullinterface {//空对象接口
+	public function login();
+}
+ 
+class nullUser implements nullinterface {//空对象实现
+	public function login(){}
+}
+ 
+class user {
+	static function create() {
+		return new nullUser();//返回空对象
+	}
+}
+$user=user::create();
+$user->login();//不再报错
+
+以上一个简单的实例说明了空对象模式的说明实例，大家可以自己扩展，自我感觉除了增强代码的健壮性之外没什么大的用处，希望不太明白的人也不要在这上面纠结了，没有意义。

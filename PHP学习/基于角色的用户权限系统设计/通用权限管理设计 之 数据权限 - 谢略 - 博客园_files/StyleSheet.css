@@ -1,0 +1,245 @@
+﻿a.postTitle2{
+	text-decoration: none;
+	padding: 3px;
+}
+a.postTitle2:hover{
+	color: #fff;
+	background-color: #78AFD3;
+	padding: 3px;
+	text-decoration: none;
+}
+#cnblogs_post_body a,.content a{
+	text-decoration: none;
+	color: #5B9DCA;
+	padding: 1px 2px;
+}
+#cnblogs_post_body a:hover,.content a:hover{
+	color: #fff;
+	background-color: #78AFD3;
+	padding: 1px 2px;
+}
+#cnblogs_post_body .category ul,.category ul {
+ padding-left: 60px; margin:0px; list-style:disc ;
+} 
+#cnblogs_post_body .category ul li,.category ul li {
+  list-style:disc ;
+} 
+
+h2 {
+    background-color: #7F8FB1;
+    color: white;
+    padding: 3px; font-size:20px; padding-left:8px;
+}
+#cnblogs_post_body ul li,.content ul li {
+    list-style: disc;
+}
+h3
+{
+    color: #1977B0;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.postBody {
+    font-size: 14px;
+    line-height: 1.8;
+    font-family: 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
+    font-size: 15px;
+}
+p {
+    display: block; 
+    text-indent: 0px;
+    margin: 5px auto;
+    line-height: 150%; 
+}
+.cnblogs_code { 
+    margin: 0px; 
+    padding: 0px; 
+    background:none;
+    border:none;
+}
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 1em 0px;
+    background-color:#F5F5F5;
+    border:1px dashed #CCCCCC;
+    padding:7px;
+}
+blockquote { 
+    border: 1px solid #BBB;
+    -moz-border-radius: 5px;    
+    -webkit-border-radius: 5px;    
+    border-radius: 5px;  
+    background-color: #FCFEC5;
+    color: black;
+    line-height: 1.3;
+    margin: 10px 0px;
+    padding-left: 20px;
+    word-wrap: break-word;
+}
+/* parms table */
+.l-params-table
+{
+    border-bottom:1px solid #C1C1C1; border-right:1px solid #C1C1C1;
+}
+.l-params-table td
+{border-left:1px solid #C1C1C1; border-top:1px solid #C1C1C1;
+}
+.l-params-hd-cell
+{
+    background:#DBDBDB;padding:8px; line-height:23px;
+}
+.l-cell-Function-parms
+{
+    border:1px dashed #C1C1C1; background:white;
+}
+.l-params-row-cell
+{
+    padding:8px;line-height:23px;
+}
+.l-params-hd-cell-name
+{
+}
+.l-row-Function
+{
+    background:#f5f5f5;
+}
+
+.l-params-hd-cell-default
+{width:100px;
+}
+.l-params-hd-cell-type
+{
+    
+}
+.l-params-hd-cell-desc
+{
+}
+.l-params-row-cell-default
+{
+    width:100px;
+}
+/* events table */
+
+.l-events-table
+{
+    border-bottom:1px solid #C1C1C1; border-right:1px solid #C1C1C1;
+}
+.l-events-table ul,.l-events-table li
+{
+    list-style:none; margin:0; padding:0;
+}
+.l-events-table td
+{
+    border-left:1px solid #C1C1C1; border-top:1px solid #C1C1C1; padding:6px;
+}
+.l-events-hd-cell
+{
+    background:#DBDBDB;padding:8px; line-height:23px;
+}
+.l-cell-Function-parms
+{
+    border:1px dashed #C1C1C1; background:white;
+}
+.l-params-row-cell
+{
+    padding:8px;line-height:23px;
+}
+.l-events-hd-cell-name
+{
+}
+.l-row-Function
+{
+    background:#f5f5f5;
+}
+
+.l-events-hd-cell-default
+{width:100px;
+}
+.l-events-hd-cell-type
+{
+    
+}
+.l-events-hd-cell-desc
+{
+}
+
+
+
+/* methods table */
+
+.l-methods-table
+{
+    border-bottom:1px solid #C1C1C1; border-right:1px solid #C1C1C1;
+}
+.l-methods-table ul,.l-methods-table li
+{
+    list-style:none; margin:0; padding:0;
+}
+.l-methods-table td
+{
+    border-left:1px solid #C1C1C1; border-top:1px solid #C1C1C1; padding:6px;
+}
+.l-methods-hd-cell
+{
+    background:#DBDBDB;padding:8px; line-height:23px;
+}
+.l-cell-Function-parms
+{
+    border:1px dashed #C1C1C1; background:white;
+}
+.l-methods-row-cell
+{
+    padding:8px;line-height:23px;
+}
+.l-methods-hd-cell-name
+{
+}
+.l-row-Function
+{
+    background:#f5f5f5;
+}
+
+.l-methods-hd-cell-default
+{width:100px;
+}
+.l-methods-hd-cell-type
+{ 
+}
+.l-methods-hd-cell-desc
+{
+}
+
+
+        p.l-log-content
+        {
+            margin: 0;
+            padding: 0;
+            padding-left: 20px;
+            line-height: 22px;
+            font-size: 12px;
+        }
+        span.l-log-content-tag
+        {
+            color: #008000;
+            margin-right: 2px;
+            font-weight: bold;
+        }
+        h2.l-title
+        {
+            margin: 7px;
+            padding: 0;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        h3.l-title
+        {
+            margin: 4px;
+            padding: 0;
+            font-size: 15px;
+            font-weight: bold;
+        }
+		
+		#cnblogs_post_body p{
+		font-size: 12px;
+		}

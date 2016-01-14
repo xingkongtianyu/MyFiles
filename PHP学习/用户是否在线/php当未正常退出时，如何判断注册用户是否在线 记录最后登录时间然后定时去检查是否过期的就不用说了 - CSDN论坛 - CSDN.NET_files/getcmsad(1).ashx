@@ -1,0 +1,1 @@
+document.write('<p><a href="http://bss.csdn.net/cview/reg/?project_id=621&amp;identy_id=637&amp;extra=page%3D1&amp;qq-pf-to=pcqq.c2c" target="_blank"><font color="#000000"><strong>华为品牌活动有奖在线调研</strong></font></a> </p>');

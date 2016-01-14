@@ -1,0 +1,1 @@
+document.write('<li><a href="http://g.csdn.net/5256943" target=_blank>思科免费为您量身设计网络方案</a></li><li><a href="http://g.csdn.net/5243760" target=_blank>【招】应届生,入职年薪5-10万</a></li><li><a href="http://g.csdn.net/5253151" target=_blank>将家庭娱乐升级到移动时代</a></li><li><a href="http://g.csdn.net/5250649" target=_blank>下载最热手游开发工具集CocoStudio</a></li>');

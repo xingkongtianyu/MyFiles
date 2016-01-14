@@ -1,0 +1,226 @@
+jquery.validate使用攻略 第一部
+作者： 字体：[增加 减小] 类型：转载
+好几年不写JS了，资料整理起来比较慢，格式也有点乱
+主要分几部分
+jquery.validate 基本用法
+jquery.validate API说明
+jquery.validate 自定义
+jquery.validate 常见类型的验证代码
+
+下载地址
+
+jquery.validate插件的文档地址
+http://docs.jquery.com/Plugins/Validation
+
+jquery.validate插件的主页
+http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+
+jquery.validate插件主页上提供的demo
+http://jquery.bassistance.de/validate/demo/
+
+验证规则下面是默认校验规则，也可以自定义规则
+
+(1)required:true 必输字段
+(2)remote:"check.php" 使用ajax方法调用check.php验证输入值
+(3)email:true 必须输入正确格式的电子邮件
+(4)url:true 必须输入正确格式的网址
+(5)date:true 必须输入正确格式的日期
+(6)dateISO:true 必须输入正确格式的日期(ISO)，例如：2009-06-23，1998/01/22 只验证格式，不验证有效性
+(7)number:true 必须输入合法的数字(负数，小数)
+(8)digits:true 必须输入整数
+(9)creditcard: 必须输入合法的信用卡号
+(10)equalTo:"#field" 输入值必须和#field相同
+(11)accept: 输入拥有合法后缀名的字符串（上传文件的后缀）
+(12)maxlength:5 输入长度最多是5的字符串(汉字算一个字符)
+(13)minlength:10 输入长度最小是10的字符串(汉字算一个字符)
+(14)rangelength:[5,10] 输入长度必须介于 5 和 10 之间的字符串")(汉字算一个字符)
+(15)range:[5,10] 输入值必须介于 5 和 10 之间
+(16)max:5 输入值不能大于5
+(17)min:10 输入值不能小于10
+
+验证提示
+
+下面是默认的验证提示，官网有简体中文版的验证提示下载，或者通过jQuery.extend(jQuery.validator.messages自定义错误提示信息，可以将网站的验证提示文本统一到一个文件里。
+复制代码 代码如下:
+
+required: "This field is required.",
+remote: "Please fix this field.",
+email: "Please enter a valid email address.",
+url: "Please enter a valid URL.",
+date: "Please enter a valid date.",
+dateISO: "Please enter a valid date (ISO).",
+number: "Please enter a valid number.",
+digits: "Please enter only digits",
+creditcard: "Please enter a valid credit card number.",
+equalTo: "Please enter the same value again.",
+accept: "Please enter a value with a valid extension.",
+maxlength: $.validator.format("Please enter no more than {0} characters."),
+minlength: $.validator.format("Please enter at least {0} characters."),
+rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
+range: $.validator.format("Please enter a value between {0} and {1}."),
+max: $.validator.format("Please enter a value less than or equal to {0}."),
+min: $.validator.format("Please enter a value greater than or equal to {0}.")
+
+使用方式
+
+1：
+在控件中使用默认验证规则，例子：
+电子邮件(必填) <input id="email" class="required email" value="email@" />2：
+可以在控件中自定义验证规则，例子：
+自定义(必填,[3,5])
+<input id="complex" value="hi" class="{required:true,minlength:3, maxlength:5,
+messages:{required:'为什么不输入一点文字呢',minlength:'输入的太少了',maxlength:'输入那么多干嘛'}}" />
+
+3: 通过javascript自定义验证规则，下面的JS自定义了两个规则，password和confirm_password
+复制代码 代码如下:
+
+$().ready(function() {
+$("#form2").validate({
+rules: {
+password: {
+required: true,
+minlength: 5
+},
+confirm_password: {
+required: true,
+minlength: 5,
+equalTo: "#password"
+}
+},
+messages: {
+password: {
+required: "没有填写密码",
+minlength: jQuery.format("密码不能小于{0}个字符")
+},
+confirm_password: {
+required: "没有确认密码",
+minlength: "确认密码不能小于{0}个字符",
+equalTo: "两次输入密码不一致嘛"
+}
+}
+});
+});
+
+required除了设置为true/false之外，还可以使用表达式或者函数，比如
+复制代码 代码如下:
+
+$("#form2").validate({
+rules: {
+funcvalidate: {
+required: function() {return $("#password").val()!=""; }
+}
+},
+messages: {
+funcvalidate: {
+required: "有密码的情况下必填"
+}
+}
+});
+
+Html
+密码<input id="password" name="password" type="password" />
+确认密码<input id="confirm_password" name="confirm_password" type="password" />
+条件验证<input id="funcvalidate" name="funcvalidate" value="" />
+
+4： 使用meta自定义验证信息
+
+首先用JS设置meta
+$("#form3").validate({ meta: "validate" });
+
+Html
+
+email<input class="{validate:{required:true, email:true,
+messages:{required:'输入email地址', email:'你输入的不是有效的邮件地址'}}}"/>
+
+5: 使用meta可以将验证规则写在自定义的标签内，比如validate
+
+JS设置meta
+$().ready(function() {
+$.metadata.setType("attr", "validate");
+$("#form1").validate();
+});
+
+Html
+
+Email
+<input id="email" name="email"
+validate="{required:true, email:true, messages:{required:'输入email地址', email:'你输入的不是有效的邮件地址'}}" />
+
+6: 自定义验证规则
+
+对于复杂的验证，可以通过jQuery.validator.addMethod添加自定义的验证规则
+
+官网提供的additional-methods.js里包含一些常用的验证方式，比如lettersonly，ziprange，nowhitespace等
+
+例子
+复制代码 代码如下:
+
+// 字符验证
+jQuery.validator.addMethod("userName", function(value, element) {
+return this.optional(element) || /^[\u0391-\uFFE5\w]+$/.test(value);
+}, "用户名只能包括中文字、英文字母、数字和下划线");
+
+//然后就可以使用这个规则了
+$("#form1").validate({
+// 验证规则
+rules: {
+userName: {
+required: true,
+userName: true,
+rangelength: [5,10]
+}
+},
+/* 设置错误信息 */
+messages: {
+userName: {
+required: "请填写用户名",
+rangelength: "用户名必须在5-10个字符之间"
+}
+},
+});
+
+7: radio、checkbox、select的验证方式类似
+
+radio的验证
+
+性别
+<span>
+男<input type="radio" id="gender_male" value="m" name="gender" class="{required:true}"/><br />
+女<input type="radio" id="gender_female" value="f" name="gender" />
+</span>
+
+checkbox的验证
+
+最少选择两项
+<span>
+选项1<input type="checkbox" id="check_1" value="1" name="checkGroup"
+class="{required:true,minlength:2, messages:{required:'必须选择',minlength:'至少选择2项'}}" /><br />
+选项2<input type="checkbox" id="check_2" value="2" name="checkGroup" /><br />
+选项3<input type="checkbox" id="check_3" value="3" name="checkGroup" /><br />
+</span>
+
+select的验证
+
+下拉框
+<span>
+<select id="selectbox" name="selectbox" class="{required:true}">
+<option value=""></option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select>
+</span>
+8: Ajax验证
+
+用remote可以进行Ajax验证
+remote: {
+url: "url", //url地址
+type: "post", //发送方式
+dataType: "json", //数据格式 data: { //要传递的数据
+username: function() {
+return $("#username").val();
+}}
+}
+
+补充: jQuery Validation插件remote验证方式的Bug
+http://www.jb51.net/article/24079.htm

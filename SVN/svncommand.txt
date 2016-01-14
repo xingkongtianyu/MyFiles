@@ -1,0 +1,5 @@
+ /usr/local/svn/bin/svnserve -d -r /app/svn
+÷ÿ∆ÙSVN
+netstat ®Canp | grep 3690
+kill pid
+svnserve ®Cd ®Cr /snv/project

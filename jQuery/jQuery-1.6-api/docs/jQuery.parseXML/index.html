@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+          
+          <h1 class="jq-clearfix">jQuery.parseXML()</h1>
+          <div class="entry-meta jq-clearfix">
+                        Categories:
+            <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+
+          </div>
+
+</div>
+<div id="jQuery-parseXML1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.parseXML( data )</span> <span class="returns">返回： <a class="return"   target="_blank" href="http://api.jquery.com/Types/#XMLDocument">XMLDocument</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>解析一个字符串到一个XML文件。</p>
+<ul class="signatures"><li class="signature" id="jQuery-parseXML-data">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.5/">1.5</a></span>jQuery.parseXML( data )</h4>
+<p class="arguement"><strong>data</strong>用来解析的格式良好的XML字符串。</p>
+</li></ul>
+<div class="longdesc"><p><code>jQuery.parseXML</code>使用原生解析函数浏览器创建一个有效的XML文档。这文档可以被传递给<code>jQuery</code>创建一个典型的jQuery对象，可以查询及操作。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">创建一个jQuery对象使用一个XML字符串并得到标题节点的值。</span></h4>
+<pre><code class="example">var xml = '&lt;rss version="2.0"&gt;&lt;channel&gt;&lt;title&gt;RSS Title&lt;/title&gt;&lt;/channel&gt;&lt;/rss&gt;',
+    xmlDoc = $.parseXML( xml ),
+    $xml = $( xmlDoc ),
+    $title = $xml.find( 'title' );	    
+
+// append "RSS Title" to #someElement
+$( '#someElement' ).append( $title.text() );	
+
+// change the title to "XML Title"
+$title.text( 'XML Title' );
+
+// append "XML Title" to #anotherElement
+$( '#anotherElement' ).append( $title.text() );
+</code></pre>
+</div></div>
+</div>
+</div>
+
+        </div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

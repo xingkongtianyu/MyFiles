@@ -1,0 +1,824 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://blog.csdn.net/chen861201/article/details/7179423 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Mysql Profiling的使用 - 辉蛋儿的学习历程
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta  name="description"  content="profiling是个很好用的mysql性能分析工具，今儿就来试验下profiling的功能。感谢 有爱玫瑰的博文： mysql 的 sql 性能分析器主要用途是显示 sql 执行的整个过程中各项资源的使用情况。分析器可以更好的展示出不良 SQL 的性能问题所在。    下面我们举例介绍一下MySQL SQL Profiler的使用方法：    首先，开启 MySQL SQL Prof">
+    <script  type="text/javascript"  async=""  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ga.js"></script><script  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/jquery.js"  type="text/javascript"></script>
+    <script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        
+       
+        <link  rel="stylesheet"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/index.css">
+        
+
+    <link  rel="Stylesheet"  type="text/css"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/style.css">
+    <link  id="RSSLink"  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://blog.csdn.net/chen861201/rss/list">
+    <link  rel="shortcut icon"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link  type="text/css"  rel="stylesheet"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+<link  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  type="text/javascript"  charset="utf-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/main.js"></script><script  type="text/javascript"  charset="utf-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/main(1).js"></script><link  rel="stylesheet"  type="text/css"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/style(1).css"><link  rel="stylesheet"  type="text/css"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/style(2).css"><script  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/logger.js"></script></head>
+<body><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="goWebsite">百度分享</a></p></div></div></div>
+    
+   
+      
+    <script  id="toolbar-tpl-scriptId"  fixed="true"  prod="blog"  skin="black"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/html.js"  type="text/javascript"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://blog.csdn.net/"  target="_blank"  class="img blog-icon"></a></div>          <div  class="pull-right login-wrap ">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search?ref=toolbar"  method="get"  target="_blank">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display: none;"  class="number"></div>                <div  style="display: none;"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note">                      <div  class="box"><div  class="notifications notice_list_con curr">  <a  href="javascript:void 0"  class="close1"></a>  <div  class="menu_title">    <span  class="title"><a  href="http://notify.csdn.net/"  target="_blank"  class="go_all">查看所有通知</a></span>  </div>  <div  class="loading"></div>  <div  class="empty">暂没有新通知</div>  <div  class="notice_content"></div></div><div  class="notifications detail_con"  style="display: none">  <div  class="menu_title">    <span  class="title">      <a  class="go_back"  href="javascript:void 0;">返回通知列表</a>      <a  class="notifications_page_none nextnote"  href="javascript:void 0;">下一条</a>      <a  class="notifications_page prvnote"  href="javascript:void 0;">上一条</a>    </span>  </div>  <div  class="notice_content"></div></div><div  class="error"></div></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="https://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname">zc80330582</a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="http://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+    <div  id="container">
+        <div  id="header">
+    <div  class="header">
+        <div  id="blog_title">
+            <h1>
+                <a  href="http://blog.csdn.net/chen861201">辉蛋儿的学习历程</a></h1>
+            <h2>没有能力，没人会看得起你！！</h2>
+            <div  class="clear">
+            </div>
+        </div>
+        <div  class="clear">
+        </div>
+    </div>
+</div>
+<div  id="navigator">
+    <div  class="navigator_bg">
+    </div>
+    <div  class="navigator">
+        <ul>
+                <li  id="btnContents"><a  href="http://blog.csdn.net/chen861201?viewmode=contents"><span >
+                    <img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li  id="btnView"><a  href="http://blog.csdn.net/chen861201?viewmode=list"><span >
+                    <img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li  id="btnRss"><a  href="http://blog.csdn.net/chen861201/rss/list"><span >
+                    <img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script  type="text/javascript">
+    var username = "chen861201";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/chen861201";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "zc80330582";
+</script>
+
+        <div  id="body">
+            <div  id="main">
+                <div  class="main">
+<div  class="notice tracking-ad"  data-mod="popu_3"> 
+
+
+<a  href="http://bbs.csdn.net/topics/390693540"  target="_blank"><font  color="red">2014年1月微软MVP当选名单揭晓！
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<a  href="http://blog.csdn.net/blogdevteam/article/details/17356319"  target="_blank">
+<font  color="red">“我的2013”年度征文获奖名单已公布
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a  href="http://www.csdn.net/article/2014-01-22/2818223"  target="_blank">
+<font  color="red">专访宋海涛：我们在做一款比Google Glass更酷的设备 </font></a>
+
+
+</div>                    <link  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/comment1.css"  type="text/css"  rel="stylesheet">
+<link  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/style1.css"  type="text/css"  rel="stylesheet">
+<div  id="article_details"  class="details">
+    <div  class="article_title">
+    <span  class="ico ico_type_Repost"></span>
+    <h3>
+        <span  class="link_title"><a  href="http://blog.csdn.net/chen861201/article/details/7179423">
+        Mysql Profiling的使用
+        </a></span>
+    </h3>
+</div>
+
+    <div  class="article_manage">
+        <span  class="link_categories">
+        分类：
+            <a  href="http://blog.csdn.net/chen861201/article/category/892320">Mysql</a> 
+            <a  href="http://blog.csdn.net/chen861201/article/category/941697">linux</a> 
+        </span>
+    <span  class="link_postdate">2012-01-05 20:47</span>
+    <span  class="link_view"  title="阅读次数">527人阅读</span>
+    <span  class="link_comments"  title="评论次数"><a  href="http://blog.csdn.net/chen861201/article/details/7179423#comments" >评论</a>(0)</span>
+    <span  class="link_collect"><a  href="javascript:void(0);"   title="收藏">收藏</a></span>
+    <span  class="link_report"><a  href="http://blog.csdn.net/chen861201/article/details/7179423#report"   title="举报">举报</a></span>
+    
+</div>
+<div  class="tag2box"><a  href="http://www.csdn.net/tag/profiling"  target="_blank" >profiling</a><a  href="http://www.csdn.net/tag/mysql"  target="_blank" >mysql</a><a  href="http://www.csdn.net/tag/query"  target="_blank" >query</a><a  href="http://www.csdn.net/tag/permissions"  target="_blank" >permissions</a><a  href="http://www.csdn.net/tag/initialization"  target="_blank" >initialization</a><a  href="http://www.csdn.net/tag/sql"  target="_blank" >sql</a></div>
+
+    
+<div  id="article_content"  class="article_content">
+
+<p>profiling是个很好用的mysql性能分析工具，今儿就来试验下profiling的功能。感谢 有爱玫瑰的博文：</p>
+<p>&nbsp;mysql 的 sql 性能分析器主要用途是显示 sql 执行的整个过程中各项资源的使用情况。分析器可以更好的展示出不良 SQL 的性能问题所在。</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> 下面我们举例介绍一下MySQL SQL Profiler的使用方法：</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> 首先，开启 MySQL SQL Profiler</p>
+<div  class="dp-highlighter bg_html"><div  class="bar"><div  class="tools"><b>[html]</b> <a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="ViewSource"  title="view plain" >view plain</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="CopyToClipboard"  title="copy" >copy</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="PrintSource"  title="print" >print</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="About"  title="?" >?</a><div  style="position: absolute; left: 424px; top: 572px; width: 18px; height: 18px; z-index: 99;"><embed  id="ZeroClipboardMovie_1"  src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="18"  height="18"  name="ZeroClipboardMovie_1"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=1&amp;width=18&amp;height=18"  wmode="transparent"></div></div></div><ol  start="1"  class="dp-xml"><li  class="alt"><span><span>mysql</span><span  class="tag">&gt;</span><span>&nbsp;SELECT&nbsp;@@profiling;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;@@profiling&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;0&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SET&nbsp;</span><span  class="attribute">profiling</span><span>&nbsp;=&nbsp;</span><span  class="attribute-value">1</span><span>;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Query&nbsp;OK,&nbsp;0&nbsp;rows&nbsp;affected&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SELECT&nbsp;@@profiling;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;@@profiling&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;1&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------+&nbsp;&nbsp;</span></li></ol></div><pre  class="html"  name="code"  style="display: none;">mysql&gt; SELECT @@profiling;
+
+    +-------------+
+
+    | @@profiling |
+
+    +-------------+
+
+    | 0 |
+
+    +-------------+
+
+    1 row in set (0.00 sec)
+
+    mysql&gt; SET profiling = 1;
+
+    Query OK, 0 rows affected (0.00 sec)
+
+    mysql&gt; SELECT @@profiling;
+
+    +-------------+
+
+    | @@profiling |
+
+    +-------------+
+
+    | 1 |
+
+    +-------------+
+
+</pre><br>
+1 row in set (0.00 sec)默认情况下 profiling 的值为 0 表示 MySQL SQL Profiler 处于 OFF 状态，开启 SQL 性能分析器后 profiling 的值为 1.
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> 通过 sql 性能分析器，我们来对比一下 下列语句前后 2 次执行过程的差异，对我们了解 sql 的详细执行过程是非常有帮助的。</p>
+<div  class="dp-highlighter bg_html"><div  class="bar"><div  class="tools"><b>[html]</b> <a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="ViewSource"  title="view plain" >view plain</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="CopyToClipboard"  title="copy" >copy</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="PrintSource"  title="print" >print</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#"  class="About"  title="?" >?</a><div  style="position: absolute; left: 424px; top: 1241px; width: 18px; height: 18px; z-index: 99;"><embed  id="ZeroClipboardMovie_2"  src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf"  loop="false"  menu="false"  quality="best"  bgcolor="#ffffff"  width="18"  height="18"  name="ZeroClipboardMovie_2"  align="middle"  allowscriptaccess="always"  allowfullscreen="false"  type="application/x-shockwave-flash"  pluginspage="http://www.macromedia.com/go/getflashplayer"  flashvars="id=2&amp;width=18&amp;height=18"  wmode="transparent"></div></div></div><ol  start="1"  class="dp-xml"><li  class="alt"><span><span>mysql</span><span  class="tag">&gt;</span><span>&nbsp;create&nbsp;table&nbsp;t_engines&nbsp;select&nbsp;*&nbsp;from&nbsp;t_engines1;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Query&nbsp;OK,&nbsp;57344&nbsp;rows&nbsp;affected&nbsp;(0.10&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Records:&nbsp;57344&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;select&nbsp;count(*)&nbsp;from&nbsp;t_engines;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;count(*)&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;57344&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;select&nbsp;count(*)&nbsp;from&nbsp;t_engines;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;count(*)&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;57344&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SHOW&nbsp;PROFILES;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+------------+-------------------------------------------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Query_ID&nbsp;|&nbsp;Duration&nbsp;|&nbsp;Query&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+------------+-------------------------------------------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;26&nbsp;|&nbsp;0.10213775&nbsp;|&nbsp;create&nbsp;table&nbsp;t_engines&nbsp;select&nbsp;*&nbsp;from&nbsp;t_engines1&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;27&nbsp;|&nbsp;0.00032775&nbsp;|&nbsp;select&nbsp;count(*)&nbsp;from&nbsp;t_engines&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;28&nbsp;|&nbsp;0.00003850&nbsp;|&nbsp;select&nbsp;count(*)&nbsp;from&nbsp;t_engines&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+------------+-------------------------------------------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.01&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SHOW&nbsp;PROFILE&nbsp;FOR&nbsp;QUERY&nbsp;27;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+--------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Status&nbsp;|&nbsp;Duration&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+--------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(initialization)&nbsp;|&nbsp;0.00000425&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;checking&nbsp;query&nbsp;cache&nbsp;for&nbsp;query&nbsp;|&nbsp;0.00004050&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;checking&nbsp;permissions&nbsp;|&nbsp;0.00001050&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Opening&nbsp;tables&nbsp;|&nbsp;0.00018250&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;System&nbsp;lock&nbsp;|&nbsp;0.00000450&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Table&nbsp;lock&nbsp;|&nbsp;0.00001775&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;init&nbsp;|&nbsp;0.00001075&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;optimizing&nbsp;|&nbsp;0.00000550&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;executing&nbsp;|&nbsp;0.00002775&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;end&nbsp;|&nbsp;0.00000450&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;query&nbsp;end&nbsp;|&nbsp;0.00000325&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;storing&nbsp;result&nbsp;in&nbsp;query&nbsp;cache&nbsp;|&nbsp;0.00000400&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;freeing&nbsp;items&nbsp;|&nbsp;0.00000400&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;closing&nbsp;tables&nbsp;|&nbsp;0.00000500&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;logging&nbsp;slow&nbsp;query&nbsp;|&nbsp;0.00000300&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+--------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SHOW&nbsp;PROFILE&nbsp;FOR&nbsp;QUERY&nbsp;28;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Status&nbsp;|&nbsp;Duration&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;(initialization)&nbsp;|&nbsp;0.00000350&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;checking&nbsp;query&nbsp;cache&nbsp;for&nbsp;query&nbsp;|&nbsp;0.00000750&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;checking&nbsp;privileges&nbsp;on&nbsp;cached&nbsp;query&nbsp;|&nbsp;0.00000500&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;checking&nbsp;permissions&nbsp;|&nbsp;0.00000525&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;sending&nbsp;cached&nbsp;result&nbsp;to&nbsp;client&nbsp;|&nbsp;0.00001275&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;logging&nbsp;slow&nbsp;query&nbsp;|&nbsp;0.00000450&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+-------------------------------------+------------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SELECT&nbsp;sum(&nbsp;FORMAT(DURATION,&nbsp;6))&nbsp;AS&nbsp;DURATION&nbsp;FROM&nbsp;INFORMATION_SCHEMA.PROFILING&nbsp;WHERE&nbsp;</span><span  class="attribute">QUERY_ID</span><span>&nbsp;=</span><span  class="attribute-value">27</span><span>&nbsp;ORDER&nbsp;BY&nbsp;SEQ;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DURATION&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;0.000326&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;mysql<span  class="tag">&gt;</span><span>&nbsp;SELECT&nbsp;sum(&nbsp;FORMAT(DURATION,&nbsp;6))&nbsp;AS&nbsp;DURATION&nbsp;FROM&nbsp;INFORMATION_SCHEMA.PROFILING&nbsp;WHERE&nbsp;</span><span  class="attribute">QUERY_ID</span><span>&nbsp;=</span><span  class="attribute-value">28</span><span>&nbsp;ORDER&nbsp;BY&nbsp;SEQ;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;DURATION&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;0.000039&nbsp;|&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;+----------+&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)&nbsp;&nbsp;</span></li></ol></div><pre  class="html"  name="code"  style="display: none;">mysql&gt; create table t_engines select * from t_engines1;
+
+    Query OK, 57344 rows affected (0.10 sec)
+
+    Records: 57344 Duplicates: 0 Warnings: 0
+
+    mysql&gt; select count(*) from t_engines;
+
+    +----------+
+
+    | count(*) |
+
+    +----------+
+
+    | 57344 |
+
+    +----------+
+
+    1 row in set (0.00 sec)
+
+    mysql&gt; select count(*) from t_engines;
+
+    +----------+
+
+    | count(*) |
+
+    +----------+
+
+    | 57344 |
+
+    +----------+
+
+    1 row in set (0.00 sec)
+
+    mysql&gt; SHOW PROFILES;
+
+    +----------+------------+-------------------------------------------------+
+
+    | Query_ID | Duration | Query |
+
+    +----------+------------+-------------------------------------------------+
+
+    | 26 | 0.10213775 | create table t_engines select * from t_engines1 |
+
+    | 27 | 0.00032775 | select count(*) from t_engines |
+
+    | 28 | 0.00003850 | select count(*) from t_engines |
+
+    +----------+------------+-------------------------------------------------+
+
+    15 rows in set (0.01 sec)
+
+    mysql&gt; SHOW PROFILE FOR QUERY 27;
+
+    +--------------------------------+------------+
+
+    | Status | Duration |
+
+    +--------------------------------+------------+
+
+    | (initialization) | 0.00000425 |
+
+    | checking query cache for query | 0.00004050 |
+
+    | checking permissions | 0.00001050 |
+
+    | Opening tables | 0.00018250 |
+
+    | System lock | 0.00000450 |
+
+    | Table lock | 0.00001775 |
+
+    | init | 0.00001075 |
+
+    | optimizing | 0.00000550 |
+
+    | executing | 0.00002775 |
+
+    | end | 0.00000450 |
+
+    | query end | 0.00000325 |
+
+    | storing result in query cache | 0.00000400 |
+
+    | freeing items | 0.00000400 |
+
+    | closing tables | 0.00000500 |
+
+    | logging slow query | 0.00000300 |
+
+    +--------------------------------+------------+
+
+    15 rows in set (0.00 sec)
+
+    mysql&gt; SHOW PROFILE FOR QUERY 28;
+
+    +-------------------------------------+------------+
+
+    | Status | Duration |
+
+    +-------------------------------------+------------+
+
+    | (initialization) | 0.00000350 |
+
+    | checking query cache for query | 0.00000750 |
+
+    | checking privileges on cached query | 0.00000500 |
+
+    | checking permissions | 0.00000525 |
+
+    | sending cached result to client | 0.00001275 |
+
+    | logging slow query | 0.00000450 |
+
+    +-------------------------------------+------------+
+
+    6 rows in set (0.00 sec) mysql&gt; SELECT sum( FORMAT(DURATION, 6)) AS DURATION FROM INFORMATION_SCHEMA.PROFILING WHERE QUERY_ID =27 ORDER BY SEQ;
+
+    +----------+
+
+    | DURATION |
+
+    +----------+
+
+    | 0.000326 |
+
+    +----------+
+
+    1 row in set (0.00 sec) mysql&gt; SELECT sum( FORMAT(DURATION, 6)) AS DURATION FROM INFORMATION_SCHEMA.PROFILING WHERE QUERY_ID =28 ORDER BY SEQ;
+
+    +----------+
+
+    | DURATION |
+
+    +----------+
+
+    | 0.000039 |
+
+    +----------+
+
+    1 row in set (0.00 sec)
+
+</pre><br>
+从上面的例子中我们可以清晰的看出 2 次执行 count 语句的差别， SHOW PRO<wbr>FILE FOR QUERY 27 展现的是第一次 count 统计的执行过程，包含了 Opening tables 、 Table lock 等操作 。而 SHOW PRO<wbr>FILE FOR QUERY 28 展示了第二次 count 统计的执行过程 , 第二次 count 直接从查询缓存中返回 count 统计结果，通过对比 2 次统计的总执行时间发现，缓存读的速度接近物理读的 10 倍。通过使用 SQL
+ 性能分析器可以帮助我们对一些比较难以确定性能问题的 SQL 进行诊断，找出问题根源。
+
+</div>
+
+
+
+
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"  style="float: right;">
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://blog.csdn.net/chen861201/article/details/7179423#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://blog.csdn.net/chen861201/article/details/7179423#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://blog.csdn.net/chen861201/article/details/7179423#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://blog.csdn.net/chen861201/article/details/7179423#"></a>
+<a  class="bds_t163"  title="分享到网易微博"  href="http://blog.csdn.net/chen861201/article/details/7179423#"></a>
+<span  class="bds_more">更多</span>
+<a  class="shareCount"  href="http://blog.csdn.net/chen861201/article/details/7179423#"  title="累计分享0次">0</a>
+</div>
+
+
+
+
+<div  class="article_next_prev">
+            <li  class="prev_article"><span>上一篇：</span><a  href="http://blog.csdn.net/chen861201/article/details/7178439" >xml语法规则（一）</a></li>
+            <li  class="next_article"><span>下一篇：</span><a  href="http://blog.csdn.net/chen861201/article/details/7186723" >mysql外键关联问题</a></li>
+</div>
+
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=1536434"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+    <div  id="ad_cen">
+        <script  type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/o.js"></script><div  id="BAIDU_DUP_wrapper_117306_0"></div><script  charset="utf-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ecom"></script><script  charset="utf-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/fixed7o.js"></script><script  type="text/javascript"><!--
+google_ad_client = "ca-pub-1076724771190722";
+/* blog正文下方728x90 */
+google_ad_slot = "4497271841";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    </div>
+    <script  type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div  id="comment_title"  class="panel_head">
+    查看评论<a  name="comments"></a></div>
+<div  id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div  class="clear"></div></div>
+<div  id="comment_bar">
+</div>
+<div  id="comment_form"><a  name="commentbox"></a><a  name="reply"></a><a  name="quote"></a><form  action="http://blog.csdn.net/chen861201/comment/submit?id=7179423"  method="post" ><div  class="commentform"><div  class="panel_head">发表评论</div><ul><li  class="left">用 户 名：</li><li  class="right">zc80330582</li></ul><ul><li  class="left">评论内容：</li><li  class="right"  style="position:relative;"><div  id="ubbtools"><a  href="http://blog.csdn.net/chen861201/article/details/7179423#insertcode"  code="code"><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/code.gif"  border="0"  alt="插入代码"  title="插入代码"></a></div><div  id="lang_list"  style="position: absolute; top: 28px; left: 0px; display: none;"><a  class="long_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#html">HTML/XML</a><a  class="long_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#objc">objective-c</a><a  class="zhong_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#delphi">Delphi</a><a  class="zhong_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#ruby">Ruby</a><a  href="http://blog.csdn.net/chen861201/article/details/7179423#php">PHP</a><a  class="duan_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#csharp">C#</a><a  style=" border-right: none;"  class="duan_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#cpp">C++</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#javascript">JavaScript</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#vb">Visual Basic</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#python">Python</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#java">Java</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#css">CSS</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#sql">SQL</a><a  style="border:none;"  class="duan_name"  href="http://blog.csdn.net/chen861201/article/details/7179423#plain">其它</a></div><textarea  class="comment_content"  name="comment_content"  id="comment_content"  style="width: 400px; height: 200px;"></textarea></li></ul><ul><input  type="hidden"  id="comment_replyId"  name="comment_replyId"><input  type="hidden"  id="comment_userId"  name="comment_userId"  value="521203"><input  type="hidden"  id="commentId"  name="commentId"  value=""><input  type="submit"  class="comment_btn"  value="提交">&nbsp;&nbsp;<span  id="tip_comment"  style="color: Red; display: none;"></span></ul></div></form></div>
+<div  class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a  name="reply"></a><a  name="quote"></a></div>
+<script  type="text/javascript">
+    var fileName = '7179423';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div  id="ad_bot">
+    <iframe  id="ad_frm_0"  frameborder="0"  scrolling="no"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ad(1).htm"  style="border-width: 0px; overflow: hidden; width: 984px; height: 0px;"></iframe></div>
+    <script  type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div  id="report_dialog">
+</div>
+<div  id="d-top"  style="">
+    <a  id="d-top-a"  href="http://blog.csdn.net/chen861201/article/details/7179423#"  title="回到顶部" >
+        <img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/top.png"  alt="TOP"></a>
+</div>
+<script  type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style  type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div  class="tag_list">
+    <h5>
+        <a  href="http://www.csdn.net/tag/"  target="_blank">核心技术类目</a></h5>
+    <div  class="classify">
+<a  title="全部主题"  href="http://www.csdn.net/tag"  target="_blank" >全部主题</a>
+<a  title="Java"  href="http://www.csdn.net/tag/Java"  target="_blank" >Java</a>
+<a  title="VPN"  href="http://www.csdn.net/tag/vpn"  target="_blank" >VPN</a>
+<a  title="Android"  href="http://www.csdn.net/tag/android"  target="_blank" >Android</a>
+<a  title="iOS"  href="http://www.csdn.net/tag/ios"  target="_blank" >iOS</a>
+<a  title="ERP"  href="http://www.csdn.net/tag/erp"  target="_blank" >ERP</a>
+<a  title="IE10"  href="http://www.csdn.net/tag/ie10"  target="_blank" >IE10</a>
+<a  title="Eclipse"  href="http://www.csdn.net/tag/eclipse"  target="_blank" >Eclipse</a>
+<a  title="CRM"  href="http://www.csdn.net/tag/crm"  target="_blank" >CRM</a>
+<a  title="JavaScript"  href="http://www.csdn.net/tag/javascript"  target="_blank" >JavaScript</a>
+<a  title="Ubuntu"  href="http://www.csdn.net/tag/ubuntu"  target="_blank" >Ubuntu</a>
+<a  title="NFC"  href="http://www.csdn.net/tag/nfc"  target="_blank" >NFC</a>
+<a  title="WAP"  href="http://www.csdn.net/tag/wap"  target="_blank" >WAP</a>
+<a  title="jQuery"  href="http://www.csdn.net/tag/jquery"  target="_blank" >jQuery</a>
+<a  title="数据库"  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank" >数据库</a>
+<a  title="BI"  href="http://www.csdn.net/tag/bi"  target="_blank" >BI</a>
+<a  title="HTML5"  href="http://www.csdn.net/tag/html5"  target="_blank" >HTML5</a>
+<a  title="Spring"  href="http://www.csdn.net/tag/spring"  target="_blank" >Spring</a>
+<a  title="Apache"  href="http://www.csdn.net/tag/apache"  target="_blank" >Apache</a>
+<a  title="Hadoop"  href="http://www.csdn.net/tag/hadoop"  target="_blank" >Hadoop</a>
+<a  title=".NET"  href="http://www.csdn.net/tag/.net"  target="_blank" >.NET</a>
+<a  title="API"  href="http://www.csdn.net/tag/api"  target="_blank" >API</a>
+<a  title="HTML"  href="http://www.csdn.net/tag/html"  target="_blank" >HTML</a>
+<a  title="SDK"  href="http://www.csdn.net/tag/sdk"  target="_blank" >SDK</a>
+<a  title="IIS"  href="http://www.csdn.net/tag/iis"  target="_blank" >IIS</a>
+<a  title="Fedora"  href="http://www.csdn.net/tag/fedora"  target="_blank" >Fedora</a>
+<a  title="XML"  href="http://www.csdn.net/tag/xml"  target="_blank" >XML</a>
+<a  title="LBS"  href="http://www.csdn.net/tag/lbs"  target="_blank" >LBS</a>
+<a  title="Unity"  href="http://www.csdn.net/tag/unity"  target="_blank" >Unity</a>
+<a  title="Splashtop"  href="http://www.csdn.net/tag/splashtop"  target="_blank" >Splashtop</a>
+<a  title="UML"  href="http://www.csdn.net/tag/uml"  target="_blank" >UML</a>
+<a  title="components"  href="http://www.csdn.net/tag/components"  target="_blank" >components</a>
+<a  title="Windows Mobile"  href="http://www.csdn.net/tag/windowsmobile"  target="_blank" >Windows Mobile</a>
+<a  title="Rails"  href="http://www.csdn.net/tag/rails"  target="_blank" >Rails</a>
+<a  title="QEMU"  href="http://www.csdn.net/tag/qemu"  target="_blank" >QEMU</a>
+<a  title="KDE"  href="http://www.csdn.net/tag/kde"  target="_blank" >KDE</a>
+<a  title="Cassandra"  href="http://www.csdn.net/tag/cassandra"  target="_blank" >Cassandra</a>
+<a  title="CloudStack"  href="http://www.csdn.net/tag/cloudstack"  target="_blank" >CloudStack</a>
+<a  title="FTC"  href="http://www.csdn.net/tag/ftc"  target="_blank" >FTC</a>
+<a  title="coremail"  href="http://www.csdn.net/tag/coremail"  target="_blank" >coremail</a>
+<a  title="OPhone "  href="http://www.csdn.net/tag/ophone"  target="_blank" >OPhone </a>
+<a  title="CouchBase"  href="http://www.csdn.net/tag/couchbase"  target="_blank" >CouchBase</a>
+<a  title="云计算"  href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97"  target="_blank" >云计算</a>
+<a  title="iOS6"  href="http://www.csdn.net/tag/iOS6"  target="_blank" >iOS6</a>
+<a  title="Rackspace "  href="http://www.csdn.net/tag/rackspace"  target="_blank" >Rackspace </a>
+<a  title="Web App"  href="http://www.csdn.net/tag/webapp"  target="_blank" >Web App</a>
+<a  title="SpringSide"  href="http://www.csdn.net/tag/springside"  target="_blank" >SpringSide</a>
+<a  title="Maemo"  href="http://www.csdn.net/tag/maemo"  target="_blank" >Maemo</a>
+<a  title="Compuware"  href="http://www.csdn.net/tag/compuware"  target="_blank" >Compuware</a>
+<a  title="大数据"  href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank" >大数据</a>
+<a  title="aptech"  href="http://www.csdn.net/tag/aptech"  target="_blank" >aptech</a>
+<a  title="Perl"  href="http://www.csdn.net/tag/perl"  target="_blank" >Perl</a>
+<a  title="Tornado"  href="http://www.csdn.net/tag/tornado"  target="_blank" >Tornado</a>
+<a  title="Ruby"  href="http://www.csdn.net/tag/ruby"  target="_blank" >Ruby</a>
+<a  title="Hibernate"  href="http://www.csdn.net/hibernate"  target="_blank" >Hibernate</a>
+<a  title="ThinkPHP"  href="http://www.csdn.net/tag/thinkphp"  target="_blank" >ThinkPHP</a>
+<a  title="Spark"  href="http://www.csdn.net/tag/spark"  target="_blank" >Spark</a>
+<a  title="HBase"  href="http://www.csdn.net/tag/hbase"  target="_blank" >HBase</a>
+<a  title="Pure"  href="http://www.csdn.net/tag/pure"  target="_blank" >Pure</a>
+<a  title="Solr"  href="http://www.csdn.net/tag/solr"  target="_blank" >Solr</a>
+<a  title="Angular"  href="http://www.csdn.net/tag/angular"  target="_blank" >Angular</a>
+<a  title="Cloud Foundry"  href="http://www.csdn.net/tag/cloudfoundry"  target="_blank" >Cloud Foundry</a>
+<a  title="Redis"  href="http://www.csdn.net/tag/redis"  target="_blank" >Redis</a>
+<a  title="Scala"  href="http://www.csdn.net/tag/scala"  target="_blank" >Scala</a>
+<a  title="Django"  href="http://www.csdn.net/tag/django"  target="_blank" >Django</a>
+<a  title="Bootstrap"  href="http://www.csdn.net/tag/bootstrap"  target="_blank" >Bootstrap</a>
+    </div>
+</div>
+
+                    <div  class="clear">
+                    </div>
+                </div>
+            </div>
+            <div  id="side">
+    <div  class="side">
+<div  id="panel_Profile"  class="panel">
+<ul  class="panel_head"><span>个人资料</span></ul>
+<ul  class="panel_body profile">
+<div  id="blog_userface">
+    <a  href="http://my.csdn.net/chen861201"  target="_blank">
+    <img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/1_chen861201.jpg"  title="访问我的空间"  style="max-width:90%">
+    </a>
+    <br>
+    <span><a  href="http://my.csdn.net/chen861201"  class="user_name"  target="_blank">辉蛋儿</a></span>
+</div>
+<div  class="interact">
+<a  href="javascript:void(0);"  class="attent"  id="span_add_follow"  title="[加关注]" ></a>
+<a  href="javascript:void(0);"  class="letter"   title="[发私信]"></a>
+</div>
+<div  id="blog_medal">
+<div  id="bms_box"><a  href="http://medal.blog.csdn.net/allmedal.aspx"  target="_blank"><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/holdon_s2.gif"    alt=""></a></div></div>
+<ul  id="blog_rank">
+    <li>访问：<span>138495次</span></li>
+    <li>积分：<span>2501分</span></li>
+    <li>排名：<span>第3694名</span></li>
+</ul>
+<ul  id="blog_statistics">
+    <li>原创：<span>112篇</span></li>
+    <li>转载：<span>39篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>36条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div  class="panel"  id="panel_Search">
+    <ul  class="panel_head"><span>文章搜索</span></ul>
+    <ul  class="panel_body">
+        <form  id="frmSearch"  action="http://so.csdn.net/search"  class="form_search"  target="_blank">
+        <span><input  id="inputSearch"  type="text"  class="blogsearch"  title="请输入关键字"></span>
+        <input  id="btnSubmit"  type="submit"  value="搜索"  title="search in blog">
+        <input  type="hidden"  name="q"  id="inputQ">
+        <input  type="hidden"  name="t"  value="blog">
+        <a  id="btnSearchBlog"  target="_blank"></a>
+        </form>
+    </ul>
+</div><div  id="panel_Category"  class="panel">
+<ul  class="panel_head"><span>文章分类</span></ul>
+<ul  class="panel_body">
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1174633">VIM</a><span>(10)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1132939">工具</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/890496">oracle</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/892318">JAVA</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/901964">spring学习之路</a><span>(7)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/902684">Hibernate</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/902685">ibatis</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/892320">Mysql</a><span>(42)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/932203">amoeba</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/924867">ubuntu</a><span>(34)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/947598">服务器管理</a><span>(15)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/941697">linux</a><span>(37)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1090060">shell</a><span>(18)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1176535">可爱的python学习总结</a><span>(7)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1174631">python</a><span>(12)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1180962">redis</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/943070">心得体会</a><span>(17)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/892316">C#</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/902686">xml</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1313098">github</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/category/1319012">mysql实战总结</a><span>(2)</span>
+</li>
+</ul>
+</div><div  id="panel_Archive"  class="panel">
+<ul  class="panel_head"><span>文章存档</span></ul>
+<ul  class="panel_body">
+<div  id="archive_list"><li><a  href="http://blog.csdn.net/chen861201/article/month/2013/12">2013年12月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2013/01">2013年01月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/12">2012年12月</a><span>(2)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/10">2012年10月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/09">2012年09月</a><span>(5)</span></li><span  class="hidelist"  style="display:none;"><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/08">2012年08月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/07">2012年07月</a><span>(13)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/06">2012年06月</a><span>(17)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/05">2012年05月</a><span>(18)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/04">2012年04月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/03">2012年03月</a><span>(9)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/02">2012年02月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2012/01">2012年01月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/12">2011年12月</a><span>(13)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/11">2011年11月</a><span>(19)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/10">2011年10月</a><span>(15)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/09">2011年09月</a><span>(8)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/08">2011年08月</a><span>(2)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/07">2011年07月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/06">2011年06月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/chen861201/article/month/2011/04">2011年04月</a><span>(2)</span></li></span><div  id="archive_list_button"  class="list_closed">展开</div></div>
+</ul>
+</div>
+<div  id="hotarticls"  class="panel">
+<ul  class="panel_head"><span>阅读排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7696792"  title="python学习总结之外部传参">python学习总结之外部传参</a><span>(28039)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7824410"  title="我在华为的十年（转）">我在华为的十年（转）</a><span>(12792)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7741480"  title="阿里巴巴离职DBA 35岁总结的职业生涯（转）">阿里巴巴离职DBA 35岁总结的职业生涯（转）</a><span>(9300)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7577866"  title="查看数据库中某张表的字段个数">查看数据库中某张表的字段个数</a><span>(4489)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/8037837"  title="一位架构师对技术方面的反思">一位架构师对技术方面的反思</a><span>(4460)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/6980677"  title="ps -aux|grep 详细信息">ps -aux|grep 详细信息</a><span>(2901)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/6790154"  title="oracle like用法">oracle like用法</a><span>(2483)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/6853035"  title="&lt;typeAlias&gt; &lt;reslutmap&gt;  &lt;parameterMap&gt;">&lt;typeAlias&gt; &lt;reslutmap&gt;  &lt;parameterMap&gt;</a><span>(2440)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7706535"  title="python中文注释报错问题">python中文注释报错问题</a><span>(2238)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/8000263"  title="数据库牛人牛新庄的成长历程（转）">数据库牛人牛新庄的成长历程（转）</a><span>(1989)</span>
+</li>
+</ul>
+</div>
+<div  id="hotarticls2"  class="panel">
+<ul  class="panel_head"><span>评论排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/8079187"  title="面试经历">面试经历</a><span>(8)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7492465"  title="DCI一期项目汇总整理">DCI一期项目汇总整理</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7591474"  title="mysql中的auto_increment的问题">mysql中的auto_increment的问题</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7544792"  title="杂想之我的时间安排">杂想之我的时间安排</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7627040"  title="mysql 5.5字符集问题">mysql 5.5字符集问题</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7024001"  title="shell 中 if语句的语法错误">shell 中 if语句的语法错误</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/6790045"  title="PL/SQL Developer导入导出数据库">PL/SQL Developer导入导出数据库</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7186723"  title="mysql外键关联问题">mysql外键关联问题</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7621409"  title="ORACLE迁移到MYSQL总结">ORACLE迁移到MYSQL总结</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/chen861201/article/details/7727061"  title="redis学习总结之主从复制">redis学习总结之主从复制</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div  id="homepageArticles"  class="panel tracking-ad"  data-mod="popu_4">
+<ul  class="panel_head"><span>推荐文章</span></ul>
+<ul  class="panel_body"  id="ad_commend"><iframe  id="ad_frm_1"  frameborder="0"  scrolling="no"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ad.htm"  style="border-width: 0px; overflow: hidden; width: 194px; height: 0px;"></iframe></ul>
+</div>
+<script  type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div  id="newcomments"  class="panel">
+<ul  class="panel_head"><span>最新评论</span></ul>
+<ul  class="panel_body itemlist">
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/6774529#comments">android快捷键（转）</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/limenghua9112"  class="user_name">limenghua9112</a>:
+谢谢，有用
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/7591474#comments">mysql中的auto_increment的问题</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/guojianing_wtt"  class="user_name">潇潇洒洒_007</a>:
+好文章
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/7706535#comments">python中文注释报错问题</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/wzl0507"  class="user_name">wzl0507</a>:
+thanks，测试了是有效的。
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/chen861201"  class="user_name">辉蛋儿</a>:
+@blue__sky2011:呵呵，感谢
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/blue__sky2011"  class="user_name">blue__sky2011</a>:
+哈哈加油！
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/blue__sky2011"  class="user_name">blue__sky2011</a>:
+哈哈！ 一直在关注你，加油！
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/zhangwei0915180"  class="user_name">zhangwei0915180</a>:
+好好奋斗吧，路还很长！
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/chen861201"  class="user_name">辉蛋儿</a>:
+@SmithLiu328:感谢鼓励，呵呵……再接再厉继续加油
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/SmithLiu328"  class="user_name">KevinLiu</a>:
+呵呵 都是这样的过程，不过作为DBA不光要知道怎么做还要知道为什么要这样做。知识是一个慢慢积累的过程...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/chen861201/article/details/8079187#comments">面试经历</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/chen861201"  class="user_name">辉蛋儿</a>:
+@zzp_to_java:大家都一样啊，咱们技术工种有实力才是王道，一起加油吧
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div  class="clear">
+    </div>
+</div>
+
+            <div  class="clear">
+            </div>
+        </div>
+        
+
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script  type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">QQ客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="http://bbs.csdn.net/forums/Service"  target="_blank"  class="online">论坛反馈</a> <a  href="mailto:webmaster@csdn.net"  class="email">联系邮箱：webmaster@csdn.net</a> <span  class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/notify.js"></script>
+<script  type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/pv.aspx"  border="0"  width="0"  height="0">
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/count.js"></script><iframe  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/logs.htm"  frameborder="0"  width="0"  height="0"></iframe>
+<script  type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      
+    
+    <script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./Mysql Profiling的使用 - 辉蛋儿的学习历程 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     
+
+
+<div  id="tag-suggest-pop"  style="display: block;">
+  <div  class="relative">
+    <div  class="close"></div>
+    <div  class="content">
+      <span>更多相关资源：</span>
+      <a  href="http://www.csdn.net/tag/profiling"  target="_blank">profiling</a><a  href="http://www.csdn.net/tag/mysql"  target="_blank">mysql</a>
+    </div>
+  </div>
+</div></body></html>

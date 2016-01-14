@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.ajaxSend()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/ajax/" title="View all posts in Ajax">Ajax</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/ajax/global-ajax-event-handlers/" title="View all posts in Global Ajax Event Handlers">Global Ajax Event Handlers</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="ajaxSend1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.ajaxSend( handler(event, XMLHttpRequest, ajaxOptions) )</span> <span class="returns">返回: <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>Description: </strong></p>
+<ul class="signatures"><li class="signature" id="ajaxSend-handlerevent, XMLHttpRequest, ajaxOptions">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.ajaxSend( handler(event, XMLHttpRequest, ajaxOptions) )</h4>
+<p class="arguement"><strong>handler(event, XMLHttpRequest, ajaxOptions)</strong>The function to be invoked.</p>
+</li></ul>
+<div class="longdesc">
+  <p>每当一个Ajax请求即将发送，jQuery就会触发<code>ajaxSend</code>事件，在这个时间点所有处理函数都会使用<code>.ajaxSend()</code>方法注册并执行。</p>
+<p>我们可以建立一个基本的Ajax请求,观察该方法的执行过程:</p>
+<pre>&lt;div class="trigger"&gt;Trigger&lt;/div&gt;
+&lt;div class="result"&gt;&lt;/div&gt;
+&lt;div class="log"&gt;&lt;/div&gt;</pre>
+<p>我们可以在一些节点上添加的事件处理函数:</p>
+<pre>$('.log').ajaxSend(function() {
+  $(this).text('Triggered ajaxSend handler.');
+});</pre>
+<p>现在我们可以构建一个Ajax请求使用任何的jQuery方法：</p>
+<pre>$('.trigger').click(function() {
+  $('.result').load('ajax/test.html');
+});</pre>
+<p>当我们点击这个按钮并且Ajax请求即将开始发送，这个信息就会显示。</p>
+<p><strong>注意:</strong> 因为<code>.ajaxSend()</code> 是作为一个jQuery对象实例方法去执行的，我们可以用<code>this</code>关键字作为回调函数中指定的元素。</p>
+<p>无论哪一个Ajax请求被完成，所有<code>ajaxSend</code>处理器都将被执行。如果我们必须区分的请求,我们可以使参数传递给这个处理器。 他是通过事件对象、  <code>XMLHttpRequest</code> 对象和<a   target="_blank" href="http://api.jquery.com/jQuery.ajax/">设置对象</a>中使用的请求，做每一次<code>ajaxSend</code> 处理器执行的。 举个例子,我们能限制我们的回调到只处理事件处理某一特定的URL:</p>
+<pre>$('.log').ajaxSend(function(e, xhr, settings) {
+  if (settings.url == 'ajax/test.html') {
+    $(this).text('Triggered ajaxSend handler.');
+  }
+});</pre>
+</div>
+<h3>举例:</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">当Ajax请求即将发送前显示一个信息。</span></h4>
+<pre><code class="example">$("#msg").ajaxSend(function(evt, request, settings){
+        $(this).append("&lt;li&gt;Starting request at " + settings.url + "&lt;/li&gt;");
+      });</code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.fadeOut()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/fading/" title="View all posts in Fading">Fading</a></span>
+  
+  				</div>
+</div>
+<div id="fadeOut1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.fadeOut( [ duration ], [ callback ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>通过淡出的方式显示匹配元素。</p>
+<ul class="signatures">
+<li class="signature" id="fadeOut-duration-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.fadeOut( [ duration ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="fadeOut-duration-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.fadeOut( [ duration ], [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>easing</strong>一个用来表示使用哪个缓冲函数来过渡的字符串</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.fadeOut()</code> 方法通过匹配元素的透明度做动画效果。一旦透明度达到0，<code>display</code>样式属性将被设置为<code>none</code>，以确保该元素不再影响页面布局。</p>
+<p>持续时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。如果提供任何其他字符串，或者这个<code>duration</code>参数被省略，那么默认使用<code>400</code>毫秒的延时。</p>
+<p>如果提供回调函数参数，回调函数会在动画完成的时候调用。这个对于将不同的动画串联在一起按顺序排列是非常有用的。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是这个回调函数在每个匹配元素上执行一次，不是这个动画作为一个整体。</p>
+<p>我们可以给任何元素做动画，比如一个简单的图片：</p>
+<pre>&lt;div id="clickme"&gt;
+  Click here
+&lt;/div&gt;
+&lt;img id="book" src="book.png" alt="" width="100" height="123" /&gt;</pre>
+<p>With the element initially shown, we can hide it slowly:</p>
+<pre>$('#clickme').click(function() {
+  $('#book').fadeOut('slow', function() {
+    // Animation complete.
+  });
+});</pre>
+<p class="image four-across">
+      <img src="/images/0042_06_37.png" alt=""><img src="/images/0042_06_38.png" alt=""><img src="/images/0042_06_39.png" alt=""><img src="/images/0042_06_40.png" alt=""></p>
+</div>
+
+<h3 id="notes-0">注意：</h3>
+<div class="longdesc"><ul><li>
+所有的jQuery效果，包括 <code>.fadeOut()</code>,能使用<code>jQuery.fx.off = true</code>关闭全局性。更多信息请查看<a   target="_blank" href="http://api.jquery.com/jquery.fx.off">jQuery.fx.off</a>。</li></ul></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">
+淡出所有段落，在600毫秒内完成这些动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { font-size:150%; cursor:pointer; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+  If you click on this paragraph
+  you'll see it just fade away.
+  &lt;/p&gt;
+&lt;script&gt;
+  $("p").click(function () {
+  $("p").fadeOut("slow");
+  });
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">点击淡出在span，</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  span { cursor:pointer; }
+  span.hilite { background:yellow; }
+  div { display:inline; color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt;Find the modifiers - &lt;div&gt;&lt;/div&gt;&lt;/h3&gt;
+  &lt;p&gt;
+  If you &lt;span&gt;really&lt;/span&gt; want to go outside
+  &lt;span&gt;in the cold&lt;/span&gt; then make sure to wear
+  your &lt;span&gt;warm&lt;/span&gt; jacket given to you by
+  your &lt;span&gt;favorite&lt;/span&gt; teacher.
+  &lt;/p&gt;
+&lt;script&gt;
+
+  $("span").click(function () {
+  $(this).fadeOut(1000, function () {
+  $("div").text("'" + $(this).text() + "' has faded!");
+  $(this).remove();
+  });
+  });
+  $("span").hover(function () {
+  $(this).addClass("hilite");
+  }, function () {
+  $(this).removeClass("hilite");
+  });
+
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

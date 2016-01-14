@@ -1,0 +1,1853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://bbs.csdn.net/topics/260015034 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/get_uid.json"></script>
+    <script type="text/javascript" async="" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ga.js"></script><script id="allmobilize" charset="utf-8" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/allmobilize.min.js"></script><style type="text/css"></style>
+<meta http-equiv="Cache-Control" content="no-transform">
+<link rel="alternate" media="handheld" href="http://bbs.csdn.net/topics/260015034#">
+
+    
+    <title>php当未正常退出时，如何判断注册用户是否在线?记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET</title>
+    <link href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/main-8835b6ff1f0a4feffa1bc2a5b01c4659.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/application-594a8b024032fedaa5d3c4c61a1b3d17.js" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="8U/x1Bhm3syZaBuUI+ugZ+LlbuAeoSjsMGRemTCzClM=" name="csrf-token">
+    <link href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/favicon.ico" rel="SHORTCUT ICON">
+
+      <link href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/sh-2bfcf65754f6d04d58df6ed87a3b6faf.css" media="all" rel="stylesheet" type="text/css">
+  <script src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/sh-e7799bf9690a86571a685dd3015e559c.js" type="text/javascript"></script>
+  <script src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/login.js" type="text/javascript"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/tracking.js"></script><script type="text/javascript" charset="utf-8" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/main.js"></script><link type="text/css" rel="stylesheet" href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/style.css"></head>
+  <body><script src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/jiathis.php" charset="utf-8"></script><link href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe style="position: absolute; display: none; opacity: 0;" frameborder="0"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe style="display: none;" frameborder="0" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/jiathis_utility.htm"></iframe>
+    <div class="wraper">
+      <script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/pub_topnav_2011.js"></script><link rel="stylesheet" type="text/css" href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank" style="color: red;">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+        
+  <iframe id="Topic_Top" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="100%" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/TopicPageTop.htm" style="height: 60px;"></iframe>
+
+      <div id="nav">
+        <a href="http://bbs.csdn.net/" class="logo" target="_top"></a>
+        <div class="nav_list">
+          <a href="http://bbs.csdn.net/home" title="CSDN论坛首页" class="home">首页</a><a href="http://bbs.csdn.net/help" class=""><span>论坛帮助</span></a><a href="http://bbs.csdn.net/rank" class=""><span>论坛牛人</span></a><a href="http://bbs.csdn.net/map" class=""><span>论坛地图</span></a>
+        </div>
+
+        <div class="nav_sear">
+          <form action="http://so.csdn.net/search" target="_blank">
+            <input name="t" type="hidden" value="thread">
+            <input name="q" type="text">
+          </form>
+        </div>
+      </div>
+      
+
+  
+  <iframe id="frm_tt1" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="100%" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/TopicBodyTop.htm"></iframe>
+  <script type="text/javascript">
+    setTimeout(function () { document.getElementById("frm_tt1").src = "/sda/TopicBodyTop.htm?v="+new Date().getTime(); }, 5000);
+  </script>
+
+<div class="bread_nav">
+  <a href="http://www.csdn.net/" target="_blank">CSDN</a> <em>&gt;</em>
+  <a href="http://bbs.csdn.net/" target="_blank">CSDN论坛</a> <em>&gt;</em>
+    <a href="http://bbs.csdn.net/forums/PHP" target="_blank">PHP</a> <em>&gt;</em>
+  <a href="http://bbs.csdn.net/forums/PHPBase" target="_blank">基础编程</a>
+</div>
+
+<div class="flash_messages">
+</div>
+
+<div class="control_area">
+  <form name="form" id="form">
+    
+    <div class="control">
+      <ul>
+        <li class="drop_menu_wrap drop_menu_down"><a href="http://bbs.csdn.net/topics/260015034#" class="drop_toggle btn_1 "><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_set.gif" alt="">管理菜单<img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/arrow_down.gif" alt=""></span></a>
+          <ul class="drop_menu" style="display: none; top:26px;">
+              <li><a href="http://bbs.csdn.net/topics/260015034/top" class="fancybox" rel="nofollow">置顶</a></li>
+
+  <li><a href="http://bbs.csdn.net/topics/260015034/recommend" data-confirm="确定要将该帖推荐(加精)吗？被推荐的帖子将给帖主奖励可用分88分!" data-method="put" rel="nofollow">推荐</a></li>
+
+  <li><a href="http://bbs.csdn.net/topics/260015034/lock" class="fancybox" rel="nofollow">锁定</a></li>
+
+<li><a href="http://bbs.csdn.net/topics/260015034/move" class="fancybox" rel="nofollow">移动</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/edit" class="fancybox" rel="nofollow">编辑</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/destroy_edit" class="fancybox" rel="nofollow">删除</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/add_point" class="fancybox" rel="nofollow">帖子加分</a></li>
+  <li><a href="http://bbs.csdn.net/topics/260015034/highlight" class="fancybox" rel="nofollow">帖子高亮</a></li>
+
+          </ul>
+        </li>
+        <li><a href="http://bbs.csdn.net/topics/260015034/close" class="btn_1" rel="nofollow"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_over.gif" alt="">结帖</span></a></li>
+        <li><a href="http://bbs.csdn.net/topics/new?forum_id=PHPBase" class="btn_1"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_publish.gif" alt="">发帖</span></a></li>
+        <li><a href="http://bbs.csdn.net/topics/260015034#new_post" class="btn_1"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_return.gif" alt="">回复</span></a></li>
+      </ul>
+    </div>
+  </form>
+</div>
+
+
+<div class="h-entry">
+  <a class="p-author" href="http://bbs.csdn.net/topics/260015034#">duanjianbo26</a>
+</div>
+
+<div class="detail_title">
+  <h1>
+      <span class="title text_overflow">php当未正常退出时，如何判断注册用户是否在线?记录最后登录时间然后定时去检查是否过期的就不用说了</span>
+    <span>
+      [问题点数：50分，结帖人duanjianbo26]
+    </span>
+  </h1>
+  <div class="fr">
+    <select name="filter_posts">
+      <option value="default">不显示删除回复</option>
+      <option value="all">显示所有回复</option>
+      <option value="star">显示星级回复</option>
+      <option value="pointed">显示得分回复</option>
+      <option value="lz">只显示楼主</option>
+    </select>
+    <a href="http://my.csdn.net/my/favorite/miniadd?u=http://bbs.csdn.net/topics/260015034&t=php%E5%BD%93%E6%9C%AA%E6%AD%A3%E5%B8%B8%E9%80%80%E5%87%BA%E6%97%B6%EF%BC%8C%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E5%9C%A8%E7%BA%BF?%E8%AE%B0%E5%BD%95%E6%9C%80%E5%90%8E%E7%99%BB%E5%BD%95%E6%97%B6%E9%97%B4%E7%84%B6%E5%90%8E%E5%AE%9A%E6%97%B6%E5%8E%BB%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E8%BF%87%E6%9C%9F%E7%9A%84%E5%B0%B1%E4%B8%8D%E7%94%A8%E8%AF%B4%E4%BA%86" id="fav" class="fav" rel="nofollow"><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/nolines_plus.gif" alt="">收藏</a>
+  </div>
+</div>
+<div class="detailed">
+    <table border="0" cellspacing="0" cellpadding="0" id="post-260015034" class="post topic " data-post-id="260015034" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info topic pointed" data-username="duanjianbo26" data-floor="">
+                <div class="data">
+            <strong class="fr">
+              楼主
+            </strong>
+          <span class="time">
+              发表于：
+            2008-08-21 11:11:10
+          </span>
+        </div>
+        <div class="post_body">
+            最近在博客中要实现一个用户是否在线功能，整了几天没想出个好办法！<br>
+网上也GOOGLE，百度了很多，发现把session存入数据库比较准确。使用的方法是用函数<br>
+session_set_save_handler(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_open",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_close",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_read",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_write",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_destroy",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;"sess_gc");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+<br>
+但是由于对这个函数理解不是很深，有几个疑虑，所以也不敢贸然改为数据库存储SESSION的方式。下面我把我的的问题告诉大家，希望能在这解决这个问题。<br>
+1.首先大家都知道session默认的存储方式是文件存储，如果我改为用这个函数的话，那么网站其他的session会不会受到影响。就是我只要将用户是否在线的session存入到mysql中，用session_set_save_handler函数之后其他的session还是以原来的方式存储吗？<br>
+2.session_set_save_handler函数中sess_read不是有个参数是sessionkey吗？为什么我没有任何session的情况下echo&nbsp;sessionkey会有值（一字符串，应该就是sessionid）？这个值是代表哪个session?<br>
+3.谁能把这六个参数的具体功能和如何执行解释下？<br>
+<br>
+
+              <div class="topic-extra-info">
+                <div class="tag">
+                </div>
+                <div class="social-share">
+                  <span class="prompt">分享到：</span>
+                  <span class="social-share-buttons" data-title="【php当未正常退出时，如何判断注册用户是否在线?记录最后登录时间然后定时去检查是否过期的就不用说了】最近在博客中要实现一个用户是否在线功能，整了几天没想出个好办法！网上也GOOGLE，百度了很多，发现把session存入数据库比较准确。使用的方法是用函数session_se..." data-pics=""><span id="ckepop"><a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a><a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a></span></span>
+                </div>
+              </div>
+        </div>
+          
+          
+          <iframe id="tad2" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="100%" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/TopicBodyBottom.htm" style="height: 130px;"></iframe>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/260015034/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/260015034/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/260015034/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/topics/260015034/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/topics/260015034/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+    <span class="return_time">回复次数：21</span>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+
+  <table border="0" cellspacing="0" cellpadding="0" id="post-230932864" class="post  " data-post-id="230932864" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="jazzyfree">
+            <a href="http://my.csdn.net/jazzyfree" target="_blank"><img alt="jazzyfree" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_jazzyfree.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/jazzyfree" target="_blank">jazzyfree</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">jazzyfree</span>
+          </dd>
+          <dd title="总技术分：607；总技术排名：39560">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：90.48%
+总发帖：21
+正常结帖：19
+未结帖：2">结帖率：90.48%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="jazzyfree" data-floor="1">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230932864">#1</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 11:33:36
+          </span>
+        </div>
+        <div class="post_body">
+            给用户表加个字段：最后活动时间<br>
+用户只要一有动作就更新这个字段<br>
+判断在线：拿当前时间和最后活动时间比较，如果小于某个值就认为他在线
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-1" class="fl tracking-ad" data-mod="popu_9"><a href="http://bbs.csdn.net/topics/390426621" class="title_style_blue title_style_bold" target="_blank">关注CSDN论坛微博 送CSDN积分大礼包</a></div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230932864/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230932864/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230932864/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230932864/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230932864/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230934072" class="post  " data-post-id="230934072" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="fxs_2008">
+            <a href="http://my.csdn.net/fxs_2008" target="_blank"><img alt="fxs_2008" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_fxs_2008.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/fxs_2008" target="_blank">fxs_2008</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">fxs_2008</span>
+          </dd>
+          <dd title="总技术分：29033；总技术排名：628">等级：<img alt="Blank" class="grade star2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：87.36%
+总发帖：174
+正常结帖：152
+未结帖：22">结帖率：87.36%</dd>
+          <div class="medal_red count" title="2008年8月 PHP大版内专家分月排行榜第一
+2008年7月 PHP大版内专家分月排行榜第一
+2008年6月 PHP大版内专家分月排行榜第一"><div class="medal_count">3</div></div><div class="medal_yellow count" title="2008年10月 PHP大版内专家分月排行榜第二
+2008年9月 PHP大版内专家分月排行榜第二
+2008年4月 PHP大版内专家分月排行榜第二
+2007年12月 PHP大版内专家分月排行榜第二"><div class="medal_count">4</div></div>
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info star pointed" data-username="fxs_2008" data-floor="2">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230934072">#2</a>
+              得分：10
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 12:19:55
+          </span>
+        </div>
+        <div class="post_body">
+            1.不会<br>
+2.只有一个session_id<br>
+3.这个几个可以看作是"事件"吧<br>
+<br>
+至于你所说的检验是否在线,没有好办法<br>
+<br>
+最好的办法是用户关闭浏览器时向服务器通知,但不好做<br>
+
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-2" class="fl tracking-ad" data-mod="popu_9"><a href="http://hero.pongo.cn/Question/Details?ID=168&ExamID=163" class="title_style_blue title_style_bold" target="_blank">文思海辉第一届在线编程大赛</a></div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230934072/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230934072/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230934072/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230934072/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230934072/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230937053" class="post  " data-post-id="230937053" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="3">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230937053">#3</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 14:26:44
+          </span>
+        </div>
+        <div class="post_body">
+            我测试下了下，代码如下：<br>
+<div><div id="highlighter_940269" class="syntaxhighlighter  php"><div class="toolbar"><span>PHP code</span><span class="clipboardCopyBtn" title="复制"><div class="d_clip_button"></div></span><span class="clipboardWindowBtn"><a href="http://bbs.csdn.net/topics/260015034#clipboardWindow" title="源码">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div><div class="line number82 index81 alt1">82</div><div class="line number83 index82 alt2">83</div><div class="line number84 index83 alt1">84</div><div class="line number85 index84 alt2">85</div><div class="line number86 index85 alt1">86</div><div class="line number87 index86 alt2">87</div><div class="line number88 index87 alt1">88</div><div class="line number89 index88 alt2">89</div><div class="line number90 index89 alt1">90</div><div class="line number91 index90 alt2">91</div><div class="line number92 index91 alt1">92</div><div class="line number93 index92 alt2">93</div><div class="line number94 index93 alt1">94</div><div class="line number95 index94 alt2">95</div><div class="line number96 index95 alt1">96</div><div class="line number97 index96 alt2">97</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="php spaces">&nbsp;</code><code class="php plain">@header(</code><code class="php string">"content-Type:&nbsp;text/html;&nbsp;charset=UTF-8"</code><code class="php plain">);</code></div><div class="line number2 index1 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php keyword">require</code><code class="php plain">(</code><code class="php string">'includes/configure.php'</code><code class="php plain">);</code></div><div class="line number3 index2 alt2"><code class="php spaces">&nbsp;&nbsp;</code><code class="php comments">//include&nbsp;database&nbsp;tables</code></div><div class="line number4 index3 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php keyword">require</code><code class="php plain">(</code><code class="php string">'includes/database_table.php'</code><code class="php plain">);&nbsp;</code></div><div class="line number5 index4 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php comments">//&nbsp;set&nbsp;php_self&nbsp;in&nbsp;the&nbsp;local&nbsp;scope</code></div><div class="line number6 index5 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php keyword">if</code>&nbsp;<code class="php plain">(!isset(</code><code class="php variable">$PHP_SELF</code><code class="php plain">))&nbsp;</code><code class="php variable">$PHP_SELF</code>&nbsp;<code class="php plain">=&nbsp;</code><code class="php functions">basename</code><code class="php plain">(</code><code class="php variable">$_SERVER</code><code class="php plain">[</code><code class="php string">'SCRIPT_FILENAME'</code><code class="php plain">]);</code></div><div class="line number7 index6 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php comments">//&nbsp;include&nbsp;the&nbsp;database&nbsp;class</code></div><div class="line number8 index7 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php keyword">require</code><code class="php plain">(DIR_WS_CLASSES&nbsp;.&nbsp;</code><code class="php string">'db_mysql_class.php'</code><code class="php plain">);</code></div><div class="line number9 index8 alt2"><code class="php spaces">&nbsp;&nbsp;</code><code class="php variable">$db</code><code class="php plain">=</code><code class="php keyword">new</code>&nbsp;<code class="php plain">DbCom();</code></div><div class="line number10 index9 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php comments">//&nbsp;make&nbsp;a&nbsp;connection&nbsp;to&nbsp;the&nbsp;database...&nbsp;now</code></div><div class="line number11 index10 alt2"><code class="php spaces">&nbsp;&nbsp;</code><code class="php variable">$db</code><code class="php plain">-&gt;connect(DB_SERVER,&nbsp;DB_SERVER_USERNAME,&nbsp;DB_SERVER_PASSWORD,&nbsp;DB_DATABASE);</code></div><div class="line number12 index11 alt1"><code class="php spaces">&nbsp;&nbsp;</code><code class="php variable">$db</code><code class="php plain">-&gt;query(</code><code class="php string">"set&nbsp;names&nbsp;utf8"</code><code class="php plain">);</code></div><div class="line number13 index12 alt2">&nbsp;</div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php variable">$session</code>&nbsp;<code class="php plain">=&nbsp;</code><code class="php keyword">new</code>&nbsp;<code class="php plain">session(</code><code class="php variable">$db</code><code class="php plain">);</code></div><div class="line number16 index15 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">session_start();</code></div><div class="line number17 index16 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$_SESSION</code><code class="php plain">[</code><code class="php string">'webid'</code><code class="php plain">]=117;</code></div><div class="line number18 index17 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$_SESSION</code><code class="php plain">[</code><code class="php string">'username'</code><code class="php plain">]=</code><code class="php string">'duanjianbo'</code><code class="php plain">;</code></div><div class="line number19 index18 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number20 index19 alt1">&nbsp;</div><div class="line number21 index20 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number22 index21 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php keyword">class</code>&nbsp;<code class="php plain">session&nbsp;{&nbsp;</code></div><div class="line number23 index22 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">var</code>&nbsp;<code class="php variable">$db</code><code class="php plain">;&nbsp;</code></div><div class="line number24 index23 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">session(&amp;</code><code class="php variable">$db</code><code class="php plain">)&nbsp;{&nbsp;</code></div><div class="line number25 index24 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db&nbsp;=&nbsp;&amp;</code><code class="php variable">$db</code><code class="php plain">;</code></div><div class="line number26 index25 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">session_module_name(</code><code class="php string">'user'</code><code class="php plain">);&nbsp;</code></div><div class="line number27 index26 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">session_set_save_handler(&nbsp;</code></div><div class="line number28 index27 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'open'</code><code class="php plain">),&nbsp;</code></div><div class="line number29 index28 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'close'</code><code class="php plain">),&nbsp;</code></div><div class="line number30 index29 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'read'</code><code class="php plain">),&nbsp;</code></div><div class="line number31 index30 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'write'</code><code class="php plain">),&nbsp;</code></div><div class="line number32 index31 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'destroy'</code><code class="php plain">),&nbsp;</code></div><div class="line number33 index32 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">array</code><code class="php plain">(&amp;</code><code class="php variable">$this</code><code class="php plain">,&nbsp;</code><code class="php string">'gc'</code><code class="php plain">)&nbsp;</code></div><div class="line number34 index33 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">);&nbsp;</code></div><div class="line number35 index34 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">session_start();&nbsp;</code></div><div class="line number36 index35 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number37 index36 alt2"><code class="php spaces">&nbsp;&nbsp;</code>&nbsp;</div><div class="line number38 index37 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">unserializes(</code><code class="php variable">$data_value</code><code class="php plain">)&nbsp;{&nbsp;</code></div><div class="line number39 index38 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$vars</code>&nbsp;<code class="php plain">=&nbsp;preg_split(&nbsp;</code></div><div class="line number40 index39 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php string">'/([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)\|/'</code><code class="php plain">,&nbsp;</code></div><div class="line number41 index40 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$data_value</code><code class="php plain">,&nbsp;-1,&nbsp;PREG_SPLIT_NO_EMPTY&nbsp;|&nbsp;</code></div><div class="line number42 index41 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">PREG_SPLIT_DELIM_CAPTURE&nbsp;</code></div><div class="line number43 index42 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">);&nbsp;</code></div><div class="line number44 index43 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">for</code>&nbsp;<code class="php plain">(</code><code class="php variable">$i</code>&nbsp;<code class="php plain">=&nbsp;0;&nbsp;isset(</code><code class="php variable">$vars</code><code class="php plain">[</code><code class="php variable">$i</code><code class="php plain">]);&nbsp;</code><code class="php variable">$i</code><code class="php plain">++)&nbsp;{&nbsp;</code></div><div class="line number45 index44 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$result</code><code class="php plain">[</code><code class="php variable">$vars</code><code class="php plain">[</code><code class="php variable">$i</code><code class="php plain">++]]&nbsp;=&nbsp;unserialize(</code><code class="php variable">$vars</code><code class="php plain">[</code><code class="php variable">$i</code><code class="php plain">]);&nbsp;</code></div><div class="line number46 index45 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number47 index46 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php variable">$result</code><code class="php plain">;&nbsp;</code></div><div class="line number48 index47 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number49 index48 alt2">&nbsp;</div><div class="line number50 index49 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">open(</code><code class="php variable">$path</code><code class="php plain">,&nbsp;</code><code class="php variable">$name</code><code class="php plain">)&nbsp;{&nbsp;</code></div><div class="line number51 index50 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php plain">true;&nbsp;</code></div><div class="line number52 index51 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number53 index52 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">close()&nbsp;{&nbsp;</code></div><div class="line number54 index53 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php plain">true;&nbsp;</code></div><div class="line number55 index54 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number56 index55 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">read(</code><code class="php variable">$SessionKey</code><code class="php plain">){</code></div><div class="line number57 index56 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number58 index57 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$sql</code>&nbsp;<code class="php plain">=&nbsp;</code><code class="php string">"SELECT&nbsp;uid&nbsp;FROM&nbsp;sessions&nbsp;WHERE&nbsp;session_id&nbsp;=&nbsp;'"</code><code class="php plain">.</code><code class="php variable">$SessionKey</code><code class="php plain">.</code><code class="php string">"'&nbsp;limit&nbsp;1"</code><code class="php plain">;&nbsp;</code></div><div class="line number59 index58 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$query</code>&nbsp;<code class="php plain">=</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;query(</code><code class="php variable">$sql</code><code class="php plain">);</code></div><div class="line number60 index59 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">if</code><code class="php plain">(</code><code class="php variable">$row</code><code class="php plain">=</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;fetch_array(</code><code class="php variable">$query</code><code class="php plain">)){</code></div><div class="line number61 index60 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php variable">$row</code><code class="php plain">[</code><code class="php string">'uid'</code><code class="php plain">];</code></div><div class="line number62 index61 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code><code class="php keyword">else</code><code class="php plain">{</code></div><div class="line number63 index62 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number64 index63 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;query(</code><code class="php string">"insert&nbsp;into&nbsp;`sessions`&nbsp;set&nbsp;`session_id`&nbsp;=&nbsp;'$SessionKey'"</code><code class="php plain">);&nbsp;</code></div><div class="line number65 index64 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php string">""</code><code class="php plain">;&nbsp;</code></div><div class="line number66 index65 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number67 index66 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number68 index67 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number69 index68 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">write(</code><code class="php variable">$SessionKey</code><code class="php plain">,&nbsp;</code><code class="php variable">$VArray</code><code class="php plain">)&nbsp;{&nbsp;</code></div><div class="line number70 index69 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">require_once</code><code class="php plain">(DIR_WS_CLASSES&nbsp;.&nbsp;</code><code class="php string">'db_mysql_class.php'</code><code class="php plain">);</code></div><div class="line number71 index70 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$db1</code><code class="php plain">=</code><code class="php keyword">new</code>&nbsp;<code class="php plain">DbCom();</code></div><div class="line number72 index71 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php comments">//&nbsp;make&nbsp;a&nbsp;connection&nbsp;to&nbsp;the&nbsp;database...&nbsp;now</code></div><div class="line number73 index72 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$db1</code><code class="php plain">-&gt;connect(DB_SERVER,&nbsp;DB_SERVER_USERNAME,&nbsp;DB_SERVER_PASSWORD,&nbsp;DB_DATABASE);</code></div><div class="line number74 index73 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$db1</code><code class="php plain">-&gt;query(</code><code class="php string">"set&nbsp;names&nbsp;utf8"</code><code class="php plain">);</code><code class="php comments">//这里为什么之前的$this-&gt;db的对象改变了</code></div><div class="line number75 index74 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$SessionArray</code>&nbsp;<code class="php plain">=&nbsp;</code><code class="php functions">addslashes</code><code class="php plain">(</code><code class="php variable">$VArray</code><code class="php plain">);</code></div><div class="line number76 index75 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$data</code><code class="php plain">=</code><code class="php variable">$this</code><code class="php plain">-&gt;unserializes(</code><code class="php variable">$VArray</code><code class="php plain">);</code></div><div class="line number77 index76 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db=</code><code class="php variable">$db1</code><code class="php plain">;</code></div><div class="line number78 index77 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$sql</code>&nbsp;<code class="php plain">=&nbsp;</code><code class="php string">"update&nbsp;`sessions`&nbsp;set&nbsp;"</code><code class="php plain">;&nbsp;</code></div><div class="line number79 index78 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">if</code><code class="php plain">(isset(</code><code class="php variable">$data</code><code class="php plain">[</code><code class="php string">'webid'</code><code class="php plain">])){</code></div><div class="line number80 index79 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$sql</code>&nbsp;<code class="php plain">.=&nbsp;</code><code class="php string">"uid&nbsp;=&nbsp;'"</code><code class="php plain">.</code><code class="php variable">$data</code><code class="php plain">['webid</code><code class="php string">']."'</code><code class="php plain">,&nbsp;"&nbsp;;</code></div><div class="line number81 index80 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}</code></div><div class="line number82 index81 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$sql</code><code class="php plain">.=</code><code class="php string">"`last_visit`&nbsp;=&nbsp;null&nbsp;"</code>&nbsp;</div><div class="line number83 index82 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">.&nbsp;</code><code class="php string">"where&nbsp;`session_id`&nbsp;=&nbsp;'$SessionKey'"</code><code class="php plain">;&nbsp;</code></div><div class="line number84 index83 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;query(</code><code class="php variable">$sql</code><code class="php plain">);&nbsp;</code></div><div class="line number85 index84 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php plain">true;&nbsp;</code></div><div class="line number86 index85 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number87 index86 alt2"><code class="php spaces">&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">destroy(</code><code class="php variable">$SessionKey</code><code class="php plain">)&nbsp;{&nbsp;</code></div><div class="line number88 index87 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;query(</code><code class="php string">"delete&nbsp;from&nbsp;`sessions`&nbsp;where&nbsp;`session_id`&nbsp;=&nbsp;'$SessionKey'"</code><code class="php plain">);&nbsp;</code></div><div class="line number89 index88 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php plain">true;&nbsp;</code></div><div class="line number90 index89 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number91 index90 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php keyword">function</code>&nbsp;<code class="php plain">gc(</code><code class="php variable">$lifetime</code><code class="php plain">)&nbsp;{</code></div><div class="line number92 index91 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php variable">$this</code><code class="php plain">-&gt;db-&gt;query(</code><code class="php string">"delete&nbsp;from&nbsp;`sessions`&nbsp;where&nbsp;unix_timestamp(now())&nbsp;-&nbsp;unix_timestamp(`last_visit`)&nbsp;&gt;&nbsp;$lifetime"</code><code class="php plain">);</code></div><div class="line number93 index92 alt2"><code class="php spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="php keyword">return</code>&nbsp;<code class="php plain">true;</code></div><div class="line number94 index93 alt1"><code class="php spaces">&nbsp;&nbsp;&nbsp;</code><code class="php plain">}&nbsp;</code></div><div class="line number95 index94 alt2">&nbsp;</div><div class="line number96 index95 alt1"><code class="php spaces">&nbsp;&nbsp;</code>&nbsp;</div><div class="line number97 index96 alt2"><code class="php plain">}&nbsp;</code></div></div></td></tr></tbody></table></div></div><br>
+在write方法中，如果不重新连接下数据库则会报错:<span style="color: #FF0000;">is&nbsp;not&nbsp;a&nbsp;valid&nbsp;MySQL-Link&nbsp;resource&nbsp;</span>,var_dump($this-&gt;db)结果如下&nbsp;<span style="color: #FF0000;">object(DbCom)#1&nbsp;(3)&nbsp;{&nbsp;["query_num"]=&gt;&nbsp;int(2)&nbsp;["linkId"]=&gt;&nbsp;resource(5)&nbsp;of&nbsp;type&nbsp;([color=#FFFF00]Unknown</span>)&nbsp;["charset"]=&gt;&nbsp;NULL&nbsp;}&nbsp;[/color]和正常的结果区别是<span style="color: #FF0000;">["linkId"]=&gt;&nbsp;resource(5)&nbsp;of&nbsp;type&nbsp;([color=#FFFF00]mysql&nbsp;link</span>)[/color]！这又是为什么呢？
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-3" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230937053/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230937053/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230937053/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230937053/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230937053/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230939208" class="post  " data-post-id="230939208" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="4">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230939208">#4</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 15:44:14
+          </span>
+        </div>
+        <div class="post_body">
+            怎么我写入数据库的session记录怎么过了一个多小时还没被删除啊？
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-4" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230939208/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230939208/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230939208/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230939208/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230939208/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230939814" class="post  " data-post-id="230939814" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="songzairan">
+            <a href="http://my.csdn.net/songzairan" target="_blank"><img alt="songzairan" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_songzairan.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/songzairan" target="_blank">songzairan</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">songzairan</span>
+          </dd>
+          <dd title="总技术分：820；总技术排名：31553">等级：<img alt="Blank" class="grade user3" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：100%
+总发帖：27
+正常结帖：27
+未结帖：0">结帖率：100%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="songzairan" data-floor="5">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230939814">#5</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 16:02:46
+          </span>
+        </div>
+        <div class="post_body">
+            关注...
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-5" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230939814/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230939814/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230939814/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230939814/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230939814/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230940471" class="post  " data-post-id="230940471" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="6">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230940471">#6</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 16:19:52
+          </span>
+        </div>
+        <div class="post_body">
+            我发现，我退出清楚session后其数据库中的session值还存在，并且存放session的临时目录里面还有文件sess_44a9b527e2ddd4a1a6522e09b463bd5e报错着session的值！
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-6" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230940471/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230940471/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230940471/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230940471/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230940471/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230940840" class="post  " data-post-id="230940840" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="happy002">
+            <a href="http://my.csdn.net/happy002" target="_blank"><img alt="happy002" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_happy002.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/happy002" target="_blank">happy002</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">happy002</span>
+          </dd>
+          <dd title="总技术分：6610；总技术排名：4599">等级：<img alt="Blank" class="grade user1" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：95.45%
+总发帖：22
+正常结帖：21
+未结帖：1">结帖率：95.45%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="happy002" data-floor="7">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230940840">#7</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 16:28:31
+          </span>
+        </div>
+        <div class="post_body">
+            mark~
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-7" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230940840/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230940840/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230940840/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230940840/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230940840/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230943458" class="post  " data-post-id="230943458" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="8">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230943458">#8</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-21 17:40:13
+          </span>
+        </div>
+        <div class="post_body">
+            用session_unset函数删除session时，触发不了自定义destroy方法！只有用session_destroy才能触发然后删除数据库的记录，但是session_destroy删除的是所有的session啊，问题是我不想删除所有的啊!还有用session_unset删除时数据库的session记录根本就没变过
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-8" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230943458/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230943458/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230943458/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230943458/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230943458/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230955152" class="post  " data-post-id="230955152" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="9">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230955152">#9</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-22 10:32:58
+          </span>
+        </div>
+        <div class="post_body">
+            没人帮忙啊，自己顶！
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-9" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230955152/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230955152/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230955152/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230955152/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230955152/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-230964934" class="post  " data-post-id="230964934" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="zhutimy">
+            <a href="http://my.csdn.net/zhutimy" target="_blank"><img alt="zhutimy" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_zhutimy.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/zhutimy" target="_blank">zhutimy</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">zhutimy</span>
+          </dd>
+          <dd title="总技术分：2573；总技术排名：11657">等级：<img alt="Blank" class="grade user1" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：100%
+总发帖：21
+正常结帖：21
+未结帖：0">结帖率：100%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info pointed" data-username="zhutimy" data-floor="10">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-230964934">#10</a>
+              得分：15
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-22 15:31:19
+          </span>
+        </div>
+        <div class="post_body">
+            <fieldset><legend class="font_bold">引用&nbsp;4&nbsp;楼&nbsp;duanjianbo26&nbsp;的回复:</legend><blockquote>怎么我写入数据库的session记录怎么过了一个多小时还没被删除啊？</blockquote></fieldset>
+<br>
+;&nbsp;Define&nbsp;the&nbsp;probability&nbsp;that&nbsp;the&nbsp;'garbage&nbsp;collection'&nbsp;process&nbsp;is&nbsp;started<br>
+;&nbsp;on&nbsp;every&nbsp;session&nbsp;initialization.<br>
+;&nbsp;The&nbsp;probability&nbsp;is&nbsp;calculated&nbsp;by&nbsp;using&nbsp;gc_probability/gc_divisor,<br>
+;&nbsp;e.g.&nbsp;1/100&nbsp;means&nbsp;there&nbsp;is&nbsp;a&nbsp;1%&nbsp;chance&nbsp;that&nbsp;the&nbsp;GC&nbsp;process&nbsp;starts<br>
+;&nbsp;on&nbsp;each&nbsp;request.<br>
+<br>
+session.gc_probability&nbsp;=&nbsp;1<br>
+session.gc_divisor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;100<br>
+<br>
+php.ini<br>
+====================<br>
+最好的办法莫过于打电话叫他点"退出"了&nbsp;:)
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-10" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/230964934/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/230964934/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/230964934/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/230964934/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/230964934/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231026107" class="post  " data-post-id="231026107" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="11">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231026107">#11</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-26 09:48:37
+          </span>
+        </div>
+        <div class="post_body">
+            据同事说session_set_save_handler函数没用？
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-11" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231026107/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231026107/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231026107/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231026107/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231026107/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231119614" class="post  " data-post-id="231119614" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="12">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231119614">#12</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-29 17:43:49
+          </span>
+        </div>
+        <div class="post_body">
+            这几天终于研究出来了，但是用之后发现此session根本不能跨页面传递！！！！郁闷。。。。<br>
+为了证明是因为用了session_set_save_handler的原因，我把这个函数的功能屏蔽然后换上session_start（）,即普通的session方式。发现一切ok!怎么办？什么原因啊？我要崩溃了
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-12" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231119614/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231119614/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231119614/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231119614/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231119614/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231124922" class="post  " data-post-id="231124922" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="ten789">
+            <a href="http://my.csdn.net/ten789" target="_blank"><img alt="ten789" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_ten789.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/ten789" target="_blank">ten789</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">ten789</span>
+          </dd>
+          <dd title="总技术分：4421；总技术排名：6764">等级：<img alt="Blank" class="grade user4" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：100%
+总发帖：13
+正常结帖：13
+未结帖：0">结帖率：100%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info pointed" data-username="ten789" data-floor="13">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231124922">#13</a>
+              得分：5
+            </span>
+          <span class="time">
+              回复于：
+            2008-08-30 03:15:36
+          </span>
+        </div>
+        <div class="post_body">
+            session_set_save_handler和session_start是要同时存在的<br>
+<br>
+session_set_save_handler只是注册了自定义SESSION存储方式而不是用PHP系统的存储方式<br>
+<br>
+在使用session_set_save_handler的时候&nbsp;SESSION的操作方法和不使用是一样的<br>
+<br>
+session_set_save_handler注册的函数&nbsp;是不需要序列化和反序列化的<br>
+<br>
+3楼代码有错&nbsp;SESSION的运行方式是先读&nbsp;在程序运行完后运行注册的写函数<br>
+应该把DB链接放在构造函数中&nbsp;而且不应该在1个程序中有多个DB链接&nbsp;全局变量或者其他方式传递DB链接<br>
+<br>
+对于清理函数&nbsp;参数是超时的时间戳&nbsp;只需要删除小于这个时间的SESSION就可以了<br>
+<br>
+3楼的数据结构有严重问题&nbsp;时间应该用时间戳存储&nbsp;而不是用那么复杂的时间格式<br>
+<br>
+
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-13" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231124922/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231124922/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231124922/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231124922/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231124922/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231166512" class="post  " data-post-id="231166512" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="14">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231166512">#14</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-01 12:30:14
+          </span>
+        </div>
+        <div class="post_body">
+            <fieldset><legend class="font_bold">引用&nbsp;13&nbsp;楼&nbsp;ten789&nbsp;的回复:</legend><blockquote>session_set_save_handler和session_start是要同时存在的&nbsp;<br>
+<br>
+session_set_save_handler只是注册了自定义SESSION存储方式而不是用PHP系统的存储方式&nbsp;<br>
+<br>
+在使用session_set_save_handler的时候&nbsp;SESSION的操作方法和不使用是一样的&nbsp;<br>
+<br>
+session_set_save_handler注册的函数&nbsp;是不需要序列化和反序列化的&nbsp;<br>
+<br>
+3楼代码有错&nbsp;SESSION的运行方式是先读&nbsp;在程序运行完后运行注册的写函数&nbsp;<br>
+应该把DB链接放在构造函数中&nbsp;而且不应该在1个程序…</blockquote></fieldset>
+session_set_save_handler和session_start是要同时存在的&nbsp;&nbsp;<span style="color: #FF0000;">程序里面是这样的</span><br>
+&nbsp;<br>
+应该把DB链接放在构造函数中&nbsp;而且不应该在1个程序中有多个DB链接&nbsp;全局变量或者其他方式传递DB链接&nbsp;&nbsp;<span style="color: #FF0000;">我是用参数传递进来初始化给$this-&gt;db的，其他函数都可用但在write函数里面会报错，报错原因在三楼已经说过了。</span><br>
+最后不能跨页面的问题还是不知掉如何解决？目前解决方案是将session改为cookie
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-14" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231166512/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231166512/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231166512/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231166512/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231166512/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231203794" class="post  " data-post-id="231203794" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="15">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231203794">#15</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-02 20:06:28
+          </span>
+        </div>
+        <div class="post_body">
+            Php版块的人气不怎么样啊，怎么一个帖子放了几天没人理呀？
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-15" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231203794/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231203794/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231203794/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231203794/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231203794/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231204648" class="post  " data-post-id="231204648" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="yunfeifan">
+            <a href="http://my.csdn.net/yunfeifan" target="_blank"><img alt="yunfeifan" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_yunfeifan.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/yunfeifan" target="_blank">yunfeifan</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">yunfeifan</span>
+          </dd>
+          <dd title="总技术分：8753；总技术排名：3320">等级：<img alt="Blank" class="grade user5" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：99.45%
+总发帖：182
+正常结帖：181
+未结帖：1">结帖率：99.45%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info pointed" data-username="yunfeifan" data-floor="16">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231204648">#16</a>
+              得分：10
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-02 21:06:19
+          </span>
+        </div>
+        <div class="post_body">
+            可以这个样子的，看看一些电子银行，当你关闭浏览器的时候，它会弹出一个alert，在弹出alert的同时，执行了logout程序，这样你就可以知道什么时候退出了。<br>
+
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-16" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231204648/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231204648/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231204648/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231204648/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231204648/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231205954" class="post  " data-post-id="231205954" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="unlive">
+            <a href="http://my.csdn.net/unlive" target="_blank"><img alt="unlive" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_unlive.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/unlive" target="_blank">unlive</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">unlive</span>
+          </dd>
+          <dd title="总技术分：1165；总技术排名：24058">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：100%
+总发帖：6
+正常结帖：6
+未结帖：0">结帖率：100%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info pointed" data-username="unlive" data-floor="17">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231205954">#17</a>
+              得分：5
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-02 22:36:24
+          </span>
+        </div>
+        <div class="post_body">
+            16楼的这个意见不错。对于是否在线要求很严格的话，这个方法还是不错的。<br>
+但是还是会存在意外中断，如电脑重启，强行关机等情况，这个时候，即使用户下线了，系统还是没得到下线的通知；<br>
+因此加上一个无动作时间限制作为下线标志也是有必要的。
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-17" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231205954/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231205954/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231205954/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231205954/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231205954/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231207711" class="post  " data-post-id="231207711" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="Dereky">
+            <a href="http://my.csdn.net/Dereky" target="_blank"><img alt="Dereky" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_dereky.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/Dereky" target="_blank">Dereky</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">Dereky</span>
+          </dd>
+          <dd title="总技术分：282；总技术排名：67670">等级：<img alt="Blank" class="grade user1" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：94.44%
+总发帖：72
+正常结帖：68
+未结帖：4">结帖率：94.44%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info pointed" data-username="Dereky" data-floor="18">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231207711">#18</a>
+              得分：5
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-03 02:08:03
+          </span>
+        </div>
+        <div class="post_body">
+            个人觉得除非特别特别例外的应用（事实这种应用基本是不存在的），判断用户在线一定存在一定的误差，16楼的方法确实可行，但是在两种情况下会存在误差<br>
+1：js没有获得&nbsp;window.close动作<br>
+2：用户意外操作，包括掉电，强行关机等<br>
+<br>
+设置一个cookies，超过设置的无动作时间，出现动作就写数据库标记，标记在线，否则则认为离线
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-18" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231207711/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231207711/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231207711/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231207711/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231207711/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231208905" class="post  " data-post-id="231208905" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="ph215405357">
+            <a href="http://my.csdn.net/ph215405357" target="_blank"><img alt="ph215405357" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_ph215405357.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/ph215405357" target="_blank">ph215405357</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">ph215405357</span>
+          </dd>
+          <dd title="总技术分：310；总技术排名：63711">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：100%
+总发帖：2
+正常结帖：2
+未结帖：0">结帖率：100%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="ph215405357" data-floor="19">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231208905">#19</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-03 08:48:06
+          </span>
+        </div>
+        <div class="post_body">
+            <fieldset><legend class="font_bold">引用&nbsp;7&nbsp;楼&nbsp;happy002&nbsp;的回复:</legend><blockquote>mark~</blockquote></fieldset>
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-19" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231208905/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231208905/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231208905/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231208905/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231208905/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231209052" class="post  " data-post-id="231209052" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="duanjianbo26">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank"><img alt="duanjianbo26" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_duanjianbo26.jpg"></a>
+          <div class="user_material" id="user_meterial_1385517595797" style="display: none;">
+  <div class="user_material_bg">
+    <div class="placeholder"></div>
+    <div class="arrow-left"></div>
+    <dl>
+      <dt><a href="http://my.csdn.net/duanjianbo26" target="_blank"><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/2_duanjianbo26.jpg" class="avatar_75"></a></dt>
+      <dd>账号:<a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a></dd>
+      <dd class="nickname">昵称:<span class="name2nick">duanjianbo26</span></dd>
+      <dd>
+      <a class="button add follow_btn" data-username="duanjianbo26" href="javascript:void(0);">关注</a>
+      <a href="http://blog.csdn.net/duanjianbo26" class="button" target="_blank">博客</a><a href="http://my.csdn.net/duanjianbo26" class="button" target="_blank">空间</a> </dd>
+    </dl>
+      <ol>
+        最新帖子:
+          <li><a href="http://bbs.csdn.net/topics/360059693" target="_blank" title="用图表监控（类似股票的分时图）某个表的数据状态的疑问？">用图表监控（类似股票的分时图）...</a></li>
+          <li><a href="http://bbs.csdn.net/topics/330131789" target="_blank" title="为什么我的cookie在ie6下有时写入成功有时失败，在ff下从没失败过！">为什么我的cookie在ie6下有时写...</a></li>
+          <li><a href="http://bbs.csdn.net/topics/330063307" target="_blank" title="为什么socket的outputstream关闭后socket的状态也是关闭的呢？">为什么socket的outputstream关闭...</a></li>
+      </ol>
+      <a href="http://bbs.csdn.net/users/duanjianbo26/topics" class="more" target="_blank">更多 &gt;&gt;</a>
+  </div>
+</div></dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/duanjianbo26" target="_blank">duanjianbo26</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">duanjianbo26</span>
+          </dd>
+          <dd title="总技术分：291；总技术排名：66383">等级：<img alt="Blank" class="grade user2" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：93.02%
+总发帖：43
+正常结帖：40
+未结帖：3">结帖率：93.02%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="duanjianbo26" data-floor="20">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231209052">#20</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-03 08:53:12
+          </span>
+        </div>
+        <div class="post_body">
+            楼上说的都有道理，问题我已经实现了将session保存在myql数据库中，其他一切正常!只是session不能跨页面了。。。。。。
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-20" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231209052/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231209052/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231209052/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231209052/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231209052/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" id="post-231368414" class="post  " data-post-id="231368414" data-is-topic-locked="false">
+  <colgroup><col width="180"><col></colgroup>
+  <tbody><tr>
+      <td rowspan="2" valign="top" class="wirter">
+                <dl class="user_info ">
+          <dt class="user_head" data-username="cskiller2049">
+            <a href="http://my.csdn.net/cskiller2049" target="_blank"><img alt="cskiller2049" class="avatar" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/1_cskiller2049.jpg"></a>
+          </dt>
+          <dd class="username">
+            <a href="http://my.csdn.net/cskiller2049" target="_blank">cskiller2049</a>
+            
+          </dd>
+          <dd class="nickname">
+            <span class="name2nick">cskiller2049</span>
+          </dd>
+          <dd title="总技术分：43；总技术排名：199487">等级：<img alt="Blank" class="grade user1" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/blank.gif"></dd>
+          <dd class="close_rate" title="用户结帖率：85.71%
+总发帖：7
+正常结帖：6
+未结帖：1">结帖率：85.71%</dd>
+          
+        </dl>
+
+      </td>
+      <td valign="top" class="post_info " data-username="cskiller2049" data-floor="21">
+                <div class="data">
+            <span class="fr">
+              <a href="http://bbs.csdn.net/topics/260015034#post-231368414">#21</a>
+              得分：0
+            </span>
+          <span class="time">
+              回复于：
+            2008-09-10 11:27:22
+          </span>
+        </div>
+        <div class="post_body">
+            mark
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="bottom">
+          <div class="control">
+    <div id="post-forum-bulletin-21" class="fl tracking-ad" data-mod="popu_9">
+    </div>
+  <div class="fr">
+      <a href="http://bbs.csdn.net/posts/231368414/digg?topic_id=260015034" class="red digg" data-method="put" data-remote="true" rel="nofollow">对我有用[0]</a>
+      <a href="http://bbs.csdn.net/posts/231368414/bury?topic_id=260015034" class="bury" data-method="put" data-remote="true" rel="nofollow">丢个板砖[0]</a>
+      <a href="http://bbs.csdn.net/topics/260015034#quote" class="quote">引用</a> |
+      <a href="http://bbs.csdn.net/posts/231368414/report?topic_id=260015034" class="fancybox red" rel="nofollow">举报 </a> |
+    <span class="manage-toggle">
+      <div class="manage" style="display: none;">
+          <a href="http://bbs.csdn.net/posts/231368414/edit" class="fancybox" rel="nofollow">编辑</a>
+          <a href="http://bbs.csdn.net/posts/231368414/destroy_edit" class="fancybox" rel="nofollow">删除</a>
+      </div>
+      管理
+    </span>
+  </div>
+</div>
+
+      </td>
+  </tr>
+</tbody></table>
+
+</div>
+<div class="control_area">
+  <form name="form" id="form">
+    
+    <div class="control">
+      <ul>
+        <li class="drop_menu_wrap drop_menu_up"><a href="http://bbs.csdn.net/topics/260015034#" class="drop_toggle btn_1 drop_toggle_up"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_set.gif" alt="">管理菜单<img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/arrow_down.gif" alt=""></span></a>
+          <ul class="drop_menu" style="display: none; bottom:26px">
+              <li><a href="http://bbs.csdn.net/topics/260015034/top" class="fancybox" rel="nofollow">置顶</a></li>
+
+  <li><a href="http://bbs.csdn.net/topics/260015034/recommend" data-confirm="确定要将该帖推荐(加精)吗？被推荐的帖子将给帖主奖励可用分88分!" data-method="put" rel="nofollow">推荐</a></li>
+
+  <li><a href="http://bbs.csdn.net/topics/260015034/lock" class="fancybox" rel="nofollow">锁定</a></li>
+
+<li><a href="http://bbs.csdn.net/topics/260015034/move" class="fancybox" rel="nofollow">移动</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/edit" class="fancybox" rel="nofollow">编辑</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/destroy_edit" class="fancybox" rel="nofollow">删除</a></li>
+<li><a href="http://bbs.csdn.net/topics/260015034/add_point" class="fancybox" rel="nofollow">帖子加分</a></li>
+  <li><a href="http://bbs.csdn.net/topics/260015034/highlight" class="fancybox" rel="nofollow">帖子高亮</a></li>
+
+          </ul>
+        </li>
+        <li><a href="http://bbs.csdn.net/topics/260015034/close" class="btn_1" rel="nofollow"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_over.gif" alt="">结帖</span></a></li>
+        <li><a href="http://bbs.csdn.net/topics/new?forum_id=PHPBase" class="btn_1"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_publish.gif" alt="">发帖</span></a></li>
+        <li><a href="http://bbs.csdn.net/topics/260015034#new_post" class="btn_1"><span><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ico_return.gif" alt="">回复</span></a></li>
+      </ul>
+    </div>
+  </form>
+</div>
+
+<div class="comt">
+  <div class="ad_l">
+    
+    <div>
+    <script language="JavaScript" type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/getcmsad.ashx"></script><li><a href="http://g.csdn.net/5256943" target="_blank">思科免费为您量身设计网络方案</a></li><li><a href="http://g.csdn.net/5243760" target="_blank">【招】应届生,入职年薪5-10万</a></li><li><a href="http://g.csdn.net/5253151" target="_blank">将家庭娱乐升级到移动时代</a></li><li><a href="http://g.csdn.net/5250649" target="_blank">下载最热手游开发工具集CocoStudio</a></li>
+    </div>
+    <ul class="tracking-ad" data-mod="popu_10">
+        <li><a href="http://hero.pongo.cn/Question/Details?ID=168&ExamID=163" class="title_style_black" target="_blank">文思海辉第一届在线编程大赛</a></li>
+        <li><a href="http://bbs.csdn.net/topics/390597052" class="title_style_black" target="_blank">CSDN版主团队火热招募啦</a></li>
+        <li><a href="http://club.csdn.net/cmdn/bbs/topic/7282" class="title_style_black" target="_blank">台湾程序员游戏开发经历</a></li>
+        <li><a href="http://g.csdn.net/5243630" class="title_style_black" target="_blank">陈勇- 敏捷开发现状及发展之路</a></li>
+    </ul>
+    <div class="ad_new tracking-ad" style="padding: 0 0 50px 0" data-mod="popu_11">
+      <h4><img alt="" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/csdn_logo_blue.gif"></h4>
+      <p class="title">
+      <a href="http://bbs.csdn.net/topics/390426621" target="_blank">关注CSDN论坛微博送可用分</a>
+      </p>
+      <p class="con">
+      <a href="http://bbs.csdn.net/topics/390426621" target="_blank">CSDN论坛微博主要发布程序员职场经验,生活指南，IT八卦等内容，关注就有积分相送噢！</a>
+      </p>
+    </div>
+  </div>
+  <div class="reply">
+      <h3>本帖子已过去太久远了，不再提供回复功能。</h3>
+  </div>
+</div>
+<script>
+  $(function(){
+    $('.refresh-captcha').on('click', function(e){
+      e.preventDefault();
+      $('.captcha').load('/captchas/new');
+    });
+  });
+</script>
+
+<div class="tag_list_bbs"> 
+  <h4><a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h4>
+  <div class="classify">
+    <a title="全部主题" href="http://www.csdn.net/tag" target="_blank">全部主题</a>
+    <a title="数据挖掘" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98" target="_blank">数据挖掘</a>
+    <a title="SOA" href="http://www.csdn.net/tag/soa" target="_blank">SOA</a>
+    <a title="UML" href="http://www.csdn.net/tag/uml" target="_blank">UML</a>
+    <a title="Teradata" href="http://www.csdn.net/tag/teradata" target="_blank">Teradata</a>
+    <a title="开放平台" href="http://www.csdn.net/tag/%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0" target="_blank">开放平台</a>
+    <a title="HTML5" href="http://www.csdn.net/tag/HTML5" target="_blank">HTML5</a>
+    <a title="创业" href="http://www.csdn.net/tag/%E5%88%9B%E4%B8%9A" target="_blank">创业</a>
+    <a title="开源" href="http://www.csdn.net/tag/%E5%BC%80%E6%BA%90" target="_blank">开源</a>
+    <a title="移动开发" href="http://www.csdn.net/tag/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91" target="_blank">移动开发</a>
+    <a title="iOS" href="http://www.csdn.net/tag/iOS" target="_blank">iOS</a>
+    <a title="Android" href="http://www.csdn.net/tag/android" target="_blank">Android</a>
+    <a title="移动游戏" href="http://www.csdn.net/tag/%E7%A7%BB%E5%8A%A8%E6%B8%B8%E6%88%8F" target="_blank">移动游戏</a>
+    <a title="Windows Phone" href="http://www.csdn.net/tag/Windows%20Phone" target="_blank">Windows Phone</a>
+    <a title="JavaScript" href="http://www.csdn.net/tag/JavaScript" target="_blank">JavaScript</a>
+    <a title="CSS" href="http://www.csdn.net/Tag/CSS" target="_blank">CSS</a>
+    <a title="游戏引擎" href="http://www.csdn.net/tag/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E" target="_blank">游戏引擎</a>
+    <a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank">云计算</a>
+    <a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank">大数据</a>
+    <a title="Hadoop" href="http://www.csdn.net/tag/Hadoop" target="_blank">Hadoop</a>
+    <a title="OpenStack" href="http://www.csdn.net/tag/OpenStack" target="_blank">OpenStack</a>
+    <a title="云平台" href="http://www.csdn.net/tag/%E4%BA%91%E5%B9%B3%E5%8F%B0" target="_blank">云平台</a>
+    <a title="PHP" href="http://www.csdn.net/tag/PHP" target="_blank">PHP</a>
+    <a title="MongoDB" href="http://www.csdn.net/tag/MongoDB" target="_blank">MongoDB</a>
+    <a title="JSON" href="http://www.csdn.net/tag/JSON" target="_blank">JSON</a>
+    <a title="Xcode" href="http://www.csdn.net/tag/Xcode" target="_blank">Xcode</a>
+    <a title="Node.js" href="http://www.csdn.net/tag/Node.js" target="_blank">Node.js</a>
+    <a title="前端开发" href="http://www.csdn.net/tag/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91" target="_blank">前端开发</a>
+    <a title="神经网络" href="http://www.csdn.net/tag/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C" target="_blank">神经网络</a>
+    <a title="黑客" href="http://www.csdn.net/tag/%E9%BB%91%E5%AE%A2" target="_blank">黑客</a>
+    <a title="安全" href="http://www.csdn.net/tag/%E5%AE%89%E5%85%A8" target="_blank">安全</a>
+    <a title="Java" href="http://www.csdn.net/tag/Java" target="_blank">Java</a>
+    <a title=".NET" href="http://www.csdn.net/tag/.NET" target="_blank">.NET</a>
+    <a title="MySQL" href="http://www.csdn.net/tag/MySQL" target="_blank">MySQL</a>
+    <a title="textview" href="http://www.csdn.net/tag/textview" target="_blank">textview</a>
+    <a title="BigTable" href="http://www.csdn.net/tag/BigTable" target="_blank">BigTable</a>
+    <a title="web框架" href="http://www.csdn.net/tag/web%E6%A1%86%E6%9E%B6" target="_blank">web框架</a>
+    <a title="SQL" href="http://www.csdn.net/tag/SQL" target="_blank">SQL</a>
+    <a title="Redis" href="http://www.csdn.net/tag/Redis" target="_blank">Redis</a>
+    <a title="GitHub" href="http://www.csdn.net/tag/GitHub" target="_blank">GitHub</a>
+    <a title="CouchDB" href="http://www.csdn.net/tag/CouchDB" target="_blank">CouchDB</a>
+    <a title="Oracle" href="http://www.csdn.net/tag/Oracle" target="_blank">Oracle</a>
+    <a title="JavaEE" href="http://www.csdn.net/tag/JavaEE" target="_blank">JavaEE</a>
+  </div>
+</div>
+
+
+
+
+<div id="ad_left" style="position: absolute; width: 120px; top: 184px; left: 10px;">
+  <a style="float:right;" href="http://bbs.csdn.net/topics/260015034#">[关闭]</a>
+  <iframe src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/TopicDaLeft.htm" frameborder="0" height="600" width="120" scrolling="no"></iframe>
+</div>
+<div id="ad_right" style="position: absolute; width: 120px; top: 184px; right: 10px;">
+  <a style="float:left;" href="http://bbs.csdn.net/topics/260015034#">[关闭]</a>
+  <iframe src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/TopicDaRight.htm" frameborder="0" height="600" width="120" scrolling="no"></iframe>
+</div>
+
+<script>
+  $(function(){
+    window.onresize = function(){
+      if($(parent.window).width() <= 1280){
+        $('#ad_right').hide();
+        $('#ad_left').hide();
+      }
+    };
+  });
+</script>
+
+
+
+    </div>
+    <script type="text/javascript" language="javascript" charset="utf-8">
+//<![CDATA[
+$(function(){
+  $('.post .post_body fieldset+br').remove();
+  $('.post .post_body blockquote').each(function(index, item) {
+    var first_child = $(item).find(':first');
+    if($(item).contents().get(0) !== undefined &&
+      $(item).contents().get(0).nodeName.toLowerCase() === 'br' &&
+      first_child.prop('tagName').toLowerCase() === 'br') {
+      first_child.remove();
+    }
+  });
+
+  topics_page_js.show_page();
+  
+    var bulletin_link = '<a href="http://bbs.csdn.net/topics/390426621" class="title_style_blue title_style_bold" target="_blank">关注CSDN论坛微博 送CSDN积分大礼包</a>'
+    $('#post-forum-bulletin-1').html(bulletin_link);
+    var bulletin_link = '<a href="http://hero.pongo.cn/Question/Details?ID=168&amp;ExamID=163" class="title_style_blue title_style_bold" target="_blank">文思海辉第一届在线编程大赛</a>'
+    $('#post-forum-bulletin-2').html(bulletin_link);
+
+  csdn.comp.socialShare({
+    title: $($('.social-share-buttons')[0]).data('title'),
+    pic: $($('.social-share-buttons')[0]).data('pics'),
+    wrap: $($('.social-share-buttons')[0]),
+    position: 'inline',
+    socialWebIds: ['tsina', 'tqq'],
+    ralateuid: {
+      tsina: '3276519824',
+    },
+    appkey: {
+      tsina: '3657746030',
+      tqq: '801356742',
+    }
+  });
+});
+//]]>
+</script>
+<script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ad-bbs.js"></script><script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/ad-ms630.js"></script>
+
+
+    <script src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/component.js"></script>
+    <script type="text/javascript" language="javascript">csdn.scrollTop();</script><img alt="Top_arrow" id="top_arrow" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/top_arrow.png" style="cursor: pointer; border: 0px none; bottom: 80px; height: auto; margin: 0px; opacity: 0.5; padding: 0px; position: fixed; right: 40px; width: 35px;">
+    <script type="text/javascript">
+  document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date()/120000).toString(36) + '="></'+'script>');
+</script><script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/pub_footer_2012.css"><div id="pub_footerall" class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes" target="_blank" class="qq">QQ客服</a> <a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a> <a href="http://bbs.csdn.net/forums/Service" target="_blank" class="online">论坛反馈</a> <a href="mailto:webmaster@csdn.net" class="email">联系邮箱：webmaster@csdn.net</a> <span class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>世纪乐知(北京)网络技术有限公司 提供技术支持</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/notify.js"></script>
+<script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/msg.popup.js"></script>
+
+<script type="text/javascript" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/cnick.js"></script>
+
+  
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><link href="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/message_pop.css" rel="stylesheet" type="text/css"><div style="display: block;" id="_popup_msg_container">
+
+<div wistate="max" id="im_popupWindow_miniMsg" class="im_popupWindow" style="display: none; height: 0px;">
+	<h6 class="wi_draggable"><span>
+</span><a><img alt="close" class="founctionpic3" src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/pic_close.gif"></a></h6>
+    <div id="im_popupWindow_miniMsgContent" class="wi_content">
+		<div class="kuai">
+			<div style="width:280px;"><a href="http://huizheng.csdn.net/" target="_blank"><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/280x188_2(1).jpg" alt="" border="0" style="border:0;" title=""></a></div>
+		</div>
+	</div>
+	<div class="content_qq"><span target="_blank"><font color="red"></font></span>
+ </div>
+ 
+ 
+</div>
+</div><img src="./php当未正常退出时，如何判断注册用户是否在线 记录最后登录时间然后定时去检查是否过期的就不用说了 - CSDN论坛 - CSDN.NET_files/count_new.php" style="display: none;"></body></html>

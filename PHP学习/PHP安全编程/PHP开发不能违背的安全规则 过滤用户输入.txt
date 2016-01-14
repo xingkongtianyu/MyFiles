@@ -1,0 +1,398 @@
+作为最基本的防范你需要注意你的外部提交，做好第一面安全机制处理防火墙。
+规则 1：绝不要信任外部数据或输入
+关于Web应用程序安全性，必须认识到的第一件事是不应该信任外部数据。外部数据(outside data) 包括不是由程序员在PHP代码中直接输入的任何数据。在采取措施确保安全之前，来自任何其他来源(比如 GET 变量、表单 POST、数据库、配置文件、会话变量或 cookie)的任何数据都是不可信任的。
+例如，下面的数据元素可以被认为是安全的，因为它们是在PHP中设置的。
+
+　　复制代码 代码如下:
+
+　　<?php
+$myUsername = 'tmyer';
+$arrayUsers = array('tmyer', 'tom', 'tommy');
+define(”GREETING”, 'hello there' . $myUsername);
+?>
+
+但是，下面的数据元素都是有瑕疵的。
+清单 2. 不安全、有瑕疵的代码
+
+　　复制代码 代码如下:
+
+　　<?php
+$myUsername = $_POST['username']; //tainted!
+$arrayUsers = array($myUsername, 'tom', 'tommy'); //tainted!
+define(”GREETING”, 'hello there' . $myUsername); //tainted!
+?>
+
+为 什么第一个变量 $myUsername 是有瑕疵的？因为它直接来自表单 POST。用户可以在这个输入域中输入任何字符串，包括用来清除文件或运行以前上传的文件的恶意命令。您可能会问，“难道不能使用只接受字母 A-Z 的客户端（Javascrīpt）表单检验脚本来避免这种危险吗？”是的，这总是一个有好处的步骤，但是正如在后面会看到的，任何人都可以将任何表单下载 到自己的机器上，修改它，然后重新提交他们需要的任何内容。
+解决方案很简单：必须对 $_POST['username'] 运行清理代码。如果不这么做，那么在使用 $myUsername 的任何其他时候（比如在数组或常量中），就可能污染这些对象。
+对用户输入进行清理的一个简单方法是，使用正则表达式来处理它。在这个示例中，只希望接受字母。将字符串限制为特定数量的字符，或者要求所有字母都是小写的，这可能也是个好主意。
+清单 3. 使用户输入变得安全
+
+　　复制代码 代码如下:
+
+　　<?php
+$myUsername = cleanInput($_POST['username']); //clean!
+$arrayUsers = array($myUsername, 'tom', 'tommy'); //clean!
+define(”GREETING”, 'hello there' . $myUsername); //clean!
+function cleanInput($input){
+$clean = strtolower($input);
+$clean = preg_replace(”/[^a-z]/”, “”, $clean);
+$clean = substr($clean,0,12);
+return $clean;
+}
+?>
+
+规则 2：禁用那些使安全性难以实施的 PHP 设置
+已经知道了不能信任用户输入，还应该知道不应该信任机器上配置 PHP 的方式。例如，要确保禁用 register_globals。如果启用了 register_globals，就可能做一些粗心的事情，比如使用 $variable 替换同名的 GET 或 POST 字符串。通过禁用这个设置，PHP 强迫您在正确的名称空间中引用正确的变量。要使用来自表单 POST 的变量，应该引用 $_POST['variable']。这样就不会将这个特定变量误会成 cookie、会话或 GET 变量。
+规则 3：如果不能理解它，就不能保护它
+一些开发人员使用奇怪的语法，或者将语句组织得很紧凑，形成简短但是含义模糊的代码。这种方式可能效率高，但是如果您不理解代码正在做什么，那么就无法决定如何保护它。
+例如，您喜欢下面两段代码中的哪一段？
+清单 4. 使代码容易得到保护
+
+　　复制代码 代码如下:
+
+　　<?php
+//obfuscated code
+$input = (isset($_POST['username']) ? $_POST['username']:”);
+//unobfuscated code
+$input = ”;
+if (isset($_POST['username'])){
+$input = $_POST['username'];
+}else{
+$input = ”;
+}
+?>
+
+在第二个比较清晰的代码段中，很容易看出 $input 是有瑕疵的，需要进行清理，然后才能安全地处理。
+规则 4：“纵深防御” 是新的法宝
+本教程将用示例来说明如何保护在线表单，同时在处理表单的 PHP 代码中采用必要的措施。同样，即使使用 PHP regex 来确保 GET 变量完全是数字的，仍然可以采取措施确保 SQL 查询使用转义的用户输入。
+纵深防御不只是一种好思想，它可以确保您不会陷入严重的麻烦。
+既然已经讨论了基本规则，现在就来研究第一种威胁：SQL 注入攻击。
+防止 SQL 注入攻击
+在 SQL 注入攻击 中，用户通过操纵表单或 GET 查询字符串，将信息添加到数据库查询中。例如，假设有一个简单的登录数据库。这个数据库中的每个记录都有一个用户名字段和一个密码字段。构建一个登录表单，让用户能够登录。
+清单 5. 简单的登录表单
+
+　　复制代码 代码如下:
+
+　　<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+<form action=”verify.php” method=”post”>
+<p><label for='user'>Username</label>
+<input type='text' name='user' id='user'/>
+</p>
+<p><label for='pw'>Password</label>
+<input type='password' name='pw' id='pw'/>
+</p>
+<p><input type='submit' value='login'/></p>
+</form>
+</body>
+</html>
+
+这个表单接受用户输入的用户名和密码，并将用户输入提交给名为 verify.php 的文件。在这个文件中，PHP 处理来自登录表单的数据，如下所示：
+清单 6. 不安全的 PHP 表单处理代码
+
+　　复制代码 代码如下:
+
+　　<?php
+$okay = 0;
+$username = $_POST['user'];
+$pw = $_POST['pw'];
+$sql = “select count(*) as ctr from users where username='”.$username.”' and password='”. $pw.”' limit 1″;
+$result = mysql_query($sql);
+while ($data = mysql_fetch_object($result)){
+if ($data->ctr == 1){
+//they're okay to enter the application!
+$okay = 1;
+}
+}
+if ($okay){
+$_SESSION['loginokay'] = true;
+header(”index.php”);
+}else{
+header(”login.php”);
+}
+?>
+
+这 段代码看起来没问题，对吗？世界各地成百（甚至成千）的 PHP/MySQL 站点都在使用这样的代码。它错在哪里？好，记住 “不能信任用户输入”。这里没有对来自用户的任何信息进行转义，因此使应用程序容易受到攻击。具体来说，可能会出现任何类型的 SQL 注入攻击。
+例如，如果用户输入 foo 作为用户名，输入 ' or '1′='1 作为密码，那么实际上会将以下字符串传递给 PHP，然后将查询传递给 MySQL：
+
+　　复制代码 代码如下:
+
+　　<?php
+$sql = “select count(*) as ctr from users where username='foo' and password=” or '1′='1′ limit 1″;
+?>
+
+这个查询总是返回计数值 1，因此 PHP 会允许进行访问。通过在密码字符串的末尾注入某些恶意 SQL，黑客就能装扮成合法的用户。
+解 决这个问题的办法是，将 PHP 的内置 mysql_real_escape_string() 函数用作任何用户输入的包装器。这个函数对字符串中的字符进行转义，使字符串不可能传递撇号等特殊字符并让 MySQL 根据特殊字符进行操作。清单 7 展示了带转义处理的代码。
+清单 7. 安全的 PHP 表单处理代码
+
+　　复制代码 代码如下:
+
+　　<?php
+$okay = 0;
+$username = $_POST['user'];
+$pw = $_POST['pw'];
+$sql = “select count(*) as ctr from users where username='”.mysql_real_escape_string($username).”' and password='”. mysql_real_escape_string($pw).”' limit 1″;
+$result = mysql_query($sql);
+while ($data = mysql_fetch_object($result)){
+if ($data->ctr == 1){
+//they're okay to enter the application!
+$okay = 1;
+}
+}
+if ($okay){
+$_SESSION['loginokay'] = true;
+header(”index.php”);
+}else{
+header(”login.php”);
+}
+?>
+
+使用 mysql_real_escape_string() 作为用户输入的包装器，就可以避免用户输入中的任何恶意 SQL 注入。如果用户尝试通过 SQL 注入传递畸形的密码，那么会将以下查询传递给数据库：
+select count(*) as ctr from users where username='foo' and password='\' or \'1\'=\'1′ limit 1″
+数据库中没有任何东西与这样的密码匹配。仅仅采用一个简单的步骤，就堵住了 Web 应用程序中的一个大漏洞。这里得出的经验是，总是应该对 SQL 查询的用户输入进行转义。
+但是，还有几个安全漏洞需要堵住。下一项是操纵 GET 变量。
+防止用户操纵 GET 变量
+在前一节中，防止了用户使用畸形的密码进行登录。如果您很聪明，应该应用您学到的方法，确保对 SQL 语句的所有用户输入进行转义。
+但 是，用户现在已经安全地登录了。用户拥有有效的密码，并不意味着他将按照规则行事 —— 他有很多机会能够造成损害。例如，应用程序可能允许用户查看特殊的内容。所有链接指向 template.php?pid=33 或 template.php?pid=321 这样的位置。URL 中问号后面的部分称为查询字符串。因为查询字符串直接放在 URL 中，所以也称为 GET 查询字符串。
+在 PHP 中，如果禁用了 register_globals，那么可以用 $_GET['pid'] 访问这个字符串。在 template.php 页面中，可能会执行与清单 8 相似的操作。
+清单 8. 示例 template.php
+
+　　复制代码 代码如下:
+
+　　<?php
+$pid = $_GET['pid'];
+//we create an object of a fictional class Page
+$obj = new Page;
+$content = $obj->fetchPage($pid);
+//and now we have a bunch of PHP that displays the page
+?>
+
+这 里有什么错吗？首先，这里隐含地相信来自浏览器的 GET 变量 pid 是安全的。这会怎么样呢？大多数用户没那么聪明，无法构造出语义攻击。但是，如果他们注意到浏览器的 URL 位置域中的 pid=33，就可能开始捣乱。如果他们输入另一个数字，那么可能没问题；但是如果输入别的东西，比如输入 SQL 命令或某个文件的名称（比如 /etc/passwd），或者搞别的恶作剧，比如输入长达 3,000 个字符的数值，那么会发生什么呢？
+在这种情况下，要记住基本规则，不要信任用户输入。应用程序开发人员知道 template.php 接受的个人标识符（PID）应该是数字，所以可以使用 PHP 的 is_numeric() 函数确保不接受非数字的 PID，如下所示：
+清单 9. 使用 is_numeric() 来限制 GET 变量
+
+　　复制代码 代码如下:
+
+　　<?php
+$pid = $_GET['pid'];
+if (is_numeric($pid)){
+//we create an object of a fictional class Page
+$obj = new Page;
+$content = $obj->fetchPage($pid);
+//and now we have a bunch of PHP that displays the page
+}else{
+//didn't pass the is_numeric() test, do something else!
+}
+?>
+
+这个方法似乎是有效的，但是以下这些输入都能够轻松地通过 is_numeric() 的检查：
+100 （有效）
+100.1 （不应该有小数位）
++0123.45e6 （科学计数法 —— 不好）
+0xff33669f （十六进制 —— 危险！危险！）
+那么，有安全意识的 PHP 开发人员应该怎么做呢？多年的经验表明，最好的做法是使用正则表达式来确保整个 GET 变量由数字组成，如下所示：
+清单 10. 使用正则表达式限制 GET 变量
+
+　　复制代码 代码如下:
+
+　　<?php
+$pid = $_GET['pid'];
+if (strlen($pid)){
+if (!ereg(”^[0-9]+$”,$pid)){
+//do something appropriate, like maybe logging them out or sending them back to home page
+}
+}else{
+//empty $pid, so send them back to the home page
+}
+//we create an object of a fictional class Page, which is now
+//moderately protected from evil user input
+$obj = new Page;
+$content = $obj->fetchPage($pid);
+//and now we have a bunch of PHP that displays the page
+?>
+
+需 要做的只是使用 strlen() 检查变量的长度是否非零；如果是，就使用一个全数字正则表达式来确保数据元素是有效的。如果 PID 包含字母、斜线、点号或任何与十六进制相似的内容，那么这个例程捕获它并将页面从用户活动中屏蔽。如果看一下 Page 类幕后的情况，就会看到有安全意识的 PHP 开发人员已经对用户输入 $pid 进行了转义，从而保护了 fetchPage() 方法，如下所示：
+清单 11. 对 fetchPage() 方法进行转义
+
+　　复制代码 代码如下:
+
+　　<?php
+class Page{
+function fetchPage($pid){
+$sql = “select pid,title,desc,kw,content,status from page where pid='”.mysql_real_escape_string($pid).”'”;
+}
+}
+?>
+
+您可能会问，“既然已经确保 PID 是数字，那么为什么还要进行转义？” 因为不知道在多少不同的上下文和情况中会使用 fetchPage() 方法。必须在调用这个方法的所有地方进行保护，而方法中的转义体现了纵深防御的意义。
+如 果用户尝试输入非常长的数值，比如长达 1000 个字符，试图发起缓冲区溢出攻击，那么会发生什么呢？下一节更详细地讨论这个问题，但是目前可以添加另一个检查，确保输入的 PID 具有正确的长度。您知道数据库的 pid 字段的最大长度是 5 位，所以可以添加下面的检查。
+清单 12. 使用正则表达式和长度检查来限制 GET 变量
+
+　　复制代码 代码如下:
+
+　　<?php
+$pid = $_GET['pid'];
+if (strlen($pid)){
+if (!ereg(”^[0-9]+$”,$pid) && strlen($pid) > 5){
+//do something appropriate, like maybe logging them out or sending them back to home page
+}
+} else {
+//empty $pid, so send them back to the home page
+}
+//we create an object of a fictional class Page, which is now
+//even more protected from evil user input
+$obj = new Page;
+$content = $obj->fetchPage($pid);
+//and now we have a bunch of PHP that displays the page
+?>
+
+现在，任何人都无法在数据库应用程序中塞进一个 5,000 位的数值 —— 至少在涉及 GET 字符串的地方不会有这种情况。想像一下黑客在试图突破您的应用程序而遭到挫折时咬牙切齿的样子吧！而且因为关闭了错误报告，黑客更难进行侦察。
+缓冲区溢出攻击
+缓冲区溢出攻击 试图使 PHP 应用程序中（或者更精确地说，在 Apache 或底层操作系统中）的内存分配缓冲区发生溢出。请记住，您可能是使用 PHP 这样的高级语言来编写 Web 应用程序，但是最终还是要调用 C（在 Apache 的情况下）。与大多数低级语言一样，C 对于内存分配有严格的规则。
+缓冲区溢出攻击向缓冲区发送大量数据，使部分数据溢出到相邻的内存缓冲区，从而破坏缓冲区或者重写逻辑。这样就能够造成拒绝服务、破坏数据或者在远程服务器上执行恶意代码。
+防止缓冲区溢出攻击的惟一方法是检查所有用户输入的长度。例如，如果有一个表单元素要求输入用户的名字，那么在这个域上添加值为 40 的 maxlength 属性，并在后端使用 substr() 进行检查。清单 13 给出表单和 PHP 代码的简短示例。
+清单 13. 检查用户输入的长度
+
+　　复制代码 代码如下:
+
+　　<?php
+if ($_POST['submit'] == “go”){
+$name = substr($_POST['name'],0,40);
+}
+?>
+<form action=”<?php echo $_SERVER['PHP_SELF'];?>” method=”post”>
+<p><label for=”name”>Name</label>
+<input type=”text” name=”name” id=”name” size=”20″ maxlength=”40″/></p>
+<p><input type=”submit” name=”submit” value=”go”/></p>
+</form>
+
+为 什么既提供 maxlength 属性，又在后端进行 substr() 检查？因为纵深防御总是好的。浏览器防止用户输入 PHP 或 MySQL 不能安全地处理的超长字符串（想像一下有人试图输入长达 1,000 个字符的名称），而后端 PHP 检查会确保没有人远程地或者在浏览器中操纵表单数据。
+正如您看到的，这种方式与前一节中使用 strlen() 检查 GET 变量 pid 的长度相似。在这个示例中，忽略长度超过 5 位的任何输入值，但是也可以很容易地将值截短到适当的长度，如下所示：
+清单 14. 改变输入的 GET 变量的长度
+
+　　复制代码 代码如下:
+
+　　<?php
+$pid = $_GET['pid'];
+if (strlen($pid)){
+if (!ereg(”^[0-9]+$”,$pid)){
+//if non numeric $pid, send them back to home page
+}
+}else{
+//empty $pid, so send them back to the home page
+}
+//we have a numeric pid, but it may be too long, so let's check
+if (strlen($pid)>5){
+$pid = substr($pid,0,5);
+}
+//we create an object of a fictional class Page, which is now
+//even more protected from evil user input
+$obj = new Page;
+$content = $obj->fetchPage($pid);
+//and now we have a bunch of PHP that displays the page
+?>
+
+注 意，缓冲区溢出攻击并不限于长的数字串或字母串。也可能会看到长的十六进制字符串（往往看起来像 \xA3 或 \xFF）。记住，任何缓冲区溢出攻击的目的都是淹没特定的缓冲区，并将恶意代码或指令放到下一个缓冲区中，从而破坏数据或执行恶意代码。对付十六进制缓 冲区溢出最简单的方法也是不允许输入超过特定的长度。
+如果您处理的是允许在数据库中输入较长条目的表单文本区，那么无法在客户端轻松地限制数据的长度。在数据到达 PHP 之后，可以使用正则表达式清除任何像十六进制的字符串。
+清单 15. 防止十六进制字符串
+
+　　复制代码 代码如下:
+
+　　<?php
+if ($_POST['submit'] == “go”){
+$name = substr($_POST['name'],0,40);
+//clean out any potential hexadecimal characters
+$name = cleanHex($name);
+//continue processing….
+}
+function cleanHex($input){
+$clean = preg_replace(”![\][xX]([A-Fa-f0-9]{1,3})!”, “”,$input);
+return $clean;
+}
+?>
+<form action=”<?php echo $_SERVER['PHP_SELF'];?>” method=”post”>
+<p><label for=”name”>Name</label>
+<input type=”text” name=”name” id=”name” size=”20″ maxlength=”40″/></p>
+<p><input type=”submit” name=”submit” value=”go”/></p>
+</form>
+
+您 可能会发现这一系列操作有点儿太严格了。毕竟，十六进制串有合法的用途，比如输出外语中的字符。如何部署十六进制 regex 由您自己决定。比较好的策略是，只有在一行中包含过多十六进制串时，或者字符串的字符超过特定数量（比如 128 或 255）时，才删除十六进制串。
+跨站点脚本攻击
+在跨站点脚本（XSS）攻击中，往往有一个恶意用户在表单中（或通过其他用户输入方式）输入信息，这些输入将恶 意的客户端标记插入过程或数据库中。例如，假设站点上有一个简单的来客登记簿程序，让访问者能够留下姓名、电子邮件地址和简短的消息。恶意用户可以利用这 个机会插入简短消息之外的东西，比如对于其他用户不合适的图片或将用户重定向到另一个站点的 Javascrīpt，或者窃取 cookie 信息。
+幸运的是，PHP 提供了 strip_tags() 函数，这个函数可以清除任何包围在 HTML 标记中的内容。strip_tags() 函数还允许提供允许标记的列表，比如 <b> 或 <i>。
+浏览器内的数据操纵
+有一类浏览器插件允许用户篡改页面上的头部元素和表单元素。使用 Tamper Data（一个 Mozilla 插件），可以很容易地操纵包含许多隐藏文本字段的简单表单，从而向 PHP 和 MySQL 发送指令。
+用户在点击表单上的 Submit 之前，他可以启动 Tamper Data。在提交表单时，他会看到表单数据字段的列表。Tamper Data 允许用户篡改这些数据，然后浏览器完成表单提交。
+让我们回到前面建立的示例。已经检查了字符串长度、清除了 HTML 标记并删除了十六进制字符。但是，添加了一些隐藏的文本字段，如下所示：
+清单 17. 隐藏变量
+
+　　复制代码 代码如下:
+
+　　<?php
+if ($_POST['submit'] == “go”){
+//strip_tags
+$name = strip_tags($_POST['name']);
+$name = substr($name,0,40);
+//clean out any potential hexadecimal characters
+$name = cleanHex($name);
+//continue processing….
+}
+function cleanHex($input){
+$clean = preg_replace(”![\][xX]([A-Fa-f0-9]{1,3})!”, “”,$input);
+return $clean;
+}
+?>
+<form action=”<?php echo $_SERVER['PHP_SELF'];?>” method=”post”>
+<p><label for=”name”>Name</label>
+<input type=”text” name=”name” id=”name” size=”20″ maxlength=”40″/></p>
+<input type=”hidden” name=”table” value=”users”/>
+<input type=”hidden” name=”action” value=”create”/>
+<input type=”hidden” name=”status” value=”live\”/>
+<p><input type=”submit” name=”submit” value=”go”/></p>
+</form>
+
+注意，隐藏变量之一暴露了表名：users。还会看到一个值为 create 的 action 字段。只要有基本的 SQL 经验，就能够看出这些命令可能控制着中间件中的一个 SQL 引擎。想搞大破坏的人只需改变表名或提供另一个选项，比如 delete。
+现在还剩下什么问题呢？远程表单提交。
+远程表单提交
+Web 的好处是可以分享信息和服务。坏处也是可以分享信息和服务，因为有些人做事毫无顾忌。
+以 表单为例。任何人都能够访问一个 Web 站点，并使用浏览器上的 File > Save As 建立表单的本地副本。然后，他可以修改 action 参数来指向一个完全限定的 URL（不指向 formHandler.php，而是指向 ，因为表单在这个站点上），做他希望的任何修改，点击 Submit，服务器会把这个表单数据作为合法通信流接收。
+首先可能考虑检查 $_SERVER['HTTP_REFERER']，从而判断请求是否来自自己的服务器，这种方法可以挡住大多数恶意用户，但是挡不住最高明的黑客。这些人足够聪明，能够篡改头部中的引用者信息，使表单的远程副本看起来像是从您的服务器提交的。
+处理远程表单提交更好的方式是，根据一个惟一的字符串或时间戳生成一个令牌，并将这个令牌放在会话变量和表单中。提交表单之后，检查两个令牌是否匹配。如果不匹配，就知道有人试图从表单的远程副本发送数据。
+要创建随机的令牌，可以使用 PHP 内置的 md5()、uniqid() 和 rand() 函数，如下所示：
+清单 18. 防御远程表单提交
+
+　　复制代码 代码如下:
+
+　　<?php
+session_start();
+if ($_POST['submit'] == “go”){
+//check token
+if ($_POST['token'] == $_SESSION['token']){
+//strip_tags
+$name = strip_tags($_POST['name']);
+$name = substr($name,0,40);
+//clean out any potential hexadecimal characters
+$name = cleanHex($name);
+//continue processing….
+}else{
+//stop all processing! remote form posting attempt!
+}
+}
+$token = md5(uniqid(rand(), true));
+$_SESSION['token']= $token;
+function cleanHex($input){
+$clean = preg_replace(”![\][xX]([A-Fa-f0-9]{1,3})!”, “”,$input);
+return $clean;
+}
+?>
+<form action=”<?php echo $_SERVER['PHP_SELF'];?>” method=”post”>
+<p><label for=”name”>Name</label>
+<input type=”text” name=”name” id=”name” size=”20″ maxlength=”40″/></p>
+<input type=”hidden” name=”token” value=”<?php echo $token;?>”/>
+<p><input type=”submit” name=”submit” value=”go”/></p>
+</form>
+
+这种技术是有效的，这是因为在 PHP 中会话数据无法在服务器之间迁移。即使有人获得了您的 PHP 源代码，将它转移到自己的服务器上，并向您的服务器提交信息，您的服务器接收的也只是空的或畸形的会话令牌和原来提供的表单令牌。它们不匹配，远程表单提交就失败了。 

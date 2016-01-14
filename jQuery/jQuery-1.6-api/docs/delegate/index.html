@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.delegate()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span>
+  
+  				</div>
+</div>
+<div id="delegate1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.delegate( selector, eventType, handler )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为所有选择器匹配的元素附加一个处理一个或多个事件，现在或将来，基于一组特定的根元素。</p>
+<ul class="signatures">
+<li class="signature" id="delegate-selector-eventType-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.2/">1.4.2</a></span>.delegate( selector, eventType, handler )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于过滤器触发事件的元素。</p>
+<p class="arguement"><strong>eventType</strong>一个包含一个或多个JavaScript事件类型的字符串，比如"click"或"keydown,"或自定义事件的名称。</p>
+<p class="arguement"><strong>handler</strong>每当事件触发时执行的函数。</p>
+</li>
+<li class="signature" id="delegate-selector-eventType-eventData-handler">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.2/">1.4.2</a></span>.delegate( selector, eventType, eventData, handler )</h4>
+<p class="arguement"><strong>selector</strong>选择器字符串，用于过滤触发事件的元素。</p>
+<p class="arguement"><strong>eventType</strong>一个包含一个或多个JavaScript事件类型的字符串，比如"click"或"keydown,"或自定义事件的名称。</p>
+<p class="arguement"><strong>eventData</strong>将要传递给事件处理函数的数据映射。</p>
+<p class="arguement"><strong>handler</strong>每当事件触发时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>Delegate（委派）是使用<a href="#p=live">.live()</a>方法的另一个选择，允许每个事件绑定到特定的DOM元素。例如，下面的委托的代码：</p>
+<pre>$("table").delegate("td", "hover", function(){
+	$(this).toggleClass("hover");
+});</pre>
+<p>相当于下面使用<code>.live()</code>书写的代码 ：</p>
+<pre>$("table").each(function(){
+	$("td", this).live("hover", function(){
+		$(this).toggleClass("hover");
+	});
+});</pre>
+<p>另见<a href="#p=undelegate">.undelegate()</a> 方法，用于删除通过<a href="#p=delegate">.delegate()</a>添加的事件。</p>
+</div>
+<h3 id="notes-0">注意：</h3>
+<div class="longdesc"><ul><li>
+自从<a   target="_blank" href="http://api.jquery.com/live"><code>.live()</code></a>方法处理事件一旦传播到文档的顶部，live事件是不可能停止传播的。同样地，<a   target="_blank" href="http://api.jquery.com/delegate"><code>.delegate()</code></a> 事件将始终传播给其中包含的被委托元素；元素上的事件将在被委托事件被调用的时候执行。</li></ul></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">点击添加另一个段落。请注意， .delegate() 绑定所有段落的click事件 - 甚至是新的段落。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { background:yellow; font-weight:bold; cursor:pointer; 
+      padding:5px; }
+  p.over { background: #ccc; }
+  span { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Click me!&lt;/p&gt;
+
+  &lt;span&gt;&lt;/span&gt;
+&lt;script&gt;
+    $("body").delegate("p", "click", function(){
+      $(this).after("&lt;p&gt;Another paragraph!&lt;/p&gt;");
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">每当段落的文字被点击时候，要显示一个警告框：</span>
+</h4>
+<pre><code class="example">$("body").delegate("p", "click", function(){
+  alert( $(this).text() );
+});</code></pre>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">返回false，取消默认的行为，防止从它冒出来的，：
+</span>
+</h4>
+<pre><code class="example">$("body").delegate("a", "click", function() { return false; })</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">要取消默认动作只有通过使用preventDefault方法。</span>
+</h4>
+<pre><code class="example">$("body").delegate("a", "click", function(event){
+  event.preventDefault();
+});</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">也可以绑定自定义事件。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:red; }
+  span { color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Has an attached custom event.&lt;/p&gt;
+  &lt;button&gt;Trigger custom event&lt;/button&gt;
+  &lt;span style="display:none;"&gt;&lt;/span&gt;
+&lt;script&gt;
+
+    $("body").delegate("p", "myCustomEvent", function(e, myName, myValue){
+      $(this).text("Hi there!");
+      $("span").stop().css("opacity", 1)
+               .text("myName = " + myName)
+               .fadeIn(30).fadeOut(1000);
+    });
+    $("button").click(function () {
+      $("p").trigger("myCustomEvent");
+    });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

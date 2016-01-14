@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.animate()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/custom-effects/" title="View all posts in Custom">Custom</a></span>
+  
+  				</div>
+</div>
+<div id="animate1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.animate( properties, [ duration ], [ easing ], [ callback ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>执行一个CSS属性设置的自定义动画。</p>
+<ul class="signatures">
+<li class="signature" id="animate-properties-duration-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.animate( properties, [ duration ], [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>properties</strong>一组CSS属性，动画将朝着这组属性移动。</p>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>easing</strong>要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing"。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="animate-properties-options">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.animate( properties, options )</h4>
+<p class="arguement"><strong>properties</strong>一组CSS属性，动画将朝着这组属性移动。</p>
+<p class="arguement"><strong>options</strong>一组包含动画选项的值的集合。 支持的选项:
+        </p>
+<ul>
+<li>
+<code>duration</code>: (默认值: "normal") 三种预定速度之一的字符串("slow", "normal", or "fast")或表示动画时长的毫秒数值(如：1000)</li>
+        <li>
+<code>easing</code>:(默认值: "swing") 要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing"。</li>
+        <li>
+<code>complete</code>: 在动画完成时执行的函数。</li>
+        <li>
+<code>step</code>: 每步动画执行后调用的函数。</li>
+        <li>
+<code>queue</code>: (默认值: true) 设定为false将使此动画不进入动画队列</li>
+        <li>
+<code>specialEasing</code>:一组一个或多个通过相应的参数和相对简单函数定义的CSS属性 ( 1.4 新增).</li>
+        </ul>
+</li>
+</ul>
+<div class="longdesc">
+<p>
+<code>.animate()</code>方法允许我们在任意的数值的CSS属性上创建动画。唯一必要的属性就是一组CSS属性。这组属性类似用于设置<code>.css()</code>方法那一个，除了属性范围做了更多限制。</p>
+<p>所有用于动画的属性必须是数字的（除了如下所示）；这些属性如果不是数字的将不能使用基本的jQuery功能。（举个例子，<code>width</code>, <code>height</code>或者<code>left</code>可以执行动画，但是<code>background-color</code>不能。）属性值被当作一个像素单位的数字,除非另有说明。单位<code>em</code> 和 <code>%</code>需要指定使用。</p>
+<p>除了定义数值，每个属性能使用<code>'show'</code>, <code>'hide'</code>, 和 <code>'toggle'</code>。这些快捷方式允许定制隐藏和显示动画用来考虑显示类型的元素。</p>
+<p>动画属性也可以是相对的。如果一个值以<code>+=</code> 或 <code>-=</code>开头提供，那么目标值就是以这个属性的当前值加上或者减去给定的数字来计算的。</p>
+<h4 id="duration">Duration</h4>
+<p>持续时间是以毫秒为单位的；更高的值表示更慢的动画，不是更快的。<code>'fast'</code> 和 <code>'slow'</code>字符串被支持，分别表示持续时间为<code>200</code> 和 <code>600</code>毫秒。</p>
+<h4 id="callback">Callback Function</h4>
+<p>如果提供回调函数，这个回调函数将在动画完成后被执行一次。这个能用来将不同的动画串联起来组成一个事件序列。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是这个回调函数在每个匹配元素上执行一次，不是这个动画作为一个整体。
+</p>
+<p>我们可以为任何元素做动画，比如这样的一个简单图片：</p>
+<pre>&lt;div id="clickme"&gt;
+  Click here
+&lt;/div&gt;
+&lt;img id="book" src="book.png" alt="" width="100" height="123" 
+  style="position: relative; left: 10px;" /&gt;</pre>
+<p>我们可以在透明度，左边位置，图片高度上同时做动画：</p>
+<pre>$('#clickme').click(function() {
+  $('#book').animate({
+    opacity: 0.25,
+    left: '+=50',
+    height: 'toggle'
+  }, 5000, function() {
+    // Animation complete.
+  });
+});
+</pre>
+<p class="image">
+  <img src="/images/animate-1.jpg" alt=""></p>
+<p>注意我们这里给定了<code>toggle</code>作为<code>height</code>属性的目标值。由于这个图片开始是可见的，这个动画将收缩高度至0隐藏这个图片。第二次点击的时候将相反的转变：
+</p>
+<p class="image"> 
+<img src="/images/animate-2.jpg" alt=""></p>
+<p>这个图片的<code>opacity</code>已经是其目标值了，所以这个属性在第二次点击的时候不会有动画效果。由于我们给定了<code>left</code>目标值作为相对值，在第二次动画中图片将向右移动得更远。</p>
+<p>在这个例子中，如果我们希望在<code>left</code>属性上做动画，那么这个元素的<code>position</code>属性必须不是<code>static</code>。</p>
+<blockquote><p><a href="http://jqueryui.com">jQuery UI</a>项目扩展了<code>.animate()</code>方法，允许一些非数值的样式比如颜色做动画。该项目还包括来指定动画通过CSS classes的机制而不是单独的属性（The project also includes mechanisms for specifying animations through CSS classes rather than individual attributes）。</p></blockquote>
+<h4 id="easing">Easing</h4>
+<p><code>.animate()</code>的剩下的参数是一个字符串命名的使用缓冲函数。一个缓冲函数指定用于动画进行中在不同点位的速度。只有easing 在jQuery库中是默认的，called <code>swing</code>, and one that progresses at a constant pace, called <code>linear</code>. More easing functions are available with the use of plug-ins, most notably the <a href="http://jqueryui.com/">jQuery UI suite</a>.</p>
+<h4 id="per-property-easing">Per-property Easing</h4>
+<p>在jQuery 1.4 版本中，我们能设置per-property 缓存函数访问一个单独的<code>.animate()</code>。在<code>.animate()</code>的第一个版本中，每个属性能获取一个数组作为他的值：数组的第一个成员是CSS属性和第二成员缓冲函数。如果per-property 缓存函数没有定义一个特殊的属性，它就使用<code>.animate()</code> 方法的easing属性 的这个值。如果easing属性不是默认的，这个函数就会默认使用<code>swing</code>。</p>
+<p>我们可以同时的使用<code>swing</code>缓冲函数来做width 和 height动画，并且用<code>linear</code>缓冲函数来做opacity动画：</p>
+<pre>$('#clickme').click(function() {
+  $('#book').animate({
+    width: ['toggle', 'swing'],
+    height: ['toggle', 'swing'],
+    opacity: 'toggle'
+  }, 5000, 'linear', function() {
+      $(this).after('&lt;div&gt;Animation complete.&lt;/div&gt;');
+  });
+});</pre>
+<p>在<code>.animate()</code>的第二个不版本中，选项对象能包含<code>specialEasing</code>属性，那个属性本身是一组CSS属性与相应的缓冲函数。>我们可以同时的使用<code>linear</code>缓冲函数来做width动画，并且用<code>easeOutBounce</code>缓冲函数来做height动画。
+
+</p>
+<pre>$('#clickme').click(function() {
+  $('#book').animate({
+    width: 'toggle',
+    height: 'toggle'
+  }, {
+    duration: 5000, 
+    specialEasing: {
+      width: 'linear',
+      height: 'easeOutBounce'
+    }, 
+    complete: function() {
+      $(this).after('&lt;div&gt;Animation complete.&lt;/div&gt;');
+    }
+  });
+});</pre>
+<p>如前所述,<code>easeOutBounce</code> 函数是一个极其必要的插件。</p>
+</div>
+<h3 id="notes-0">注意:</h3>
+<div class="longdesc"><ul><li>所有的jQuery效果，包括<code>.animate()</code>,能使用<code>jQuery.fx.off = true</code>关闭全局性。更多信息请查看<a   target="_blank" href="http://api.jquery.com/jquery.fx.off">jQuery.fx.off</a>.</li></ul></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Click the button to animate the div with a number of different properties.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { 
+background-color:#bca; 
+width:100px; 
+border:1px solid green;
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="go"&gt;&amp;raquo; Run&lt;/button&gt;
+
+&lt;div id="block"&gt;Hello!&lt;/div&gt;
+&lt;script&gt;
+
+/* Using multiple unit types within one animation. */
+
+$("#go").click(function(){
+  $("#block").animate({ 
+    width: "70%",
+    opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em", 
+    borderWidth: "10px"
+  }, 1500 );
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Shows a div animate with a relative move.  Click several times on the buttons to see the relative animations queued up.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+div { 
+position:absolute; 
+background-color:#abc; 
+left:50px;
+width:90px; 
+height:90px;
+margin:5px; 
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="left"&gt;&amp;laquo;&lt;/button&gt; &lt;button id="right"&gt;&amp;raquo;&lt;/button&gt;
+&lt;div class="block"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$("#right").click(function(){
+  $(".block").animate({"left": "+=50px"}, "slow");
+});
+
+$("#left").click(function(){
+  $(".block").animate({"left": "-=50px"}, "slow");
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Animates all paragraphs to toggle both height and opacity, completing the animation within 600 milliseconds.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+  "height": "toggle", "opacity": "toggle"
+
+}, "slow");</code></pre>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Animates all paragraph to a left style of 50 and opacity of 1 (opaque, visible), completing the animation within 500 milliseconds.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+  "left": "50", "opacity": 1
+}, 500);
+</code></pre>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">An example of using an 'easing' function to provide a different style of animation. This will only work if you have a plugin that provides this easing function.  Note, this code will do nothing unless the paragraph element is hidden.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+  "opacity": "show"
+
+}, "slow", "easein");</code></pre>
+</div>
+<div id="example-5">
+<h4>Example: <span class="desc">The first button shows how an unqueued animation works.  It expands the div out to 90% width while the font-size is increasing. Once the font-size change is complete, the border animation will begin.
+
+The second button starts a traditional chained animation, where each animation will start once the previous animation on the element has completed.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { 
+  background-color:#bca; 
+  width:200px;
+  height:1.1em;
+  text-align:center;
+  border:2px solid green;
+  margin:3px;
+  font-size:14px;
+}
+button {
+  font-size:14px;
+}
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="go1"&gt;&amp;raquo; Animate Block1&lt;/button&gt;
+&lt;button id="go2"&gt;&amp;raquo; Animate Block2&lt;/button&gt;
+&lt;button id="go3"&gt;&amp;raquo; Animate Both&lt;/button&gt;
+
+&lt;button id="go4"&gt;&amp;raquo; Reset&lt;/button&gt;
+&lt;div id="block1"&gt;Block1&lt;/div&gt;
+&lt;div id="block2"&gt;Block2&lt;/div&gt;
+&lt;script&gt;
+
+$("#go1").click(function(){
+  $("#block1").animate( { width:"90%" }, { queue:false, duration:3000 } )
+     .animate( { fontSize:"24px" }, 1500 )
+     .animate( { borderRightWidth:"15px" }, 1500);
+});
+
+$("#go2").click(function(){
+  $("#block2").animate( { width:"90%"}, 1000 )
+     .animate( { fontSize:"24px" } , 1000 )
+     .animate( { borderLeftWidth:"15px" }, 1000);
+});
+
+$("#go3").click(function(){
+  $("#go1").add("#go2").click();
+});
+
+$("#go4").click(function(){
+  $("div").css({width:"", fontSize:"", borderWidth:""});
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-6">
+<h4>Example: <span class="desc">Animates all paragraphs to toggle both height and opacity, completing the animation within 600 milliseconds.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+"height": "toggle", "opacity": "toggle"
+
+}, { duration: "slow" });</code></pre>
+</div>
+<div id="example-7">
+<h4>Example: <span class="desc">Animates all paragraph to a left style of 50 and opacity of 1 (opaque, visible), completing the animation within 500 milliseconds.  It also will do it outside the queue, meaning it will automatically start without waiting for its turn.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+left: "50px", opacity: 1
+}, { duration: 500, queue: false });</code></pre>
+</div>
+<div id="example-8">
+<h4>Example: <span class="desc">An example of using an 'easing' function to provide a different style of animation. This will only work if you have a plugin that provides this easing function.</span>
+</h4>
+<pre><code class="example">$("p").animate({
+"opacity": "show"
+
+}, { "duration": "slow", "easing": "easein" });</code></pre>
+</div>
+<div id="example-9">
+<h4>Example: <span class="desc">An example of using a callback function.  The first argument is an array of CSS properties, the second specifies that the animation should take 1000 milliseconds to complete, the third states the easing type, and the fourth argument is an anonymous callback function. </span>
+</h4>
+<pre><code class="example">$("p").animate({
+height:200, width:400, opacity: .5
+}, 1000, "linear", function(){alert("all done");} );
+
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

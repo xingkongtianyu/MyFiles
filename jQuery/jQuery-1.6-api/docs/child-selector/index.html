@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">Child Selector (“parent &gt; child”)</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/hierarchy-selectors/" title="View all posts in Hierarchy">Hierarchy</a></span>
+  
+  				</div>
+</div>
+<div id="child1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">child</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery('parent &gt; child')</h4>
+<ul class="signatures"><li><dl class="arguments">
+<dt>parent</dt>
+<dd>任何有效的选择器。</dd>
+<dt>child</dt>
+<dd>一个用来筛选子元素的选择器。</dd>
+</dl></li></ul>
+<p class="desc"><strong>描述： </strong>选择所有通过“parent”给定的元素直接子元素，该子元素“child”给定。</p>
+<div class="longdesc">
+<p>像一个CSS选择器，这个子组合器被Safari, Firefox, Opera, Chrome, 和 Internet Explorer 7 及以上版本等现代浏览器支持，但尤其不被Internet Explorer6及以下版本支持。然而在jQuery中，这个选择器（与其他所有选择器）能在所有支持的浏览器中工作，包括IE6。</p>
+<p>这个子组合器(E <strong>&gt;</strong> F)可以被认为是作为后代组合子(E F)不同，更具体的形式是它只会选择第一级的后代。</p>
+</div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">Places a border around all list items that are children of &lt;ul class="topnav"&gt; .</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+body { font-size:14px; }
+&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+                    
+&lt;ul class="topnav"&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2 
+        &lt;ul&gt;&lt;li&gt;Nested item 1&lt;/li&gt;&lt;li&gt;Nested item 2&lt;/li&gt;&lt;li&gt;Nested item 3&lt;/li&gt;&lt;/ul&gt;
+       &lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;$("ul.topnav &gt; li").css("border", "3px double red");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

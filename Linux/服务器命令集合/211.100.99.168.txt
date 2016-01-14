@@ -1,0 +1,1000 @@
+    3  vi /usr/bin/elggdemo.sh 
+    4  cd /var/www/elggdatademo/
+    5  ls
+    6  ls
+    7  cd views_simplecache/
+    8  ls
+    9  cd ..
+   10  ls
+   11  rm r-f /usr/bin/.elggdemo.sh.swp 
+   12  vi /usr/bin/elggdemo.sh 
+   13  /usr/bin/elggdemo.sh 
+   14  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   15  vi /etc/cron.daily/00webalizer 
+   16  yum install webalizer
+   17  cd /var/www/html/
+   18  ls
+   19  rpm -ql webalizer
+   20  vi /etc/httpd/conf.d/webalizer.conf
+   21  ls
+   22  /etc/init.d/httpd restart
+   23  vi /etc/webalizer.conf 
+   24  rpm -ql webalizer
+   25  /etc/cron.daily/00webalizer 
+   26  cd /var/pupiltown/
+   27  vi config.php 
+   28  cd /var/pupiltown/
+   29  grep 172 * -R
+   30  grep 121.11.87.172 * -R
+   31  cat /var/pupiltown/config.php 
+   32  mysql moodle -uroot -p
+   33  mysql moodle1 -uroot -p
+   34  mysql moodle1 -uroot -p
+   35  cd /var/www/html/
+   36  ls
+   37  ls
+   38  cd /tmp/
+   39  ls
+   40  rm -rf silverstripe-cache-var-www-html-xinxuetang
+   41  ps ax
+   42  rpm -qi postfix
+   43  /etc/init.d/postfix start
+   44  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   45  ls
+   46  ls
+   47  exit
+   48  cd /var/lib/mysql/
+   49  ls -rtl
+   50  df -kh
+   51  ls -rtl moodle1
+   52  date
+   53  cd /var/www/elggdata
+   54  ls
+   55  rm -rf view_paths views_simplecache/*
+   56  ls
+   57  cd /var/log/
+   58  vi maillog
+   59  vi /etc/php.ini
+   60  php mail_test.php 
+   61  php mail_test.php 
+   62  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   63  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   64  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   65  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   66  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   67  cd /var/log/
+   68  vi maillog
+   69  vi /etc/postfix/main.cf
+   70  vi /etc/postfix/master.cf 
+   71  cd /etc/postfix/
+   72  vi main.cf
+   73  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   74  vi /etc/httpd/conf/httpd.conf
+   75  /etc/init.d/httpd restart
+   76  vi /etc/httpd/conf/httpd.conf
+   77  /etc/init.d/httpd restart
+   78  cd /var/pupiltown/
+   79  grep loggedinasguest *
+   80  grep loggedinasguest * -R
+   81  cd /var/pupiltown/
+   82  ls
+   83  vi config.php 
+   84  vi /etc/httpd/conf/httpd.conf
+   85  cd /var/www/html/xinxuetang/mysite/
+   86  vi _config.php 
+   87  mysql xinxuetang -uroot -p
+   88  php /var/www/html/elgg/xinwusi_upgrade.php  /var/www/html/elgg/
+   89  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+   90  ping crm.xinxuetang.com.cn
+   91  ps ax
+   92  ps ax | grep php
+   93  php /var/www/html/elgg/xinwusi_upgrade.php /var/www/html/elgg/
+   94  vi /etc/php.ini
+   95  php /var/www/html/elgg/xinwusi_upgrade.php /var/www/html/elgg/
+   96  /etc/init.d/httpd restart
+   97  php /var/www/html/elgg/xinwusi_upgrade.php /var/www/html/elgg/
+   98  vi /etc/php.ini
+   99  cd 
+  100  vi .bash_history 
+  101  exit
+  102  php /var/www/html/elgg/upgrade.php /var/www/html/elgg/
+  103  df
+  104  df -h
+  105  php /var/www/html/elgg/xinwusi_upgrade.php /var/www/html/elgg/
+  106  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+  107  cd jia
+  108  cd 
+  109  exit
+  110  ls -rtl
+  111  ifconfig
+  112  ls -rtl /var/www/html/
+  113  ls -rtl /var/www/html/silver/
+  114  exit
+  115  rm -rf /var/www/elggdata/view_paths /var/www/elggdata/views_simplecache/*
+  116  exit
+  117  cd /var/www/html/
+  118  ls
+  119  cd elgg
+  120  php xinwusi_upgrade.php /var/www/html/elgg/
+  121  exit
+  122  cd /var/www/html/
+  123  ls
+  124  cd xinxuetang/
+  125  ls
+  126  cd mysite/
+  127  ls
+  128  cd 
+  129  rm -rf /tmp/silverstripe-cache-var-www-html-xinxuetang/
+  130  cd /var/pupiltown/
+  131  grep index_old *
+  132  vi index_user.php 
+  133  exit
+  134  exit
+  135  ls -rtl
+  136  cd /var/www
+  137  ls -rtl
+  138  df -kh
+  139  ssh 211.151.66.136
+  140  rsync -avzl --progress --delete  211.151.66.136:/var/www/tupoedata .
+  141  pwd
+  142  df -kh
+  143  cd /data/
+  144  ls -rtl
+  145  ifconfig
+  146  ls -rtl
+  147  cd yasi/
+  148  ls -rtl
+  149  cd web
+  150  ls -rtl
+  151  cd 1
+  152  ls -rtl
+  153  cd program/
+  154  ls -rtl
+  155  cp -a source/ /var/www/html/
+  156  cd ..
+  157  cd ..
+  158  cd ..
+  159  ls -rtl
+  160  cd db
+  161  ls -rtl
+  162  cd 1
+  163  ls -rtl
+  164  cd db
+  165  ls -rtl
+  166  cp -a source/ /var/lib/mysql/
+  167  cd /var/lib/mysql/
+  168  ls -rtl
+  169  ls
+  170  rm -f mysql-bin.*
+  171  ls
+  172  vm -f mysql-bin.000*
+  173  rm -f mysql-bin.000*
+  174  ls -rtl
+  175  mv source/ ss_ielts
+  176  ls -l
+  177  ls -l ss_silver/
+  178  ls -rtl
+  179  rm -rf ss_silver/
+  180  ls -rtl
+  181  cd /var/www/html/
+  182  ls
+  183  ls -rtl silver/
+  184  rm -rf silver/
+  185  mv source/ ielts
+  186  ls -rtl
+  187  cat _config.php 
+  188  ls -l /var/pupiltown/
+  189  cat /var/pupiltown/config.php 
+  190  vi ielts/mysite/_config.php 
+  191  ls -rtl
+  192  /etc/rc.d/init.d/mysqld restart
+  193  vi /etc/httpd/conf/httpd.conf
+  194  /etc/rc.d/init.d/httpd restart
+  195  ls -rtl
+  196  ls -rtl ielts/
+  197  ls -rtl ielts/assets/
+  198  diff -urq ielts/ /data/yasi/web/1/program/source/
+  199  ls -al ielts/
+  200  ls -rtl /tmp/
+  201  cat ielts/mysite/_config.php 
+  202  mysql ss_ielts -uroot -pd1f3a5d4fb
+  203  ps aux | grep mysql
+  204  /etc/rc.d/init.d/mysqld restart
+  205  ps aux | grep mysql
+  206  cd /var/lib/mysql/
+  207  ls -rtl
+  208  rm -f mysql-bin.index 
+  209  /etc/rc.d/init.d/mysqld restart
+  210  ps aux | grep mysql
+  211  ls -rtl /var/www/html/
+  212  mysql ss_ielts -uroot -pd1f3a5d4fb
+  213  diff -urq ss_ielts /data/yasi/db/1/db/source/
+  214  diff -urN ss_ielts /data/yasi/db/1/db/source/
+  215  ls -rtl /var/www/tupoedata/
+  216  vi /etc/httpd/conf/httpd.conf
+  217  /etc/rc.d/init.d/httpd restart
+  218  clear
+  219  ifconfig
+  220  cd /var/www/elggdata
+  221  ls
+  222  rm -rf views_simplecache/*
+  223  rm -rf views_simplecache/*
+  224  rm -rf /var/www/elggdata/views_simplecache/*
+  225  cd /var/log/httpd/
+  226  ls
+  227  cat error_log
+  228  vi error_log
+  229  vi error_log
+  230  vi error_log
+  231  exit
+  232  exit
+  233  vi /etc/httpd/conf/httpd.conf
+  234  /etc/init.d/httpd restart
+  235  cd /var/pupiltown/
+  236  ls
+  237  rm -rf index.html index.css img
+  238  vi /etc/httpd/conf/httpd.conf
+  239  cd /var/pupiltown/
+  240  ls
+  241  /etc/init.d/httpd restart
+  242  vi /etc/httpd/conf/httpd.conf
+  243  cd ../new/
+  244  vi index.html 
+  245  LANG=C
+  246  vi index.html 
+  247  cd /var/pupiltown/
+  248  vi config.php 
+  249  ls -rtl
+  250  cd /data/
+  251  ls -rtl
+  252  cd yasi/
+  253  ls -rtl
+  254  cd web
+  255  ls -rtl
+  256  ls -rtl /var/www/html/ielts/
+  257  ls -rtl /var/www/html/ielts/assets/
+  258  ls -rtl /var/www/html/ielts/assets/Users/
+  259  ls -rtl /var/www/html/ielts/assets/Uploads/
+  260  exit
+  261  cd /data/yasi/web/
+  262  ls -rtl
+  263  cd 3/
+  264  cd ..
+  265  vi current
+  266  cat current> current.bak 
+  267  sh /data/upgrade.sh /data/yasi/web/ss_info 
+  268  ls -rtl
+  269  ls -rtl 3/
+  270  ls -rtl 3/program/
+  271  rm -rf 3/program/restore/
+  272  ls -rtl
+  273  cd ..
+  274  cd db/
+  275  ls -rtl
+  276  cd 1/
+  277  ls -rtl
+  278  diff -urq db/source/ /var/lib/mysql/ss_ielts/
+  279  cd db/
+  280  ls -rtl
+  281  rsync -avzl --progress --delete source/* /var/lib/mysql/ss_ielts/
+  282  ls -rtl /var/lib/mysql/ss_ielts/
+  283  /etc/rc.d/init.d/mysqld restart
+  284  rm -rf /tmp/silverstripe-cache-var-www-html-ielts/;/etc/rc.d/init.d/httpd restart
+  285  diff -urq source/ /var/lib/mysql/ss_ielts/
+  286  ls -l
+  287  diff -urN source/ /var/lib/mysql/ss_ielts/
+  288  exit
+  289  vi /etc/httpd/conf/httpd.conf
+  290  cd /var/pupiltown/
+  291  ls -rtl
+  292  ls
+  293  ls -l che*
+  294  cat checkwebclassroom.php 
+  295  exit
+  296  cd /var/pupiltown/
+  297  ls -rtl
+  298  grep -nir 125.46.40.120 *
+  299  vi config.php 
+  300  exit
+  301  ls
+  302  yum update -y
+  303  reboot
+  304  cd /var/www/html/
+  305  find . -name ".svn" -exec rm -rf {} \;
+  306  /etc/init.d/mysqld start
+  307  mysql 
+  308  cd /var/www/html/
+  309  ls
+  310  vi _config.php 
+  311  vi xxtthreed/mysite/_config.php 
+  312  ls
+  313  cd demofiles/
+  314  ls
+  315  cd ..
+  316  ls
+  317  cd weihu/
+  318  ls
+  319  cd ..
+  320  rsync -avzp --progress 122.139.57.174:/var/www/html/documents /var/www/html/
+  321  ls
+  322  pwd
+  323  exit
+  324  ls
+  325  ps ax
+  326  vi /var/log/httpd/error_log
+  327  vi /etc/sysconfig/selinux 
+  328  rpm -qa | grep php
+  329  yum update -y
+  330  reboot
+  331  /etc/init.d/iptables stop
+  332  vi /etc/httpd/conf/httpd.conf
+  333  cd /var/www/html/
+  334  ls
+  335  cd documents/
+  336  ls
+  337  cp -rf buy.* intro.* /var/www/tupoedata/documents/
+  338  cp-rf  threed /var/www/tupoedata/documents/
+  339  cp -rf  threed /var/www/tupoedata/documents/
+  340  cd ..
+  341  rm -rf documents
+  342  /etc/init.d/httpd restart
+  343  vi /var/log/httpd/error_log
+  344  vi /var/log/httpd/access_log
+  345  ls
+  346  cd xxtthreed/
+  347  ls
+  348  vi /etc/httpd/conf/httpd.conf
+  349  vi /etc/httpd/conf/httpd.conf
+  350  /etc/init.d/httpd restart
+  351  vi /etc/httpd/conf/httpd.conf
+  352  /etc/init.d/httpd restart
+  353  vi /etc/httpd/conf/httpd.conf
+  354  /etc/init.d/httpd restart
+  355  cd /var/www/
+  356  ls
+  357  cd tupoedata/
+  358  ls
+  359  cd documents/
+  360  ls
+  361  cd ..
+  362  cd ..
+  363  cd html/
+  364  ls
+  365  last | more
+  366  ls -rtl
+  367  cd /var/pupiltown/
+  368  ls -rtl
+  369  find . -name viewtopic.php
+  370  cd course
+  371  ls -rtl
+  372  cp viewtopic.php /tmp/
+  373  cd /tmp/
+  374  vi viewtopic.php 
+  375  cp /var/pupiltown/course/view.php .
+  376  vi view.php 
+  377  cd /var/www/html/
+  378  ls
+  379  exit
+  380  ls
+  381  cd /var/www/html/
+  382  ls
+  383  cd /var/www/html/
+  384  ls
+  385  ping yasi.tupoe.com
+  386   dmidecode |grep ame
+  387  cat /proc/cpuinfo 
+  388  cat /proc/meminfo 
+  389  cat /proc/scsi/scsi 
+  390  fdisk -l /dev/sda
+  391  cd /var/www/html/
+  392  ls
+  393  cd elgg
+  394  ls
+  395  cd ../
+  396  ls
+  397  cd threed/
+  398  ls
+  399  cd ..
+  400  ls
+  401  cd xxtthreed/
+  402  vi mysite/_config.php 
+  403  ssh 192.168.130.8
+  404  md5sum /proc/meminfo 
+  405  passwd
+  406  cd /var/www/html/
+  407  ls
+  408  cd /var/lib/mysql/
+  409  ls
+  410  rm -rf mysql-bin.*
+  411  ls
+  412  mysql ss_threed -uroot -p
+  413  cd /var/www/html/
+  414  ls
+  415  cd threed/
+  416  ls
+  417  cd ../xxtthreed/
+  418  vi mysite/_config.php 
+  419  cd 
+  420  mysql ss_threed -uroot -p
+  421  ls
+  422  cd /var/www/
+  423  ls
+  424  vi /etc/httpd/conf/httpd.conf
+  425  vi /var/www/html/ielts/mysite/_config.php 
+  426  cd /var/lib/mysql/
+  427  ls
+  428  vi /var/www/tupoe.cn/mysite/_config.php 
+  429  /etc/init.d/mysqld restart
+  430  /etc/init.d/httpd restart
+  431  vi /etc/httpd/conf/httpd.conf
+  432  vi /etc/httpd/conf/httpd.conf
+  433  vi /var/log/httpd/access_log
+  434  vi /var/log/httpd/access_log
+  435  vi /etc/httpd/conf/httpd.conf
+  436  /etc/init.d/httpd restart
+  437  ping tupoe.cn
+  438  cd /var/log/httpd/
+  439  vi error_log
+  440  cd /var/www/
+  441  ls -la
+  442  cd html/
+  443  ls -la
+  444  cd ..
+  445  mv tupoe.cn/ tupoe_cn
+  446  vi /etc/httpd/conf/httpd.conf
+  447  /etc/init.d/httpd restart
+  448  cd tupoe_cn/
+  449  ls -la
+  450  vi .htaccess 
+  451  ls
+  452  ls
+  453  cd ..
+  454  ls
+  455  mv tupoe_cn/ html/
+  456  vi /etc/httpd/conf/httpd.conf
+  457  /etc/init.d/httpd restart
+  458  /etc/init.d/mysqld restart
+  459  cd /var/lib/mysql/ss_tupoe_cn/
+  460  chown mysql.mysql *
+  461  /etc/init.d/mysqld restart
+  462  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  463  cd /var/www/html/
+  464  ls
+  465  cd tupoe_cn/
+  466  vi mysite/_config.php 
+  467  mysql ss_tupoe_cn -uroot -p
+  468  /etc/init.d/mysqld restart
+  469  cd /var/lib/mysql/ss_tupoe_cn/
+  470  chown mysql.mysql * 
+  471  /etc/init.d/mysqld restart
+  472  chown mysql.mysql * 
+  473  /etc/init.d/mysqld restart
+  474  cd /var/log/httpd/
+  475  vi error_log
+  476  cd /var/www/html/
+  477  ls
+  478  vi _config.php 
+  479  vi tupoe_cn/mysite/_config.php 
+  480  /etc/init.d/httpd restart
+  481  cd /var/lib/mysql/ss_tupoe_cn/
+  482  chown mysql.mysql *
+  483  /etc/init.d/mysqld restart
+  484  vi /var/www/html/tupoe_cn/mysite/_config.php 
+  485  rpm -qa | grep php
+  486  /etc/init.d/httpd restart
+  487  chown mysql.mysql *
+  488  /etc/init.d/mysqld restart
+  489  chown mysql.mysql *
+  490  /etc/init.d/mysqld restart
+  491  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  492  cd /var/www/html/tupoe_cn/
+  493  vi mysite/_config.php 
+  494  ls
+  495  /etc/init.d/mysqld restart
+  496  /etc/init.d/mysqld restart
+  497  rm -rf /var/www/html/mysql
+  498  ls
+  499  cd
+  500  cd /var/www/html/
+  501  ls
+  502  vi xxtthreed/mysite/_config.php 
+  503  mysql ss_tupoe_cn -uroot -p
+  504  cd /var/www/html/
+  505  ls
+  506  cd 
+  507  cd -
+  508  cd xxtthreed/
+  509  ls
+  510  vi mysite/_config.php 
+  511  mysql ss_threed -root -p
+  512  yum update 
+  513  vi /etc/httpd/conf/httpd.conf
+  514  cd /var/www/html/
+  515  ls
+  516  cd xinxuetang/
+  517  ls
+  518  cd ..
+  519  mv xinxuetang xinxuetang.orig
+  520  mkdir xinxuetang
+  521  cd xinxuetang
+  522  vi index.php
+  523  vi index.php
+  524  ping www.xinxuetang.cn
+  525  /etc/init.d/httpd restart
+  526  cd /var/
+  527  ls
+  528  cd www/
+  529  ls
+  530  cd tupoedata/
+  531  ls
+  532  ls
+  533  vi /etc/httpd/conf/httpd.conf
+  534  /etc/init.d/httpd restart
+  535  ls
+  536  cd /var/www/html/
+  537  ls
+  538  /etc/init.d/mysqld restart
+  539  mysql -uroot -p
+  540  cd /var/www/html/
+  541  ls
+  542  cd xxtthreed/
+  543  ls
+  544  vi mysite/_config.php 
+  545  mysql ss_threed -uroot -p
+  546  cd /var/www/html/
+  547  ls
+  548  cd 
+  549  unzip phpmyadmin2.11.6.zip 
+  550  mv phpmyadmin2.11.6 /var/www/html/mysql
+  551  cd -
+  552  vi xxtthreed/mysite/_config.php 
+  553  exit
+  554  cd /var/www/html/threed/Starter/Season0/
+  555  mkdir Lesson1b7f0f96ef644a545
+  556  mv * Lesson1b7f0f96ef644a545/
+  557  ls
+  558  cd /var/www/html/
+  559  lsd
+  560  ls
+  561  cd /var/www/
+  562  ls
+  563  cd tupoedata/
+  564  ls
+  565  vi /etc/httpd/conf/httpd.conf
+  566  cd 
+  567  cd data/
+  568  chown mysql.mysql *
+  569  chmod 660 *
+  570  cd /var/lib/mysql/
+  571  ls
+  572  df
+  573  df -h
+  574  rsync -avzp --progress /var/lib/mysql/ss_threed/ /data/ss_threed.20110722/
+  575  rsync -avzp --progress /root/data/v2_word_* /var/lib/mysql/ss_threed/
+  576  /etc/init.d/mysqld restart
+  577  cd /var/wwh
+  578  cd /var/www/html/
+  579  ls
+  580  vi xxtthreed/mysite/_config.php 
+  581  mv mysql /data/
+  582  ls
+  583  pwd
+  584  mv mysql /data/
+  585  df
+  586  cd /data/
+  587  ls
+  588  cd -
+  589  mv mysql/ /data/phpmyadmin
+  590  ls
+  591  cd /data/
+  592  ls
+  593  mv phpmyadmin/ /var/www/html/
+  594  cd /var/www/html/
+  595  vi xxtthreed/mysite/_config.php 
+  596  cd xxtthreed/
+  597  cd threedenglish/code/webui/Layout/
+  598  LANG=C
+  599  vi threedHomePage.php 
+  600  cd /var/www/html/
+  601  ls
+  602  mv phpmyadmin/ /data/
+  603  rsync -avzp --progress /var/lib/mysql/ss_threed/ /data/ss_threed.20110723/
+  604  cd /data/
+  605  ls
+  606  mv ss_threed.20110722 ss_threed.20110722_with_bug
+  607  mysql ss_threed -uroot -p
+  608  mv /data/phpmyadmin/ /var/www/html/
+  609  mv /var/www/html/phpmyadmin/ /data/
+  610  cd /var/www/html/threed/
+  611  cd ../xxtthreed/
+  612  vi mysite/_config.php 
+  613  mysql ss_threed -uroot -p
+  614  mv /data/phpmyadmin/ /var/www/html/
+  615  vi /var/www/html/xxtthreed/mysite/_config.php 
+  616  cd /var/www/html/xxtthreed/threedenglish/
+  617  find . -name ".svn" -exec rm -rf {} \;
+  618  cd code/webui/Layout/
+  619  vi threedHomePage.php 
+  620  mv /var/www/html/phpmyadmin/ /data/
+  621  ls
+  622  mv /data/phpmyadmin/ /var/www/html/
+  623  vi /var/www/html/xxtthreed/mysite/_config.php 
+  624  mv /var/www/html/phpmyadmin/ /data/
+  625  mv /data/phpmyadmin/ /var/www/html/
+  626  vi /var/www/html/xxtthreed/mysite/_config.php 
+  627  cd /var/www/html/
+  628  ls
+  629  mv phpmyadmin/ /data/
+  630  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  631  cd /var/lib/mysql/
+  632  ls
+  633  rsync -avzp --progress /var/lib/mysql/ss_tupoe_cn 116.253.189.130:/var/lib/mysql/
+  634  ifconfig
+  635  cat /boot/grub/menu.lst 
+  636  rpm -ql kernel
+  637  rpm -qa | grep kernel
+  638  rpm -e kernel-2.6.18-164.el5 kernel-2.6.18-194.32.1.el5
+  639  cat /boot/grub/menu.lst 
+  640  cat /etc/httpd/conf/httpd.conf
+  641  ping www.tupoe.cn
+  642  rsync -avzp --progress /var/www/html/tupoe_cn 116.253.189.130:/var/www/html/
+  643  ifconfig
+  644  cat /etc/sysconfig/network
+  645  vi /etc/httpd/conf/httpd.conf
+  646  ifconfig
+  647  ping www.163.com
+  648  ping 211.100.99.161
+  649  ping 211.100.99.162
+  650  ping 211.100.99.163
+  651  ping 211.100.99.164
+  652  ping 211.100.99.165
+  653  ifconfig
+  654  vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+  655  vi /etc/sysconfig/network-scripts/ifcfg-eth1 
+  656  ifconfig
+  657  vi /etc/sysconfig/network-scripts/ifcfg-eth1 
+  658  vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+  659  reboot
+  660  vi /etc/sysconfig/network-scripts/ifcfg-eth0 
+  661  ping 211.100.99.165
+  662  ping www.163.com
+  663  reboot
+  664  ping www.163.com
+  665  ping 211.100.99.165
+  666  ping 211.100.99.165
+  667  ping www.163.com
+  668  exit
+  669  md5sum /proc/meminfo 
+  670  passwd
+  671  /etc/init.d/mysqld stop
+  672  /etc/init.d/mysqld start
+  673  /etc/init.d/mysqld restart
+  674  /etc/init.d/httpd restart
+  675  cd /var/log/httpd/
+  676  ps ax
+  677  vi error_log
+  678  reboot
+  679  cd /var/log/httpd/
+  680  ls
+  681  vi error_log
+  682  ps ax
+  683  cd /var/www/html/
+  684  ls
+  685  vi /etc/httpd/conf/httpd.conf
+  686  cd /var/log/httpd/
+  687  vi access_log
+  688  /etc/init.d/iptables stop
+  689  chkconfig --level iptables off
+  690  chkconfig --level iptables 35 off
+  691  chkconfig --level 35 iptables  off
+  692  rm -rf /tmp/silverstripe-cache-var-www-html-*
+  693  cd /var/log/
+  694  cd httpd/
+  695  ls
+  696  ls -la
+  697  vi /etc/httpd/conf/httpd.conf
+  698  vi /etc/logrotate.conf 
+  699  cd /etc/logrotate.d/
+  700  ls
+  701  vi httpd 
+  702  cd /etc/logrotate.d/
+  703  ls
+  704  cd /etc/cron.d
+  705  ls
+  706  cd ../
+  707  vi cron.daily/logrotate 
+  708  cd /etc/cron.daily/
+  709  ls
+  710  rpm -qf logrotate 
+  711  cd /var/log/httpd/
+  712  ls
+  713  ls -la
+  714  cd ../
+  715  ls -la
+  716  vi /var/www/html/tupoe_cn/mysite/_config.php 
+  717  ls
+  718  yum update 
+  719  vi /etc/httpd/conf/httpd.conf
+  720  cd /var/www/html/wordpress/
+  721  ls
+  722  vi wp-config.php 
+  723  LANG=C
+  724  vi wp-config.php 
+  725  vi wp-config.php 
+  726  cd /var/lib/mysql/
+  727  chown mysql.mysql -R wordpress
+  728  /etc/init.d/mysqld restart
+  729  cd /var/www/html/
+  730  rm -rf wordpress
+  731  cd -
+  732  rm -rf wordpress
+  733  cd 
+  734  mkdir wp
+  735  mv wordpress-3.2.1-zh_CN.zip wp/
+  736  cd wp/
+  737  unzip wordpress-3.2.1-zh_CN.zip 
+  738  ls
+  739  mv wordpress /var/www/html/
+  740  mysql
+  741  mysql -uroot -p
+  742  chmod 777 -R  /var/www/html/wordpress/wp-content/uploads
+  743  chmod 777 -R  /var/www/html/wordpress/wp-content/
+  744  cd /var/www/html/wordpress/wp-content/
+  745  ls
+  746  cd uploads/
+  747  ls
+  748  rm -rf custom-community.1.8.3*
+  749  ls
+  750  cd 2011/09/
+  751  ls
+  752  cd ..
+  753  cd ..
+  754  ls
+  755  unzip custom-community.1.8.3.zip 
+  756  ls
+  757  mv custom-community ../themes/
+  758  rm -rf *
+  759  ls
+  760  unzip wptouch.1.9.34.zip 
+  761  mv wptouch ../plugins/
+  762  cd ..
+  763  cd ..
+  764  vi .htaccess
+  765  chown apache.apache .htaccess 
+  766  tar zxvf yii-1.1.8.r3324.tar.gz 
+  767  mv yii-1.1.8.r3324 /var/www/yii
+  768  cd /var/www/yii/ii
+  769  cd /var/www/yii/
+  770  ls
+  771  cd framework/
+  772  ls
+  773  cd ../../
+  774  mv yii html/
+  775  cd html/yii/
+  776  cd framework/
+  777  ./yiic webapp ../testdriver
+  778  rpm -ql php
+  779  rpm -ql php-mysql
+  780  cd /usr/lib64/php/modules/
+  781  ls
+  782  rpm -qa | grep php
+  783  rpm -qf xcache.so 
+  784  cd /var/www/html/
+  785  ls
+  786  cd yii/
+  787  ls
+  788  vi README 
+  789  yum install php-apc
+  790  rpm -qi php
+  791  yum install --enablerepo=rpmforge memcached
+  792  cd /etc/php.d/
+  793  ls
+  794  cd ../yum.repos.d/
+  795  ls
+  796  cd /etc/yum.repos.d/
+  797  ls
+  798  cd /var/www/html/
+  799  ls
+  800  ping home.3denglish.org
+  801  cd threed/
+  802  ls
+  803  cd ../xxtthreed/
+  804  vi mysite/_config.php 
+  805  cd 
+  806  cd data/
+  807  mysql ss_threed < LevelA_Season3.sql -uroot -p
+  808  mysql ss_threed < LevelB_Season3.sql -uroot -p
+  809  mysql ss_threed < Starter_Season3.sql -uroot -p
+  810  ls
+  811  cd /data/
+  812  ls
+  813  ls
+  814  rsync -avzp --progress /var/lib/mysql/ss_threed/ /data/ss_threed_3ABS/
+  815  mysql ss_threed < data/036-NJSHB.sql -uroot -p
+  816  vi /etc/httpd/conf/httpd.conf
+  817  ping ad.appcarrier.com
+  818  ping appcarrier.com
+  819  cd /data/
+  820  ls
+  821  ls -la
+  822  cd ss_threed_3ABS/
+  823  ls
+  824  cd /data/
+  825  ls
+  826  cd data/
+  827  mysql ss_threed < 036_SHNJB_mdl_word_lib.sql -uroot -p
+  828  mysql ss_threed -uroot -p
+  829  mysql ss_threed < 037-NJSHB.sql -uroot -p
+  830  vi /etc/httpd/conf/httpd.conf
+  831  vi /etc/httpd/conf/httpd.conf
+  832  cd /var/www/html/
+  833  ls
+  834  mkdir safe
+  835  chown apache.apache safe
+  836  mv safeweb/ manage/ safe/
+  837  ls
+  838  /etc/init.d/httpd restart
+  839  cd safe/
+  840  vi safeweb/inc_dbcfg.php 
+  841  grep test1 * -R
+  842  vi manage/login.php 
+  843  LANG=C
+  844  vi manage/login.php 
+  845  grep test1 * -R
+  846  vi manage/export.php 
+  847  grep test1 * -R
+  848  rm -rf manage/.svn
+  849  grep test1 * -R
+  850  vi manage/import.php 
+  851  grep test1 * -R
+  852  vi manage/index.php 
+  853  grep test1 * -R
+  854  vi manage/inc_dbcfg.php 
+  855  grep 123456 * -R
+  856  cd 
+  857  /etc/init.d/httpd restart
+  858  vi /var/log/httpd/error_log
+  859  cd /var/www/html/safe/safeweb/
+  860  ls
+  861  vi /var/log/httpd/error_log
+  862  vi /var/www/html/safe/safeweb/test.sql
+  863  rsync -avzp --progress 211.100.99.166:/data/ss_silver/Member.* /var/lib/mysql/safeweb/
+  864  /etc/init.d/mysqld restart
+  865  cd /var/www/html/safe/
+  866  ls
+  867  cd safeweb/
+  868  ls
+  869  cd /var/log/httpd/
+  870  vi error_log
+  871  ls
+  872  cd data/
+  873  ls
+  874  mysql ss_threed
+  875  mysql ss_threed -uroot -p
+  876  mysql ss_threed -uroot -p
+  877  ls
+  878  ls -la
+  879  rsync -avzp --progress v2_word_* /var/lib/mysql/ss_threed/
+  880  /etc/init.d/mysqld restart
+  881  chown mysql.mysql v2_word_*
+  882  rsync -avzp --progress v2_word_* /var/lib/mysql/ss_threed/
+  883  /etc/init.d/mysqld restart
+  884  cd /var/www/html/
+  885  ls
+  886  quit
+  887  exit
+  888  cd /var/lib/mysql/
+  889  ls
+  890  mysql ss_threed -uroot -p
+  891  vi /etc/httpd/conf/httpd.conf
+  892  ls
+  893  cd /var/www/html/
+  894  ls
+  895  mv tupoe_cn tupoe_cn_1229
+  896  mkdir tupoe_cn
+  897  vi tupoe_cn/index.html
+  898  cd /var/www/html/
+  899  ls
+  900  cd /var/www/
+  901  ls
+  902  cd ../
+  903  cd www/html/
+  904  ls
+  905  vi /etc/httpd/conf/httpd.conf
+  906  cd safe/
+  907  ls
+  908  cd manage/
+  909  ls
+  910  vi inc_dbcfg.php 
+  911  mysql safeweb -uroot -p
+  912  cd /var/www/html/
+  913  ls
+  914  cd /var/lib/mysql/
+  915  ls
+  916  rm -rf mysql-bin.000*
+  917  ls
+  918  mysql ss_threed -uroot < /root/data/040_HNSNB_mdl_word_lib.sql -p
+  919  mysql ss_threed -uroot < /root/data/041_HNSNB.sql -p
+  920  cd /var/log/httpd/
+  921  vi error_log
+  922  ps ax
+  923  reboot
+  924  cd /var/lib/mysql/
+  925  ls
+  926  ps ax
+  927  df
+  928  /etc/init.d/mysqld start
+  929  cd /var/log/
+  930  ls
+  931  vi mysql.
+  932  vi mysql.l
+  933  vi mysqld.log 
+  934  cd -
+  935  cd /var/lib/mysql/
+  936  vi /etc/my.cnf
+  937  vi /var/log/mysqld.log 
+  938  touch mysql-bin.000630
+  939  /etc/init.d/mysqld start
+  940  vi /var/log/mysqld.log 
+  941  ls -la
+  942  chown mysql.mysql mysql-bin.000630 
+  943  /etc/init.d/mysqld start
+  944  vi /etc/my.cnf
+  945  /etc/init.d/mysqld start
+  946  ping bug.xinxuetang.com.cn
+  947  df -h
+  948  cd /var/lib/mysql/
+  949  ls
+  950  cd /var/www/html/
+  951  ls
+  952  rm -rf xinxuetang.orig yii wordpress xcache/ tupoe_cn_1229/
+  953  ls
+  954  ls -la
+  955  rm -rf demofiles elggdemo elgg 
+  956  cd -
+  957  ls
+  958  rm -rf demo/ elgg* wordpress/ xinxuetang.090918
+  959  ls
+  960  ls
+  961  rm -rf ss_ielts
+  962  ls
+  963  rm -rf xinxuetang /var/www/html/xinxuetang
+  964  df
+  965  cd /data/
+  966  ls
+  967  ls
+  968  cd data/
+  969  ls
+  970  cd ..
+  971  ls
+  972  rm -rf code data/ phpmyadmin ss_threed* 
+  973  tar cvfz yasi.tar.gz yasi/
+  974  ls
+  975  rm -rf yasi*
+  976  cd /var/
+  977  ls
+  978  rm -rf pupiltown
+  979  cd pupiltown/
+  980  ls
+  981  cd ../
+  982  rm -rf pupiltown
+  983  ls
+  984  cd convert/
+  985  du -h
+  986  df
+  987  du 
+  988  rm -rf *
+  989  ls
+  990  ls
+  991  rm -rf *
+  992  ls
+  993  cd /var/www/
+  994  ls
+  995  rm -rf pupiltowndata* elggdata*
+  996  ls
+  997  rm -rf moodledata1
+  998  cd moodledata1/
+  999  ls
+ 1000  du -h
+ 1001  history
+ 1002  history > 211.100.99.168.txt

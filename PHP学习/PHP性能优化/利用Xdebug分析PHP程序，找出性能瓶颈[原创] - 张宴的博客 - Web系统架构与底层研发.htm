@@ -1,0 +1,672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0030)http://blog.s135.com/post/257/ -->
+<html  xmlns="http://www.w3.org/1999/xhtml"  lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta  http-equiv="Content-Language"  content="UTF-8">
+<meta  content="all"  name="robots">
+<meta  name="author"  content="张宴的博客">
+<meta  name="description"  content="Web系统架构与底层研发">
+<meta  name="keywords"  content="php,linux,张宴,回忆未来,系统架构师,网站系统架构,Web,数据库,视频,负载均衡,搜索引擎,数据挖掘,网游运营">
+<!--<base  href="http://blog.s135.com/">--><base href=".">
+<link  rel="alternate"  title="张宴的博客"  href="http://blog.s135.com/feed.php"  type="application/rss+xml">
+<link  rel="stylesheet"  rev="stylesheet"  href="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/styles.css"  type="text/css"  media="all">
+<link  rel="stylesheet"  rev="stylesheet"  href="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/5.1.css"  type="text/css"  media="all">
+
+<title>利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发</title>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/common.js"></script>
+<link  rel="EditURI"  type="application/rsd+xml"  title="RSD"  href="http://blog.s135.com/inc/rsd.php">
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/jslang.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/ajax.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/swfobject.js"></script>
+<script  type="text/javascript">
+//<![CDATA[
+var moreimagepath="template/RuiPai/images";
+var shutajax=0;
+var absbaseurl='http://blog.s135.com/';
+//]]>
+</script>
+<link  title="搜索 张宴的博客"  rel="search"  type="application/opensearchdescription+xml"  href="http://blog.s135.com/inc/opensearch.php">
+
+
+<link  type="text/css"  rel="stylesheet"  href="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/SyntaxHighlighter.css">
+
+<script  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/logger.js"></script><link  href="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bdsstyle.css"  rel="stylesheet"  type="text/css"></head>
+<body><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare"  style="right: 0px; top: 235px; position: fixed; height: 330px; overflow: hidden;"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/r1.gif"  alt=""  style="float:left;margin-top:58px;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none; left: 24px;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.s135.com/#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.s135.com/#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.s135.com/#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.s135.com/#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.s135.com/#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.s135.com/#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.s135.com/#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.s135.com/#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.s135.com/#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.s135.com/#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.s135.com/#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.s135.com/#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.s135.com/#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.s135.com/#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.s135.com/#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.s135.com/#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.s135.com/#"  class="goWebsite">百度分享</a></p></div></div></div>
+<div  id="wrapper">
+	<div  id="innerWrapper">
+		<div  id="header">
+			<div  id="innerHeader">
+				<div  id="blogLogo">
+				</div>
+				<div  class="blog-header">
+					<h1  class="blog-title"><a  href="http://blog.s135.com/index.php">张宴的博客</a></h1>
+					<div  class="blog-desc">Web系统架构与底层研发</div>
+				</div>
+				<div  id="menu">
+					<ul>
+					<li><span  id="nav_http_3A_2F_2Fis.gd_2F4NDMa"><a  href="http://is.gd/4NDMa"  target="_blank"  title="英文版 English edition"><span  id="navitem_http_3A_2F_2Fis.gd_2F4NDMa">English</span></a></span></li>
+<li><span  id="nav_feed"><a  href="http://blog.s135.com/feed.php"  target="_blank"><span  id="navitem_feed">RSS</span></a></span></li>
+<li><span  id="nav_http_3A_2F_2Fiask.sina.com.cn_2Fuser_2Fmy_ishare_3Fuid_3D1278987704"><a  href="http://iask.sina.com.cn/user/my_ishare.php?uid=1278987704"  target="_blank"  title="我的共享资料"><span  id="navitem_http_3A_2F_2Fiask.sina.com.cn_2Fuser_2Fmy_ishare_3Fuid_3D1278987704">我的共享</span></a></span></li>
+<li><span  id="nav_http_3A_2F_2Fblog.s135.com_2Ftech_2F"><a  href="http://blog.s135.com/tech/"  target="_blank"  title="我的技术文章与计算机作品汇总页"><span  id="navitem_http_3A_2F_2Fblog.s135.com_2Ftech_2F">技术汇总</span></a></span></li>
+<li><span  id="nav_star"><a  href="http://blog.s135.com/star.php"><span  id="navitem_star">星标日志</span></a></span></li>
+<li><span  id="nav_guestbook"><a  href="http://blog.s135.com/guestbook.php"><span  id="navitem_guestbook">留言</span></a></span></li>
+<li><span  id="nav_http_3A_2F_2Fphoto.weibo.com_2F103500_2Falbums"><a  href="http://photo.weibo.com/103500/albums"  target="_blank"  title="旅行相册"><span  id="navitem_http_3A_2F_2Fphoto.weibo.com_2F103500_2Falbums">旅行相册</span></a></span></li>
+<li><span  id="nav_index"  class="activepage"><a  href="http://blog.s135.com/index.php"><span  id="navitem_index"  class="activepageitem">首页</span></a></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div  id="mainWrapper">
+			<div  id="content"  class="content">
+				<div  id="innerContent">
+					<div  class="announce"  style="display: none">
+						<div  class="announce-content">
+						
+						</div>
+					</div>
+					<div  class="article-top"  style="display: none">
+						<div  class="pages">
+							
+						</div>
+					</div>
+					<div  class="article-top">
+	<div  class="prev-article"><a  href="http://blog.s135.com/post/256/"  title="上一篇 软件测试用例（Test Case）设计"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/toolbar_previous.gif"  alt=""  border="0">软件测试用例（Test Case）设计</a></div>
+	<div  class="next-article"><a  href="http://blog.s135.com/post/258/"  title="下一篇 大学毕业之际，在北京买房[原创]"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/toolbar_next.gif"  alt=""  border="0">大学毕业之际，在北京买房[原创]</a></div>
+</div>
+<div  class="textbox">
+	<div  class="textbox-title">
+		<h4>
+		<span  id="starid257"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/unstarred.gif"  alt=""  title="未加星标"  border="0"></span> <a  href="http://blog.s135.com/post/257/">利用Xdebug分析PHP程序，找出性能瓶颈[原创]</a>
+		</h4>
+		<div  class="textbox-fontsize">
+		<img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/toolbar_fontsize.gif"  alt=""  title="字体大小"  border="0"> <a  href="javascript: doZoom(16);">大</a> | <a  href="javascript: doZoom(14);">中</a> | <a  href="javascript: doZoom(12);">小</a> <a  href="http://blog.s135.com/feed.php?go=entry_257"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/toolbar_rss.gif"  alt=""  title="订阅本文"  border="0"></a>
+		</div>
+		<div  class="textbox-label">
+		[<img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/blank.gif"  alt="不指定"  title="不指定"> 2007-6-28 10:17 | by <a  href="http://blog.s135.com/user/2/"  target="_blank">张宴</a> ]
+		</div>
+	</div>
+	<div  class="textbox-content"  id="zoomtext">
+		　　[文章作者：张宴 本文版本：v1.0 最后修改：2007.06.28 转载请注明出处：<a  href="http://blog.s135.com/"  target="_blank">http://blog.s135.com</a>]<br><br>　　经济学中有一条著名的80-20定律，引用到编程中，就是：80%的性能瓶颈是由20%的代码引起的。借助PHP的XDebug扩展，可以有效地找出这20%的代码。<br><br>　　一、安装配置<br>　　1、下载PHP的XDebug扩展，网址：<a  href="http://xdebug.org/"  target="_blank">http://xdebug.org/</a><br><br>　　2、在Linux下编译安装XDebug<br><div  class="quote"><div  class="quote-title">引用</div><div  class="quote-content">tar -xzf xdebug-2.0.0RC3.gz<br>cd xdebug-2.0.0RC3<br>/usr/local/php/bin/phpize<br>./configure --enable-xdebug<br>cp modules/xdebug.so /usr/local/php/lib/php/extensions/no-debug-non-zts-20020429/</div></div><br>　　注：/usr/local/php/lib/php/extensions/no-debug-non-zts-20020429/不同的PHP版本路径不同，也不一定要放在该路径，可以在zend_extension_ts中自行指定xdebug.so所在位置。<br><a  name="entrymore"></a><br><div  class="quote"><div  class="quote-title">引用</div><div  class="quote-content">vi /usr/local/php/lib/php.ini</div></div><br>　　修改php.ini，去除PHP加速模块，增加以下配置信息支持XDebug扩展<br><div  class="dp-highlighter"><div  class="bar"><div  class="tools"><a  href="http://blog.s135.com/#" >view plain</a><a  href="http://blog.s135.com/#" >print</a><a  href="http://blog.s135.com/#" >?</a></div></div><ol  start="1"  class="dp-xml"><li  class="alt"><span><span>[Xdebug]&nbsp;&nbsp;</span></span></li><li  class=""><span><span  class="attribute">zend_extension_ts</span><span>=</span><span  class="attribute-value">"/usr/local/php/lib/php/extensions/no-debug-non-zts-20020429/xdebug.so"</span><span>&nbsp;&nbsp;</span></span></li><li  class="alt"><span><span  class="attribute">xdebug.profiler_enable</span><span>=</span><span  class="attribute-value">on</span><span>&nbsp;&nbsp;</span></span></li><li  class=""><span><span  class="attribute">xdebug.trace_output_dir</span><span>=</span><span  class="attribute-value">"/tmp/xdebug"</span><span>&nbsp;&nbsp;</span></span></li><li  class="alt"><span><span  class="attribute">xdebug.profiler_output_dir</span><span>=</span><span  class="attribute-value">"/tmp/xdebug"</span><span>&nbsp;&nbsp;</span></span></li><li  class=""><span><span  class="attribute">xdebug.profiler_output_name</span><span>=</span><span  class="attribute-value">"script"</span><span>&nbsp;&nbsp;</span></span></li></ol></div><textarea  name="code"  class="html"  rows="15"  cols="100"  style="display: none;">[Xdebug]
+zend_extension_ts="/usr/local/php/lib/php/extensions/no-debug-non-zts-20020429/xdebug.so"
+xdebug.profiler_enable=on
+xdebug.trace_output_dir="/tmp/xdebug"
+xdebug.profiler_output_dir="/tmp/xdebug"
+xdebug.profiler_output_name="script"</textarea><br><div  class="quote"><div  class="quote-title">引用</div><div  class="quote-content">mkdir -p /tmp/xdebug<br>chmod 755 /tmp/xdebug<br>chown www:www /tmp/xdebug<br>/usr/local/apache/bin/apachectl -k restart</div></div><br><br>　　3、客户端（Windows）：WinCacheGrind<br>　　下载地址：<a  href="http://sourceforge.net/projects/wincachegrind/"  target="_blank">http://sourceforge.net/projects/wincachegrind/</a><br><br>　　二、分析过程<br>　　1、访问你的网站，将首页上各种链接点击几遍，XDebug在/tmp/xdebug目录生成以下文件：<br>　　usr_local_apache_htdocs_app_checknum_chknum_php_cachegrind.out<br>　　usr_local_apache_htdocs_app_login_showHeaderLogin_php_cachegrind.out<br>　　usr_local_apache_htdocs_app_play_play_php_cachegrind.out<br>　　usr_local_apache_htdocs_app_user_member_php_cachegrind.out<br>　　usr_local_apache_htdocs_tag_tags_php_cachegrind.out<br>　　usr_local_apache_htdocs_top_top_php_cachegrind.out<br><br>　　2、将以上文件拷贝到Windows上，用客户端软件WinCacheGrind打开每个文件，发现以下PHP程序执行所耗费的时间最长：<br>　　/usr/local/apache/htdocs/tag/tags.php　　　　　　耗时840ms<br><br>　　三、分析结果：<br>　　1、/usr/local/apache/htdocs/tag/tags.php<br><br>　　<a  href="http://blog.s135.com/attachment/200706/xdebug1.gif"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/xdebug1.gif"  class="insertimage"  alt="点击在新窗口中浏览此图片"  title="点击在新窗口中浏览此图片"  border="0"></a><br><br>　　(1)耗时最长的filter_tags函数出现在/usr/local/apache/htdocs/tag/tags.php的第158行：<br>　　$tags .= filter_tags($videos[$i]['tags'])." ";<br><br>　　(2)filter_tags函数引自/usr/local/apache/htdocs/include/misc.php，getForbiddenTags函数被filter_tags函数调用了21次，filter_tags函数耗费的时间中绝大多数因getForbiddenTags函数所致。getForbiddenTags函数的内容如下：<br><div  class="dp-highlighter"><div  class="bar"><div  class="tools"><a  href="http://blog.s135.com/#" >view plain</a><a  href="http://blog.s135.com/#" >print</a><a  href="http://blog.s135.com/#" >?</a></div></div><ol  start="1"  class="dp-c"><li  class="alt"><span><span  class="keyword">function</span><span>&nbsp;getForbiddenTags()&nbsp;&nbsp;</span></span></li><li  class=""><span>{&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;<span  class="vars">$tagsPath</span><span>=TEMPLATE_FILE_PATH.</span><span  class="string">"tags/forbidden_tags.txt"</span><span>;&nbsp;&nbsp;</span></span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span  class="keyword">if</span><span>(</span><span  class="func">file_exists</span><span>(</span><span  class="vars">$tagsPath</span><span>))&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$fp</span><span>&nbsp;=&nbsp;</span><span  class="func">fopen</span><span>(</span><span  class="vars">$tagsPath</span><span>,&nbsp;</span><span  class="string">"r"</span><span>);&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$arrconf</span><span>&nbsp;=&nbsp;</span><span  class="keyword">array</span><span>&nbsp;();&nbsp;&nbsp;</span></span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="keyword">if</span><span>&nbsp;(</span><span  class="vars">$fp</span><span>)&nbsp;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="keyword">while</span><span>&nbsp;(!</span><span  class="func">feof</span><span>(</span><span  class="vars">$fp</span><span>))&nbsp;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$line</span><span>&nbsp;=&nbsp;</span><span  class="func">fgets</span><span>(</span><span  class="vars">$fp</span><span>,&nbsp;1024);&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$line</span><span>&nbsp;=&nbsp;trim(</span><span  class="vars">$line</span><span>);&nbsp;&nbsp;</span></span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$rows</span><span>&nbsp;=&nbsp;</span><span  class="func">explode</span><span>(</span><span  class="string">"#"</span><span>,&nbsp;</span><span  class="vars">$line</span><span>);&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$coumns</span><span>&nbsp;=&nbsp;</span><span  class="func">explode</span><span>(</span><span  class="string">"="</span><span>,&nbsp;trim(</span><span  class="vars">$rows</span><span>[0]));&nbsp;&nbsp;</span></span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="keyword">if</span><span>(</span><span  class="string">""</span><span>!=trim(</span><span  class="vars">$coumns</span><span>[0]))&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="vars">$arrconf</span><span>[trim(</span><span  class="vars">$coumns</span><span>[0])]&nbsp;=&nbsp;trim(</span><span  class="vars">$coumns</span><span>[1]);&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li  class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  class="keyword">return</span><span>&nbsp;</span><span  class="vars">$arrconf</span><span>;&nbsp;&nbsp;</span></span></li><li  class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li  class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea  name="code"  class="php"  rows="15"  cols="100"  style="display: none;">function getForbiddenTags()
+{
+ &nbsp;
+ &nbsp;$tagsPath=TEMPLATE_FILE_PATH."tags/forbidden_tags.txt";
+ &nbsp; &nbsp;if(file_exists($tagsPath))
+ &nbsp; &nbsp;{
+ &nbsp; &nbsp; &nbsp; &nbsp;$fp = fopen($tagsPath, "r");
+ &nbsp; &nbsp; &nbsp;$arrconf = array ();
+ &nbsp; &nbsp; &nbsp;if ($fp) 
+ &nbsp; &nbsp; &nbsp; &nbsp;{
+ &nbsp; &nbsp; &nbsp; &nbsp;while (!feof($fp)) 
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$line = fgets($fp, 1024);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$line = trim($line);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$rows = explode("#", $line);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$coumns = explode("=", trim($rows[0]));
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if(""!=trim($coumns[0]))
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$arrconf[trim($coumns[0])] = trim($coumns[1]);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}
+ &nbsp; &nbsp; &nbsp; &nbsp;}
+ &nbsp; &nbsp; &nbsp;}
+ &nbsp; &nbsp; &nbsp; &nbsp;return $arrconf;
+ &nbsp; &nbsp;}
+}
+</textarea><br>　　(4)对getForbiddenTags函数进行分析，其中的PHP函数trim被调用了16827次。<br>　　<a  href="http://blog.s135.com/attachment/200706/xdebug2.gif"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/xdebug2.gif"  class="insertimage"  alt="点击在新窗口中浏览此图片"  title="点击在新窗口中浏览此图片"  border="0"></a><br><br>　　(5)可能造成瓶颈的原因：<br>　　要过滤的156个关键字逐行存放在/usr/local/apache/template/tags/forbidden_tags.txt文件中，文本数据库的效率不高。<br>　　逐行读取函数fgets、以及去除字符串两边的空白或者指定的字符的函数trim在高负载下的效率低，可以测试fopen、fread、fscanf之类的文件读取函数，对比一下。 
+<center>
+<br>
+<script  type="text/javascript"><!--
+google_ad_client = "pub-5999575502865975";
+/* 728x90, Ads 09-3-8 */
+google_ad_slot = "9950197615";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+<br>
+</center>
+		<div  class="tags"  style="display: block">Tags:  <a  href="http://blog.s135.com/tags/php/"  title="Tags:  php"  rel="tag">php</a> , <a  href="http://blog.s135.com/tags/linux/"  title="Tags:  linux"  rel="tag">linux</a></div>
+	</div>
+	<div  class="textbox-bottom">
+	<img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;">  <a  href="http://blog.s135.com/category/8/"  title="查看分类： 技术大类">技术大类</a> » <a  href="http://blog.s135.com/category/15/"  title="查看分类： PHP/JS/Shell">PHP/JS/Shell</a> | <a  href="http://blog.s135.com/post/257/#reply"  title="发表您的评论">评论(74)</a> | <a  href="javascript: void(0);"  title="查看引用地址" >引用(0)</a> | <a  href="http://blog.s135.com/post/257/">阅读(44881)</a> 
+	<div  id="tb257"  style="display: none;"  class="textbox-tburl"><strong>引用地址：</strong>  <span  id="tbb257"></span><br><strong>注意：</strong> 该地址仅在今日23:59:59之前有效</div>
+	
+	</div>
+</div>
+<div  id="commentWrapper"  class="comment-wrapper">
+	<a  name="topreply"></a>
+	<div  id="addnew"></div><div  id="blogcomment1350">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		simonliu   
+			<div  class="commentbox-label">2008-7-22 16:19    </div>
+		</div>
+		<div  class="commentbox-content">
+			好像要加上这个才能加载xdebug.so模块吧？<br>extension=xdebug.so
+			<div  class="quote"  style="display: none"  id="replied_com_1350">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_1350"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment1384">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		chinawolfs <a  href="mailto:chinawolfs@hotmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a>  
+			<div  class="commentbox-label">2008-7-31 09:32    </div>
+		</div>
+		<div  class="commentbox-content">
+			确实不错....但我安装在ngnix上,好像没有用,请问是什么原因呢?<br>我的MSN是chinawolfs@hotmail.com
+			<div  class="quote"  style="display: none"  id="replied_com_1384">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_1384"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment2712">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		diuwo   
+			<div  class="commentbox-label">2009-3-5 16:25    </div>
+		</div>
+		<div  class="commentbox-content">
+			forbidden_tags 哈哈 确实很让人头疼 当行数超过10000的时候 头疼吧 哈哈
+			<div  class="quote"  style="display: none"  id="replied_com_2712">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_2712"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment3087">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		cyzkl   
+			<div  class="commentbox-label">2009-4-22 19:58    </div>
+		</div>
+		<div  class="commentbox-content">
+			感觉用zendprofile 也不错。。。。图形化
+			<div  class="quote"  style="display: none"  id="replied_com_3087">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_3087"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment3783">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		JeremyWei <a  href="mailto:shuimuqingshu@gmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://weizhifeng.net/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2009-8-1 20:34    </div>
+		</div>
+		<div  class="commentbox-content">
+			# xdebug.profiler_output_name="script"&nbsp;&nbsp;这行不需要吧，使用默认的文件格式就好了吧，<br>要不生成的profiler文件名都是script.*格式的，但是WinCacheGrind好像只能打开cachegrind.out.*格式的文件。
+			<div  class="quote"  style="display: none"  id="replied_com_3783">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_3783"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment10769">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		桂林 <a  href="mailto:hi@ss.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.glzc.net/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2011-10-25 15:39    </div>
+		</div>
+		<div  class="commentbox-content">
+			不错，提高效率
+			<div  class="quote"  style="display: none"  id="replied_com_10769">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_10769"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment18638">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		coach factory outlet <a  href="mailto:fgf@hotmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachfactoryoutletao.net/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-17 10:44    </div>
+		</div>
+		<div  class="commentbox-content">
+			Today, following half a century, mentor leather-bases <a  href="http://www.coachfactoryoutletao.net/"  target="_blank">coach factory outlet</a> continues to be the delicate craft of leather-based master is accountable for,Would you like to meet more friends, or go with the times? If yes, <a  href="http://www.coachfactoryoutletao.net/"  target="_blank">coach factory online</a> is opening welcome doors to you.in the market you definitely can find various colorways that are designed in as well as the high quality that applied in. For most of you would like to come. So just come to our <a  href="http://www.coachfactoryoutletao.net/"  target="_blank">coach factory outlet online</a> store to choose one.
+			<div  class="quote"  style="display: none"  id="replied_com_18638">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_18638"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment18639">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		louis vuitton sale <a  href="mailto:fgf@hotmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.louisvuittonoutletsalea.com/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-17 10:44    </div>
+		</div>
+		<div  class="commentbox-content">
+			Louis Vuitton belt at <a  href="http://www.louisvuittonoutletsalea.com/"  target="_blank">louis vuitton sale</a> is one kind of fashion accessory with high cost performance among the Louis Vuitton accessories.Offering quality LV products with favorable prices, <a  href="http://www.louisvuittonoutletsalea.com/"  target="_blank">louis vuitton outlet</a> store is at your service. Hurry up, or you can not seize the chance.in fact, <a  href="http://www.louisvuittonoutletsalea.com/"  target="_blank">louis vuitton</a> is one of the most famous fashion design master.he opened the fist suitcase shop called after his name.
+			<div  class="quote"  style="display: none"  id="replied_com_18639">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_18639"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment18640">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		coach outlet online <a  href="mailto:fgf@hotmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachoutletonlineao.net/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-17 10:44    </div>
+		</div>
+		<div  class="commentbox-content">
+			I heard of <a  href="http://www.coachoutletonlineao.net/"  target="_blank">coach outlet online</a> through the advertisement when I was shopping. And now I often brow the webpage and buy Coach bags online.It is a symbol regarding position not to mention nature.Here I would like to launch a excellent bags pertaining to business men.Which may be <a  href="http://www.coachoutletonlineao.net/"  target="_blank">coach outlet store</a>.<a  href="http://www.coachoutletonlineao.net/"  target="_blank">coach outlet</a> has always been simple,durable style features to win consumers.The products are more flexible,with easy bleaching,wear characteristics,and simply use a damp cloth.
+			<div  class="quote"  style="display: none"  id="replied_com_18640">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_18640"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment18641">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		coach outlet, <a  href="mailto:fgf@hotmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachoutletin.org/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-17 10:45    </div>
+		</div>
+		<div  class="commentbox-content">
+			Remember the <a  href="http://www.coachoutletin.org/"  target="_blank">coach outlet</a> provide coach bags which won't be deteriorated into its overall styles by any means. It will maintain its looks, colors, and uniqueness for long time.<a  href="http://www.coachoutletin.org/"  target="_blank">coach outlet store online</a> has been voted by Hour Detroit magazine readers as the Best of Detroit in their 12th annual readers'poll.Lots of women like which usually amount normally include a <a  href="http://www.coachoutletin.org/"  target="_blank">coach outlet online</a> ,it provides coziness to many girls that don't even think it is a great bushel of great interest directly to them.
+			<div  class="quote"  style="display: none"  id="replied_com_18641">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_18641"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19205">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Coach Outlet Online <a  href="mailto:coachoutlet0610@gmai.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachoutletonlineok.com/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 10:14    </div>
+		</div>
+		<div  class="commentbox-content">
+			to obtain <a  href="http://www.coachoutletonlineok.com/"  target="_blank">Coach Outlet Online</a> in Hainan is amongst the brand new darling from residential holiday makers.He has served as Chairman and Chief Executive Officer of Coach since November 1995. He has served as a member of <a  href="http://www.coachoutletonlineok.com/"  target="_blank">Coach Outlet</a> Board of Directors since June 1, 2000, the date of incorporation.&nbsp;
+			<div  class="quote"  style="display: none"  id="replied_com_19205">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19205"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19246">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Coach&nbsp;&nbsp;Outlet <a  href="mailto:coachoutlet0610@gmai.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachoutletonlinefly.com/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 10:38    </div>
+		</div>
+		<div  class="commentbox-content">
+			<a  href="http://www.coachoutletonlinefly.com/"  target="_blank">Coach Outlet</a> was founded in 1941, in a loft in New York City.as a partnership called the Gail Manufacturing Company. Gail Manufacturing Company began as a family-owned business, with six leatherworkers who made small leather goods, such as wallets and handbags.<a  href="http://www.coachoutletonlinefly.com/"  target="_blank">Coach Outlet Online</a> Store guarantee that all the coach handbags offered are own high quality. In addition , all of them are sold at an unexpected low price.If you want to purchase, just visit their website.&nbsp;
+			<div  class="quote"  style="display: none"  id="replied_com_19246">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19246"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19283">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Coach&nbsp;&nbsp;Outlet <a  href="mailto:coachoutlet0610@gmai.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.coachoutletcoachcanadat.com/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 10:45    </div>
+		</div>
+		<div  class="commentbox-content">
+			Five years later in 1985, the Cahns decided to sell <a  href="http://www.coachoutletcoachcanadat.com/"  target="_blank">Coach Outlet</a> after determining that none of their three children had any desire to take over the family leatherware business . Coach was then sold to Sara Lee Corporation for $30 million dollars.electric, diesel and mainline electric multiple units (EMU, DMU, MEMU), metro <a  href="http://www.coachoutletcoachcanadat.com/"  target="_blank">Coach Outlet Canada</a> and Diesel Electric Tower Cars (DETC), Accident Relief Medical Vans (ARMV), Inspection Cars (RA), Fuel Test Cars, Track Recording Cars, the latest coaches are for the Deccan Odyssey .&nbsp;
+			<div  class="quote"  style="display: none"  id="replied_com_19283">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19283"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19321">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Louis Vuitton <a  href="mailto:louisvuittonuk2012@gmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.louisvuittonukdo.org.uk/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 10:51    </div>
+		</div>
+		<div  class="commentbox-content">
+			During this period, <a  href="http://www.louisvuittonukdo.org.uk/"  target="_blank">Louis Vuitton</a> incorporated its leather into most of its products, ranging from small purses and wallets to larger pieces of luggage.To emphasize Jacobs's fashionable volte face, Kate Moss-last season's saucy <a  href="http://www.louisvuittonukdo.org.uk/"  target="_blank">Louis Vuitton UK</a> dominatrix was recast for spring as the ballerina on that music box in a gleaming white baby doll frock and Barbie white stilettos.&nbsp;
+			<div  class="quote"  style="display: none"  id="replied_com_19321">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19321"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19358">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Louis Vuitton UK <a  href="mailto:louisvuittonuk2012@gmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.louisvuittonukc.org.uk/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 10:57    </div>
+		</div>
+		<div  class="commentbox-content">
+			This <a  href="http://www.louisvuittonukc.org.uk/"  target="_blank">Louis Vuitton UK</a> for sale belongs to the sounding just what are termed as Louis Vuitton vintage best sellers, many other products and services for the reason that range appearing companies.In 1983, the company joined with America's Cup to form the <a  href="http://www.louisvuittonukc.org.uk/"  target="_blank">Louis Vuitton</a> Cup, a preliminary competition (known as an eliminatory regatta) for the yacht race.&nbsp;
+			<div  class="quote"  style="display: none"  id="replied_com_19358">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19358"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19802">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		<a  href="http://blog.s135.com/user/1428/"  target="_blank"  title="查看他/她的资料">xujie777</a> <a  href="mailto:361000"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a>  
+			<div  class="commentbox-label">2012-5-18 15:35    </div>
+		</div>
+		<div  class="commentbox-content">
+			We aim to make all our customers satisfy with our products. You will find a variety of Men's fashion <a  href="http://www.louisvuittonukd.org.uk/"  target="_blank">louis vuitton uk</a>, fashion Women's cheap Louis Vuitton bags in our store at affordable price.Thinking of interesting ways to cost a milestone birthday? <a  href="http://www.louisvuittonukd.org.uk/"  target="_blank">louis vuitton online shop</a> had one of the most distinctive distinctive celebrations.bakery along with living room operated by means of about three moment <a  href="http://www.louisvuittonukd.org.uk/"  target="_blank">louis vuitton online</a> Most effective Pastry Chef’s of the year Rammy Nominee Chef’s.
+			<div  class="quote"  style="display: none"  id="replied_com_19802">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19802"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19803">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		<a  href="http://blog.s135.com/user/1428/"  target="_blank"  title="查看他/她的资料">xujie777</a> <a  href="mailto:361000"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a>  
+			<div  class="commentbox-label">2012-5-18 15:35    </div>
+		</div>
+		<div  class="commentbox-content">
+			The choices are likely to be basically countless seeing that <a  href="http://www.louisvuittonoutletbagsa.net/"  target="_blank">louis vuitton outlet</a> occurs with the help of completely new and also incredible concepts once in a while.Louis vuitton Wholesale Monogram Canvas HandbagsLouis Vuitton Collection Beach Handbags <a  href="http://www.louisvuittonoutletbagsa.net/"  target="_blank">louis vuitton bags outlet</a> Damier Canvas HandbagsLouis vuitton Mahina HandbagsLouis Vuitton Monogram Mini Lin HandbagsLouis Vuitton Monogram Multicolore HandbagsLouis vuitton Monogram Vernis HandbagsLouis Vuitton Wholesale Epi Leather HandbagsLouis Vuitton For Men HandbagsLouis Vuitton Damier Canvas WalletsLouis Vuitton Epi Leather WalletsLouis Vuitton Monogram Canvas WalletsLouis Vuitton Monogram Vernis WalleLouis Vuitton ShoesLouis Vuitton Men wallets.As the Authentic Louis Vuitton are so high-priced, so came the <a  href="http://www.louisvuittonoutletbagsa.net/"  target="_blank">louis vuitton handbags outlet</a>.
+			<div  class="quote"  style="display: none"  id="replied_com_19803">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19803"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment19804">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		<a  href="http://blog.s135.com/user/1428/"  target="_blank"  title="查看他/她的资料">xujie777</a> <a  href="mailto:361000"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a>  
+			<div  class="commentbox-label">2012-5-18 15:35    </div>
+		</div>
+		<div  class="commentbox-content">
+			<a  href="http://www.coachoutletao.org/"  target="_blank">coach outlet</a> has become a popular shopping experience for consumers around the world, and a desirable distribution channel for manufacturer's and retailers.Getting your hands on <a  href="http://www.coachoutletao.org/"  target="_blank">coach outlet store online</a> can be a hefty investment of hundreds of dollars.But do not despair,the Coach Outlet store could be the answer to your prayers.<a  href="http://www.coachoutletao.org/"  target="_blank">coach outlet online</a> is your smart choice when you want to get the discount Coach accessory. You can find the exact Coach Bags and other accessory you want at a low price that's right for you. My dear friends, let the <a  href="http://www.coachoutletao.org/"  target="_blank">coach outlet online</a> pave your way into the world of high fashion with their ultimate fashion factory.
+			<div  class="quote"  style="display: none"  id="replied_com_19804">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_19804"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment20206">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Christian Louboutin <a  href="mailto:yuehuosudou.sale@gmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.christianlouboutinuka.org.uk/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 17:10    </div>
+		</div>
+		<div  class="commentbox-content">
+			christian louboutin have own characteristic designs. The beautiful crystals have added the magical finishing touch to countless bridal gowns. Just get some for yourself. The first Men's Boutique, christian louboutin uk Boutique Homme on Rue Jean-Jacques Rousseau in Paris, opened in the summer of 2012.
+			<div  class="quote"  style="display: none"  id="replied_com_20206">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_20206"  style="display: none">
+		</div>
+	</div></div><div  id="blogcomment20207">	<div  class="commentbox">
+		<div  class="commentbox-title">
+		Louis Vuitton UK <a  href="mailto:yuehuosudou.sale@gmail.com"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email.gif"  border="0"  alt="Email"  title="给他/她发邮件"></a> <a  href="http://www.louisvuittonoutletuke.org.uk/"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/homepage.gif"  border="0"  alt="Homepage"  title="访问他/她的主页"></a> 
+			<div  class="commentbox-label">2012-5-18 17:11    </div>
+		</div>
+		<div  class="commentbox-content">
+			Cheap louis vuitton uk wholesale offers a variety of options to satisfy your needs. Some new ones even has fashionable styles fold over flap to disguise the snap closure and a draw string is added for a convenient closure. Louis vuitton outlet online just like a person who want to show himself in front of other people, because he is confident enough, he can attain the respect of other people.
+			<div  class="quote"  style="display: none"  id="replied_com_20207">
+				<div  class="quote-title"></div>
+				<div  class="quote-content"></div>
+			</div>
+		</div>
+		<div  id="com_20207"  style="display: none">
+		</div>
+	</div></div>	<div  class="comment-pages">
+	<span  class="pagebar-mainbody"> 分页： 1/4  <a  href="http://blog.s135.com/post/257/1/1/"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/doubleleft.gif"  alt="第一页"  title="第一页"  border="0"></a> <span  class="pagebar-selections"> <span  class="pagelink-current">1</span>  <a  href="http://blog.s135.com/post/257/2/1/">2</a>  <a  href="http://blog.s135.com/post/257/3/1/">3</a>  <a  href="http://blog.s135.com/post/257/4/1/">4</a> </span> <a  href="http://blog.s135.com/post/257/2/1/"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/singleright.gif"  alt="下页"  title="下页"  border="0"></a>  <a  href="http://blog.s135.com/post/257/4/1/"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/doubleright.gif"  alt="最后页"  title="最后页"  border="0"></a> </span>
+	</div>
+</div>
+	<a  name="reply"></a>
+	<div  id="commentForm">
+		<form  name="visitorinput"  id="visitorinput"  method="post"  action="javascript: ajax_submit('addreply');">
+		<table  width="100%"  border="0"  align="center"  cellpadding="4"  cellspacing="1"  class="formbox-comment">
+			<tbody><tr>
+				<td  colspan="2"  class="formbox-comment-title">发表评论</td>
+			</tr>
+			<tr>
+				<td  class="formbox-comment-rowheader"  width="140">
+					<div  class="panel-smilies">
+						<div  class="panel-smilies-title">表情</div>
+							<div  class="panel-smilies-content">
+								<a  href="javascript: insertemot('anger');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/anger.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('bad');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bad.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('cool');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/cool.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('cry');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/cry.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('dog');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/dog.gif"  alt="emot"  border="0"></a><br><a  href="javascript: insertemot('envy');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/envy.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('fear');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/fear.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('grin');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/grin.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('kill');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/kill.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('love');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/love.gif"  alt="emot"  border="0"></a><br><a  href="javascript: insertemot('pig');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/pig.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('puke');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/puke.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('question');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/question.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('shock');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shock.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('shuai');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shuai.gif"  alt="emot"  border="0"></a><br><a  href="javascript: insertemot('shy');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shy.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('sleepy');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/sleepy.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('smile');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/smile.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('smoke');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/smoke.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('stupid');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/stupid.gif"  alt="emot"  border="0"></a><br><a  href="javascript: insertemot('sweat');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/sweat.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('thumbdown');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/thumbdown.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('unhappy');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/unhappy.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('uplook');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/uplook.gif"  alt="emot"  border="0"></a><a  href="javascript: insertemot('zan');"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/zan.gif"  alt="emot"  border="0"></a><br>
+							</div>
+						</div>
+						<div  style="text-align: left;">
+							<input  name="stat_html"  id="stat_html"  type="checkbox"  value="1"  disabled="disabled"> 打开HTML<br>
+							<input  name="stat_ubb"  id="stat_ubb"  type="checkbox"  value="1"  checked="checked"> 打开UBB<br>
+							<input  name="stat_emot"  id="stat_emot"  type="checkbox"  value="1"  checked="checked"> 打开表情<br>
+							<input  name="stat_property"  id="stat_property"  type="checkbox"  value="1"> 隐藏
+							<br>
+							<input  name="stat_rememberme"  id="stat_rememberme"  type="checkbox"  value="1" >  记住我 
+						</div>
+				</td>
+				<td  class="formbox-comment-content"  valign="top">
+					<div  style="padding-bottom:5px">
+					
+					昵称 <input  name="v_replier"  id="v_replier"  type="text"  size="12"  class="text"  value="">&nbsp;
+					 密码 <input  name="v_password"  id="v_password"  type="password"  size="12"  class="text"  value="">&nbsp; 游客无需密码 
+					<br>
+					网址 <input  name="v_repurl"  id="v_repurl"  type="text"  size="12"  class="text"  value="">&nbsp;
+					电邮 <input  name="v_repemail"  id="v_repemail"  type="text"  size="12"  class="text"  value="">&nbsp; <a  href="http://blog.s135.com/login.php?job=register"  title="注册">[注册]</a>
+					</div>
+					<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/ubbeditor_tiny.js"></script><div  style="margin: 4px 0px 4px 0px;"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bar.gif"  alt=""> &nbsp;<a  href="javascript: bold();"><img  border="0"  title="粗体"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bold.gif"  alt=""></a> &nbsp;<a  href="javascript: italicize();"><img  border="0"  title="斜体"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/italic.gif"  alt=""></a> &nbsp;<a  href="javascript: underline();"><img  border="0"  title="下划线"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/underline.gif"  alt=""></a> &nbsp;<img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bar.gif"  alt=""> &nbsp;<a  href="javascript: image();"><img  border="0"  title="插入图片"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/insertimage.gif"  alt=""></a> &nbsp;<a  href="javascript: hyperlink();"><img  border="0"  title="插入超链接"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/url.gif"  alt=""></a> &nbsp;<a  href="javascript: email();"><img  border="0"  title="插入邮件地址"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/email(1).gif"  alt=""></a> &nbsp;<a  href="javascript: quoteme();"><img  border="0"  title="插入引用文字"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/quote.gif"  alt=""></a></div>
+					<script  type="text/javascript">securitycodejs="验证码 <span id='securityimagearea'><img src='inc/securitycode.php?rand=3217' alt='' title='请输入验证码'/></span> <input name='v_security' id='v_security' type='text' size='4' maxlength='4' class='text' /> 不区分大小写   [<a href=\"javascript: refreshsecuritycode('securityimagearea', 'v_security');\">看不清？</a>]";</script>  
+					<textarea  name="v_content"  id="v_content"  cols="64"  rows="10"  ></textarea> <br>	<span  id="showsecuritycode"></span>
+					<div  style="padding-top:10px">
+					<input  type="hidden"  name="v_id"  id="v_id"  value="257"><input  type="hidden"  name="v_reppsw"  id="v_reppsw"  value="">
+						<input  type="button"  name="btnSubmit"  id="btnSubmit"  value="提交"  class="button" >&nbsp;
+						<input  name="reset"  id="reset"  type="reset"  value="重置"  class="button">
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+		</form>
+	</div>
+					<div  class="article-bottom"  style="display: none">
+						<div  class="pages">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<div  id="sidebar"  class="sidebar"  style="display: block;">
+			<div  id="innerSidebar">
+				<div  id="panelCategory"  class="panel">
+<h5  style="cursor: pointer" >分类</h5>
+<div  class="panel-content"  id="sideblock_category"  style="display: block">
+<ul><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/page_script.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/8/"  title="我的原创技术文章，探讨互联网系统架构、编程技术。">技术大类</a> [0] <a  href="http://blog.s135.com/feed.php?go=category_8"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/mobile/"  title="iOS、Android、HTML5 移动互联网开发">移动互联网与手机</a> [8] <a  href="http://blog.s135.com/feed.php?go=category_25"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/12/"  title="Nginx、Apache及其他Web服务器">Web服务器</a> [32] <a  href="http://blog.s135.com/feed.php?go=category_12"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/13/"  title="Squid、Varnish、Memcached及其他缓存服务器。分布式存储技术。">Cache与存储</a> [21] <a  href="http://blog.s135.com/feed.php?go=category_13"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/14/"  title="MySQL、Oracle等数据库安装、配置、优化、二次开发。">数据库技术</a> [15] <a  href="http://blog.s135.com/feed.php?go=category_14"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/15/"  title="PHP配置与优化，前端开发、脚本语言编程。">PHP/JS/Shell</a> [27] <a  href="http://blog.s135.com/feed.php?go=category_15"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/16/"  title="研究开源搜索引擎技术与中文分词技术。">搜索引擎技术</a> [6] <a  href="http://blog.s135.com/feed.php?go=category_16"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/19/"  title="网站系统架构设计，以及四/七层负载均衡交换机、服务器等。">系统架构与硬件</a> [11] <a  href="http://blog.s135.com/feed.php?go=category_19"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linemiddle.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/17/"  title="其他Linux/Unix技术">其他Unix技术</a> [38] <a  href="http://blog.s135.com/feed.php?go=category_17"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li  class="indent"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/tree_linebottom.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/18/"  title="Windows相关文章">Windows相关</a> [11] <a  href="http://blog.s135.com/feed.php?go=category_18"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/diannao.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/5/"  title="小学四年级玩老爸购物中奖而得的小霸王电脑学习机，大学四年级玩新浪的DELL服务器。">电脑杂谈</a> [75] <a  href="http://blog.s135.com/feed.php?go=category_5"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/desk.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/1/"  title="这儿是我开发的计算机作品，我决定接受新的挑战：给太阳装上开关，给黄河按上栏杆，给飞机设计倒档，为长城贴上瓷砖！">早期作品</a> [20] <a  href="http://blog.s135.com/feed.php?go=category_1"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/xinqing.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/3/"  title="生活是丰富的，心情是多彩的。阴天下雨，阳光灿烂，闲暇的时候，讲我们的故事给网络听......">心情随笔</a> [59] <a  href="http://blog.s135.com/feed.php?go=category_3"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/notebook.png"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/4/"  title="人们都说生活如流水，我坚决同意；人们又说，要养成记账的好习惯，我双手赞成。所以本栏目记录的全部都是我的流水账。">生活琐事</a> [134] <a  href="http://blog.s135.com/feed.php?go=category_4"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/zaishang.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/6/"  title="站在商家的立场谈问题，从市场经济的角度看问题。">在商言商</a> [8] <a  href="http://blog.s135.com/feed.php?go=category_6"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/nalai.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/category/7/"  title="鲁迅说，“送去”之外，还得“拿来”，是为“拿来主义”。所以好东东我要从别处拿来一点。">拿来主义</a> [6] <a  href="http://blog.s135.com/feed.php?go=category_7"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.png"  border="0"  alt="RSS"  title="追踪这个分类的RSS"></a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/soft.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://apmserv.s135.com/"  title="自动搭建Apache+PHP+MySQL环境的绿色软件"  target="_blank">APMServ：一键搭建PHP平台</a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/down.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/httpsqs/"  title="基于 HTTP GET/POST 协议的轻量级开源简单消息队列服务。"  target="_blank">HTTPSQS：高速消息队列</a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/phpcws.png"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://code.google.com/p/httpcws"  title="HTTPCWS 是一款基于HTTP协议的开源中文分词系统。"  target="_blank">HTTPCWS：中文分词系统</a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/mysqlcft.png"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://code.google.com/p/mysqlcft/"  title="MySQL中文全文索引插件"  target="_blank">mysqlcft：中文全文索引</a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/nginx.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/nginx_php_v6/"  title="Nginx 0.7.x + PHP 5.2.6（FastCGI）搭建胜过Apache十倍的Web服务器（第4版）"  target="_blank">Nginx-PHP：高并发Web服务</a></li><li><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/f5.gif"  alt=""  style="margin:3px 1px -4px 0px;"> <a  href="http://blog.s135.com/f5_big_ip/"  title="F5 BIG-IP负载均衡器配置实例与Web管理界面体验"  target="_blank">F5 BIG-IP：在线管理体验</a></li></ul>
+</div>
+</div><div  class="panel">
+<h5 >信息</h5>
+<div  class="panel-content"  id="sidebar_ads"  style="display: block">
+<center>
+<script  type="text/javascript"><!--
+google_ad_client = "pub-5999575502865975";
+/* 160x600, 创建于 08-3-9 */
+google_ad_slot = "4884152747";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins  id="aswift_1_anchor"  style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe  width="160"  height="600"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_1"  name="aswift_1"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</center>
+</div>
+</div><div  class="panel">
+<h5 >个人简介</h5>
+<div  class="panel-content"  id="sidebar_rewin"  style="display: block">
+<font  color="#4f6371">
+<font  color="#ff9900">·</font>姓名：张宴 <font  color="#ff9900">·</font>网名：回忆未来<br><font  color="#ff9900">·</font>生日：1985年5月19日<br><font  color="#ff9900">·</font>博客：<a  href="http://blog.s135.com/"  target="_blank">http://blog.s135.com</a><br>
+<font  color="#ff9900">·</font>邮箱：<script  type="text/javascript">function copyText(obj) {var rng = document.body.createTextRange();rng.moveToElementText(obj);rng.scrollIntoView();rng.select();rng.execCommand("Copy");rng.collapse(false);}</script><span  id="myemail"><script  language="JavaScript">
+<!-- Begin
+user = "net";
+site = "s135.c";
+domain = "om";
+document.write(user + '@' + site + domain);
+// End -->
+</script>net@s135.com</span> [<a  href="http://blog.s135.com/#"  title="复制E-mail地址到剪贴板" >复制</a>]<br><font  color="#ff9900">·</font>推特：<a  href="https://twitter.com/rewinx"  title="需翻墙访问"  target="_blank">twitter.com/rewinx</a><br><font  color="#ff9900">·</font>微博：<a  href="http://t.sina.com.cn/rewinx"  target="_blank">t.sina.com.cn/rewinx</a><br><font  color="#ff9900">·</font>籍贯：<a  href="http://www.xxz.gov.cn/"  target="_blank">湖南省湘西自治州</a><hr><font  color="#ff9900">·</font>学校：<a  href="http://www.wuhan.gov.cn/"  target="_blank">湖北武汉</a>|<a  href="http://www.scuec.edu.cn/"  target="_blank">中南民族大学</a><br><font  color="#ff9900">·</font>专业：<a  href="http://www.scuec.edu.cn/economics/"  target="_blank">2003级|国际经济与贸易</a><br><font  color="#ff9900">·</font>时间：2003年9月─2007年7月<hr><font  color="#ff9900">·</font>工作：北京热拍科技/苏州原璞信息<br><font  color="#ff9900">·</font>职位：合伙人<br><font  color="#ff9900">·</font>地址：北京市朝阳区建外SOHO A座<br><font  color="#ffffff">·</font>　　　苏州市工业园区创意产业园<br><font  color="#ff9900">·</font>时间：2013.01.01─今<hr><font  color="#ff9900">·</font>工作：<a  href="http://www.4399.com/"  title="北京游家世纪广告有限公司(4399.com)"  target="_blank">4399.com 闪购创业孵化器</a><br><font  color="#ff9900">·</font>职位：闪购技术负责人<br><font  color="#ff9900">·</font>地址：北京市朝阳区建外SOHO A座<br><font  color="#ff9900">·</font>时间：2012.02.07─2012.12.31<hr><font  color="#ff9900">·</font>工作：<a  href="http://www.yijia.com/"  title="北京世纪一家网电子商务有限公司"  target="_blank">北京世纪一家网</a><br><font  color="#ff9900">·</font>职位：技术总监<br><font  color="#ff9900">·</font>地址：北京市朝阳区建外SOHO 8#<br><font  color="#ff9900">·</font>时间：2011.09.01─2012.02.06<hr><font  color="#ff9900">·</font>工作：<a  href="http://www.kingsoft.com/"  title="金山软件公司"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/logo-kingsoft.gif"  border="0"></a><a  href="http://www.xoyo.com/"  target="_blank">金山游戏</a><br><font  color="#ff9900">·</font>部门：运营技术中心-网站开发部<br><font  color="#ff9900">·</font>职位：技术经理/架构师<br><font  color="#ff9900">·</font>地址：北京市海淀区<a  href="http://www.kingsoft.com/pop/zt_yxks/bj.shtml"  target="_blank">金山软件大厦</a><br><font  color="#ff9900">·</font>时间：2008.11.24─2011.08.31<hr><font  color="#ff9900">·</font>工作：<a  href="http://www.ganji.com/"  title="赶集网"  target="_blank">赶集网</a><br><font  color="#ff9900">·</font>职位：架构师<br><font  color="#ff9900">·</font>地址：北京市海淀区清华科技园<br><font  color="#ff9900">·</font>时间：2008.04.01─2008.11.21<hr><font  color="#ff9900">·</font>工作：<a  href="http://www.sina.com.cn/"  title="新浪网"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/logo-sina.jpg"  border="0"></a>互动社区事业部<br><font  color="#ff9900">·</font>职位：<a  href="http://v.sina.com.cn/"  title="新浪播客"  target="_blank">新浪播客</a>-系统工程师<br><font  color="#ff9900">·</font>地址：北京市海淀区中关村<br><font  color="#ffffff">·</font>　　　理想国际大厦18层<br><font  color="#ff9900">·</font>时间：2007.01.25─2008.03.31
+</font>
+</div>
+</div><div  class="panel">
+<h5 >新浪微博</h5>
+<div  class="panel-content"  id="sidebar_taotao"  style="display: block">
+<iframe  id="sina_widget_103500"  style="width:195px; height:500px;"  frameborder="0"  scrolling="no"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/widget_blog.htm"></iframe>
+</div>
+</div><div  class="panel">
+<h5 >我的著作</h5>
+<div  class="panel-content"  id="sidebar_mybook"  style="display: block">
+<a  href="http://product.dangdang.com/product.aspx?product_id=20807089&ref=search-0-A"  target="_blank"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/nginx_book.jpg"  border="0"></a>
+</div>
+</div><div  class="panel">
+<h5 >个人照片</h5>
+<div  class="panel-content"  id="sidebar_photo"  style="display: none">
+<img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/zhangyan.gif"  border="0">
+</div>
+</div><div  class="panel">
+<h5 >订阅博客</h5>
+<div  class="panel-content"  id="sidebar_rss"  style="display: block">
+<ul  class="list"><li  class="listitem"><a  href="http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  alt="订阅回忆未来[张宴]的博客"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/rss.gif"></a></li>
+<li  class="listitem"><a  href="http://wap.feedsky.com/rewin"  target="_blank"><img  border="0"  alt="手机阅读网址"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/mobile.gif"></a></li>
+<li  class="listitem"><a  href="http://www.zhuaxia.com/add_channel.php?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_zhuaxia.gif"  alt="抓虾"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.pageflakes.com/subscribe.aspx?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_pageflakes.gif"  alt="pageflakes"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.rojo.com/add-subscription?resource=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_rojo.gif"  alt="Rojo"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://fusion.google.com/add?feedurl=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_google.gif"  alt="google reader"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.netvibes.com/subscribe.php?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_netvibes.gif"  alt="netvibes"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://add.my.yahoo.com/rss?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_yahoo.gif"  alt="my yahoo"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_newsgator.gif"  alt="newsgator"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.bloglines.com/sub/http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_bloglines.gif"  alt="bloglines"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://www.xianguo.com/subscribe.php?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_xianguo.jpg"  alt="鲜果"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://inezha.com/add?url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_nazha.gif"  alt="哪吒"  vspace="2"  style="margin-bottom:3px"></a></li>
+<li  class="listitem"><a  href="http://reader.yodao.com/#url=http://blog.s135.com/feed.php"  target="_blank"><img  border="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/icon_subshot02_youdao.gif"  alt="有道"  vspace="2"  style="margin-bottom:3px"></a></li></ul>
+</div>
+</div><div  class="panel">
+<h5 >搜索</h5>
+<div  class="panel-content"  id="sidebar_search"  style="display: block">
+	<form  method="post"  action="http://blog.s135.com/visit.php">
+	<input  name="job"  type="hidden"  value="search">
+	<input  name="keyword"  class="search-field"  type="text">
+	<select  name="searchmethod"><option  value="1">日志标题</option><option  value="2">日志全文</option><option  value="3">评论引用</option><option  value="4">所有留言</option></select>
+	<input  value="搜索"  class="button"  type="submit">
+	</form>
+</div>
+</div><div  class="panel">
+<h5 >最新日志</h5>
+<div  class="panel-content"  id="sidebar_entries"  style="display: block">
+<ul><li  class="rowcouple"><a  href="http://blog.s135.com/pthreads/"  title="PHP 真正多线程的使用">PHP 真正多线程的使用</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/491/"  title="移动互联网初创型团队需要什么样的云计算服务？">移动互联网初创型团队需要什么样的云计算服务？</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/490/"  title="ASIHTTPRequest 类库在 iOS 7.0 中需要修改的地方">ASIHTTPRequest 类库在 iOS 7.0 中需要修改的地方</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/489/"  title="博客换了个VPS">博客换了个VPS</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/488/"  title="ADSL故障">ADSL故障</a></li><li  class="rowodd"><a  href="http://blog.s135.com/nginx_php_v7/"  title="Nginx 1.5.2 + PHP 5.5.1 + MySQL 5.6.10 在 CentOS 下的编译安装">Nginx 1.5.2 + PHP 5.5.1 + MySQL 5.6.10 在 CentOS 下的编译安装</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/486/"  title="手机电商APP的智能化设计">手机电商APP的智能化设计</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/485/"  title="被CC攻击">被CC攻击</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/cubieboard/"  title="iPhone大小的盒子服务器Cubieboard">iPhone大小的盒子服务器Cubieboard</a></li><li  class="rowodd"><a  href="http://blog.s135.com/xcode_svn/"  title="iOS XCode 多人共享开发 SVN 配置需要做的小设置">iOS XCode 多人共享开发 SVN 配置需要做的小设置</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/482/"  title="苏州，梦想之城">苏州，梦想之城</a></li><li  class="rowodd"><a  href="http://blog.s135.com/webkit-touch-callout/"  title="禁用 UIWebView 里面的链接长按弹出效果">禁用 UIWebView 里面的链接长按弹出效果</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/caoyuantianlu/"  title="【旅行日记】2012年8月26日，寻找草原天路（又名草沿天路）">【旅行日记】2012年8月26日，寻找草原天路（又名草沿天路）</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/479/"  title="【旅行日记】2012年8月25日，河北张北县中都草原">【旅行日记】2012年8月25日，河北张北县中都草原</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/478/"  title="【旅行日记】北京昌平十三陵水库库底（9月上传）">【旅行日记】北京昌平十三陵水库库底（9月上传）</a></li></ul>
+</div>
+</div><div  class="panel">
+<h5 >最新评论</h5>
+<div  class="panel-content"  id="sidebar_replies"  style="display: block">
+<ul><li  class="rowcouple"><a  href="http://blog.s135.com/post/489/#blogcomment42263"  title="[sashie4v9c5e] - 博客换了个VPS">White Tiger ...</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/482/#blogcomment42259"  title="[ed73bmbh] - 苏州，梦想之城">でも木刀でもぶらさげて、...</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/pthreads/#blogcomment42255"  title="[无敌WEB] - PHP 真正多线程的使用">以前净吸收知识，没评论，...</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/489/#blogcomment42253"  title="[0pc46i4r5] - 博客换了个VPS">根据多方消息证实，创造多...</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/491/#blogcomment42209"  title="[jakkerobr8] - 移动互联网初创型团队需要什么样的云计算服务？">The shopping...</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/488/#blogcomment42208"  title="[jakkerabh4] - ADSL故障">I had an umb...</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/489/#blogcomment42207"  title="[jakkerinb3] - 博客换了个VPS">Renting Vers...</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/491/#blogcomment42203"  title="[zbvf1e65ai] - 移动互联网初创型团队需要什么样的云计算服务？">http://www.r...</a></li><li  class="rowcouple"><a  href="http://blog.s135.com/post/486/#blogcomment42202"  title="[ps830mfs] - 手机电商APP的智能化设计">ot notice co...</a></li><li  class="rowodd"><a  href="http://blog.s135.com/post/478/#blogcomment42201"  title="[ps426npr] - 【旅行日记】北京昌平十三陵水库库底（9月上传）">nking consum...</a></li></ul>
+</div>
+</div><div  class="panel">
+<h5 >链接</h5>
+<div  class="panel-content"  id="sidebar_link"  style="display: block">
+<ul><li><strong>-----图片链接-----</strong></li><li  class="indent"><a  href="http://www.scuec.edu.cn/"  target="_blank"  title="我的母校：中南民族大学 - 中南民族大学"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/scuec.gif"  alt="我的母校：中南民族大学"  border="0"></a></li><li  class="indent"><a  href="http://v.sina.com.cn/"  target="_blank"  title="曾经工作：新浪-播客 - 新浪-互联星空-播客"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/sina_vnet_podcast.jpg"  alt="曾经工作：新浪-播客"  border="0"></a></li><li  class="indent"><a  href="http://www.xoyo.com/"  target="_blank"  title="金山软件：大型在线游戏交流社区逍遥网 - 金山软件有限公司：大型在线游戏交流社区逍遥网"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/kingsoft.gif"  alt="金山软件：大型在线游戏交流社区逍遥网"  border="0"></a></li><li  class="indent"><a  href="http://apmserv.s135.com/"  target="_blank"  title="我的软件：APMServ─智能搭建Apache+PHP+MySQL平台 - APMServ官方网站"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/apmserv_logo.jpg"  alt="我的软件：APMServ─智能搭建Apache+PHP+MySQL平台"  border="0"></a></li><li><strong>-----合作机构-----</strong></li><li  class="indent"><a  href="http://blog.csdn.net/bvbook"  target="_blank"  title="武汉博文视点官方博客 - 武汉博文视点官方博客">武汉博文视点官方博客</a></li><li  class="indent"><a  href="http://www.eb163.com/"  target="_blank"  title="WEB编程站 - ">WEB编程站</a></li><li  class="indent"><a  href="http://www.haihaile.com/"  target="_blank"  title="孩孩乐 - ">孩孩乐</a></li><li><strong>-----IT界好友-----</strong></li><li  class="indent"><a  href="http://anchor.xoyo.com/"  target="_blank"  title="[金山] 李安科 - ">[金山] 李安科</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/w3c"  target="_blank"  title="[金山] 蔡恩雷 - ">[金山] 蔡恩雷</a></li><li  class="indent"><a  href="http://blog.csdn.net/nirvana52"  target="_blank"  title="[金山] 王绘敏 - ">[金山] 王绘敏</a></li><li  class="indent"><a  href="http://wf.xplore.cn/"  target="_blank"  title="[新浪] Wirlfly - ">[新浪] Wirlfly</a></li><li  class="indent"><a  href="http://blog.vetcafe.net/"  target="_blank"  title="[新浪] JiangYuan - ">[新浪] JiangYuan</a></li><li  class="indent"><a  href="http://chaoqun.17348.com/"  target="_blank"  title="[新浪] 超群 - ">[新浪] 超群</a></li><li  class="indent"><a  href="http://blog.csdn.net/muyannian"  target="_blank"  title="[腾讯] muyannian - ">[腾讯] muyannian</a></li><li  class="indent"><a  href="http://www.dbanotes.net/"  target="_blank"  title="[支付宝] 冯大辉 - ">[支付宝] 冯大辉</a></li><li  class="indent"><a  href="http://lts98.tianyablog.com/"  target="_blank"  title="[天涯] 醉清风的叶子 - 生活、技术的交流。">[天涯] 醉清风的叶子</a></li><li  class="indent"><a  href="http://www.chedong.com/blog/"  target="_blank"  title="[博客大巴] 车东 - ">[博客大巴] 车东</a></li><li  class="indent"><a  href="http://dbaview.cn/"  target="_blank"  title="[百度] 石展,DBA的视界 - ">[百度] 石展,DBA的视界</a></li><li  class="indent"><a  href="http://www.54chen.com/"  target="_blank"  title="[中国雅虎] cc0cc - ">[中国雅虎] cc0cc</a></li><li  class="indent"><a  href="http://www.php-oa.com/"  target="_blank"  title="[一地带] 扶凯 - ">[一地带] 扶凯</a></li><li  class="indent"><a  href="http://hi.baidu.com/yanweinet"  target="_blank"  title="yanweinet - ">yanweinet</a></li><li  class="indent"><a  href="http://www.gotolab.cn/"  target="_blank"  title="Let&#39;s gotolab - cisco,dynamips,juniper.贵站链接已做好.">Let's gotolab</a></li><li  class="indent"><a  href="http://www.sbear.cn/"  target="_blank"  title="阿熊的窝 - 一亩三分田打造超级的熊窝">阿熊的窝</a></li><li  class="indent"><a  href="http://www.daichanger.com/"  target="_blank"  title="戴昌二 - 戴昌二，Eval,江西Seo,Eval&#39;Blog">戴昌二</a></li><li  class="indent"><a  href="http://www.bluefeel.com/"  target="_blank"  title="蓝风网络日志 - 蓝风网络日志,Kevin&#39;s Blog,用网络日志记录并分享生活点滴">蓝风网络日志</a></li><li  class="indent"><a  href="http://vip.sg-zc.cn/"  target="_blank"  title="Linuxs&#39;s Blog - ">Linuxs's Blog</a></li><li  class="indent"><a  href="http://linyh.yo2.cn/"  target="_blank"  title="LinYH&#39;s Blog - 一个懒人的博客">LinYH's Blog</a></li><li  class="indent"><a  href="http://blog.licess.cn/"  target="_blank"  title="Licess&#39;s Blog - Linux编程Shell、Perl、PHP LAMPR">Licess's Blog</a></li><li  class="indent"><a  href="http://www.jackoo.cn/"  target="_blank"  title="怒放的生命 - 怒放的生命">怒放的生命</a></li><li  class="indent"><a  href="http://blog.showjay.com/"  target="_blank"  title="Showjay&#39;s Blog - ">Showjay's Blog</a></li><li  class="indent"><a  href="http://www.6ird.cn/"  target="_blank"  title="怪鸟博客 - 用于记录在学习PHP过程中的点滴">怪鸟博客</a></li><li  class="indent"><a  href="http://www.ysrh.com/"  target="_blank"  title="怡水若寒 - ">怡水若寒</a></li><li  class="indent"><a  href="http://www.webfuny.cn/"  target="_blank"  title="funy&#39;s Blog - ">funy's Blog</a></li><li  class="indent"><a  href="http://www.wangxianjin.cn/"  target="_blank"  title="王先进 - ">王先进</a></li><li  class="indent"><a  href="http://kc.4181.cn/"  target="_blank"  title="空城&#39;s blog - ">空城's blog</a></li><li  class="indent"><a  href="http://www.gmle.cn/"  target="_blank"  title="gmle - 博客">gmle</a></li><li  class="indent"><a  href="http://www.okpython.com/bbs"  target="_blank"  title="Python中国 - 中国Python第一家">Python中国</a></li><li  class="indent"><a  href="http://kc.4181.cn/"  target="_blank"  title="空城&#39;s blog - ">空城's blog</a></li><li  class="indent"><a  href="http://www.xpb.cn/"  target="_blank"  title="海天旭日的blog - ">海天旭日的blog</a></li><li  class="indent"><a  href="http://yemaosheng.com/"  target="_blank"  title="叶茂盛 - ">叶茂盛</a></li><li  class="indent"><a  href="http://www.yhcgq.cn/index.asp"  target="_blank"  title="杨言的博客 - 杨言的个人博客">杨言的博客</a></li><li  class="indent"><a  href="http://selboo.com.cn/"  target="_blank"  title="Selboo&#39; Blog - ">Selboo' Blog</a></li><li  class="indent"><a  href="http://www.oophp.cn/"  target="_blank"  title="OOPHP - PHP开源博客">OOPHP</a></li><li  class="indent"><a  href="http://ptubuntu.com/"  target="_blank"  title="PTUbuntu Blog - 主要以linux为主.">PTUbuntu Blog</a></li><li  class="indent"><a  href="http://www.sou5.cn/"  target="_blank"  title="搜我收藏 - ">搜我收藏</a></li><li  class="indent"><a  href="http://www.wlzcn.com/blog"  target="_blank"  title="外来者设计工室 - 外来者设计工作室官方博客,Exotic DesignStudio,世界为我们而添彩">外来者设计工室</a></li><li  class="indent"><a  href="http://www.f0rest.cn/"  target="_blank"  title="f0rest - ">f0rest</a></li><li  class="indent"><a  href="http://www.aaronw.cn/"  target="_blank"  title="我的技术生活-王炜 - 个人blog">我的技术生活-王炜</a></li><li  class="indent"><a  href="http://jasonyu.cn/"  target="_blank"  title="Jason Yu - ">Jason Yu</a></li><li  class="indent"><a  href="http://www.leavan2324.cn/"  target="_blank"  title="梦昙花开 - 小站PR=3，博主为某大学软件工程专业大三学生的小站点，本博用来记录自己在web路上的点点滴滴">梦昙花开</a></li><li  class="indent"><a  href="http://www.zhangyiqun.cn/"  target="_blank"  title="jean - 专注于linux的年轻人">jean</a></li><li  class="indent"><a  href="http://www.wunengwu.cn/"  target="_blank"  title="sunlick&#39;s - sunlick’s blog">sunlick's</a></li><li  class="indent"><a  href="http://badb0y.cublog.cn/"  target="_blank"  title="badb0y&#39;s Blog - ">badb0y's Blog</a></li><li  class="indent"><a  href="http://yustar.joomlar.cn/"  target="_blank"  title="Yustar&#39;s Blog - 关注互联网，互联网开发技术">Yustar's Blog</a></li><li  class="indent"><a  href="http://www.jvones.com/blog"  target="_blank"  title="Jvones&#39; blog - Jvones&#39; blog">Jvones' blog</a></li><li  class="indent"><a  href="http://www.6ird.com/"  target="_blank"  title="怪鸟网络日志 - 6ird&#39;s Blog--怪鸟网络日志">怪鸟网络日志</a></li><li  class="indent"><a  href="http://www.blags.org/"  target="_blank"  title="Martin - ">Martin</a></li><li  class="indent"><a  href="http://www.9170.org/"  target="_blank"  title="王健宇&#39;s BLOG - 王健宇&#39;s BLOG">王健宇's BLOG</a></li><li  class="indent"><a  href="http://www.imop.us/"  target="_blank"  title="PHPer.yang - PHPer.yang 学习笔记">PHPer.yang</a></li><li><strong>-----同学校友-----</strong></li><li  class="indent"><a  href="http://hi.baidu.com/sannier"  target="_blank"  title="小虾米 - ">小虾米</a></li><li  class="indent"><a  href="http://www.blogcn.com/user46/sukie123/index.html"  target="_blank"  title="真水无香 - ">真水无香</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/u/1227279972"  target="_blank"  title="挪葳之云 - ">挪葳之云</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/u/1240634585"  target="_blank"  title="欧阳戈鸽 - ">欧阳戈鸽</a></li><li  class="indent"><a  href="http://www.blogcn.com/user38/vinsina/index.html"  target="_blank"  title="布早早 - ">布早早</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/larval"  target="_blank"  title="娜瓦奔 - ">娜瓦奔</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/nanbei128"  target="_blank"  title="之南 - ">之南</a></li><li  class="indent"><a  href="http://www.blogcn.com/User5/babyface303/index.html"  target="_blank"  title="普罗旺斯的天空 - ">普罗旺斯的天空</a></li><li  class="indent"><a  href="http://hi.baidu.com/cmvivi"  target="_blank"  title="微微vivi - ">微微vivi</a></li><li  class="indent"><a  href="http://www.tt-blog.com/"  target="_blank"  title="风海浮萍 - ">风海浮萍</a></li><li  class="indent"><a  href="http://hi.baidu.com/lammy"  target="_blank"  title="莱密之家 - ">莱密之家</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/anthea"  target="_blank"  title="黯黯独步江湖 - ">黯黯独步江湖</a></li><li  class="indent"><a  href="http://hi.baidu.com/phpthink"  target="_blank"  title="玉面修罗 - ">玉面修罗</a></li><li  class="indent"><a  href="http://pengkang19850916.blog.tianya.cn/"  target="_blank"  title="彭康 - ">彭康</a></li><li  class="indent"><a  href="http://tonorth.blogcn.com/index.shtml"  target="_blank"  title="朝北-方向感 - ">朝北-方向感</a></li><li  class="indent"><a  href="http://www.blogcn.com/user47/liuchao8536/index.html"  target="_blank"  title="六弦天子 - ">六弦天子</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/u/1197033380"  target="_blank"  title="Mr.1017 - ">Mr.1017</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/yolanda2007"  target="_blank"  title="雨潇潇 - ">雨潇潇</a></li><li  class="indent"><a  href="http://www.whlxz.cn/"  target="_blank"  title="李炘争 - 李炘争的博客">李炘争</a></li><li  class="indent"><a  href="http://froglan.blogcn.com/"  target="_blank"  title="影姿飘过 - ">影姿飘过</a></li><li  class="indent"><a  href="http://www.preweb.cn/"  target="_blank"  title="阳关地带 - ">阳关地带</a></li><li  class="indent"><a  href="http://www.tengzhaorong.cn/"  target="_blank"  title="纪念未来 - 这是我的博客，我跟你是校友，还是老乡，希望能在你 这里作个链接！">纪念未来</a></li><li  class="indent"><a  href="http://www.anymoore.com/"  target="_blank"  title="anymoore - 骆勤">anymoore</a></li><li><strong>-----博客互联-----</strong></li><li  class="indent"><a  href="http://www.sophiaw.com/blog/"  target="_blank"  title="Sophia - ">Sophia</a></li><li  class="indent"><a  href="http://blog.sina.com.cn/u/1220764051"  target="_blank"  title="六道客栈 - ">六道客栈</a></li><li  class="indent"><a  href="http://blog.zhangjianfeng.com/"  target="_blank"  title="Jeffrey&#39;s Blog - ">Jeffrey's Blog</a></li><li  class="indent"><a  href="http://www.coldx.cn/"  target="_blank"  title="ColdX&#39;s Blog - ">ColdX's Blog</a></li><li  class="indent"><a  href="http://www.junluck.cn/"  target="_blank"  title="junluck&#39;s blog - for www...">junluck's blog</a></li><li  class="indent"><a  href="http://www.dashaqi.com/"  target="_blank"  title="大杀器 - 贵站链接已做好">大杀器</a></li><li  class="indent"><a  href="http://netkiller.github.com/"  target="_blank"  title="Netkiller - ">Netkiller</a></li><li><strong>-----在线资源-----</strong></li><li  class="indent"><a  href="http://www.ip138.com/"  target="_blank"  title="IP地址域名信息查询 - ">IP地址域名信息查询</a></li><li  class="indent"><a  href="http://www.russky.net/trans/"  target="_blank"  title="在线文本翻译 - ">在线文本翻译</a></li><li  class="indent"><a  href="http://www.eoool.com/"  target="_blank"  title="邮箱QQ图标快速生成 - ">邮箱QQ图标快速生成</a></li><li  class="indent"><a  href="http://webmessenger.msn.com/default.aspx?mkt=zh-cn"  target="_blank"  title="微软MSN Web版 - ">微软MSN Web版</a></li><li  class="indent"><a  href="http://virusscan.jotti.org/"  target="_blank"  title="多杀毒软件在线查毒 - ">多杀毒软件在线查毒</a></li><li  class="indent"><a  href="http://media-convert.com/zh/"  target="_blank"  title="多音频格式在线转换 - ">多音频格式在线转换</a></li><li  class="indent"><a  href="http://uptime.netcraft.com/"  target="_blank"  title="服务器系统信息查看 - ">服务器系统信息查看</a></li><li  class="indent"><a  href="http://docs.google.com/"  target="_blank"  title="在线Word、Excel文档 - ">在线Word、Excel文档</a></li><li  class="indent"><a  href="https://www.google.com/adsense?hl=zh_CN"  target="_blank"  title="Google AdSense - ">Google AdSense</a></li><li  class="indent"><a  href="http://www.net2ftp.com/"  target="_blank"  title="Web FTP 客户端 - ">Web FTP 客户端</a></li><li  class="indent"><a  href="http://skydrive.live.com/"  target="_blank"  title="微软skydrive网络硬盘 - ">微软skydrive网络硬盘</a></li><li  class="indent"><a  href="http://spritegen.website-performance.org/"  target="_blank"  title="CSS图片拼合生成器 - ">CSS图片拼合生成器</a></li><li  class="indent"><a  href="http://tools.pingdom.com/fpt/"  target="_blank"  title="网页HTTP在线分析 - ">网页HTTP在线分析</a></li><li  class="indent"><a  href="https://ksvpn.kingsoft.com/"  target="_blank"  title="金山软件 SSL VPN - ">金山软件 SSL VPN</a></li><li  class="indent"><a  href="http://wallpaper.sytes.org/"  target="_blank"  title="wallpaper图片查找 - ">wallpaper图片查找</a></li><li  class="indent"><a  href="http://www.google.com/finance/portfolio?gl=cn"  target="_blank"  title="谷歌财经投资组合 - 谷歌财经投资组合">谷歌财经投资组合</a></li><li><strong>-----设备厂商-----</strong></li><li  class="indent"><a  href="http://www.f5.com.cn/"  target="_blank"  title="F5 Networks 公司 - ">F5 Networks 公司</a></li><li  class="indent"><a  href="http://www.riverbed.com/cn/"  target="_blank"  title="Riverbed 公司 - ">Riverbed 公司</a></li><li  class="indent"><a  href="http://www1.ap.dell.com/content/products/productdetails.aspx/pedge_2950?c=cn&l=zh&s=lca&cs="  target="_blank"  title="DELL PowerEdge 2950 - ">DELL PowerEdge 2950</a></li><li  class="indent"><a  href="http://www1.ap.dell.com/content/products/productdetails.aspx/pedge_1950?c=cn&l=zh&s=lca&cs="  target="_blank"  title="DELL PowerEdge 1950 - ">DELL PowerEdge 1950</a></li><li  class="indent"><a  href="http://www.toyou.com.cn/"  target="_blank"  title="NetStor磁盘阵列 - ">NetStor磁盘阵列</a></li><li><strong>-----软件资料-----</strong></li><li  class="indent"><a  href="http://mirrors.sohu.com/"  target="_blank"  title="Linux/Unix国内下载镜像 - ">Linux/Unix国内下载镜像</a></li><li  class="indent"><a  href="http://dev.mysql.com/doc/refman/5.1/zh/"  target="_blank"  title="MySQL 5.1参考手册 - ">MySQL 5.1参考手册</a></li><li  class="indent"><a  href="http://www.ibm.com/developerworks/cn/"  target="_blank"  title="IBM developerworks 中国 - ">IBM developerworks 中国</a></li><li  class="indent"><a  href="http://soft.lzzxt.com/"  target="_blank"  title="小众软件 - 分享免费小巧、实用、有趣的绿色软件">小众软件</a></li><li  class="indent"><a  href="http://www.51ajax.com/demo/ascii/ascii.htm"  target="_blank"  title="ASCII 字符表 - ">ASCII 字符表</a></li><li  class="indent"><a  href="http://man.chinaunix.net/"  target="_blank"  title="UNIX手册中心 - ">UNIX手册中心</a></li><li  class="indent"><a  href="http://blog.s135.com/book/squid/"  target="_blank"  title="Squid中文权威指南 - ">Squid中文权威指南</a></li><li  class="indent"><a  href="http://www.builder.com.cn/"  target="_blank"  title="开发者在线 - builder.com.cn">开发者在线</a></li><li  class="indent"><a  href="http://man.chinaunix.net/develop/c&c++/linux_c/default.htm"  target="_blank"  title="Linux常用C函数 - ">Linux常用C函数</a></li><li  class="indent"><a  href="http://www.erlang.org/"  target="_blank"  title="Erlang语言 - Erlang是一种通用的面向并发的程式语言">Erlang语言</a></li><li  class="indent"><a  href="http://c-faq-chn.sourceforge.net/ccfaq/index.html"  target="_blank"  title="C语言常见问题集 - ">C语言常见问题集</a></li><li  class="indent"><a  href="http://blog.s135.com/book/libevent/"  target="_blank"  title="Libevent 最新文档 - Libevent 2.0.1x 最新文档">Libevent 最新文档</a></li></ul>
+</div>
+</div><div  class="panel">
+<h5 >日历</h5>
+<div  class="panel-content"  id="sidebar_calendar"  style="display: block">
+<table  id="calendar"  cellspacing="1"  width="100%">
+<tbody><tr><td  colspan="7"  class="calendar-top">
+<a  href="http://blog.s135.com/archiver/2/2013/"  rel="noindex,nofollow">&lt;</a>
+<a  href="http://blog.s135.com/archive.php"  rel="noindex,nofollow"><span  class="calendar-year">2014</span></a>
+<a  href="http://blog.s135.com/archiver/2/2015/"  rel="noindex,nofollow">&gt;</a>
+	&nbsp;&nbsp;
+<a  href="http://blog.s135.com/archiver/1/2014/"  rel="noindex,nofollow">&lt;</a>
+<a  href="http://blog.s135.com/archiver/2/2014/"  rel="noindex,nofollow"><span  class="calendar-month">2</span></a>
+<a  href="http://blog.s135.com/archiver/3/2014/"  rel="noindex,nofollow">&gt;</a><br>甲午年（马）
+</td></tr>
+<tr  class="calendar-weekdays">
+	<td  class="calendar-weekday-cell">日</td>
+	<td  class="calendar-weekday-cell">一</td>
+	<td  class="calendar-weekday-cell">二</td>
+	<td  class="calendar-weekday-cell">三</td>
+	<td  class="calendar-weekday-cell">四</td>
+	<td  class="calendar-weekday-cell">五</td>
+	<td  class="calendar-weekday-cell">六</td>
+</tr>
+<tr  class="calendar-weekdays"><td  class="calendar-sunday"><span  title=""></span></td><td  class="calendar-day"><span  title=""></span></td><td  class="calendar-day"><span  title=""></span></td><td  class="calendar-day"><span  title=""></span></td><td  class="calendar-day"><span  title=""></span></td><td  class="calendar-day"><span  title=""></span></td><td  id="cal1"  class="calendar-saturday"><span  title="初二">1</span></td></tr><tr  class="calendar-weekdays"><td  id="cal2"  class="calendar-sunday"><span  title="初三">2</span></td><td  id="cal3"  class="calendar-day"><span  title="初四">3</span></td><td  id="cal4"  class="calendar-day"><span  title="初五">4</span></td><td  id="cal5"  class="calendar-day"><span  title="初六">5</span></td><td  id="cal6"  class="calendar-day"><span  title="初七">6</span></td><td  id="cal7"  class="calendar-day"><span  title="初八">7</span></td><td  id="cal8"  class="calendar-saturday"><span  title="初九">8</span></td></tr><tr  class="calendar-weekdays"><td  id="cal9"  class="calendar-sunday"><span  title="初十">9</span></td><td  id="cal10"  class="calendar-day"><span  title="十一">10</span></td><td  id="cal11"  class="calendar-today"><span  title="十二">11</span></td><td  id="cal12"  class="calendar-day"><span  title="十三">12</span></td><td  id="cal13"  class="calendar-day"><span  title="十四">13</span></td><td  id="cal14"  class="calendar-day"><span  title="十五">14</span></td><td  id="cal15"  class="calendar-saturday"><span  title="十六">15</span></td></tr><tr  class="calendar-weekdays"><td  id="cal16"  class="calendar-sunday"><span  title="十七">16</span></td><td  id="cal17"  class="calendar-day"><span  title="十八">17</span></td><td  id="cal18"  class="calendar-day"><span  title="十九">18</span></td><td  id="cal19"  class="calendar-day"><span  title="二十">19</span></td><td  id="cal20"  class="calendar-day"><span  title="廿一">20</span></td><td  id="cal21"  class="calendar-day"><span  title="廿二">21</span></td><td  id="cal22"  class="calendar-saturday"><span  title="廿三">22</span></td></tr><tr  class="calendar-weekdays"><td  id="cal23"  class="calendar-sunday"><span  title="廿四">23</span></td><td  id="cal24"  class="calendar-day"><span  title="廿五">24</span></td><td  id="cal25"  class="calendar-day"><span  title="廿六">25</span></td><td  id="cal26"  class="calendar-day"><span  title="廿七">26</span></td><td  id="cal27"  class="calendar-day"><span  title="廿八">27</span></td><td  id="cal28"  class="calendar-day"><span  title="廿九">28</span></td><td  class="calendar-saturday"><span  title=""></span></td></tr>
+</tbody></table>
+</div>
+</div><div  class="panel">
+<h5 >统计</h5>
+<div  class="panel-content"  id="sidebar_statistics"  style="display: block">
+访问次数 13661163<br>今日访问 1932<br>日志数量 471<br><a  href="http://blog.s135.com/view.php?go=comment">评论数量 22263</a><br><a  href="http://blog.s135.com/view.php?go=tb">引用数量 196</a><br><a  href="http://blog.s135.com/guestbook.php">留言数量 2315</a><br><a  href="http://blog.s135.com/view.php?go=userlist">注册用户 1700</a><br>在线人数 143<br>
+</div>
+</div><div  class="panel">
+<h5 >其他</h5>
+<div  class="panel-content"  id="sidebar_misc"  style="display: block">
+<a  href="http://blog.s135.com/login.php">登入</a><br><a  href="http://blog.s135.com/login.php?job=register">注册</a><br><a  href="http://blog.s135.com/login.php?job=applylink">申请链接</a><br>RSS： <a  href="http://blog.s135.com/feed.php">日志</a> | <a  href="http://blog.s135.com/feed.php?go=comment">评论</a><br>编码：UTF-8<br><a  href="http://validator.w3.org/check?uri=referer"  target="_blank">XHTML 1.0</a>
+</div>
+</div>
+			</div>
+		</div>
+	</div>
+		<div  id="footer">
+			<div  id="innerFooter">
+				<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shCore.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushCSharp.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushPhp.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushJScript.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushJava.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushVb.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushSql.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushXml.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushCss.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushCpp.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushDelphi.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushPython.js"></script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/shBrushRuby.js"></script>
+<script  class="javascript">dp.SyntaxHighlighter.HighlightAll('code');</script><center>
+<script  type="text/javascript"><!--
+google_ad_client = "ca-pub-6435029984639420";
+/* 728x90, 创建于 08-8-24 */
+google_ad_slot = "4531164775";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_2_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_2"  name="aswift_2"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+<br><br>
+【<a  href="http://www.upyun.com/?md=zy"  title="www.upyun.com"  target="_blank"><u>静态文件存储由又拍云存储提供</u></a>】
+<br><br>
+版权所有© 2005年5月19日-2013年 <a  href="http://blog.s135.com/"  target="_blank">回忆未来[张宴]</a>，保留所有原创日志的权利。转载请注明出处：http://blog.s135.com
+<br>
+地址：北京市朝阳区东三环中路39号建外SOHO A座&nbsp;&nbsp;&nbsp;&nbsp;邮编：100022<br>
+<a  href="http://www.alexa.com/data/details/main?url=http://blog.s135.com"  class="AlexaSiteStatsWidget"><img  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/s.gif"  border="0"  alt="Alexa Certified Site Stats for blog.s135.com"></a><script  type="text/javascript"  language="JavaScript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/a"></script>
+<br>
+<script  language="javascript"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/click.aspx"></script><a  href="http://countt.51yes.com/index.aspx?id=36016662"  target="_blank"><img  width="20"  height="20"  border="0"  hspace="0"  vspace="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/count6.gif"  alt="51YES网站统计系统"></a><iframe  marginwidth="0"  marginheight="0"  hspace="0"  vspace="0"  frameborder="0"  scrolling="no"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/sa.htm"  height="0"  width="0"></iframe>
+<script  type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6b0190f1c3f3d3b7a4ae7fc280f82821' type='text/javascript'%3E%3C/script%3E"));
+</script><script  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/h.js"  type="text/javascript"></script><object  classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"  id="HolmesIcon1392081059"  width="20"  height="20"><param  name="movie"  value="http://eiv.baidu.com/hmt/icon/13.swf"><param  name="flashvars"  value="s=http://tongji.baidu.com/hm-web/welcome/ico?s=6b0190f1c3f3d3b7a4ae7fc280f82821"><param  name="allowscriptaccess"  value="always"><embed  type="application/x-shockwave-flash"  name="HolmesIcon1392081059"  width="20"  height="20"  src="http://eiv.baidu.com/hmt/icon/13.swf"  flashvars="s=http://tongji.baidu.com/hm-web/welcome/ico?s=6b0190f1c3f3d3b7a4ae7fc280f82821"  allowscriptaccess="always"></object>
+<script  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/stat.php"  language="JavaScript"  charset="gb2312"></script><script  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=1109056"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/pic1.gif"></a>
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=slide&amp;img=1&amp;uid=132153"  src="./利用Xdebug分析PHP程序，找出性能瓶颈[原创] - 张宴的博客 - Web系统架构与底层研发_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+
+			<div  id="processtime">
+			</div>
+			</center></div>
+		</div>
+	</div>
+</div>
+<script  type="text/javascript">
+loadSidebar();
+</script>
+
+</body></html>

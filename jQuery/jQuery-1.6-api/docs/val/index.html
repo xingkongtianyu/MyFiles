@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.val()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/forms/" title="View all posts in Forms">Forms</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/general-attributes/" title="View all posts in General Attributes">General Attributes</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#val1">val() </a><ul><li>.val()
+	  					</li></ul>
+</li>
+<li>
+<a href="#val2">val( value ) </a><ul>
+<li>.val( value )
+	  					</li>
+<li>.val( function(index, value) )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="val1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.val()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#String,%20Array">String, Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获取匹配的元素集合中第一个元素的当前值。</p>
+<ul class="signatures"><li class="signature" id="val"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.val()</h4></li></ul>
+<div class="longdesc">
+<p><code>.val()</code> 方法主要用于获取表单元素的值。至于 <code>&lt;select multiple="multiple"&gt;</code> 元素,  <code>.val()</code>方法返回一个包含每个选中的 option 的数组。</p>
+<p>对于 下拉框（select） 和复选框（checkbox）, 你也可以使用<a href="#p=selected">:selected</a> 和 <a href="#p=checked">:checked</a>选择器来获取值，举个例子：</p>
+<pre>$('select.foo option:selected').val();    // 从下拉框中获取值
+$('select.foo').val();                    // 从一个或更多的下拉框中获取值
+$('input:checkbox:checked').val();        // 从选中的复选框中获取值
+$('input:radio[name=bar]:checked').val(); // 从单选选框中获取值</pre>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">从一个select中获取一个单一的。和一个包含多个选中的 option 的值的数组。并显示他们：</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { color:red; margin:4px; }
+  b { color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;&lt;/p&gt;
+  &lt;select id="single"&gt;
+    &lt;option&gt;Single&lt;/option&gt;
+    &lt;option&gt;Single2&lt;/option&gt;
+
+  &lt;/select&gt;
+  &lt;select id="multiple" multiple="multiple"&gt;
+    &lt;option selected="selected"&gt;Multiple&lt;/option&gt;
+    &lt;option&gt;Multiple2&lt;/option&gt;
+
+    &lt;option selected="selected"&gt;Multiple3&lt;/option&gt;
+  &lt;/select&gt;
+&lt;script&gt;
+    function displayVals() {
+      var singleValues = $("#single").val();
+      var multipleValues = $("#multiple").val() || [];
+      $("p").html("&lt;b&gt;Single:&lt;/b&gt; " + 
+                  singleValues +
+                  " &lt;b&gt;Multiple:&lt;/b&gt; " + 
+                  multipleValues.join(", "));
+    }
+
+    $("select").change(displayVals);
+    displayVals();
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">获取文本框的值</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { color:blue; margin:8px; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;input type="text" value="some text"/&gt;
+  &lt;p&gt;&lt;/p&gt;
+&lt;script&gt;
+    $("input").keyup(function () {
+      var value = $(this).val();
+      $("p").text(value);
+    }).keyup();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="entry method" id="val2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.val( value )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>设置匹配的元素集合中每个元素的值。</p>
+<ul class="signatures">
+<li class="signature" id="val-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.val( value )</h4>
+<p class="arguement"><strong>value</strong>一个文本字符串或一个以字符串形式的数组来设定每个匹配元素的值。</p>
+</li>
+<li class="signature" id="val-functionindex, value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.val( function(index, value) )</h4>
+<p class="arguement"><strong>function(index, value)</strong>一个用来返回设置值的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个方法通常是用来设置表单域的值。 对于 <code>&lt;select multiple="multiple"&gt;</code> 元素, 多个 <code>&lt;option&gt;</code>可以通过一个数组来选中。</p>
+<p> <code>.val()</code> 方法允许我们通过一个函数来设置这个值。 在 jQuery 1.4 中， 这个函数通过两个参数，当前元素的所引值和它当前的值： </p>
+<pre>$('input:text.items').val(function(index, value) {
+  return value + ' ' + this.className;
+});
+</pre>
+<p>这个例子将字符串" items" 附给文本框。</p>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">设置文本框的值。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  button { margin:4px; cursor:pointer; }
+  input { margin:4px; color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;
+    &lt;button&gt;Feed&lt;/button&gt;
+    &lt;button&gt;the&lt;/button&gt;
+
+    &lt;button&gt;Input&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;input type="text" value="click a button" /&gt;
+&lt;script&gt;
+    $("button").click(function () {
+      var text = $(this).text();
+      $("input").val(text);
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">这只一个单选下拉框和一个多选框。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body { color:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;select id="single"&gt;
+    &lt;option&gt;Single&lt;/option&gt;
+    &lt;option&gt;Single2&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;select id="multiple" multiple="multiple"&gt;
+    &lt;option selected="selected"&gt;Multiple&lt;/option&gt;
+    &lt;option&gt;Multiple2&lt;/option&gt;
+
+    &lt;option selected="selected"&gt;Multiple3&lt;/option&gt;
+  &lt;/select&gt;&lt;br/&gt;
+  &lt;input type="checkbox" name="checkboxname" value="check1"/&gt; check1
+  &lt;input type="checkbox" name="checkboxname" value="check2"/&gt; check2
+  &lt;input type="radio"  name="r" value="radio1"/&gt; radio1
+  &lt;input type="radio"  name="r" value="radio2"/&gt; radio2
+&lt;script&gt;
+
+    $("#single").val("Single2");
+    $("#multiple").val(["Multiple2", "Multiple3"]);
+    $("input").val(["check1","check2", "radio1" ]);
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

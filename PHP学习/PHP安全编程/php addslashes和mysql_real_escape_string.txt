@@ -1,0 +1,25 @@
+php addslashes和mysql_real_escape_string
+作者： 字体：[增加 减小] 类型：转载
+本文介绍的是用 mysql_real_escape_string对用户提交数据进行整理处理和通过addslashes以及mysql_escape_string这3个类似的功能函数的区别。经过转义的数据可以直接插入到数据库中。
+很好的说明了addslashes和mysql_real_escape_string的区别，虽然国内很多PHP coder仍在依靠addslashes防止SQL注入（包括我在内），我还是建议大家加强中文防止SQL注入的检查。addslashes的问题在于黑客可以用0xbf27来代替单引号，而addslashes只是将0xbf27修改为0xbf5c27，成为一个有效的多字节字符，其中的0xbf5c仍会被看作是单引号，所以addslashes无法成功拦截。
+当然addslashes也不是毫无用处，它是用于单字节字符串的处理，多字节字符还是用mysql_real_escape_string吧。
+另外对于php手册中get_magic_quotes_gpc的举例：
+复制代码 代码如下:
+
+if (!get_magic_quotes_gpc()) {
+$lastname = addslashes($_POST[‘lastname']);
+} else {
+$lastname = $_POST[‘lastname'];
+}
+
+最好对magic_quotes_gpc已经开放的情况下，还是对$_POST['lastname']进行检查一下。
+再说下mysql_real_escape_string和mysql_escape_string这2个函数的区别：
+mysql_real_escape_string 必须在(PHP 4 >= 4.3.0, PHP 5)的情况下才能使用。否则只能用 mysql_escape_string ，两者的区别是：
+
+mysql_real_escape_string 考虑到连接的当前字符集，而mysql_escape_string 不考虑。
+
+总结一下：
+
+addslashes() 是强行加；
+mysql_real_escape_string() 会判断字符集，但是对PHP版本有要求；
+mysql_escape_string不考虑连接的当前字符集。 

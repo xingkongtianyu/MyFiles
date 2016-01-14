@@ -1,0 +1,566 @@
+返回主页 <http://www.cnblogs.com/cxd4321/>	
+
+
+  剑飘红 <http://www.cnblogs.com/cxd4321/>
+
+
+    一身 是胆
+    一起轰轰烈烈的干
+    翻千翻 拐千湾
+    *你和我是不见不散*
+
+  *
+  *
+  * 新闻 <http://news.cnblogs.com/>
+  *
+  * 联系 <http://space.cnblogs.com/msg/send/%e5%89%91%e9%a3%98%e7%ba%a2>
+  * 管理 <http://i.cnblogs.com/>
+  * 订阅 <http://www.cnblogs.com/cxd4321/rss> 订阅
+    <http://www.cnblogs.com/cxd4321/rss>
+
+随笔- 689  文章- 5  评论- 178 
+
+
+  svn merge和branch
+  <http://www.cnblogs.com/cxd4321/archive/2012/07/12/2588110.html>
+
+使用svn几年了，一直对分支和合并敬而远之，一来是因为分支的管理不该我操
+心，二来即使涉及到分支的管理，也不敢贸然使用合并功能，生怕合并出了问题对
+团队造成不良影响，最主要的原因是，自己对分支的目的和合并的方法不甚了解，
+这才是硬伤。
+
+ 
+
+最近由于适配机型的需要（本人从事手机客户端的开发），需要经常接触分支和合
+并两项工作，突然发现这玩意整不明白很难开展工作，遂这两天着重研究了一下，
+有点收获，怕以后忘了，故趁着余温尚在赶紧写下来，好记性不如烂笔头嘛。下文
+的实践主要是参考了TortoiseSVN的帮助文档和Subversion的在线文
+档，Subversion的在线文档：http://svnbook.red-bean.com/en/1.5/svn-book.html
+
+ 
+
+话说我公司现在的源代码管理挺乱的，svn目录并没有采取标准的
+source/branches、source/trunk结构，主线和分支放得到处都是，release版本也
+并没有当成tag处理，而是当成branch来管理，经常还要在release版本上改来改
+去。。。
+
+ 
+
+先说说什么是branch。按照Subversion的说法，一个branch是某个development
+line（通常是主线也即trunk）的一个拷贝，见下图：
+
+ 
+
+branch存在的意义在于，在不干扰trunk的情况下，和trunk并行开发，待开发结束
+后合并回trunk中，在branch和trunk各自开发的过程中，他们都可以不断地提交自
+己的修改，从而使得每次修改在repository中都有记录。
+
+ 
+
+设想以下场景，如果你的项目需要开发一个新功能，而该功能可能会修改项目中的
+绝大多数文件，而与此同时，你的另一位同事正在进行bug fix，如果你的新功能
+不在branch中开发而直接在trunk中开发，那么你极有可能影响另一位同事的bug
+fix，他/她在bug修复中可能会遇到各种各样的问题，因为你的频繁提交代码引入
+了过多的不稳定因素。你可能会说，那我在开发的过程中不提交不就行了，等到我
+全部开发结束我再提交，是，你可以这么做，那还要版本控制干什么呢？也许等到
+你最后提交代码的时候（也许一周，也许两周？），你会发现有一大堆conflict等
+着你resolve。。。
+
+ 
+
+那么，正确的做法是什么？使用branch，从trunk创建branch，然后在你的branch
+上开发，开发完成后再合并到trunk中。
+
+ 
+
+关于branch先讲到这里，下面说说什么叫做合并。很好理解，当branch开发完成后
+（包括必要的测试），将branch中的修改同步到trunk中，这个过程有可能包括修
+改文件、增加文件、删除文件等等。
+
+ 
+
+说到这里，貌似本文差不多可以结束了，不就是分支和合并么？只要再简单地说说
+如何建立分支和如何合并就可以收尾了，可能只需两个命令，也可能只需鼠标点几
+下然后键盘敲两下即可。其实事情远非这么简单，爱动脑筋的同学可能会问了，将
+branch的改动merge到trunk的时候，和上文说的直接在trunk中全部开发完然后提
+交有何区别？你最后还不是要处理一大堆conflict？
+
+ 
+
+这个问题问得非常好，其实这正是本文的重点：branch和trunk在并行开发的过程
+中如何感知对方，branch如何才能在开发过程中不会和trunk越走越远，导致最后
+无法合并？试想一下，如果在你开发branch的过程中，trunk中的某个类文件已经
+被删除了（这可能是另外一个家伙在另一个branch上开发了两周后才合并到trunk
+的），而你竟然在这个类文件上做了大量修改，试问你到最后合并回trunk的时候
+该有多蛋疼？解决这一问题的唯一手段是，branch要不停地和trunk保持同步，你
+要及时地知道trunk都做了什么修改，这些修改是否会影响你正在开发的新功能，
+如果需要，你必须及时调整branch的代码，使之能与trunk“兼容”。
+
+ 
+
+那么如何让branch和trunk保持同步？合并，从trunk合并到branch，你没听错，是
+从trunk合并到branch。关于TortoiseSVN的合并，有几点需要注意：
+
+  * TortoiseSVN的合并发生在本地，也即你的working copy中，你无需过多担心
+    会对repository中的代码造成影响
+
+  * 不管是从trunk合并到branch还是最终从branch合并回trunk，在每次合并前最
+    好先update，然后将本地的修改先全部commit，保护好现场，万一合并不理想
+    随时都可以revert
+  * 合并完成后看是否能正确编译，然后测试验证，最后将合并后的改动提交到
+    repository
+
+ 
+
+ 
+
+下面我将step by step地演示如何一次完整的branching和merging，包括创建分
+支、分支开发、分支和主线同步，分支合并到主线的全过程，甚至包括如何在本地
+创建一个测试用的repository。
+
+ 
+
+首先需要安装TortoiseSVN，我安装的版本是：TortoiseSVN 1.6.15, Build 21041
+- 32 Bit , 2011/03/23 18:00:27
+
+ 
+
+*1、本地Repository的创建*
+
+repository的创建很简单，假设我要在D:\TortoiseSVN\TestRepository目录中创
+建repository，只需右键TestRepository目录，依次选择"TortoiseSVN" ->
+"Create repository here"便完成了repository的创建。
+
+ 
+
+*2、Check out*
+
+假设要check out到D:\TortoiseSVN\TestSVN，同样很简单，在D:\TortoiseSVN目
+录下创建TestSVN目录，然后在该目录上右键，选择"SVN Check out..."，在弹出
+的窗口中的"URL of repository"中填入"file:///D:/TortoiseSVN
+/TestRepository"，其他默认即可，最后点击ok。
+
+ 
+
+*3、trunk创建新项目MyProject*
+
+相当简单就不赘述了，只列出本次操作所作出的修改：
+
+ 
+
+*4、创建branch*
+
+在/trunk/MyProject目录上右键，依次选择"TortoiseSVN" -> "Branch/tag..."，
+在弹出窗口的"To URL"中填入分支的地址，在这里目标revision选择HEAD
+revision，如下图所示，添加log后点击ok分支便建立了。这个操作速度非常快，
+新建的branch在repository中其实只是一个指向trunk某个revision的软连接而
+已，并没有真的复制文件。
+
+ 
+
+*5、Check out分支*
+
+右键TestSVN目录选择"TortoiseSVN Update"即可将刚刚建立的分支下载回本地。
+进入/branches/MyProject目录下你会发现其文件结构和/trunk/MyProject一模一样。
+
+ 
+
+*6、branch提交一个新文件*
+
+ 
+
+*7、trunk紧接着提交一个修改*
+
+ 
+
+*8、branch再次提交一个修改*
+
+ 
+
+*9、将trunk中的修改同步到branch*
+
+6-8演示的是branch和trunk在独立、并行地开发。为了防止在“错误”的道路上越走
+越远，现在branch意识到是时候和trunk来一次同步了（将trunk合并到branch）。
+
+首先，在本地trunk中先update一下，有冲突的解决冲突，保证trunk和repository
+已经完全同步，然后在/branches/MyProject上右键，依次选择"TortoiseSVN" ->
+“Merge...”，在弹出的窗口中选择第一项"Merge a range of revision"，这个类
+型的Merge已经介绍得很清楚，适用于将某个分支或主线上提交的多个revision间
+的变化合并到另外一个分支上。
+
+ 
+
+点击next后，出现如下窗口：
+
+ 
+
+由于是要从trunk合并到branch，理所当然这里的"URL to merge from"应该填
+trunk的路径，"Revision range to merge"很好理解，就是你要将trunk的哪些
+revision所对应的变化合并到branch中，可以是某一连串的revision，比如
+4-7，15-HEAD，也可以是某个单独的revision号。由于在r4中，trunk修改了
+Person.java中的talk()方法，所以这里的revision只需填4即可。点击next后出现
+下图：
+
+ 
+
+在这里只需保留默认设置即可。在点击Merge按钮前你可以先Test merge一把，看
+成功与否，以及merge的详细信息。点击Merge按钮后trunk所做的修改将同步到
+branch中。
+
+ 
+
+*10、提交合并后的branch*
+
+ 
+
+至此，branch已经完全和trunk同步，branch和trunk的代码相处很融洽，没有任何
+冲突，如果branch已经开发结束，那是时候将branch合并回trunk了，当然，如果
+branch还要继续开发，那你将不断地重复6-10这几个步骤。
+
+ 
+
+*11、将branch合并回trunk*
+
+在/trunk/MyProject上右键（注意是在主线的目录上右键），依次选
+择"TortoiseSVN" -> "Merge..."，在弹出的窗口中，Merge type选择第二
+项"Reintegrate a branch"，这种类型的合并适合在分支开发结束后将所有的改动
+合并回主线。
+
+ 
+
+点击next后出现如下窗口：
+
+ 
+
+在这里，"From URL"选择/branches/MyProject，无需选择revision
+号，Reintegrate会将branch上所有修改合并到trunk。后面的步骤和上文第9步中
+的一样，不再啰嗦了。如无意外，branch将成功合并到trunk，你需要做的只是将
+合并后的trunk赶紧commit！
+
+ 
+
+*12、提交合并后的trunk*
+
+so easy...
+
+ 
+
+*13、删除branch*
+
+如果你认为你新加的功能已经开发完成了，你可以删除你的分支
+
+ 
+
+ 
+
+到这里，我已经给你演示完了整个过程，我一身的汗也下来了，我想罢工了，不过
+最后我们还是看看所有的log信息吧，通过log能发现我们干的所有事情：
+
+ 
+
+r1-r7正是我上文在干的事情，从Message中你能发现我对trunk和branch都干了什
+么，另外，在Log Messages窗口的左下角勾选了"Include merged revisions"你还
+能看到额外的Merge information：
+
+ 
+
+图中灰色的是和merge相关的log，共发生了两次merge，第一次是在r6，在r6
+中，branch合并了trunk在r4时提交的变化；第二次是在r7，在r7中，trunk合并了
+branch从r2到r6的所有变化。
+
+分类: 源码管理 <http://www.cnblogs.com/cxd4321/category/302856.html>
+绿色通道： 好文要顶 <javascript:void(0);> 关注我 <javascript:void(0);>
+收藏该文 <javascript:void(0);>与我联系
+<http://space.cnblogs.com/msg/send/%e5%89%91%e9%a3%98%e7%ba%a2>
+<javascript:void(0);>
+<http://home.cnblogs.com/u/cxd4321/>
+剑飘红 <http://home.cnblogs.com/u/cxd4321/>
+关注 - 9 <http://home.cnblogs.com/u/cxd4321/followees>
+粉丝 - 110 <http://home.cnblogs.com/u/cxd4321/followers>
++加关注 <javascript:void(0);>
+4
+0
+(请您对文章做出评价)
+« <http://www.cnblogs.com/cxd4321/archive/2012/07/06/2579833.html> 上一
+篇：C# 字符串操作(转）
+<http://www.cnblogs.com/cxd4321/archive/2012/07/06/2579833.html>
+» <http://www.cnblogs.com/cxd4321/archive/2012/07/12/2588261.html> 下一
+篇：TortoiseSVN使用简介
+<http://www.cnblogs.com/cxd4321/archive/2012/07/12/2588261.html>
+posted @ 2012-07-12 14:52 剑飘红 <http://www.cnblogs.com/cxd4321/> 阅读
+(15345) 评论(17) 编辑
+<http://i.cnblogs.com/EditPosts.aspx?postid=2588110> 收藏 <#>
+
+发表评论
+  
+#1楼 <#2480948>2012-09-25 15:23 | SkyWorld
+<http://www.cnblogs.com/pgg200/>  
+<http://msg.cnblogs.com/msg/send/SkyWorld>
+很好 谢谢了。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/u331826.jpg?id=13131011
+  
+#2楼 <#2531614>2012-11-13 21:55 | Cooper.Wu
+<http://www.cnblogs.com/tata20011125/>  
+<http://msg.cnblogs.com/msg/send/Cooper.Wu>
+非常详细，很感谢。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#3楼 <#2565139>2012-11-28 16:14 | molang
+<http://www.cnblogs.com/molang/>   <http://msg.cnblogs.com/msg/send/molang>
+写的挺好的，学习了，就是 trunk 合并到branches 的时候也不报错，就是同步不
+到branches 。在研究下。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#4楼 <#2613625>2013-02-03 22:35 | kmlxk
+<http://www.cnblogs.com/snippet/>   <http://msg.cnblogs.com/msg/send/kmlxk>
+这才是真正的svn merge教程啊！！专门登陆来感谢！！
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#5楼 <#2686653>2013-05-22 09:06 | qqnihao
+<http://www.cnblogs.com/foreverme/>  
+<http://msg.cnblogs.com/msg/send/qqnihao>
+仰望牛人的高度，正如你在最上面写，我在最下面评论的距离
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#6楼 <#2686784>2013-05-22 10:45 | qqnihao
+<http://www.cnblogs.com/foreverme/>  
+<http://msg.cnblogs.com/msg/send/qqnihao>
+仰望牛人的高度，正如你在最上面写，我在最下面评论的距离
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#7楼 <#2690804>2013-05-27 14:22 | Roc Li
+<http://www.cnblogs.com/beyond-cn/>  
+<http://msg.cnblogs.com/msg/send/Roc+Li>
+好！顶！收藏！
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/u120079.jpg?id=21201003
+  
+#8楼 <#2701030>2013-06-08 14:22 | 心态要好
+<http://www.cnblogs.com/oppoic/>  
+<http://msg.cnblogs.com/msg/send/%e5%bf%83%e6%80%81%e8%a6%81%e5%a5%bd>
+不知道其他人有没有我的疑惑：
+第9点：
+首先，在本地trunk中先update一下
+
+这个为何必须update一下，不update主干合并分支的代码的确报错，update了合并
+分支代码就不报错了。
+
+我做了个试验：
+客户端修改了分支WC的代码，主干上点了update 文件照样没有更新，还是新建时
+候的样子，客户端已经改了其实。
+不过主干上点了Update之后 再合并分支的代码 的确不报错了。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/401362/20130716090257.png
+  
+#9楼 <#2702662>[楼主] 2013-06-11 10:59 | 剑飘红
+<http://www.cnblogs.com/cxd4321/>  
+<http://msg.cnblogs.com/msg/send/%e5%89%91%e9%a3%98%e7%ba%a2>
+@ <#2701030>心态要好
+合并都是在本地执行的，只有递交到服务器才能生效。
+所以，合并之前要update
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/u16955.jpg?id=19162829
+  
+#10楼 <#2703575>2013-06-13 09:25 | 心态要好
+<http://www.cnblogs.com/oppoic/>  
+<http://msg.cnblogs.com/msg/send/%e5%bf%83%e6%80%81%e8%a6%81%e5%a5%bd>
+@ <#2702662>剑飘红
+引用 <#2702662>@心态要好
+合并都是在本地执行的，只有递交到服务器才能生效。
+所以，合并之前要update
+
+
+博主，这篇文章是你原创嘛，我百度了好多文章和你的一模一样。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/401362/20130716090257.png
+  
+#11楼 <#2703923>[楼主] 2013-06-13 14:37 | 剑飘红
+<http://www.cnblogs.com/cxd4321/>  
+<http://msg.cnblogs.com/msg/send/%e5%89%91%e9%a3%98%e7%ba%a2>
+@ <#2703575>心态要好
+是否原创无关紧要，紧要的是给你讲明白了。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/u16955.jpg?id=19162829
+  
+#12楼 <#2714028>2013-06-26 17:42 | Fate/stay night
+<http://home.cnblogs.com/u/54257/>  
+<http://msg.cnblogs.com/msg/send/Fate%2fstay+night>
+nice，很少在csdn上发言，专门为楼主感谢下。。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#13楼 <#2810808>2013-11-06 11:36 | 音乐啤酒
+<http://www.cnblogs.com/zjypp/>  
+<http://msg.cnblogs.com/msg/send/%e9%9f%b3%e4%b9%90%e5%95%a4%e9%85%92>
+最后的分支到主干，主干道分支，我还是没明白，我本地测试也没有成功
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+http://pic.cnitblog.com/face/u176810.jpg?id=17143159
+  
+#14楼 <#2845144>2013-12-26 15:27 | rovegaby
+<http://home.cnblogs.com/u/545268/>  
+<http://msg.cnblogs.com/msg/send/rovegaby>
+我是来感谢了 折腾了两天的问题 看了你的文章 解决了 感谢啊。。。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#15楼 <#2849165>2014-01-01 19:59 | AdidasOriginal
+<http://home.cnblogs.com/u/596084/>  
+<http://msg.cnblogs.com/msg/send/AdidasOriginal>
+楼主，看完您的文章真是醍醐灌顶啊
+现在鄙人有个小问题没解决，就是你文中不是也提到用本地的repository来测试的
+吗？我自己在家开发的时候也就直接用本地的svn repository了，但是由于有
+branch和merge的需求，在资源管理器里操作太麻烦了，因为我有时会需要
+switch！我下了一个eclipse的svn插件，在创建svn资源池连接的时候提示
+"file******"无法解析成合法的url。。。请问这样的本地svn库如何导入到
+eclipse的svn插件中啊？
+我现在的switch就是在eclipse里面解除trunk，再导入另外一个branch，改
+改，merge，再继续在eclipse中解除branch，导入trunk。。。太不智能了！
+可惜我项目都是自己开发的，无法用github，他家创建私服要收费- -不然git插件
+switch还是非常好用的。。。哎。。楼主有好的办法吗？
+我的秋秋236979843，还望楼主不吝赐教啊
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#16楼 <#2970992>2014-06-25 10:05 | kimis
+<http://home.cnblogs.com/u/191337/>  
+<http://msg.cnblogs.com/msg/send/kimis>
+感谢这么好的经验分享。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+  
+#17楼 <#2993964>29939642014/7/24 17:35:17 2014-07-24 17:35 | BradyWong
+<http://www.cnblogs.com/bradywong/>  
+<http://msg.cnblogs.com/msg/send/BradyWong>
+以前只知道update和commit，挨着教程步步来，真的就基本理解了。非常感谢。
+支持(0) <javascript:void(0);>反对(0) <javascript:void(0);>
+
+刷新评论 <javascript:void(0);>刷新页面 <#>返回顶部 <#top>
+注册用户登录后才能发表评论，请 登录 <javascript:void(0);> 或 注册
+<javascript:void(0);>，访问 <http://www.cnblogs.com>网站首页。
+*【免费课程】案例：表单验证* <http://www.imooc.com/view/44?from=cnblogs>
+【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库
+<http://www.ucancode.com/index.htm>
+写“听云”原创博文，赢取iPhone 6超级大奖
+<http://www.cnblogs.com/cmt/p/tingyun.html>
+*最新IT新闻*:
+· 看老鼠领导大象学管理 <http://news.cnblogs.com/n/510143/>
+· 文化部严查动漫弹幕：吐槽没错，骂街“有罪”
+<http://news.cnblogs.com/n/510142/>
+· 音乐版权市场面临洗牌 <http://news.cnblogs.com/n/510141/>
+· 老罗的博弈：抛开是非争议，就让我们来谈谈做手机
+<http://news.cnblogs.com/n/510140/>
+· 2015年全球科技10大预测：平板手机成增长动力
+<http://news.cnblogs.com/n/510139/>
+» 更多新闻... <http://news.cnblogs.com/>
+*最新知识库文章*:
+· 爱能被量化吗 － 《星际穿越》的两个终极问题
+<http://kb.cnblogs.com/page/509538/>
+· 表单设计的思考 <http://kb.cnblogs.com/page/509578/>
+· 6种常见的数据加载模式设计 <http://kb.cnblogs.com/page/509624/>
+· Couchbase：更好的Cache系统 <http://kb.cnblogs.com/page/509630/>
+· 缓存是新的内存 <http://kb.cnblogs.com/page/509527/>
+» 更多知识库文章... <http://kb.cnblogs.com/>
+
+
+      公告
+
+难忘 灿烂
+谁会忘得了上海滩
+难忘 浩瀚
+一浪一浪的奇谈
+绝色 超凡
+只会出现在上海滩
+一身 是胆
+一起轰轰烈烈的干
+别问是爱 还是愁
+都在滔滔里转弯
+翻千翻 拐千湾
+*你和我是不见不散*
+无恨 无愁
+我的最爱上海滩
+同步 赞同
+我的好好的干一番
+
+逆天邪神 <http://www.163md.com/> 戮仙
+<http://www.23cat.com/Book_51960.html> 完美世界
+<http://www.23cat.com/Contents_51864.html>
+昵称：剑飘红 <http://home.cnblogs.com/u/cxd4321/>
+园龄：8年3个月 <http://home.cnblogs.com/u/cxd4321/>
+粉丝：110 <http://home.cnblogs.com/u/cxd4321/followers/>
+关注：9 <http://home.cnblogs.com/u/cxd4321/followees/>
++加关注 <javascript:void(0);>
+< <javascript:void(0);>	2012年7月	> <javascript:void(0);>
+
+日	一	二	三	四	五	六
+24	25	26	27	28	29	30
+1	2	3	4	_5_ <http://www.cnblogs.com/cxd4321/archive/2012/07/05.html>	_6_
+<http://www.cnblogs.com/cxd4321/archive/2012/07/06.html>	7
+8	9	10	11	_12_
+<http://www.cnblogs.com/cxd4321/archive/2012/07/12.html>	13	_14_
+<http://www.cnblogs.com/cxd4321/archive/2012/07/14.html>
+15	_16_
+<http://www.cnblogs.com/cxd4321/archive/2012/07/16.html>	17	18	19	20
+_21_ <http://www.cnblogs.com/cxd4321/archive/2012/07/21.html>
+22	23	24	_25_
+<http://www.cnblogs.com/cxd4321/archive/2012/07/25.html>	26	27	28
+29	30	31	1	2	3	4
+
+
+      搜索
+
+ 
+
+
+      积分与排名
+
+  * 积分 - 317994
+  * 排名 - 290
+
+
+      最新评论
+
+  * 1. Re:PowerDesigner 把Comment写到name中 和把name写到Comment中 pd7以
+    后版本可用
+    <http://www.cnblogs.com/cxd4321/archive/2009/03/07/1405475.html#3067490>
+  * 感谢博主。
+    亲自测试PowerDesigner16.5 name to comment可用。其他没测试。
+  * --Echofool
+  * 2. Re:vs中快捷键“转到定义（F12）”后再转回
+    <http://www.cnblogs.com/cxd4321/archive/2012/06/28/2567100.html#3041280>
+  * 搞不定，按了 就出现箭头什么的。
+  * --学会放手
+  * 3. Re:我的Visual Studio 2013常用快捷键
+    <http://www.cnblogs.com/cxd4321/p/3636225.html#3018751>
+  * 感谢分享 ！！！！
+  * --itfanr
+  * 4. Re:svn merge和branch
+    <http://www.cnblogs.com/cxd4321/archive/2012/07/12/2588110.html#2993964>
+  * 以前只知道update和commit，挨着教程步步来，真的就基本理解了。非常感谢。
+  * --BradyWong
+  * 5. Re:用户权限设计
+    <http://www.cnblogs.com/cxd4321/archive/2009/01/12/1374140.html#2986602>
+  * 复制粘贴的太水了，好歹改下排版好吗
+  * --凡图
+
+
+      阅读排行榜
+
+  * 1. access violation at address　解决之法【转】(93653)
+    <http://www.cnblogs.com/cxd4321/archive/2009/07/23/1529204.html>
+  * 2. 三国赵云传1攻略(65027)
+    <http://www.cnblogs.com/cxd4321/archive/2009/07/22/1528304.html>
+  * 3. mongodb常用命令(49731)
+    <http://www.cnblogs.com/cxd4321/archive/2011/06/24/2089051.html>
+  * 4. Oracle数据类型(34109)
+    <http://www.cnblogs.com/cxd4321/archive/2008/04/14/1153201.html>
+  * 5. SVN图标不能正常显示(26155)
+    <http://www.cnblogs.com/cxd4321/archive/2012/10/08/2715625.html>
+
+Copyright ©2014 剑飘红
+51.la 专业、免费、强健的访问统计 <http://www.51.la/?1374602>

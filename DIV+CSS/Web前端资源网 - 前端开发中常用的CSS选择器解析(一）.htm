@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://www.58img.com/web/703 -->
+<html  lang="en-US"  class="dyn detail-web contents js no-touch svg inlinesvg svgclippaths no-ie8compat"  style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta  charset="utf-8">
+    <meta  name="viewport"  content="width=device-width, initial-scale=1.0">
+    <title>Web前端资源网 - 前端开发中常用的CSS选择器解析(一）</title>
+    <link  href="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/prettify.css"  rel="stylesheet"  type="text/css">
+<link  href="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/foundation.min.css"  rel="stylesheet"  type="text/css">
+<link  href="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/58img2014.css"  rel="stylesheet"  type="text/css">
+<script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/modernizr.js"  type="text/javascript"></script>
+<meta  content="Orchard"  name="generator">
+<link  href="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/58IMG.ico"  rel="shortcut icon"  type="image/x-icon">
+
+<link  rel="alternate"  type="application/rss+xml"  title="猜你喜欢"  href="http://www.58img.com/rss?projection=750">
+
+    <script>(function (d) { d.className = "dyn" + d.className.substring(6, d.className.length); })(document.documentElement);</script>
+<script  type="text/javascript"  async=""  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/embed.js"></script><meta  class="foundation-mq-small"><meta  class="foundation-mq-medium"><meta  class="foundation-mq-large"><meta  class="foundation-mq-xlarge"><meta  class="foundation-mq-xxlarge"><style></style><meta  class="foundation-mq-topbar"><script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/share.js"></script><link  rel="stylesheet"  href="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/share_style0_32.css"><script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/alfie.js"  async=""  charset="UTF-8"></script></head>
+<body  class="f-topbar-fixed"  style="">
+    
+    
+<div  class="zone zone-navigation">
+<article  class="widget-navigation widget-menu-widget widget">
+    
+<div  class="contain-to-grid fixed">
+    <nav  class="top-bar"  data-topbar="">
+        <ul  class="title-area">
+            <li  class="name"><h1><a  href="http://www.58img.com/">WEB前端资源网</a></h1></li>
+            <li  class="toggle-topbar menu-icon"><a  href="http://www.58img.com/web/703#"><span>Menu</span></a></li>
+        </ul>
+        
+    <section  class="top-bar-section">
+            <ul>
+                
+<li  class="first"><a  href="http://www.58img.com/">首页</a>
+</li>
+<li><a  href="http://www.58img.com/web">Web</a>
+</li>
+<li><a  href="http://www.58img.com/design">设计</a>
+</li>
+<li><a  href="http://www.58img.com/jquery">jQuery</a>
+</li>
+<li><a  href="http://www.58img.com/yui">YUI</a>
+</li>
+<li><a  href="http://www.58img.com/framework">前端框架</a>
+</li>
+<li><a  href="http://www.58img.com/orchard">Orchard</a>
+</li>
+<li><a  href="http://www.58img.com/nopcommerce">Nopcommerce</a>
+</li>
+<li  class="last">
+
+    <a  href="http://www.58img.com/about">前端志</a> 
+</li>;
+            </ul>
+            <ul  class="right hide-for-medium hide-for-small">
+                <li  class="has-form"><a  href="http://www.58img.com/web/703#"  class="button"  data-reveal-id="firstModal">Foundation前端框架</a></li>
+            </ul>
+        </section></nav>
+</div>
+</article></div>
+<div  class="zone zone-header"><div  class="row header">
+    <div  class="large-8 medium-12 small-12 columns">
+        <div  class="google">
+            <script  async=""  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/adsbygoogle.js"></script>
+            
+            <ins  class="adsbygoogle"  style="display:inline-block;width:728px;height:90px"  data-ad-client="ca-pub-7563510220087670"  data-ad-slot="6322343681"  data-adsbygoogle-status="done"><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <div  class="large-4 hide-for-medium hide-for-small columns">
+        <div  class="share">
+            <div  class="bdsharebuttonbox bdshare-button-style0-32"  data-bd-bind="1388023943668"><a  class="bds_more"  href="http://www.58img.com/web/703#"  data-cmd="more"></a><a  title="分享到QQ空间"  class="bds_qzone"  href="http://www.58img.com/web/703#"  data-cmd="qzone"></a><a  title="分享到新浪微博"  class="bds_tsina"  href="http://www.58img.com/web/703#"  data-cmd="tsina"></a><a  title="分享到腾讯微博"  class="bds_tqq"  href="http://www.58img.com/web/703#"  data-cmd="tqq"></a><a  title="分享到人人网"  class="bds_renren"  href="http://www.58img.com/web/703#"  data-cmd="renren"></a><a  title="分享到网易微博"  class="bds_t163"  href="http://www.58img.com/web/703#"  data-cmd="t163"></a><a  title="分享到豆瓣网"  class="bds_douban"  href="http://www.58img.com/web/703#"  data-cmd="douban"></a><a  title="分享到花瓣"  class="bds_huaban"  href="http://www.58img.com/web/703#"  data-cmd="huaban"></a><a  title="分享到微信"  class="bds_weixin"  href="http://www.58img.com/web/703#"  data-cmd="weixin"></a><a  title="分享到复制网址"  class="bds_copy"  href="http://www.58img.com/web/703#"  data-cmd="copy"></a></div>
+        </div>
+    </div>
+</div>
+<div  class="row hide-for-small">
+    <div  class="alert-box warning radius"  data-alert="">
+        做为一名前端人员，您有责任且有义务消除IE10以下的版本！让用户升级浏览器拥有完美的浏览体验，与国际接轨，同时让更多的前端人员不再苦逼！<br>
+        本站将不再支持IE9以下的版本！（推荐安装<a  data-tooltip=""  target="_blank"  href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie"  class="has-tip"  title="IE 11快速、流畅、为触控而生.硬件加速功能充分发挥硬件潜能，使网站加载速度更快，浏览更流畅。">IE 11</a>，
+        <a  data-tooltip=""  class="has-tip"  target="_blank"  href="http://www.google.cn/intl/zh-CN/chrome/browser/"  title="Google Chrome 浏览器在简约的外观设计下，蕴含了尖端的技术，让网络浏览变得更快捷、更安全且更简便。">Chrome 31</a>,
+        <a  data-tooltip=""  target="_blank"  href="http://www.firefox.com.cn/"  class="has-tip"  title="新版 Firefox 火狐浏览器，拥有最快、最安全的上网体验!">Firefox 27</a>）
+        <a  href="http://www.58img.com/web/703#"  class="close">×</a>
+    </div>
+</div></div>
+<div  class="row">
+    <div  class="large-8 medium-12 small-12 columns">
+<div  class="zone zone-content">
+<article  class="web content-item">
+    <header>
+        
+
+<h1>前端开发中常用的CSS选择器解析(一）</h1>
+            <div  class="metadata">
+                <div  class="published">Dec 11 2013 11:32 AM</div>
+            </div>
+    </header>
+    <article  class="article">
+    <p>你也许已经掌握了id、class、后台选择器这些基本的css选择器。但这远远不是css的全部。下面向大家系统的介绍css中最常用的选择器，包括我们最头痛的浏览器兼容性问题。掌握了它们，才能真正领略css的巨大灵活性。</p>
+<h3>1.*</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pun">*</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">margin</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">0</span><span  class="pun">;</span><span  class="pln">
+    </span><span  class="kwd">padding</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">0</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;星状选择符会在页面上的每一个元素上起作用。web设计者经常用它将页面中所有元素的margin和padding设置为0。 *选择符也可以在子选择器中使用。</p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pun">#</span><span  class="pln">container </span><span  class="pun">*</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">border</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">1px</span><span  class="pln"> solid black</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;上面的代码中会应用于id为container元素的所有子元素中。 除非必要，我不建议在页面中过的的使用星状选择符，因为他的作用域太大，相当耗浏览器资源。 <span  style="color: #008000;">兼容浏览器：IE6+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>2. #X</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pun">#</span><span  class="pln">container </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">width</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">960px</span><span  class="pun">;</span><span  class="pln">
+    </span><span  class="kwd">margin</span><span  class="pun">:</span><span  class="pln"> auto</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>#号作用域有相应id的元素。id是我们最常用的css选择器之一。id选择器的优势是精准，高优先级（优先级基数为100，远高于class的10），作为javascript脚本钩子的不二选择，同样缺点也很明显优先级过高，重用性差，所以在使用id选择器前，我们最好问下自己，真的到了非用id选择器的地步？<span  style="color: #008000;"> 兼容浏览器：IE6+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>3. .X</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pun">.</span><span  class="pln">error </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;这是一个class(类)选择器。class选择器与id选择器的不同是class选择器能作用于期望样式化的一组元素。<span  style="color: #008000;"> 兼容浏览器：IE6+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>4. X Y</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">li a </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">text-decoration</span><span  class="pun">:</span><span  class="pln"> none</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;这也是我们最常用的一种选择器——后代选择器。用于选取X元素下子元素Y，要留意的点是，这种方式的选择器将选取其下所有匹配的子元素，无视层级，所以有的情况是不宜使用的，比如上述的代码去掉li下的所有a的下划线，但li里面还有个ul，我不希望ul下的li的a去掉下划线。使用此后代选择器的时候要考虑是否希望某样式对所有子孙元素都起作用。这种后代选择器还有个作用，就是创建类似命名空间的作用。比如上述代码样式的作用域明显为li。 <span  style="color: #008000;">兼容浏览器：IE6+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>5. X</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span><span  class="pln">
+ul </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">margin-left</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">0</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;标签选择器。使用标签选择器作用于作用域范围内的所有对应标签。优先级仅仅比*高。<span  style="color: #008000;"> 兼容浏览器：IE6+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>6. X:VISITED和X:LINK</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="kwd">a</span><span  class="pun">:</span><span  class="pln">link </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span><span  class="pln">
+</span><span  class="kwd">a</span><span  class="pun">:</span><span  class="pln">visited </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> purple</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;使用:link伪类作用于未点击过的链接标签。:hover伪类作用于点击过的链接。 <span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>7. X+Y</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">ul </span><span  class="pun">+</span><span  class="pln"> p </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;相邻选择器，上述代码中就会匹配在ul后面的第一个p，将段落内的文字颜色设置为红色。(只匹配第一个元素) <span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>8. X&gt;Y</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code><span  class="pln">div</span><span  class="com">#container &gt; ul {</span><span  class="pln">
+    border</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">1px</span><span  class="pln"> solid black</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span><span  class="pln">
+
+</span><span  class="pun">&lt;</span><span  class="pln">div id</span><span  class="pun">=</span><span  class="str">"container"</span><span  class="pun">&gt;</span><span  class="pln">
+    </span><span  class="str">&lt;ul&gt;</span><span  class="pln">
+        </span><span  class="str">&lt;li&gt;</span><span  class="pln">
+            </span><span  class="typ">List</span><span  class="pln"> </span><span  class="typ">Item</span><span  class="pln">
+            </span><span  class="str">&lt;ul&gt;</span><span  class="pln">
+                </span><span  class="str">&lt;li&gt;</span><span  class="typ">Child</span><span  class="pun">&lt;</span><span  class="str">/li&gt;
+            &lt;/</span><span  class="pln">ul</span><span  class="pun">&gt;</span><span  class="pln">
+        </span><span  class="pun">&lt;</span><span  class="str">/li&gt;
+        &lt;li&gt;List Item&lt;/</span><span  class="pln">li</span><span  class="pun">&gt;</span><span  class="pln">
+        </span><span  class="str">&lt;li&gt;</span><span  class="typ">List</span><span  class="pln"> </span><span  class="typ">Item</span><span  class="pun">&lt;</span><span  class="str">/li&gt;
+        &lt;li&gt;List Item&lt;/</span><span  class="pln">li</span><span  class="pun">&gt;</span><span  class="pln">
+    </span><span  class="pun">&lt;</span><span  class="str">/ul&gt;
+&lt;/</span><span  class="pln">div</span><span  class="pun">&gt;</span><span  class="pln">
+ </span></code></pre>
+<p>子选择器。与后代选择器X Y不同的是，子选择器只对X下的直接子级Y起作用。在上面的css和html例子中，div#container&gt;ul仅对container中最近一级的ul起作用。从理论上来讲X &gt; Y是值得提倡选择器，可惜IE6不支持。</p>
+<p><span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>9. X ~ Y</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">ul </span><span  class="pun">~</span><span  class="pln"> p </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;相邻选择器，与前面提到的X+Y不同的是，X~Y匹配与X相同级别的所有Y元素，而X+Y只匹配第一个。 <span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>10. X[TITLE]</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">title</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> green</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;属性选择器。比如上述代码匹配的是带有title属性的链接元素。</p>
+<p><span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>11. X[TITLE="FOO"]</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">=</span><span  class="str">"http://58img.com"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">#1f6053</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;属性选择器。 上面的代码匹配所有拥有href属性，且href为http://58img.com的所有链接。</p>
+<p>这个功能很好，但是多少又有些局限。如果我们希望匹配href包含58img.com的所有链接该怎么做呢？看下一个选择器。 <span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>13. X[HREF^="HTTP"]</h3>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">^=</span><span  class="str">"http"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">background</span><span  class="pun">:</span><span  class="pln"> </span><span  class="kwd">url</span><span  class="pun">(</span><span  class="str">path/to/external/icon.png</span><span  class="pun">)</span><span  class="pln"> no-repeat</span><span  class="pun">;</span><span  class="pln">
+    </span><span  class="kwd">padding-left</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">10px</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;属性选择器。上面代码匹配的是href中所有以http开头的链接。 <span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h4>X[HREF$=".JPG"]</h4>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">^=</span><span  class="str">"http"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">background</span><span  class="pun">:</span><span  class="pln"> </span><span  class="kwd">url</span><span  class="pun">(</span><span  class="str">path/to/external/icon.png</span><span  class="pun">)</span><span  class="pln"> no-repeat</span><span  class="pun">;</span><span  class="pln">
+    </span><span  class="kwd">padding-left</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">10px</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span><span  class="pln">
+ </span></code></pre>
+<p>属性选择器。在属性选择器中使用$，用于匹配结尾为特定字符串的元素。在上面代码中匹配的是所有链接到扩展名为.jpg图片的链接。（注意，这里仅仅是.jpg图片，如果要作用于所有图片链接该怎么做呢，看下一个选择器。）</p>
+<p><span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>14. X[data-*="foo"]</h3>
+<p>在上一个选择器中提到如何匹配所有图片链接。如果使用X[href$=".jpg"]实现，需要这样做：</p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">$=</span><span  class="str">".jpg"</span><span  class="pun">],</span><span  class="pln">
+a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">$=</span><span  class="str">".jpeg"</span><span  class="pun">],</span><span  class="pln">
+a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">$=</span><span  class="str">".png"</span><span  class="pun">],</span><span  class="pln">
+a</span><span  class="pun">[</span><span  class="pln">href</span><span  class="pun">$=</span><span  class="str">".gif"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>&nbsp;看上去比较麻烦。另一个解决办法是为所有的图片链接加一个特定的属性，例如‘data-file’</p>
+<p><strong>html代码</strong></p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-html"><span  class="tag">&lt;a</span><span  class="pln"> </span><span  class="atn">href</span><span  class="pun">=</span><span  class="atv">"path/to/image.jpg"</span><span  class="pln"> </span><span  class="atn">data-filetype</span><span  class="pun">=</span><span  class="atv">"image"</span><span  class="tag">&gt;</span><span  class="pln"> 图片链接 </span><span  class="tag">&lt;/a&gt;</span><span  class="pln"> </span></code></pre>
+<p><strong>&nbsp;css代码如下：</strong></p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">data-filetype</span><span  class="pun">=</span><span  class="str">"image"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>这样所有链接到图片的链接字体颜色为红色。</p>
+<p><span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>15. X[foo~="bar"]</h3>
+<p>属性选择器。属性选择器中的波浪线符号可以让我们匹配属性值中用空格分隔的多个值中的一个。看下面例子：</p>
+<p><strong>html代码</strong></p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-html"><span  class="tag">&lt;a</span><span  class="pln"> </span><span  class="atn">href</span><span  class="pun">=</span><span  class="atv">"path/to/image.jpg"</span><span  class="pln"> </span><span  class="atn">data-info</span><span  class="pun">=</span><span  class="atv">"external image"</span><span  class="tag">&gt;</span><span  class="pln"> Click Me, Fool </span><span  class="tag">&lt;/a&gt;</span></code></pre>
+<p><strong>&nbsp;css代码</strong></p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">a</span><span  class="pun">[</span><span  class="pln">data-info</span><span  class="pun">~=</span><span  class="str">"external"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">color</span><span  class="pun">:</span><span  class="pln"> red</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span><span  class="pln">
+
+a</span><span  class="pun">[</span><span  class="pln">data-info</span><span  class="pun">~=</span><span  class="str">"image"</span><span  class="pun">]</span><span  class="pln"> </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">border</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">1px</span><span  class="pln"> solid black</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>在上面例子中，匹配data-info属性中包含“external”链接的字体颜色为红色。匹配data-info属性中包含“image”的链接设置黑色边框。</p>
+<p><span  style="color: #008000;">兼容浏览器：IE7+、Firefox、Chrome、Safari、Opera</span></p>
+<h3>17. X:checked</h3>
+<p>checked伪类用来匹配处于选定状态的界面元素，如radio、checkbox。</p>
+<pre  class="prettyprint prettyprinted"  style=""><code  class=" language-css"><span  class="pln">input</span><span  class="pun">[</span><span  class="pln">type</span><span  class="pun">=</span><span  class="pln">radio</span><span  class="pun">]:</span><span  class="pln">checked </span><span  class="pun">{</span><span  class="pln">
+    </span><span  class="kwd">border</span><span  class="pun">:</span><span  class="pln"> </span><span  class="lit">1px</span><span  class="pln"> solid black</span><span  class="pun">;</span><span  class="pln">
+</span><span  class="pun">}</span></code></pre>
+<p>上面代码中匹配的是所有处于选定状态的单选radio，设置1px的黑色边框。</p>
+<p><span  style="color: #008000;">兼容浏览器：IE9+、Firefox、Chrome、Safari、Opera</span></p>
+</article>
+
+
+
+    <div  class="tags">
+        Tags:
+<a  href="http://www.58img.com/Tags/css3">css3</a>, <a  href="http://www.58img.com/Tags/Web%E5%9F%BA%E7%A1%80">Web基础</a>    </div>
+<div  class="comment">
+    <div  id="disqus_thread"><iframe  id="dsq-2"  data-disqus-uid="2"  allowtransparency="true"  frameborder="0"  role="complementary"  width="100%"  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/saved_resource.htm"  style="width: 100% !important; border: none !important; overflow: hidden !important; height: 574px !important;"  scrolling="no"  horizontalscrolling="no"  verticalscrolling="no"></iframe></div>
+    <script  type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '58img'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+    
+</div>
+
+</article></div>    </div> 
+    
+    <div  class="large-4 hide-for-medium hide-for-small columns">
+<div  class="zone zone-aside-second"><div  class="box">
+    <ul  class="topic">
+        <li><a  href="http://www.58img.com/Tags/PSD%E7%B4%A0%E6%9D%90">PSD素材</a></li>
+        <li><a  href="http://www.58img.com/Tags/jQuery%E6%8F%92%E4%BB%B6">jQuery插件</a></li>
+        <li><a  href="http://www.58img.com/Tags/%E7%BD%91%E9%A1%B5%E6%A8%A1%E6%9D%BF">网页模板</a></li>
+        <li><a  href="http://www.58img.com/Tags/Bootstrap">Bootstrap</a></li>
+        <li><a  href="http://www.58img.com/web%E5%B7%A5%E5%85%B7">web工具</a></li>
+        <li><a  href="http://www.58img.com/%E8%AE%BE%E8%AE%A1%E8%B6%8B%E5%8A%BF">设计趋势</a></li>
+        <li><a  href="http://www.aspxcs.net/">Web代码酷</a></li>
+        <li><a  href="http://www.58img.com/Tags/html5">HTML5</a></li>
+        <li><a  href="http://www.58img.com/Tags/css3">CSS3</a></li>
+    </ul>
+</div>
+<article  class="widget-aside-second widget-search-form widget">
+    
+<div  class="box">
+<form  action="http://www.58img.com/Search"  class="search row collapse"  method="get">        <div  class="large-9 columns">
+            <input  id="q"  name="q"  type="text"  value="">
+        </div>
+        <div  class="large-3 columns">
+            <button  type="submit"  class="button postfix">站内搜索</button>
+        </div>
+</form>    <dl  class="search-keyword">
+        <dt>热搜关键词：</dt>
+        <dd><a  href="http://www.58img.com/web/703#">web前端</a></dd>
+        <dd><a  href="http://www.58img.com/web/703#">响应式</a></dd>
+        <dd><a  href="http://www.58img.com/web/703#">CSS3属性</a></dd>
+    </dl>
+</div>
+</article><div  class="box">
+    <div  class="text-center">
+        <a  href="http://www.58img.com/web/703#"  data-reveal-id="firstModal"><img  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/foundation5.jpg"  data-bd-imgshare-binded="1"></a>
+    </div>
+</div>
+<div  class="box">
+    <div  class="project">
+        <header>
+            <h4>国内外优秀项目推荐</h4>
+        </header>
+        <dl>
+            <dt>开源.NET CMS</dt>
+            <dd><a  href="http://www.orchardproject.net/"  target="_blank">Orchard</a></dd>
+            <dd><a  href="http://www.dotnetnuke.com/"  target="_blank">DNN</a></dd>
+            <dd><a  href="http://umbraco.com/"  target="_blank">Umbraco</a></dd>
+        </dl>
+        <dl>
+            <dt>开源PHP CMS</dt>
+            <dd><a  href="http://drupal.org/"  target="_blank">Drupal</a></dd>
+            <dd><a  href="http://www.joomla.org/"  target="_blank">Joomla</a></dd>
+        </dl>
+        <dl>
+            <dt>开源.NET SHOP</dt>
+            <dd><a  href="http://www.nopcommerce.com/"  target="_blank"  title="Nopcommerce">Nop</a></dd>
+            <dd><a  href="http://www.aspxcommerce.com/"  target="_blank">Aspxcommerce</a></dd>
+        </dl>
+        <dl>
+            <dt>开源PHP SHOP</dt>
+            <dd><a  href="http://www.magentocommerce.com/"  target="_blank">Magento</a></dd>
+            <dd><a  href="http://www.opencart.com/"  target="_blank">OpenCart</a></dd>
+        </dl>
+        <dl>
+            <dt>开源博客</dt>
+            <dd><a  href="http://cn.wordpress.org/"  target="_blank">WordPress</a></dd>
+            <dd><a  href="http://www.dotnetblogengine.net/"  target="_blank">blogengine</a></dd>
+        </dl>
+        <dl>
+            <dt>开源论坛</dt>
+            <dd><a  href="http://www.discuz.net/"  target="_blank">Discuz! X</a></dd>
+            <dd><a  href="http://www.phpwind.net/"  target="_blank">Phpwind</a></dd>
+            <dd><a  href="https://www.phpbb.com/"  target="_blank">phpBB</a></dd>
+        </dl>
+        <dl>
+            <dt>JS库</dt>
+            <dd><a  href="http://jquery.com/"  target="_blank">jQuery</a></dd>
+            <dd><a  href="http://yuilibrary.com/"  target="_blank">YUI3</a></dd>
+            <dd><a  href="http://knockoutjs.com/"  target="_blank">Knockout</a></dd>
+            <dd><a  href="http://docs.kissyui.com/"  target="_blank">KISSY </a></dd>
+        </dl>
+        <dl>
+            <dt>前端框架</dt>
+            <dd><a  href="http://purecss.io/"  target="_blank">Pure</a></dd>
+            <dd><a  href="http://getbootstrap.com/"  target="_blank">Bootstrap</a></dd>
+            <dd><a  href="http://foundation.zurb.com/"  target="_blank">Foundation</a></dd>
+        </dl>
+        <dl>
+            <dt>UI框架</dt>
+            <dd><a  href="http://jqueryui.com/"  target="_blank">jQuery UI</a></dd>
+            <dd><a  href="http://jquerytools.org/"  target="_blank">jQuery Tools</a></dd>
+            <dd><a  href="http://wijmo.com/"  target="_blank">Wijmo</a></dd>
+        </dl>
+        <dl>
+            <dt>CDN服务</dt>
+            <dd><a  href="https://developers.google.com/speed/libraries/?hl=zh-CN"  target="_blank">Google</a></dd>
+            <dd><a  href="http://www.asp.net/ajaxlibrary/cdn.ashx"  target="_blank">微软</a></dd>
+            <dd><a  href="http://sae.sina.com.cn/?m=devcenter&catId=147"  target="_blank">新浪</a></dd>
+        </dl>
+        <dl>
+            <dt>项目托管平台</dt>
+            <dd><a  href="http://www.codeplex.com/"  target="_blank">CodePlex</a></dd>
+            <dd><a  href="https://github.com/"  target="_blank">GitHub</a></dd>
+        </dl>
+        <h6  class="text-error">更多优秀开源项目欢迎大家与我们交流讨论。</h6>
+        <p>
+            前端交流QQ一群：233808496<br>
+            前端交流QQ二群：233808513<br>
+            Orchard/Nop交流群：187502451
+        </p>
+    </div>
+</div>
+<article  class="widget-aside-second widget-projection-widget widget">
+    <header>
+        <h1>猜你喜欢</h1>
+        
+    </header>
+    <ul><li  class="first"><div><span><a  href="http://www.58img.com/web/294">HTML5优点总结——让你的web更符合发展趋势</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/web/332">从WordPress看开源平台的发展</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/638">黑色时尚的PSD时钟素材下载</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/framework/693">最先进的响应式前端框架——Foundation 5发布！</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/web/405">开发人员常用代码编辑器推荐</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/77">PSD素材-立体文本框阴影效果</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/jquery/384">jQuery官方学习教程网</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/684">前端热门设计趋势总结</a></span></div>
+</li>
+<li><div><span><a  href="http://www.58img.com/design/238">漂亮实用的3D按纽PSD素材</a></span></div>
+</li>
+<li  class="last"><div><span><a  href="http://www.58img.com/web/440">JavaScript权威指南 第6版高清PDF电子书免费下载</a></span></div>
+</li>
+</ul>
+
+</article><div  class="box">
+    <iframe  width="100%"  height="550"  class="share_self"  frameborder="0"  scrolling="no"  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/index.htm"></iframe>
+</div>
+<div  class="box">
+    <div  class="links">
+        <header>
+            <h4>友情链接</h4>
+        </header>
+        <ul  class="inline-list">
+            <li><a  href="http://quick.58img.com/"  target="_blank">Quick前端框架</a></li>
+            <li><a  href="http://www.aspxcs.net/"  target="_blank">WEB代码酷</a></li>
+            <li><a  href="http://www.ruiwant.com/"  target="_blank">锐想Magento</a></li>
+            <li><a  href="http://www.raincy.org/"  target="_blank">烟台网站建设</a></li>
+            <li><a  href="http://www.orchardch.com/"  target="_blank">Orchard中文社区</a></li>
+            <li><a  href="http://www.kuaipao8.com/"  target="_blank">web技术分享</a></li>
+            <li><a  href="http://www.yarnforweb.com/"  target="_blank">大象院儿</a></li>
+            <li><a  href="http://bbs.jeasyuicn.com/"  target="_blank">jQuery Easyui 中文社区</a></li>
+
+        </ul>
+    </div>
+</div>
+<div  class="box">
+    <script  async=""  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/adsbygoogle.js"></script>
+    
+    <ins  class="adsbygoogle"  style="display:inline-block;width:300px;height:250px"  data-ad-client="ca-pub-7563510220087670"  data-ad-slot="7141731321"  data-adsbygoogle-status="done"><ins  style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins  id="aswift_1_anchor"  style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe  width="300"  height="250"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_1"  name="aswift_1"  style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div></div>    </div>
+    
+</div>
+<div  class="row">
+<div  class="zone zone-footer"><p  class="text-center">
+    本站由<a  href="http://www.orchardproject.net/"  target="_blank">Orchard 1.7.2</a>开源项目驱动&nbsp;&nbsp;&nbsp;&nbsp;
+    <script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/stat.php"  language="JavaScript"></script><script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/core.php"  charset="utf-8"  type="text/javascript"></script><a  href="http://www.cnzz.com/stat/website.php?web_id=4679065"  target="_blank"  title="站长统计"><img  border="0"  hspace="0"  vspace="0"  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/pic.gif"  data-bd-imgshare-binded="1"></a>
+    ICP备案：滇ICP备12001764号-1&nbsp;&nbsp;&nbsp;&nbsp;业务合作联系QQ：373638128&nbsp;&nbsp;&nbsp;&nbsp;
+    Email:navy1015@126.com&nbsp;&nbsp;&nbsp;&nbsp;本站主题制作:<a  href="http://www.58img.com/web/703#">風塵</a>
+</p>
+<div  id="firstModal"  class="reveal-modal medium"  data-reveal="">
+    <h2>Foundation 5</h2>
+    <p>Foundation 5——世界领先的响应式WEB前端框架，用于构建基于任何设备上的 Web 应用。提供多种 Web 上的 UI 组件，如表单、按钮、Tabs 等等。</p>
+    <p>WEB前端资源网将于2014年1月1日发布中文文档及使用示例！</p>
+    <p><a  href="http://foundation.zurb.com/"  target="_blank"  class="button">Foundation 5官方网站</a></p>
+</div>
+</div></div>
+
+    <script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/prettify-min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/jquery-2.0.3.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/foundation.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/jquery.scrollUp.min.js"  type="text/javascript"></script>
+<script  src="./Web前端资源网 - 前端开发中常用的CSS选择器解析(一）_files/58img.js"  type="text/javascript"></script>
+    <script>prettyPrint();</script>
+
+<script  type="text/javascript">
+window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "32" }, "share": {}, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "t163", "douban", "huaban", "weixin", "copy"], "viewText": "", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "t163", "douban", "huaban", "weixin", "copy"] } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+
+
+
+<a  id="scrollUp"  href="http://www.58img.com/web/703#top"  title=""  style="position: fixed; z-index: 2147483647;"></a><iframe  frameborder="0"  id="bdSharePopup_selectshare1388023943679bg"  class="bdselect_share_bg"  style="display:none;"></iframe><div  id="bdSharePopup_selectshare1388023943679box"  style="display:none;"  share-type="selectshare"  class="bdselect_share_box"  data-bd-bind="1388023943679"><div  class="selectshare-mod-triangle"><div  class="triangle-border"></div><div  class="triangle-inset"></div></div><div  class="bdselect_share_head"><span>分享到</span><a  class="bdselect_share_dialog_close"></a></div><div  class="bdselect_share_content"><ul  class="bdselect_share_list bdshare-button-style0-32"><div  class="bdselect_share_partners"></div><a  href="http://www.58img.com/web/703#"  class="bds_more"  data-cmd="more"></a></ul></div></div><div  id="bdimgshare_1388023943690"  class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-16 sr-bdimgshare-black"  style="height:36px;line-height:26px;font-size:12px;width:autopx;display:none;"  data-bd-bind="1388023943690"><div  class="bdimgshare-bg"></div><div  class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-16"><label  class="bdimgshare-lbl">图片分享</label><a  href="http://www.58img.com/web/703#"   class="bds_qzone"  data-cmd="qzone"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_tsina"  data-cmd="tsina"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_tqq"  data-cmd="tqq"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_renren"  data-cmd="renren"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_t163"  data-cmd="t163"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_douban"  data-cmd="douban"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_huaban"  data-cmd="huaban"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_weixin"  data-cmd="weixin"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_copy"  data-cmd="copy"  hidefocus=""></a><a  href="http://www.58img.com/web/703#"   class="bds_more"  data-cmd="more"  hidefocus=""></a></div></div></body></html>

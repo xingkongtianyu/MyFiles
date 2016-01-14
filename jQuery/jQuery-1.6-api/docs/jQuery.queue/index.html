@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.queue()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/data/" title="View all posts in Data">Data</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#jQuery-queue1">jQuery.queue( element, [ queueName ] ) </a><ul><li>jQuery.queue( element, [ queueName ] )
+              </li></ul>
+</li>
+<li>
+<a href="#jQuery-queue2">jQuery.queue( element, queueName, newQueue ) </a><ul>
+<li>jQuery.queue( element, queueName, newQueue )
+              </li>
+<li>jQuery.queue( element, queueName, callback() )
+              </li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div id="jQuery-queue1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.queue( element, [ queueName ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Array">Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>显示在匹配的元素上的已经执行的函数列队。</p>
+<ul class="signatures"><li class="signature" id="jQuery-queue-element-queueName">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>jQuery.queue( element, [ queueName ] )</h4>
+<p class="arguement"><strong>element</strong>一个用于检查附加列队的DOM元素。</p>
+<p class="arguement"><strong>queueName</strong>一个含有队列名的字符串。默认是"Fx"，标准的动画队列。</p>
+</li></ul>
+<div class="longdesc"><p><strong>注意：</strong> 这是一个底层的方法，你应该用<code><a href="#p=queue">.queue()</a></code>代替。</p></div>
+<h3>例子：</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">显示列队的长度。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  div.newcolor { background:blue; }
+  span { color:red; }  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="show"&gt;Show Length of Queue&lt;/button&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;$("#show").click(function () {
+      var n = jQuery.queue( $("div")[0], "fx" );
+      $("span").text("Queue length is: " + n.length);
+    });
+    function runIt() {
+      $("div").show("slow");
+      $("div").animate({left:'+=200'},2000);
+      $("div").slideToggle(1000);
+      $("div").slideToggle("fast");
+      $("div").animate({left:'-=200'},1500);
+      $("div").hide("slow");
+      $("div").show(1200);
+      $("div").slideUp("normal", runIt);
+    }
+    runIt();&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div id="jQuery-queue2" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.queue( element, queueName, newQueue )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>在匹配元素上操作已经附加函数的列表。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-queue-element-queueName-newQueue">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>jQuery.queue( element, queueName, newQueue )</h4>
+<p class="arguement"><strong>element</strong>一个已附加列队函数（数组）的DOM元素 。</p>
+<p class="arguement"><strong>queueName</strong>一个含有队列名的字符串。默认是"Fx"，标准的动画队列。</p>
+<p class="arguement"><strong>newQueue</strong>一个替换当前函数列队内容的数组。</p>
+</li>
+<li class="signature" id="jQuery-queue-element-queueName-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>jQuery.queue( element, queueName, callback() )</h4>
+<p class="arguement"><strong>element</strong>一个要附加列队函数的DOM元素。</p>
+<p class="arguement"><strong>queueName</strong>一个含有队列名的字符串。默认是<code>fx</code>，标准的动画队列。</p>
+<p class="arguement"><strong>callback()</strong>添加到列队的新函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><strong>注意：</strong> 这是一个底层的方法，你应该用<code><a href="#p=queue">.queue()</a></code>代替。</p>
+<p>每个元素可以通过jQuery包含一个或多个函数队列。在大多数应用中，只有一个列队(访问 <code>fx</code>)被使用。队列允许一个元素来异步的访问一连串的动作，而不终止程序执行。</p>
+<p><code>jQuery.queue()</code>方法允许我们直接操纵这个函数队列。用一个回调函数访问<code>jQuery.queue()</code>特别的有用；它让我们把新函数置入到队列的末端。</p>
+<p>值得注意的是，当使用<code>jQuery.queue()</code>添加一个函数的时候，我们必须保证<code>jQuery.dequeue()</code>让下一个函数执行后被呼叫 。</p>
+</div>
+<h3>举例：</h3>
+<div class="entry-examples" id="entry-examples-1">
+<div id="example-1-0">
+<h4>例子： <span class="desc">Queue a custom function.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  div.newcolor { background:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  Click here...
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+   $(document.body).click(function () {
+      $("div").show("slow");
+      $("div").animate({left:'+=200'},2000);
+      jQuery.queue( $("div")[0], "fx", function () {
+        $(this).addClass("newcolor");
+        jQuery.dequeue( this );
+      });
+      $("div").animate({left:'-=200'},500);
+      jQuery.queue( $("div")[0], "fx", function () {
+        $(this).removeClass("newcolor");
+        jQuery.dequeue( this );
+      });
+      $("div").slideUp();
+    });&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1-1">
+<h4>例子： <span class="desc">Set a queue array to delete the queue.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { margin:3px; width:40px; height:40px;
+        position:absolute; left:0px; top:30px; 
+        background:green; display:none; }
+  div.newcolor { background:blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;button id="start"&gt;Start&lt;/button&gt;
+  &lt;button id="stop"&gt;Stop&lt;/button&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;
+   $("#start").click(function () {
+      $("div").show("slow");
+      $("div").animate({left:'+=200'},5000);
+      jQuery.queue( $("div")[0], "fx", function () {
+        $(this).addClass("newcolor");
+        jQuery.dequeue( this );
+      });
+      $("div").animate({left:'-=200'},1500);
+      jQuery.queue( $("div")[0], "fx", function () {
+        $(this).removeClass("newcolor");
+        jQuery.dequeue( this );
+      });
+      $("div").slideUp();
+    });
+    $("#stop").click(function () {
+      jQuery.queue( $("div")[0], "fx", [] );
+      $("div").stop();
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

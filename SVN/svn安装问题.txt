@@ -1,0 +1,42 @@
+问题1.将线上的SVN环境拷贝过来，配置好后，通过URL访问提示如下信息：Could not open the requested SVN filesystem
+查看日志文件，发现：Expected FS format ’2′; found format ’3′
+
+问题产生原因：
+
+服务程序是1.4.x版本的svnserve或mod_dav_svn，版本库通过1.5.x版本的svnadmin或TortoiseSVN创建时，会产生这个问题
+
+解决方法:
+
+使用1.5以上的SVN来作为服务
+或使用1.4系列的svnadmin或TortoiseSVN来创建版本库
+或使用1.4.x系列创建新版本库，通过1.5.x版本备份并恢复原版本库到新版本库
+
+问题2.
+
+httpd: Syntax error on line 443 of /usr/local/apache2/conf/httpd.conf: Cannot load /usr/local/apache2/modules/mod_dav_svn.so into server: /usr/local/lib/libsvn_subr-1.so.0: undefined symbol: apr_memcache_add_server
+
+问题产生的原因：
+
+SVN 依赖的APR版本要正确。如果Apache为2.0.x，对应的APR版本应为0.9.x；Apache为2.2.x，对应的APR版本应为1.2.x。 由于subversion-deps包里的APR是0.9.x的，因此编译svn时要删除从deps里解压出来的apr, apr-util，改而使用apache 2.2里提供的。（这里指定为开始安装的apr目录）,这一点知识非常重要。
+
+解决方法：
+下载apr-1.2.12.tar.gz与apr-util-1.2.12.tar.gz。
+
+编译安装这两个包，然后重新安装下apache与subversion即可。
+
+问题3.
+
+/usr/bin/ld: cannot find -lexpatcollect2: ld returned 1 exit status
+make[1]: *** [test/serf_get] 错误 1
+make[1]: Leaving directory `/root/build/subversion-1.6.11/serf
+‘make: *** [external-all] 错误 1
+
+解决方法：
+
+yum install expat-devel 
+
+
+其他安装程序
+yum -y install libxml*
+yum -y install openssl*
+yum -y install expat-devel*

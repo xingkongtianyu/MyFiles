@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.height()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/dimensions/" title="View all posts in Dimensions">Dimensions</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/style-properties/" title="View all posts in Style Properties">Style Properties</a></span>  
+    
+  				</div>
+</div>
+
+<fieldset class="toc">
+<legend>Contents:</legend>
+<ul class="toc-list">
+<li>
+<a href="#height1">height() </a><ul><li>.height()
+	  					</li></ul>
+</li>
+<li>
+<a href="#height2">height( value ) </a><ul>
+<li>.height( value )
+	  					</li>
+<li>.height( function(index, height) )
+	  					</li>
+</ul>
+</li>
+</ul>
+</fieldset>
+<div class="entry method" id="height1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.height()</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Integer">Integer</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>为匹配的元素集合中获取第一个元素的当前计算高度值。</p>
+<ul class="signatures"><li class="signature" id="height"><h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.height()</h4></li></ul>
+<div class="longdesc">
+<p><code>.css('height')</code> 和 <code>.height()</code>之间的区别是后者返回一个没有单位的数值（例如，<code>400</code>），前者是返回带有完整单位的字符串（例如，<code>400px</code>）。当一个元素的高度需要数学计算的时候推荐使用<code>.height()</code> 方法 。</p>
+<p class="image"><img src="/images/0042_04_01.png"></p>
+<p>这个方法同样能计算出window和document的高度。</p>
+<pre>$(window).height();   // returns height of browser viewport
+$(document).height(); // returns height of HTML document</pre>
+<p>
+注意<code>.height()</code>总是返回内容宽度,不管CSS <code>box-sizing</code>属性值。
+</p>
+</div>
+
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">显示各个高度。注意这个来自值iframe的值可能小于你的预期。黄色高亮显示iframe body。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  body { background:yellow; }
+  button { font-size:12px; margin:2px; }
+  p { width:150px; border:1px red solid; }
+  div { color:red; font-weight:bold; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button id="getp"&gt;Get Paragraph Height&lt;/button&gt;
+  &lt;button id="getd"&gt;Get Document Height&lt;/button&gt;
+  &lt;button id="getw"&gt;Get Window Height&lt;/button&gt;
+
+  &lt;div&gt;&amp;nbsp;&lt;/div&gt;
+  &lt;p&gt;
+    Sample paragraph to test height
+  &lt;/p&gt;
+&lt;script&gt;
+    function showHeight(ele, h) {
+      $("div").text("The height for the " + ele + 
+                    " is " + h + "px.");
+    }
+    $("#getp").click(function () { 
+      showHeight("paragraph", $("p").height()); 
+    });
+    $("#getd").click(function () { 
+      showHeight("document", $(document).height()); 
+    });
+    $("#getw").click(function () { 
+      showHeight("window", $(window).height()); 
+    });
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+<div class="entry method" id="height2">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.height( value )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>给每个匹配的元素设置CSS高度。</p>
+<ul class="signatures">
+<li class="signature" id="height-value">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.height( value )</h4>
+<p class="arguement"><strong>value</strong>一个正整数代表的像素数,或是整数和一个可选的附加单位（默认是：“px”）(作为一个字符串)。</p>
+</li>
+<li class="signature" id="height-functionindex, height">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.1/">1.4.1</a></span>.height( function(index, height) )</h4>
+<p class="arguement"><strong>function(index, height)</strong>返回用于设置高度的一个函数。接收元素的索引位置和元素旧的高度值作为参数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>当调用<code>.height(value)</code>方法的时候，这个“value”参数可以是一个字符串（数字加单位）或者是一个数字。如果这个“value”参数只提供一个数字，jQuery会自动加上单位px。如果只提供一个字符串，任何有效的CSS尺寸都可以为高度赋值（就像<code>100px</code>, <code>50%</code>, 或者 <code>auto</code>）。注意在现代浏览器中，CSS高度属性不包含padding, border, 或者 margin。</p>
+<p>如果没有给定明确的单位（像'em' 或者 '%'），那么默认情况下"px"会被直接添加上去（也理解为"px"是默认单位）。</p>
+<p>注意<code>.height('value')</code>设置的容器宽度是根据CSS <code>box-sizing</code>属性来定的, 将这个属性值改成<code>border-box</code>将造成这个函数改变成获取这个容器的outerHeight替换原来的内容高度。</p>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples"><div id="example-0">
+<h4><span class="desc">点击每个div时设置该div高度为30px，并改变颜色。</span></h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;div { width:50px; height:70px; float:left; margin:5px;
+        background:rgb(255,140,0); cursor:pointer; }  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;script&gt;$("div").one('click', function () {
+      $(this).height(30)
+             .css({cursor:"auto", backgroundColor:"green"});
+    });&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div></div>
+</div>
+</div>
+
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

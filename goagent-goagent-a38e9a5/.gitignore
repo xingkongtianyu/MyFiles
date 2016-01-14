@@ -1,0 +1,10 @@
+.DS_Store
+.appcfg_cookies
+*~
+*.pyc
+*.pac
+*.key
+*.crt
+*.egg
+*.pid
+*.user.ini

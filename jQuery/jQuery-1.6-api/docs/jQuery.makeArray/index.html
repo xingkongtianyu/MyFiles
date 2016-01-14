@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.makeArray()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-makeArray1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.makeArray( obj )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Array">Array</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>转换一个类似数组的对象成为真正的JavaScript数组。</p>
+<ul class="signatures"><li class="signature" id="jQuery-makeArray-obj">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.2/">1.2</a></span>jQuery.makeArray( obj )</h4>
+<p class="arguement"><strong>obj</strong>转换成一个原生数组的任何对象。</p>
+</li></ul>
+<div class="longdesc">
+<p>一般来说，无论是在jQuery和JavaScript中很多方法都返回类似数组的对象。举例来说，jQuery的代理函数<code>$()</code>返回一个jQuery对象具有许多的数组的属性。（length， <code>[]</code>数组访问运算符等），但和数组并不完全一样，缺少一些对数组的内置方法（如<code>.pop()</code>和<code>.reverse()</code>）。</p>
+<p>请注意，转换后，任何有特殊功能的对象（如在我们的例子中jQuery方法）将不再存在。现在的对象是一个普通的数组。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Turn a collection of HTMLElements into an Array of them.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { color:red; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;First&lt;/div&gt;
+  &lt;div&gt;Second&lt;/div&gt;  
+  &lt;div&gt;Third&lt;/div&gt;
+
+  &lt;div&gt;Fourth&lt;/div&gt;
+&lt;script&gt;
+    var elems = document.getElementsByTagName("div"); // returns a nodeList
+    var arr = jQuery.makeArray(elems);
+    arr.reverse(); // use an Array method on list of dom elements
+    $(arr).appendTo(document.body);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Turn a jQuery object into an array</span>
+</h4>
+<pre><code class="example">
+    var obj = $('li');
+    var arr = $.makeArray(obj);
+</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">(typeof obj === 'object' &amp;&amp; obj.jquery) === true;
+jQuery.isArray(arr) === true;
+    </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

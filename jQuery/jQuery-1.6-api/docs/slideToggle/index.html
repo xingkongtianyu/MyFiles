@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.slideToggle()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/effects/" title="View all posts in Effects">Effects</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/effects/sliding/" title="View all posts in Sliding">Sliding</a></span>
+  
+  				</div>
+</div>
+<div id="slideToggle1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.slideToggle( [ duration ], [ callback ] )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>用滑动动画显示或隐藏一个匹配元素。</p>
+<ul class="signatures">
+<li class="signature" id="slideToggle-duration-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.slideToggle( [ duration ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+<li class="signature" id="slideToggle-duration-easing-callback">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4.3/">1.4.3</a></span>.slideToggle( [ duration ], [ easing ], [ callback ] )</h4>
+<p class="arguement"><strong>duration</strong>一个字符串或者数字决定动画将运行多久。</p>
+<p class="arguement"><strong>easing</strong>一个用来表示使用哪个缓冲函数来过渡的字符串。</p>
+<p class="arguement"><strong>callback</strong>在动画完成时执行的函数。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p><code>.slideToggle()</code>方法将给匹配元素的高度的动画，这会导致页面的下面部分滑下去或滑上来，看似透露或隐瞒的项目。<code>display</code>属性将被储存并且需要的时候可以恢复。如果一个元素的<code>display</code>值为<code>inline</code>，然后是隐藏和显示，这个元素将再次显示<code>inline</code>.。当一个隐藏动画后，高度值达到0的时候，<code>display</code> 样式属性被设置为<code>none</code>，以确保该元素不再影响页面布局。</p>
+<p>持续时间是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 <code>'fast'</code> 和 <code>'slow'</code> 分别代表200和600毫秒的延时。</p>
+<p>如果提供回调函数参数，回调函数会在动画完成的时候调用。这个对于将不同的动画串联在一起按顺序排列是非常有用的。这个回调函数不设置任何参数，但是<code>this</code>是存在动画的DOM元素，如果多个元素一起做动画效果，值得注意的是每执行一次回调匹配的元素，而不是作为一个整体的动画一次。</p>
+<p>我们可以给任何元素做动画，比如一个简单的图片：</p>
+<pre>&lt;div id="clickme"&gt;
+  Click here
+&lt;/div&gt;
+&lt;img id="book" src="book.png" alt="" width="100" height="123" /&gt;</pre>
+<p>We will cause <code>.slideToggle()</code> to be called when another element is clicked:</p>
+<pre>$('#clickme').click(function() {
+  $('#book').slideToggle('slow', function() {
+    // Animation complete.
+  });
+});
+</pre>
+<p>随着最初显示的元素，我们可以在第一次点击的时候将其缓慢隐藏：</p>
+<p class="image four-across"> 
+    <img src="/images/0042_06_25.png" alt=""><img src="/images/0042_06_26.png" alt=""><img src="/images/0042_06_27.png" alt=""><img src="/images/0042_06_28.png" alt=""></p>
+<p>第二次单击将再次显示元素：</p>
+<p class="image four-across"> 
+    <img src="/images/0042_06_29.png" alt=""><img src="/images/0042_06_30.png" alt=""><img src="/images/0042_06_31.png" alt=""><img src="/images/0042_06_32.png" alt=""></p>
+</div>
+<h3 id="notes-0">注意：</h3>
+<div class="longdesc"><ul><li>所有的jQuery效果，包括<code>.slideToggle()</code>,能使用 <code>jQuery.fx.off = true</code> 关闭全局性。更多信息请查看<a   target="_blank" href="http://api.jquery.com/jquery.fx.off">jQuery.fx.off</a>。</li></ul></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">所有段落动画向上或向下滑动，600毫秒内完成的动画。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { width:400px; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Toggle&lt;/button&gt;
+
+  &lt;p&gt;
+    This is the paragraph to end all paragraphs.  You
+    should feel &lt;em&gt;lucky&lt;/em&gt; to have seen such a paragraph in
+    your life.  Congratulations!
+  &lt;/p&gt;
+&lt;script&gt;
+    $("button").click(function () {
+      $("p").slideToggle("slow");
+    });
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">进行动画的div之间的分隔与切换，使一些看起来和一些消失。</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  div { background:#b977d1; margin:3px; width:60px; 
+        height:60px; float:left; }
+  div.still { background:#345; width:5px; }
+  div.hider { display:none; }
+  span { color:red; }
+  p { clear: left; }&lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;div class="still"&gt;&lt;/div&gt;
+&lt;div style="display:none;"&gt;
+&lt;/div&gt;&lt;div class="still"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div class="still"&gt;&lt;/div&gt;
+&lt;div class="hider"&gt;&lt;/div&gt;
+&lt;div class="still"&gt;&lt;/div&gt;
+&lt;div class="hider"&gt;&lt;/div&gt;
+&lt;div class="still"&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;button id="aa"&gt;Toggle&lt;/button&gt; There have been &lt;span&gt;0&lt;/span&gt; toggled divs.&lt;/p&gt;
+&lt;script&gt;
+  $("#aa").click(function () {
+    $("div:not(.still)").slideToggle("slow", function () {
+      var n = parseInt($("span").text(), 10);
+      $("span").text(n + 1);
+    });
+  });
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

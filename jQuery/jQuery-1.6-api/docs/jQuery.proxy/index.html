@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.proxy()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/events/" title="View all posts in Events">Events</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/events/event-handler-attachment/" title="View all posts in Event Handler Attachment">Event Handler Attachment</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-proxy1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.proxy( function, context )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#Function">Function</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文语境。</p>
+<ul class="signatures">
+<li class="signature" id="jQuery-proxy-function-context">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery.proxy( function, context )</h4>
+<p class="arguement"><strong>function</strong>将要改变上下文语境的函数。</p>
+<p class="arguement"><strong>context</strong>函数的上下文语境(`this`)会被设置成这个 object 对象。</p>
+</li>
+<li class="signature" id="jQuery-proxy-context-name">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>jQuery.proxy( context, name )</h4>
+<p class="arguement"><strong>context</strong>函数的上下文语境会被设置成这个 object 对象。</p>
+<p class="arguement"><strong>name</strong>将要改变上下文语境的函数名(这个函数必须是前一个参数 'context' 对象的属性)</p>
+</li>
+</ul>
+<div class="longdesc"><p>这个方法通常在向一个元素上附加事件处理函数时，上下文语境实际是指向另一个对象的情况下使用。另外，jQuery 能够确保即使你绑定的函数是经过 jQuery.proxy() 处理过的函数，你依然可以用原先的函数来正确地取消绑定。</p></div>
+<h3>Example:</h3>
+<div class="entry-examples" id="entry-examples"><div id="example-0">
+<h4><span class="desc">强制修改函数的上下文语境。</span></h4>
+<pre><code class="example">var obj = {
+  name: "John",
+  test: function() {
+    alert( this.name );
+    $("#test").unbind("click", obj.test);
+  }
+};
+
+$("#test").click( jQuery.proxy( obj, "test" ) );
+
+// This also works:
+// $("#test").click( jQuery.proxy( obj.test, obj ) );</code></pre>
+</div></div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

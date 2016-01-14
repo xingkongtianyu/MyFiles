@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.find()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/tree-traversal/" title="View all posts in Tree Traversal">Tree Traversal</a></span>
+  
+  				</div>
+</div>
+<div id="find1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.find( selector )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>获得当前元素匹配集合中每个元素的后代，选择性筛选的选择器。</p>
+<ul class="signatures"><li class="signature" id="find-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.find( selector )</h4>
+<p class="arguement"><strong>selector</strong>一个用于匹配元素的选择器字符串。</p>
+</li>
+<li class="signature" id="find-jQuery object">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.find( jQuery object )</h4>
+<p class="arguement"><strong>jQuery object</strong>一个用于匹配元素的jQuery对象。</p>
+</li>
+<li class="signature" id="find-element">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.6/">1.6</a></span>.find( element )</h4>
+<p class="arguement"><strong>element</strong>一个用于匹配元素的DOM元素。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>如果一个jQuery对象表示一个DOM元素的集合， <code>.find()</code>方法允许我们能够通过搜索DOM树中的这些元素的后代元素从匹配的元素构造一个新的jQuery对象。<code>.find()</code>和<code>.children()</code>方法是相似的，但后者只是旅行的DOM树向下一个层级（就是只查找子元素，而不是后代元素）。</p>
+<p>该方法选择性地接受同一类型选择表达，我们可以传递给<code>$()</code>函数。如果紧随兄弟匹配选择器，它在新建成的jQuery对象中留下；否则，它被排除在外。</p>
+<p>考虑一个页面上的一个简单的列表：</p>
+<pre>
+&lt;ul class="level-1"&gt;
+  &lt;li class="item-i"&gt;I&lt;/li&gt;
+  &lt;li class="item-ii"&gt;II
+    &lt;ul class="level-2"&gt;
+      &lt;li class="item-a"&gt;A&lt;/li&gt;
+      &lt;li class="item-b"&gt;B
+        &lt;ul class="level-3"&gt;
+          &lt;li class="item-1"&gt;1&lt;/li&gt;
+          &lt;li class="item-2"&gt;2&lt;/li&gt;
+          &lt;li class="item-3"&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class="item-c"&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class="item-iii"&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>如果我们从item II 开始，我们可以找到它里面的清单项目：</p>
+<pre>$('li.item-ii').find('li').css('background-color', 'red');</pre>
+<p>该调用的结果是项目II的A，B，1，2，3，和C的背景给为红色，尽管item II匹配选择表达式，它不包括在结果中; 唯一的后代被认为是匹配的候选元素。</p>
+<blockquote><p>不像在树的遍历方法，择器表达式是需要调用<code>.find()</code>。如果我们需要检索所有元素的后代，我们可以通过在普遍选择器<code>'*'</code>来完成。</p></blockquote>
+<p><a   target="_blank" href="http://api.jquery.com/jquery/#selector-context">选择器上下文</a> 通过 <code>.find()</code> 方法实现, <code>$('li.item-ii').find('li')</code> 等价于 <code>$('li', 'li.item-ii')</code>.</p>
+
+<p><strong>在 jQuery 1.6中</strong>, 我们还可以用给定的jQuery集合或元素过滤选择器。在如上所述相同的嵌套列表中，如果我们开始：</p>
+<pre>var $allListElements = $('li');</pre>
+<p>然后通过这个jQuery对象查找：</p>
+<pre>$('li.item-ii').find( $allListElements );</pre>
+<p>这将返回一个只包含列表元素的jQuery集合，它们是项目II的后裔。</p>
+<p>同样，一个元素可能也可以通过查找：</p>
+<pre>
+var item1 = $('li.item-1')[0];
+$('li.item-ii').find( item1 ).css('background-color', 'red');
+</pre>
+<p>该调用的结果将是对项目1的背景替换为红色。</p>
+
+
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">开始搜索段落所有后代的span元素，和$("p span")一样</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;&lt;span&gt;Hello&lt;/span&gt;, how are you?&lt;/p&gt;
+&lt;p&gt;Me? I'm &lt;span&gt;good&lt;/span&gt;.&lt;/p&gt;
+&lt;script&gt;
+  $("p").find("span").css('color','red');
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">一个选择使用的所有span标签jQuery集合。只有spans在P标签更改为红色，而另一些是蓝色。</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    span { color: blue; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;&lt;span&gt;Hello&lt;/span&gt;, how are you?&lt;/p&gt;
+  &lt;p&gt;Me? I'm &lt;span&gt;good&lt;/span&gt;.&lt;/p&gt;
+  &lt;div&gt;Did you &lt;span&gt;eat&lt;/span&gt; yet?&lt;/div&gt;
+&lt;script&gt;
+  var $spans = $('span');
+  $("p").find( $spans ).css('color','red');
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Add spans around each word then add a hover and italicize words with the letter t.</span>
+</h4>
+<pre class="prettyprint"><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { font-size:20px; width:200px; cursor:default; 
+      color:blue; font-weight:bold; margin:0 10px; }
+  .hilite { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-git.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;
+  When the day is short
+  find that which matters to you
+  or stop believing
+  &lt;/p&gt;
+&lt;script&gt;
+  var newText = $("p").text().split(" ").join("&lt;/span&gt; &lt;span&gt;");
+  newText = "&lt;span&gt;" + newText + "&lt;/span&gt;";
+
+  $("p").html( newText )
+    .find('span')
+    .hover(function() { 
+      $(this).addClass("hilite"); 
+    },
+      function() { $(this).removeClass("hilite"); 
+    })
+  .end()
+    .find(":contains('t')")
+    .css({"font-style":"italic", "font-weight":"bolder"});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

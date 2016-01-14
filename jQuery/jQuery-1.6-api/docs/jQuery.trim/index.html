@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">jQuery.trim()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/utilities/" title="View all posts in Utilities">Utilities</a></span>
+  
+  				</div>
+</div>
+<div id="jQuery-trim1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">jQuery.trim( str )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#String">String</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>去掉字符串起始和结尾的空格。</p>
+<ul class="signatures"><li class="signature" id="jQuery-trim-str">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>jQuery.trim( str )</h4>
+<p class="arguement"><strong>str</strong>修剪的字符串。
+</p>
+</li></ul>
+<div class="longdesc"><p><code>$.trim()</code>函数删除提供字符串的所有换行符,空格（包括非中断空格），开始和结束tab。如果这些空白字符在字符串中间发生时，它们将被保留。</p></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">删除在开始和在字符串的末尾两个空格。
+</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button&gt;Show Trim Example&lt;/button&gt;
+&lt;script&gt;
+
+$("button").click(function () {
+var str = "     lots of spaces before and after     ";
+alert("'" + str + "'");
+
+str = jQuery.trim(str);
+alert("'" + str + "' - no longer");
+});
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Remove the two white spaces at the start and at the end of the string.</span>
+</h4>
+<pre><code class="example">$.trim("  hello, how are you?  ");</code></pre>
+<h4>Result:</h4>
+<pre><code class="results">"hello, how are you?"</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

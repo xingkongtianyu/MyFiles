@@ -1,0 +1,49 @@
+音乐添加代码与音乐地址：
+index.asp?xAction=xReadNews&NewsID=160
+载入音乐
+基本语法：<embed src="音乐文件地址">
+常用属性如下:
+src="your.mid"
+设定midi档案及路径,可以是相对或绝对.
+autostart=true
+是否在音乐档下载完之后就自动播放.true是,false否(内定值).
+loop="true"
+是否自动反复播放.loop=2表示重复两次,true是,false否.
+hidden="true"
+是否完全隐藏控制画面,true为是,no为否(内定).
+starttime="分:秒"
+设定歌曲开始播放的时间.如starttime="00:30"表示第30秒处开始播放.
+volume="0-100"
+设定竟是的大小,数值是0到100之间.内定则为使用系统本身的设定
+width="整数"和high="整数"
+设定控制面板的高度和宽度.(若hidden="no")
+align="center"
+设定控制面板和旁边文字的对齐方式,其值可以是top、bottom、center、baseline、left、right、texttop、middle、absmiddle、absbottom
+controls="smallconsole"
+设定控制面板的外观.预设值是console.
+console一般正常面板
+smallconsole较小的面板
+playbutton只显示播放按钮
+pausecutton只显示暂停按钮
+stopbutton只显示停止按钮
+volumelever只显示音量调节按钮
+例一:
+<embed src="midi.mid" autostart=true hidden=true loop=true>
+作为背景音乐来播放,隐藏了播放器.
+例二:
+<embed src="midi.mid" loop=true width=145 height=60>
+出现控制面板了,你可以控制它的开与关,还可以调节音量的大小.
+注明:可用来插入各种多媒体,格式可以是midi,wav,aiff,au等等,netscape及新版的IE支持.
+IE中的背景音乐代码如下:
+<bgsound src="音乐地址文件" loop=#> <#=循环数>
+注明: 这种背景音乐格式,只有IE浏览器中才可以听到.一般用来插入wav wma mid mp3等格式的音乐.
+例一:
+<embed src="midi.mid" autostart=true hidden=true loop=true>
+作为背景音乐来播放,隐藏了播放器.
+例二:
+<embed src="midi.mid" loop=true width=145 height=60>
+出现控制面板了,你可以控制它的开与关,还可以调节音量的大小.
+注明:可以用来插入各种多媒体,格式可以是midi wav aiff au等等,netscape及新版IE都支持.
+IE中的背景音乐
+
+

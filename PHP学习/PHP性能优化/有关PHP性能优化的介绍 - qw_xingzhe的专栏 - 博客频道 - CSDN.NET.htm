@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/qw_xingzhe/article/details/10329817 -->
+<html  xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>有关PHP性能优化的介绍 - qw_xingzhe的专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta  name="description"  content="PHP优化对于PHP的优化主要是对php.ini中的相关主要参数进行合理调整和设置，以下我们就来看看php.ini中的一些对性能影响较大的参数应该如何设置。 # vi /etc/php.ini(1) PHP函数禁用找到：disable_functions =该选项可以设置哪些PHP函数是禁止使用的，PHP中有一些函数的风险性还是相当大的，可以直接执行一些系统级脚本命令，如果允许这些">
+    <script  type="text/javascript"  async=""  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/jquery.js"  type="text/javascript"></script>
+    <script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        
+       
+        <link  rel="stylesheet"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/index.css">
+        
+
+    <link  rel="Stylesheet"  type="text/css"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link  id="RSSLink"  title="RSS"  type="application/rss+xml"  rel="alternate"  href="http://blog.csdn.net/qw_xingzhe/rss/list">
+    <link  rel="shortcut icon"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/favicon.ico">
+    <link  type="text/css"  rel="stylesheet"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+<script  type="text/javascript"  charset="utf-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/tracking.js"></script><script  type="text/javascript"  charset="utf-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/main.js"></script><script  type="text/javascript"  charset="utf-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/main(1).js"></script><link  rel="stylesheet"  type="text/css"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/style(1).css"><link  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css"  rel="stylesheet"  type="text/css"><script  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/logger.js"></script></head>
+<body><div  id="BAIDU_DUP_fp_wrapper"  style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe  id="BAIDU_DUP_fp_iframe"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/o.htm"  style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe  frameborder="0"  style="display: none;"></iframe><div  id="bdshare_s"  style="display: block;"><iframe  id="bdsIfr"  style="position:absolute;display:none;z-index:9999;"  frameborder="0"></iframe><div  id="bdshare_l"  style="display: none;"><div  id="bdshare_l_c"><h6>分享到</h6><ul><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_mshare mshare">一键分享</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_qzone qqkj">QQ空间</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_tsina xlwb">新浪微博</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_bdysc bdysc">百度云收藏</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_renren rrw">人人网</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_tqq txwb">腾讯微博</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_bdxc bdxc">百度相册</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_kaixin001 kxw">开心网</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_tqf txpy">腾讯朋友</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_tieba bdtb">百度贴吧</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_douban db">豆瓣网</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_tsohu shwb">搜狐微博</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_bdhome bdhome">百度新首页</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_sqq sqq">QQ好友</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_thx thx">和讯微博</a></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="bds_more">更多...</a></li></ul><p><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  class="goWebsite">百度分享</a></p></div></div></div>
+    
+   
+      
+    <script  id="toolbar-tpl-scriptId"  fixed="true"  prod="blog"  skin="black"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/html.js"  type="text/javascript"></script><div  class="csdn-toolbar csdn-toolbar-skin-black ">        <div  class="container row center-block ">          <div  class="col-md-3 pull-left logo clearfix"><a  href="http://www.csdn.net/?ref=toolbar"  title="CSDN首页"  target="_blank"  class="icon"></a><a  title="频道首页"  href="http://blog.csdn.net/"  target="_blank"  class="img blog-icon"></a></div>          <div  class="pull-right login-wrap ">            <ul  class="btns">              <li  class="loginlink"><a  href="https://passport.csdn.net/account/login?ref=toolbar"  target="_top">登录&nbsp;</a>|<a  target="_top"  href="https://passport.csdn.net/account/register?ref=toolbar">&nbsp;注册</a></li>              <li  class="search">                <div  class="icon on-search-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <form  action="http://so.csdn.net/search?ref=toolbar"  method="get"  target="_blank">                      <div  class="border">                        <input  placeholder="搜索"  type="text"  value=""  name="q"  accesskey="2"><span  class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="favor">                <div  class="icon on-favor-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  style="display:none;"  class="favor-success"><span  class="msg">收藏成功</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <div  style="display:none;"  class="favor-failed"><span  class="icon-danger-lg"></span><span  class="msg">收藏失败，请重新收藏</span>                      <div  class="btns"><span  class="btn btn-primary ok">确定</span></div>                    </div>                    <form  role="form"  class="form-horizontal favor-form">                      <div  class="form-group">                        <div  class="clearfix">                          <label  for="input-title"  class="col-sm-2 control-label">标题</label>                          <div  class="col-sm-10">                            <input  id="inputTitle"  type="text"  placeholder=""  class="title form-control">                          </div>                        </div>                        <div  class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div  class="form-group">                        <label  for="input-url"  class="col-sm-2 control-label">网址</label>                        <div  class="col-sm-10">                          <input  id="input-url"  type="text"  placeholder=""  class="url form-control">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-tag"  class="col-sm-2 tag control-label">标签</label>                        <div  class="col-sm-10">                          <input  id="input-tag"  type="text"  class="form-control tag">                        </div>                      </div>                      <div  class="form-group">                        <label  for="input-description"  class="description col-sm-2 control-label">摘要</label>                        <div  class="col-sm-10">                          <textarea  id="input-description"  class="form-control description"></textarea>                        </div>                      </div>                      <div  class="form-group">                        <div  class="col-sm-offset-2 col-sm-10 ft">                          <div  class="col-sm-4 pull-left">                            <div  class="checkbox">                              <label>                                <input  type="checkbox"  name="share"  checked="checked"  class="share">公开                              </label>                            </div>                          </div>                          <div  class="col-sm-8 pull-right favor-btns">                            <button  type="button"  class="cancel btn btn-default">取消</button>                            <button  type="submit"  class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li  class="notify">                <div  style="display: none;"  class="number"></div>                <div  style="display: none;"  class="icon-hasnotes-sm"></div>                <div  id="header_notice_num"></div>                <div  class="icon on-notify-icon">                  <div  class="wrap">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  id="note1"  class="csdn_note"  style="display: none;">                      <div  class="box"><div  class="notifications notice_list_con curr">  <a  href="javascript:void 0"  class="close1"></a>  <div  class="menu_title">    <span  class="title"><a  href="http://notify.csdn.net/"  target="_blank"  class="go_all">查看所有通知</a></span>  </div>  <div  class="loading"></div>  <div  class="empty">暂没有新通知</div>  <div  class="notice_content"></div></div><div  class="notifications detail_con"  style="display: none">  <div  class="menu_title">    <span  class="title">      <a  class="go_back"  href="javascript:void 0;">返回通知列表</a>      <a  class="notifications_page_none nextnote"  href="javascript:void 0;">下一条</a>      <a  class="notifications_page prvnote"  href="javascript:void 0;">上一条</a>    </span>  </div>  <div  class="notice_content"></div></div><div  class="error"></div></div>                    <iframe  src="about:block"  frameborder="0"  allowtransparency="true"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li  class="ugc">                <div  class="icon on-ugc-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <dl>                      <dt><a  href="http://geek.csdn.net/news/expert?ref=toolbar"  target="_blank"  class="p-news clearfix"><em  class="icon"></em><span>分享资讯</span></a></dt>                      <dt><a  href="http://share.csdn.net/slides/new?ref=toolbar"  target="_blank"  class="p-doc clearfix"><em  class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a  href="http://bbs.csdn.net/topics/new?ref=toolbar"  target="_blank"  class="p-ask clearfix"><em  class="icon"></em><span>提问题</span></a></dt>                      <dt><a  href="http://write.blog.csdn.net/postedit?ref=toolbar"  target="_blank"  class="p-blog clearfix"><em  class="icon"></em><span>写博客</span></a></dt>                      <dt><a  href="http://u.download.csdn.net/upload?ref=toolbar"  target="_blank"  class="p-src clearfix"><em  class="icon"></em><span>传资源</span></a></dt>                      <dt><a  href="https://code.csdn.net/projects/new?ref=toolbar"  target="_blank"  class="c-obj clearfix"><em  class="icon"></em><span>创建项目</span></a></dt>                      <dt><a  href="https://code.csdn.net/snippets/new?ref=toolbar"  target="_blank"  class="c-code clearfix"><em  class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li  class="profile">                <div  class="icon on-profile-icon"><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"  class="curr-icon-img">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                    <div  class="bd">                      <dl  class="clearfix">                        <dt  class="pull-left img"><a  target="_blank"  href="https://my.csdn.net/?ref=toolbar"  class="avatar"><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/2_zc80330582.jpg"></a></dt>                        <dd  class="info"><a  target="_blank"  href="http://my.csdn.net/?ref=toolbar"  class="nickname">zc80330582</a><span  class="dec"><a  class="fill-dec"  href="https://passport.csdn.net/account/profile"  target="_blank">编辑自我介绍，让更多人了解你<span  class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div  class="ft clearfix"><a  target="_blank"  href="https://passport.csdn.net/account/profile?ref=toolbar"  class="pull-left"><span  class="icon settings"></span>设置</a><a  href="http://passport.csdn.net/account/logout?ref=toolbar"  target="_top"  class="pull-right"><span  class="icon quit"></span>退出</a></div>                  </div>                </div>              </li>              <li  class="apps">                <div  class="icon on-apps-icon">                  <div  class="wrap clearfix">                    <div  class="curr-icon-wrap">                      <div  class="curr-icon"></div>                    </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a  href="http://blog.csdn.net/?ref=toolbar"  target="_blank">博客</a></dd>                      <dd> <a  href="http://bbs.csdn.net/?ref=toolbar"  target="_blank">论坛</a></dd>                      <dd> <a  href="http://download.csdn.net/?ref=toolbar"  target="_blank">下载</a></dd>                      <dd><a  href="http://share.csdn.net/?ref=toolbar"  target="_blank">Share</a></dd>                      <dd><a  href="http://geek.csdn.net/?ref=toolbar"  target="_blank">极客头条</a></dd>                    </dl>                  </div>                  <div  class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd> <a  href="https://code.csdn.net/?ref=toolbar"  target="_blank">CODE</a></dd>                      <dd> <a  href="http://hero.csdn.net/?ref=toolbar"  target="_blank">英雄会</a></dd>                      <dd> <a  href="http://huiyi.csdn.net/meeting?ref=toolbar"  target="_blank">会议</a></dd>                    </dl>                  </div>                  <div  class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a  href="http://student.csdn.net/?ref=toolbar"  target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+    <div  id="container">
+        <div  id="header">
+    <div  class="header">
+        <div  id="blog_title">
+            <h1>
+                <a  href="http://blog.csdn.net/qw_xingzhe">qw_xingzhe的专栏</a></h1>
+            <h2></h2>
+            <div  class="clear">
+            </div>
+        </div>
+        <div  class="clear">
+        </div>
+    </div>
+</div>
+<div  id="navigator">
+    <div  class="navigator_bg">
+    </div>
+    <div  class="navigator">
+        <ul>
+                <li  id="btnContents"><a  href="http://blog.csdn.net/qw_xingzhe?viewmode=contents"><span >
+                    <img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li  id="btnView"><a  href="http://blog.csdn.net/qw_xingzhe?viewmode=list"><span >
+                    <img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li  id="btnRss"><a  href="http://blog.csdn.net/qw_xingzhe/rss/list"><span >
+                    <img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script  type="text/javascript">
+    var username = "qw_xingzhe";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/qw_xingzhe";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "zc80330582";
+</script>
+
+        <div  id="body">
+            <div  id="main">
+                <div  class="main">
+<div  class="notice tracking-ad"  data-mod="popu_3"> 
+
+
+<a  href="http://bbs.csdn.net/topics/390693540"  target="_blank"><font  color="red">2014年1月微软MVP当选名单揭晓！
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<a  href="http://blog.csdn.net/blogdevteam/article/details/17356319"  target="_blank">
+<font  color="red">“我的2013”年度征文获奖名单已公布
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a  href="http://www.csdn.net/article/2014-01-22/2818223"  target="_blank">
+<font  color="red">专访宋海涛：我们在做一款比Google Glass更酷的设备 </font></a>
+
+
+</div>                    <link  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/comment1.css"  type="text/css"  rel="stylesheet">
+<link  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/style1.css"  type="text/css"  rel="stylesheet">
+<div  id="article_details"  class="details">
+    <div  class="article_title">
+    <span  class="ico ico_type_Repost"></span>
+    <h3>
+        <span  class="link_title"><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817">
+        有关PHP性能优化的介绍
+        </a></span>
+    </h3>
+</div>
+
+    <div  class="article_manage">
+        <span  class="link_categories">
+        分类：
+            <a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346017">PHP</a> 
+        </span>
+    <span  class="link_postdate">2013-08-26 11:05</span>
+    <span  class="link_view"  title="阅读次数">72人阅读</span>
+    <span  class="link_comments"  title="评论次数"><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#comments" >评论</a>(0)</span>
+    <span  class="link_collect"><a  href="javascript:void(0);"   title="收藏">收藏</a></span>
+    <span  class="link_report"><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#report"   title="举报">举报</a></span>
+    
+</div>
+
+    
+<div  id="article_content"  class="article_content">
+
+<span  style="color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">PHP优化对于PHP的优化主要是对php.ini中的相关主要参数进行合理调整和设置，以下我们就来看看php.ini中的一些对性能影响较大的参数应该如何设置。&nbsp;</span><br  style="padding:0px; margin:0px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">
+<span  style="padding:0px; margin:0px; line-height:25px; font-size:14px; font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255); color:rgb(0,0,255)"># vi /etc/php.ini<br  style="padding:0px; margin:0px">
+</span><span  style="color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">(1) PHP函数禁用找到：</span><br  style="padding:0px; margin:0px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">
+<span  style="color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">disable_functions =</span><br  style="padding:0px; margin:0px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">
+<span  style="color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">该选项可以设置哪些PHP函数是禁止使用的，PHP中有一些函数的风险性还是相当大的，可以直接执行一些系统级脚本命令，如果允许这些函数执行，当PHP程序出现漏洞时，损失是非常严重的！以下我们给出推荐的禁用函数设置：</span><br  style="padding:0px; margin:0px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">
+<span  style="padding:0px; margin:0px; line-height:25px; font-size:14px; font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255); color:rgb(0,0,255)">disable_functions = phpinfo,passthru,exec,system,popen,chroot,escapeshellcmd,escapeshellarg,shell_exec,proc_open,proc_get_status</span><span  style="color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; line-height:25px; background-color:rgb(247,252,255)">需注意：如果您的服务器中含有一些系统状态检测的PHP程序，则不要禁用shell_exec,proc_open,proc_get_status等函数。&nbsp;</span><br  style="padding:0px; margin:0px; font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+<br  style="padding:0px; margin:0px; font-family:Arial,Tahoma,Verdana,sans-serif; font-size:14px; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+(2) PHP脚本执行时间找到：<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:rgb(0,0,255)">max_execution_time = 30<br  style="padding:0px; margin:0px">
+</span>该选项设定PHP程序的最大执行时间，如果一个PHP脚本被请求，且该PHP脚本在max_execution_time时间内没能执行完毕，则PHP不再继续执行，直接给客户端返回超时错误。没有特殊需要该选项可保持默认设置30秒，如果您的PHP脚本确实需要长执行时间则可以适当增大该时间设置。&nbsp;<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+(3) PHP脚本处理内存占用找到：<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:rgb(0,0,255)">memory_limit = 8M<br  style="padding:0px; margin:0px">
+</span>该选项指定PHP脚本处理所能占用的最大内存，默认为8MB，如果您的服务器内存为1GB以上，则该选项可以设置为12MB以获得更快的PHP脚本处理效率。&nbsp;<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+(4) PHP全局函数声明找到：<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:rgb(0,0,255)">register_globals = Off<br  style="padding:0px; margin:0px">
+</span>网络上很多关于PHP设置的文章都推荐将该选项设置为On，其实这是一种及其危险的设置方法，很可能引起严重的安全性问题。如果没有特殊的需要，强烈推荐保留默认设置！&nbsp;<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+(5) PHP上传文件大小限制找到：<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:rgb(0,0,255)">upload_max_filesize = 2M<br  style="padding:0px; margin:0px">
+</span>该选项设定PHP所能允许最大上传文件大小，默认为2MB。根据实际应用需求，可以适当增大该设置。&nbsp;<br  style="padding:0px; margin:0px">
+<br  style="padding:0px; margin:0px; line-height:normal; background-color:rgb(0,0,0); color:rgb(102,102,102)">
+</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+(6) Session存储介质找到：<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:rgb(0,0,255)">session.save_path<br  style="padding:0px; margin:0px">
+</span>如果你的PHP程序使用Session对话，则可以将Session存储位置设置为/dev/shm，/dev/shm是Linux系统独有的TMPFS文件系统，是以内存为主要存储方式的文件系统，比RAMDISK更优秀，因为可以使用DISKSWAP作为补充，而且是系统自带的功能模块，不需要另行配置。想想看，从磁盘IO操作到内存操作，速度会快多少？只是需要注意，存储在/dev/shm的数据，在服务器重启后会全部丢失。不过这对于Session来说是无足轻重的。&nbsp;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+由于水平有限，有些还是不太明白为什么。如果有更好建议的欢迎随时补充！</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+<span  style="padding:0px; margin:0px; color:rgb(48,48,48)"><span  style="padding:0px; margin:0px">0、用单引号代替双引号来包含字符串，这样做会更快一些。因为PHP会在双引号包围的字符串中搜寻变量，单引号则不会，注意：只有echo能这么做，它是一种可以把多个字符串当作参数的“函数”(译注：PHP手册中说echo是语言结构，不是真正的函数，故把函数加上了双引号)。&nbsp;</span><br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：在单引号中，PHP不会自动搜寻变量、转义字符等，因此效率上快很多。而</span><span  style="padding:0px; margin:0px; color:rgb(255,0,0)">一般来说字符串是没有变量的，所以使用双引号会导致性能不佳。</span><br  style="padding:0px; margin:0px">
+</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+1、如果能将类的方法定义成static，就尽量定义成static，它的速度会提升将近4倍。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：事实上，function、method、static method的速度不会有太大差异</span><span  style="padding:0px; margin:0px; color:red">。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+2、$row['id'] 的速度是$row[id]的7倍。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：不太懂，貌似差异只有后者会先判断id这个宏是否存在，如果不存在则自动转变为字符串。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+3、echo 比 print 快，并且使用echo的多重参数(译注：指用逗号而不是句点)代替字符串连接，比如echo $str1,$str2。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+<span  style="padding:0px; margin:0px; color:rgb(255,0,0)">PS：如果使用echo $str1.$str2&nbsp;就会需要 PHP 引擎首先把所有的变量连接起来，然后在输出，而</span><span  style="padding:0px; margin:0px; color:rgb(255,0,0)">echo $str1,$str2，PHP 引擎就会按照循序输出他们</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+4、在执行for循环之前确定最大循环数，不要每循环一次都计算最大值，最好运用foreach代替。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：像count、strlen这样的操作其实是O(1)的，因此不会带来太多消耗，当然避免每次循环都计算是比较好的策略。最好用foreach代替for，这个效率更高，如果考虑到foreach($array as $var)每次拷贝的消耗，可以使用foreach($array as &amp;$var)这样的引用。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+5、注销那些不用的变量尤其是大数组，以便释放内存。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：如果没有记错的话，unset($array)不会立刻释放内存，但随时释放是个好习惯。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+6、尽量避免使用__get，__set，__autoload。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+7、require_once()代价昂贵。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：require_once和include_once需要判重，因此效率上要低，但是5.2版本后效率问题已经基本解决。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+8、include文件时尽量使用绝对路径，因为它避免了PHP去include_path里查找文件的速度，解析操作系统路径所需的时间会更少。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：支持，尽量少用iniset()来设置include_path。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+9、如果你想知道脚本开始执行(译注：即服务器端收到客户端请求)的时刻，使用$_SERVER['REQUEST_TIME']要好于time()。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：$_SERVER['REQUEST_TIME']保存了发起该请求时刻的时间戳，而time()则返回当前时刻的Unix时间戳。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+10、函数代替正则表达式完成相同功能。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：这种函数是指strtok、strstr、strpos、str_replace、substr、explode、implode等等。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+11、str_replace函数比preg_replace函数快，但strtr函数的效率是str_replace函数的四倍。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：字符串操作比正则替换要快。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+12、如果一个字符串替换函数，可接受数组或字符作为参数，并且参数长度不太长，那么可以考虑额外写一段替换代码，使得每次传递参数是一个字符，而不是只写一行代码接受数组作为查询和替换的参数。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：需要考虑到内置函数和用户自定义函数的开销差异，恐怕这种做法得不偿失。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+13、使用选择分支语句(译注：即switch case)好于使用多个if，else if语句。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：php中switch支持数值和字符串变量，比C的switch要好用，建议使用。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+14、用@屏蔽错误消息的做法非常低效，极其低效。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：有什么替代方法吗？没有的话还是不得不用的……</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+15、打开apache的mod_deflate模块，可以提高网页的浏览速度。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+16、数据库连接当使用完毕时应关掉，不要用长连接。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：在连接之前，最好设置一下相应的超时机制，例如链接超时、读写超时、等待超时等。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+17、错误消息代价昂贵。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+18、在方法中递增局部变量，速度是最快的。几乎与在函数中调用局部变量的速度相当。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+19、递增一个全局变量要比递增一个局部变量慢2倍。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+20、递增一个对象属性(如：$this-&gt;prop++)要比递增一个局部变量慢3倍。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+21、递增一个未预定义的局部变量要比递增一个预定义的局部变量慢9至10倍。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+22、仅定义一个局部变量而没在函数中调用它，同样会减慢速度(其程度相当于递增一个局部变量)。PHP大概会检查看是否存在全局变量。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+23、方法调用看来与类中定义的方法的数量无关，因为我(在测试方法之前和之后都)添加了10个方法，但性能上没有变化。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+24、派生类中的方法运行起来要快于在基类中定义的同样的方法。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+25、调用带有一个参数的空函数，其花费的时间相当于执行7至8次的局部变量递增操作。类似的方法调用所花费的时间接近于15次的局部变量递增操作。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+26、Apache解析一个PHP脚本的时间要比解析一个静态HTML页面慢2至10倍。尽量多用静态HTML页面，少用脚本。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+27、除非脚本可以缓存，否则每次调用时都会重新编译一次。引入一套PHP缓存机制通常可以提升25%至100%的性能，以免除编译开销。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+28、尽量做缓存，可使用memcached。memcached是一款高性能的内存对象缓存系统，可用来加速动态Web应用程序，减轻数据库负载。对运算码 (OP code)的缓存很有用，使得脚本不必为每个请求做重新编译。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+29、当操作字符串并需要检验其长度是否满足某种要求时，你想当然地会使用strlen()函数。此函数执行起来相当快，因为它不做任何计算，只返回在zval 结构(C的内置数据结构，用于存储PHP变量)中存储的已知字符串长度。但是，由于strlen()是函数，多多少少会有些慢，因为函数调用会经过诸多步骤，如字母小写化(译注：指函数名小写化，PHP不区分函数名大小写)、哈希查找，会跟随被调用的函数一起执行。在某些情况下，你可以使用isset() 技巧加速执行你的代码。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px"><span  style="padding:0px; margin:0px; color:rgb(255,0,0)">(举例如下)<br  style="padding:0px; margin:0px">
+</span></span><span  style="padding:0px; margin:0px; color:rgb(0,0,255)">if (strlen($foo) &lt; 5) { echo “Foo is too short”$$ }<br  style="padding:0px; margin:0px">
+</span><span  style="padding:0px; margin:0px">(与下面的技巧做比较)<br  style="padding:0px; margin:0px">
+</span><span  style="padding:0px; margin:0px; color:rgb(0,0,255)">if (!isset($foo{5})) { echo “Foo is too short”$$ }<br  style="padding:0px; margin:0px">
+</span>　　调用isset()恰巧比strlen()快，因为与后者不同的是，isset()作为一种语言结构，意味着它的执行不需要函数查找和字母小写化。也就是说，实际上在检验字符串长度的顶层代码中你没有花太多开销。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：长见识了。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+30、当执行变量$i的递增或递减时，$i++会比++$i慢一些。这种差异是PHP特有的，并不适用于其他语言，所以请不要修改你的C或Java代码并指望它们能立即变快，没用的。++$i更快是因为它只需要3条指令(opcodes)，$i++则需要4条指令。后置递增实际上会产生一个临时变量，这个临时变量随后被递增。而前置递增直接在原值上递增。这是最优化处理的一种，正如Zend的PHP优化器所作的那样。牢记这个优化处理不失为一个好主意，因为并不是所有的指令优化器都会做同样的优化处理，并且存在大量没有装配指令优化器的互联网服务提供商(ISPs)和服务器。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+31、并不是事必面向对象(OOP)，面向对象往往开销很大，每个方法和对象调用都会消耗很多内存。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+32、并非要用类实现所有的数据结构，数组也很有用。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+33、不要把方法细分得过多，仔细想想你真正打算重用的是哪些代码?</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+34、当你需要时，你总能把代码分解成方法。<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：分解成方法要适当，行数少使用频率高的方法尽量用直接写代码，可以减少函数堆栈开销；且方法嵌套不宜过深，否则大大影响PHP的运行效率。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+35、尽量采用大量的PHP内置函数。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+36、如果在代码中存在大量耗时的函数，你可以考虑用C扩展的方式实现它们。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+37、评估检验(profile)你的代码。检验器会告诉你，代码的哪些部分消耗了多少时间。Xdebug调试器包含了检验程序，评估检验总体上可以显示出代码的瓶颈。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+38、mod_zip可作为Apache模块，用来即时压缩你的数据，并可让数据传输量降低80%。</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+39、在可以用file_get_contents替代file、fopen、feof、fgets等系列方法的情况下，尽量用file_get_contents，因为他的效率高得多!但是要注意file_get_contents在打开一个URL文件时候的PHP版本问题;<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：这个要记住，尽量使用file_get_contents和file_put_contents，不需要自己判断文件句柄打开是否成功。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+40、尽量的少进行文件操作，虽然PHP的文件操作效率也不低的;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+41、优化Select SQL语句，在可能的情况下尽量少的进行Insert、Update操作(在update上，我被恶批过);</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+42、尽可能的使用PHP内部函数(但是我却为了找个PHP里面不存在的函数，浪费了本可以写出一个自定义函数的时间，经验问题啊!);<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：内置函数比用户自定义函数效率高了将近一个数量级。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+43、循环内部不要声明变量，尤其是大变量：对象(这好像不只是PHP里面要注意的问题吧?);<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：这个必须的，变量过多或者过大时，每次重分配的开销就无法忽略。</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+44、多维数组尽量不要循环嵌套赋值;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+45、在可以用PHP内部字符串操作函数的情况下，不要用正则表达式;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+46、foreach效率更高，尽量用foreach代替while和for循环;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+47、用单引号替代双引号引用字符串;<br  style="padding:0px; margin:0px">
+<span  style="padding:0px; margin:0px; color:red">PS：晕，这个不就是第一条吗？</span></p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+48、“用i+=1代替i=i+1。符合c/c++的习惯，效率还高”;</p>
+<p  style="padding-top:5px; padding-bottom:5px; margin-top:0px; margin-bottom:0px; line-height:25px; font-size:14px; color:rgb(51,51,51); font-family:Arial,Tahoma,Verdana,sans-serif; background-color:rgb(247,252,255)">
+49、对global变量，应该用完就unset()掉;</p>
+
+</div>
+
+
+
+
+<div  id="bdshare"  class="bdshare_t bds_tools get-codes-bdshare"  style="float: right;">
+<a  class="bds_qzone"  title="分享到QQ空间"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"></a>
+<a  class="bds_tsina"  title="分享到新浪微博"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"></a>
+<a  class="bds_tqq"  title="分享到腾讯微博"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"></a>
+<a  class="bds_renren"  title="分享到人人网"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"></a>
+<a  class="bds_t163"  title="分享到网易微博"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"></a>
+<span  class="bds_more">更多</span>
+<a  class="shareCount"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  title="累计分享0次">0</a>
+</div>
+
+
+
+
+<div  class="article_next_prev">
+            <li  class="prev_article"><span>上一篇：</span><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10325875" >php漏洞与代码审计</a></li>
+            <li  class="next_article"><span>下一篇：</span><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10330029" >PHP性能优化 产生高度优化代码</a></li>
+</div>
+
+
+<script  type="text/javascript"  id="bdshare_js"  data="type=tools&amp;uid=1536434"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script  type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+
+
+</div>
+    <div  id="ad_cen">
+        <script  type="text/javascript">            BAIDU_CLB_SLOT_ID = "117306";</script>
+        <script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/o.js"></script><div  id="BAIDU_DUP_wrapper_117306_0"></div><script  charset="utf-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ecom"></script><script  charset="utf-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/fixed7o.js"></script><script  type="text/javascript"><!--
+google_ad_client = "ca-pub-1076724771190722";
+/* blog正文下方728x90 */
+google_ad_slot = "4497271841";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/show_ads.js">
+</script><ins  style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins  id="aswift_0_anchor"  style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe  width="728"  height="90"  frameborder="0"  marginwidth="0"  marginheight="0"  vspace="0"  hspace="0"  allowtransparency="true"  scrolling="no"   id="aswift_0"  name="aswift_0"  style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+    </div>
+    <script  type="text/javascript">
+        //new Ad(4, 'ad_cen');
+    </script>
+<div  id="comment_title"  class="panel_head">
+    查看评论<a  name="comments"></a></div>
+<div  id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div  class="clear"></div></div>
+<div  id="comment_bar">
+</div>
+<div  id="comment_form"><a  name="commentbox"></a><a  name="reply"></a><a  name="quote"></a><form  action="http://blog.csdn.net/qw_xingzhe/comment/submit?id=10329817"  method="post" ><div  class="commentform"><div  class="panel_head">发表评论</div><ul><li  class="left">用 户 名：</li><li  class="right">zc80330582</li></ul><ul><li  class="left">评论内容：</li><li  class="right"  style="position:relative;"><div  id="ubbtools"><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#insertcode"  code="code"><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/code.gif"  border="0"  alt="插入代码"  title="插入代码"></a></div><div  id="lang_list"  style="position: absolute; top: 28px; left: 0px; display: none;"><a  class="long_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#html">HTML/XML</a><a  class="long_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#objc">objective-c</a><a  class="zhong_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#delphi">Delphi</a><a  class="zhong_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#ruby">Ruby</a><a  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#php">PHP</a><a  class="duan_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#csharp">C#</a><a  style=" border-right: none;"  class="duan_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#cpp">C++</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#javascript">JavaScript</a><a  style=" border-bottom:none;"  class="long_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#vb">Visual Basic</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#python">Python</a><a  style=" border-bottom:none;"  class="zhong_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#java">Java</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#css">CSS</a><a  style="border-bottom:none;"  class="duan_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#sql">SQL</a><a  style="border:none;"  class="duan_name"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#plain">其它</a></div><textarea  class="comment_content"  name="comment_content"  id="comment_content"  style="width: 400px; height: 200px;"></textarea></li></ul><ul><input  type="hidden"  id="comment_replyId"  name="comment_replyId"><input  type="hidden"  id="comment_userId"  name="comment_userId"  value="521203"><input  type="hidden"  id="commentId"  name="commentId"  value=""><input  type="submit"  class="comment_btn"  value="提交">&nbsp;&nbsp;<span  id="tip_comment"  style="color: Red; display: none;"></span></ul></div></form></div>
+<div  class="announce">
+    * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a  name="reply"></a><a  name="quote"></a></div>
+<script  type="text/javascript">
+    var fileName = '10329817';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div  id="ad_bot">
+    <iframe  id="ad_frm_0"  frameborder="0"  scrolling="no"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ad(1).htm"  style="border-width: 0px; overflow: hidden; width: 732px; height: 170px;"></iframe></div>
+    <script  type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div  id="report_dialog">
+</div>
+<div  id="d-top"  style="display: none;">
+    <a  id="d-top-a"  href="http://blog.csdn.net/qw_xingzhe/article/details/10329817#"  title="回到顶部" >
+        <img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/top.png"  alt="TOP"></a>
+</div>
+<script  type="text/javascript">
+    $(function ()
+    {
+        var d_top = $('#d-top');
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+    });
+  
+</script>
+<style  type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div  class="tag_list">
+    <h5>
+        <a  href="http://www.csdn.net/tag/"  target="_blank">核心技术类目</a></h5>
+    <div  class="classify">
+<a  title="全部主题"  href="http://www.csdn.net/tag"  target="_blank" >全部主题</a>
+<a  title="Java"  href="http://www.csdn.net/tag/Java"  target="_blank" >Java</a>
+<a  title="VPN"  href="http://www.csdn.net/tag/vpn"  target="_blank" >VPN</a>
+<a  title="Android"  href="http://www.csdn.net/tag/android"  target="_blank" >Android</a>
+<a  title="iOS"  href="http://www.csdn.net/tag/ios"  target="_blank" >iOS</a>
+<a  title="ERP"  href="http://www.csdn.net/tag/erp"  target="_blank" >ERP</a>
+<a  title="IE10"  href="http://www.csdn.net/tag/ie10"  target="_blank" >IE10</a>
+<a  title="Eclipse"  href="http://www.csdn.net/tag/eclipse"  target="_blank" >Eclipse</a>
+<a  title="CRM"  href="http://www.csdn.net/tag/crm"  target="_blank" >CRM</a>
+<a  title="JavaScript"  href="http://www.csdn.net/tag/javascript"  target="_blank" >JavaScript</a>
+<a  title="Ubuntu"  href="http://www.csdn.net/tag/ubuntu"  target="_blank" >Ubuntu</a>
+<a  title="NFC"  href="http://www.csdn.net/tag/nfc"  target="_blank" >NFC</a>
+<a  title="WAP"  href="http://www.csdn.net/tag/wap"  target="_blank" >WAP</a>
+<a  title="jQuery"  href="http://www.csdn.net/tag/jquery"  target="_blank" >jQuery</a>
+<a  title="数据库"  href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93"  target="_blank" >数据库</a>
+<a  title="BI"  href="http://www.csdn.net/tag/bi"  target="_blank" >BI</a>
+<a  title="HTML5"  href="http://www.csdn.net/tag/html5"  target="_blank" >HTML5</a>
+<a  title="Spring"  href="http://www.csdn.net/tag/spring"  target="_blank" >Spring</a>
+<a  title="Apache"  href="http://www.csdn.net/tag/apache"  target="_blank" >Apache</a>
+<a  title="Hadoop"  href="http://www.csdn.net/tag/hadoop"  target="_blank" >Hadoop</a>
+<a  title=".NET"  href="http://www.csdn.net/tag/.net"  target="_blank" >.NET</a>
+<a  title="API"  href="http://www.csdn.net/tag/api"  target="_blank" >API</a>
+<a  title="HTML"  href="http://www.csdn.net/tag/html"  target="_blank" >HTML</a>
+<a  title="SDK"  href="http://www.csdn.net/tag/sdk"  target="_blank" >SDK</a>
+<a  title="IIS"  href="http://www.csdn.net/tag/iis"  target="_blank" >IIS</a>
+<a  title="Fedora"  href="http://www.csdn.net/tag/fedora"  target="_blank" >Fedora</a>
+<a  title="XML"  href="http://www.csdn.net/tag/xml"  target="_blank" >XML</a>
+<a  title="LBS"  href="http://www.csdn.net/tag/lbs"  target="_blank" >LBS</a>
+<a  title="Unity"  href="http://www.csdn.net/tag/unity"  target="_blank" >Unity</a>
+<a  title="Splashtop"  href="http://www.csdn.net/tag/splashtop"  target="_blank" >Splashtop</a>
+<a  title="UML"  href="http://www.csdn.net/tag/uml"  target="_blank" >UML</a>
+<a  title="components"  href="http://www.csdn.net/tag/components"  target="_blank" >components</a>
+<a  title="Windows Mobile"  href="http://www.csdn.net/tag/windowsmobile"  target="_blank" >Windows Mobile</a>
+<a  title="Rails"  href="http://www.csdn.net/tag/rails"  target="_blank" >Rails</a>
+<a  title="QEMU"  href="http://www.csdn.net/tag/qemu"  target="_blank" >QEMU</a>
+<a  title="KDE"  href="http://www.csdn.net/tag/kde"  target="_blank" >KDE</a>
+<a  title="Cassandra"  href="http://www.csdn.net/tag/cassandra"  target="_blank" >Cassandra</a>
+<a  title="CloudStack"  href="http://www.csdn.net/tag/cloudstack"  target="_blank" >CloudStack</a>
+<a  title="FTC"  href="http://www.csdn.net/tag/ftc"  target="_blank" >FTC</a>
+<a  title="coremail"  href="http://www.csdn.net/tag/coremail"  target="_blank" >coremail</a>
+<a  title="OPhone "  href="http://www.csdn.net/tag/ophone"  target="_blank" >OPhone </a>
+<a  title="CouchBase"  href="http://www.csdn.net/tag/couchbase"  target="_blank" >CouchBase</a>
+<a  title="云计算"  href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97"  target="_blank" >云计算</a>
+<a  title="iOS6"  href="http://www.csdn.net/tag/iOS6"  target="_blank" >iOS6</a>
+<a  title="Rackspace "  href="http://www.csdn.net/tag/rackspace"  target="_blank" >Rackspace </a>
+<a  title="Web App"  href="http://www.csdn.net/tag/webapp"  target="_blank" >Web App</a>
+<a  title="SpringSide"  href="http://www.csdn.net/tag/springside"  target="_blank" >SpringSide</a>
+<a  title="Maemo"  href="http://www.csdn.net/tag/maemo"  target="_blank" >Maemo</a>
+<a  title="Compuware"  href="http://www.csdn.net/tag/compuware"  target="_blank" >Compuware</a>
+<a  title="大数据"  href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE"  target="_blank" >大数据</a>
+<a  title="aptech"  href="http://www.csdn.net/tag/aptech"  target="_blank" >aptech</a>
+<a  title="Perl"  href="http://www.csdn.net/tag/perl"  target="_blank" >Perl</a>
+<a  title="Tornado"  href="http://www.csdn.net/tag/tornado"  target="_blank" >Tornado</a>
+<a  title="Ruby"  href="http://www.csdn.net/tag/ruby"  target="_blank" >Ruby</a>
+<a  title="Hibernate"  href="http://www.csdn.net/hibernate"  target="_blank" >Hibernate</a>
+<a  title="ThinkPHP"  href="http://www.csdn.net/tag/thinkphp"  target="_blank" >ThinkPHP</a>
+<a  title="Spark"  href="http://www.csdn.net/tag/spark"  target="_blank" >Spark</a>
+<a  title="HBase"  href="http://www.csdn.net/tag/hbase"  target="_blank" >HBase</a>
+<a  title="Pure"  href="http://www.csdn.net/tag/pure"  target="_blank" >Pure</a>
+<a  title="Solr"  href="http://www.csdn.net/tag/solr"  target="_blank" >Solr</a>
+<a  title="Angular"  href="http://www.csdn.net/tag/angular"  target="_blank" >Angular</a>
+<a  title="Cloud Foundry"  href="http://www.csdn.net/tag/cloudfoundry"  target="_blank" >Cloud Foundry</a>
+<a  title="Redis"  href="http://www.csdn.net/tag/redis"  target="_blank" >Redis</a>
+<a  title="Scala"  href="http://www.csdn.net/tag/scala"  target="_blank" >Scala</a>
+<a  title="Django"  href="http://www.csdn.net/tag/django"  target="_blank" >Django</a>
+<a  title="Bootstrap"  href="http://www.csdn.net/tag/bootstrap"  target="_blank" >Bootstrap</a>
+    </div>
+</div>
+
+                    <div  class="clear">
+                    </div>
+                </div>
+            </div>
+            <div  id="side">
+    <div  class="side">
+<div  id="panel_Profile"  class="panel">
+<ul  class="panel_head"><span>个人资料</span></ul>
+<ul  class="panel_body profile">
+<div  id="blog_userface">
+    <a  href="http://my.csdn.net/qw_xingzhe"  target="_blank">
+    <img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/1_qw_xingzhe.jpg"  title="访问我的空间"  style="max-width:90%">
+    </a>
+    <br>
+    <span><a  href="http://my.csdn.net/qw_xingzhe"  class="user_name"  target="_blank">qw_xingzhe</a></span>
+</div>
+<div  class="interact">
+<a  href="javascript:void(0);"  class="attent"  id="span_add_follow"  title="[加关注]" ></a>
+<a  href="javascript:void(0);"  class="letter"   title="[发私信]"></a>
+</div>
+<div  id="blog_medal">
+<div  id="bms_box"><a  href="http://medal.blog.csdn.net/allmedal.aspx"  target="_blank"><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/holdon_s2.gif"    alt=""></a></div></div>
+<ul  id="blog_rank">
+    <li>访问：<span>9759次</span></li>
+    <li>积分：<span>334分</span></li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul  id="blog_statistics">
+    <li>原创：<span>10篇</span></li>
+    <li>转载：<span>102篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>9条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div  class="panel"  id="panel_Search">
+    <ul  class="panel_head"><span>文章搜索</span></ul>
+    <ul  class="panel_body">
+        <form  id="frmSearch"  action="http://so.csdn.net/search"  class="form_search"  target="_blank">
+        <span><input  id="inputSearch"  type="text"  class="blogsearch"  title="请输入关键字"></span>
+        <input  id="btnSubmit"  type="submit"  value="搜索"  title="search in blog">
+        <input  type="hidden"  name="q"  id="inputQ">
+        <input  type="hidden"  name="t"  value="blog">
+        <a  id="btnSearchBlog"  target="_blank"></a>
+        </form>
+    </ul>
+</div><div  id="panel_Category"  class="panel">
+<ul  class="panel_head"><span>文章分类</span></ul>
+<ul  class="panel_body">
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346026">Smarty</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346017">PHP</a><span>(30)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346018">MySQL</a><span>(12)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346019">Linux</a><span>(5)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346020">Apache</a><span>(7)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346021">JavaScript、jQuery、AJAX</a><span>(21)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346022">HTML、DIV、CSS</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346161">HTML5</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1346025">Discuz</a><span>(4)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1348749">ThinkPHP</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1357526">SomeThingAboutOther</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1359792">SEO</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1359976">Other</a><span>(6)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1388382">ProgramLife</a><span>(9)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1452361">UcHome</a><span>(5)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1551513">黑客</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/category/1553175">TCP/IP HTTP</a><span>(1)</span>
+</li>
+</ul>
+</div><div  id="panel_Archive"  class="panel">
+<ul  class="panel_head"><span>文章存档</span></ul>
+<ul  class="panel_body">
+<div  id="archive_list"><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2014/02">2014年02月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2014/01">2014年01月</a><span>(1)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/12">2013年12月</a><span>(4)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/10">2013年10月</a><span>(7)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/09">2013年09月</a><span>(9)</span></li><span  class="hidelist"  style="display:none;"><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/08">2013年08月</a><span>(21)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/07">2013年07月</a><span>(5)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/06">2013年06月</a><span>(9)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/05">2013年05月</a><span>(3)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/04">2013年04月</a><span>(14)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/03">2013年03月</a><span>(20)</span></li><li><a  href="http://blog.csdn.net/qw_xingzhe/article/month/2013/02">2013年02月</a><span>(18)</span></li></span><div  id="archive_list_button"  class="list_closed">展开</div></div>
+</ul>
+</div>
+<div  id="hotarticls"  class="panel">
+<ul  class="panel_head"><span>阅读排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8588917"  title="Js、Jquery的复制剪贴板操作">Js、Jquery的复制剪贴板操作</a><span>(332)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8649929"  title="KindEdito使用细节">KindEdito使用细节</a><span>(302)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/9701167"  title="discuz/uchome等康盛产品formhash()浅析">discuz/uchome等康盛产品formhash()浅析</a><span>(259)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8738166"  title="PHPExcel入门教程">PHPExcel入门教程</a><span>(225)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8587011"  title="discuz X2.5文件结构说明">discuz X2.5文件结构说明</a><span>(217)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/9992887"  title="php缓存小技巧">php缓存小技巧</a><span>(215)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8587020"  title="js验证真实姓名">js验证真实姓名</a><span>(199)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8586683"  title="php 获取时间今天明天昨天时间戳">php 获取时间今天明天昨天时间戳</a><span>(183)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8728905"  title="phpExcel常用方法详解">phpExcel常用方法详解</a><span>(179)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8657914"  title="使用WordPress的PHPMailer发送Email">使用WordPress的PHPMailer发送Email</a><span>(168)</span>
+</li>
+</ul>
+</div>
+<div  id="hotarticls2"  class="panel">
+<ul  class="panel_head"><span>评论排行</span></ul>
+<ul  class="panel_body itemlist">
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/17511387"  title="linux 下 ifcfg-eth0 配置">linux 下 ifcfg-eth0 配置</a><span>(3)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/12436801"  title="解决mysql 10048 错误">解决mysql 10048 错误</a><span>(2)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/11756689"  title="解决Linux中文乱码">解决Linux中文乱码</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/10572355"  title="require()和include()的区别">require()和include()的区别</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8827949"  title="Jquery的Ajax执行顺序问题">Jquery的Ajax执行顺序问题</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/8657914"  title="使用WordPress的PHPMailer发送Email">使用WordPress的PHPMailer发送Email</a><span>(1)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/10325493"  title="8 个必备的PHP功能开发">8 个必备的PHP功能开发</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/9848951"  title="一篇学习HTTP状态码的神文：我与依依的橙色岁月">一篇学习HTTP状态码的神文：我与依依的橙色岁月</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/9962963"  title="php提高程序效率的24个小技巧">php提高程序效率的24个小技巧</a><span>(0)</span>
+</li>
+<li>
+<a  href="http://blog.csdn.net/qw_xingzhe/article/details/9992887"  title="php缓存小技巧">php缓存小技巧</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div  id="homepageArticles"  class="panel tracking-ad"  data-mod="popu_4">
+<ul  class="panel_head"><span>推荐文章</span></ul>
+<ul  class="panel_body"  id="ad_commend"><iframe  id="ad_frm_1"  frameborder="0"  scrolling="no"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ad.htm"  style="border-width: 0px; overflow: hidden; width: 182px; height: 218px;"></iframe></ul>
+</div>
+<script  type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div  id="newcomments"  class="panel">
+<ul  class="panel_head"><span>最新评论</span></ul>
+<ul  class="panel_body itemlist">
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/11756689#comments">解决Linux中文乱码</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+(1) 打开/etc/sysconfig/i18n设置为：LANG="zh_CN.GB2312"
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/17511387#comments">linux 下 ifcfg-eth0 配置</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+还有方法二：终于找到一篇文章解决了我的问题：http://tech.techweb.com.cn/a...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/17511387#comments">linux 下 ifcfg-eth0 配置</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+我要配置DNS，修改/etc/resolv.conf，修改后重启服务 service network...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/17511387#comments">linux 下 ifcfg-eth0 配置</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+nameserver 202.106.46.151nameserver 202.106.0..20n...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/12436801#comments">解决mysql 10048 错误</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+windows 2000 : netstat -anwindows xp/2003 : netsta...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/12436801#comments">解决mysql 10048 错误</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+查看mysql当前连接数1、查看当前所有连接的详细资料:mysqladmin -uroot -pro...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/10572355#comments">require()和include()的区别</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+部分内容测试与以上说明不服，不知是否因为php版本的问题，未做深究。
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/8827949#comments">Jquery的Ajax执行顺序问题</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+ajax默认是异步的，也就是说不等你上面的代码运行完，它就执行下面的代码了，可以设置它为同步。那就先...
+    </p>
+    </li>
+    <li>
+    <a  href="http://blog.csdn.net/qw_xingzhe/article/details/8657914#comments">使用WordPress的PHPMailer发送Email</a>
+    <p  style="margin:0px;"><a  href="http://blog.csdn.net/qw_xingzhe"  class="user_name">qw_xingzhe</a>:
+如果需要发送html格式邮件，需要添加这段代码：$mail-&gt;IsHTML(true); // 使用...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div  class="clear">
+    </div>
+</div>
+
+            <div  class="clear">
+            </div>
+        </div>
+        
+
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script  type="text/javascript">
+    document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date() / 120000).toString(36) + '="></' + 'script>');
+</script><script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link  rel="stylesheet"  type="text/css"  href="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div  id="pub_footerall"  class="pub_footerall"><dl><dt></dt> <dd><a  href="http://www.csdn.net/company/about.html"  target="_blank">公司简介</a>|<a  href="http://www.csdn.net/company/recruit.html"  target="_blank">招贤纳士</a>|<a  href="http://www.csdn.net/company/marketing.html"  target="_blank">广告服务</a>|<a  href="http://www.csdn.net/company/account.html"  target="_blank">银行汇款帐号</a>|<a  href="http://www.csdn.net/company/contact.html"  target="_blank">联系方式</a>|<a  href="http://www.csdn.net/company/statement.html"  target="_blank">版权声明</a>|<a  href="http://www.csdn.net/company/layer.html"  target="_blank">法律顾问</a>|<a  href="mailto:webmaster@csdn.net">问题报告</a></dd><dd><a  href="http://wpa.qq.com/msgrd?v=3&uin=2355263776&site=qq&menu=yes"  target="_blank"  class="qq">QQ客服</a> <a  href="http://e.weibo.com/csdnsupport/profile"  target="_blank"  class="weibo">微博客服</a> <a  href="http://bbs.csdn.net/forums/Service"  target="_blank"  class="online">论坛反馈</a> <a  href="mailto:webmaster@csdn.net"  class="email">联系邮箱：webmaster@csdn.net</a> <span  class="phone">服务热线：400-600-2320</span></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;<a  href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010"  target="_blank"><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif"  alt="GongshangLogo"  title=""></a></dd></dl></div><div  id="note1"  class="csdn_note"  style="display:none; position:absolute; z-index:9999; width:440px">  <span  class="notice_top_arrow"><span  class="inner"></span></span>  <div  class="box"></div></div><div  class="csdn_notice_tip"  style="display: none; position: absolute; z-index: 9990; width: 170px;">  <iframe  src="about:blank"  frameborder="0"  scrolling="no"  style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div  class="tip_text">您有<strong>0</strong>条新通知</div>  <a  href="javascript:void 0"  class="close2"></a></div><script  id="noticeScript"  type="text/javascript"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+<script  type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/pv.aspx"  border="0"  width="0"  height="0">
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script  type="text/javascript"  charset="UTF-8"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/count.js"></script><iframe  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/logs.htm"  frameborder="0"  width="0"  height="0"></iframe>
+<script  type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      
+    
+    <script  id="csdn-toolbar-id"  btnid="header_notice_num"  wrapid="note1"  count="5"  subcount="5"  type="text/javascript"  src="./有关PHP性能优化的介绍 - qw_xingzhe的专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     
+
+
+</body></html>

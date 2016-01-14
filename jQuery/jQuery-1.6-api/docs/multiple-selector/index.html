@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">Multiple Selector (“selector1, selector2, selectorN”)</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/selectors/" title="View all posts in Selectors">Selectors</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/selectors/basic-css-selectors/" title="View all posts in Basic">Basic</a></span>
+  
+  				</div>
+</div>
+<div id="multiple1" class="entry selector">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">multiple</span>  selector</h2>
+<div class="jq-box roundBottom entry-details">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/version/1.0/">1.0</a></span>jQuery('selector1, selector2, selectorN')</h4>
+<ul class="signatures"><li><dl class="arguments">
+<dt>selector1</dt>
+<dd>任何有效的选择</dd>
+<dt>selector2</dt>
+<dd>其他有效的选择<</dd>
+<dt>selectorN</dt>
+<dd>更多有效的选择只要你喜欢。</dd>
+</dl></li></ul>
+<p class="desc"><strong>描述： </strong>将每一个选择器匹配到的元素合并后一起返回。</p>
+<div class="longdesc"><p>您可以指定任何数量的选择器组合成一个单一的结果。这个多个表达组合是一种有效的方法来选择不同的元素。因为他们将在文件的顺序，DOM元素的顺序在返回的jQuery对象中可能不相同。另一种选择器组合是 <a href="/add">.add()</a> 方法。</p></div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Finds the elements that match any of these three selectors.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  div,span,p {
+    width: 126px;
+    height: 60px;
+    float:left;
+    padding: 3px;
+    margin: 2px;
+    background-color: #EEEEEE;
+    font-size:14px;
+  }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;div&lt;/div&gt;
+
+  &lt;p class="myClass"&gt;p class="myClass"&lt;/p&gt;
+  &lt;p class="notMyClass"&gt;p class="notMyClass"&lt;/p&gt;
+  &lt;span&gt;span&lt;/span&gt;
+&lt;script&gt;$("div,span,p.myClass").css("border","3px solid red");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Show the order in the jQuery object.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  b { color:red; font-size:16px; display:block; clear:left; }
+  div,span,p { width: 40px; height: 40px; float:left;
+               margin: 10px; background-color: blue; 
+               padding:3px; color:white; 
+             }
+  &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;span&gt;span&lt;/span&gt;
+
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;div&gt;div&lt;/div&gt;
+  &lt;span&gt;span&lt;/span&gt;
+
+  &lt;p&gt;p&lt;/p&gt;
+  &lt;div&gt;div&lt;/div&gt;
+  &lt;b&gt;&lt;/b&gt;
+&lt;script&gt;
+    var list = $("div,p,span").map(function () {
+      return this.tagName;
+    }).get().join(", ");
+    $("b").append(document.createTextNode(list));
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

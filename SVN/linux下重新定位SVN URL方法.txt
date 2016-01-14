@@ -1,0 +1,11 @@
+ linux下重新定位SVN URL方法 2009-08-27 17:10:37
+
+分类： LINUX
+
+linux下重新定位SVN URL方法:
+ 
+如果更换了SVN服务器，就需要重新定位，指向新的SVN URL。
+重新定位命令：svn switch --relocate 原svn地址 新svn地址
+ 
+如何查看原svn地址？
+查看原svn路径方法：svn info

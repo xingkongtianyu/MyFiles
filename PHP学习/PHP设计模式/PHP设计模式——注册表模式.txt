@@ -1,0 +1,52 @@
+
+PHP设计模式——注册表模式
+2011年01月21日  3,899 次浏览 陈华 抢板凳
+
+WEB开发笔记 www.chhua.com 每日练习 PHP设计模式注册表模式
+
+注册表模式其实是一个单例模式，注册表类提供静态方法（或单例对象的实例化方法）来让其它对象访问其中的数据（通常是对象）。整个系统中的每个对象都可以访问这些数据对象。
+
+下面是基本的注册表类的代码：
+
+
+ 
+<?php
+class Registry {
+	private static $instance;
+	private $request;//注册表的内容类
+ 
+	private function __construct(){}//本类，不可实例化
+ 
+	static function instance(){//单例类，通过这个方法返回实例
+		if (!isset(self::$instance)){self::$instance=new self();}
+		return self::$instance;
+	}
+ 
+	function getRequest(){//返回注册的内容类
+		return $this->request;
+	}
+ 
+	function setRequest(request $request){//设置注册的内容类
+		$this->request=$request;
+	}
+}
+ 
+class request{//被 注册的类
+	private $webname="WEB开发笔记";
+	private $url="www.chhua.com";
+ 
+	function getName(){
+		echo $this->url;//输出www.chhua.com
+	}
+}//被注册的空类
+ 
+//使用
+ 
+$reg=Registry::instance();
+$reg->setRequest(new request());
+ 
+$request=$reg->getRequest();
+$request->getName();//输出www.chhua.com
+?>
+
+注册表的作用是提供系统级别的对象访问功能。 

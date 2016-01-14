@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+                    
+				  <h1 class="jq-clearfix">.add()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/traversing/" title="View all posts in Traversing">Traversing</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/traversing/miscellaneous-traversal/" title="View all posts in Miscellaneous Traversing">Miscellaneous Traversing</a></span>
+  
+  				</div>
+</div>
+<div id="add1" class="entry method">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.add( selector )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>添加元素到匹配的元素集合。</p>
+<ul class="signatures">
+<li class="signature" id="add-selector">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.add( selector )</h4>
+<p class="arguement"><strong>selector</strong>一个用于匹配元素的选择器字符串。</p>
+</li>
+<li class="signature" id="add-elements">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.add( elements )</h4>
+<p class="arguement"><strong>elements</strong>一个或多个元素添加到匹配的元素。</p>
+</li>
+<li class="signature" id="add-html">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.add( html )</h4>
+<p class="arguement"><strong>html</strong>HTML片段添加到匹配的元素。</p>
+</li>
+<li class="signature" id="add-selector-context">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.add( selector, context )</h4>
+<p class="arguement"><strong>selector</strong>一个用于匹配元素的选择器字符串。</p>
+<p class="arguement"><strong>context</strong>对指定的范围内添加一些根元素。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>鉴于一个jQuery对象，表示一个DOM元素的集合，<code>.add()</code>方法通过这些元素组合传递到方法构造一个新的jQuery对象。<code>.add()</code>的参数可以几乎接受任何的<code>$()</code>，包括一个jQuery选择器表达式，DOM元素，或HTML片段引用。</p>
+<p>考虑一个面页中简单的列表和它之后的段落：</p>
+<pre>&lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+  &lt;li&gt;list item 2&lt;/li&gt;
+  &lt;li&gt;list item 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;a paragraph&lt;/p&gt;</pre>
+<p>我们可以选择列表项，然后通过使用一个选择器或引用的DOM元素本身作为<code>.add()</code>方法的参数：</p>
+<pre>$('li').add('p').css('background-color', 'red');</pre>
+<p>或者:</p>
+<pre>$('li').add(document.getElementsByTagName('p')[0])
+  .css('background-color', 'red');</pre>
+<p>该调用的结果是四个元素的红色背景。使用片一个HTML段作为 <code>.add()</code>方法的参数（如在第三个版本），我们可以在运行中创建额外的元素，添加这些元素到匹配的元素集合中。比方说，例如，我们要随着新创建的段落改变列表项的背景：</p>
+<pre>$('li').add('&lt;p id="new"&gt;new paragraph&lt;/p&gt;')
+  .css('background-color', 'red');</pre>
+<p>虽然已经建立新的段落，其背景颜色改变，它仍然没有出现在页面上。放置在页面上，我们可以添加的方法之一插入到链。</p>
+<p>在jQuery 1.4结果从.add()将总是返回文档顺序（而不是一个简单的串联）。</p>
+</div>
+<h3>Examples:</h3>
+<div class="entry-examples" id="entry-examples">
+<div id="example-0">
+<h4>Example: <span class="desc">Finds all divs and makes a border.  Then adds all paragraphs to the jQuery object to set their backgrounds yellow.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+ div { width:60px; height:60px; margin:10px; float:left; }
+ p { clear:left; font-weight:bold; font-size:16px; 
+     color:blue; margin:0 10px; padding:2px; }
+ &lt;/style&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div&gt;&lt;/div&gt;
+
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;/div&gt;
+
+  &lt;p&gt;Added this... (notice no border)&lt;/p&gt;
+&lt;script&gt;
+
+$("div").css("border", "2px solid red")
+        .add("p")
+        .css("background", "yellow");
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>Example: <span class="desc">Adds more elements, matched by the given expression, to the set of matched elements.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;span&gt;Hello Again&lt;/span&gt;
+&lt;script&gt;$("p").add("span").css("background", "yellow");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-2">
+<h4>Example: <span class="desc">Adds more elements, created on the fly, to the set of matched elements.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;script&gt;$("p").clone().add("&lt;span&gt;Again&lt;/span&gt;").appendTo(document.body);&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-3">
+<h4>Example: <span class="desc">Adds one or more Elements to the set of matched elements.</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;span id="a"&gt;Hello Again&lt;/span&gt;
+&lt;script&gt;$("p").add(document.getElementById("a")).css("background", "yellow");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-4">
+<h4>Example: <span class="desc">Demonstrates how to add (or push) elements to an existing collection</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;script src="http://code.jquery.com/jquery-latest.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello&lt;/p&gt;&lt;span id="a"&gt;Hello Again&lt;/span&gt;
+&lt;script&gt;var collection = $("p");
+// capture the new collection
+collection = collection.add(document.getElementById("a"));
+collection.css("background", "yellow");&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>

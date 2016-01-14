@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv='content-type' content='text/html; charset=UTF-8' /><title>jQuery 1.6  API 中文版 -- 前端攻城师</title></head><body>
+<div class="entry-content">
+        <div class="entry-title roundTop">
+				<h1 class="jq-clearfix">.toggleClass()</h1>
+  				<div class="entry-meta">Categories:
+  					<span class="category"><a   target="_blank" href="http://api.jquery.com/category/attributes/" title="View all posts in Attributes">Attributes</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/manipulation/" title="View all posts in Manipulation">Manipulation</a> &gt; <a   target="_blank" href="http://api.jquery.com/category/manipulation/class-attribute/" title="View all posts in Class Attribute">Class Attribute</a></span> | <span class="category"><a   target="_blank" href="http://api.jquery.com/category/css/" title="View all posts in CSS">CSS</a></span>  
+    
+  				</div>
+</div>
+<div class="entry method" id="toggleClass1">
+<h2 class="jq-clearfix roundTop section-title">
+<span class="name">.toggleClass( className )</span> <span class="returns">返回： <a class="return" href="http://docs.jquery.com/Types#jQuery">jQuery</a></span>
+</h2>
+<div class="jq-box roundBottom entry-details">
+<p class="desc"><strong>描述： </strong>在匹配的元素集合中的每个元素上添加或删除一个或多个样式类,取决于这个样式类是否存在或价值切换属性。即：如果存在（不存在）就删除（添加）一个类。</p>
+<ul class="signatures">
+<li class="signature" id="toggleClass-className">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.0/">1.0</a></span>.toggleClass( className )</h4>
+<p class="arguement"><strong>className</strong>在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名。</p>
+</li>
+<li class="signature" id="toggleClass-className-switch">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.3/">1.3</a></span>.toggleClass( className, switch )</h4>
+<p class="arguement"><strong>className</strong>在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名。</p>
+<p class="arguement"><strong>switch</strong>一个用来判断样式类添加还是移除的 boolean 值。</p>
+</li>
+<li class="signature" id="toggleClass-functionindex, class-switch">
+<h4 class="name">
+<span class="versionAdded">version added: <a href="/category/version/1.4/">1.4</a></span>.toggleClass( function(index, class), [ switch ] )</h4>
+<p class="arguement"><strong>function(index, class)</strong>用来返回在匹配的元素集合中的每个元素上用来切换的样式类名的一个函数。接收元素的索引位置和元素旧的样式类作为参数。</p>
+<p class="arguement"><strong>switch</strong>一个用来判断样式类添加还是移除的 boolean 值。</p>
+</li>
+</ul>
+<div class="longdesc">
+<p>这个该方法以一个或多个样式类名称作为他的参数。在第一个版本中，如果在匹配的元素集合中的每个元素上存在该样式类就会被移除；如果某个元素没有这个样式类就会加上这个样式类。举个例子： 我们可以应用 <code>.toggleClass()</code> 在简单的 <code>&lt;div&gt;</code>上：</p>
+<pre>&lt;div class="tumble"&gt;Some text.&lt;/div&gt;
+      </pre>
+<p>第一次我们应用 <code>$('div.tumble').toggleClass('bounce')</code>, 我们可以得到以下内容:</p>
+<pre>&lt;div class="tumble bounce"&gt;Some text.&lt;/div&gt;
+      </pre>
+<p>第二次我能同样应用 <code>$('div.tumble').toggleClass('bounce')</code>, 这个 <code>&lt;div&gt;</code> 样式类回归到单独的 <code>tumble</code> 值：</p>
+<pre>&lt;div class="tumble"&gt;Some text.&lt;/div&gt;</pre>
+<p>应用 <code>.toggleClass('bounce spin')</code>在同一个 <code>&lt;div&gt;</code> 上，结果会在 <code>&lt;div class="tumble bounce spin"&gt;</code> 和 <code>&lt;div class="tumble"&gt;</code>之间交替。</p>
+<p><code>.toggleClass()</code>的第二个版本使用第二个参数判断样式类是否应该被添加或删除。如果这个参数的值是<code>true</code>，那么这个样式类将被添加;如果这个参数的值是<code>false</code>，那么这个样式类将被移除。本质上是这样的:</p>
+<pre>$('#foo').toggleClass(className, addOrRemove);</pre>
+<p>等价于:</p>
+<pre>if (addOrRemove) {
+    $('#foo').addClass(className);
+  }
+  else {
+    $('#foo').removeClass(className);
+  }
+  </pre>
+<p>在 jQuery 1.4 中,  <code>.toggleClass()</code>方法允许我们通过函数来传递切换的样式类名。</p>
+<pre>$('div.foo').toggleClass(function() {
+  if ($(this).parent().is('.bar')) {
+    return 'happy';
+  } else {
+    return 'sad';
+  }
+});</pre>
+<p>如果匹配元素的父级元素有<code>bar</code>样式类名，这个例子将为<code>&lt;div class="foo"&gt;</code>元素切换 <code>happy</code> 样式类； 否则他将切换 <code>sad</code> 样式类 。</p>
+</div>
+<h3>举例：</h3>
+<div id="entry-examples" class="entry-examples">
+<div id="example-0">
+<h4>例子： <span class="desc">当点击段落的是有切换 'highlight' 样式类</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+
+  p { margin: 4px; font-size:16px; font-weight:bolder; 
+      cursor:pointer; }
+  .blue { color:blue; }
+  .highlight { background:yellow; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p class="blue"&gt;Click to toggle&lt;/p&gt;
+  &lt;p class="blue highlight"&gt;highlight&lt;/p&gt;
+  &lt;p class="blue"&gt;on these&lt;/p&gt;
+  &lt;p class="blue"&gt;paragraphs&lt;/p&gt;
+&lt;script&gt;
+    $("p").click(function () {
+      $(this).toggleClass("highlight");
+    });
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+<div id="example-1">
+<h4>例子： <span class="desc">每当第三次点击段落的时候添加 "highlight" 样式类, 第一次和第二次点击的时候移除 "highlight" 样式类</span>
+</h4>
+<pre><code class="example demo-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+  p { margin: 4px; font-size:16px; font-weight:bolder; 
+      cursor:pointer; }
+  .blue { color:blue; }
+  .highlight { background:red; }
+  &lt;/style&gt;
+  &lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p class="blue"&gt;Click to toggle (&lt;span&gt;clicks: 0&lt;/span&gt;)&lt;/p&gt;
+  &lt;p class="blue highlight"&gt;highlight (&lt;span&gt;clicks: 0&lt;/span&gt;)&lt;/p&gt;
+  &lt;p class="blue"&gt;on these (&lt;span&gt;clicks: 0&lt;/span&gt;)&lt;/p&gt;
+
+  &lt;p class="blue"&gt;paragraphs (&lt;span&gt;clicks: 0&lt;/span&gt;)&lt;/p&gt;
+&lt;script&gt;
+var count = 0;
+$("p").each(function() {
+  var $thisParagraph = $(this);
+  var count = 0;
+  $thisParagraph.click(function() {
+    count++;
+    $thisParagraph.find("span").text('clicks: ' + count);
+    $thisParagraph.toggleClass("highlight", count % 3 == 0);
+  });
+});
+
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h4>Demo:</h4>
+<div class="demo code-demo"></div>
+</div>
+</div>
+</div>
+</div>
+
+				</div>
+
+<div class="copy"><a href="http://julying.com/jQuery-1.6-api/" title="jQuery 1.6 API 中文版">jQuery 1.6 API 中文版</a>由<a href="http://julying.com/" target="_blank" title="前端攻城师">前端攻城师</a>整理、修订 (2011年6月)</div></body></html>
