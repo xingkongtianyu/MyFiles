@@ -1,0 +1,283 @@
+Swift - 文件，文件夹操作大全
+2015-01-14 15:33 发布：hangge 浏览：1610	
+ios开发经常会遇到读文件，写文件等，对文件和文件夹的操作，这时就可以使用NSFileManager，NSFileHandle等类来实现。
+下面总结了各种常用的操作：
+
+1，遍历一个目录下的所有文件
+
+	
+//假设用户文档下有如下文件和文件夹[test1.txt,fold1/test2.txt]
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+ 
+//（1）对指定路径执行浅搜索，返回指定目录路径下的文件、子目录及符号链接的列表
+let contentsOfPath = try? manager.contentsOfDirectoryAtPath(url.path!)
+//contentsOfPath：Optional([fold1, test1.txt])
+print("contentsOfPath: \(contentsOfPath)")
+ 
+//（2）类似上面的，对指定路径执行浅搜索，返回指定目录路径下的文件、子目录及符号链接的列表
+let contentsOfURL = try? manager.contentsOfDirectoryAtURL(url, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions.SkipsHiddenFiles);
+//contentsOfURL：Optional([file://Users/.../Application/.../Documents/fold1/,
+// file://Users/.../Application/.../Documents/test1.txt])
+print("contentsOfURL: \(contentsOfURL)")
+ 
+//（3）深度遍历，会递归遍历子文件夹（但不会递归符号链接）
+let enumeratorAtPath = manager.enumeratorAtPath(url.path!)
+//enumeratorAtPath：Optional([fold1, fold1/test2.txt, test1.txt])
+print("enumeratorAtPath: \(enumeratorAtPath?.allObjects)")
+ 
+//（4）类似上面的，深度遍历，会递归遍历子文件夹（但不会递归符号链接）
+let enumeratorAtURL = manager.enumeratorAtURL(url, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, errorHandler:nil)
+//contentsOfURL：Optional([file://Users/.../Application/.../Documents/fold1/,
+// file://Users/.../Application/.../Documents/fold1/test2.txt,
+// file://Users/.../Application/.../Documents/test1.txt])
+print("enumeratorAtURL: \(enumeratorAtURL?.allObjects)")
+ 
+//（5）深度遍历，会递归遍历子文件夹（包括符号链接，所以要求性能的话用enumeratorAtPath）
+let subPaths = manager.subpathsAtPath(url.path!)
+//subPaths：Optional([fold1, fold1/test2.txt, test1.txt])
+print("subPaths: \(subPaths)")
+
+2，判断文件或文件夹是否存在
+
+let fileManager = NSFileManager.defaultManager()
+let filePath:String = NSHomeDirectory() + "/Documents/hangge.txt"
+var exist = fileManager.fileExistsAtPath(filePath)
+
+3，创建文件夹 
+方式1：
+	
+let myDirectory:String = NSHomeDirectory() + "/Documents/myFolder/Files"
+let fileManager = NSFileManager.defaultManager()
+ 
+//withIntermediateDirectories为ture表示路径中间如果有不存在的文件夹都会创建
+try! fileManager.createDirectoryAtPath(myDirectory,
+    withIntermediateDirectories: true, attributes: nil)
+方式2：
+
+func createFolder(name:String,baseUrl:NSURL){
+    let manager = NSFileManager.defaultManager()
+    let folder = baseUrl.URLByAppendingPathComponent(name, isDirectory: true)
+    print("文件夹: \(folder)")
+    let exist = manager.fileExistsAtPath(folder.path!)
+    if !exist {
+        try! manager.createDirectoryAtURL(folder, withIntermediateDirectories: true, attributes: nil)
+    }
+}
+ 
+//在文档目录下新建folder目录
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+createFolder("folder", baseUrl: url)
+
+4，将对象写入文件
+可以通过writeToFile方法，可以创建文件并将对象写入，对象包括String，NSString，UIImage，NSArray，NSDictionary等。
+（1）把String保存到文件
+
+let filePath:String = NSHomeDirectory() + "/Documents/hangge.txt"
+let info = "欢迎来到hange.com"
+try! info.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+
+（2）把图片保存到文件路径下
+
+	
+let filePath:String = NSHomeDirectory() + "/Documents/hangge.png"
+let image = UIImage(named: "apple.png")
+let data:NSData = UIImagePNGRepresentation(image!)!
+data.writeToFile(filePath, atomically: true)
+
+（3）把NSArray保存到文件路径下
+
+let array = NSArray(objects: "aaa","bbb","ccc")
+let filePath:String = NSHomeDirectory() + "/Documents/array.plist"
+array.writeToFile(filePath, atomically: true)
+
+（4）把NSDictionary保存到文件路径下
+
+let dictionary = NSDictionary(objects: ["111","222"], forKeys: ["aaa","bbb"])
+let filePath:String = NSHomeDirectory() + "/Documents/dictionary.plist"
+dictionary.writeToFile(filePath, atomically: true)
+
+5，创建文件
+
+func createFile(name:String,fileBaseUrl:NSURL){
+    let manager = NSFileManager.defaultManager()
+     
+    let file = fileBaseUrl.URLByAppendingPathComponent(name)
+    print("文件: \(file)")
+    let exist = manager.fileExistsAtPath(file.path!)
+    if !exist {
+        let data = NSData(base64EncodedString:"aGVsbG8gd29ybGQ=",options:.IgnoreUnknownCharacters)
+        let createSuccess = manager.createFileAtPath(file.path!,contents:data,attributes:nil)
+        print("文件创建结果: \(createSuccess)")
+    }
+}
+ 
+//在文档目录下新建test.txt文件
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory,
+    inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+createFile("test.txt", fileBaseUrl: url)
+//createFile("folder/new.txt", fileBaseUrl: url)
+
+6，复制文件 
+（1）方法1
+
+let fileManager = NSFileManager.defaultManager()
+let homeDirectory = NSHomeDirectory()
+let srcUrl = homeDirectory + "/Documents/hangge.txt"
+let toUrl = homeDirectory + "/Documents/copyed.txt"
+try! fileManager.copyItemAtPath(srcUrl, toPath: toUrl)
+
+（2）方法2
+
+// 定位到用户文档目录
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+ 
+// 将test.txt文件拷贝到文档目录根目录下的copyed.txt文件
+let srcUrl = url.URLByAppendingPathComponent("test.txt")
+let toUrl = url.URLByAppendingPathComponent("copyed.txt")
+ 
+try! manager.copyItemAtURL(srcUrl, toURL: toUrl)
+
+7，移动文件
+（1）方法1
+
+let fileManager = NSFileManager.defaultManager()
+let homeDirectory = NSHomeDirectory()
+let srcUrl = homeDirectory + "/Documents/hangge.txt"
+let toUrl = homeDirectory + "/Documents/moved"
+try! fileManager.moveItemAtPath(srcUrl, toPath: toUrl)
+
+（2）方法2
+
+// 定位到用户文档目录
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+ 
+let srcUrl = url.URLByAppendingPathComponent("test.txt")
+let toUrl = url.URLByAppendingPathComponent("copyed.txt")
+// 移动srcUrl中的文件（test.txt）到toUrl中（copyed.txt）
+try! manager.moveItemAtURL(srcUrl, toURL: toUrl)
+
+8，删除文件
+（1）方法1
+
+let fileManager = NSFileManager.defaultManager()
+let homeDirectory = NSHomeDirectory()
+let srcUrl = homeDirectory + "/Documents/hangge.txt"
+try! fileManager.removeItemAtPath(srcUrl)
+
+（2）方法2
+
+// 定位到用户文档目录
+let manager = NSFileManager.defaultManager()
+let urlForDocument = manager.URLsForDirectory( NSSearchPathDirectory.DocumentDirectory,
+    inDomains:NSSearchPathDomainMask.UserDomainMask)
+let url = urlForDocument[0] as NSURL
+ 
+let toUrl = url.URLByAppendingPathComponent("copyed.txt")
+// 删除文档根目录下的toUrl路径的文件（copyed.txt文件）
+try! manager.removeItemAtURL(toUrl)
+
+9，删除目录下所有的文件
+（1）方法1：获取所有文件，然后遍历删除
+
+let fileManager = NSFileManager.defaultManager()
+let myDirectory = NSHomeDirectory() + "/Documents/Files"
+let fileArray:[AnyObject]? = fileManager.subpathsAtPath(myDirectory)
+for fn in fileArray!{
+    try! fileManager.removeItemAtPath(myDirectory + "/\(fn)")
+}
+
+（2）方法2：删除目录后重新创建该目录
+
+let fileManager = NSFileManager.defaultManager()
+let myDirectory = NSHomeDirectory() + "/Documents/Files"
+try! fileManager.removeItemAtPath(myDirectory)
+try! fileManager.createDirectoryAtPath(myDirectory, withIntermediateDirectories: true,
+    attributes: nil)
+10，读取文件
+
+let manager = NSFileManager.defaultManager()
+let urlsForDocDirectory = manager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let docPath:NSURL = urlsForDocDirectory[0] as NSURL
+let file = docPath.URLByAppendingPathComponent("test.txt")
+ 
+//方法1
+let readHandler = try! NSFileHandle(forReadingFromURL:file)
+let data = readHandler.readDataToEndOfFile()
+let readString = NSString(data: data, encoding: NSUTF8StringEncoding)
+print("文件内容: \(readString)")
+ 
+//方法2
+let data = manager.contentsAtPath(file.path!)
+let readString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+print("文件内容: \(readString)")
+
+11，在任意位置写入数据
+	
+let manager = NSFileManager.defaultManager()
+let urlsForDocDirectory = manager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let docPath:NSURL = urlsForDocDirectory[0] as NSURL
+let file = docPath.URLByAppendingPathComponent("test.txt")
+ 
+let string = "添加一些文字到文件末尾"
+let appendedData = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+let writeHandler = try? NSFileHandle(forWritingToURL:file)
+writeHandler!.seekToEndOfFile()
+writeHandler!.writeData(appendedData!)
+
+12，文件权限判断
+
+	
+let manager = NSFileManager.defaultManager()
+let urlsForDocDirectory = manager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask)
+let docPath:NSURL = urlsForDocDirectory[0] as NSURL
+let file = docPath.URLByAppendingPathComponent("test.txt")
+ 
+let readable = manager.isReadableFileAtPath(file.path!)
+print("可读: \(readable)")
+let writeable = manager.isWritableFileAtPath(file.path!)
+print("可写: \(writeable)")
+let executable = manager.isExecutableFileAtPath(file.path!)
+print("可执行: \(executable)")
+let deleteable = manager.isDeletableFileAtPath(file.path!)
+print("可删除: \(deleteable)")
+
+13，获取文件属性（创建时间，修改时间，文件大小，文件类型等信息）
+
+let manager = NSFileManager.defaultManager()
+let urlsForDocDirectory = manager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory,
+    inDomains:NSSearchPathDomainMask.UserDomainMask)
+let docPath:NSURL = urlsForDocDirectory[0] as NSURL
+let file = docPath.URLByAppendingPathComponent("test.txt")
+ 
+let attributes = try? manager.attributesOfItemAtPath(file.path!) //结果为AnyObject类型
+print("attributes: \(attributes!)")
+
+14，文件/文件夹比较
+
+	
+let manager = NSFileManager.defaultManager()
+let urlsForDocDirectory = manager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory,
+    inDomains:NSSearchPathDomainMask.UserDomainMask)
+let docPath:NSURL = urlsForDocDirectory[0] as NSURL
+let contents = try! manager.contentsOfDirectoryAtPath(docPath.path!)
+ 
+//下面比较前面两个文件是否内容相同（该方法也可以用来比较目录）
+let count = contents.count
+if count > 1 {
+    let path1 = docPath.path! + "/" + (contents[0] as String)
+    let path2 = docPath.path! + "/" + (contents[1] as String)
+    let equal = manager.contentsEqualAtPath(path1,andPath:path2)
+    print("比较结果: \(equal)")
+}
+
+原文出自：www.hangge.com  转载请保留原文链接：http://www.hangge.com/blog/cache/detail_527.html
