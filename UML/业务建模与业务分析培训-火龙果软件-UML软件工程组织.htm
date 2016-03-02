@@ -1,0 +1,1202 @@
+<html><head>
+<title>业务建模与业务分析培训-火龙果软件-UML软件工程组织</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<meta name="keywords" content=" UML培训, Rose培训,StarUML培训,面向对象分析设计培训 ,UML建模培训,UML序列图培训,UML工具培训,设计模式培训,数据建模培训 ,顺序图培训,用例图培训,业务流程图培训,业务模型培训,业务建模培训,用例模型培训,软件架构模型培训,架构视图培训,数据流图培训">
+<meta name="Description" content=" UML软件工程组织/火龙果软件提供有关UML建模,软件架构设计,用例建模 ,面向对象分析设计，设计模式,架构建模,数据建模,业务建模,状态机分析设计,业务流程分析的咨询和技术资源. 已经积累了数百家企业培训成功案例,详细信息如下:http://www.uml.org.cn/newumltrain/pxanli.asp ">
+<meta name="robots" content="all">
+<style type="text/css">
+<!--
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style2 {color: #FF0000}
+.style3 {color: #000000}
+.left {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: D9D9D9;
+}
+.bompx {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #C0C0C0;
+}
+.boxpx {
+	border: 1px solid #C0C0C0;
+}
+.ltrig {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #C0C0C0;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #C0C0C0;
+	border-left-color: #C0C0C0;
+}
+.kchk {
+	border: 1px solid C3C3C3;
+}
+.wzlj1
+{
+	color:#FF0000;
+	font-family:"宋体";
+	font-size:12px;
+	line-height: 25px;
+	text-decoration: line-through;
+}
+-->
+</style>
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/pxgk.css" rel="stylesheet" type="text/css">
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/style1.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body style="margin:0; padding:0;" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0"><noscript>
+<iframe src="保密的网页名.htm"></iframe>
+</noscript>
+<table class="content" width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+    <td colspan="2">
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/style.css" rel="stylesheet" type="text/css">
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/pxgk.css" rel="stylesheet" type="text/css">
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/vedio.css" rel="stylesheet" type="text/css">
+
+
+<style type="text/css">
+
+.hdtop_a
+{      color:#ffffff;
+        font-family:"微软雅黑";
+        font-size:13px; 
+		font-weight:bold;
+		line-height:30px;
+		height: 30px; 
+		text-decoration:none; 
+}
+.hdtop_i
+{
+	 font-size:12px;
+	 color:#999999;
+}
+
+
+.hdtop_a:link
+{	color: #ffffff;
+	font-family:"微软雅黑";
+	font-size:13px;
+	font-weight:bold;
+	
+	
+}
+.hdtop_a:visited
+{       color:#ffffff;
+        font-family:"微软雅黑";
+        font-size:13px;
+		font-weight:bold;
+} 
+.hdtop_a:hover
+{
+	color:#ffffff;
+	font-family:"微软雅黑";
+	font-size:13px;
+	font-weight:bold;
+}
+
+#course-liss_a
+{      color:#333;
+        font-family:"宋体";
+        font-size:14px; 
+		font-weight:bold;
+		text-decoration:none; 
+}
+
+#course-liss_a:link
+{	color: #333;
+	font-family:"宋体";
+	font-size:14px;
+	font-weight:bold;
+	
+	
+}
+#course-liss_a:visited
+{       color:#333;
+        font-family:"宋体";
+        font-size:14px;
+		font-weight:bold;
+} 
+#course-liss_a:hover
+{
+	color:#333;
+	font-family:"宋体";
+	font-size:14px;
+	font-weight:bold;
+}
+
+style="font-size:14px;color:#333;font-famliy:宋体;font-weight: bold; "
+
+
+</style>
+
+
+
+<script type="text/javascript">
+ 
+<!--
+ 
+    function txtFocus() {
+ 
+       var e = window.event;
+ 
+       var obj = e.srcElement;   //当前对象
+ 
+       obj.style.background = "#FFFFFF";
+ 
+    }
+ 
+    
+
+    function txtBlur() {
+ 
+       var e = window.event;
+ 
+       var obj = e.srcElement;
+ 
+       obj.style.background = "#404040";
+ 
+    }
+ 
+-->
+ 
+</script>
+
+
+<noscript><iframe src=*></iframe></noscript>
+
+ </td></tr><tr> 
+        <td colspan="5" valign="top"><table class="content" width="100%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr> 
+  </tr><tr>
+        <td colspan="5" valign="top"><table class="content" width="100%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+                                <tbody><tr> 
+								<td width="942">
+								<table class="content" id="hdtopcon_a" width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tbody><tr>
+								<td style="background:#f5f5f5;" width="25" height="30">&nbsp;</td>
+								 <td align="center" width="12" height="30"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/headh_01.gif"></td>
+								  <td class="hdtoptd_a" width="25" height="30"><a href="http://www.uml.org.cn/index.asp" class="hdtop_a"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/requindex.png" border="0"></a></td>
+								 <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="80" height="30" bgcolor="404040"><a href="http://request.uml.com.cn/index.asp" class="hdtop_a">要资料</a></td>
+								 <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"><a href="http://www.uml.org.cn/wenzhang/artindex.asp" class="hdtop_a">文章</a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"><a href="http://wenku.uml.com.cn/index.asp" class="hdtop_a">文库</a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"><a href="http://video.uml.com.cn/index.asp" class="hdtop_a">视频</a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="#404040"><a href="http://code.uml.com.cn/index.asp" class="hdtop_a">Code</a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="90" height="30" bgcolor="#404040"><a href="http://www.uml.org.cn/iProcess/MyProcess.asp" class="hdtop_a">iProcess</a></td>
+								  <td class="hdtoptd_a" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" style="background:#f5f5f5;border-left: 1px solid #000000;" align="center" width="70" height="30"><a href="http://www.uml.org.cn/course/index.asp" class="hdtop_a"><font color="#000">课程</font></a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"><a href="http://certificate.uml.com.cn/index.asp" class="hdtop_a">认证</a></td>
+								 
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"> <a href="http://consult.uml.com.cn/index.asp" class="hdtop_a">服务</a></td>
+								  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="70" height="30" bgcolor="404040"><a href="http://tool.uml.com.cn/ToolsEA/introduce.asp" class="hdtop_a">工具</a></td>
+								  
+                                  <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#404040'" align="center" width="80" height="30" bgcolor="404040"><a href="http://www.uml.com.cn/communicate/index.asp" class="hdtop_a">讲座吧</a></td>
+								  
+								   <td align="center" width="80" height="30" bgcolor="404040">&nbsp;</td>
+								  
+								  
+								  
+								   <td style="border-left: 1px solid #000000;" onmouseover="this.bgColor='#606268';" onmouseout="this.bgColor='#05a7f2'" align="center" width="80" height="30" bgcolor="05a7f2"><a href="http://www.uml.com.cn/communicate/Expert_Recruitment.asp" class="hdtop_a"><span style="font-family:'宋体';">专家招募</span></a></td>
+								  
+								  
+								  <td style="border-left: 1px solid #000000;" align="center" width="20" height="30" bgcolor="404040">&nbsp;</td>
+								  </tr>
+                                <!--DWLayoutTable-->
+                              </tbody></table>
+							  </td>
+							  <td>
+							   <table class="content" width="100%" bgcolor="#404040" border="0" cellpadding="0" cellspacing="0">
+							  <tbody><tr>
+							  <td align="right" height="30"><a href="http://user.uml.com.cn/index.asp" class="hdtop_a">会员&nbsp;&nbsp;&nbsp;</a></td>
+							  </tr>
+							  </tbody></table> 
+							  </td>
+							  </tr>
+							  </tbody></table></td>
+      </tr>
+    <tr><td class="content" valign="top"> 
+      <table width="93%" height="85" border="0" cellpadding="0" cellspacing="0">
+        <!--DWLayoutTable-->
+        <tbody><tr> 
+		<td align="left" width="230">
+		<table class="content" valign="middle" align="left" width="230" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td colspan="2" height="10">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="20">&nbsp;</td>
+                <td width="210"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/cbz-2.jpg" border="0"></td>
+              </tr>
+            </tbody></table>
+          </td>
+          <td valign="bottom"><table class="content" align="left" width="768" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td align="right" width="477"> <table class="content" align="center" width="97%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+					 <td width="7">&nbsp;</td>
+                      <td width="431" height="81"> 
+                        <table width="485">
+                            <tbody><tr> 
+                              <td width="477" height="40"><font size="2"> 
+                                <form name="form1" method="post" action="/course/search.asp?&amp;curpage=1" style="display:inline;">
+                                  <input name="coursename" maxlength="80" id="coursename3" style="height:25px;" size="50" type="text"> <input src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/sea.png" name="Submit" type="image">
+                                </form>
+                              </font></td>
+                            </tr>
+
+                      </tbody></table></td>
+                    </tr>
+                </tbody></table></td>
+                <td colspan="5" align="right" width="291"><table class="content" align="center" width="100%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr> 
+                      <td height="40">&nbsp;</td>
+                    </tr>
+                </tbody></table></td>
+              </tr>
+              <tr valign="bottom"> 
+                <td align="right">
+				 <table class="content" align="center" width="97%" height="90%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr align="center" valign="middle"> 
+                      <td align="left" width="71" height="25"><a href="http://www.uml.org.cn/course/courses.asp" target="_self" class="content_a" id="course-liss_a">全部课程</a></td>
+                      <td id="course-liss_a" width="8" height="25"> <font size="2" color="#000000">|</font></td>
+                      <td width="73" height="25"><a href="http://www.uml.org.cn/course/techcourses.asp" target="_self" class="content_a" id="course-liss_a">技术学院</a></td>
+                      <td id="course-liss_a" width="8" height="25"><font size="2" color="#000000">|</font></td>
+                      <td width="73" height="25"><a href="http://www.uml.org.cn/course/manacourses.asp" target="_self" class="content_a" id="course-liss_a">管理学院</a></td>
+                      <td id="course-liss_a" width="8" height="25"><font size="2" color="#000000">|</font></td>
+                      <td width="87" height="25"><a href="http://www.uml.org.cn/course/embededclass.asp" target="_self" class="content_a" id="course-liss_a">嵌入式学院</a></td>
+                      <td id="course-liss_a" width="10" height="25"><font size="2" color="#000000">|</font></td>
+                      <td width="91" height="25"><a href="http://www.uml.org.cn/course/student.asp" target="_self" class="content_a" id="course-liss_a">定向培养</a></td>
+                      <td width="10">&nbsp;</td>
+                    </tr>
+                  </tbody></table></td>
+                <td colspan="5" align="right"><table class="content" align="center" width="100%" bgcolor="#F5F5F5" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr> 
+                      <td style="background:#22b14c;" align="center" valign="middle" width="70" height="25"><a href="http://www.uml.org.cn/newumltrain/pxanli.asp" target="_self" class="content_a"><span style="font-family: 微软细黑; font-size:12px; font-weight: bold; color:#ffffff;  line-height:25px;">成功案例</span></a></td>
+                      <td width="10" height="25">&nbsp;</td>
+					  <td style="background:#00a2e8;" align="center" valign="middle" width="70" height="25"><a href="http://www.uml.org.cn/course/learnservice.asp"><span style="font-family: 微软细黑; font-size:12px; font-weight: bold; color:#ffffff; line-height:25px;">品质保证</span></a></td>
+                      <td align="center" valign="middle" width="50" height="25"><a href="http://www.uml.org.cn/index3.htm"><span style="font-family:微软细黑; font-size:12px; font-weight: bold; color:#000000; line-height:25px;">&nbsp;电话</span></a></td>
+                      <td align="center" valign="middle" width="50" height="25"><a href="http://www.uml.org.cn/course_english/coursecolumn/courses.asp" target="_blank" class="content_a">English</a></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table>
+    </td>
+    <td width="240"> <table class="content" width="100%" border="0" cellpadding="1" cellspacing="0">
+        <tbody><tr> 
+          <td colspan="2"><table align="right" width="165" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr> 
+                      <td rowspan="5" valign="top" width="83"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/hlg.jpg" width="80" height="80" border="0"></td>
+                      <td style="font-size:12px; font-family:微软雅黑" align="center" valign="middle" width="76" height="25"><font color="#868d92">追随技术信仰</font></td>
+                    </tr>
+                    <tr> 
+                      <td width="76" height="5"> 
+                        <hr size="0"></td>
+                      </tr>
+                    <tr> 
+                      <td style="font-family:微软雅黑; font-size:12px" align="center" width="76" height="20"><font color="#868d92">随时听讲座</font></td>
+                      </tr>
+                    <tr> 
+                      <td style="font-family:微软雅黑; font-size:12px" align="center" width="76" height="20"><font color="#868d92">每天看新闻</font></td>
+                      </tr>
+                  </tbody></table>
+			</td></tr></tbody></table></td>
+  </tr>
+</tbody></table>
+
+
+<table width="100%" height="1" bgcolor="#f5f5f5" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+		<td width="25"></td>
+		<td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr><td bgcolor="#dcdcdc"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/spacern.gif" width="1" height="1"></td></tr>
+      </tbody></table></td>
+	  </tr>
+</tbody></table></td>
+      </tr>
+
+  
+  <tr valign="top"> 
+    <td> <table class="content" width="1000" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr valign="top"> 
+          <td rowspan="2" class="leftbar" valign="top" width="20" height="700"> 
+            <table class="content" align="center" width="20" height="8" border="0" cellpadding="1" cellspacing="1">
+             
+              <tbody><tr> 
+                <td valign="top" width="20" height="8">&nbsp;</td>
+              </tr>
+            </tbody></table></td><td class="couleftbar" valign="top" width="178"><table class="content" width="178" border="0" cellpadding="0" cellspacing="0">
+    <!--DWLayoutTable-->
+    <tbody>
+      <tr> 
+        <td class="content" align="center" valign="top" width="178" height="18" background="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/coule.gif" bgcolor="F5F5F5">&nbsp;&nbsp;&nbsp;</td>
+      </tr>
+    
+      <tr> 
+        <td class="couleftbar" align="center" height="134" bgcolor="f5f5f5"> 
+          <table class="table-main" align="center" width="95%" border="0" cellpadding="0" cellspacing="0">
+            <!--DWLayoutTable-->
+            <tbody>
+              <tr class="content"> 
+                <td width="178" height="25"> <table class="content" width="100%" border="0" cellpadding="1" cellspacing="1">
+                    <tbody><tr> 
+                      <td valign="middle" height="22"> <div align="left"><font size="2" color="#000000">成功案例</font><font size="2"><strong> 
+                          </strong></font></div></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20150730.asp" target="_blank" class="content_a">北京 
+                        基于UML+EA进行分析设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20140808-desaixiwei-EA.asp" target="_blank" class="content_a">      使用EA和UML进行系统分析</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20140721-tianfu-EA_UML.asp" target="_blank" class="content_a">某茶企 
+      基于UML进行分析设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20140510UML+EA.asp" target="_blank" class="content_a"> 基于UML和EA进行分析设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20140306EA_UML.asp" target="_blank" class="content_a">某水资源 基于EA进行UML建模</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><a href="http://www.uml.org.cn/news/20131028UML+EA.asp" target="_blank" class="content_a">某电力 UML+嵌入式分析设计</a></td>
+                    </tr>
+                   
+                    <tr> 
+                      <td height="25"><div align="right"><font size="2"><a href="http://www.uml.org.cn/newumltrain/pxanli2.asp#7" target="_blank" class="content_a">更多...</a></font></div></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+              <tr class="content"> 
+                <td height="54"><table class="content" width="100%" border="0" cellpadding="1" cellspacing="1">
+                    <tbody><tr> 
+                      <td valign="middle" height="22"> <div align="left"> 
+                          <hr size="1">
+                          <font size="2" color="#000000">相关课程<strong> </strong>&nbsp;</font></div></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-uml/umlooadml.asp" target="_blank" class="content_a">面向对象的分析设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-uml/umlooad.asp" target="_blank" class="content_a">基于UML的面向对象分析设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-uml/embuml.asp" target="_blank" class="content_a">UML + 嵌入式系统分析设计 </a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-db/guanxidatabase.asp" target="_blank" class="content_a">关系数据库面向OOAD设计</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-uml/ywjm.asp" target="_blank" class="content_a">业务建模与业务架构</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"> <a href="http://www.uml.org.cn/course-uml/shyyl.asp" target="_blank" class="content_a">使用用例进行需求管理</a></td>
+                    </tr>
+                    <tr> 
+                      <td height="25"><div align="right"><a href="http://www.uml.org.cn/course/uml.asp" target="_blank" class="content_a">更多...</a></div></td>
+                    </tr>
+                  </tbody></table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+       <tr> 
+                      <td style="padding-left:5px" valign="bottom" height="40"><style type="text/css"> 
+ 
+form { 
+margin: 0; 
+} 
+#search_box { 
+width: 168px; 
+height: 31px; 
+background: url(http://www.uml.org.cn/inc/images/bg_search_box111.png); 
+} 
+#search_box #s { 
+float: left; 
+padding: 0; 
+margin: 3px 0 0 6px; 
+border: 0; 
+width: 127px;
+height:25px; 
+background: none; 
+font-size: .8em; 
+} 
+#search_box #go { 
+float: right; 
+margin: 3px 5px 0 0; 
+} 
+
+</style> 
+
+          <div id="search_box"> 
+<form id="search_form" method="post" action="http://www.uml.org.cn/wenzhang/artsearch.asp?curpage=1"> 
+<input id="s" style="border:0px;color: #737e73; font-family:'微软雅黑'; font-size:16px;" onblur="if(this.value==''||this.value=='搜索学习资源'){this.value='搜索学习资源';this.style.color='#737e73';}else{this.style.color='#000000'}" onfocus="if(this.value=='搜索学习资源'){this.value='';this.style.color='#000000';}" value="搜索学习资源" type="text"> 
+<input src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/btn_search_box1.png" id="go" alt="Search" title="Search" type="image" width="27" height="24"> 
+</form> 
+</div> 
+   
+
+</td>
+                    </tr>
+    </tbody>
+  </table>
+</td>
+
+
+   
+
+ <td valign="top" width="20"><table class="content" align="center" width="20" height="8" border="0" cellpadding="0" cellspacing="0">
+              <!--DWLayoutTable-->
+              <tbody><tr> 
+                <td valign="top" width="40" height="8" bgcolor="#FFFFFF">&nbsp;</td>
+              </tr>
+            </tbody></table></td>
+
+          <td class="content"><br>
+            <table class="content" width="95%" cellpadding="2" cellspacing="1">
+              <tbody>
+                <tr bgcolor="#FFFFFF"> 
+                  <td><table class="content" width="97%" cellpadding="2" cellspacing="0">
+                      <tbody>
+                        <tr bgcolor="#FFFFFF"> 
+                          <td bgcolor="#FFFFFF"><div align="center"> 
+                              <span class="classtitle">业务建模与业务分析 <a href="http://certificate.uml.com.cn/xqs.asp" target="_blank" class="pxgk_a"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/renzheng.PNG" border="0"></a> 
+                                </span>
+                            &nbsp;&nbsp; <style type="text/css">
+.wkpf {	font-family: "微软雅黑";
+	font-size: 13px;
+	line-height: 25px;
+	text-decoration: none;
+	color: #818183;
+ }
+ 
+wkpf1{	font-family: "微软雅黑";
+	font-size: 13px;
+
+	text-decoration: none;
+	color: #000000;
+ }
+
+
+</style>
+<span class="wkpf">874 次浏览 </span>
+  <span class="wkpf">&nbsp;&nbsp;</span><a href="http://www.uml.org.cn/inc/dianz.asp?id=359&amp;act=show"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/dianzan.png" border="0"></a> 
+  <span class="wkpf">71 次</span>&nbsp;
+</div></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF"> 
+                          <td bgcolor="#FFFFFF"><table class="content" width="100%" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr> 
+                                  <td width="62%" height="20">&nbsp;</td>
+                                  <td align="right" width="38%"><a href="http://www.uml.com.cn/TenPay/WhetherLogin.asp?CourseName=%D2%B5%CE%F1%BD%A8%C4%A3%D3%EB%D2%B5%CE%F1%B7%D6%CE%F6&amp;Price=5000" target="_blank" class="classapp_a">报名参课</a>&nbsp;&nbsp;&nbsp;<a href="http://www.uml.com.cn/TenPay/WhetherLogin2.asp?CourseName=%D2%B5%CE%F1%BD%A8%C4%A3%D3%EB%D2%B5%CE%F1%B7%D6%CE%F6&amp;Price=5000" target="_blank" class="classapp_a">学生报名</a></td>
+                                </tr>
+                              </tbody>
+                            </table></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF"> 
+                          <td bgcolor="#FFFFFF"><table class="content" width="100%" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr> 
+                                  <td valign="top" width="6%" height="20"><strong>专家讲师：</strong>Retor.Zu,具有超过10年的业务分析和建模经验，熟悉基于UML的业务建模和基于BPMN的业务流程建模。为超过100家企业成功实施业务分析、业务建模和系统分析的培训， 
+                                    例如：南方航空、内蒙电信、中国银行、邦联快递、阿里巴巴、博洛尼 等几十家企业。&nbsp;</td>
+                                </tr>
+                                <tr> 
+                                  <td colspan="2" height="20"><strong>时间地点：</strong>北京、上海 
+                                    、深圳 有人等开班； </td>
+                                </tr>
+                                <tr> 
+                                  <td colspan="2" height="20"><strong>课程费用：</strong>5000元/人
+                                  <style type="text/css">
+<!--
+.coubmx {font-family:"微软雅黑";
+font-size: 16px}
+-->
+</style>
+<font size="2">（学生3折），详见 <a href="http://www.uml.org.cn/course/learnmanual.asp" class="pxgk_a">公开课学习手册</a></font>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5476741-1");
+pageTracker._trackPageview();
+</script></td>
+                                </tr>
+                              </tbody>
+                            </table></td>
+                        </tr>
+                        <tr bgcolor="#FFFFFF"> 
+                          <td bgcolor="#FFFFFF"><strong>企业内训：</strong><font size="2">可以根据企业需求,定制内训,详见 
+                            <a href="http://www.uml.org.cn/newumltrain/kecheng/gkk.asp" class="pxgk_a">内训学习手册</a></font></td>
+                        </tr>
+                        
+                         <tr> 
+                          <td><hr size="1"></td>
+                        </tr>
+                        <tr>                      
+                       </tr><tr bgcolor="#FFFFFF"> 
+                          <td bgcolor="#FFFFFF">
+                          <table class="content" width="100%" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                <tr> 
+                                  <td class="borderdd" width="186" height="160"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/renzheng-xia.png" width="104" height="131"><br></td>
+                                  <td class="borderdd" width="720"><a href="http://certificate.uml.com.cn/xqs.asp" class="pxgk_a">《需求分析师》</a>&nbsp;&nbsp;<strong>认证方式</strong> 
+                                    &nbsp; <img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/renzhneg-lc.png" align="top"><br>
+                                    1.知识：权威知识考试；<br>
+                                    2.技能：真实案例实践考评；<br>
+                                    3.经验：工作经验审核；<br>
+                                    4.素养：未来发展潜力的评估。<br></td>
+                                </tr>
+                              </tbody>
+                            </table></td>
+                        </tr>
+                       <tr> 
+                          <td><hr size="1"></td>
+                        </tr>
+                       
+                       
+                        <tr> 
+                          <td><strong>课程案例：</strong>本课程已经成功为超过几十家企业实施过培训，例如：中国银行、安泰人寿、广发行、阿里巴巴、首都机械、上海电信。</td>
+                        </tr>
+                        <tr> 
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr> 
+                          <td> <p>软件的核心价值是业务的有效性，本课程关注业务建模、分析和设计方法，带领您从原
+始的凌乱的业务开始，梳理业务的逻辑，识别业务的问题，通过业务分析、业务设计，把凌乱的业务梳理清楚，建立稳健的业务模型，进而转化为系统模型，实现业
+务的优化和发展，驱动高质量的软件开发和维护。 
+                            </p>
+                            <p align="center"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/ywjm.PNG"></p></td>
+                        </tr>
+                        <tr> 
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr> 
+                          <td><strong>培训目标： </strong> <hr size="1"></td>
+                        </tr>
+                        <tr> 
+                          <td> <p>课程将结合具体实际例子讲解核心理论与有效实践方法。从业务视角，实施整个业务建模过程，包括：</p>
+                            <ul>
+                              <li> 业务用例分析</li>
+                              <li>业务角色分析</li>
+                              <li> 业务对象分析</li>
+                              <li> 业务流程分析</li>
+                              <li> 设计可扩展的业务架构</li>
+                              <li> 从业务映射到系统</li>
+                              <li> 编写业务说明文档</li>
+                              <li> 以业务驱动开发</li>
+                            </ul></td>
+                        </tr>
+					
+						
+						
+				 <tr> 
+                          <td height="30"><strong>培训对象：</strong>需求分析员，业务需求分析员，项目经理，或者团队需求相关人员<br>
+                           <strong>学员基础：</strong><font color="#000000">了解一定的统一建模语言(UML)及OO技术，掌握一定的架构和程序设计知识</font></td>
+                        </tr>		
+						
+						
+						
+                        <tr> 
+                          <td height="30"><strong>授课方式：</strong> 定制课程 + 案例讲解 
+                            + 小组讨论，60%案例讲解，40%实践演练</td>
+                        </tr>
+                        <tr> 
+                          <td height="25"><font color="#000000"><strong>培训</strong></font><strong><font color="#000000">内容</font>：2天 
+                            </strong> </td>
+                        </tr>
+                        <tr> 
+                          <td valign="top"><table align="center" width="99%" bgcolor="#CCCCCC" border="0" cellpadding="3" cellspacing="1">
+                              <tbody><tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>业务建模概览</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 什么是业务建模</li>
+                                    <li> 为什么业务建模</li>
+                                    <li> 业务模型都包括什么</li>
+                                    <li> 业务模型和系统模型的区别和联系</li>
+                                    <li> 谁关心业务模型，关心什么</li>
+                                    <li> 业务模型的可变性</li>
+                                    <li> 业务建模的路线图</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>业务场景与用例分析</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 业务用例建模方法概览</li>
+                                    <li> 业务故事与业务用例</li>
+                                    <li> 收集业务场景</li>
+                                    <li> 业务用例建模</li>
+                                    <li> 编写业务用例说明文档</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"> 
+                                  <strong>业务角色分析</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 什么是业务角色，</li>
+                                    <li> 业务角色的层级</li>
+                                    <li> 如何归纳组织结构中的人员</li>
+                                    <li> 描述业务职责</li>
+                                    <li> 复杂组织结构的角色与职责分析</li>
+                                    <li> 建立业务角色模型</li>
+                                    <li> 实例：业务角色分析与建模</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>业务流程分析</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 什么是业务流程</li>
+                                    <li> 业务流程的层次与粒度</li>
+                                    <li> 业务流程的基本组织原理</li>
+                                    <li> 业务流程梳理与建模方法</li>
+                                    <li> 建立业务流程模型</li>
+                                    <li> 实例：业务流程分析与建模</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>业务对象分析</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 什么是业务对象，</li>
+                                    <li> 业务对象的收集方法</li>
+                                    <li> 业务对象的分解策略</li>
+                                    <li> 业务对象分析方法</li>
+                                    <li> 业务对象不一致的问题与统一方法</li>
+                                    <li> 利用现有系统的数据进行业务实体分析</li>
+                                    <li> 建立业务对象模型</li>
+                                    <li> 实例应用：一个具体项目业务对象分析</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>业务规则</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 什么是业务规则</li>
+                                    <li> 业务规则的表达形式</li>
+                                    <li> 复杂业务规则的分析方法</li>
+                                    <li> 规则的可变性分析</li>
+                                    <li> 规则建模方法</li>
+                                    <li>实例应用：业务规则分析与建模</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>设计可扩展的业务架构</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li>业务的变化所引起的波动</li>
+                                    <li>如何识别业务的变化</li>
+                                    <li>提炼变化为扩展需求</li>
+                                    <li>设计支持业务变化的框架</li>
+                                    <li>实例应用：可扩展的业务架构</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>从业务模型到系统模型</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 业务模型都有什么</li>
+                                    <li> 系统模型都有什么</li>
+                                    <li> 从业务模型到系统模型的映射方法</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top"><strong>编写业务说明文档</strong></td>
+                                <td class="content" align="left" valign="top"><ul>
+                                    <li> 业务文档的形式</li>
+                                    <li> 业务文档的内容</li>
+                                    <li> 如何编写高质量的需求分析报告</li>
+                                    <li> 如何评审业务文档</li>
+                                  </ul></td>
+                              </tr>
+                              <tr bordercolor="#000000" bgcolor="#FFFFFF"> 
+                                <td class="content" align="left" valign="top" width="27%"> 
+                                  <strong>业务驱动的软件开发过程</strong><br></td>
+                                <td class="content" align="left" valign="top" width="73%"> 
+                                  <ul>
+                                    <li> 业务驱动的软件开发过程 
+                                      <ul>
+                                        <li> 角色，</li>
+                                        <li> 制品，</li>
+                                        <li> 活动，</li>
+                                        <li> 流程 </li>
+                                      </ul>
+                                    </li>
+                                    <li> 业务驱动的需求分析</li>
+                                    <li>业务驱动的数据库设计</li>
+                                    <li> 业务驱动的架构设计</li>
+                                    <li> 业务驱动的迭代开发</li>
+                                    <li>业务驱动的测试</li>
+                                  </ul></td>
+                              </tr>
+                            </tbody></table></td>
+                        </tr>
+                        <tr> 
+                          <td> 
+                            <style type="text/css">
+.gld {
+	font-family: "宋体";
+	text-decoration: none;
+	color: #000000;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+	font-size: 14px;
+ }
+
+</style>
+
+<table class="content" align="center" width="96%" border="0" cellpadding="0" cellspacing="1">
+  <tbody><tr> 
+    <td width="59%" height="43"><span class="wkpf">874 次浏览 </span>&nbsp;<a href="http://www.uml.org.cn/inc/dianz.asp?id=359&amp;act=show"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/dianzan.png" border="0"> </a><span class="wkpf">71 次</span> </td>
+    <td width="41%"><div align="right"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/qynxdzh.jpg" usemap="#Map" width="230" height="30" border="0"></div></td>
+  </tr>
+  <tr> 
+    <td colspan="2" class="gld" height="43"><strong>其他人还看了课程</strong></td>
+  </tr>
+  <tr> 
+    <td colspan="2"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/umlandooad.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">UML在迭代过程中的分析设计</span></a>&nbsp;&nbsp;<span class="wkpf">123 次浏览 </span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/embuml-tehui.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">UML +嵌入式系统分析设计</span></a>&nbsp;&nbsp;<span class="wkpf">107 次浏览 </span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/xch/BPMN-ywjm.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">基于BPMN和EA进行业务流程建模</span></a>&nbsp;&nbsp;<span class="wkpf">56 次浏览 </span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/SysML-EA.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">基于SysML和EA进行系统设计与建模</span></a>&nbsp;&nbsp;<span class="wkpf">415 次浏览 </span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/NCL.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">NCL原理与应用</span></a>&nbsp;&nbsp;<span class="wkpf">323 次浏览 </span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/Kettle.asp"><span style=" font-size:14px; font-family:微软雅黑;text-decoration: none;color:#0000ff;">Kettle原理与应用</span></a>&nbsp;&nbsp;<span class="wkpf">164 次浏览 </span></td></tr>
+      </tbody></table></td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <area shape="rect" coords="128,2,225,31" href="http://www.uml.org.cn/newumltrain/kecheng/requireMent/app.asp" target="_blank" alt="定制内训">
+</map>
+
+                          </td>
+                        </tr>
+                      
+                    </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr valign="top"> 
+                  <td bgcolor="#FFFFFF">  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </td>
+        </tr>
+      </tbody></table></td>
+    <td> <table class="content" align="right" width="260" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr> 
+          <td valign="top" height="20"><br>
+<br>
+<link href="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/pxgk.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.wkpfnn {	font-family: "宋体";
+	font-size: 12px;
+	line-height: 25px;
+	text-decoration: none;
+	color: #818183;
+ }
+.pxgk_a:link{	
+	color: #0000FF;	
+	font-family:"宋体";	
+	font-size:12px;	
+	text-decoration:underline
+}
+.pxgk_a:visited{       
+	color:#0000FF;        
+	font-family:"宋体";        
+	font-size:12px;        
+	text-decoration:underline
+}
+.pxgk_a:hover{	
+	 color: #FF0000;	
+	 font-family:"宋体";	
+	 font-size:12px;         
+	 text-decoration: underline; 	
+	 font-style: normal; 
+}
+.content {
+    color: #000;
+    font-family: "宋体";
+    font-size: 12px;
+    line-height: 20px;
+}
+
+</style>
+
+<table class="content" align="center" width="100%" border="0" cellpadding="0" cellspacing="1">
+ 
+  <tbody><tr> 
+    <td colspan="2" height="43"><strong><font size="2">其他人还看了课程：</font></strong></td>
+  </tr>
+  <tr> 
+    <td colspan="2"><table class="content" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/umlandooad.asp" class="pxgk_a">UML在迭代过程中的分析设计</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">123</span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/embuml-tehui.asp" class="pxgk_a">UML +嵌入式系统分析设计</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">107</span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/xch/BPMN-ywjm.asp" class="pxgk_a">基于BPMN和EA进行业务流程建</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">56</span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/SysML-EA.asp" class="pxgk_a">基于SysML和EA进行系统设计与</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">415</span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/NCL.asp" class="pxgk_a">NCL原理与应用</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">323</span></td></tr><tr><td height="25"><a href="http://www.uml.org.cn/course-uml/Kettle.asp" class="pxgk_a">Kettle原理与应用</a><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/liulan.png" border="0"><span class="wkpfnn">164</span></td></tr>
+      </tbody></table></td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <area shape="rect" coords="128,2,225,31" href="http://www.uml.org.cn/newumltrain/kecheng/requireMent/app.asp" target="_blank" alt="定制内训">
+</map>
+           <table class="content" width="100%" border="0" cellpadding="1" cellspacing="1">
+              
+            
+              <tbody><tr> 
+                
+    <td valign="middle" height="10">
+      <style>
+
+.contnew
+{      color:#000000;
+        font-family:"微软雅黑";
+        font-size:13px; 
+		
+}
+.contnew_a:link
+{	color: #000000;
+	font-family:"微软雅黑";
+	font-size:13px;
+	
+}
+.contnew_a:visited
+{       color:#000000;
+        font-family:"微软雅黑";
+        font-size:13px;
+		
+} 
+.contnew_a:hover
+{
+	color:#000000;
+	font-family:"微软雅黑";
+	font-size:13px;
+	
+} 
+.STYLE1 {color: #FF0000}
+</style> 
+ 
+ 
+ <br> 
+ 
+<table class="content" width="100%" border="0" cellpadding="1" cellspacing="1">
+              <tbody><tr> 
+                 <td valign="middle" width="77%" height="22"> <div style="font-size:14px;" align="left"><strong>最新活动计划</strong></div></td></tr>
+              
+              
+              
+             
+              
+          <!-- <tr  >
+                <td height="25" valign="bottom" ><a href="http://www.uml.org.cn/course-test/rjcsjgs.asp" target="_blank" class="pxgk_a">[北京] 
+                  软件测试架构师 10-11</a></td>
+              </tr>-->
+              <!--<tr bgcolor="#FFFFFF"  >
+                <td height="25" valign="bottom" ><a href="http://www.uml.org.cn/course-db/dashujuchulijiagou.asp" target="_blank" class="pxgk_a">[北京] 
+                  大数据处理技术架构 10-13</a></td>
+              </tr>-->
+			  
+			   <tr valign="bottom"> 
+                              
+    <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-uml/umlooadml.asp" target="_blank" class="pxgk_a">[北京] 
+      UML与面向对象分析设计 3-13</a></td>
+  </tr>	
+			  
+		<tr valign="bottom"> 
+                              <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-arch/rjjgqyj.asp" target="_blank" class="pxgk_a">[北京] 
+                                软件架构设计案例与实践</a></td>
+  </tr>	  
+			  
+                <tr>
+    <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-arch/dxhlwjg.asp" target="_blank" class="pxgk_a">[北京] 
+      大型互联网架构设计高级实践</a></td>
+  </tr>
+
+  
+ 
+
+			   
+			
+  
+  <tr valign="bottom"> 
+                              <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-scm/multiscm.asp" target="_blank" class="pxgk_a">[北京] 
+                               多层次集成配置管理 3-19</a></td>
+  </tr>
+  
+  
+  
+              
+               <!--<tr valign="bottom" bgcolor="#FFFFFF"  >
+                 <td  height="25"><a href="http://www.uml.org.cn/course-rd/JavaScriptgjkf.asp" target="_blank" class="pxgk_a">[上海] 
+                   JavaScript高级开发 10-23</a></td>
+               </tr>-->
+            
+              
+			  
+			   <tr valign="bottom"> 
+                              <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-java/Javaweb.asp" target="_blank" class="pxgk_a">[北京] 
+                                Java编程基础与网页开发基础</a></td>
+  </tr>	
+            
+			 <tr valign="bottom"> 
+                              <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-db/djsldjs.asp" target="_blank" class="pxgk_a">[北京] 
+                               大数据落地技术系列课程 3-17</a></td>
+  </tr>	
+			  
+               <tr valign="bottom">
+                 
+    <td height="25"><a href="http://www.uml.org.cn/course-arch/yunjs.asp" target="_blank" class="pxgk_a">[上海] 
+      云计算原理与应用 2-27</a></td>
+               </tr>
+			  <tr valign="bottom">
+                 <td height="25"><a href="http://www.uml.org.cn/course-req/reqth.asp" target="_blank" class="pxgk_a">[上海] 
+                  软件需求分析与管理 3-17</a></td>
+  </tr>  
+			   
+			   
+			   
+               <tr valign="bottom">
+                 <td height="25"><a href="http://www.uml.org.cn/course-develop/code-clean.asp" target="_blank" class="pxgk_a">[上海] 
+                   代码整洁之道 4-21 </a></td>
+               </tr>
+			    <tr valign="bottom">
+                 <td height="25"><a href="http://www.uml.org.cn/course-project/cpjzfx.asp" target="_blank" class="pxgk_a">[上海] 
+                   产品竞争分析及策略 3-18 </a></td>
+               </tr>
+  
+               <tr>
+                 <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-web/HTML5-phonegap.asp" target="_blank" class="pxgk_a">[深圳] 
+                   HTML5开发框架PhoneGap开发</a></td>
+               </tr>
+			   
+              <!-- <tr bgcolor="#FFFFFF"  >
+                 <td  height="23" valign="bottom" ><a href="http://www.uml.org.cn/course-uml/uml-EA.asp" target="_blank" class="pxgk_a">[深圳]                              基于UML和EA系统分析 11-10 </a></td>
+               </tr>-->
+			 <tr>
+    <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-uml/uml-EA.asp" target="_blank" class="pxgk_a">[深圳] 基于UML和EA系统分析设计(特惠) </a></td>
+  </tr>
+			   
+              
+	 <tr>
+    <td valign="bottom" height="25"><a href="http://www.uml.org.cn/course-db/xnsjksj.asp" target="_blank" class="pxgk_a">[深圳] 并发、高性能数据库设计与优化  </a></td>
+  </tr>
+
+                            <tr> 
+                              <td valign="bottom" height="25"> <font size="2"><a href="http://www.uml.org.cn/course/courses.asp" target="_blank" class="pxgk_a">更多</a>...</font></td>
+                            </tr>
+                            
+            <tr> 
+            <td height="15"></td>
+          </tr>                
+
+  <tr> 
+    <td>
+<div align="left"> 
+        <table valign="middle" class="content" align="center" width="100%" border="0" cellpadding="0" cellspacing="0">
+         
+  <tbody><tr> 
+    <td>
+<div align="left">
+        <table valign="middle" class="content" align="center" width="100%" border="0" cellpadding="0" cellspacing="0">
+       
+		  
+		  
+	
+		  
+		    
+
+
+
+
+	 <tbody><tr> 
+            <td rowspan="4" align="center" valign="top" width="7%"> 
+              <div align="left"><a href="http://www.uml.com.cn/communicate/group2016-1.asp" target="_blank"><img src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/jiabin.jpg" width="89" border="0"></a></div></td>
+            <td class="contnew_a" style="font-size:18px;" align="left" valign="top" width="94%" height="20"><a href="http://www.uml.com.cn/communicate/group2016-1.asp" target="_blank" class="contnew_a"><font color="880015"></font></a></td>
+          </tr>
+          <tr> 
+            <td align="left" valign="top" height="35"><a href="http://www.uml.com.cn/communicate/group2016-1.asp" target="_blank" class="contnew_a">&nbsp;讲座 我怎么改进过程</a></td>
+          </tr>
+          <tr> 
+            <td align="left" valign="top" height="35"><a href="http://www.uml.com.cn/communicate/group2016-1.asp" target="_blank" class="contnew_a">&nbsp;时间：2016-3-1</a></td>
+          </tr>
+          <tr> 
+            <td height="20">&nbsp;</td>
+          </tr>
+	 <tr>
+      <td colspan="2" valign="bottom" height="20">
+	  <div style="height:25px;" align="left"> 
+	    <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2377" target="_blank" class="contnew_a"><font color="880015">&nbsp;实录</font>：互联网产品经理</a></div>
+	  </div>
+          <div style="height:25px;" align="left"> 
+            <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2377" target="_blank" class="contnew_a">&nbsp;主讲：降峰</a></div>
+          </div>
+        <div style="height:25px;" align="left"> 
+          <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2377" target="_blank" class="contnew_a"><font color="880015">&nbsp;</font>百度,高级产品经理</a></div>
+        </div></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    
+	
+	 <tr>
+      <td colspan="2" valign="bottom" height="20">
+	  <div style="height:25px;" align="left"> 
+	    <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2387" target="_blank" class="contnew_a"><font color="880015">&nbsp;实录</font>：京东咚咚架构演进</a></div>
+	  </div>
+          <div style="height:25px;" align="left"> 
+            <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2387" target="_blank" class="contnew_a">&nbsp;主讲：胡峰 </a></div>
+          </div>
+        <div style="height:25px;" align="left"> 
+          <div align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2387" target="_blank" class="contnew_a"><font color="880015">&nbsp;</font>京东成都研究院， 架构师</a></div>
+        </div></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+		  
+          <!-- <tr > 
+            <td width="7%"  rowspan="2" align="center" valign="top" > 
+              <div align="left" style="height:40px;" ><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2126" target="_blank" ><img  src="http://www.uml.org.cn/inc/images/xmlogo.jpg"  border="0" width="89"/></a></div></td>
+            <td width="94%" height="20" align="left"   valign="middle" class="contnew_a" style="font-size:18px;"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2126"target="_blank" class="contnew_a"><font color="880015">&nbsp;实录 </font>在产品中测试</a></td>
+          </tr>
+		  
+          <tr > 
+            <td height="20" valign="middle" align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2126" target="_blank"class="contnew_a">&nbsp;主讲：欧阳辰</a></td>
+          </tr>
+		  
+		  
+		  <tr><td height="5px;">&nbsp;</td></tr>
+		  
+           <tr > 
+            <td width="7%"  rowspan="2" align="center" valign="top" > 
+              <div align="left" style="height:40px;" ><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2189" target="_blank" ><img  src="http://www.uml.org.cn/inc/images/alilogo.png"  width="89" border="0"/></a></div></td>
+            <td width="94%" height="20" align="left"   valign="middle" class="contnew_a" style="font-size:18px;"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2189"target="_blank" class="contnew_a"><font color="880015">&nbsp;实录 </font>DevOps运维 </a></td>
+          </tr>
+		  
+          <tr > 
+            <td height="20" valign="middle" align="left"><a href="http://video.uml.com.cn/video/broh5.asp?vidID=2189" target="_blank"class="contnew_a">&nbsp;主讲：王津银</a></td>
+          </tr>-->
+		  
+		  
+		 
+		  
+        </tbody></table>
+      </div></td>
+  </tr>
+        </tbody></table>
+      </div></td>
+  </tr>
+
+ <!--<tr> 
+    <td>
+<div align="left"><a href="http://www.uml.org.cn/course-req/reqth.asp"target="_blank" class="artsec_a"><img src="http://www.uml.org.cn/inc/images/req.png"  width="195" height="85" border="0" /></a></div></td>
+  </tr>
+  <tr> 
+    <td height="10">&nbsp;</td>
+  </tr> 
+  <tr> 
+    <td>
+<div align="left"><a href="http://www.uml.org.cn/course-test/yhty.asp"target="_blank" class="artsec_a"><img src="http://www.uml.org.cn/inc/images/userExperienceTest.png"width="195" height="85" border="0"></a></div></td>
+  </tr>
+  <tr> 
+    <td height="10">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>
+<div align="left"><a href="http://www.uml.org.cn/course-db/xnsjksj.asp"target="_blank" class="artsec_a"><img src="http://www.uml.org.cn/inc/images/db2.png"  width="195" height="85"border="0"></a></div></td>
+  </tr>
+  <tr> 
+    <td height="10">&nbsp;</td>
+  </tr>
+   <tr> 
+    <td>
+<div align="left"><a href="http://www.uml.org.cn/course-arch/rjjgqyj.asp"target="_blank" class="artsec_a"><img src="http://wenku.uml.com.cn/images/jiagou.png" width="195" height="85" border="0"></a></div></td>
+  </tr>
+    <tr> 
+    <td height="10">&nbsp;</td>
+  </tr>-->
+</tbody></table>
+
+</td></tr></tbody></table>
+
+    </td>
+              </tr>
+              <tr> 
+                <td valign="middle" height="10">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td valign="middle" height="10">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td valign="middle" height="10">&nbsp;</td>
+              </tr>
+          </tbody></table>
+<br> 
+  </td>
+          <td width="20">&nbsp;</td>
+        </tr>
+      </tbody></table>
+  
+
+    <style type="text/css">
+<!--
+.coubmx {font-family:"微软雅黑";
+font-size: 16px}
+-->
+</style>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <!--DWLayoutTable-->
+  <tbody><tr>
+    <td class="content" align="center" valign="middle" width="20" height="218" bgcolor="f5f5f5"></td>
+    <td class="content" style="border-top:1px solid #dcdcdc;" align="center" valign="middle" width="1119" height="218" bgcolor="f5f5f5">
+<div align="left">
+  <br><table class="content" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <!--DWLayoutTable-->
+    <tbody><tr>
+      <td class="coubmx" style="border-style: none;" align="left" width="45%">希望我们的资料可以帮助你学习，也欢迎投稿&amp;提建议给我<br>
+      <span class="coubmx" style="border-style: none; align=">频道编辑： sky<br>
+          邮  &nbsp;&nbsp;&nbsp;&nbsp; 件：<span class="coubmx" style="border-style: none; align=">sky</span>@uml.net.cn</span></td>
+      <td class="coubmx" style="border-style: none; line-height: 1.5;" width="17%"><!--DWLayoutEmptyCell-->&nbsp;</td>
+      <td class="coubmx" style="border-style: none; line-height: 1.5;" width="14%"><!--DWLayoutEmptyCell-->&nbsp;</td>
+      <td class="coubmx" style="border-style: none; line-height: 1.5;" valign="middle" width="24%"><table hight="100%" width="100%" border="0">
+        <tbody><tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody></table>        <span class="coubmx" style="border-style: none; align=">
+      <p></p>
+      </span></td>
+      
+      
+    </tr>
+    <tr>
+      <td colspan="4" class="coubmx" style="border-style: none; align=" right="right" "=""><br></td>
+      </tr>
+  </tbody></table>
+</div>
+        <blockquote>
+          <p align="right"><a class="content_a" href="http://www.uml.org.cn/index2.htm" target="_blank">关于我们</a> | <span class="content_a"><a class="content_a" href="http://www.uml.org.cn/index3.htm" target="_blank">联系我们</a></span> | <span><font color="#000000"> &nbsp;&nbsp;京ICP备10020922号&nbsp;&nbsp;京公海网安备110108001071号 </font></span></p>
+      </blockquote>
+      <p align="right">&nbsp;</p></td>
+  </tr>
+</tbody></table>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="%E4%B8%9A%E5%8A%A1%E5%BB%BA%E6%A8%A1%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90%E5%9F%B9%E8%AE%AD-%E7%81%AB%E9%BE%99%E6%9E%9C%E8%BD%AF%E4%BB%B6-UML%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5476741-1");
+pageTracker._trackPageview();
+</script>
+  
+  
+
+</body></html>

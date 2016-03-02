@@ -1,0 +1,79 @@
+<style type="text/css">
+
+.vedio1 {
+
+	font-family: 宋体;
+	
+	font-size: 16pt;
+
+	color: #0000FF;
+
+}
+.vedio1_a:link {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+
+.vedio1_a:visited {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+
+.vedio1_a:hover {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #FF0000;
+	text-decoration: underline;
+}
+
+.vedio2_a {
+	font-family: 宋体;
+	font-size: 12pt;
+	color: #FFFFFF;
+
+
+}
+
+.vedio2_a:link {
+	font-family: 宋体;
+	font-size: 12pt;
+	color: #FFFFFF;
+}
+.vedio3_a:link {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #FF0000;
+	text-decoration: none;}
+.vedio3_a:link {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: none;
+}
+
+.vedio3_a:visited {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: none;
+}
+
+.vedio3_a:hover {
+	font-family: "宋体";
+	font-size: 12px;
+	font-style: normal;
+	color: #FF0000;
+	text-decoration: none;
+}
+
+</STYLE>

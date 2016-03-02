@@ -1,0 +1,686 @@
+/* Minification failed. Returning unminified contents.
+(670,38): run-time error CSS1062: Expected semicolon or closing curly-brace, found ')'
+ */
+#EntryTag {
+	margin-top: 20px;
+	font-size: 9pt;
+	color: gray;
+}
+.topicListFooter {
+	text-align: right;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+#divRefreshComments{
+	text-align: right; 
+	margin-right: 10px;
+	margin-bottom: 5px;
+	font-size: 9pt;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	height: 100%;
+}
+body {
+	color: #000;
+	background: #D2D8DE;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size:14px;
+	min-height: 101%;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+fieldset, img {
+	border: 0;
+}
+ul {
+	word-break: break-all;
+}
+li {
+	list-style: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+a:link {
+	color: black;
+	text-decoration: none;
+}
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+a:hover {
+	color: #F60;
+	text-decoration: underline;
+}
+a:active {
+	color: black;
+	text-decoration: none;
+}
+.clear {
+	clear: both;
+}
+#home {
+	margin: 0 auto;
+}
+#header {
+
+}
+#blogTitle {
+	height:70px;background: #fff;
+	clear: both;
+}
+#blogTitle h1 {
+	font-size: 150%;
+	font-weight: bold;
+	line-height: 1.5;
+	margin-left: 1em;
+	margin-top: 10px;
+	width: 50%;
+	float: left;
+}
+#blogTitle h2 {
+	margin-left: 4em;
+	line-height: 1.5;
+	width: 50%;
+	float: left;
+}
+#blogLogo {
+	float: right;
+}
+#navigator {
+	background-color: black;
+	height: 60px;line-height: 60px;overflow: hidden;
+	clear: both;
+}
+#navList {
+	min-height: 30px;
+	float: left;
+}
+#navList li {
+	float: left;
+}
+#navList a {
+	display: block;
+	padding:0 1.5em;height: 60px;font-family:'微软雅黑';
+	float: left;font-size: 1.2em;
+	text-align: center;transition-duration:0.3s;
+}
+#navList a:link, #navList a:visited, #navList a:active {
+	color: #bbb;
+}
+#navList a:hover {
+	color: white;
+	background-color: #343434;
+	text-decoration: none;text-shadow: 0px 0px 1px #000;
+}
+#navList a.aHeaderXML{padding-top: 25px;overflow: hidden;}
+#navList a.aHeaderXML img{vertical-align:middle;}
+
+.blogStats {
+	float: right;
+	color: #ccc;padding-right: 10px;
+	text-align: right;
+}
+/*****home和头部结束**************************/
+
+/*****主页文章列表开始**************************/
+#main{
+	min-width: 950px;
+	text-align: left;padding:20px 0 0 10px;overflow: hidden;
+}
+#mainContent .forFlow{
+	margin-left:20em;
+	float: none; 
+	width: auto;
+}
+
+#mainContent {
+	min-height: 200px;
+	padding: 0px 0px 10px 0;
+	*padding-top:10px;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-all;
+	
+	float: right;
+	margin-left: -20em;margin-right: 20px;display: inline;
+	width: 100%
+}
+.day {
+	min-height: 10px;
+	_height: 10px;
+	background: #fff;
+    border-radius: 7px;
+    box-shadow: 1px 1px 2px #A7A8AD;
+    color: #666666;
+    margin: 0 5px 20px 0;
+    padding:5px 20px 10px;
+}
+.dayTitle {
+	width: 100%;
+	color: #666;
+	line-height:2.2em;
+	font-size:22px;
+	clear:both;
+	border-bottom:1px solid #ccc;
+	text-align:center;
+}
+.postTitle {
+	font-size: 110%;
+	font-weight: bold;
+	border-bottom: 1px dashed #ccc;
+	float: right;
+	line-height:2.5em;font-size: 18px;
+	width: 100%;
+	clear:both;
+}
+.postTitle a:link, .postTitle a:visited, .postTitle a:active {
+	color: #390;transition:all 0.4s linear 0s
+}
+.postTitle a:hover {
+	color: #F60;
+	text-decoration: none;margin-left: 10px;
+}
+.postCon {
+	float: right;
+	line-height: 1.5;
+	width: 100%;
+	clear:both;
+	padding: 10px 0;
+}
+.postDesc {
+	float: right;
+	width: 100%;
+	clear:both;
+	text-align: right;
+	padding-right: 5px;
+	color: #A8B1BA;line-height: 2.5em;
+}
+.postDesc a:link, .postDesc a:visited, .postDesc a:active {
+	color: #666;
+}
+.postDesc a:hover {
+	color: #F60;
+	text-decoration: none;
+}
+.postSeparator {
+	clear: both;
+	height: 1px;
+	border-top: 1px dotted #666;
+	width: 100%;
+	clear:both;
+	float: right;
+	margin: 0 auto 15px auto;
+}
+/*****主页文章列表开始**************************/
+
+/*****侧边栏开始********************************/
+#sideBar {
+	width: 230px;
+	min-height: 200px;
+	padding: 0px 0 0px 5px;
+	float: left;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-all;
+}
+.newsItem .catListTitle {
+	display: none;
+}
+.newsItem,#blog-calendar {
+	margin-bottom:15px;text-indent:0;padding:10px;background: #FAFCFD;border-radius:7px;box-shadow:1px 1px 2px #A7A8AD;line-height: 1.5;
+}
+/**日历控件样式开始**/
+#calendar {
+	margin-bottom: 15px;padding:5px;border-radius:7px;box-shadow:1px 1px 2px #A7A8AD;background: #fff;
+}
+#calendar .Cal {
+	width: 100%;
+	line-height: 1.5;
+}
+#calendar th{padding:2px 5px;}
+#calendar td{padding:2px 5px;}
+#calendar td a{display: block;}
+.Cal {/**日历容器table**/
+	border: none;
+	color: #666;
+}
+#calendar table a:link, #calendar table a:visited, #calendar table a:active {
+	font-weight: bold;
+}
+#calendar table a:hover {
+	color: white;
+	text-decoration: none;
+	background-color: #F60;
+}
+.CalTodayDay{/**今天日期样式**/
+	color:#f60;
+}
+#calendar .CalNextPrev a:link,#calendar  .CalNextPrev a:visited, #calendar .CalNextPrev a:active {/**上个月、下个月箭头样式**/
+	font-weight: bold;
+	background-color: white;
+}
+.CalDayHeader{
+	border-bottom:1px solid #ccc;	
+}
+.CalTitle{/**日历年月头部样式**/
+	width:100%;
+	background:white;
+	color:black;
+	border-bottom:1px solid #666;	
+}
+/**日历控件样式结束**/
+.catListTitle {
+background: #390;border-bottom: 1px solid #006600;border-top-left-radius: 7px; border-top-right-radius: 7px; color: #FFFFFF;font-size: 1.2em;
+height:1.8em;
+line-height:1.8em;
+padding: 5px;
+text-indent:0.5em;text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+.catListComment {
+	line-height: 1.5;
+}
+.divRecentComment {
+	text-indent: 2em;
+	color: #666;
+}
+#sideBarMain ul {
+	line-height: 1.5;
+}
+/* 最新评论等 开始 */
+#AjaxHolder_UpdatePanel1,
+#AjaxHolder_PostComment_divCommnentArea,
+#profile,
+.entrylist,
+.gallery
+{
+background: none repeat scroll 0 0 #FFFFFF;
+border-radius: 7px;
+box-shadow:1px 1px 2px #A7A8AD;
+margin: 0 0 15px 0;
+min-height: 200px;
+overflow: hidden;
+padding:0 15px;
+text-overflow: ellipsis;
+word-break: break-all;
+}
+#AjaxHolder_PostComment_divCommnentArea{padding: 10px;}
+#profile,
+.entrylist,
+.gallery
+{padding: 10px;}
+.catListEssay,.catListLink,.catListNoteBook,
+.catListTag,
+.catListPostCategory,
+.catListPostArchive,
+.catListImageCategory,
+.catListArticleArchive,
+.catListView,
+.catListFeedback,
+.mySearch,
+.catListComment,
+.catListBlogRank,
+.catList,
+.catListArticleCategory
+{margin-bottom: 15px;background: #FAFCFD;border-radius:7px;box-shadow:1px 1px 2px #A7A8AD;overflow: hidden;zoom: 1;}
+.catListEssay ul li,.catListLink ul li,.catListNoteBook ul li,
+.catListTag ul li,
+.catListPostCategory ul li,
+.catListPostArchive ul li,
+.catListImageCategory ul li,
+.catListArticleArchive ul li,
+.catListView ul li,
+.catListFeedback ul li,
+.catListComment ul li,
+.catListBlogRank ul li,
+.catList ul li,
+.catListArticleCategory ul li
+{text-indent:1em;padding: 10px 5px;border-bottom: 1px solid #DADFE1; border-top: 1px solid #FFFFFF; overflow: hidden;}
+.catListEssay ul li a,.catListLink ul li a,.catListNoteBook ul li a,
+.catListTag ul li a,
+.catListPostCategory ul li a,
+.catListPostArchive ul li a,
+.catListImageCategory ul li a,
+.catListArticleArchive ul li a,
+.catListView ul li a,
+.catListFeedback ul li a,
+.catListComment ul li a,
+.catListBlogRank ul li a,
+.catList ul li a
+.catListArticleCategory ul li a
+{text-indent: 1em;font-size: 12px;}
+.catListEssay ul li a:hover,.catListLink ul li a:hover,.catListNoteBook ul li a:hover,
+.catListTag ul li a:hover,
+.catListPostCategory ul li a:hover,
+.catListPostArchive ul li a:hover,
+.catListImageCategory ul li a:hover,
+.catListView ul li a:hover,
+.catListFeedback ul li a:hover,
+.catListArticleArchive ul li a:hover,
+.catListComment ul li a:hover
+{text-decoration: none;}
+.divRecentCommentAticle{padding:0 10px;}
+.divRecentComment{padding: 10px;font-size: 12px;}
+#AjaxHolder_PostComment_divCommnentArea td{padding: 5px 0;}
+/* 最新评论等 结束 */
+
+/*****侧边栏结束********************************/
+
+
+/****查看文章页面开始*************************/
+#topics {
+	min-height: 200px;margin-bottom: 15px;
+	padding:15px;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-all;background: #fff;border-radius: 7px;
+box-shadow: 1px 1px 2px #A7A8AD;
+}
+#topics .postTitle {
+	font-size: 130%;
+	font-weight: bold;
+	border-bottom: 1px solid #999;
+	float: left;
+	line-height:2em;
+	width: 100%;
+	padding-left: 5px;
+}
+.postBody {
+	padding: 15px 2px 5px 5px;
+	line-height: 1.5;
+	color: #000;
+	border-bottom: 1px solid #ccc;
+}
+#EntryTag {
+	color: #666;
+}
+#EntryTag a {
+	margin-left: 5px;
+}
+#EntryTag a:link, #EntryTag a:visited, #EntryTag a:active {
+	color: #666;
+}
+#EntryTag a:hover {
+	color: #f60;
+}
+#topics .postDesc {
+	float: right;
+	width: 100%;
+	text-align: right;
+	padding-right: 5px;
+	color: #666;
+	margin-top: 5px;
+}
+.feedback_area_title {
+	font-weight: bold;line-height: 35px;margin: 10px 0;
+	border-bottom: 1px solid #ccc;
+	padding-left: 8px;
+}
+.louzhu {
+background:transparent url('images/icoLouZhu.gif') no-repeat scroll right top;
+padding-right:16px;
+}
+.feedbackListSubtitle {
+	color: #666;
+}
+.feedbackListSubtitle a:link, .feedbackListSubtitle a:visited, .feedbackListSubtitle a:active {
+	color: #666;
+	font-weight: normal;
+}
+.feedbackListSubtitle a:hover {
+	color: #f60;
+	text-decoration: none;
+}
+.feedbackManage {
+	width: 200px;
+	text-align: right;
+	float: right;
+}
+.feedbackCon {
+	border-bottom: 1px solid #ccc;
+	padding:20px 18px 10px 40px;
+	min-height: 35px;
+	_height: 35px;
+	margin-bottom: 1em;
+	line-height: 1.5;
+}
+#divRefreshComments {
+	text-align: right;
+	margin-bottom: 10px;
+}
+.commenttb {
+	width: 320px;
+}
+/****查看文章页面开始*************************/
+
+/****列表页面开始******************************/
+.entrylistTitle,.PostListTitle,.thumbTitle{/**几个分类列表的标题样式**/
+	font-size: 110%;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 3px;line-height: 2em;
+	padding-right: 10px;
+}
+
+.entrylistDescription {
+	color: #666;
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	margin-bottom: 10px;
+}
+.entrylistItem {
+	min-height: 20px;
+	_height: 20px;
+	margin-bottom: 30px;
+	padding-bottom: 5px;
+	width: 100%;
+}
+.entrylistPosttitle {
+	font-size: 110%;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	line-height:2em;
+	width: 100%;
+	padding-left: 5px;
+}
+a.entrylistItemTitle{color: #390;}
+a.entrylistItemTitle:hover{color: #f60;}
+.entrylistPosttitle a:hover {
+	text-decoration: none;
+}
+.entrylistPostSummary {
+	margin-top: 5px;
+	padding-left: 5px;
+	margin-bottom: 5px;
+}
+.entrylistItemPostDesc {
+	text-align: right;
+	color: #666;
+}
+.entrylistItemPostDesc a:link, .entrylistItemPostDesc a:visited, .entrylistItemPostDesc a:active {
+	color: #666;
+}
+.entrylistItemPostDesc a:hover {
+	color: #f60;
+}
+.entrylist .postSeparator {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+	line-height: 0;
+	margin: 0;
+	padding: 0;
+	height: 0;
+	border: none;
+}
+
+.pager {
+	text-align: right;
+	margin-right: 10px;
+}
+.PostList {
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	min-height: 1.5em;
+	_height: 1.5em;
+	padding-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 5px;
+}
+.postTitl2 {
+	float: left;
+}
+.postDesc2 {
+	color: #666;
+	float: right;
+}
+.postText2 {
+	clear: both;
+	color: #666;
+}
+.pfl_feedback_area_title {
+	line-height: 1.5;
+	font-weight: bold;font-size: 16px;
+	border-bottom: 1px solid #ccc;line-height: 2.5em;
+}
+.pfl_feedback_area_title a,.pfl_feedbackManage a{color: #690;margin:0 10px;font-weight: normal;}
+.pfl_feedback_area_title a:hover,.pfl_feedbackManage a:hover{color: #f60;}
+.pfl_feedbackManage a{margin:0 0 0 0;}
+.pfl_feedbackItem {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.pfl_feedbacksubtitle {
+	width: 100%;
+	border-bottom: 1px dotted #ccc;
+	height:2.5em;line-height: 2.5em;
+}
+.pfl_feedbackname {
+	float: left;color: #A8B1BA;
+}
+.pfl_feedbackManage {
+	float: right;
+}
+.pfl_feedbackCon {
+	color: black;padding: 10px 0;
+}
+.pfl_feedbackAnswer {
+	color: #F40;
+	text-indent: 2em;padding-bottom: 10px;
+}
+.tdSentMessage {
+	text-align: right;
+}
+.errorMessage {
+	width: 300px;
+	float: left;
+}
+#Profile1_panelAdd td{padding: 10px 0;}
+/****列表页面结束******************************/
+
+/****相册页面开始******************************/
+.divPhoto {
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin-right: 10px;
+}
+
+.thumbDescription {
+	color: #666;
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	margin-bottom: 10px;
+}
+#footer {
+	text-align: center;
+	min-height: 15px;
+	_height: 15px;
+	border-top: 1px solid black;
+	margin-top: 10px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+}
+.personInfo {
+	margin-bottom: 20px;
+}
+.pages {
+	text-align: right;
+}
+.postBody {
+	line-height: 1.5;
+}
+.postBody p,.postCon  p{
+	text-indent: 2em;
+	margin: 0 auto 1em auto;
+}
+.postBody h2{
+	font-size: 150%;
+	margin: 15px auto 2px auto;
+	font-weight:bold;
+}
+.postBody h3 {
+	font-size: 120%;
+	margin: 15px auto 2px auto;
+	font-weight:bold;
+}
+.postBody h4{
+	font-size:110%;
+	margin:15px auto 2px auto;
+	font-weight:bold;
+	color:#333;
+}
+
+.postBody h5{
+	font-size:100%;
+	margin:15px auto 2px auto;
+	font-weight:bold;
+	color:#333;
+}
+
+.postBody a:link,.postBody a:visited,.postBody a:active{
+	text-decoration:underline;
+}
+.postCon a:link,.postCon a:visited,.postCon a:active{
+	text-decoration:underline;
+}
+.postBody ul,.postCon ul{
+	margin-left:2em;	
+}
+
+.postBody li,.postCon li{
+	list-style-type:disc;
+	margin-bottom:1em;
+}
+
+.postBody blockquote{
+	background:url('images/comment.gif')) no-repeat 25px 0px;
+	line-height:1.6;
+	color:#333;
+}
+.div_my_zzk{
+	margin-left: 13px;	
+}
+.input_my_zzk{ width: 120px; }
+
+.blog_comment_body a:link{
+    text-decoration:underline;
+}
+
+

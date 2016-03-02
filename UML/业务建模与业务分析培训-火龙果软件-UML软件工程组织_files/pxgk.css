@@ -1,0 +1,59 @@
+<style type="text/css">
+.wzlj1{	
+	color:#FF0000;	
+	font-family:"宋体";	
+	font-size:12px;	
+	line-height: 25px;	
+	text-decoration: line-through;
+}
+.pxgk{       
+	color:#0000FF;        
+	font-family:"宋体";        
+	font-size:12px; 
+	line-height: 18px
+}
+.pxgk_a:link{	
+	color: #0000FF;	
+	font-family:"宋体";	
+	font-size:12px;	
+	text-decoration:underline
+}
+.pxgk_a:visited{       
+	color:#0000FF;        
+	font-family:"宋体";        
+	font-size:12px;        
+	text-decoration:underline
+}
+.pxgk_a:hover{	
+	 color: #FF0000;	
+	 font-family:"宋体";	
+	 font-size:12px;         
+	 text-decoration: underline; 	
+	 font-style: normal; 
+}
+.baoming{       
+	 color:#0000FF;        
+	 font-family:"宋体";        
+	 font-size:14px; 
+	 line-height: 18px
+}
+.baoming_a:link{	
+	 color: #0000FF;	
+	 font-family:"宋体";	
+	 font-size:14px;	
+	 text-decoration:underline
+}
+.baoming_a:visited{       
+	 color:#0000FF;        
+	 font-family:"宋体";        
+	 font-size:14px;        
+	 text-decoration:underline
+}
+.baoming_a:hover{	
+	 color: #FF0000;	
+	 font-family:"宋体";	
+	 font-size:14px;     
+	 text-decoration: underline; 	
+	 font-style: normal; 
+}
+</style>

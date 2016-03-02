@@ -1,0 +1,1349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>23种设计模式 - 郗晓勇 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-iMetro_HD.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/beijiguangyong/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/beijiguangyong/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/beijiguangyong/wlwmanifest.xml">
+<script src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'beijiguangyong', cb_enable_mathjax=false;</script>
+<script src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/beijiguangyong/"><img id="blogLogo" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/beijiguangyong/"></a><a style="font-size:30px;margin-left: 20%;" href="http://www.cnblogs.com/beijiguangyong/">郗晓勇|利己者生，利人者恒！</a><a style="font-size:15px ;margin-left:2%;color: red;">此博客为备份镜像，更多最新文章请移步</a><a style="font-size:15px ;color: red;" href="http://blog.csdn.net/beijiguangyong">http://blog.csdn.net/beijiguangyong</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/beijiguangyong/">首页</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E9%83%97%E6%99%93%E5%8B%87">联系</a></li>
+<li>
+<!----></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 200&nbsp;
+文章- 0&nbsp;
+评论- 20&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html">23种设计模式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><blockquote>
+<p class="MsoTocHeading"><a name="_Toc277605888"></a><span style=""><span style="font-family:宋体">目录</span><span lang="EN-US">
+</span></span></p>
+<p></p>
+<span style=""><span style=""></span></span>
+<p class="MsoToc1" style=""><span style=""></span><span style=""></span><a href="#_Toc281750444"><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">创建型</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750445"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">1. Factory Method</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（工厂方法）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750446"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">2. Abstract Factory</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（抽象工厂）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750447"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">3. Builder</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（建造者）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750448"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">4. Prototype</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（原型）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750449"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">5. Singleton</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（单例）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc1" style=""><span style=""></span><a href="#_Toc281750450"><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">结构型</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750451"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">6. Adapter Class/Object</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（适配器）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750452"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">7. Bridge</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（桥接）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750453"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">8. Composite</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（组合）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750454"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">9. Decorator</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（装饰）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750455"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">10. Facade</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（外观）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750456"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">11. Flyweight</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（享元）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750457"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">12. Proxy</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（代理）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc1" style=""><span style=""></span><a href="#_Toc281750458"><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">行为型</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750459"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">13. Interpreter</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（解释器）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750460"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">14. Template Method</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（模板方法）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750461"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">15. Chain of Responsibility</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（责任链）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750462"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">16. Command</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（命令）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750463"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">17. Iterator</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（迭代器）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750464"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">18. Mediator</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（中介者）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750465"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">19. Memento</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（备忘录）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750466"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">20. Observer</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（观察者）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750467"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">21. State</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（状态）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750468"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">22. Strategy</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（策略）</span></span><span style=""></span></a><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+<p class="MsoToc2" style=""><span style=""></span><a href="#_Toc281750469"><span style=""><span style="line-height:115%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">23. Visitor</span></span><span style=""><span style="line-height:115%; font-family:宋体; font-size:14pt">（访问者）</span></span><span style=""></span></a><span style=""></span><span style=""></span><span style=""><span style="line-height:115%; font-size:14pt" lang="EN-US">
+</span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h1><span style=""><a name="_Toc281750444"><span style="line-height:240%; font-family:宋体; font-size:14pt">创建型</span></a></span><span style=""></span><span style=""></span><span style="line-height:240%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h1>
+<h2><a name="_Toc281750445"></a><a name="_Toc277605889"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">1. Factory Method</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（工厂方法）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image001" alt="clip_image001" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589723Ggs.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="528" height="180" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">定义一个用于创建对象的接口，让子类决定实例化哪一个类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Factory Method
+</span><span style="font-family:宋体; font-size:14pt">使<strong>一</strong>个类的实例化延迟到其子类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当一个类不知道它所必须创建的对象的类的时候。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当一个类希望由它的子类来指定它所创建的对象的时候。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当类将创建对象的职责委托给多个帮助子类中的某一个，并且你希望将哪一个帮助子类是代理者这一信息局部化的时候。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750446"></a><a name="_Toc277605890"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">2. Abstract Factory</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（抽象工厂）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image002" alt="clip_image002" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958972yHTZ.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="572" height="259" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个系统要独立于它的产品的创建、组合和表示时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个系统要由多个产品系列中的一个来配置时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当你要强调一系列相关的产品对象的设计以便进行联合使用时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当你提供一个产品类库，而只想显示它们的接口而不是实现时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750447"></a><a name="_Toc277605891"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">3. Builder</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（建造者）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image003" alt="clip_image003" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958973l0eX.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="551" height="190" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当创建复杂对象的算法应该独立于该对象的组成部分以及它们的装配方式时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当构造过程必须允许被构造的对象有不同的表示时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750448"></a><a name="_Toc277605892"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">4. Prototype</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（原型）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image004" alt="clip_image004" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958973KlLw.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="495" height="228" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当要实例化的类是在运行时刻指定时，例如，通过动态装载；或者</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">为了避免创建一个与产品类层次平行的工厂类层次时；或者</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆它们可能比每次用合适的状态手工实例化该类更方便一些。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750449"></a><a name="_Toc277605893"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">5. Singleton</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（单例）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image005" alt="clip_image005" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958973z20x.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="395" height="138" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">保证一个类仅有一个实例，并提供一个访问它的全局访问点。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当这个唯一实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h1><a name="_Toc281750450"></a><a name="_Toc277605894"><span style=""><span style="line-height:240%; font-family:宋体; font-size:14pt">结构型</span></span></a><span style=""></span><span style=""></span><span style="line-height:240%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h1>
+<h2><a name="_Toc281750451"></a><a name="_Toc277605895"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">6. Adapter Class/Object</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（适配器）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image006" alt="clip_image006" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958973OPpv.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="517" height="383" border="0"></span><strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">将一个类的接口转换成客户希望的另外一个接口。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Adapter
+</span><span style="font-family:宋体; font-size:14pt">模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你想使用一个已经存在的类，而它的接口不符合你的需求。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类（即那些接口可能不一定兼容的类）协同工作。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">（仅适用于对象</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Adapter
+</span><span style="font-family:宋体; font-size:14pt">）你想使用一些已经存在的子类，但是不可能对每一个都进行子类化以匹配它们的接口。对象适配器可以适配它的父类接口。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750452"></a><a name="_Toc277605896"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">7. Bridge</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（桥接）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image007" alt="clip_image007" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958974vjVv.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="554" height="223" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">将抽象部分与它的实现部分分离，使它们都可以独立地变化。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你不希望在抽象和它的实现部分之间有一个固定的绑定关系。例如这种情况可能是因为，在程序运行时刻实现部分应可以被选择或者切换。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">类的抽象以及它的实现都应该可以通过生成子类的方法加以扩充。这时</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Bridge
+</span><span style="font-family:宋体; font-size:14pt">模式使你可以对不同的抽象接口和实现部分进行组合，并分别对它们进行扩充。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">对一个抽象的实现部分的修改应对客户不产生影响，即客户的代码不必重新编译。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">C++</span><span style="font-family:宋体; font-size:14pt">）你想对客户完全隐藏抽象的实现部分。在</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">C++</span><span style="font-family:宋体; font-size:14pt">中，类的表示在类接口中是可见的。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">有许多类要生成。这样一种类层次结构说明你必须将一个对象分解成两个部分。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Rumbaugh
+</span><span style="font-family:宋体; font-size:14pt">称这种类层次结构为</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">嵌套的普化</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">nested
+ generalizations </span><span style="font-family:宋体; font-size:14pt">）。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你想在多个对象间共享实现（可能使用引用计数），但同时要求客户并不知道这一点。一个简单的例子便是</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Coplien
+</span><span style="font-family:宋体; font-size:14pt">的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">String
+</span><span style="font-family:宋体; font-size:14pt">类</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">[ Cop92 ]</span><span style="font-family:宋体; font-size:14pt">，在这个类中多个对象可以共享同一个字符串表示（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">StringRep
+</span><span style="font-family:宋体; font-size:14pt">）。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750453"></a><a name="_Toc277605897"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">8. Composite</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（组合）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image008" alt="clip_image008" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589745zom.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="551" height="246" border="0"></span><strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">将对象组合成树形结构以表示</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">部分</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">-</span><span style="font-family:宋体; font-size:14pt">整体</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">的层次结构。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">C
+ o m p o s i t e </span><span style="font-family:宋体; font-size:14pt">使得用户对单个对象和组合对象的使用具有一致性。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你想表示对象的部分</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">-</span><span style="font-family:宋体; font-size:14pt">整体层次结构。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750454"></a><a name="_Toc277605898"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">9. Decorator</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（装饰）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image009" alt="clip_image009" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958974Qhk3.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="553" height="244" border="0"></span><strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><span style="font-family:宋体; font-size:14pt">意图：</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span></strong><span style="font-family:宋体; font-size:14pt">动态地给一个对象添加一些额外的职责。就增加功能来说，</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Decorator
+</span><span style="font-family:宋体; font-size:14pt">模式相比生成子类更为灵活。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+</span><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">处理那些可以撤消的职责。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当不能采用生成子类的方法进行扩充时。一种情况是，可能有大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长。另一种情况可能是因为类定义被隐藏，或类定义不能用于生成子类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750455"></a><a name="_Toc277605899"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">10. Facade</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（外观）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image010" alt="clip_image010" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958975mCzC.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="475" height="184" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">为子系统中的一组接口提供一个一致的界面，</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Facade</span><span style="font-family:宋体; font-size:14pt">模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当你要为一个复杂子系统提供一个简单接口时。子系统往往因为不断演化而变得越来越复杂。大多数模式使用时都会产生更多更小的类。这使得子系统更具可重用性，也更容易对子系统进行定制，但这也给那些不需要定制子系统的用户带来一些使用上的困难。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Facade
+</span><span style="font-family:宋体; font-size:14pt">可以提供一个简单的缺省视图，这一视图对大多数用户来说已经足够，而那些需要更多的可定制性的用户可以越过</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">facade</span><span style="font-family:宋体; font-size:14pt">层。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">客户程序与抽象类的实现部分之间存在着很大的依赖性。引入</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">facade
+</span><span style="font-family:宋体; font-size:14pt">将这个子系统与客户以及其他的子系统分离，可以提高子系统的独立性和可移植性。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当你需要构建一个层次结构的子系统时，使用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">facade</span><span style="font-family:宋体; font-size:14pt">模式定义子系统中每层的入口点。如果子系统之间是相互依赖的，你可以让它们仅通过</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">facade</span><span style="font-family:宋体; font-size:14pt">进行通讯，从而简化了它们之间的依赖关系。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750456"></a><a name="_Toc277605900"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">11. Flyweight</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（享元）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image011" alt="clip_image011" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589755CZc.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="569" height="357" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">运用共享技术有效地支持大量细粒度的对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个应用程序使用了大量的对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">完全由于使用大量的对象，造成很大的存储开销。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">对象的大多数状态都可变为外部状态。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">如果删除对象的外部状态，那么可以用相对较少的共享对象取代很多组对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">应用程序不依赖于对象标识。由于</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Flyweight
+</span><span style="font-family:宋体; font-size:14pt">对象可以被共享，对于概念上明显有别的对象，标识测试将返回真值。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750457"></a><a name="_Toc277605901"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">12. Proxy</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（代理）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image012" alt="clip_image012" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958975C03g.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="498" height="197" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">为其他对象提供一种代理以控制对这个对象的访问。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">在需要用比较通用和复杂的对象指针代替简单的指针的时候，使用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Proxy</span><span style="font-family:宋体; font-size:14pt">模式。下面是一</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+</span><span style="font-family:宋体; font-size:14pt">些可以使用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Proxy
+</span><span style="font-family:宋体; font-size:14pt">模式常见情况：</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+1) </span><span style="font-family:宋体; font-size:14pt">远程代理（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Remote Proxy
+</span><span style="font-family:宋体; font-size:14pt">）为一个对象在不同的地址空间提供局部代表。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"> NEXTSTEP[Add94]
+</span><span style="font-family:宋体; font-size:14pt">使用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">NXProxy
+</span><span style="font-family:宋体; font-size:14pt">类实现了这一目的。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Coplien[Cop92]
+</span><span style="font-family:宋体; font-size:14pt">称这种代理为</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">大使</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”
+</span><span style="font-family:宋体; font-size:14pt">（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Ambassador
+</span><span style="font-family:宋体; font-size:14pt">）。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+2 )</span><span style="font-family:宋体; font-size:14pt">虚代理（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Virtual Proxy
+</span><span style="font-family:宋体; font-size:14pt">）根据需要创建开销很大的对象。在动机一节描述的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">ImageProxy
+</span><span style="font-family:宋体; font-size:14pt">就是这样一种代理的例子。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+3) </span><span style="font-family:宋体; font-size:14pt">保护代理（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Protection Proxy
+</span><span style="font-family:宋体; font-size:14pt">）控制对原始对象的访问。保护代理用于对象应该有不同</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+</span><span style="font-family:宋体; font-size:14pt">的访问权限的时候。例如，在</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Choices
+</span><span style="font-family:宋体; font-size:14pt">操作系统</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">[ CIRM93]</span><span style="font-family:宋体; font-size:14pt">中</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">KemelProxies</span><span style="font-family:宋体; font-size:14pt">为操作系统对象提供</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+</span><span style="font-family:宋体; font-size:14pt">了访问保护。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+<br>
+4 )</span><span style="font-family:宋体; font-size:14pt">智能指引（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Smart Reference
+</span><span style="font-family:宋体; font-size:14pt">）取代了简单的指针，它在访问对象时执行一些附加操作。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+</span><span style="font-family:宋体; font-size:14pt">它的典型用途包括：</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">对指向实际对象的引用计数，这样当该对象没有引用时，可以自动释放它</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">(</span><span style="font-family:宋体; font-size:14pt">也称为</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">SmartPointers[Ede92
+ ] )</span><span style="font-family:宋体; font-size:14pt">。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当第一次引用一个持久对象时，将它装入内存。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">在访问一个实际对象前，检查是否已经锁定了它，以确保其他对象不能改变它。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h1><a name="_Toc281750458"></a><a name="_Toc277605902"><span style=""><span style="line-height:240%; font-family:宋体; font-size:14pt">行为型</span></span></a><span style=""></span><span style=""></span><span style="line-height:240%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h1>
+<h2><a name="_Toc281750459"></a><a name="_Toc277605903"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">13. Interpreter</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（解释器）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image013" alt="clip_image013" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589759KP6.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="428" height="224" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当有一个语言需要解释执行</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">并且你可将该语言中的句子表示为一个抽象语法树时，可使用解释器模式。而当存在以下情况时该模式效果最好：</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">该文法简单对于复杂的文法</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">文法的类层次变得庞大而无法管理。此时语法分析程序生成器这样的工具是更好的选择。它们无需构建抽象语法树即可解释表达式</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">这样可以节省空间而且还可能节省时间。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">效率不是一个关键问题最高效的解释器通常不是通过直接解释语法分析树实现的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">而是首先将它们转换成另一种形式。例如，正则表达式通常被转换成状态机。但即使在这种情况下</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">转换器仍可用解释器模式实现</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">该模式仍是有用的。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750460"></a><a name="_Toc277605904"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">14. Template Method</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（模板方法）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image014" alt="clip_image014" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589765AQh.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="373" height="215" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">TemplateMethod
+</span><span style="font-family:宋体; font-size:14pt">使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一次性实现一个算法的不变的部分，并将可变的行为留给子类来实现。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。这是</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Opdyke
+</span><span style="font-family:宋体; font-size:14pt">和</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Johnson
+</span><span style="font-family:宋体; font-size:14pt">所描述过的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">重分解以一般化</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">的一个很好的例子</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">[
+ OJ93 ]</span><span style="font-family:宋体; font-size:14pt">。首先识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">控制子类扩展。模板方法只在特定点调用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“hook ”</span><span style="font-family:宋体; font-size:14pt">操作（参见效果一节），这样就只允许在这些点进行扩展。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750461"></a><a name="_Toc277605905"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">15. Chain of Responsibility</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（责任链）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image015" alt="clip_image015" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_12939589762WWi.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="370" height="186" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">有多个的对象可以处理一个请求，哪个对象处理该请求运行时刻自动确定。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">你想在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">可处理一个请求的对象集合应被动态指定。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750462"></a><a name="_Toc277605906"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">16. Command</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（命令）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image016" alt="clip_image016" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_129395897602ib.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="554" height="174" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">将一个请求封装为一个对象，从而使你可用不同的请求对客户进行参数化；对请求排队或记录请求日志，以及支持可撤消的操作。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">抽象出待执行的动作以参数化某对象，你可用过程语言中的回调（</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">call back</span><span style="font-family:宋体; font-size:14pt">）函数表达这种参数化机制。所谓回调函数是指函数先在某处注册，而它将在稍后某个需要的时候被调用。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command
+</span><span style="font-family:宋体; font-size:14pt">模式是回调机制的一个面向对象的替代品。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">在不同的时刻指定、排列和执行请求。一个</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command</span><span style="font-family:宋体; font-size:14pt">对象可以有一个与初始请求无关的生存期。如果一个请求的接收者可用一种与地址空间无关的方式表达，那么就可将负责该请求的命令对象传送给另一个不同的进程并在那儿实现该请求。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">支持取消操作。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command</span><span style="font-family:宋体; font-size:14pt">的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Excute
+</span><span style="font-family:宋体; font-size:14pt">操作可在实施操作前将状态存储起来，在取消操作时这个状态用来消除该操作的影响。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command
+</span><span style="font-family:宋体; font-size:14pt">接口必须添加一个</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Unexecute</span><span style="font-family:宋体; font-size:14pt">操作，该操作取消上一次</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Execute</span><span style="font-family:宋体; font-size:14pt">调用的效果。执行的命令被存储在一个历史列表中。可通过向后和向前遍历这一列表并分别调用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Unexecute</span><span style="font-family:宋体; font-size:14pt">和</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Execute</span><span style="font-family:宋体; font-size:14pt">来实现重数不限的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">取消</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">和</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">重做</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">支持修改日志，这样当系统崩溃时，这些修改可以被重做一遍。在</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command</span><span style="font-family:宋体; font-size:14pt">接口中添加装载操作和存储操作，可以用来保持变动的一个一致的修改日志。从崩溃中恢复的过程包括从磁盘中重新读入记录下来的命令并用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Execute</span><span style="font-family:宋体; font-size:14pt">操作重新执行它们。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">用构建在原语操作上的高层操作构造一个系统。这样一种结构在支持事务</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">( transaction)</span><span style="font-family:宋体; font-size:14pt">的信息系统中很常见。一个事务封装了对数据的一组变动。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command</span><span style="font-family:宋体; font-size:14pt">模式提供了对事务进行建模的方法。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Command</span><span style="font-family:宋体; font-size:14pt">有一个公共的接口，使得你可以用同一种方式调用所有的事务。同时使用该模式也易于添加新事务以扩展系统。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750463"></a><a name="_Toc277605907"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">17. Iterator</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（迭代器）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image017" alt="clip_image017" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958976osrG.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="524" height="242" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">提供一种方法顺序访问一个聚合对象中各个元素</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">而又不需暴露该对象的内部表示。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">访问一个聚合对象的内容而无需暴露它的内部表示。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">支持对聚合对象的多种遍历。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">为遍历不同的聚合结构提供一个统一的接口</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">(</span><span style="font-family:宋体; font-size:14pt">即</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">支持多态迭代</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">)</span><span style="font-family:宋体; font-size:14pt">。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750464"></a><a name="_Toc277605908"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">18. Mediator</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（中介者）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image018" alt="clip_image018" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958977999F.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="503" height="135" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一组对象以定义良好但是复杂的方式进行通信。产生的相互依赖关系结构混乱且难以理解。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个对象引用其他很多对象并且直接与这些对象通信</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,</span><span style="font-family:宋体; font-size:14pt">导致难以复用该对象。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">想定制一个分布在多个类中的行为，而又不想生成太多的子类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750465"></a><a name="_Toc277605909"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">19. Memento</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（备忘录）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image019" alt="clip_image019" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958977oR2J.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="541" height="159" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">必须保存一个对象在某一个时刻的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">(</span><span style="font-family:宋体; font-size:14pt">部分</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">)</span><span style="font-family:宋体; font-size:14pt">状态</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">这样以后需要时它才能恢复到先前的状态。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">如果一个用接口来让其它对象直接得到这些状态，将会暴露对象的实现细节并破坏对象的封装性。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750466"></a><a name="_Toc277605910"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">20. Observer</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（观察者）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image020" alt="clip_image020" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958977811o.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="554" height="205" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">定义对象间的一种一对多的依赖关系</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,</span><span style="font-family:宋体; font-size:14pt">当一个对象的状态发生改变时</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">所有依赖于它的对象都得到通知并被自动更新。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当一个抽象模型有两个方面</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">其中一个方面依赖于另一方面。将这二者封装在独立的对象中以使它们可以各自独立地改变和复用。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当对一个对象的改变需要同时改变其它对象</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">而不知道具体有多少对象有待改变。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">当一个对象必须通知其它对象，而它又不能假定其它对象是谁。换言之</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">你不希望这些对象是紧密耦合的。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750467"></a><a name="_Toc277605911"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">21. State</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（状态）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image021" alt="clip_image021" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958978Rd8H.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="452" height="167" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">允许一个对象在其内部状态改变时改变它的行为。对象看起来似乎修改了它的类。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个对象的行为取决于它的状态</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">并且它必须在运行时刻根据状态改变它的行为。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。这个状态通常用一个或多个枚举常量表示。通常</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">有多个操作包含这一相同的条件结构。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">State</span><span style="font-family:宋体; font-size:14pt">模式将每一个条件分支放入一个独立的类中。这使得你可以根据对象自身的情况将对象的状态作为一个对象，这一对象可以不依赖于其他对象而独立变化。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750468"></a><a name="_Toc277605912"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">22. Strategy</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（策略）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image022" alt="clip_image022" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958978UANu.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="525" height="168" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">定义一系列的算法</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,</span><span style="font-family:宋体; font-size:14pt">把它们一个个封装起来</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">许多相关的类仅仅是行为有异。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">策略</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">提供了一种用多个行为中的一个行为来配置一个类的方法。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">需要使用一个算法的不同变体。例如，你可能会定义一些反映不同的空间</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">/</span><span style="font-family:宋体; font-size:14pt">时间权衡的算法。当这些变体实现为一个算法的类层次时</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">[H087]
+ ,</span><span style="font-family:宋体; font-size:14pt">可以使用策略模式。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">算法使用客户不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一个类定义了多种行为</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">,
+</span><span style="font-family:宋体; font-size:14pt">并且这些行为在这个类的操作中以多个条件语句的形式出现。将相关的条件分支移入它们各自的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Strategy</span><span style="font-family:宋体; font-size:14pt">类中以代替这些条件语句。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+</blockquote>
+<blockquote>
+<h2><a name="_Toc281750469"></a><a name="_Toc277605913"><span style=""><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">23. Visitor</span></span></a><span style=""></span><span style=""><span style="line-height:173%; font-family:宋体; font-size:14pt">（访问者）</span></span><span style=""></span><span style="line-height:173%; font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span>
+<p></p>
+</h2>
+</blockquote>
+<p class="MsoNormal"><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US"><img title="clip_image023" alt="clip_image023" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/0_1293958978rhUu.gif" style="border-bottom:0px; border-left:0px; display:block; float:none; margin-left:auto; border-top:0px; margin-right:auto; border-right:0px" width="373" height="213" border="0"></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<blockquote>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">意图：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">TemplateMethod
+</span><span style="font-family:宋体; font-size:14pt">使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><strong><span style="font-family:宋体; font-size:14pt">适用性：</span></strong><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">
+</span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">一次性实现一个算法的不变的部分，并将可变的行为留给子类来实现。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">各子类中公共的行为应被提取出来并集中到一个公共父类中以避免代码重复。这是</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Opdyke</span><span style="font-family:宋体; font-size:14pt">和</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">Johnson</span><span style="font-family:宋体; font-size:14pt">所描述过的</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“</span><span style="font-family:宋体; font-size:14pt">重分解以一般化</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">”</span><span style="font-family:宋体; font-size:14pt">的一个很好的例子</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">[OJ93]</span><span style="font-family:宋体; font-size:14pt">。首先识别现有代码中的不同之处，并且将不同之处分离为新的操作。最后，用一个调用这些新的操作的模板方法来替换这些不同的代码。</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt">
+<span lang="EN-US"></span></span></p>
+<p></p>
+<p class="MsoNormal"><span style="font-family:宋体; font-size:14pt">控制子类扩展。模板方法只在特定点调用</span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;; font-size:14pt" lang="EN-US">“hook ”</span><span style="font-family:宋体; font-size:14pt">操作（参见效果一节），这样就只允许在这些点进行扩展。</span></p>
+</blockquote></div><div style="display: block;" id="MySignature">原创文章，转载请注明出处：http://www.cnblogs.com/beijiguangyong/</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/beijiguangyong/category/345540.html">架构设计</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2302807,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E9%83%97%E6%99%93%E5%8B%87" target="_blank">联系我</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+<a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/beijiguangyong/" target="_blank"><img src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u281181.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/beijiguangyong/">郗晓勇</a><br>
+<a href="http://home.cnblogs.com/u/beijiguangyong/followees">关注 - 2</a><br>
+<a href="http://home.cnblogs.com/u/beijiguangyong/followers">粉丝 - 96</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(2302807,'Digg')">
+        <span class="diggnum" id="digg_count">29</span>
+    </div>
+	<div class="buryit" onclick="votePost(2302807,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/14/2302808.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/14/2302808.html" title="发布于2010-11-14 10:21">协作图</a><br><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/16/2302806.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/16/2302806.html" title="发布于2010-11-16 00:35">数据要求说明书</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2010-11-15 17:38</span> <a href="http://www.cnblogs.com/beijiguangyong/">郗晓勇</a> 阅读(<span id="post_view_count">108249</span>) 评论(<span id="post_comment_count">9</span>)  <a href="http://i.cnblogs.com/EditPosts.aspx?postid=2302807" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(2302807);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=88664,cb_entryId=2302807,cb_blogApp=currentBlogApp,cb_blogUserGuid='bdea347d-f84a-e011-ac81-842b2b196315',cb_entryCreatedDate='2010/11/15 17:38:00';loadViewCount(cb_entryId);</script>
+<script src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/syntax_highlighter_csdn.js" type="text/javascript"></script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3205643,'fjzE84wX50MXR1dqOt1BdRoLVmtuZjj0Mco+OxpG1In6kEAfY/wJ9A==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3205643,'fjzE84wX50MXR1dqOt1BdRoLVmtuZjj0Mco+OxpG1In6kEAfY/wJ9A==')">引用</a></span>
+				</div>
+				<a href="#3205643" class="layer">#1楼</a><a name="3205643" id="comment_anchor_3205643"></a>  <span class="comment_date">2015-06-10 21:43</span> <a id="a_comment_author_3205643" href="http://www.cnblogs.com/Pupa/" target="_blank">模拟人生</a> <a href="http://msg.cnblogs.com/send/%E6%A8%A1%E6%8B%9F%E4%BA%BA%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3205643" class="blog_comment_body">mark一下</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3205643,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3205643,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3240350,'Nw2J2/QKa+UVY3Jg4rEvqPUzQ043bKoot9QixReKVhT/YyI5ZCaqUQ==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3240350,'Nw2J2/QKa+UVY3Jg4rEvqPUzQ043bKoot9QixReKVhT/YyI5ZCaqUQ==')">引用</a></span>
+				</div>
+				<a href="#3240350" class="layer">#2楼</a><a name="3240350" id="comment_anchor_3240350"></a>  <span class="comment_date">2015-08-03 15:42</span> <a id="a_comment_author_3240350" href="http://www.cnblogs.com/keai4le/" target="_blank">keai4le</a> <a href="http://msg.cnblogs.com/send/keai4le" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3240350" class="blog_comment_body">然而看不懂</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3240350,'Digg',this)">支持(6)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3240350,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3249127,'n5m7B6QcB2avN3t/zb0cy9+FDbKZ963OsEMvJisym0R30dpcB/uqcQ==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3249127,'n5m7B6QcB2avN3t/zb0cy9+FDbKZ963OsEMvJisym0R30dpcB/uqcQ==')">引用</a></span>
+				</div>
+				<a href="#3249127" class="layer">#3楼</a><a name="3249127" id="comment_anchor_3249127"></a>  <span class="comment_date">2015-08-17 14:54</span> <a id="a_comment_author_3249127" href="http://www.cnblogs.com/Rainr/" target="_blank">rainrcn</a> <a href="http://msg.cnblogs.com/send/rainrcn" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3249127" class="blog_comment_body">23. Visitor 跟 14. Template Method 是同一种？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3249127,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3249127,'Bury',this)">反对(0)</a></div><span id="comment_3249127_avatar" style="display:none;">http://pic.cnblogs.com/face/86219/20130601204327.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3252738,'+tVvvzVL5Ew3ShA4XE1k5MmQDLcQbli3272SXa/uPlzAaXlKw6478A==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3252738,'+tVvvzVL5Ew3ShA4XE1k5MmQDLcQbli3272SXa/uPlzAaXlKw6478A==')">引用</a></span>
+				</div>
+				<a href="#3252738" class="layer">#4楼</a><a name="3252738" id="comment_anchor_3252738"></a>  <span class="comment_date">2015-08-23 21:43</span> <a id="a_comment_author_3252738" href="http://www.cnblogs.com/gnivor/" target="_blank">流了个火</a> <a href="http://msg.cnblogs.com/send/%E6%B5%81%E4%BA%86%E4%B8%AA%E7%81%AB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3252738" class="blog_comment_body">先马克</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3252738,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3252738,'Bury',this)">反对(0)</a></div><span id="comment_3252738_avatar" style="display:none;">http://pic.cnblogs.com/face/689056/20150201144459.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3272961,'SQPpbg4uh1B+Jbsv0ybKPfUQ4wbAhmyKgsC+pA5nlGseyLfV1fliEQ==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3272961,'SQPpbg4uh1B+Jbsv0ybKPfUQ4wbAhmyKgsC+pA5nlGseyLfV1fliEQ==')">引用</a></span>
+				</div>
+				<a href="#3272961" class="layer">#5楼</a><a name="3272961" id="comment_anchor_3272961"></a>  <span class="comment_date">2015-09-23 21:22</span> <a id="a_comment_author_3272961" href="http://www.cnblogs.com/axinno1/" target="_blank">aXinNo1</a> <a href="http://msg.cnblogs.com/send/aXinNo1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3272961" class="blog_comment_body">mark一下</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3272961,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3272961,'Bury',this)">反对(0)</a></div><span id="comment_3272961_avatar" style="display:none;">http://pic.cnblogs.com/face/u106602.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3299893,'qkfUZ8ydG4kg87uZAAqry+ZrKE8u9aTDfUeaozRat5htLw30GEfxQw==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3299893,'qkfUZ8ydG4kg87uZAAqry+ZrKE8u9aTDfUeaozRat5htLw30GEfxQw==')">引用</a></span>
+				</div>
+				<a href="#3299893" class="layer">#6楼</a><a name="3299893" id="comment_anchor_3299893"></a>  <span class="comment_date">2015-11-05 17:02</span> <a id="a_comment_author_3299893" href="http://home.cnblogs.com/u/778022/" target="_blank">慕容曦</a> <a href="http://msg.cnblogs.com/send/%E6%85%95%E5%AE%B9%E6%9B%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3299893" class="blog_comment_body">mark一下。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3299893,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3299893,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3349358,'yDnQKdJaYR0cel6NHf5cFcQ9khK6QUZgCWKYTOjw2Y7zuk0arR/x+w==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3349358,'yDnQKdJaYR0cel6NHf5cFcQ9khK6QUZgCWKYTOjw2Y7zuk0arR/x+w==')">引用</a></span>
+				</div>
+				<a href="#3349358" class="layer">#7楼</a><a name="3349358" id="comment_anchor_3349358"></a>  <span class="comment_date">2016-01-18 11:07</span> <a id="a_comment_author_3349358" href="http://home.cnblogs.com/u/372210/" target="_blank">枯木郎君</a> <a href="http://msg.cnblogs.com/send/%E6%9E%AF%E6%9C%A8%E9%83%8E%E5%90%9B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3349358" class="blog_comment_body">果断Mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3349358,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3349358,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3356429,'2gAgMUMF0VwTXosh3+g9CBqOHlxIeJ8LtD8/cLij20ggLPyzjJ6ajA==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3356429,'2gAgMUMF0VwTXosh3+g9CBqOHlxIeJ8LtD8/cLij20ggLPyzjJ6ajA==')">引用</a></span>
+				</div>
+				<a href="#3356429" class="layer">#8楼</a><a name="3356429" id="comment_anchor_3356429"></a>  <span class="comment_date">2016-01-29 14:37</span> <a id="a_comment_author_3356429" href="http://home.cnblogs.com/u/890417/" target="_blank">vboxhappy</a> <a href="http://msg.cnblogs.com/send/vboxhappy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3356429" class="blog_comment_body">必须mark一下，这种好东西！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3356429,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3356429,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"><a href="javascript:void(0);" onclick="return ReplyComment(3357866,'o2hHCVtARrGXWHjHMa/tBaNHWdt2CY9EpyWmwAckI2Gdu7lJZ5rYYw==')">回复</a><a href="javascript:void(0);" onclick="return QuoteComment(3357866,'o2hHCVtARrGXWHjHMa/tBaNHWdt2CY9EpyWmwAckI2Gdu7lJZ5rYYw==')">引用</a></span>
+				</div>
+				<a href="#3357866" class="layer">#9楼</a><a name="3357866" id="comment_anchor_3357866"></a><span id="comment-maxId" style="display:none;">3357866</span><span id="comment-maxDate" style="display:none;">2016/2/1 15:56:29</span>  <span class="comment_date">2016-02-01 15:56</span> <a id="a_comment_author_3357866" href="http://www.cnblogs.com/roboot/" target="_blank">瀛洲过客</a> <a href="http://msg.cnblogs.com/send/%E7%80%9B%E6%B4%B2%E8%BF%87%E5%AE%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3357866" class="blog_comment_body">被这高大上的东西镇住了，理论果然是个坑啊，深不可测！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3357866,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3357866,'Bury',this)">反对(0)</a></div><span id="comment_3357866_avatar" style="display:none;">http://pic.cnblogs.com/face/117188/20151028084014.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div id="commentform_title">发表评论</div>
+<span id="tip_comment" style="color:Red"></span>
+<p>
+昵称：<input id="tbCommentAuthor" class="author" disabled="disabled" size="50" value="Zack86" type="text">
+</p>
+<div class="commentbox_main">
+<div class="commentbox_title">
+<div class="commentbox_title_left">评论内容：</div>
+<div class="commentbox_title_right">
+<img id="ubb_quote" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/quote.gif" alt="引用" title="添加引用" onclick="insertUBB('tbCommentBody','quote')">
+<img id="ubb_bold" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/b.png" alt="粗体" title="添加粗体" onclick="insertUBB('tbCommentBody','b')">
+<img id="ubb_url" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/lk.png" alt="链接" title="添加链接" onclick="insertUbbUrl('tbCommentBody')">
+<img id="ubb_indent" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/indent.png" alt="缩进" title="添加首行缩进" onclick="insertIndent('tbCommentBody')">
+<img id="ubb_code" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/InsertCode.gif" alt="代码" title="添加代码" onclick="insertUbbCode()">
+<img id="ubb_img" class="comment_icon" src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/img.gif" alt="图片" title="上传图片" onclick="OpenImageUploadWindow();">
+</div>
+</div>
+<div class="clear"></div>
+<textarea id="tbCommentBody" class="comment_textarea"></textarea>
+</div>
+<p id="commentbox_opt">
+<input id="btn_comment_submit" class="comment_btn" value="提交评论" type="button">
+<span id="span_comment_canceledit" style="display:none"><a href="javascript:void(0);" onclick="return CancelCommentEdit()">不改了</a></span>
+<a href="javascript:void(0);" onclick="return logout();">注销</a>
+        <a id="commentbox_opt_sub" href="javascript:void(0);" title="订阅后有新评论时会邮件通知您" onclick="commentManager.Subscribe()">订阅评论</a>
+</p>
+<div id="tip_comment2" style="color:Red"></div>
+<p>
+[Ctrl+Enter快捷键提交]
+</p>
+<div style="display:none">
+<span id="comment_edit_id"></span><span id="span_parentcomment_id"></span>
+<span id="span_parent_id"></span>
+<span id="span_comment_replyto"></span>
+<span id="span_comment_posted"></span>
+</div>
+</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://click.aliyun.com/m/3037/" target="_blank">【阿里云SSD云盘】速度行业领先</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://job.cnblogs.com/offer/51018/" target="_blank"><img src="23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%83%97%E6%99%93%E5%8B%87%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/35695-20160215151750532-1876432241.png" alt="招聘ASP.NET 5开发工程师" title="招聘ASP.NET 5开发工程师" width="300" height="250"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/539042/" target="_blank">程序员的情人节：不是程序员不浪漫，而是你不懂</a><br> ·  <a href="http://news.cnblogs.com/n/539041/" target="_blank">Facebook败走印度，究其原因竟然是不懂文化</a><br> ·  <a href="http://news.cnblogs.com/n/539040/" target="_blank">Windows Store或将成PC游戏的重要战场</a><br> ·  <a href="http://news.cnblogs.com/n/539039/" target="_blank">小岛秀夫开YouTube频道 3天订阅超8万</a><br> ·  <a href="http://news.cnblogs.com/n/539038/" target="_blank">PSVR领导人离职 开创属于自己的VR事业</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/536332/" target="_blank">学习新东西的唯一方法</a><br> ·  <a href="http://kb.cnblogs.com/page/536714/" target="_blank">关于烂代码的那些事（下）</a><br> ·  <a href="http://kb.cnblogs.com/page/538102/" target="_blank">每个架构师都应该研究下康威定律</a><br> ·  <a href="http://kb.cnblogs.com/page/537914/" target="_blank">消息队列（Message Queue）基本概念</a><br> ·  <a href="http://kb.cnblogs.com/page/536779/" target="_blank">编程每一天（Write Code Every Day）</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news">如果博文中有错误或者您不认同的地方，欢迎评论，期待与您共同讨论。<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/beijiguangyong/">郗晓勇</a><br>园龄：<a href="http://home.cnblogs.com/u/beijiguangyong/" title="入园时间：2011-03-10">4年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/beijiguangyong/followers/">96</a><br>关注：<a href="http://home.cnblogs.com/u/beijiguangyong/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('bdea347d-f84a-e011-ac81-842b2b196315')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/beijiguangyong/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/beijiguangyong/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/beijiguangyong/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/beijiguangyong/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/beijiguangyong/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass('itemListLink', 'itemListLin_con');return false;" href="#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/beijiguangyong/category/345544.html">Web前端(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/beijiguangyong/category/345541.html">编程语言(43)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/beijiguangyong/category/345546.html">回忆录(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/beijiguangyong/category/345545.html">计算机基础(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/beijiguangyong/category/345540.html">架构设计(27)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/beijiguangyong/category/345542.html">数据库(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/beijiguangyong/category/345547.html">学习|思考(33)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/beijiguangyong/category/345539.html">研发管理(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/beijiguangyong/category/345543.html">移动开发(9)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/beijiguangyong/archive/2013/09.html">2013年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/beijiguangyong/archive/2013/08.html">2013年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/beijiguangyong/archive/2013/07.html">2013年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/beijiguangyong/archive/2013/06.html">2013年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/beijiguangyong/archive/2013/05.html">2013年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/beijiguangyong/archive/2013/04.html">2013年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/beijiguangyong/archive/2013/03.html">2013年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/beijiguangyong/archive/2013/02.html">2013年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/beijiguangyong/archive/2013/01.html">2013年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/beijiguangyong/archive/2012/12.html">2012年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/beijiguangyong/archive/2012/11.html">2012年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/beijiguangyong/archive/2012/10.html">2012年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/beijiguangyong/archive/2012/09.html">2012年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/beijiguangyong/archive/2012/08.html">2012年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/beijiguangyong/archive/2012/07.html">2012年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/beijiguangyong/archive/2012/06.html">2012年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/beijiguangyong/archive/2012/05.html">2012年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/beijiguangyong/archive/2012/04.html">2012年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/beijiguangyong/archive/2012/03.html">2012年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/beijiguangyong/archive/2012/02.html">2012年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/beijiguangyong/archive/2012/01.html">2012年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/beijiguangyong/archive/2011/12.html">2011年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/beijiguangyong/archive/2011/11.html">2011年11月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/beijiguangyong/archive/2011/10.html">2011年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/beijiguangyong/archive/2011/09.html">2011年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/beijiguangyong/archive/2011/08.html">2011年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/beijiguangyong/archive/2011/07.html">2011年7月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/beijiguangyong/archive/2011/06.html">2011年6月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/beijiguangyong/archive/2011/05.html">2011年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/beijiguangyong/archive/2011/04.html">2011年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/beijiguangyong/archive/2011/03.html">2011年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/beijiguangyong/archive/2011/02.html">2011年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/beijiguangyong/archive/2011/01.html">2011年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/beijiguangyong/archive/2010/12.html">2010年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/beijiguangyong/archive/2010/11.html">2010年11月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/beijiguangyong/archive/2010/10.html">2010年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/beijiguangyong/archive/2010/09.html">2010年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/beijiguangyong/archive/2010/08.html">2010年8月 (5)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	60054
+	</li>
+	<li class="liRank">
+		排名 -	3553
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3357866">1. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">被这高大上的东西镇住了，理论果然是个坑啊，深不可测！</li>
+    <li class="recent_comment_author">--瀛洲过客</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3356429">2. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">必须mark一下，这种好东西！</li>
+    <li class="recent_comment_author">--vboxhappy</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3349358">3. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">果断Mark</li>
+    <li class="recent_comment_author">--枯木郎君</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3299893">4. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">mark一下。</li>
+    <li class="recent_comment_author">--慕容曦</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2012/05/30/2546895.html#3295961">5. Re:servlet文件操作</a></li>
+    <li class="recent_comment_body">我按照步骤来的出现下面错误：HTTP Status 500 -type Exception reportmessagedescription The server encountered an int......</li>
+    <li class="recent_comment_author">--缪健</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2012/03/31/2437124.html#3286566">6. Re:JSP中文乱码问题终极解决方案</a></li>
+    <li class="recent_comment_body">6666</li>
+    <li class="recent_comment_author">--树下野鹿</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3272961">7. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">mark一下</li>
+    <li class="recent_comment_author">--aXinNo1</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3252738">8. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">先马克</li>
+    <li class="recent_comment_author">--流了个火</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3249127">9. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">23. Visitor 跟 14. Template Method 是同一种？</li>
+    <li class="recent_comment_author">--rainrcn</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3240350">10. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">然而看不懂</li>
+    <li class="recent_comment_author">--keai4le</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/beijiguangyong/archive/2010/11/15/2302807.html#3205643">11. Re:23种设计模式</a></li>
+    <li class="recent_comment_body">mark一下</li>
+    <li class="recent_comment_author">--模拟人生</li>
+</ul>
+</div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 郗晓勇
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8) ]><!-->
+<html lang="zh-CN"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>浅谈12306 核心模型设计思路和架构设计 | 程序师</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.techug.com/wordpress/xmlrpc.php">
+
+	<!--[if lt IE 9]>
+	<script src="http://static.webhek.com/techug-res/themes/techug/js/html5.js"></script>
+	<![endif]-->
+	
+<!-- All in One SEO Pack 2.2.7.5 by Michael Torbert of Semper Fi Web Design[354,388] -->
+<meta name="description" content="春节期间，无意中看到一篇文章，文章中讲到12306的业务复杂度远远比淘宝天猫这种电商网站要复杂。后来自己想想，也确实如此。所以，很想挑战一下12306这个系统的核心领域模型的设计。">
+
+<link rel="canonical" href="http://www.techug.com/architectural-design">
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="程序师 » Feed" href="http://www.techug.com/feed">
+<link rel="alternate" type="application/rss+xml" title="程序师 » 评论Feed" href="http://www.techug.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="程序师 » 浅谈12306 核心模型设计思路和架构设计评论Feed" href="http://www.techug.com/architectural-design/feed">
+<link rel="stylesheet" id="genericons-css" href="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-style-css" href="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://static.webhek.com/techug-res/themes/techug/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<link rel="https://api.w.org/" href="http://www.techug.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.techug.com/wordpress/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.techug.com/wordpress/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="这代码不需要重写" href="http://www.techug.com/fight-the-rewrite">
+<meta name="generator" content="WordPress 4.4.2">
+<link rel="shortlink" href="http://www.techug.com/?p=14085">
+<link rel="alternate" type="application/json+oembed" href="http://www.techug.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.techug.com%2Farchitectural-design">
+<link rel="alternate" type="text/xml+oembed" href="http://www.techug.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.techug.com%2Farchitectural-design&amp;format=xml">
+	<!--[if IE]>
+	<style type="text/css">
+		blockquote:before {
+		    margin-left: -183px;
+		}
+	</style>
+	<![endif]-->
+
+	<script type="text/javascript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/2157720/techug', [336, 280], 'div-gpt-ad-1440689967755-0').addService(googletag.pubads());
+googletag.defineSlot('/2157720/techug', [120, 600], 'div-gpt-ad-1440689967755-1').addService(googletag.pubads());
+googletag.defineSlot('/2157720/techug', [336, 280], 'div-gpt-ad-1440688198894-1').addService(googletag.pubads());
+googletag.defineSlot('/2157720/techug', [336, 280], 'div-gpt-ad-1440688198894-2').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+</head>
+
+<body class="single single-post postid-14085 single-format-standard masthead-fixed footer-widgets singular">
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://www.techug.com/" rel="home">程序师</a></h1>
+			<div class="subtitle">用程序师的眼光看世界</div>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">搜索</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">主菜单</button>
+				<a class="screen-reader-text skip-link" href="#content">跳至内容</a>
+				<div class="menu-menu1-container"><ul id="menu-menu1" class="nav-menu"><li id="menu-item-346" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-346"><a href="http://www.techug.com/">首页</a></li>
+<li id="menu-item-714" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-714"><a href="http://www.techug.com/contact">来信</a></li>
+<li id="menu-item-1141" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1141"><a title="关注 @程序师视野" href="http://weibo.com/computerworld">关注 @程序师视野</a></li>
+<li id="menu-item-1142" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1142"><a href="http://www.techug.com/feed">RSS</a></li>
+</ul></div>			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="http://www.techug.com/">
+				<label>
+					<span class="screen-reader-text">搜索：</span>
+					<input class="search-field" placeholder="搜索…" name="s" title="搜索：" type="search">
+				</label>
+				<input class="search-submit" value="搜索" type="submit">
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="site-main">
+
+		
+
+<div style="margin-top: 15px;"><script async="" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/adsbygoogle.js"></script>
+<!-- autosize -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9195052014444206" data-ad-slot="3319394196" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+	<header class="entry-header up-header" style="padding: 72px 30px 30px">
+		<h1 class="entry-title">浅谈12306 核心模型设计思路和架构设计</h1>		<aside class="shares social">
+  <div class="total-shares"> <em>2</em>
+    <div class="caption"> 分享</div>
+  </div>
+  <div class="share-buttons v2 expanded">
+    <div class="share-container">
+      <div class="share-count">2</div>
+      <div class="primary-shares"> <a class="social-share tsina genericon-tsina" onclick="w('tsina')"><span class="alt-text">分享到</span><span class="expanded-text">新浪微博</span> </a> <a class="social-share qzone genericon-qzone" onclick="w('qzone')"> <span class="alt-text">分享到</span><span class="expanded-text">QQ空间</span> </a>
+      </div>
+    </div>
+  </div>
+</aside>	</header><!-- .entry-header -->
+
+	<div id="primary" class="content-area" style="padding-top:0">
+		<div id="content" class="site-content" role="main">
+			
+<article id="post-14085" class="post-14085 post type-post status-publish format-standard has-post-thumbnail hentry category-it-view tag-1046">
+
+
+
+	
+	<div class="post-thumbnail">
+	<img data-original="http://static.webhek.com/techug-res/uploads/2016/02/ez.jpg" class="attachment-large size-large wp-post-image lazy " alt="ez">	</div>
+
+	
+
+
+		<div id="content0" class="entry-content  content0">
+
+		<p>春节期间，无意中看到一篇<a target="_blank" rel="nofollow">文章</a>，文章中讲到12306的业务复
+杂度远远比淘宝天猫这种电商网站要复杂。后来自己想想，也确实如此。所以，很想挑战一下12306这个系统的核心领域模型的设计。一般的电商网站，购买都
+是基于商品的概念，每个商品有一定量的库存，用户的购买行为是针对商品的。当用户发起购买行为时，系统只需要生成订单并对用户要购买的商品减库存即可。但
+是，12306就不是那么简单了，具体复杂在哪里，我下面会进一步分析。</p>
+<p>另外一个让我写这篇文章的原因，是我发现也许是否是因为目前12306的核心领域模型设计的不够好，导致用户购票时要处理的业务逻辑异常复杂，维护
+数据一致性的难度也几百倍的上升，同时面对高并发的订票也难以支持很高的TPS。我觉得，越是复杂的业务，就越要重视业务分析，重视领域模型的抽象和设
+计。如果不假思索，凭以往经验行事，则很可能会被以往的设计经验先入为主，陷入死胡同。我发现技术人员往往更注重技术层面的解决方案，比如一上来就分析如
+何集群、如何负载均衡、如何排队、如何分库分表、如何用锁，如何用缓存等技术问题，而忽略了最根本的业务层面的思考，如分析业务、领域建模。我认为越是复
+杂的业务系统，则越要设计一个健壮的领域模型。如果一个系统的架构我们设计错了，还有补救的余地，因为架构最终沉淀的只是代码，调整架构即可（一个系统的
+架构本身就是不断演进的）；而如果领域模型设计错了，那要补救的代价是非常大的，因为领域模型沉淀的是数据结构及其对应的大量数据，对任何一个大型系统，
+要改核心领域模型都是成本非常高的。</p>
+<p>本文的重点不是在如何解决高并发的问题，而是希望从业务角度去分析，12306的理想模型应该是怎么样的。网上目前谈12306的文章貌似都是千篇一律的只谈技术，不谈业务分析和如何建模的。所以我想写一下自己的设计和大家交流学习。</p>
+<h1>需求概述</h1>
+<p>12306这个系统，核心要解决的问题是网上售票。涉及到2个角色使用该系统：用户、铁道部。用户的核心诉求是查询余票、购票；铁道部的核心诉求是
+售票。购票和售票其实是一个场景，对用户来说是购票，对铁道部来说是售票。因此，我们要设计一个在线的网站系统，解决用户的查询余票、购票，以及铁道部的
+售票这3个核心诉求。看起来，这3个场景都是围绕火车票展开的。</p>
+<p><strong>查询余票：</strong>用户输入出发地、目的地、出发日三个条件，查询可能存在的车次，用户可以看到每个车次经过的站点名称，以及每种座位的余票数量。</p>
+<p><strong>购票：</strong>购票分为订票和付款两个阶段，本文重点分析订票的模型设计和实现思路。</p>
+<p>其实还有很多其他的需求，比如给不同的车次设定销售座位数配额，以及不同的区段设置不同的限额。但相比前面两个需求来说，我觉得这个需求相对次要一些。</p>
+<h1>需求分析</h1>
+<p>确实，12306也是一个电商系统，而且看起来商品就是票了。因为如果把一张票看成是一个商品，那购票就类似于购买商品，然后每张票都有库存，商品
+也有库存的概念。但是如果我们仔细想想，会发现12306要复杂很多，因为我们无法预先确定好所有的票，如果非要确定，那只能通过穷举法了。</p>
+<p>我们以北京西到深圳北的G71车次高铁为例（这里只考虑南下的方向，不考虑深圳北到北京西的，那是另外一个车次，叫G72），它有17个站（北京西
+是01号站，深圳北是17号站），3种座位（商务、一等、二等）。表面看起来，这不就是3个商品吗？G71商务座、G71一等座、G71二等座。大部分轻
+易喷12306的技术人员（包括某些中等规模公司的专家、CTO）就是在这里栽第一个跟头的。实际上，G71有136*3=408种商品（408个
+SKU），怎么算来的？如下：</p>
+<p>如果卖北京西始发的，有16种卖法（因为后面有16个站），北京西到：保定、石家庄、郑州、武汉、长沙、广州、虎门、深圳。。。。都是一个独立的商
+品，同理，石家庄上车的，有15种下车的可能，以此类推，单以上下车的站来计算，有136种票：16+15+14….+2+1=136。每种票都有3种座
+位，一共是408个商品。</p>
+<p>为了方便后面的讨论，我们先明确一下票是什么？</p>
+<p>一张票的核心信息包括：出发时间、出发地、目的地、车次、座位号。持有票的人就拥有了一个凭证，该凭证表示持有它的人可以坐某个车次的某个座位号，
+从某地到某地。所以，一张票，对用户来说是一个凭证，对铁道部来说是一个承诺；那对系统来说是什么呢？不知道。这就是我们要分析业务，领域建模的原因，我
+们再继续思考吧。</p>
+<p>明白了票的核心信息后，我们再看看G71这个车次的高铁，可以卖多少张票？</p>
+<p>讨论前先说明一下，一辆火车的物理座位数（站票也可以看成是一种座位，因为站票也有数量配额）不等于可用的最大配合。所有的物理座位不可能都通过
+12306网站来销售，而是只会销售一部分，比如40%。其余的还是会通过线下的方式销售。不仅如此，可能有些站点上车的人会比较多，有些比较少，所以我
+们还会给不同的区间配置不同的<strong>限额。</strong>比如D31北京南至上海共有765张，北京南有260张，杨柳青有80张，泰安有
+76张。如果杨柳青的80张票售完就会显示无票，就算其他站有票也会显示无票的。每个车次肯定会有各种座位的配额和限额的配置的，这种配置我目前无法预
+料，但我已经把这些规则都封装近车次聚合根里了，所有的配置策略都是基于座位类型、站点、区间配置的。关于票的配置抽象出来，我觉得主要有3种：1）某个
+区段最多允许出多少张；2）某个区段最少允许出多少张；3）某个站点上车的最多多少张；当用户订票时，把用户指定的区段和这3种配置条件进行比较，3个条
+件都满足，则可以出票。不满足，则认为无票了。下面举个例子：</p>
+<p>ABCDEFG，这是所有站点。座位总配额是100，假设B站点上车，E站下车的人比较少，那我们就可以设定BE这个区段最多只能出10张票。所
+以，只要是用户的订票是在这个区段内的，就最多出10张。再比如，一列车次，总共100个座位配额，希望全程票最少满足80张，那我们只要给AG这个区段
+设定最少80张。那任何订票请求，如果是子区间的，就不能超过100-80，即20张。这两种条件必须同时满足，才允许出票。</p>
+<p>但是，不管如何做配额和限额，我们总是针对某个车次进行配置，这些配置只是车次内部售票时的一些额外的判断条件（业务规则），不影响车次模型的核心
+地位和对外暴露的功能。所以，为了本文讨论的清楚起见，我后续的讨论都不涉及配额和限额的问题，而是认为任何区段都可以享受火车最大的物理座位数。</p>
+<p>并且，为了讨论问题方便，我们减少一些站点来讨论。假设某个车次有A,B,C,D四个站点。那001这个人购买了A,B这个区间，系统会分配给
+001一个座位x；但是因为001坐到B站点后会下车，所以相当于x这个座位又空出来了，也就是说，从B站点开始，系统又可以认为x这个座位是可用的。所
+以，我们得出结论：同一个座位，其实可以同时出售AB,BC这两张票。通过这个简单的分析，我们知道，一列火车虽然只有有限的座位数，比如1000个座
+位。但可以卖出的票远远不止1000个。还是以A,B,C,D四个站点为例，假如火车总共有1000个座位，那AB可以卖1000张，BC也可以卖
+1000张，同样，CD也可以卖1000张。也就是说，理论上最多可以卖出3000张票。但是如果换一种卖法，所有人都是买ABCD的票，也就是说所有的
+票都是经过所有站点的，那就是最多只能卖出1000张票了。而实际的场景，一定是介于1000到3000之间。然后实际的G71这个车次，有17个站，那
+到底可以卖出多少个票，大家应该可以算了吧。理论上这17个站中的任意两个站点之间所形成的线段，都可以出售为一张票。我数学不好，算不太清楚，麻烦有数
+学好的人帮我算算，呵呵。</p>
+<p>通过上面的分析，我们知道一张票的本质是某个车次的某一段区间（一条线段），这个区间包含了若干个站点。然后我们还发现，只要区间不重叠，那座位就不会发生竞争，可以被回收利用，也就是说，可以同时预先出售。</p>
+<p>另外，经过更深入的分析，我们还发现区间有4种关系：1）不重叠；2）部分重叠；3）完全重叠；4）覆盖；不重叠的情况我们已经讨论过了，而覆盖也
+是重叠的一种。所以我们发现如果重叠，比如有两个区间发生重叠，那重叠部分的区间（可能夸一个或多个站点）是在争抢座位的。因为假设一列火车有100个座
+位，那每个原子区间（两个相邻站点的连线），最多允许重叠99次。</p>
+<p>所以，经过上面的分析，我们知道了一个车次能够出售一张车票的<strong>核心业务规则</strong>是什么？就是：<strong>这张车票所包含的每个原子区间的重叠次数加1都不能超过车次的总座位数，实际上重叠次数+1也可以理解为线段的厚度。</strong></p>
+<h1>模型设计</h1>
+<p>上面我分析了一下票的本质是什么。那接下来我们再来看看怎么设计模型，来快速实现购票的需求，重点是怎么设计商品聚合以及减库存的逻辑。</p>
+<h2>传统电商的思路</h2>
+<p>如果按照普通电商的思路，把票（站点区间）设计为商品（聚合根），然后为票设计库存数量。我个人觉得是很糟糕的。因为一方面这种聚合根非常多（上面
+的G71就有408个）；另一方面，即便枚举出来了，一次购票也一定会影响非常多其他聚合根的库存数量（只要被部分或全部重叠的区间都受影响）。这样的一
+次订单处理的复杂度是难以评估的。而且这么多聚合根的更新要在一个事务里，这不是为难数据库吗？而且，这种设计必然带来大量的事务的并发冲突，很可能导致
+数据库死锁。总之，我认为这种是典型的由于领域模型的设计错误，导致并发冲突高、数据持久化落地困难。或者如果要解决并发问题，只能排队单线程处理，但是
+仍然解决不了要在一个事务里修改大量聚合根的尴尬局面。听说12306是采用了Pivotal 
+Gemfire这种高大上的内存数据库，我对这个不太了解。我不可想象要是不使用内存数据库，他们要怎么实现车次内的票之间的数据强一致性（就是保证所有
+出售的票都是符合上面讨论的业务规则的）？所以，这种设计，我个人认为是思维定势了，把火车票看成是普通电商的商品来看待。所以，我们有时做设计又要依赖
+于经验，又要不能被以往经验所束缚，真的不容易，关键还是要根据具体的业务场景多多深入分析，尽量分析抽象出问题的本质出来，这样才能对症下药。那是否有
+其他的设计思路呢？</p>
+<h2>我的思路</h2>
+<h2>聚合设计</h2>
+<p>通过上面的分析我们知道，其实任何一次购票都是针对某个车次的，<strong>我认为车次是负责处理订票的聚合根</strong>。我们看看一
+个车次包含了哪些信息？一个车次包括了：1）车次名称，如G71；2）座位数，实际座位数会分类型，比如商务座20个，一等座200个；二等座500个；
+我们这里为了简化问题，可以暂时忽略类型，我认为这个类型不影响核心的模型的设计决策。需要格外注意的是：这里的座位数不要理解为真实的物理座位数，很有
+可能比真实的座位数要少。因为我们不可能把一个车次的所有座位都在网上通过12306来出售，而是只出售一部分，具体出售多少，要由工作人员人工指定。
+3）经过的站点信息（包括站点的ID、站点名称等），注意：车次还会记录这些站点之间的顺序关系；4）出发时间；看过GRASP九大模式中的<strong>信息专家模式</strong>的同学应该知道，<strong>将职责分配给拥有执行该职责所需信息的类</strong>。我们这个场景，车次具有一次出票的所有信息，所以我们应该把出票的职责交给车次。另外学过DDD的同学应该知道，<strong>聚合设计有一个原则，就是：聚合内强一致性，聚合之间最终一致性。</strong>经
+过上面的分析，我们知道要产生一张票，其实要影响很多和这个票对应的线段相交的其他票的可用数量。因为所有的站点信息都在车次聚合内部，所以车次聚合内部
+自然可以维护所有的原子区间，以及每个原子区间的可用票数（相当于是库存数）。当一个原子区间的可用票数为0的时候，意味着火车针对这个区间的票已经卖完
+了。所以，我们完全可以让车次这个聚合根来保证出票时对所有原子区间的可用票数的更新的强一致性。对于车次聚合根来说，这很简单，因为只是几次简单的内存
+操作而已，耗时可以忽略。一列火车假如有ABCD四个站点，那原子区间就是3个。对于G71，则是16个。</p>
+<h2>怎么判断是否能出票</h2>
+<p>基于上面的聚合设计，出票时扣减库存的逻辑是：</p>
+<p>根据订单信息，拿到出发地和目的地，然后获取这段区间里的所有的原子区间。然后尝试将每个原子区间的可用票数减1，如果所有的原子区间都够减，则购
+票成功；否则购票失败，提示用户该票已经卖完了。是不是很简单呢？知道了出票的逻辑，那退票的逻辑也就很简单了，就是把这个票的所有原子区间的可用票数加
+1就OK了。如果我们从线段的厚度的角度去考虑，那出票时，每个原子区间的厚度就是+1，退票时就是减一。就是相反的操作，但本质是一样的。</p>
+<p>所以，通过这样的思路，我们将一次订票的处理控制在了一个聚合根里，用聚合根内的强一致性的特性保证了订票处理的强一致性，同时也保证了性能，免去
+了并发冲突的可能性。传统电商那种把票单做类似商品的核心聚合根的设计，我当时第一眼看到就觉得不妥。因为这违背了DDD强调的强一致性应该由聚合根来保
+证、聚合根之间的最终一致性通过Saga来保证的原则。</p>
+<p>还有一个很重要的概念我想说一下我的看法，就是座位和区间的关系。因为有些朋友和我讲，考虑座位号的问题，虽然都能减1，座位号也必须是同一个。我
+觉得座位是全局共享的，和区段无关（也许我的理解完全有误，请大家指正）。座位是一个物理概念，一个用户成功购买了一张票后，座位就会少一个，一张票唯一
+对应一个座位，但是一个座位有可能会对应多张票；而区间是一个逻辑上的概念，区间的作用有两个：1）表示票的出发地和目的地；2）记录票的可用数额。如果
+区间能连通（即该区间内的每个原子区间的可用数额都大于0），则表示允许拥有一个座位。所以，我觉得座位和票（区间）是两个维度的概念。</p>
+<h2>如何为票分配座位</h2>
+<p>我觉得车次聚合根内部应该维护所有该车次已经售出的票，<strong>已经出售的票的的本质是区间和座位的对应关系</strong>。系统处理订票时，用户提交过来的是一段区间。所以，系统应该做两个事情：</p>
+<ol>
+<li>先根据区间去判断是否有可用的座位；</li>
+<li>如果有可用座位，则再通过算法去选择一个可用的座位；</li>
+</ol>
+<p>当得到一个可用座位后，就可以生成一张票了，然后保存这个票到车次聚合根内部即可。下面举个例子：</p>
+<p>假设现在的情况是座位有3个，站点有4个</p>
+<p>座位：1,2,3</p>
+<p>站点：abcd</p>
+<p><strong>票的卖法1：</strong></p>
+<p>票1：ab,1</p>
+<p>票2：bc,2</p>
+<p>票3：cd,3</p>
+<p>票4：ac,3</p>
+<p>票5：bd,1</p>
+<p>这种选座位的方式应该比较高效，因为总是优先从座位池里去拿座位，只有在万不得已的时候才会去回收可重复利用的票。</p>
+<p>上面的4，5两个票，就是考虑回收利用的结果。</p>
+<p><strong>票的卖法2：</strong></p>
+<p>票1：ab,1</p>
+<p>票2：bc,1</p>
+<p>票3：cd,1</p>
+<p>票4：ac,2</p>
+<p>票5：bd,3</p>
+<p>这种选座位的方式应该相对低效，因为总是优先会去扫描是否有可回收的座位，而扫描相对直接从座位池里去拿票总是成本相对要高的。</p>
+<p>上面的2，3两个票，就是考虑回收利用的结果。</p>
+<p>但是，<strong>优先从座位池里拿票的算法有缺陷，就是会出现虽然第一步判断认为有可用的座位，但是这个座位可能不是全程都是同一个座位</strong>。举例：</p>
+<p>假设现在的情况是座位有3个，站点有4个</p>
+<p>座位：1,2,3</p>
+<p>站点：abcd</p>
+<p>票的卖法3：</p>
+<p>票1：ab,1</p>
+<p>票2：bc,2</p>
+<p>票3：cd,3</p>
+<p>现在如果有人要买ad的票，那可用的座位有2，或者3。但是无论是2还是3，都要这个乘客中途换车位。比如卖给他座位2，那他ab是坐的座位2，但是bc的时候要坐座位1的。否则拿票2的那个人上车时，发现座位2已经有人了。而通过优先回收利用的算法，是没这个问题的。</p>
+<p>所以，从上面的分析我们也知道选座位的算法该怎么写了，就是采用优先回收利用座位的算法。我认为不管我们这里怎么设计算法，都不影响大局，因为这一切都只发生在车次聚合根内部，这就是预先设计好聚合根，明确出票职责在哪个对象上的好处。</p>
+<h2>模型分析总结</h2>
+<ol>
+<li>我认为票不是核心聚合根，票只是一次出票的结果，一个凭证而已。</li>
+<li>12306真正的核心聚合根应该是车次，车次具有出票的职责，一次出票具体做的事情有：
+<ul>
+<li>判断是否可出票；</li>
+<li>选择可用的座位；</li>
+<li>更新一次出票时所有原子区间的可用票数，用于判断下次是否能出票；</li>
+<li>维护所有已售出的票，用于为选择可用座位提供依据；</li>
+</ul>
+</li>
+</ol>
+<p>通过这样的模型设计，我们可以确保一次出票处理只会在一个车次聚合根内进行。这样的好处是：</p>
+<ol>
+<li>不需要依赖数据库事务就能实现数据修改的强一致性，因为所有修改只在一个聚合根内发生；</li>
+<li>在保证数据强一致性的同时还能提供很高的并发处理能力，具体设计见下面的架构设计；</li>
+</ol>
+<h1>架构设计（非本文重点，没兴趣的朋友可以略过）</h1>
+<p><strong>我觉得12306这样的业务场景，非常适合使用CQRS架构；因为首先它是一个查多写少、但是写的业务逻辑非常复杂的系统。所以，非常适合做架构层面的读写分离，即采用CQRS架构。</strong>而且应该使用数据存储也分离的CQRS。这样CQ两端才可以完全不需要顾及对方的问题，各自优化自己的问题即可。我们可以在C端使用DDD领域模型的思路，用良好设计的领域模型实现复杂的业务规则和业务逻辑。而Q端则使用分布式缓存方案，实现可伸缩的查询能力。</p>
+<h2>订票的实现思路</h2>
+<p>同时借助像ENode这样的框架，我们可以实现in-memory + Event Sourcing的架构。Event 
+Sourcing技术，可以让领域模型的所有状态修改的持久化统一起来，本来要用ORM的方式保存聚合根最新状态的，现在只需要简单的通用的方式保存一个
+事件即可（一次订票只涉及一个车次聚合根的修改，修改只产生一个事件，只需要持久化一个事件（一个JSON串）即可，保证了高性能，无须依赖事务，而且通
+过ENode可以解决并发问题）。我们只要保存了聚合根每次变化的事件（事件的结构怎么设计，本文不做多的介绍了，大家可以思考下），就相当于保存了聚合
+根的最新状态。而正是由于Event 
+Sourcing技术的引入，让我们的模型可以一直存活在内存中，即可以使用in-memory技术。不要小看in-memory技术，in-
+memory技术在某些方面对提高命令的处理性能非常有帮助。比如就以我们车次聚合根处理出票的逻辑，假设某个车次有大量的命令发送到分布式消息队列，然
+后有一台机器订阅了这个队列的消息，然后这台机器处理这个车次的订票命令时，由于这个车次聚合根一直在内存，所以就省去了每次要去数据库取出聚合根的步
+骤，相当于少了一次数据库IO。这样的好处是，因为一个车次能够真正出售的票是有限的，因为座位就那么几个，比如就1000个座位，估计一般正常情况也就
+出个2000个左右的票吧（具体能出多少张票要取决于区间的相交程度，上面分析过）。也就是说，这个聚合根只会产生2000个事件，也就是说只会有
+2000个订票命令的处理是会产生事件，并持久化事件；而其余的大量命令，因为车次在内存计算后发现没有余票了，就不会做任何修改，也不会产生领域事件，
+这样就可以直接处理下一个订票命令了。这样就可以大大提高处理订票命令的性能。</p>
+<p>另外一个问题我觉得还需要提一下，因为用户订票成功后，还需要付款。但用户有可能不去付款或者没有在规定的时间内完成付款。那这种情况下，系统会自
+动释放该用户之前订购的票。所以基于这样的需求，我们在业务上需要支持业务级别的2pc。即先预扣库存，也就是先占住这张票一定时间（比如15分钟），然
+后付款成功后再真实给你这张票，系统做真正的库存修改。通过这样的预扣处理，可以保证不会出现超卖的情况。这个思路其实和传统电商比如淘宝这样的系统类
+似，我就不多展开了，我之前写的Conference案例也是这样的思路，大家有兴趣的可以去看一下我之前录制的视频。</p>
+<h2>查询余票的实现思路</h2>
+<p>我觉得余票的查询的实现相对简单。虽然对于12306来说，查询的请求占了80%，提交订单的请求只占20%。但查询由于对数据没有修改，所以我们
+完全可以使用分布式缓存来实现。我们只需要精心设计好缓存的key即可；缓存key的多少要看成本，如果所有可能的查询都设计对应的key，那时间复杂度
+为1，查询性能自然高；但代价也大，因为key多了。如果想key少一点，那查询的复杂度自然要上去一点。所以缓存设计无非就是空间换时间的思路。然后，
+缓存的更新无非就是：自动失效、定时更新、主动通知3种。通过CQRS架构，由于CQ两端是事件驱动的，当C端有任何状态变化，都会产生对应的事件去通知
+Q端，所以我们几乎可以做到Q端的准实时更新。</p>
+<p>同时由于CQ两端的完全解耦，Q端我们可以设计多种存储，如数据库和缓存（Redis等）；数据库用于线下维护关系型数据，缓存用户实时查询。数据
+库和缓存的更新速度相互不受影响，因为是并行的。对同一个事件，可以10台机器负责更新缓存，100台机器负责更新数据库。即便数据库的更新很慢，也不会
+影响缓存的更新进度。这就是CQRS架构的好处，CQ的架构完全不同，且我们随时可以重建一种新的Q端存储。不知道大家体会到了没有？</p>
+<p>关于缓存key的设计，我觉得主要从查询余票时传递的信息来考虑。12306的关键查询是：出发地、目的地、出发日期三个信息。我觉得有两种key
+的设计思路：1）直接设计了该查询条件的key，然后快速拿到车次信息，直接返回；这种方式就是要求我们系统已经枚举了所有车次的所有可能出现的票（区
+间）的缓存key，相信你一定知道这样的key是非常多的。2）不是枚举所有区间，而是把每个车次的每个原子区间（相邻的两个站点所连成的直线）的可用票
+数作为key。这样，key就非常少了，因为车次假如有10000个，然后每个车次平均15个区间，那也就15W个key而已。当我们要查询时，只需要把
+用户输入的出发地和目的地之间的所有原子区间的可用票数都查出来，然后比较出最小可用票数的那个原子区间。则这个原子区间的可用票数就是用户输入的区间的
+可用票数了。当然，到这里我提到考虑出发日期。我认为出发日期是用来决定具体是哪个车次聚合根的。同一个车次，不同的日期，对应的聚合根实例是不同的，即
+便是同一天，也可能有多个车次聚合根，因为有些车次一天有几班的，比如上午9点发车的一班，下午3点发车的一般。所以，我们也只要把日期也作为缓存key
+的一部分即可。</p>
+<h1>总结</h1>
+<p>本文完全是凭自己对12306这个网站的核心业务的简单思考而得到的一些设计结果。如果真正的DDD领域建模，更多的是要和业务一线的工作人员、领
+域专家进行深入沟通，才能更深入的了解该领域内的业务知识，从而才能设计出更靠谱的领域模型和架构设计。我本人非常惭愧因为没有上12306买过火车票，
+家离的比较近，就算要买也是家人给我买:）所以，本文所分享的内容难免是纸上谈兵。但我觉得12306这个系统的业务确实比传统的电商系统要复杂，且并发
+又这么高。所以，我觉得这个系统真的很值得大家重视模型的设计，而不只是只关注技术层面的实现。2016年，我有计划打算基于ENode实现一套
+12306的核心功能，比如余票查询、订票的功能。</p>
+
+	</div>
+
+	<div class="entry-content content2">
+		<div id="rest">余下全文(1/3)</div>
+		<h5 class="sd-title">分享这篇文章：</h5><section class="c square_shares">
+  <div class="other_shares">
+    <div class=" bottom-share-buttons">
+      <div class="tsina_share"><a title="分享到新浪微博" class="shareBtn square" onclick="w('tsina')" href="javascript:;">
+      <div class="tsina_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="qzone_share"><a title="分享到QQ空间" class="shareBtn square" onclick="w('qzone')" href="javascript:;">
+        <div class="qzone_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="tweet_share"><a title="分享到Twitter" class=" shareBtn square" onclick="w('twitter')" href="javascript:;">
+        <div class="twitter_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      
+      <div class="clear"></div>
+    </div>
+  </div>
+</section>		<div>
+			<div id="div-gpt-ad-1440688198894-2" style="width:336px; height:280px;">
+		      <script type="text/javascript">
+		      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1440688198894-2'); });
+		      </script>
+		     </div>
+
+		</div>
+
+		<div class="src_en"><p>本文最初发表在<a target="_blank" rel="nofollow" href="http://www.cnblogs.com/netfocus/p/5187241.html#%21comments">博客园</a>，文章内容属作者个人观点，不代表本站立场。</p></div><div id="social-actions" class="section SocialActions social-actions social-actions-hybrid">
+  <div class="social-actions-buttons c">
+    <div id="badge_voting" class="social-buttons badge-voting left ">
+      <div id="reaction_1_love_hate" class="reactions_one badge_heart">
+        <div id="reactions-normal">
+          <h2>你的反应是：</h2>
+          <ul class="reactions extra-padding">
+           
+            <li id="love_button" class="love"><a id="love-button" href="javascript:;" class="vote-love_or_hate"><span class="heart vote-love_or_hate" id="vote-love_or_hate-8649457"></span></a> <span class="badge-vote-count" id="love-reaction-count">0</span> </li>
+            <li id="omg_button" class="omg us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-5971774"> 俺的神呀 </a> <span class="badge-vote-count" id="14-reaction-count">0</span> </span> </li>
+            <li id="win_button" class="win us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-9799996"> 赞一个 </a> <span class="badge-vote-count" id="47-reaction-count">0</span> </span> </li>
+            <li id="ew_button" class="ew us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-1727133"> 飘过~ </a> <span class="badge-vote-count" id="27-reaction-count">0</span> </span> </li>
+            <li id="cute_button" class="cute us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-8765294"> 强 </a> <span class="badge-vote-count" id="16-reaction-count">0</span> </span> </li>
+            <li id="wtf_button" class="wtf us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-7063226"> 很实用 </a> <span class="badge-vote-count" id="13-reaction-count">0</span> </span> </li>
+            <li id="fail_button" class="fail us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-3248218"> 好文 </a> <span class="badge-vote-count" id="49-reaction-count">0</span> </span> </li>
+            <li id="lol_button" class="lol us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-7984460"> 笑死了 </a> <span class="badge-vote-count" id="12-reaction-count">0</span> </span> </li>
+            <li id="classic_button" class="classic us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-7505532"> mark </a> <span class="badge-vote-count" id="19-reaction-count">0</span> </span> </li>
+            <li id="yasss_button" class="yasss us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge " rel:message="" id="vote-badge-9845949"> 敬佩 </a> <span class="badge-vote-count" id="257-reaction-count">0</span> </span> </li>
+            <li id="trashy_button" class="trashy us_reactions"> <span class="reaction_normal"> <a href="javascript:;" class="vote-badge  longer" rel:message="" id="vote-badge-4898662"> 垃圾 </a> <span class="badge-vote-count" id="17-reaction-count">0</span> </span> </li>
+            <li id="hate_button" class="hate"><a href="javascript:;" class="vote-love_or_hate" id="hate-button"><span class="heart vote-love_or_hate" id="vote-love_or_hate-9037733"></span></a> <span class="badge-vote-count zero" id="hate-reaction-count">0</span> </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+   
+    <div id="social_message-already-voted" class=" section social-message" style="display:none;">
+      <h5>看样子你已经点过这个了！</h5>
+    </div>
+    <div id="social_message-badge-votecount-exceeded" class="section social-message" style="display:none;">
+      <h5>抱歉，你最多只能点三个！</h5>
+    </div>
+    <div id="reaction_loading" class="section social-message" style="display:none;">
+      <img src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/loading.gif">
+    </div>
+  </div>
+
+</div>
+
+
+				<h2 style="clear:both">请关注我们：</h2>
+
+		<iframe class="share_self" scrolling="no" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/index.htm" width="100%" frameborder="0" height="200"></iframe>
+		
+
+	</div><!-- .entry-content -->
+
+	
+	<footer class="entry-meta"><span class="tag-links"><a href="http://www.techug.com/tag/12306" rel="tag">12306</a></span></footer></article><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">文章导航</h1>
+		<div class="nav-links">
+			<a href="http://www.techug.com/fight-the-rewrite" rel="prev"><span class="meta-nav">上一文章</span>这代码不需要重写</a>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+<div id="comments" class="comments-area">
+
+	
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.techug.com/architectural-design#respond" style="display:none;">取消回复</a></small></h3>				<form action="http://www.techug.com/wordpress/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+					<p class="comment-notes"><span id="email-notes">电子邮件地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p><p class="comment-form-comment"><label for="comment">评论</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">姓名 <span class="required">*</span></label> <input id="author" name="author" size="30" aria-required="true" required="required" type="text"></p>
+<p class="comment-form-email"><label for="email">电子邮件 <span class="required">*</span></label> <input id="email" name="email" size="30" aria-describedby="email-notes" aria-required="true" required="required" type="email"></p><input id="captcha" name="captcha" value="" type="hidden">
+<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="url" size="30" type="url"></p>
+<p class="form-submit"><input name="submit" id="submit" class="submit" value="发表评论" type="submit"> <input name="comment_post_ID" value="14085" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+</p><p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="a5e306ab1c" type="hidden"></p><p style="display: none;"><input id="ak_js" name="ak_js" value="247" type="hidden"></p>				</form>
+					</div><!-- #respond -->
+		
+</div><!-- #comments -->
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+<div id="content-sidebar" class="box-cell content-sidebar widget-area" role="complementary" style="margin-top: -100px">
+
+	<div class="flex-box">
+
+			<section id="column-rising" class="box-cell recent trend column column2">
+				<div class="column-content">
+					<div class="recent-container cup-con google-ad">
+  <div class="recent-article">
+    <div class="recent-img-container"> 
+      <div id="div-gpt-ad-1440689967755-0">
+      <script type="text/javascript">
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1440689967755-0'); });
+      </script>
+      </div>
+    </div>
+  </div>
+</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/11-tips-for-better-code" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2016/01/bad-girl-versus-good-girl.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="Pretty young woman making a decision with arrows and question ma"></a>
+          <a href="http://www.techug.com/11-tips-for-better-code" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2016/01/bad-girl-versus-good-girl.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="Pretty young woman making a decision with arrows and question ma"></a>
+          <a href="http://www.techug.com/11-tips-for-better-code" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2016/01/bad-girl-versus-good-girl.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="Pretty young woman making a decision with arrows and question ma"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/11-tips-for-better-code">
+          						改良程序的11技巧          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>有很多理由都能说明为什么我们应该写出清晰、可读性好的程序。最重要的一点，程序你只写一次，但以后会无数次的阅读。当你第二天回头来看你的代码时，你就要开始阅读它了。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/11-tips-for-better-code">
+            					<b>55</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/when_someone_gives_you_a_bug" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/a084f26f690dbc23a52e67027693f2b2-bigger-than-heartbleed-new-bash-bug-could-spell-disaster-for-unix-systems.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="bug"></a>
+          <a href="http://www.techug.com/when_someone_gives_you_a_bug" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/a084f26f690dbc23a52e67027693f2b2-bigger-than-heartbleed-new-bash-bug-could-spell-disaster-for-unix-systems.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="bug"></a>
+          <a href="http://www.techug.com/when_someone_gives_you_a_bug" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/a084f26f690dbc23a52e67027693f2b2-bigger-than-heartbleed-new-bash-bug-could-spell-disaster-for-unix-systems.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="bug"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/when_someone_gives_you_a_bug">
+          						有人向我反馈了一个bug          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>有人向你反馈了一个bug。 “26楼会议室的灯亮着。它需要被熄灭。”bug的备注里写道“你应该能在5分钟内搞定，只要按一下开关就好了。“ 你去了26楼的会议室。灯的确亮着，但房间里没有灯的开关。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/when_someone_gives_you_a_bug">
+            					<b>1537</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/the-traditional-it-reduced" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/i1-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="i"></a>
+          <a href="http://www.techug.com/the-traditional-it-reduced" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/i1.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="i"></a>
+          <a href="http://www.techug.com/the-traditional-it-reduced" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/i1.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="i"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/the-traditional-it-reduced">
+          						IBM，和传统 IT 的沦落          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>传统 IT 厂商沦落已经成为一种趋势。不仅仅是在中国去 IOE 的大背景下，在全球范围内，这些曾经盛极一时的 IT 大鳄也在衰落。作为一个在 IBM 服务了将近 14年 的老员工，我想浅谈一下 IBM 以及整个传统 IT 行业的沦落。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/the-traditional-it-reduced">
+            					<b>98</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container cup-con google-ad">
+  <div class="recent-article">
+    <div class="recent-img-container"> 
+      <div id="div-gpt-ad-1440688198894-1" style="width:336px; height:280px;">
+      <script type="text/javascript">
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1440688198894-1'); });
+      </script>
+      </div>
+    </div>
+  </div>
+</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/things-about-be-programmers-wife" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/1248902582770.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="1248902582770.jpg"></a>
+          <a href="http://www.techug.com/things-about-be-programmers-wife" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/1248902582770.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="1248902582770.jpg"></a>
+          <a href="http://www.techug.com/things-about-be-programmers-wife" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/1248902582770.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="1248902582770.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/things-about-be-programmers-wife">
+          						做程序猿的老婆应该注意的一些事情          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>经过初步了解，配电脑、修电脑、装系统等都可以找程序猿来干。而且程序猿不会油嘴滑舌的。很多妹子也都这么想的，于是大学四年，程序猿钻了不少次各种妹子宿舍，一去就一下午，他说装系统太慢，我暂且就信了吧。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/things-about-be-programmers-wife">
+            					<b>1350</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/align-code" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/b4-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="b"></a>
+          <a href="http://www.techug.com/align-code" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/b4-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="b"></a>
+          <a href="http://www.techug.com/align-code" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/b4-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="b"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/align-code">
+          						居然还有人用 3 个空格来对齐代码          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>对齐代码时，该用 Tab ，还是空格。这个话题，就像浏览器和操作系统之战，也是能让程序员争辩很久的。甚至还动粗，比如下面漫画。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/align-code">
+            					<b>102</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/weak-technology" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f3-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="f"></a>
+          <a href="http://www.techug.com/weak-technology" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f3-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="f" srcset="http://static.webhek.com/techug-res/uploads/2015/12/f3-560x314.jpg 560w, http://static.webhek.com/techug-res/uploads/2015/12/f3-950x534.jpg 950w" sizes="(max-width: 560px) 100vw, 560px"></a>
+          <a href="http://www.techug.com/weak-technology" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f3-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="f" srcset="http://static.webhek.com/techug-res/uploads/2015/12/f3-560x314.jpg 560w, http://static.webhek.com/techug-res/uploads/2015/12/f3-950x534.jpg 950w" sizes="(max-width: 560px) 100vw, 560px"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/weak-technology">
+          						为什么有些大公司技术弱爆了？          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>今年年初，到一家互联网公司实习，该公司是国内行业龙头。<br>
+不过技术和管理方面，却弱爆了。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/weak-technology">
+            					<b>904</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/open-source-tools" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/q2-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="q"></a>
+          <a href="http://www.techug.com/open-source-tools" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/q2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="q"></a>
+          <a href="http://www.techug.com/open-source-tools" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/q2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="q"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/open-source-tools">
+          						2015 年你不可不知的九大开源事件！          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>2015年马上就要过去了，回过头看看发现2015异彩纷
+呈，称为开源之年也不过分。企业用户以前所未有的速度拥抱开源，不仅如此，像 Cloud Foundry 和 OpenStack 
+这样的宿敌也一起协作共享技术。同时我们也看到传统的私有商业公司像微软、苹果都将他们的部分产品、软件开源。2015是令人振奋的一年。<br>
+下面我们一起来回顾一下2015发生的9件开源大事吧！</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/open-source-tools">
+            					<b>142</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/programmer-joke" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/Funny-Giraffe-104.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="笑话 幽默"></a>
+          <a href="http://www.techug.com/programmer-joke" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/Funny-Giraffe-104.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="笑话 幽默"></a>
+          <a href="http://www.techug.com/programmer-joke" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/10/Funny-Giraffe-104.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="笑话 幽默"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/programmer-joke">
+          						要嫁就嫁程序猿——钱多话少死的早          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>我是一个苦b的程序员，今晚加班到快通宵了，困得快睁不开眼了，女上司很关心，问我要不要吃宵夜。我没好气地说，宵夜就算了，能让我睡一觉就行了。女上司红着脸说了句讨厌</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/programmer-joke">
+            					<b>894</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/if-programming-languages-were-weapons" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/weapon.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="武器"></a>
+          <a href="http://www.techug.com/if-programming-languages-were-weapons" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/weapon.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="武器"></a>
+          <a href="http://www.techug.com/if-programming-languages-were-weapons" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/weapon.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="武器"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/if-programming-languages-were-weapons">
+          						如果编程语言是种武器          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>对程序员来说，编程语言就是武器，但有的武器好用，有的武器不好用，有的武器甚至会杀了自己</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/if-programming-languages-were-weapons">
+            					<b>852</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/19-suggestions-for-git" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f2-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="f"></a>
+          <a href="http://www.techug.com/19-suggestions-for-git" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="f"></a>
+          <a href="http://www.techug.com/19-suggestions-for-git" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/f2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="f"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/19-suggestions-for-git">
+          						日常使用 Git 的 19 个建议          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>我使用Git已经有4年之久，在这里想分享一些实用的小技巧，希望能对大家有所帮助。</p>
+<p>如果你对git一无所知，那么我建议先去读一下Git 常用命令速查。本篇文章主要适合有一定 git 使用基础的人群。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/19-suggestions-for-git">
+            					<b>59</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/best-gift-for-programers" class="recent-img-thumbnail"><img src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/giftCenterPresentBow-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="giftCenterPresentBow"></a>
+          <a href="http://www.techug.com/best-gift-for-programers" class="recent-img-middle"><img src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/giftCenterPresentBow-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image" alt="giftCenterPresentBow"></a>
+          <a href="http://www.techug.com/best-gift-for-programers" class="recent-img-large"><img src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/giftCenterPresentBow-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image" alt="giftCenterPresentBow"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/best-gift-for-programers">
+          						能让程序员心花怒放的七种礼物          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>以开发软件为职业的程序员是偏理性的人群的代表，不是一般的难伺候。你可以说他们木纳、死脑筋、不懂人情世故。很难打动他们。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/best-gift-for-programers">
+            					<b>429</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/unreasonable-arrangement" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/m1-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="m"></a>
+          <a href="http://www.techug.com/unreasonable-arrangement" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/m1-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="m"></a>
+          <a href="http://www.techug.com/unreasonable-arrangement" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/m1-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="m"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/unreasonable-arrangement">
+          						锤子CTO钱晨：加班要么是你笨，要么是工作安排不合理          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>　锤子科技的 CTO 钱晨博士今年 53 岁，他把有些许灰白的头发剃得很短，显得精神抖擞。加入锤子科技前，他在中国手机界的黄埔军校摩托罗拉北京研发中心工作了 13 年，离开时任职高级工程经理。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/unreasonable-arrangement">
+            					<b>164</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/norris-numbers" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/maxresdefault.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="maxresdefault.jpg"></a>
+          <a href="http://www.techug.com/norris-numbers" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/maxresdefault.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="maxresdefault.jpg"></a>
+          <a href="http://www.techug.com/norris-numbers" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/maxresdefault.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="maxresdefault.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/norris-numbers">
+          						程序员的成长和代码行数的关系          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>我的朋友Clift Norris发现了一个基本常数，我称之为Norris常数，一个未经培训的程序员在他或她遇到瓶颈之前能写出的平均代码量。Clift估计这个值是1500行。超过这个数以后，代码会变得如此混乱，以至于本人都无法轻而易举的进行调试和修改。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/norris-numbers">
+            					<b>377</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/google-programme" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/c-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="c"></a>
+          <a href="http://www.techug.com/google-programme" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/c-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c"></a>
+          <a href="http://www.techug.com/google-programme" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/12/c-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/google-programme">
+          						谷歌升级自家编程语言Go 支持手机APP开发          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>升级版放弃了传统的C语言编译器，采用Go编译器，彻底摆脱了传统的C语言。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/google-programme">
+            					<b>257</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/10-algorithm-help-programmer-grow-up" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/07/the-friendship-algorithm-the-big-bang-theory.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="the-friendship-algorithm-the-big-bang-theory.jpg"></a>
+          <a href="http://www.techug.com/10-algorithm-help-programmer-grow-up" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/07/the-friendship-algorithm-the-big-bang-theory.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="the-friendship-algorithm-the-big-bang-theory.jpg"></a>
+          <a href="http://www.techug.com/10-algorithm-help-programmer-grow-up" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/07/the-friendship-algorithm-the-big-bang-theory.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="the-friendship-algorithm-the-big-bang-theory.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/10-algorithm-help-programmer-grow-up">
+          						十大编程算法助程序员走上高手之路          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>编程算法，是完成程序逻辑的主要途径。本文推荐十大编程算法，有利于程序员的编程逻辑。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/10-algorithm-help-programmer-grow-up">
+            					<b>349</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/phylogeny" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/t1-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="t"></a>
+          <a href="http://www.techug.com/phylogeny" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/t1-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="t"></a>
+          <a href="http://www.techug.com/phylogeny" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/t1-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="t"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/phylogeny">
+          						程序猿必须知道的编程语言发展史——信息图          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>　我们都知道，编程语言是一组用来定义计算机程序的语法规则。它是一种被标准化的交流语言，用来向计算机发出指令。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/phylogeny">
+            					<b>66</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/https-ssl-tls" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/11/https-ssl.png-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="https-tls.png"></a>
+          <a href="http://www.techug.com/https-ssl-tls" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/11/https-ssl.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="https-tls.png"></a>
+          <a href="http://www.techug.com/https-ssl-tls" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/11/https-ssl.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="https-tls.png"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/https-ssl-tls">
+          						聊聊HTTPS和SSL/TLS协议          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>要说清楚 HTTPS 
+协议的实现原理，至少需要如下几个背景知识。1. 大致了解几个基本术语（HTTPS、SSL、TLS）的含义2. 大致了解 HTTP 和 TCP 
+的关系（尤其是“短连接”VS“长连接”）3. 大致了解加密算法的概念（尤其是“对称加密与非对称加密”的区别）4. 大致了解 CA 证书的用途</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/https-ssl-tls">
+            					<b>323</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/unnameable" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/v2-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="v"></a>
+          <a href="http://www.techug.com/unnameable" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/v2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="v"></a>
+          <a href="http://www.techug.com/unnameable" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/v2-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="v"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/unnameable">
+          						谷歌重返中国将遇尴尬 年轻人不知谷歌为何物          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>在退出中国市场之前，谷歌曾占据了中国网络搜索市场35.6%的份额。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/unnameable">
+            					<b>214</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/wangxiaobo" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/2007052412054454836.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="王小波"></a>
+          <a href="http://www.techug.com/wangxiaobo" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/2007052412054454836.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="王小波"></a>
+          <a href="http://www.techug.com/wangxiaobo" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/08/2007052412054454836.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="王小波"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/wangxiaobo">
+          						第一代程序员王小波          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>对于王小波也就读过一本《一只特立独行的猪》，让我对王小波产生兴趣的是在读到《Mac Talk》这本书里写到王小波除了作家的身份外，还是一名程序员，并且是一名很牛的程序员。以下是一些王小波和程序相关的故事。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/wangxiaobo">
+            					<b>304</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/mechanism-principle" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/e4-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="e"></a>
+          <a href="http://www.techug.com/mechanism-principle" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/e4-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="e"></a>
+          <a href="http://www.techug.com/mechanism-principle" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/e4-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="e"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/mechanism-principle">
+          						PHP 底层的运行机制与原理          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>PHP说简单，但是要精通也不是一件简单的事。我们除了会使用之外，还得知道它底层的工作原理。</p>
+<p>PHP是一种适用于web开发的动态语言。具体点说，就是一个用C语言实现包含大量组件的软件框架。更狭义点看，可以把它认为是一个强大的UI框架</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/mechanism-principle">
+            					<b>111</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/http-rank" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/07/my.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="my.jpg"></a>
+          <a href="http://www.techug.com/http-rank" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/07/my.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="my.jpg"></a>
+          <a href="http://www.techug.com/http-rank" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/07/my.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="my.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/http-rank">
+          						如何生成每秒百万级别的 HTTP 请求？          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>本文是构建能够每秒处理 3 百万请求的高性能 Web 集群系列文章的第一篇。它记录了我使用负载生成器工具的一些经历，希望它能帮助每一个像我一样不得不使用这些工具的人节省时间。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/http-rank">
+            					<b>283</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/teame-io-software" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/n.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="n.jpg"></a>
+          <a href="http://www.techug.com/teame-io-software" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/n.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="n.jpg"></a>
+          <a href="http://www.techug.com/teame-io-software" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/11/n.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="n.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/teame-io-software">
+          						为什么软件外包开发不再可行          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>Yegor Bugayenko是一名软件开发人员，同时也是软件外包公司Teame.io的创始人和CTO。从自己将近10年的软件外包公司工作经验中，他得出结论：现如今，软件外包开发已经行不通了，软件外包的结果只有灾难。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/teame-io-software">
+            					<b>77</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/how-to-be-a-hacker" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/c5aa1ccc6340292810521268b7924455.png-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="c5aa1ccc6340292810521268b7924455.png"></a>
+          <a href="http://www.techug.com/how-to-be-a-hacker" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/c5aa1ccc6340292810521268b7924455.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c5aa1ccc6340292810521268b7924455.png"></a>
+          <a href="http://www.techug.com/how-to-be-a-hacker" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/c5aa1ccc6340292810521268b7924455.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c5aa1ccc6340292810521268b7924455.png"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/how-to-be-a-hacker">
+          						如何成为一名黑客          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>文本列举了成为一名黑客的诸多必备要素</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/how-to-be-a-hacker">
+            					<b>275</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/eclipse-debug" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/c3-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="c"></a>
+          <a href="http://www.techug.com/eclipse-debug" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/c3.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c"></a>
+          <a href="http://www.techug.com/eclipse-debug" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/c3.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="c"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/eclipse-debug">
+          						Eclipse 的 Debug 介绍与技巧          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>没有任何程序员能够一气呵成的写出没有任何 Bug 的代码，所以很多程序员有相当一部分时间是花费在 Debug 上的，程序调试是每个程序员必须面对的工作。如何使用 Eclipse 进行有效的、尤其是高效地调试代码是一个值得学习的技巧。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/eclipse-debug">
+            					<b>66</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/look-down-chains-of-programmer" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/12/look-down-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="瞧不起"></a>
+          <a href="http://www.techug.com/look-down-chains-of-programmer" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/12/look-down-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="瞧不起"></a>
+          <a href="http://www.techug.com/look-down-chains-of-programmer" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/12/look-down-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="瞧不起"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/look-down-chains-of-programmer">
+          						程序员的鄙视链          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>在软件工程师（中国叫做「程序员」或「码农」）的圈子里，文人相轻的现象可是非常严重的，在程序设计的各个领域里都有着错综复杂的「鄙视链」。从程序语言、编辑器、平台到 { 是写在 if 的同一行还是下一行，不同阵营的人都习惯鄙视来鄙视去。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/look-down-chains-of-programmer">
+            					<b>265</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/wi-fi-password" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/y.png-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="y.png"></a>
+          <a href="http://www.techug.com/wi-fi-password" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/y.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="y.png"></a>
+          <a href="http://www.techug.com/wi-fi-password" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/y.png-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="y.png"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/wi-fi-password">
+          						四步教你破解隔壁老王的Wi-Fi密码，蹭网没商量！          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>最棒的邻居莫过于不设Wi-Fi密码的好人，然而现在邻里关系如此淡漠，要蹭个Wi-Fi总被密码挡在门口。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/wi-fi-password">
+            					<b>92</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/awesome-artificial-intelligence" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/02/2e6a7067-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="机器人 人工智能"></a>
+          <a href="http://www.techug.com/awesome-artificial-intelligence" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/02/2e6a7067-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="机器人 人工智能"></a>
+          <a href="http://www.techug.com/awesome-artificial-intelligence" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/02/2e6a7067-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="机器人 人工智能"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/programming" rel="category tag">编程技术</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/awesome-artificial-intelligence">
+          						人工智能(AI)资料大全          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>这里收集的是关于人工智能(AI)的教程、书籍、视频演讲和论文。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/awesome-artificial-intelligence">
+            					<b>263</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/programmer-tied" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/nt-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="nt"></a>
+          <a href="http://www.techug.com/programmer-tied" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/nt-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="nt" srcset="http://static.webhek.com/techug-res/uploads/2015/10/nt-560x314.jpg 560w, http://static.webhek.com/techug-res/uploads/2015/10/nt.jpg 800w" sizes="(max-width: 560px) 100vw, 560px"></a>
+          <a href="http://www.techug.com/programmer-tied" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/nt-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="nt" srcset="http://static.webhek.com/techug-res/uploads/2015/10/nt-560x314.jpg 560w, http://static.webhek.com/techug-res/uploads/2015/10/nt.jpg 800w" sizes="(max-width: 560px) 100vw, 560px"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/programmer-tied">
+          						程序员累了怎么办？          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>程序员在编程的时候因为心力交瘁，从而失去工作热情的现象并不罕见。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/programmer-tied">
+            					<b>73</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/15-questions-for-programers" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/r.jpg-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="r.jpg"></a>
+          <a href="http://www.techug.com/15-questions-for-programers" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/r.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="r.jpg"></a>
+          <a href="http://www.techug.com/15-questions-for-programers" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2015/10/r.jpg-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="r.jpg"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/it-view" rel="category tag">业界观察</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/15-questions-for-programers">
+          						如果你是IT技术人员，请思考这15个问题          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>如果你是一个IT技术人员，那么这15个问题你思考过吗？</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/15-questions-for-programers">
+            					<b>80</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div><div class="recent-container">
+			<div class="recent-article">
+				<div class="recent-img-container">
+					<a href="http://www.techug.com/website-make-you-relax" class="recent-img-thumbnail"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/relax-for-health-175x175.jpg" class="attachment-thumbnail size-thumbnail wp-post-image lazy " alt="relax-for-health"></a>
+          <a href="http://www.techug.com/website-make-you-relax" class="recent-img-middle"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/relax-for-health-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="relax-for-health"></a>
+          <a href="http://www.techug.com/website-make-you-relax" class="recent-img-large"><img data-original="http://static.webhek.com/techug-res/uploads/2014/09/relax-for-health-560x314.jpg" class="attachment-techug-middle size-techug-middle wp-post-image lazy " alt="relax-for-health"></a>
+				</div>
+				<div class="recent-conten-wrapper">
+					<div class="recent-content">
+          <span class="article-category"><a href="http://www.techug.com/cat/geek-life" rel="category tag">程序人生</a></span>
+						<h1 class="recent-title">
+          					<a href="http://www.techug.com/website-make-you-relax">
+          						10个帮程序员减压放松的网站！          					</a>
+          	</h1>
+            <div class="article-excerpt"><p>同学们工作之余，不妨放下微博跟朋友圈，来这10个网站感受一下看着就醉了的情境：「念完往上一推音乐键，我往后一靠，潮乎乎的软皮耳机里头，音乐排山倒海。」今天推荐的网站，利用代入感强的图片与音频，迅速帮你抹平焦虑，获得平和心态，特别献给改稿千遍的设计师们。</p>
+</div>
+          </div>
+          			<footer>
+          				<div class="article-shares-stub">
+          					<a class="num" href="http://www.techug.com/website-make-you-relax">
+            					<b>243</b>次互动
+          					</a>
+        				</div>
+          				
+          			</footer>
+				</div>
+			</div>
+			</div>					
+				</div>
+
+			</section>
+
+			
+	</div>	
+	
+</div><!-- #content-sidebar -->
+<div id="secondary">
+
+	
+	
+
+	
+</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+<div id="supplementary">
+	<div id="footer-sidebar" class="footer-sidebar widget-area" role="complementary">
+		<aside id="tag_cloud-2" class="widget widget_tag_cloud"><h1 class="widget-title">标签</h1><div class="tagcloud"><a href="http://www.techug.com/tag/android" class="tag-link-205" title="12个话题" style="font-size: 12.333333333333pt;">android</a>
+<a href="http://www.techug.com/tag/bug" class="tag-link-9" title="9个话题" style="font-size: 10.5pt;">bug</a>
+<a href="http://www.techug.com/tag/git" class="tag-link-179" title="8个话题" style="font-size: 9.6666666666667pt;">git</a>
+<a href="http://www.techug.com/tag/github" class="tag-link-82" title="11个话题" style="font-size: 11.833333333333pt;">github</a>
+<a href="http://www.techug.com/tag/golang" class="tag-link-299" title="8个话题" style="font-size: 9.6666666666667pt;">golang</a>
+<a href="http://www.techug.com/tag/go%e8%af%ad%e8%a8%80" class="tag-link-300" title="7个话题" style="font-size: 8.8333333333333pt;">go语言</a>
+<a href="http://www.techug.com/tag/html5" class="tag-link-169" title="13个话题" style="font-size: 13pt;">html5</a>
+<a href="http://www.techug.com/tag/java" class="tag-link-120" title="16个话题" style="font-size: 14.333333333333pt;">java</a>
+<a href="http://www.techug.com/tag/javascript" class="tag-link-109" title="7个话题" style="font-size: 8.8333333333333pt;">javascript</a>
+<a href="http://www.techug.com/tag/linux" class="tag-link-77" title="48个话题" style="font-size: 22pt;">linux</a>
+<a href="http://www.techug.com/tag/php" class="tag-link-221" title="19个话题" style="font-size: 15.5pt;">php</a>
+<a href="http://www.techug.com/tag/python" class="tag-link-142" title="13个话题" style="font-size: 13pt;">python</a>
+<a href="http://www.techug.com/tag/%e4%b9%94%e5%b8%83%e6%96%af" class="tag-link-43" title="8个话题" style="font-size: 9.6666666666667pt;">乔布斯</a>
+<a href="http://www.techug.com/tag/%e4%bb%a3%e7%a0%81%e5%ae%a1%e6%9f%a5" class="tag-link-216" title="8个话题" style="font-size: 9.6666666666667pt;">代码审查</a>
+<a href="http://www.techug.com/tag/%e4%bc%81%e4%b8%9a%e6%96%87%e5%8c%96" class="tag-link-6" title="7个话题" style="font-size: 8.8333333333333pt;">企业文化</a>
+<a href="http://www.techug.com/tag/%e5%88%9b%e4%b8%9a" class="tag-link-17" title="27个话题" style="font-size: 18pt;">创业</a>
+<a href="http://www.techug.com/tag/%e5%8a%a0%e7%8f%ad" class="tag-link-116" title="8个话题" style="font-size: 9.6666666666667pt;">加班</a>
+<a href="http://www.techug.com/tag/%e5%a4%a7%e6%95%b0%e6%8d%ae" class="tag-link-136" title="14个话题" style="font-size: 13.5pt;">大数据</a>
+<a href="http://www.techug.com/tag/%e5%a5%b3%e7%a8%8b%e5%ba%8f%e5%91%98" class="tag-link-87" title="9个话题" style="font-size: 10.5pt;">女程序员</a>
+<a href="http://www.techug.com/tag/%e5%ae%89%e5%8d%93" class="tag-link-75" title="17个话题" style="font-size: 14.833333333333pt;">安卓</a>
+<a href="http://www.techug.com/tag/%e5%b0%8f%e7%b1%b3" class="tag-link-88" title="23个话题" style="font-size: 16.833333333333pt;">小米</a>
+<a href="http://www.techug.com/tag/%e5%b7%a5%e4%bd%9c%e6%95%88%e7%8e%87" class="tag-link-35" title="9个话题" style="font-size: 10.5pt;">工作效率</a>
+<a href="http://www.techug.com/tag/%e5%b9%bd%e9%bb%98" class="tag-link-84" title="13个话题" style="font-size: 13pt;">幽默</a>
+<a href="http://www.techug.com/tag/%e5%bc%80%e5%8f%91%e8%80%85" class="tag-link-556" title="6个话题" style="font-size: 8pt;">开发者</a>
+<a href="http://www.techug.com/tag/%e5%bc%80%e6%ba%90" class="tag-link-48" title="16个话题" style="font-size: 14.333333333333pt;">开源</a>
+<a href="http://www.techug.com/tag/%e5%be%ae%e8%bd%af" class="tag-link-223" title="16个话题" style="font-size: 14.333333333333pt;">微软</a>
+<a href="http://www.techug.com/tag/%e6%89%8b%e6%9c%ba" class="tag-link-23" title="21个话题" style="font-size: 16.166666666667pt;">手机</a>
+<a href="http://www.techug.com/tag/%e6%8b%9b%e8%81%98" class="tag-link-122" title="7个话题" style="font-size: 8.8333333333333pt;">招聘</a>
+<a href="http://www.techug.com/tag/%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f" class="tag-link-100" title="13个话题" style="font-size: 13pt;">操作系统</a>
+<a href="http://www.techug.com/tag/%e6%95%88%e7%8e%87" class="tag-link-229" title="7个话题" style="font-size: 8.8333333333333pt;">效率</a>
+<a href="http://www.techug.com/tag/%e6%9d%8e%e5%bc%80%e5%a4%8d" class="tag-link-292" title="6个话题" style="font-size: 8pt;">李开复</a>
+<a href="http://www.techug.com/tag/%e6%b5%8b%e8%af%95" class="tag-link-161" title="8个话题" style="font-size: 9.6666666666667pt;">测试</a>
+<a href="http://www.techug.com/tag/%e6%b5%8f%e8%a7%88%e5%99%a8" class="tag-link-38" title="15个话题" style="font-size: 13.833333333333pt;">浏览器</a>
+<a href="http://www.techug.com/tag/%e6%b8%b8%e6%88%8f" class="tag-link-199" title="10个话题" style="font-size: 11.166666666667pt;">游戏</a>
+<a href="http://www.techug.com/tag/%e7%94%b5%e5%bd%b1" class="tag-link-55" title="7个话题" style="font-size: 8.8333333333333pt;">电影</a>
+<a href="http://www.techug.com/tag/%e7%a7%91%e6%8a%80%e5%a4%a7%e4%bd%ac" class="tag-link-41" title="6个话题" style="font-size: 8pt;">科技大佬</a>
+<a href="http://www.techug.com/tag/%e7%ae%97%e6%b3%95" class="tag-link-45" title="7个话题" style="font-size: 8.8333333333333pt;">算法</a>
+<a href="http://www.techug.com/tag/%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80" class="tag-link-14" title="21个话题" style="font-size: 16.166666666667pt;">编程语言</a>
+<a href="http://www.techug.com/tag/%e8%8b%b9%e6%9e%9c" class="tag-link-13" title="15个话题" style="font-size: 13.833333333333pt;">苹果</a>
+<a href="http://www.techug.com/tag/%e8%ae%be%e8%ae%a1" class="tag-link-31" title="9个话题" style="font-size: 10.5pt;">设计</a>
+<a href="http://www.techug.com/tag/%e8%b0%b7%e6%ad%8c" class="tag-link-32" title="38个话题" style="font-size: 20.333333333333pt;">谷歌</a>
+<a href="http://www.techug.com/tag/%e8%b7%b3%e6%a7%bd" class="tag-link-22" title="6个话题" style="font-size: 8pt;">跳槽</a>
+<a href="http://www.techug.com/tag/%e9%94%a4%e5%ad%90%e6%89%8b%e6%9c%ba" class="tag-link-21" title="6个话题" style="font-size: 8pt;">锤子手机</a>
+<a href="http://www.techug.com/tag/%e9%9d%a2%e8%af%95" class="tag-link-44" title="15个话题" style="font-size: 13.833333333333pt;">面试</a>
+<a href="http://www.techug.com/tag/%e9%bb%91%e5%ae%a2" class="tag-link-132" title="21个话题" style="font-size: 16.166666666667pt;">黑客</a></div>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h1 class="widget-title">近期文章</h1>		<ul>
+					<li>
+				<a href="http://www.techug.com/architectural-design">浅谈12306 核心模型设计思路和架构设计</a>
+						</li>
+					<li>
+				<a href="http://www.techug.com/fight-the-rewrite">这代码不需要重写</a>
+						</li>
+					<li>
+				<a href="http://www.techug.com/computer-voice">最适合计算机的声音，应该是什么样的？</a>
+						</li>
+					<li>
+				<a href="http://www.techug.com/programmer-bubble">关于App程序员泡沫</a>
+						</li>
+					<li>
+				<a href="http://www.techug.com/what-principle">银行的动态口令令牌是什么原理</a>
+						</li>
+				</ul>
+		</aside>		<aside id="categories-2" class="widget widget_categories"><h1 class="widget-title">分类目录</h1>		<ul>
+	<li class="cat-item cat-item-5"><a href="http://www.techug.com/cat/it-view">业界观察</a>
+</li>
+	<li class="cat-item cat-item-303"><a href="http://www.techug.com/cat/entertainment">娱乐幽默</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://www.techug.com/cat/news">新闻时讯</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.techug.com/cat/uncategorized">未分类</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.techug.com/cat/geek-life">程序人生</a>
+</li>
+	<li class="cat-item cat-item-489"><a href="http://www.techug.com/cat/health">程序员健康</a>
+</li>
+	<li class="cat-item cat-item-302"><a href="http://www.techug.com/cat/programmer-humor">程序员幽默专栏</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.techug.com/cat/programming">编程技术</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="http://www.techug.com/cat/tools">软件工具</a>
+</li>
+		</ul>
+</aside><aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://www.techug.com/">
+				<label>
+					<span class="screen-reader-text">搜索：</span>
+					<input class="search-field" placeholder="搜索…" name="s" title="搜索：" type="search">
+				</label>
+				<input class="search-submit" value="搜索" type="submit">
+			</form></aside><aside id="rss-2" class="widget widget_rss"><h1 class="widget-title"><a class="rsswidget" href="http://know.webhek.com/feed"><img class="rss-widget-icon" style="border:0" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/rss.png" alt="RSS" width="14" height="14"></a> <a class="rsswidget" href="http://know.webhek.com/">Web学习知识</a></h1><ul><li><a class="rsswidget" href="http://know.webhek.com/html5/html-dl-dt-dd.html">&lt;dl&gt;、&lt;dt&gt;和&lt;dd&gt;标记的用法</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-video-audio.html">HTML5视频&lt;video&gt;/音频&lt;audio&gt;的用法介绍</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-progress.html">HTML5 &lt;progress&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-output.html">HTML5 &lt;output&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-datalist.html">HTML5 &lt;datalist&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/svg/svg-fecomposite.html">SVG &lt;feComposite&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/svg/svg-fediffuselightinggt-filter.html">SVG光照滤镜</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-section.html">HTML5 &lt;section&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-nav.html">HTML5 &lt;nav&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-header.html">HTML5 &lt;header&gt;</a></li></ul></aside>	</div><!-- #footer-sidebar -->
+</div><!-- #supplementary -->
+
+			<div class="site-info">
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh"><img class="lazy" alt="知识共享许可协议" style="border-width:0" data-original="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png"></a><br>本站内容使用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh">知识共享署名-非商业性使用-相同方式共享 3.0 Unported许可协议</a>进行许可。<br>
+								<a href="http://wordpress.org/">自豪地采用WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	
+	<script type="text/javascript" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/jquery-1.js"></script>
+	<script type="text/javascript" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/jquery.js"></script>
+	<script type="text/javascript">
+	    jQuery(".column1 img.lazy").lazyload();
+	    jQuery(".column2 img.lazy").lazyload();
+	    jQuery(".column3 img.lazy").lazyload();
+	    jQuery("img.lazy").lazyload();
+	    jQuery("div.lazy").lazyload();
+	</script>
+
+	<script type="text/javascript">
+  //http://stackoverflow.com/questions/1599287/create-read-and-erase-cookies-with-jquery
+  // Cookies
+    function createCookie(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else var expires = "";
+
+        document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return decodeURIComponent( c.substring(nameEQ.length, c.length) );
+        }
+        return null;
+    }
+</script>
+
+<script type="text/javascript">
+
+  img1 = new Image();
+  img1.src = "http://www.techug.com/wordpress/wp-content/themes/techug/images/loading.gif";
+
+  var vote_count = 0;
+
+  jQuery('ul.reactions li a').click(function (){
+
+      jQuery('.social-message').hide();
+
+      if( $(this).parents('li').hasClass('voted') ){
+
+        jQuery('#social_message-already-voted').show();
+
+        return;
+
+      }
+
+      if(vote_count == 3)  {
+
+          jQuery('#social_message-badge-votecount-exceeded').show();
+
+          return;
+      }
+      
+      //if we donnot has cookie author and email
+      if( !readCookie('react_user_email') ){
+
+          jQuery('#login_overlay').removeClass('hide_overlay');
+
+          $(this).addClass('just_clicked_me');
+
+          return;
+      }
+
+      jQuery('#reaction_loading').show();
+
+      var txt = jQuery.trim($(this).text());
+
+      if( $(this).attr('id') == 'love-button' ) txt = 'love';
+      else if( $(this).attr('id') == 'hate-button' ) txt = 'hate';
+
+      var pthis = this;
+
+      jQuery.post("/utils/reaction.php", { comment_post_ID: jQuery('#comment_post_ID').val(), txt: txt }, 
+      function(data){ 
+
+          jQuery('#reaction_loading').hide();
+
+          if(jQuery.trim(data) == 'ok') {
+              
+              $(pthis).parents('li').addClass('voted');
+
+              vote_count++;
+
+          }else if(jQuery.trim(data) == 'need login') {
+
+            jQuery('#login_overlay').removeClass('hide_overlay');
+
+            $(this).addClass('just_clicked_me');
+
+          }else if(jQuery.trim(data) == 'duplicated') {
+
+            jQuery('#social_message-already-voted').show();
+
+          }else if(jQuery.trim(data) == 'exceeded') {
+
+            jQuery('#social_message-badge-votecount-exceeded').show();
+
+          }else{
+
+            alert('出错了！请通知站长，谢谢。');
+
+          }
+
+
+
+      });
+
+      
+
+  });
+
+  function sigin_send(){
+
+    if( jQuery.trim( jQuery('#author2').val() ) == '')  return false;
+
+    if( jQuery.trim( jQuery('#email2').val() ) == '')  return false; 
+
+    close_overlay();
+
+    createCookie('react_user_email', jQuery.trim( jQuery('#email2').val() ), 365);
+
+    createCookie('react_user_name', jQuery.trim( jQuery('#author2').val() ), 365);
+
+    jQuery('#author').val( jQuery('#author2').val() );
+
+    jQuery('#email').val( jQuery('#email2').val() );
+
+    $('.just_clicked_me').removeClass('just_clicked_me').click();
+
+    return false;
+  }
+
+  function close_overlay(){
+    jQuery('#login_overlay').addClass('hide_overlay');
+
+  }
+
+
+</script>
+
+	<script type="text/javascript">
+		function share_my_url(webid, url, mytitle, summary){
+
+			var title = "分享【"+mytitle+"】";
+
+			var tsummary = title + summary;
+
+			var share_services = {
+				'tsina':  "http://service.weibo.com/share/share.php?title="+encodeURIComponent( tsummary )+"&url="+url,
+				'qzone':  "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url+"&title="+encodeURIComponent( title )+"&pics=&summary="+encodeURIComponent( summary ),
+				'tqq':    "http://share.v.t.qq.com/index.php?c=share&a=index&title="+encodeURIComponent( tsummary )+"&url="+url,
+				'renren': "http://widget.renren.com/dialog/share?resourceUrl="+url+"&srcUrl="+url+"&title="+encodeURIComponent( title )+"&pic=&description="+encodeURIComponent( summary ),
+				'twitter':"http://twitter.com/intent/tweet?url="+url+"&text="+encodeURIComponent( tsummary ),
+				'facebook':"http://facebook.com/sharer.php?u="+url,
+				'more':   "http://www.jiathis.com/send/?webid=" + webid + "&url="+url+"&title="+encodeURIComponent("分享好文：【"+title+"】")+"&summary="+encodeURIComponent(summary)
+			};
+
+			window.open(share_services[webid], "_blank", "width=615,height=505");
+		}
+
+		function w(app){
+
+			var summary = '';
+			var description;
+			var metas = document.getElementsByTagName('meta');
+			for (var x=0,y=metas.length; x<y; x++) {
+			  if (metas[x].name.toLowerCase() == "description") {
+			    description = metas[x];
+			  }
+			}
+			if( description ) summary = description.content;
+			var title = document.title;
+			var url = document.location.href;
+			share_my_url(app, url, title, summary);
+		}
+	</script>
+
+	<script type="text/javascript">
+		if( jQuery('pre[class*="language-"], pre[class*="lang-"], pre code[class*="lang-"]').length > 0 ){
+
+		jQuery("<link/>", {
+			   rel: "stylesheet",
+			   type: "text/css",
+			   href: "http://static.webhek.com/techug-res/themes/techug/js/prism.css"
+		}).appendTo("head");
+
+		(function() {
+	      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	      ga.src = 'http://static.webhek.com/techug-res/themes/techug/js/prism.js';
+	      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+	}
+	</script>
+
+
+
+
+
+
+	<script>document.getElementById("comment").onfocus=function(){ document.getElementById("captcha").value = "你好"+"！"; }</script><script type="text/javascript" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/form.js"></script>
+<script type="text/javascript" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/comment-reply.js"></script>
+<script type="text/javascript" src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/wp-embed.js"></script>
+<span id="pageendflag"></span>
+
+		<script type="text/javascript">
+		var shares_wb = 0;	
+		var delay=5000;
+		setTimeout(function(){
+
+			(function() {
+			      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			      ga.src = 'http://static.webhek.com/techug-res/themes/techug/js/wb.js';
+			      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			    })();
+
+		},delay); 
+
+		if($('#content0').height() > 3500){
+
+			$('#content0').css('maxHeight', '3000px');
+			$('#rest').show();
+			$('#rest').click(function(){
+				$('#content0').css('maxHeight', '100%');
+				$('#rest').hide();
+			});
+
+		}
+	</script>
+	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2477810-36', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+
+setTimeout(function(){
+		jQuery.getScript('http://static.webhek.com/misc/get-code.php?_='+(new Date()));
+},5000);
+
+</script>
+
+
+
+<!--#####################-->
+<div id="login_overlay" class="signin_overlay hide_overlay">
+  <div class="signin_wrapper">
+    <div class="signin_section" id="signin_modal"><a href="javascript:;" onclick="close_overlay()" class="signin_close">×</a>
+      <div class="signin_content">
+        <div class="signin_upper">
+          <div class="msg-text" id="initial-msg">感谢你的参与互动。</div>
+          <header id="initial_header">只需要最后一个步骤！</header>
+          <form class="comment-form" id="commentform2" method="post" action="" onsubmit="sigin_send(); return false;">
+            <p class="comment-form-author">
+              <label for="author2">姓名 <span class="required">*</span></label>
+              <input aria-required="true" size="30" name="author" id="author2" type="text">
+            </p>
+            <p class="comment-form-email">
+              <label for="email2">电子邮件 <span class="required">*</span></label>
+              <input aria-required="true" size="30" name="email" id="email2" type="email">
+            </p>
+            <p class="form-submit">
+              <input value="确定" id="submit2" name="submit" type="submit">
+            </p>
+          </form>
+          <div id="reaction_loading2" class="section social-message" style="display:none;">
+            <img src="%E6%B5%85%E8%B0%8812306%20%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%92%8C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%20_%20%E7%A8%8B%E5%BA%8F%E5%B8%88_files/loading.gif">
+          </div>
+          <div id="reaction_login_err" class="section social-message" style="display:none;">
+            输入有误！
+          </div>
+        </div>
+        <div class="signin_sep"></div>
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+ Served from: www.techug.com @ 2016-02-17 01:23:13 by W3 Total Cache -->
+<!-- 2016-2-16 17:23 static gzip-->

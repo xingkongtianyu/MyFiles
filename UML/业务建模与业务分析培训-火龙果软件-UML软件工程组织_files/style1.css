@@ -1,0 +1,1806 @@
+<style type="text/css">
+
+
+
+
+
+
+
+.column1
+
+
+
+
+
+
+
+{	color: #FEFEFE;
+
+
+
+	font-family:宋体;
+
+
+
+	font-size:12px
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.column1_a:link
+
+
+
+
+
+
+
+{       color:#000080;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration:none
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+} 
+
+
+
+
+
+
+
+.column1_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #000080;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.column1_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.qcolumn1_a:link
+
+
+
+
+
+
+
+{       color:#006600;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration:none
+
+
+
+} 
+
+
+
+
+
+
+
+.qcolumn1_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #006600;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.qcolumn1_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.column2
+
+
+
+
+
+
+
+{	color: #000080;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.column2_a:link
+
+
+
+
+
+
+
+{	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.column2_a:visited
+
+
+
+
+
+
+
+{       color:#000000;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration:none: normal; 
+
+
+
+	line-height: normal
+
+
+
+} 
+
+
+
+
+
+
+
+.column2_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.title
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"stone-kaiti";
+
+
+
+	font-size:24px;
+
+
+
+    font-weight: bold;
+
+
+
+	text-decoration:none
+
+
+
+}
+
+
+
+
+
+
+
+.title_a
+
+
+
+{
+
+
+
+	color: #003300;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none
+
+
+
+; font-weight: bolder
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.content
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	line-height:20px;
+
+
+
+        text-decoration:none
+
+
+
+}
+
+
+
+
+
+
+
+.readme_title
+
+
+
+{
+
+
+
+	color: #FFFFFF;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	line-height:18px;
+
+
+
+        text-decoration:none; font-weight: bold; font-style: normal
+
+
+
+}
+
+
+
+
+
+
+
+.readme_content
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	line-height:22px;
+
+
+
+        text-decoration:none; font-weight: normal; font-style: normal
+
+
+
+}
+
+
+
+
+
+
+
+.content_a:link
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none
+
+
+
+}
+
+
+
+
+
+
+
+.content_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #333333;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+.content_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.newcontent
+
+
+
+
+
+
+
+{       color:#FF6600;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+} 
+
+
+
+
+
+
+
+.newcontent_a:link
+
+
+
+
+
+
+
+{       color:#FF6600;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration:none
+
+
+
+} 
+
+
+
+
+
+
+
+.newcontent_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #006000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.newcontent_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.copyright
+
+
+
+{
+
+
+
+    COLOR: #333333;
+
+
+
+    FONT-FAMILY: "宋体";
+
+
+
+    FONT-SIZE: 12px
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.copyright_a
+
+
+
+
+
+
+
+{	color: #003399;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none
+
+
+
+; font-style: normal}
+
+
+
+
+
+
+
+
+
+
+
+.logintext
+
+
+
+
+
+
+
+{       color:#006600;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px
+
+
+
+}
+
+
+
+
+
+
+
+.logintext_a:link
+
+
+
+
+
+
+
+{	color: #0033cc;
+
+
+
+	font-family:宋体;
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:none
+
+
+
+}
+
+
+
+.logintext_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+
+
+
+}
+
+
+
+.logintext_a:active
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FFFFFF;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+	text-decoration: none;
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+.logintext_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #1010B8;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.formtitle
+
+
+
+
+
+
+
+{       color:#999999;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px; font-weight: normal
+
+
+
+}
+
+
+
+
+
+
+
+.tab_title
+
+
+
+
+
+
+
+{       color:#000066;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:14px
+
+
+
+; font-weight: bold
+
+
+
+}
+
+
+
+
+
+
+
+.tab_guang
+
+
+
+
+
+
+
+{       color:#FFFFFF;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px
+
+
+
+; font-weight: normal
+
+
+
+}
+
+
+
+
+
+
+
+.tab_content
+
+
+
+
+
+
+
+{       color:#006600;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px; line-height: 18px
+
+
+
+}
+
+
+
+
+
+
+
+.tab_content_a:link
+
+
+
+
+
+
+
+{	color: #000080;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration:underline
+
+
+
+}
+
+
+
+
+
+
+
+.tab_content_a:visited
+
+
+
+
+
+
+
+{       color:#000080;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration:underline
+
+
+
+} 
+
+
+
+
+
+
+
+.tab_content_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.tab_memo
+
+
+
+
+
+
+
+{       color:#000000;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px; font-weight: bolder; text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.tab_memo_a:link
+
+
+
+
+
+
+
+{       color:#FF0000;
+
+
+
+        font-family:"宋体";
+
+
+
+        font-size:12px;
+
+
+
+        text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.tab_memo_a:visited
+
+
+
+
+
+
+
+{
+
+
+
+	color: #000000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px; 
+
+
+
+        text-decoration: none; 
+
+
+
+	font-style: normal; 
+
+
+
+	line-height: normal
+
+
+
+}
+
+
+
+
+
+
+
+.tab_memo_a:hover
+
+
+
+
+
+
+
+{
+
+
+
+	color: #FF0000;
+
+
+
+	font-family:"宋体";
+
+
+
+	font-size:12px;
+
+
+
+	text-decoration: none
+
+
+
+}
+
+
+
+
+
+
+
+.tab_frame
+
+
+
+
+
+
+
+{      border-color: green; 
+
+
+
+       border-width: 1px;
+
+
+
+       border-style: double
+
+
+
+        
+
+
+
+}
+
+
+
+
+
+
+
+.button
+
+
+
+{     color:003300;
+
+
+
+      background-color: #E2F3CB
+
+
+
+}
+
+
+
+
+
+
+
+.tableStyle01
+
+
+
+
+
+
+
+{    BORDER-RIGHT: #69CE00 1px solid;
+
+
+
+     BORDER-TOP: #69CE00 1px solid;
+
+
+
+     BORDER-LEFT: #69CE00 1px solid;
+
+
+
+     BORDER-BOTTOM: #69CE00 1px solid
+
+
+
+}
+
+
+
+
+
+
+
+.tableStyle02
+
+
+
+
+
+
+
+{
+	border: 1px solid #999999;
+
+
+
+
+}
+
+
+
+
+
+
+
+.tableStyle03
+
+
+
+
+
+
+
+{    BORDER-RIGHT: #9CDDEE 1px solid;
+
+
+
+     BORDER-TOP: #9CDDEE 3px solid;
+
+
+
+     BORDER-LEFT: #9CDDEE 1px solid;
+
+
+
+     BORDER-BOTTOM: #9CDDEE 1px solid
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.tableStyle04
+
+
+
+
+
+
+
+{
+
+
+
+	BORDER-RIGHT: #4CD702 0px solid;
+
+
+
+	BORDER-TOP: #4CD702 1px solid;
+
+
+
+	BORDER-LEFT: #4CD702 0px solid;
+
+
+
+	BORDER-BOTTOM: #4CD702 1px solid;
+
+
+
+	background-color: #E8FFE8;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+.zdcontent 
+
+
+
+{    font-size: 12px; 
+
+
+
+     font-weight: bolder; 
+
+
+
+     color: #FFFFFF
+
+
+
+}
+
+
+
+
+
+.shanye {  font-size: 12px; color: #00CC00; text-decoration: none}
+
+a:link {
+
+	font-family: "宋体";
+
+	font-size: 12px;
+
+	color: #0000FF;
+
+	text-decoration: none;
+
+	cursor: hand;
+
+}
+.box {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #BED6E0;
+	border-bottom-color: #BED6E0;
+	border-left-color: #BED6E0;
+}
+.di {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #BED6E0;
+}
+.kuang {
+	border: 1px solid #BED6E0;
+}
+.classtitle {
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 30px;
+	color: #000000;
+}
+.classapp
+{       color:#0000FF;
+        font-family:"宋体";
+		font-weight: bold;
+        font-size:14px; line-height: 20px
+}
+.classapp_a:link
+{	color: #0000FF;
+	font-family:"宋体";
+	font-size:14px;
+	font-weight: bold;
+	text-decoration:underline
+}
+.classapp_a:visited
+{       color:#0000FF;
+        font-family:"宋体";
+        font-size:14px;
+		font-weight: bold;
+       text-decoration:underline
+} 
+.classapp_a:hover
+{
+	color: #FF0000;
+	font-family:"宋体";
+	font-size:14px;
+	text-decoration: underline;
+	font-style: normal;
+	font-weight: bold;
+}
+.video1 {
+
+	font-family: 宋体;
+	
+	font-size: 16pt;
+
+	color: #0000FF;
+
+}
+.video1_a:link {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+
+.video1_a:visited {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+
+.video1_a:hover {
+	font-family: "宋体";
+	font-size: 16px;
+	font-style: normal;
+	color: #FF0000;
+	text-decoration: underline;
+}
+.explain {
+	font-family: 宋体;
+	font-size: 10pt;
+	color: #666666;
+
+}
+.newstable{
+  background-color:#F5F5F5;}
+.border{	
+	font-family:"宋体";
+	font-size:12px;
+	line-height:20px;
+   border:1px #cbcbcb solid;}
+   .colortabb { border:1px;border-style:solid;border-color:#cbcbcb;
+	font-family:"宋体";
+	font-size:12px;
+	line-height:20px;
+} 
+.colorbg{background:#F5F5F5;} 
+
+
+.colorbg{color=#000000; font-size:24px;} 
+
+</style>
+
